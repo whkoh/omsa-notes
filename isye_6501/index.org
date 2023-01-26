@@ -178,8 +178,7 @@ Check how good a model is
 - When fitting a model, this captures both real and random effects
   - Real effects: exist in all datasets (or subsets)
   - Random effects: different in all datasets
-** Splitting data
-*** Why split data
+** Training, validation and test data
 - Use a *training* set of data to fit model
 - Use another *validation* set of data to judge model effectiveness
 - When comparing >1 model, use a *test* dataset.
@@ -189,7 +188,7 @@ Check how good a model is
 - Analogize with models equally good
 - Flowchart:
   [[./img/validation01.png]]
-*** How to split data
+** Splitting data
 - How much data goes to each set?
   1. 70 to 90% train, remaining test
   2. 50 to 70% train, remaining evenly split validation & test
@@ -200,7 +199,7 @@ Check how good a model is
      - Need to ensure rotation doesn't introduce bias
   3. Combined:
      60% of Monday data for training, 60^% of Tuesday data for training, etc.
-*** Cross-validation
+** Cross-validation
 #+BEGIN_QUOTE
 What happens with important data appears only in one data set e.g., validation?
 #+END_QUOTE
