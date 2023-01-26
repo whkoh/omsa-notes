@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-01-26 Thu 12:01 -->
+<!-- 2023-01-26 Thu 12:16 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ISYE 6501 Intro to Analytics Modeling Notes</title>
@@ -44,56 +44,63 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orga3718bf">1. Module 01: Intro</a>
+<li><a href="#org4ef7057">1. Module 01: Intro</a>
 <ul>
-<li><a href="#orgeead90d">1.1. What's analytics?</a></li>
-<li><a href="#orgef47ed9">1.2. Modeling</a></li>
-<li><a href="#orgaf5c3fd">1.3. Course structure</a></li>
-<li><a href="#org8222027">1.4. Three different things are all models</a></li>
-<li><a href="#org046321c">1.5. Hence these are all "models":</a></li>
+<li><a href="#orgb5426d0">1.1. What's analytics?</a></li>
+<li><a href="#org22e2235">1.2. Modeling</a></li>
+<li><a href="#orge2fa06a">1.3. Course structure</a></li>
+<li><a href="#orgad407b3">1.4. Three different things are all models</a></li>
+<li><a href="#org1dbf338">1.5. Hence these are all "models":</a></li>
 </ul>
 </li>
-<li><a href="#org4668368">2. Module 02: Classification</a>
+<li><a href="#org27cc493">2. Module 02: Classification</a>
 <ul>
-<li><a href="#org380dba7">2.1. Types of classification models</a></li>
-<li><a href="#org50a0d0a">2.2. Definition of bad classification</a></li>
-<li><a href="#org4db83ee">2.3. Examples</a>
+<li><a href="#org7c0d260">2.1. Types of classification models</a></li>
+<li><a href="#org02a9d4c">2.2. Definition of bad classification</a></li>
+<li><a href="#org1bca703">2.3. Examples</a>
 <ul>
-<li><a href="#orgeacf516">2.3.1. Loan payment (Income vs credit score)</a></li>
+<li><a href="#orga23244a">2.3.1. Loan payment (Income vs credit score)</a></li>
 </ul>
 </li>
-<li><a href="#org6cf97ea">2.4. Data terminology</a></li>
-<li><a href="#orgbe4fb69">2.5. Data types</a></li>
-<li><a href="#org5417855">2.6. Support vector machines</a>
+<li><a href="#org947d98c">2.4. Data terminology</a></li>
+<li><a href="#org924e937">2.5. Data types</a></li>
+<li><a href="#orgeaf6184">2.6. Support vector machines</a>
 <ul>
-<li><a href="#orga6ec520">2.6.1. When not possible to get full separation</a></li>
-<li><a href="#org4f22cd6">2.6.2. What SVM means</a></li>
+<li><a href="#org13eb77b">2.6.1. When not possible to get full separation</a></li>
+<li><a href="#org3084c08">2.6.2. What SVM means</a></li>
 </ul>
 </li>
-<li><a href="#org997cc1f">2.7. Scaling and standardization</a>
+<li><a href="#org3c23f61">2.7. Scaling and standardization</a>
 <ul>
-<li><a href="#org95142ea">2.7.1. Scaling data</a></li>
-<li><a href="#org23d8718">2.7.2. Standardization of data</a></li>
+<li><a href="#org75f2893">2.7.1. Scaling data</a></li>
+<li><a href="#org22bf102">2.7.2. Standardization of data</a></li>
 </ul>
 </li>
-<li><a href="#orgebfd367">2.8. Choosing between scaling vs standardization</a></li>
-<li><a href="#orgf9385dc">2.9. K Nearest Neighbour model (KNN)</a></li>
+<li><a href="#orga1cba4d">2.8. Choosing between scaling vs standardization</a></li>
+<li><a href="#org82c35c4">2.9. K Nearest Neighbour model (KNN)</a></li>
 </ul>
 </li>
-<li><a href="#org1340cfe">3. Module 03: Validation</a>
+<li><a href="#org53ffecd">3. Module 03: Validation</a>
 <ul>
-<li><a href="#org8439408">3.1. Splitting data</a></li>
+<li><a href="#orgeaa546a">3.1. Splitting data</a>
+<ul>
+<li><a href="#org15ca1af">3.1.1. Why split data</a></li>
+<li><a href="#org046cd9b">3.1.2. How to split data</a></li>
+<li><a href="#org9071a56">3.1.3. Cross-validation</a></li>
+<li><a href="#org828840b">3.1.4. Summary:</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orga3718bf" class="outline-2">
-<h2 id="orga3718bf"><span class="section-number-2">1.</span> Module 01: Intro</h2>
+<div id="outline-container-org4ef7057" class="outline-2">
+<h2 id="org4ef7057"><span class="section-number-2">1.</span> Module 01: Intro</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgeead90d" class="outline-3">
-<h3 id="orgeead90d"><span class="section-number-3">1.1.</span> What's analytics?</h3>
+<div id="outline-container-orgb5426d0" class="outline-3">
+<h3 id="orgb5426d0"><span class="section-number-3">1.1.</span> What's analytics?</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Analytics answers these questions
@@ -106,8 +113,8 @@ Analytics answers these questions
 </ol>
 </div>
 </div>
-<div id="outline-container-orgef47ed9" class="outline-3">
-<h3 id="orgef47ed9"><span class="section-number-3">1.2.</span> Modeling</h3>
+<div id="outline-container-org22e2235" class="outline-3">
+<h3 id="org22e2235"><span class="section-number-3">1.2.</span> Modeling</h3>
 <div class="outline-text-3" id="text-1-2">
 <ol class="org-ol">
 <li>Describe real-life situation with math</li>
@@ -116,8 +123,8 @@ Analytics answers these questions
 </ol>
 </div>
 </div>
-<div id="outline-container-orgaf5c3fd" class="outline-3">
-<h3 id="orgaf5c3fd"><span class="section-number-3">1.3.</span> Course structure</h3>
+<div id="outline-container-orge2fa06a" class="outline-3">
+<h3 id="orge2fa06a"><span class="section-number-3">1.3.</span> Course structure</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 Enough math intuition and detail
@@ -138,8 +145,8 @@ Enough math intuition and detail
 </ul>
 </div>
 </div>
-<div id="outline-container-org8222027" class="outline-3">
-<h3 id="org8222027"><span class="section-number-3">1.4.</span> Three different things are all models</h3>
+<div id="outline-container-orgad407b3" class="outline-3">
+<h3 id="orgad407b3"><span class="section-number-3">1.4.</span> Three different things are all models</h3>
 <div class="outline-text-3" id="text-1-4">
 <ol class="org-ol">
 <li>Real life situation expressed as math</li>
@@ -148,8 +155,8 @@ Enough math intuition and detail
 </ol>
 </div>
 </div>
-<div id="outline-container-org046321c" class="outline-3">
-<h3 id="org046321c"><span class="section-number-3">1.5.</span> Hence these are all "models":</h3>
+<div id="outline-container-org1dbf338" class="outline-3">
+<h3 id="org1dbf338"><span class="section-number-3">1.5.</span> Hence these are all "models":</h3>
 <div class="outline-text-3" id="text-1-5">
 <ol class="org-ol">
 <li>Regression</li>
@@ -159,15 +166,15 @@ Enough math intuition and detail
 </div>
 </div>
 </div>
-<div id="outline-container-org4668368" class="outline-2">
-<h2 id="org4668368"><span class="section-number-2">2.</span> Module 02: Classification</h2>
+<div id="outline-container-org27cc493" class="outline-2">
+<h2 id="org27cc493"><span class="section-number-2">2.</span> Module 02: Classification</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>Definition: putting things into groups</li>
 </ul>
 </div>
-<div id="outline-container-org380dba7" class="outline-3">
-<h3 id="org380dba7"><span class="section-number-3">2.1.</span> Types of classification models</h3>
+<div id="outline-container-org7c0d260" class="outline-3">
+<h3 id="org7c0d260"><span class="section-number-3">2.1.</span> Types of classification models</h3>
 <div class="outline-text-3" id="text-2-1">
 <ol class="org-ol">
 <li>Number of groups</li>
@@ -179,8 +186,8 @@ Enough math intuition and detail
 </ol>
 </div>
 </div>
-<div id="outline-container-org50a0d0a" class="outline-3">
-<h3 id="org50a0d0a"><span class="section-number-3">2.2.</span> Definition of bad classification</h3>
+<div id="outline-container-org02a9d4c" class="outline-3">
+<h3 id="org02a9d4c"><span class="section-number-3">2.2.</span> Definition of bad classification</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>Cost: is one type of mistake worse than the other?</li>
@@ -188,12 +195,12 @@ Enough math intuition and detail
 </div>
 </div>
 
-<div id="outline-container-org4db83ee" class="outline-3">
-<h3 id="org4db83ee"><span class="section-number-3">2.3.</span> Examples</h3>
+<div id="outline-container-org1bca703" class="outline-3">
+<h3 id="org1bca703"><span class="section-number-3">2.3.</span> Examples</h3>
 <div class="outline-text-3" id="text-2-3">
 </div>
-<div id="outline-container-orgeacf516" class="outline-4">
-<h4 id="orgeacf516"><span class="section-number-4">2.3.1.</span> Loan payment (Income vs credit score)</h4>
+<div id="outline-container-orga23244a" class="outline-4">
+<h4 id="orga23244a"><span class="section-number-4">2.3.1.</span> Loan payment (Income vs credit score)</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <ul class="org-ul">
 <li>Plot lines and find one that can separate default vs non-default.</li>
@@ -203,8 +210,8 @@ Enough math intuition and detail
 </div>
 </div>
 </div>
-<div id="outline-container-org6cf97ea" class="outline-3">
-<h3 id="org6cf97ea"><span class="section-number-3">2.4.</span> Data terminology</h3>
+<div id="outline-container-org947d98c" class="outline-3">
+<h3 id="org947d98c"><span class="section-number-3">2.4.</span> Data terminology</h3>
 <div class="outline-text-3" id="text-2-4">
 <ol class="org-ol">
 <li>Row = data point</li>
@@ -215,8 +222,8 @@ Enough math intuition and detail
 </ol>
 </div>
 </div>
-<div id="outline-container-orgbe4fb69" class="outline-3">
-<h3 id="orgbe4fb69"><span class="section-number-3">2.5.</span> Data types</h3>
+<div id="outline-container-org924e937" class="outline-3">
+<h3 id="org924e937"><span class="section-number-3">2.5.</span> Data types</h3>
 <div class="outline-text-3" id="text-2-5">
 <ol class="org-ol">
 <li>Structured data
@@ -240,8 +247,8 @@ Enough math intuition and detail
 </ol>
 </div>
 </div>
-<div id="outline-container-org5417855" class="outline-3">
-<h3 id="org5417855"><span class="section-number-3">2.6.</span> Support vector machines</h3>
+<div id="outline-container-orgeaf6184" class="outline-3">
+<h3 id="orgeaf6184"><span class="section-number-3">2.6.</span> Support vector machines</h3>
 <div class="outline-text-3" id="text-2-6">
 <ul class="org-ul">
 <li><b>Supervised</b> method (algorithm uses known results when training)</li>
@@ -268,8 +275,8 @@ Enough math intuition and detail
 <li>Subject to constraints</li>
 </ul>
 </div>
-<div id="outline-container-orga6ec520" class="outline-4">
-<h4 id="orga6ec520"><span class="section-number-4">2.6.1.</span> When not possible to get full separation</h4>
+<div id="outline-container-org13eb77b" class="outline-4">
+<h4 id="org13eb77b"><span class="section-number-4">2.6.1.</span> When not possible to get full separation</h4>
 <div class="outline-text-4" id="text-2-6-1">
 <ul class="org-ul">
 <li>Then we minimize error</li>
@@ -292,8 +299,8 @@ Enough math intuition and detail
 </ul>
 </div>
 </div>
-<div id="outline-container-org4f22cd6" class="outline-4">
-<h4 id="org4f22cd6"><span class="section-number-4">2.6.2.</span> What SVM means</h4>
+<div id="outline-container-org3084c08" class="outline-4">
+<h4 id="org3084c08"><span class="section-number-4">2.6.2.</span> What SVM means</h4>
 <div class="outline-text-4" id="text-2-6-2">
 <ul class="org-ul">
 <li>Etymology
@@ -310,8 +317,8 @@ Enough math intuition and detail
 </div>
 </div>
 </div>
-<div id="outline-container-org997cc1f" class="outline-3">
-<h3 id="org997cc1f"><span class="section-number-3">2.7.</span> Scaling and standardization</h3>
+<div id="outline-container-org3c23f61" class="outline-3">
+<h3 id="org3c23f61"><span class="section-number-3">2.7.</span> Scaling and standardization</h3>
 <div class="outline-text-3" id="text-2-7">
 <ul class="org-ul">
 <li>Predictive factors may have different orders of magnitude, i.e.
@@ -334,8 +341,8 @@ Enough math intuition and detail
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org95142ea" class="outline-4">
-<h4 id="org95142ea"><span class="section-number-4">2.7.1.</span> Scaling data</h4>
+<div id="outline-container-org75f2893" class="outline-4">
+<h4 id="org75f2893"><span class="section-number-4">2.7.1.</span> Scaling data</h4>
 <div class="outline-text-4" id="text-2-7-1">
 <ul class="org-ul">
 <li>Common scale is between 0 and 1</li>
@@ -350,8 +357,8 @@ Enough math intuition and detail
 </ul>
 </div>
 </div>
-<div id="outline-container-org23d8718" class="outline-4">
-<h4 id="org23d8718"><span class="section-number-4">2.7.2.</span> Standardization of data</h4>
+<div id="outline-container-org22bf102" class="outline-4">
+<h4 id="org22bf102"><span class="section-number-4">2.7.2.</span> Standardization of data</h4>
 <div class="outline-text-4" id="text-2-7-2">
 <ul class="org-ul">
 <li>Scale to normal distribution</li>
@@ -373,8 +380,8 @@ Enough math intuition and detail
 </div>
 </div>
 </div>
-<div id="outline-container-orgebfd367" class="outline-3">
-<h3 id="orgebfd367"><span class="section-number-3">2.8.</span> Choosing between scaling vs standardization</h3>
+<div id="outline-container-orga1cba4d" class="outline-3">
+<h3 id="orga1cba4d"><span class="section-number-3">2.8.</span> Choosing between scaling vs standardization</h3>
 <div class="outline-text-3" id="text-2-8">
 <ul class="org-ul">
 <li>Scale when:
@@ -398,8 +405,8 @@ Enough math intuition and detail
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf9385dc" class="outline-3">
-<h3 id="orgf9385dc"><span class="section-number-3">2.9.</span> K Nearest Neighbour model (KNN)</h3>
+<div id="outline-container-org82c35c4" class="outline-3">
+<h3 id="org82c35c4"><span class="section-number-3">2.9.</span> K Nearest Neighbour model (KNN)</h3>
 <div class="outline-text-3" id="text-2-9">
 <ul class="org-ul">
 <li><b>Classification</b></li>
@@ -424,15 +431,15 @@ Enough math intuition and detail
 <li>Unimportant metrics can be removed
 <ul class="org-ul">
 <li><i>c.f.</i> variable selection topic</li>
-<li>Choose good value of \(k\), <i>c.f.</i> validation @ <a href="#org1340cfe">3</a></li>
+<li>Choose good value of \(k\), <i>c.f.</i> validation @ <a href="#org53ffecd">3</a></li>
 </ul></li>
 </ul></li>
 </ul>
 </div>
 </div>
 </div>
-<div id="outline-container-org1340cfe" class="outline-2">
-<h2 id="org1340cfe"><span class="section-number-2">3.</span> Module 03: Validation</h2>
+<div id="outline-container-org53ffecd" class="outline-2">
+<h2 id="org53ffecd"><span class="section-number-2">3.</span> Module 03: Validation</h2>
 <div class="outline-text-2" id="text-3">
 <blockquote>
 <p>
@@ -452,9 +459,13 @@ Check how good a model is
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org8439408" class="outline-3">
-<h3 id="org8439408"><span class="section-number-3">3.1.</span> Splitting data</h3>
+<div id="outline-container-orgeaa546a" class="outline-3">
+<h3 id="orgeaa546a"><span class="section-number-3">3.1.</span> Splitting data</h3>
 <div class="outline-text-3" id="text-3-1">
+</div>
+<div id="outline-container-org15ca1af" class="outline-4">
+<h4 id="org15ca1af"><span class="section-number-4">3.1.1.</span> Why split data</h4>
+<div class="outline-text-4" id="text-3-1-1">
 <ul class="org-ul">
 <li>Use a <b>training</b> set of data to fit model</li>
 <li>Use another <b>validation</b> set of data to judge model effectiveness</li>
@@ -472,11 +483,85 @@ Check how good a model is
 </ul>
 </div>
 </div>
+<div id="outline-container-org046cd9b" class="outline-4">
+<h4 id="org046cd9b"><span class="section-number-4">3.1.2.</span> How to split data</h4>
+<div class="outline-text-4" id="text-3-1-2">
+<ul class="org-ul">
+<li>How much data goes to each set?
+<ol class="org-ol">
+<li>70 to 90% train, remaining test</li>
+<li>50 to 70% train, remaining evenly split validation &amp; test</li>
+</ol></li>
+<li>Methods of splitting data
+<ol class="org-ol">
+<li>Random</li>
+<li>Rotation (take turn selecting data points into training, test, valid across the sets of split data)
+<ul class="org-ul">
+<li>Advantage: in time series data, may avoid all datasets having early/late data</li>
+<li>Need to ensure rotation doesn't introduce bias</li>
+</ul></li>
+<li>Combined:
+60% of Monday data for training, 60^% of Tuesday data for training, etc.</li>
+</ol></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9071a56" class="outline-4">
+<h4 id="org9071a56"><span class="section-number-4">3.1.3.</span> Cross-validation</h4>
+<div class="outline-text-4" id="text-3-1-3">
+<blockquote>
+<p>
+What happens with important data appears only in one data set e.g., validation?
+</p>
+</blockquote>
+<ul class="org-ul">
+<li>Use cross-validation!</li>
+<li>k-fold cross validation
+<ol class="org-ol">
+<li>Split data for testing (e.g. 20%)</li>
+<li>With remaining data, use it for both training and validation by splitting into 4 x 20%, then:
+<ol class="org-ol">
+<li>Train 1, 2, 3, Validate 4</li>
+<li>Train 1, 2, 4, Validate 3</li>
+<li>Train 1, 3, 4, Validate 2</li>
+<li>Train 2, 3, 4, Validate 1</li>
+</ol></li>
+</ol></li>
+<li>Summary of k-fold cross-validation:
+<ul class="org-ul">
+<li>Train model on all other parts</li>
+<li>Evaluate model on remaining part</li>
+<li>Average \(k\) evaluations to estimate the model quality.</li>
+<li>\(10\) is commonly selected for \(k\).</li>
+<li><b>But</b>, the model selected from cross-validation is not used. Coefficients should also not be averaged.</li>
+<li>Once model is selected, <b>retrain</b> with all data</li>
+</ul></li>
+<li>Advantages of k-fold cross-validation:
+<ol class="org-ol">
+<li>Better uses data</li>
+<li>Better estimates model quality</li>
+<li>Choose model more effectively</li>
+</ol></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org828840b" class="outline-4">
+<h4 id="org828840b"><span class="section-number-4">3.1.4.</span> Summary:</h4>
+<div class="outline-text-4" id="text-3-1-4">
+<ol class="org-ol">
+<li>Build model with training data</li>
+<li>Pick model with validation data</li>
+<li>Estimate performance with test data</li>
+<li></li>
+</ol>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: W</p>
-<p class="date">Created: 2023-01-26 Thu 12:01</p>
+<p class="date">Created: 2023-01-26 Thu 12:16</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
