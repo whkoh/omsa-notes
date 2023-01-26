@@ -1,6 +1,6 @@
 #+AUTHOR: W
 #+SETUPFILE: /Users/whkoh/git-repos/org-html-themes/org/theme-readtheorg-local.setup
-
+#+TITLE: ISYE 6501 Intro to Analytics Modeling Notes
 * Module 01: Intro
 ** What's analytics?
 Analytics answers these questions
