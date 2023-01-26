@@ -227,7 +227,7 @@ What happens with important data appears only in one data set e.g., validation?
 1. Build model with training data
 2. Pick model with validation data
 3. Estimate performance with test data
-* Model 04: Clustering
+* Module 04: Clustering
 ** Introduction to clustering
 - *Unsupervised* method (response not available for use in training)
 - Grouping data points
@@ -258,4 +258,59 @@ What happens with important data appears only in one data set e.g., validation?
 - Analogize with warehouse picking robot. The operation that takes the longest dominates the total operation time.
 ** K-Means Clustering
 - *Unsupervised* technique
-- /TBC/
+- Steps to implement K-Means:
+  1. Plot data points on suitable axes (e.g., age vs temperature, sepal width vs sepal height)
+  2. Let:
+     - $x_{ij}$ = attribute $j$ of data point $i$
+     - $y_{ik}$ = $1$ iif data point $i$ in cluster $k$, else $0$
+     - $z_{jk}$ = coordinate $j$ of cluster center $k$
+     - Mathematically, but it takes too long:
+       $$
+       \text{Min}_{y,z}\sum_i\sum_k \sqrt{\sum_{j} (x_{ij} - z_{jk})^2}
+       $$
+       subject to: $\sum_k y_{ik} = 1$ for each $i$
+  3. Practical method:
+     - Pick $k$ cluster centers in data
+     - Assign each point to nearest cluster center
+     - Recalculate cluster center (centroid)
+       - Now, data points might not belong to the right cluster
+     - Go back to assign, then re-calc, then assign, then re-calc iteratively until stable
+  4. K-Means is a *heuristic*, i.e.:
+     - it is fast and good
+     - *not guaranteed* to find global best solution.
+  5. It is expectation-maximization (EM), and alternates between expectation (/finding cluster centers/) and maximization (/assigning points to clusters/)
+** Practical details for K-Means
+Algorithm just assigns outliers to nearest clusters.
+- Choosing *starting points*:
+  1. Run several times with different initial cluster centers
+  2. Algorithm is non-deterministic, /i.e./ can produce different results when run with different inputs
+  3. Choose the best solution from the results produced
+- Handling *outliers*:
+  1. Discard, but may not be the 'right' answer
+  2. Ask why the outlier happens
+     - What it means to discard or include the outlier
+     - Ultimately, algorithm is just a guide. Best solution is what fits the situation.
+- Choosing *number of clusters*. Is adding a cluster always better?
+  - It may increase the metric (total distance of each data point to their cluster center), hence clustering appears to work better.
+  - However, it may defeat the purpose of clustering if every cluster just consists of one data point.
+- Total distance can be compared to find the 'kink' or 'elbow'.
+  - After this point, the marginal benefit of adding another cluster decreases.
+  - Elbow diagram:
+
+    [[./img/04-elbow.png]]
+** Clustering for prediction
+Given a new point, which cluster should it be in?
+- Is point inside cluster?
+- Otherwise, what's the nearest cluster center?
+- Asked another way: for the range of the dataset, which areas would we assign to each cluster if a new point appears there?
+  - This is a [[https://en.wikipedia.org/wiki/Voronoi_diagram][Voronoi diagram]].
+** Clustering vs Classification
+- Since both group data points...
+- The difference is what we know about the data points.
+- For classification, the correct response is known, i.e.
+  - supervised learning
+  - model uses both attributes *and* response
+- For clustering, the 'correct' classification is unknown
+  - unsupervised learning
+  - model decides clusters *only* based on the attributes
+- Supervised learning is more common
