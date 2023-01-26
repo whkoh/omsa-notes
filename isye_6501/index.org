@@ -298,7 +298,9 @@ Algorithm just assigns outliers to nearest clusters.
 
     [[./img/04-elbow.png]]
 ** Clustering for prediction
+#+BEGIN_QUOTE
 Given a new point, which cluster should it be in?
+#+END_QUOTE
 - Is point inside cluster?
 - Otherwise, what's the nearest cluster center?
 - Asked another way: for the range of the dataset, which areas would we assign to each cluster if a new point appears there?
