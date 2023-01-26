@@ -1,0 +1,128 @@
+% Created 2023-01-26 Thu 10:05
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{Wei Han Koh}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={Wei Han Koh},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 28.1 (Org mode 9.5.2)},
+ pdflang={English}}
+\begin{document}
+
+\tableofcontents
+
+\section{Module 02: Classification}
+\label{sec:orge24e228}
+\begin{itemize}
+\item Definition: putting things into groups
+\end{itemize}
+\subsection{Types of classification models}
+\label{sec:org854811f}
+\begin{enumerate}
+\item Number of groups
+\item Number of dimensions
+\begin{itemize}
+\item Can 1 dimension be sufficient to classify?
+\end{itemize}
+\item Soft vs hard classifiers (is it 100\% error free?)
+\end{enumerate}
+\subsection{Definition of bad classification}
+\label{sec:org659f76a}
+\begin{itemize}
+\item Cost: is one type of mistake worse than the other?
+\end{itemize}
+
+\subsection{Examples}
+\label{sec:orga8c2b7f}
+\subsubsection{Loan payment (Income vs credit score)}
+\label{sec:org98a11c0}
+\begin{itemize}
+\item Plot lines and find one that can separate default vs non-default.
+\item How do we know the right lines are drawn?
+\item We want to be as conservative as possible (less error prone)
+\end{itemize}
+\subsection{Data terminology}
+\label{sec:org636c224}
+\begin{enumerate}
+\item Row = data point
+\item Column = dimension, attribute, feature, predictor, covariate
+\begin{enumerate}
+\item Special column = response, outcome
+\end{enumerate}
+\end{enumerate}
+\subsection{Data types}
+\label{sec:org2839e50}
+\begin{enumerate}
+\item Structured data
+\begin{enumerate}
+\item Quantitative
+\begin{itemize}
+\item Numbers with meaning
+\end{itemize}
+\item Categorical
+\begin{itemize}
+\item Numbers without meaning
+\end{itemize}
+\item Binary data (subset of categorical)
+\item Unrelated data
+\item Time series data
+\end{enumerate}
+\item Unstructured
+\begin{enumerate}
+\item Text data
+\end{enumerate}
+\end{enumerate}
+\subsection{Support vector machines}
+\label{sec:org08b1bc5}
+\begin{itemize}
+\item \textbf{Supervised} method (algorithm uses known results when training)
+\item Terminology
+\begin{itemize}
+\item m = number of data points
+\item n = number of attributes
+\item x\textsubscript{ij} = j attribute of i data point
+\begin{itemize}
+\item e.g. x\textsubscript{51} = credit score of person 5; x\textsubscript{52} = income of person 5
+\end{itemize}
+\item y\textsubscript{i} = response of data point i
+\begin{itemize}
+\item e.g. 1 if data point is group 1
+\item -1 if data point is group 2
+\end{itemize}
+\item Line: \(a_1 x_1\) + \(a_2 x_2\) + \ldots{} + \(a_n x_n\) + \(a_0\) = 0
+\item Note the intercept \(a_0\)
+\end{itemize}
+\item In general: \(\sum_{j=1}^{n} a_j x_j + a_0 = 0\)
+\item Separation problem: get max distance between lines
+\item \(2\over{\sqrt(\sum_{j} \left(a_j\right)^2)}\)
+\item i.e. Min\textsubscript{a\textsubscript{0} \ldots{} a\textsubscript{n}}: \(\sum_{j=1}^{n}\left(a_j\right)^2\)
+\item Subject to constraints
+\end{itemize}
+\subsubsection{When not possible to get full separation}
+\label{sec:org51eff26}
+\begin{itemize}
+\item Then we minimize error
+\item There's a trade-off between margin and error
+\item Error for data point is:
+$$
+  \text{max} \{ 0, 1-(\sum_{j=1}^{n} a_j x_{ij} + a_0) y_i \}
+  $$
+\item We multiply margin by \(\lambda\) and assign its importance of \textbf{\textbf{margin}} vs error that way.
+\item Full equation is: \#TODO
+\end{itemize}
+\end{document}

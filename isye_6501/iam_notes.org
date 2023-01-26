@@ -1,0 +1,106 @@
+#+AUTHOR: W
+#+SETUPFILE: /Users/whkoh/git-repos/org-html-themes/org/theme-readtheorg-local.setup
+
+* Module 01: Intro
+** What's analytics?
+Analytics answers these questions
+1. Descriptive - what happened
+2. Predictive - what will happen
+3. Prescriptive - what action is best
+4. General questions
+** Modeling
+1. Describe real-life situation with math
+2. Analyze math
+3. Turn math answer back to real situation
+** Course structure
+Enough math intuition and detail
+- Models
+  - Machine learning
+  - Regression
+  - Optimizaton
+- Cross-cutting
+  - Data prep
+  - Output quality
+  - Missing data
+** Three different things are all models
+1. Real life situation expressed as math
+2. Analyse the math
+3. Turn mathematical analyse to real-life solution
+** Hence these are all "models":
+1. Regression
+2. Regression on size, weight, distance
+3. Regression estimate = 37+81*Size +76*Wt, etc
+* Module 02: Classification
+- Definition: putting things into groups
+** Types of classification models
+1. Number of groups
+2. Number of dimensions
+   - Can 1 dimension be sufficient to classify?
+3. Soft vs hard classifiers (is it 100% error free?)
+** Definition of bad classification
+- Cost: is one type of mistake worse than the other?
+
+** Examples
+*** Loan payment (Income vs credit score)
+- Plot lines and find one that can separate default vs non-default.
+- How do we know the right lines are drawn?
+- We want to be as conservative as possible (less error prone)
+** Data terminology
+1. Row = data point
+2. Column = dimension, attribute, feature, predictor, covariate
+   1. Special column = response, outcome
+** Data types
+1. Structured data
+   1. Quantitative
+      - Numbers with meaning
+   2. Categorical
+      - Numbers without meaning
+   3. Binary data (subset of categorical)
+   4. Unrelated data
+   5. Time series data
+2. Unstructured
+   1. Text data
+** Support vector machines
+- *Supervised* method (algorithm uses known results when training)
+- Terminology
+  - m = number of data points
+  - n = number of attributes
+  - x_ij = j attribute of i data point
+    - e.g. x_51 = credit score of person 5; x_52 = income of person 5
+  - y_i = response of data point i
+    - e.g. 1 if data point is group 1
+    - -1 if data point is group 2
+  - Line: $a_1 x_1$ + $a_2 x_2$ + ... + $a_n x_n$ + $a_0$ = 0
+  - Note the intercept $a_0$
+- In general: $\sum_{j=1}^{n} a_j x_j + a_0 = 0$
+- Separation problem: get max distance between lines
+- $2\over{\sqrt(\sum_{j} \left(a_j\right)^2)}$
+- i.e. Min_{a_0 ... a_n}: $\sum_{j=1}^{n}\left(a_j\right)^2$
+- Subject to constraints
+*** When not possible to get full separation
+- Then we minimize error
+- There's a trade-off between margin and error
+- Error for data point is:
+  $$
+  \text{max} \{ 0, 1-(\sum_{j=1}^{n} a_j x_{ij} + a_0) y_i \}
+  $$
+- Total error is:
+  $$
+  \sum_{i=1}^{m} \text{max} \{ 0, 1 - (\sum_{j=1}^{n} a_j x_{ij} + a_0) y_i \}
+  $$
+- Margin denominator: $\sum_{j=1}^{n}(a_j)^2$
+
+- We multiply margin by $\lambda$ to *assign its importance of margin vs error*.
+- Hence, the full equation is:
+   $$
+  \text{Minimize}_{a_0,...,a_n} \sum_{i=1}^{m} \text{max} \{ 0, 1 - (\sum_{j=1}^{n} a_j x_{ij} + a_0) y_i \}  + \lambda \sum_{j=1}^{n}(a_j)^2
+  $$
+*** What SVM means
+- Etymology
+  - Vector = point
+  - Model determines the "support vectors"
+  - Automatically from data hence "machine"
+- Support vector = line that holds up (or, supports) a shape. Shape is correctly balanced on the line
+- Support can be from top or side
+- Looking for max separation i.e. the support vector touches the data points
+- Classifier is in between the two support vectors
