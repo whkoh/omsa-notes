@@ -223,8 +223,39 @@ What happens with important data appears only in one data set e.g., validation?
   1. Better uses data
   2. Better estimates model quality
   3. Choose model more effectively
-** Summary:
+** Summary
 1. Build model with training data
 2. Pick model with validation data
 3. Estimate performance with test data
--
+* Model 04: Clustering
+** Introduction to clustering
+- *Unsupervised* method (response not available for use in training)
+- Grouping data points
+- Might help discover attributes in the dataset
+- Example of use
+  - Segmenting market of car buyers by:
+    1. Size
+    2. Price
+    3. Versatility, etc
+  - Personalized medicine
+  - Locating facilities
+  - Image analysis
+  - Exploratory data analysis (different model for each attribute)
+- Example: Miles driven vs. Age
+** Distance Norms
+- Straight line distance (Euclidean)
+  $\sqrt{(x_1-y_1)^2+(x_2-y_2)^2}$
+- Rectilinear distance (Manhattan, 1-norm)
+  $|x_1-y_1| + |x_2-y_2|$
+- Generalized p-norm (Minkowski)
+  $\sqrt[p]{|x_1-y_1|^p+|x_2-y_2|^p}$
+- \infty-norm distance
+  $\sqrt[\infty]{\sum_{i=1}^n|x_i-y_i|^{\infty}}$
+  - sum = $|x_i-y_i|^{\infty}$
+  - $\sqrt[\infty]{\text{max}_{i}^n|x_i-y_i|^{\infty}}$
+  - Largest term dominates the rest, hence simplifies to:
+  - $\text{max}_i |x_i-y_i|$
+- Analogize with warehouse picking robot. The operation that takes the longest dominates the total operation time.
+** K-Means Clustering
+- *Unsupervised* technique
+- /TBC/
