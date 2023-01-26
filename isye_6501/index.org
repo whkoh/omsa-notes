@@ -167,4 +167,24 @@ Enough math intuition and detail
     - Weights to be found with other techniques e.g. regression
   - Unimportant metrics can be removed
     - /c.f./ variable selection topic
-  - Choose good value of $k$, /c.f./ validation topic
+    - Choose good value of $k$, /c.f./ validation @ [[Module 03: Validation]]
+* Module 03: Validation
+#+BEGIN_QUOTE
+Check how good a model is
+#+END_QUOTE
+- *Cannot* calculate accuracy or effectiveness metrics from training dataset
+  - Since model was trained on it
+  - This doesn't allow separation of real effects from random effects
+- When fitting a model, this captures both real and random effects
+  - Real effects: exist in all datasets (or subsets)
+  - Random effects: different in all datasets
+** Splitting data
+- Use a *training* set of data to fit model
+- Use another *validation* set of data to judge model effectiveness
+- When comparing >1 model, use a *test* dataset.
+  - e.g. SVM and KNN, with 10 total models, we cannot use the effectiveness metric calculated on the validation set.
+- Test data is required as high performing models have above average random effects
+  - Too optimistic; it might have performed well but also likely received a boost from random effects
+- Analogize with models equally good
+- Flowchart:
+  [[./img/validation01.png]]
