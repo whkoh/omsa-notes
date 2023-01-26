@@ -98,9 +98,73 @@ Enough math intuition and detail
 *** What SVM means
 - Etymology
   - Vector = point
+  - *Support vector* = points that holds up (or, supports) a shape. Shape is correctly balanced on parallel lines
   - Model determines the "support vectors"
-  - Automatically from data hence "machine"
-- Support vector = line that holds up (or, supports) a shape. Shape is correctly balanced on the line
+  - Automatically from data hence "*machine*"
 - Support can be from top or side
 - Looking for max separation i.e. the support vector touches the data points
 - Classifier is in between the two support vectors
+** Scaling and standardization
+- Predictive factors may have different orders of magnitude, i.e.
+  - Income in $10^5$
+  - Credit score in $10^2$
+  - Classifier is $0 = a_0 + \sum_{j} a_j x_j$
+  - Maximise gap by minimizing: $\sum_{j} a_j^2$
+  - Coefficients might be 10^6 + 5*income + 701*credit score
+    - Sum of squared coefficients:
+      $\sum_j a_j^2 = 5^2 + 700^2 = 490,025$
+    - Changing credit score by 1 increases the sum by 1,401:
+      $\sum_j a_j^2 = 5^2 + 701^2 = 491,426$
+  - Small change in one coefficient affects the sum a lot due to difference in scales.
+    - As data has such different scale.
+*** Scaling data
+- Common scale is between 0 and 1
+- Scale data by factor
+  $$
+  x_{ij}^{\text{scaled}} = \frac{x_{ij}-x_{\text{min}j}}{x_{\text{max}j} - x_{\text{min}j}}
+  $$
+- General scaling between a, b:
+  $$
+  x_{ij}^{\text{scaled}[b,a]} = x_{ij}^{\text{scaled}[0,1]}(a-b)+b
+  $$
+*** Standardization of data
+- Scale to normal distribution
+- Common scale is:
+  - Mean = 0
+  - SD = 1
+- Factor j has:
+  - mean $\mu_j = \frac{\sum_{i=1}^n x_{ij}}{n}$
+  - SD $\sigma_j$
+- For each data point $i$:
+  $$
+  x_{ij}^{\text{standardized}} = \frac{x_{ij}-\mu_j}{\sigma_j}
+  $$
+** Choosing between scaling vs standardization
+- Scale when:
+  - Data is in bounded (defined) range, e.g.
+    - Neural networks
+    - Optimization models requiring bounded data
+    - Batting averages (between 0 and 1)
+    - RGB color scale (0-255)
+    - SAT scores (200-800)
+- Standardization, examples:
+  - PCA
+  - Clustering
+- Try both when not clear
+- Should be used throughout course even when not stated explicitly
+** K Nearest Neighbour model (KNN)
+- *Classification*
+- e.g. loan dataset with two predictors and a response
+- Assume each point has similar characteristics with its neighbors
+- Choice of number of points is denoted by $k$
+- Algorithm to find color (class) of a new point:
+  1. Pick $k$ closest points (i.e., nearest neighbours) to the new one
+  2. The new point's class is the most common among the $k$ neighbors
+- Complexities
+  - More than one distance metric (/c.f./ distance selection topic_).
+    - Straight line is: $\sqrt{\sum_{i=1}^n |x_i-y_i|^2}$
+  - Attributes can be given more weight if more important, $w_i$
+    - Weights to be found with other techniques e.g. regression
+  - Unimportant metrics can be removed
+    - /c.f./ variable selection topic
+  - Choose good value of $k$, /c.f./ validation topic
