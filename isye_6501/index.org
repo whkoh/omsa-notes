@@ -223,7 +223,7 @@ What happens with important data appears only in one data set e.g., validation?
   1. Better uses data
   2. Better estimates model quality
   3. Choose model more effectively
-*** Summary:
+** Summary:
 1. Build model with training data
 2. Pick model with validation data
 3. Estimate performance with test data
