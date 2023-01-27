@@ -115,4 +115,73 @@ Interpretation:
 1. When $R^2$ = 0, X values account for none of the variation in Y.
 2. $R^2$ can take values in $(0,1)$
 ** Simple regression with 1 variable in R
-***
+- Using ~lm~ in R to fit simple linear regression
+- Residuals are shown first. Residuals are the unexplained deviation/error, i.e. $y_i-\widehat{y}_i$.
+- Output of running regression models in R:
+  1. Null and alternative hypotheses
+  2. Coefficients:
+     - ~Estimate~ shows the value
+     - ~Std. Error~ shows the standard deviation
+     - ~t value~ = coefficient / standard error
+     - To reject null hypothesis, ~Pr(>|t|)~ i.e. p-value must be very small
+  3. p-value: the probability of finding a t-value of this size if the null hypothesis is *true*.
+  4. F-statistic: the probability that $b_1 = 0$.
+*** Interpreting coefficients
+~(Intercept) Estimate: 3.414e+04~
+~lotsize Estimate: 6.599e+00~
+- $b_0$ = 34,140 :: Intercept of regression line on y. When lotsize is 0. Less useful
+- $b_1$ = 6.599 :: Increase of 1,000 sqft associated with increase of 6,599 of house keeping all else constant, /ceteris paribus/.
+|           |  Df |     Sum Sq | *Error term* |
+|-----------+-----+------------+--------------|
+| lotsize   |   1 | 1.1156e+11 | SSR          |
+| Residuals | 544 | 2.7704e+11 | SSE          |
+- Regression output $R^2$ and Adjusted $R^2$. *Need to know how to calculate and interpret.*
+- For simple regression, $\sqrt{R^2}$ is the correlation coefficient between price and lotsize.
+*** F-test: shows whether model is significant
+- i.e., reject $H_0$
+- Result is the F statistic
+- Can range from (0, $\infty$)
+*** M1L5 no lecture quiz
+** Multiple regression
+1. Linear regression with multiple ($p$) explanatory variables
+2. Terms:
+   - Regression coefficients :: $b_0, ..., b_p$ estimate $\beta_0, ..., \beta_{p}$
+   - Prediction for Y at $x_i$ :: $\widehat{y} = b_0 + b_1 x_{1i} + b_2 x_{2i} + ... + b_p x_{pi}$
+   - Residual :: $e_i = y_i - \widehat{y}_i$
+   - SSE :: $\sum_{i} (y_i - (b_0 + b_1 x_{1i} + b_2 x_{2i} + ... + b_p x_{pi}))^2$
+3. Goal is to choose $b$ terms to minimize SSE
+4. Add a variable, bedrooms. Question: does number of bedrooms explain the price?
+5. Do EDA with plots/histogram
+*** Regression output
+b terms are estimates of true parameters $\beta$ terms
+$H_0$ the parameters are $0$, $H_1$ they are not $0$.
+|             |  Estimate |
+|-------------+-----------|
+| (Intercept) | 5.613e+03 |
+| lotsize     | 6.053e+00 |
+| Bedrooms    | 1.057e+04 |
+all /ceteris paribus/:
+- $b_0$ = 5,613 :: intercept on y axis
+- $b_1$ = 6.053 :: increase per square feet is $6.053
+- $b_2$ = 10,570 :: increase per bedroom is $10,570
+*** M1L6 no lecture quiz
+** $R^2$ and adjusted $R^2$ in multiple regression
+Anova table:
+|           |  Df |      Sum Sq | *Error term* |
+|-----------+-----+-------------+--------------|
+| lotsize   |   1 |  1.1156e+11 | $SSR_1$      |
+| bedrooms  |   1 | 3.23239e+10 | $SSR_2$      |
+| Residuals | 543 |  2.4472e+11 | SSE          |
+- $\text{SSR}_1 + \text{SSR}_2$ = SSR
+- SSR + SSE = SST
+- Rejecting null hypothesis by analysing the F statistic means the model is significant.
+** Simple vs multiple regression
+- $R^2$ will not decrease when adding variables
+- Higher adjusted $R^2$ in multiple regression
+- Comparing 2 models with different number of variables:
+  $$
+  F = \frac{(R^2_2 - R^2_1)/(p_2-p_1)}{(1-R^2_2)/(n-p_2-1)}
+  $$
+** M1L7 lecture quiz
+1. In general adding more variable *does not decrease* overall $R^2$ value of multiple regression.
+2. *Small* p-value means that *there is evidence* that coefficient is *not* 0.
