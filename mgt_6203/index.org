@@ -1,5 +1,33 @@
 #+AUTHOR: W
 #+SETUPFILE: /Users/whkoh/git-repos/org-html-themes/org/theme-readtheorg-local-parent.setup
 #+TITLE: MGT 6203: Data Analytics in Business
-* TODO Module 01:
-- Test
+* Module 01: Linear Regression
+** Steps in Regression Analysis
+1. State problem
+2. Use regression for:
+   - Diagnostic, or
+   - Predictive, or
+   - Prescriptive analytics?
+3. Select relevant response and explanatory variables
+4. Collect data
+   - Internal
+   - External
+   - Purchased
+   - Experiment
+5. Choose fitting method
+   - Ordinary least squares (OLS)
+   - Generalized least squares
+   - Maximum likelihood
+6. Fit model
+7. Validate model with diagnostics
+8. Refine and iterate from step 3
+9. Use model
+*** Business examples (Dependent vs independent variables)
+- Used car price :: odometer reading, age of car, condition
+- Sales :: ad spend
+- Time taken to repair product :: experience of technician
+- Product added to shopping card :: ratings/price
+- Starting salary of new employee :: work and education experience
+- Sale price of house :: square feet, bedrooms, location
+- Customer default? :: Credit score, income, age
+- Customer churn? :: Length of contract, age of customer
