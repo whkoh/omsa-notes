@@ -31,7 +31,7 @@
 - Sale price of house :: square feet, bedrooms, location
 - Customer default? :: Credit score, income, age
 - Customer churn? :: Length of contract, age of customer
-*** M1L1 quiz
+*** M1L1 lecture quiz
 1. Variable eg price *can* be either dependent or independent variable, depends on purpose of model
 2. Binary value variable *can* be dependent variable, eg logistic regression
 ** Real estate pricing example
@@ -47,7 +47,7 @@
   - histogram
   - correlation matrix
   - scatter plot with linear regression line
-*** M1L2 quiz
+*** M1L2 lecture quiz
 1. For right-skewed distribution, mean is *larger* than median
 2. Correlation coefficient only captures *linear* relationships
 ** Notation in regression analysis
