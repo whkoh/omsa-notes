@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-01-26 Thu 20:27 -->
+<!-- 2023-01-27 Fri 19:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ISYE 6501 Intro to Analytics Modeling Notes</title>
@@ -44,69 +44,93 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org139c0a6">1. Module 01: Intro</a>
+<li><a href="#org9a90c11">1. Module 01: Intro</a>
 <ul>
-<li><a href="#org979c89b">1.1. What's analytics?</a></li>
-<li><a href="#orgbe869fb">1.2. Modeling</a></li>
-<li><a href="#org10a67ba">1.3. Course structure</a></li>
-<li><a href="#orgf4ae478">1.4. Three different things are all models</a></li>
-<li><a href="#orgf617d9f">1.5. Hence these are all "models":</a></li>
+<li><a href="#org4f5dbd4">1.1. What's analytics?</a></li>
+<li><a href="#orgdaec458">1.2. Modeling</a></li>
+<li><a href="#orgb7ea5cb">1.3. Course structure</a></li>
+<li><a href="#orgb1ffcd7">1.4. Three different things are all models</a></li>
+<li><a href="#org228f817">1.5. Hence these are all "models":</a></li>
 </ul>
 </li>
-<li><a href="#org35654a4">2. Module 02: Classification</a>
+<li><a href="#orgdc7c815">2. Module 02: Classification</a>
 <ul>
-<li><a href="#org584c82b">2.1. Types of classification models</a></li>
-<li><a href="#orgea0fb15">2.2. Definition of bad classification</a></li>
-<li><a href="#org7360a2f">2.3. Examples</a>
+<li><a href="#org32334b5">2.1. Types of classification models</a></li>
+<li><a href="#org5ff916c">2.2. Definition of bad classification</a></li>
+<li><a href="#org8907210">2.3. Examples</a>
 <ul>
-<li><a href="#org74c55af">2.3.1. Loan payment (Income vs credit score)</a></li>
+<li><a href="#org286efb9">2.3.1. Loan payment (Income vs credit score)</a></li>
 </ul>
 </li>
-<li><a href="#orgbc5d745">2.4. Data terminology</a></li>
-<li><a href="#org06ad4bc">2.5. Data types</a></li>
-<li><a href="#orga214d44">2.6. Support vector machines</a>
+<li><a href="#org19d89be">2.4. Data terminology</a></li>
+<li><a href="#org4be1391">2.5. Data types</a></li>
+<li><a href="#org1dcf686">2.6. Support vector machines</a>
 <ul>
-<li><a href="#org75e2849">2.6.1. When not possible to get full separation</a></li>
-<li><a href="#orgb8634f4">2.6.2. What SVM means</a></li>
+<li><a href="#orgf846300">2.6.1. When not possible to get full separation</a></li>
+<li><a href="#orgfb7b698">2.6.2. What SVM means</a></li>
 </ul>
 </li>
-<li><a href="#org34061f0">2.7. Scaling and standardization</a>
+<li><a href="#org4b9c03f">2.7. Scaling and standardization</a>
 <ul>
-<li><a href="#org117df17">2.7.1. Scaling data</a></li>
-<li><a href="#orge3c7a23">2.7.2. Standardization of data</a></li>
+<li><a href="#orgb893870">2.7.1. Scaling data</a></li>
+<li><a href="#orgd78d97f">2.7.2. Standardization of data</a></li>
 </ul>
 </li>
-<li><a href="#org957d86d">2.8. Choosing between scaling vs standardization</a></li>
-<li><a href="#orgc7b95c5">2.9. K Nearest Neighbour model (KNN)</a></li>
+<li><a href="#org4451be8">2.8. Choosing between scaling vs standardization</a></li>
+<li><a href="#org0ede731">2.9. K Nearest Neighbour model (KNN)</a></li>
 </ul>
 </li>
-<li><a href="#orgfe6e6bd">3. Module 03: Validation</a>
+<li><a href="#orgd322159">3. Module 03: Validation</a>
 <ul>
-<li><a href="#org4f50414">3.1. Training, validation and test data</a></li>
-<li><a href="#orgb7a69e2">3.2. Splitting data</a></li>
-<li><a href="#org50e7b93">3.3. Cross-validation</a></li>
-<li><a href="#org8057b3d">3.4. Summary</a></li>
+<li><a href="#orgfc2d2bf">3.1. Training, validation and test data</a></li>
+<li><a href="#orgd4b081a">3.2. Splitting data</a></li>
+<li><a href="#org417f580">3.3. Cross-validation</a></li>
+<li><a href="#org0610e42">3.4. Summary</a></li>
 </ul>
 </li>
-<li><a href="#orge9fb33d">4. Module 04: Clustering</a>
+<li><a href="#org3de5329">4. Module 04: Clustering</a>
 <ul>
-<li><a href="#orgfe844eb">4.1. Introduction to clustering</a></li>
-<li><a href="#orgd3c0998">4.2. Distance Norms</a></li>
-<li><a href="#org7aff9b0">4.3. K-Means Clustering</a></li>
-<li><a href="#orga5b8239">4.4. Practical details for K-Means</a></li>
-<li><a href="#orgff20bd7">4.5. Clustering for prediction</a></li>
-<li><a href="#org6b4a2d1">4.6. Clustering vs Classification</a></li>
+<li><a href="#orgae2adba">4.1. Introduction to clustering</a></li>
+<li><a href="#org31c5c51">4.2. Distance Norms</a></li>
+<li><a href="#orgbf86a61">4.3. K-Means Clustering</a></li>
+<li><a href="#org2a40798">4.4. Practical details for K-Means</a></li>
+<li><a href="#org3333917">4.5. Clustering for prediction</a></li>
+<li><a href="#org2d139c0">4.6. Clustering vs Classification</a></li>
+</ul>
+</li>
+<li><a href="#org914bd51">5. Module 05: Data preparation</a>
+<ul>
+<li><a href="#org156bcb9">5.1. Common techniques and problems</a></li>
+<li><a href="#orgdd1fca7">5.2. Outliers</a></li>
+<li><a href="#org0883950">5.3. What to do with outliers?</a>
+<ul>
+<li><a href="#orgb65118a">5.3.1. Bad data</a></li>
+<li><a href="#org09219fe">5.3.2. Real / correct data</a></li>
+<li><a href="#org0664b3a">5.3.3. Another way to handle outliers</a></li>
+<li><a href="#org063aee9">5.3.4. Summary</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org5eea501">6. Module 06: Change detection</a>
+<ul>
+<li><a href="#org412815d">6.1. Examples</a></li>
+<li><a href="#orgec1b22d">6.2. Cumulative sum for change detection</a>
+<ul>
+<li><a href="#org9413d25">6.2.1. Interpretation</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org139c0a6" class="outline-2">
-<h2 id="org139c0a6"><span class="section-number-2">1.</span> Module 01: Intro</h2>
+<div id="outline-container-org9a90c11" class="outline-2">
+<h2 id="org9a90c11"><span class="section-number-2">1.</span> Module 01: Intro</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org979c89b" class="outline-3">
-<h3 id="org979c89b"><span class="section-number-3">1.1.</span> What's analytics?</h3>
+<div id="outline-container-org4f5dbd4" class="outline-3">
+<h3 id="org4f5dbd4"><span class="section-number-3">1.1.</span> What's analytics?</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Analytics answers these questions
@@ -119,8 +143,8 @@ Analytics answers these questions
 </ol>
 </div>
 </div>
-<div id="outline-container-orgbe869fb" class="outline-3">
-<h3 id="orgbe869fb"><span class="section-number-3">1.2.</span> Modeling</h3>
+<div id="outline-container-orgdaec458" class="outline-3">
+<h3 id="orgdaec458"><span class="section-number-3">1.2.</span> Modeling</h3>
 <div class="outline-text-3" id="text-1-2">
 <ol class="org-ol">
 <li>Describe real-life situation with math</li>
@@ -129,8 +153,8 @@ Analytics answers these questions
 </ol>
 </div>
 </div>
-<div id="outline-container-org10a67ba" class="outline-3">
-<h3 id="org10a67ba"><span class="section-number-3">1.3.</span> Course structure</h3>
+<div id="outline-container-orgb7ea5cb" class="outline-3">
+<h3 id="orgb7ea5cb"><span class="section-number-3">1.3.</span> Course structure</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 Enough math intuition and detail
@@ -151,8 +175,8 @@ Enough math intuition and detail
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf4ae478" class="outline-3">
-<h3 id="orgf4ae478"><span class="section-number-3">1.4.</span> Three different things are all models</h3>
+<div id="outline-container-orgb1ffcd7" class="outline-3">
+<h3 id="orgb1ffcd7"><span class="section-number-3">1.4.</span> Three different things are all models</h3>
 <div class="outline-text-3" id="text-1-4">
 <ol class="org-ol">
 <li>Real life situation expressed as math</li>
@@ -161,8 +185,8 @@ Enough math intuition and detail
 </ol>
 </div>
 </div>
-<div id="outline-container-orgf617d9f" class="outline-3">
-<h3 id="orgf617d9f"><span class="section-number-3">1.5.</span> Hence these are all "models":</h3>
+<div id="outline-container-org228f817" class="outline-3">
+<h3 id="org228f817"><span class="section-number-3">1.5.</span> Hence these are all "models":</h3>
 <div class="outline-text-3" id="text-1-5">
 <ol class="org-ol">
 <li>Regression</li>
@@ -172,15 +196,15 @@ Enough math intuition and detail
 </div>
 </div>
 </div>
-<div id="outline-container-org35654a4" class="outline-2">
-<h2 id="org35654a4"><span class="section-number-2">2.</span> Module 02: Classification</h2>
+<div id="outline-container-orgdc7c815" class="outline-2">
+<h2 id="orgdc7c815"><span class="section-number-2">2.</span> Module 02: Classification</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>Definition: putting things into groups</li>
 </ul>
 </div>
-<div id="outline-container-org584c82b" class="outline-3">
-<h3 id="org584c82b"><span class="section-number-3">2.1.</span> Types of classification models</h3>
+<div id="outline-container-org32334b5" class="outline-3">
+<h3 id="org32334b5"><span class="section-number-3">2.1.</span> Types of classification models</h3>
 <div class="outline-text-3" id="text-2-1">
 <ol class="org-ol">
 <li>Number of groups</li>
@@ -192,8 +216,8 @@ Enough math intuition and detail
 </ol>
 </div>
 </div>
-<div id="outline-container-orgea0fb15" class="outline-3">
-<h3 id="orgea0fb15"><span class="section-number-3">2.2.</span> Definition of bad classification</h3>
+<div id="outline-container-org5ff916c" class="outline-3">
+<h3 id="org5ff916c"><span class="section-number-3">2.2.</span> Definition of bad classification</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>Cost: is one type of mistake worse than the other?</li>
@@ -201,12 +225,12 @@ Enough math intuition and detail
 </div>
 </div>
 
-<div id="outline-container-org7360a2f" class="outline-3">
-<h3 id="org7360a2f"><span class="section-number-3">2.3.</span> Examples</h3>
+<div id="outline-container-org8907210" class="outline-3">
+<h3 id="org8907210"><span class="section-number-3">2.3.</span> Examples</h3>
 <div class="outline-text-3" id="text-2-3">
 </div>
-<div id="outline-container-org74c55af" class="outline-4">
-<h4 id="org74c55af"><span class="section-number-4">2.3.1.</span> Loan payment (Income vs credit score)</h4>
+<div id="outline-container-org286efb9" class="outline-4">
+<h4 id="org286efb9"><span class="section-number-4">2.3.1.</span> Loan payment (Income vs credit score)</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <ul class="org-ul">
 <li>Plot lines and find one that can separate default vs non-default.</li>
@@ -216,8 +240,8 @@ Enough math intuition and detail
 </div>
 </div>
 </div>
-<div id="outline-container-orgbc5d745" class="outline-3">
-<h3 id="orgbc5d745"><span class="section-number-3">2.4.</span> Data terminology</h3>
+<div id="outline-container-org19d89be" class="outline-3">
+<h3 id="org19d89be"><span class="section-number-3">2.4.</span> Data terminology</h3>
 <div class="outline-text-3" id="text-2-4">
 <ol class="org-ol">
 <li>Row = data point</li>
@@ -228,8 +252,8 @@ Enough math intuition and detail
 </ol>
 </div>
 </div>
-<div id="outline-container-org06ad4bc" class="outline-3">
-<h3 id="org06ad4bc"><span class="section-number-3">2.5.</span> Data types</h3>
+<div id="outline-container-org4be1391" class="outline-3">
+<h3 id="org4be1391"><span class="section-number-3">2.5.</span> Data types</h3>
 <div class="outline-text-3" id="text-2-5">
 <ol class="org-ol">
 <li>Structured data
@@ -253,8 +277,8 @@ Enough math intuition and detail
 </ol>
 </div>
 </div>
-<div id="outline-container-orga214d44" class="outline-3">
-<h3 id="orga214d44"><span class="section-number-3">2.6.</span> Support vector machines</h3>
+<div id="outline-container-org1dcf686" class="outline-3">
+<h3 id="org1dcf686"><span class="section-number-3">2.6.</span> Support vector machines</h3>
 <div class="outline-text-3" id="text-2-6">
 <ul class="org-ul">
 <li><b>Supervised</b> method (algorithm uses known results when training)</li>
@@ -281,8 +305,8 @@ Enough math intuition and detail
 <li>Subject to constraints</li>
 </ul>
 </div>
-<div id="outline-container-org75e2849" class="outline-4">
-<h4 id="org75e2849"><span class="section-number-4">2.6.1.</span> When not possible to get full separation</h4>
+<div id="outline-container-orgf846300" class="outline-4">
+<h4 id="orgf846300"><span class="section-number-4">2.6.1.</span> When not possible to get full separation</h4>
 <div class="outline-text-4" id="text-2-6-1">
 <ul class="org-ul">
 <li>Then we minimize error</li>
@@ -305,8 +329,8 @@ Enough math intuition and detail
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb8634f4" class="outline-4">
-<h4 id="orgb8634f4"><span class="section-number-4">2.6.2.</span> What SVM means</h4>
+<div id="outline-container-orgfb7b698" class="outline-4">
+<h4 id="orgfb7b698"><span class="section-number-4">2.6.2.</span> What SVM means</h4>
 <div class="outline-text-4" id="text-2-6-2">
 <ul class="org-ul">
 <li>Etymology
@@ -323,8 +347,8 @@ Enough math intuition and detail
 </div>
 </div>
 </div>
-<div id="outline-container-org34061f0" class="outline-3">
-<h3 id="org34061f0"><span class="section-number-3">2.7.</span> Scaling and standardization</h3>
+<div id="outline-container-org4b9c03f" class="outline-3">
+<h3 id="org4b9c03f"><span class="section-number-3">2.7.</span> Scaling and standardization</h3>
 <div class="outline-text-3" id="text-2-7">
 <ul class="org-ul">
 <li>Predictive factors may have different orders of magnitude, i.e.
@@ -347,8 +371,8 @@ Enough math intuition and detail
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org117df17" class="outline-4">
-<h4 id="org117df17"><span class="section-number-4">2.7.1.</span> Scaling data</h4>
+<div id="outline-container-orgb893870" class="outline-4">
+<h4 id="orgb893870"><span class="section-number-4">2.7.1.</span> Scaling data</h4>
 <div class="outline-text-4" id="text-2-7-1">
 <ul class="org-ul">
 <li>Common scale is between 0 and 1</li>
@@ -363,8 +387,8 @@ Enough math intuition and detail
 </ul>
 </div>
 </div>
-<div id="outline-container-orge3c7a23" class="outline-4">
-<h4 id="orge3c7a23"><span class="section-number-4">2.7.2.</span> Standardization of data</h4>
+<div id="outline-container-orgd78d97f" class="outline-4">
+<h4 id="orgd78d97f"><span class="section-number-4">2.7.2.</span> Standardization of data</h4>
 <div class="outline-text-4" id="text-2-7-2">
 <ul class="org-ul">
 <li>Scale to normal distribution</li>
@@ -386,8 +410,8 @@ Enough math intuition and detail
 </div>
 </div>
 </div>
-<div id="outline-container-org957d86d" class="outline-3">
-<h3 id="org957d86d"><span class="section-number-3">2.8.</span> Choosing between scaling vs standardization</h3>
+<div id="outline-container-org4451be8" class="outline-3">
+<h3 id="org4451be8"><span class="section-number-3">2.8.</span> Choosing between scaling vs standardization</h3>
 <div class="outline-text-3" id="text-2-8">
 <ul class="org-ul">
 <li>Scale when:
@@ -411,8 +435,8 @@ Enough math intuition and detail
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc7b95c5" class="outline-3">
-<h3 id="orgc7b95c5"><span class="section-number-3">2.9.</span> K Nearest Neighbour model (KNN)</h3>
+<div id="outline-container-org0ede731" class="outline-3">
+<h3 id="org0ede731"><span class="section-number-3">2.9.</span> K Nearest Neighbour model (KNN)</h3>
 <div class="outline-text-3" id="text-2-9">
 <ul class="org-ul">
 <li><b>Classification</b></li>
@@ -437,15 +461,15 @@ Enough math intuition and detail
 <li>Unimportant metrics can be removed
 <ul class="org-ul">
 <li><i>c.f.</i> variable selection topic</li>
-<li>Choose good value of \(k\), <i>c.f.</i> validation @ <a href="#orgfe6e6bd">3</a></li>
+<li>Choose good value of \(k\), <i>c.f.</i> validation @ <a href="#orgd322159">3</a></li>
 </ul></li>
 </ul></li>
 </ul>
 </div>
 </div>
 </div>
-<div id="outline-container-orgfe6e6bd" class="outline-2">
-<h2 id="orgfe6e6bd"><span class="section-number-2">3.</span> Module 03: Validation</h2>
+<div id="outline-container-orgd322159" class="outline-2">
+<h2 id="orgd322159"><span class="section-number-2">3.</span> Module 03: Validation</h2>
 <div class="outline-text-2" id="text-3">
 <blockquote>
 <p>
@@ -465,8 +489,8 @@ Check how good a model is
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org4f50414" class="outline-3">
-<h3 id="org4f50414"><span class="section-number-3">3.1.</span> Training, validation and test data</h3>
+<div id="outline-container-orgfc2d2bf" class="outline-3">
+<h3 id="orgfc2d2bf"><span class="section-number-3">3.1.</span> Training, validation and test data</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li>Use a <b>training</b> set of data to fit model</li>
@@ -485,8 +509,8 @@ Check how good a model is
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb7a69e2" class="outline-3">
-<h3 id="orgb7a69e2"><span class="section-number-3">3.2.</span> Splitting data</h3>
+<div id="outline-container-orgd4b081a" class="outline-3">
+<h3 id="orgd4b081a"><span class="section-number-3">3.2.</span> Splitting data</h3>
 <div class="outline-text-3" id="text-3-2">
 <ul class="org-ul">
 <li>How much data goes to each set?
@@ -508,8 +532,8 @@ Check how good a model is
 </ul>
 </div>
 </div>
-<div id="outline-container-org50e7b93" class="outline-3">
-<h3 id="org50e7b93"><span class="section-number-3">3.3.</span> Cross-validation</h3>
+<div id="outline-container-org417f580" class="outline-3">
+<h3 id="org417f580"><span class="section-number-3">3.3.</span> Cross-validation</h3>
 <div class="outline-text-3" id="text-3-3">
 <blockquote>
 <p>
@@ -547,8 +571,8 @@ What happens with important data appears only in one data set e.g., validation?
 </ul>
 </div>
 </div>
-<div id="outline-container-org8057b3d" class="outline-3">
-<h3 id="org8057b3d"><span class="section-number-3">3.4.</span> Summary</h3>
+<div id="outline-container-org0610e42" class="outline-3">
+<h3 id="org0610e42"><span class="section-number-3">3.4.</span> Summary</h3>
 <div class="outline-text-3" id="text-3-4">
 <ol class="org-ol">
 <li>Build model with training data</li>
@@ -558,12 +582,12 @@ What happens with important data appears only in one data set e.g., validation?
 </div>
 </div>
 </div>
-<div id="outline-container-orge9fb33d" class="outline-2">
-<h2 id="orge9fb33d"><span class="section-number-2">4.</span> Module 04: Clustering</h2>
+<div id="outline-container-org3de5329" class="outline-2">
+<h2 id="org3de5329"><span class="section-number-2">4.</span> Module 04: Clustering</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orgfe844eb" class="outline-3">
-<h3 id="orgfe844eb"><span class="section-number-3">4.1.</span> Introduction to clustering</h3>
+<div id="outline-container-orgae2adba" class="outline-3">
+<h3 id="orgae2adba"><span class="section-number-3">4.1.</span> Introduction to clustering</h3>
 <div class="outline-text-3" id="text-4-1">
 <ul class="org-ul">
 <li><b>Unsupervised</b> method (response not available for use in training)</li>
@@ -586,8 +610,8 @@ What happens with important data appears only in one data set e.g., validation?
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd3c0998" class="outline-3">
-<h3 id="orgd3c0998"><span class="section-number-3">4.2.</span> Distance Norms</h3>
+<div id="outline-container-org31c5c51" class="outline-3">
+<h3 id="org31c5c51"><span class="section-number-3">4.2.</span> Distance Norms</h3>
 <div class="outline-text-3" id="text-4-2">
 <ul class="org-ul">
 <li>Straight line distance (Euclidean)
@@ -608,8 +632,8 @@ What happens with important data appears only in one data set e.g., validation?
 </ul>
 </div>
 </div>
-<div id="outline-container-org7aff9b0" class="outline-3">
-<h3 id="org7aff9b0"><span class="section-number-3">4.3.</span> K-Means Clustering</h3>
+<div id="outline-container-orgbf86a61" class="outline-3">
+<h3 id="orgbf86a61"><span class="section-number-3">4.3.</span> K-Means Clustering</h3>
 <div class="outline-text-3" id="text-4-3">
 <ul class="org-ul">
 <li><b>Unsupervised</b> technique</li>
@@ -647,8 +671,8 @@ subject to: \(\sum_k y_{ik} = 1\) for each \(i\)</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orga5b8239" class="outline-3">
-<h3 id="orga5b8239"><span class="section-number-3">4.4.</span> Practical details for K-Means</h3>
+<div id="outline-container-org2a40798" class="outline-3">
+<h3 id="org2a40798"><span class="section-number-3">4.4.</span> Practical details for K-Means</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 Algorithm just assigns outliers to nearest clusters.
@@ -682,7 +706,7 @@ Elbow diagram:
 </p>
 
 
-<div id="org0d1f7fc" class="figure">
+<div id="org7f5543b" class="figure">
 <p><img src="./img/04-elbow.png" alt="04-elbow.png" />
 </p>
 </div></li>
@@ -690,8 +714,8 @@ Elbow diagram:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgff20bd7" class="outline-3">
-<h3 id="orgff20bd7"><span class="section-number-3">4.5.</span> Clustering for prediction</h3>
+<div id="outline-container-org3333917" class="outline-3">
+<h3 id="org3333917"><span class="section-number-3">4.5.</span> Clustering for prediction</h3>
 <div class="outline-text-3" id="text-4-5">
 <blockquote>
 <p>
@@ -708,8 +732,8 @@ Given a new point, which cluster should it be in?
 </ul>
 </div>
 </div>
-<div id="outline-container-org6b4a2d1" class="outline-3">
-<h3 id="org6b4a2d1"><span class="section-number-3">4.6.</span> Clustering vs Classification</h3>
+<div id="outline-container-org2d139c0" class="outline-3">
+<h3 id="org2d139c0"><span class="section-number-3">4.6.</span> Clustering vs Classification</h3>
 <div class="outline-text-3" id="text-4-6">
 <ul class="org-ul">
 <li>Since both group data points&#x2026;</li>
@@ -729,10 +753,212 @@ Given a new point, which cluster should it be in?
 </div>
 </div>
 </div>
+<div id="outline-container-org914bd51" class="outline-2">
+<h2 id="org914bd51"><span class="section-number-2">5.</span> Module 05: Data preparation</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-org156bcb9" class="outline-3">
+<h3 id="org156bcb9"><span class="section-number-3">5.1.</span> Common techniques and problems</h3>
+<div class="outline-text-3" id="text-5-1">
+<ol class="org-ol">
+<li>Scale data
+<ul class="org-ul">
+<li>Outliers?</li>
+</ul></li>
+<li>Extraneous (unnecessary data)
+<ul class="org-ul">
+<li>Complicates the model and</li>
+<li>Makes it harder to interpret the solution</li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgdd1fca7" class="outline-3">
+<h3 id="orgdd1fca7"><span class="section-number-3">5.2.</span> Outliers</h3>
+<div class="outline-text-3" id="text-5-2">
+<ul class="org-ul">
+<li>Types
+<dl class="org-dl">
+<dt>Point outliers</dt><dd>one / few points very different from others</dd>
+<dt>Contextual outlier</dt><dd>Value far from other points in time (not in absolute value)</dd>
+<dt>Collective outlier</dt><dd>Something missing in a range of points, but not sure exactly where. Outlier by omission.</dd>
+</dl></li>
+<li>How to detect?
+<ul class="org-ul">
+<li>Box-and-whisker plot if data can be plotted in 1-dimension
+<ul class="org-ul">
+<li>Box: 25/75th percentile
+<ul class="org-ul">
+<li>Line: 50th percentile</li>
+</ul></li>
+<li>Whiskers: 10/90th percentile, 5/95th, etc</li>
+</ul></li>
+<li>For multi-dimensional, no good way. We can still:
+<ol class="org-ol">
+<li>Fit a model.</li>
+<li>Points with large error might be outlier</li>
+</ol></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0883950" class="outline-3">
+<h3 id="org0883950"><span class="section-number-3">5.3.</span> What to do with outliers?</h3>
+<div class="outline-text-3" id="text-5-3">
+<ul class="org-ul">
+<li>Need to understand why there's outliers
+<ol class="org-ol">
+<li>Bad data
+<ul class="org-ul">
+<li>Sensor fail</li>
+<li>Contaminated experiment</li>
+<li>Wrong data input</li>
+</ul></li>
+<li>Unexpected, real, data
+<ul class="org-ul">
+<li>Need to understand more about the data, e.g.</li>
+<li>Where it came from</li>
+<li>How it was compiled</li>
+<li>Unique situations</li>
+</ul></li>
+</ol></li>
+</ul>
+</div>
+<div id="outline-container-orgb65118a" class="outline-4">
+<h4 id="orgb65118a"><span class="section-number-4">5.3.1.</span> Bad data</h4>
+<div class="outline-text-4" id="text-5-3-1">
+<ul class="org-ul">
+<li>Omit the points</li>
+<li>Use imputation to replace the points</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org09219fe" class="outline-4">
+<h4 id="org09219fe"><span class="section-number-4">5.3.2.</span> Real / correct data</h4>
+<div class="outline-text-4" id="text-5-3-2">
+<ul class="org-ul">
+<li>Outliers are somewhat expected in large datasets</li>
+<li>E.g., for normally-distributed data:
+<ul class="org-ul">
+<li>4% will be outside 2 &sigma;</li>
+<li>1e6 data points = 2000 outside 3 &sigma;</li>
+</ul></li>
+<li>Removing <b>real</b> outliers might make model too optimistic. <i>e.g.</i> not account for actual shipments that take a long time from US to Africa</li>
+<li>Outliers might be due to weather, political events</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0664b3a" class="outline-4">
+<h4 id="org0664b3a"><span class="section-number-4">5.3.3.</span> Another way to handle outliers</h4>
+<div class="outline-text-4" id="text-5-3-3">
+<ol class="org-ol">
+<li>First build a logistic regression model
+<ul class="org-ul">
+<li>This estimated probability of outliers under different conditions</li>
+</ul></li>
+<li>Next, build the regular model i.e. estimate delivery time under <b>normal conditions</b>
+<ul class="org-ul">
+<li>Use data without outliers</li>
+<li>Report different outcomes&#x2026;</li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org063aee9" class="outline-4">
+<h4 id="org063aee9"><span class="section-number-4">5.3.4.</span> Summary</h4>
+<div class="outline-text-4" id="text-5-3-4">
+<ul class="org-ul">
+<li>Outliers aren't predictable</li>
+<li>Investigate the data in case you're wrong</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org5eea501" class="outline-2">
+<h2 id="org5eea501"><span class="section-number-2">6.</span> Module 06: Change detection</h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-org412815d" class="outline-3">
+<h3 id="org412815d"><span class="section-number-3">6.1.</span> Examples</h3>
+<div class="outline-text-3" id="text-6-1">
+<ul class="org-ul">
+<li>Usually with time series data</li>
+<li>Determine if action is needed, e.g.,
+<ul class="org-ul">
+<li>Time for machine maintenance?</li>
+<li>Have sales increased?</li>
+</ul></li>
+<li>Determine impact of some past action, e.g.,
+<ul class="org-ul">
+<li>Did new tax / increase rate decrease sales?</li>
+<li>Did price discount increase sales?</li>
+</ul></li>
+<li>Determine changes of current actions, e.g.
+<ul class="org-ul">
+<li>Did voting patterns change?</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgec1b22d" class="outline-3">
+<h3 id="orgec1b22d"><span class="section-number-3">6.2.</span> Cumulative sum for change detection</h3>
+<div class="outline-text-3" id="text-6-2">
+<blockquote>
+<p>
+Answers whether mean of the observed distribution gone above a critical level
+</p>
+</blockquote>
+<ul class="org-ul">
+<li>x<sub>t</sub> is observed value at time \(t\)</li>
+<li>&mu; is mean of \(x\), if no change in distribution</li>
+<li>Hence, \((x_t - \mu)\) is how much the observation is above mean at time \(t\)</li>
+<li>Detecting an increase
+\[
+  S_t = \text{max}\{ 0, s_{t-1}+(x_t-\mu-C) \}
+  \]
+<ul class="org-ul">
+<li>Determine threshold \(T\) and ask whether S<sub>t</sub> ⩾ T?
+<ul class="org-ul">
+<li>If running total &lt; 0, it's irrelevant</li>
+<li>There should still be some randomness</li>
+<li>C is a term to control how faster S<sub>t</sub> increases</li>
+</ul></li>
+</ul></li>
+<li>Detecting a decrease
+\[
+  S_t = \text{max}\{ 0, s_{t-1}+(\mu-x_t-C) \}
+  \]
+<ul class="org-ul">
+<li>Is S<sub>t</sub> ⩾ T?</li>
+</ul></li>
+</ul>
+</div>
+<div id="outline-container-org9413d25" class="outline-4">
+<h4 id="org9413d25"><span class="section-number-4">6.2.1.</span> Interpretation</h4>
+<div class="outline-text-4" id="text-6-2-1">
+<ul class="org-ul">
+<li>Choices of model parameters
+<dl class="org-dl">
+<dt>T</dt><dd>the threshold, above which alarm is raised</dd>
+<dt>C</dt><dd>the control term (smaller = more sensitive)</dd>
+</dl></li>
+<li>Consider / trade off:
+<ol class="org-ol">
+<li>How costly is it to delay detection? (false negative) -&gt; if it's costly, use small C</li>
+<li>How costly is false positive? -&gt; if it's costly, use big C</li>
+</ol></li>
+<li>Use a control chart and plot S<sub>t</sub> vs t with \(T\) as a horizontal line
+<img src="./img/06-control-chart.png" alt="06-control-chart.png" /></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: W</p>
-<p class="date">Created: 2023-01-26 Thu 20:27</p>
+<p class="date">Created: 2023-01-27 Fri 19:28</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

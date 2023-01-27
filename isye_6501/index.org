@@ -315,3 +315,93 @@ Given a new point, which cluster should it be in?
   - unsupervised learning
   - model decides clusters *only* based on the attributes
 - Supervised learning is more common
+* Module 05: Data preparation
+** Common techniques and problems
+1. Scale data
+   - Outliers?
+2. Extraneous (unnecessary data)
+   - Complicates the model and
+   - Makes it harder to interpret the solution
+** Outliers
+- Types
+  - Point outliers :: one / few points very different from others
+  - Contextual outlier :: Value far from other points in time (not in absolute value)
+  - Collective outlier :: Something missing in a range of points, but not sure exactly where. Outlier by omission.
+- How to detect?
+  - Box-and-whisker plot if data can be plotted in 1-dimension
+    - Box: 25/75th percentile
+      - Line: 50th percentile
+    - Whiskers: 10/90th percentile, 5/95th, etc
+  - For multi-dimensional, no good way. We can still:
+    1. Fit a model.
+    2. Points with large error might be outlier
+** What to do with outliers?
+- Need to understand why there's outliers
+  1. Bad data
+     - Sensor fail
+     - Contaminated experiment
+     - Wrong data input
+  2. Unexpected, real, data
+     - Need to understand more about the data, e.g.
+     - Where it came from
+     - How it was compiled
+     - Unique situations
+*** Bad data
+- Omit the points
+- Use imputation to replace the points
+*** Real / correct data
+- Outliers are somewhat expected in large datasets
+- E.g., for normally-distributed data:
+  - 4% will be outside 2 \sigma
+  - 1e6 data points = 2000 outside 3 \sigma
+- Removing *real* outliers might make model too optimistic. /e.g./ not account for actual shipments that take a long time from US to Africa
+- Outliers might be due to weather, political events
+*** Another way to handle outliers
+1. First build a logistic regression model
+   - This estimated probability of outliers under different conditions
+2. Next, build the regular model i.e. estimate delivery time under *normal conditions*
+   - Use data without outliers
+   - Report different outcomes...
+*** Summary
+- Outliers aren't predictable
+- Investigate the data in case you're wrong
+* Module 06: Change detection
+** Examples
+- Usually with time series data
+- Determine if action is needed, e.g.,
+  - Time for machine maintenance?
+  - Have sales increased?
+- Determine impact of some past action, e.g.,
+  - Did new tax / increase rate decrease sales?
+  - Did price discount increase sales?
+- Determine changes of current actions, e.g.
+  - Did voting patterns change?
+** Cumulative sum for change detection
+#+BEGIN_QUOTE
+Answers whether mean of the observed distribution gone above a critical level
+#+END_QUOTE
+- x_t is observed value at time $t$
+- \mu is mean of $x$, if no change in distribution
+- Hence, $(x_t - \mu)$ is how much the observation is above mean at time $t$
+- Detecting an increase
+  $$
+  S_t = \text{max}\{ 0, s_{t-1}+(x_t-\mu-C) \}
+  $$
+  - Determine threshold $T$ and ask whether S_t ⩾ T?
+    - If running total < 0, it's irrelevant
+    - There should still be some randomness
+    - C is a term to control how faster S_t increases
+- Detecting a decrease
+  $$
+  S_t = \text{max}\{ 0, s_{t-1}+(\mu-x_t-C) \}
+  $$
+  - Is S_t ⩾ T?
+*** Interpretation
+- Choices of model parameters
+  - T :: the threshold, above which alarm is raised
+  - C :: the control term (smaller = more sensitive)
+- Consider / trade off:
+  1. How costly is it to delay detection? (false negative) -> if it's costly, use small C
+  2. How costly is false positive? -> if it's costly, use big C
+- Use a control chart and plot S_t vs t with $T$ as a horizontal line
+  [[./img/06-control-chart.png]]
