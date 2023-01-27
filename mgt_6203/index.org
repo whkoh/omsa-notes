@@ -54,8 +54,8 @@
 - Explanatory :: independent variables
 - Response :: dependent variables
 - $i = 1, 2, ..., n$ :: $i$ th observation or record in dataset, typically a sample
-- $x_{11},...,x_{p1}$, $x_{1n}, ..., x_{pn}$ :: $n$ observations of $p$ explanatory variables
-- $y_1, ..., y_n$ ::  $n$ observations of the dependent variable
+- $\{x_{11}, ..., x_{p1}\}, \{...\}, \{x_{1n}, ..., x_{pn}\}$ :: $n$ observations of $p$ explanatory variables
+- $y_1, ..., y_n$ :: $n$ observations of the dependent variable
 - $\bar{y}$ :: mean value of dependent variable, $y$
 - $\bar{x}_k$ :: mean value of $x_k$ th explanatory variable
 - $\beta_0, ..., \beta_p$ :: parameters of regression line for population
