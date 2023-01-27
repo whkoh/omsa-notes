@@ -39,7 +39,7 @@
 2. Can ask realtors, but is there a more analytical approach?
    - They normally use "comparables" to suggest a listing price
 3. If actual data with price, size, bedroom and bathroom number, etc, are available, regression can be used to help get a better price estimate
-*** Housing dataset `ecdat`
+*** Housing dataset ~ecdat~
 - Can be used for this problem
 - Data from Canadian city Windsor from 1987
 - Or, collect or scrape prices from the web
@@ -62,9 +62,9 @@
 - $b_0, ..., b_p$ :: estimates of $\beta$ parameters obtained by fitting the *sample* data
 - $\epsilon_i$ :: error term for $i$ th observation in population
 - $e_i$ :: error term for $i$ th observation int he sample
-- $\hat{y}_i$ :: estimated value of $y$ for the $i$ th observation in sample. Obtain by evaluating regression function at $x_i$
+- $\widehat{y}_i$ :: estimated value of $y$ for the $i$ th observation in sample. Obtain by evaluating regression function at $x_i$
 *** Steps with example
-1. Observe data in `ecdat`, which is a sample
+1. Observe data in ~ecdat~, which is a sample
 2. Build model for population (valid relation)
    $$
    Y_i = \beta_0 + \beta_1 X_i + \epsilon_i
@@ -75,3 +75,44 @@
    $$
    Y_i = b_0 + b_1 X_i + e_i
    $$
+6. Population model is *homoskedastic* i.e., has constant $\sigma$, and has mean 0.
+7. Split data into say 100 samples and model these. Of 100, 95 will have the *population* slope.
+**** Use OLS to fit the line
+Interpretation:
+1. Find mean $\bar{y}$
+2. Regression line: $\widehat{y} = b_0 + b_1 x$
+3. Intercept at $x=0$, $y=b_0$
+4. For any point $x_i$:
+   - Predicted value is $\widehat{y}_i$.
+   - Actual value is $y_i$.
+   - Need to minimize total deviation as defined by sum of squared error.
+   - Total deviation is against $\bar{y}$:
+     - Explained deviation is $\widehat{y} - \bar{y}$
+     - Total deviation is $y_i - \bar{y}$
+     - *Residual (error term) is unexplained deviation*, i.e. $y_i - \widehat{y}_i$
+*** M1L3 lecture quiz
+1. The total deviation at $(x_i, y_i)$ is $y_i - \bar{y}$: true
+2. In OLS, the intercepts of slope and intercept do depend on the sample being used.
+** $R^2$ and Adjusted $R^2$
+*** Deviations
+- Sum of deviations :: SST = SSE + SSR
+- SST :: Total sum of squares = $\sum_{i}(y_i-\bar{y})^2$
+- SSE :: Sum of squared errors = $\sum_{i}(y_i-\widehat{y}_i)^2$
+- SSR :: Sum of squares regression = $\sum_{i}(\bar{y} - \widehat{y}_i)^2$
+*** Regression output $R^2$ and Adjusted $R^2$
+- $R^2$ :: coefficient of determination. Measures strength of relationship between dependent and independent variables.
+  - $R^2$ never decreases as you add variables
+  - $R^2$ = 1-(SSE/SST) = SSR/SST = *explained deviation/total deviation*
+  - $R^2$ shows how much of variation in $Y$ (vs. mean) has been explained by the model.
+- Adjusted $R^2$ :: accounts for the fact that adding variables increases predictiveness
+  - Adjusted $R^2$ adds a penalty for the number of independent variables $p$
+  - Adjusted $R^2$ = $1-\frac{SSE/(n-p-1)}{SST/(n-1)}$
+*** Examples
+- When $R^2$ = 1 :: X accounts for all variation in Y. SSE = 0
+- When $R^2$ = 0 :: X accounts for none of variation in Y. SSE = 1
+- When $R^2$ = 0.75 :: X accounts for most of the variation. SSE = 0.25
+*** M1L4 lecture quiz
+1. When $R^2$ = 0, X values account for none of the variation in Y.
+2. $R^2$ can take values in $(0,1)$
+** Simple regression with 1 variable in R
+***
