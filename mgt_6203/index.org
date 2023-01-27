@@ -31,3 +31,47 @@
 - Sale price of house :: square feet, bedrooms, location
 - Customer default? :: Credit score, income, age
 - Customer churn? :: Length of contract, age of customer
+*** M1L1 quiz
+1. Variable eg price *can* be either dependent or independent variable, depends on purpose of model
+2. Binary value variable *can* be dependent variable, eg logistic regression
+** Real estate pricing example
+1. Example: sell house, predict listing price.
+2. Can ask realtors, but is there a more analytical approach?
+   - They normally use "comparables" to suggest a listing price
+3. If actual data with price, size, bedroom and bathroom number, etc, are available, regression can be used to help get a better price estimate
+*** Housing dataset `ecdat`
+- Can be used for this problem
+- Data from Canadian city Windsor from 1987
+- Or, collect or scrape prices from the web
+- Do EDA, e.g.:
+  - histogram
+  - correlation matrix
+  - scatter plot with linear regression line
+*** M1L2 quiz
+1. For right-skewed distribution, mean is *larger* than median
+2. Correlation coefficient only captures *linear* relationships
+** Notation in regression analysis
+- Explanatory :: independent variables
+- Response :: dependent variables
+- $i = 1, 2, ..., n$ :: $i$ th observation or record in dataset, typically a sample
+- $x_{11},...,x_{p1}$, $x_{1n}, ..., x_{pn}$ :: $n$ observations of $p$ explanatory variables
+- $y_1, ..., y_n$ ::  $n$ observations of the dependent variable
+- $\bar{y}$ :: mean value of dependent variable, $y$
+- $\bar{x}_k$ :: mean value of $x_k$ th explanatory variable
+- $\beta_0, ..., \beta_p$ :: parameters of regression line for population
+- $b_0, ..., b_p$ :: estimates of $\beta$ parameters obtained by fitting the *sample* data
+- $\epsilon_i$ :: error term for $i$ th observation in population
+- $e_i$ :: error term for $i$ th observation int he sample
+- $\hat{y}_i$ :: estimated value of $y$ for the $i$ th observation in sample. Obtain by evaluating regression function at $x_i$
+*** Steps with example
+1. Observe data in `ecdat`, which is a sample
+2. Build model for population (valid relation)
+   $$
+   Y_i = \beta_0 + \beta_1 X_i + \epsilon_i
+   $$
+3. $\epsilon_i$ are independently and identically distributed (iid) random variables, normally distributed with mean 0 and s.d. $\sigma$
+4. We don't know $\beta_0$, $\beta_1$, $\sigma$ so need to estimate with *sample* data
+5. Using sample, we build model:
+   $$
+   Y_i = b_0 + b_1 X_i + e_i
+   $$
