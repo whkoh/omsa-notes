@@ -31,25 +31,28 @@ Enough math intuition and detail
 2. Regression on size, weight, distance
 3. Regression estimate = 37+81*Size +76*Wt, etc
 * Module 02: Classification
-- Definition: putting things into groups
-** Types of classification models
+#+BEGIN_QUOTE
+Definition: putting things into groups
+#+END_QUOTE
+** M1L1: Intro to classification
+Types of classification models
 1. Number of groups
 2. Number of dimensions
    - Can 1 dimension be sufficient to classify?
-3. Soft vs hard classifiers (is it 100% error free?)
-** Definition of bad classification
+3. Soft vs hard classifiers (is it 100% error-free?)
+** M1L2: Choosing a Classifier
+Definition of bad classification
 - Cost: is one type of mistake worse than the other?
-
-** Examples
-*** Loan payment (Income vs credit score)
+*** Example: Loan payment (Income vs credit score)
 - Plot lines and find one that can separate default vs non-default.
 - How do we know the right lines are drawn?
 - We want to be as conservative as possible (less error prone)
-** Data terminology
+** M2L3 Data definitions
+*** Data terminology
 1. Row = data point
 2. Column = dimension, attribute, feature, predictor, covariate
    1. Special column = response, outcome
-** Data types
+*** Data types
 1. Structured data
    1. Quantitative
       - Numbers with meaning
@@ -60,7 +63,7 @@ Enough math intuition and detail
    5. Time series data
 2. Unstructured
    1. Text data
-** Support vector machines
+** M2L4: Support vector machines
 - *Supervised* method (algorithm uses known results when training)
 - Terminology
   - m = number of data points
@@ -95,7 +98,7 @@ Enough math intuition and detail
    $$
   \text{Minimize}_{a_0,...,a_n} \sum_{i=1}^{m} \text{max} \{ 0, 1 - (\sum_{j=1}^{n} a_j x_{ij} + a_0) y_i \}  + \lambda \sum_{j=1}^{n}(a_j)^2
   $$
-*** What SVM means
+** M2L5: What SVM means
 - Etymology
   - Vector = point
   - *Support vector* = points that holds up (or, supports) a shape. Shape is correctly balanced on parallel lines
@@ -104,7 +107,13 @@ Enough math intuition and detail
 - Support can be from top or side
 - Looking for max separation i.e. the support vector touches the data points
 - Classifier is in between the two support vectors
-** Scaling and standardization
+** M2L6: Advanced SVM
+- The constant term a_0 can be used to adjust the intercept and hence tweak the SVM model.
+  - If it's more costly to grant a bad loan, e.g.: $\frac{2}{3}(a_0-1) + \frac{1}{3}(a_0+1)$
+- For soft classification, you can add a multiplier m_j for each type of error:
+  - m_j > 1 for more costly
+  - m_j < 1 for less costly
+** M2L7: Scaling and standardization
 - Predictive factors may have different orders of magnitude, i.e.
   - Income in $10^5$
   - Credit score in $10^2$
@@ -139,7 +148,7 @@ Enough math intuition and detail
   $$
   x_{ij}^{\text{standardized}} = \frac{x_{ij}-\mu_j}{\sigma_j}
   $$
-** Choosing between scaling vs standardization
+*** Choosing between scaling vs standardization
 - Scale when:
   - Data is in bounded (defined) range, e.g.
     - Neural networks
@@ -152,7 +161,7 @@ Enough math intuition and detail
   - Clustering
 - Try both when not clear
 - Should be used throughout course even when not stated explicitly
-** K Nearest Neighbour model (KNN)
+** M2L8: K Nearest Neighbour model (KNN)
 - *Classification*
 - e.g. loan dataset with two predictors and a response
 - Assume each point has similar characteristics with its neighbors
@@ -172,13 +181,13 @@ Enough math intuition and detail
 #+BEGIN_QUOTE
 Check how good a model is
 #+END_QUOTE
+** M3L1: Training, validation and test data
 - *Cannot* calculate accuracy or effectiveness metrics from training dataset
   - Since model was trained on it
   - This doesn't allow separation of real effects from random effects
 - When fitting a model, this captures both real and random effects
   - Real effects: exist in all datasets (or subsets)
   - Random effects: different in all datasets
-** Training, validation and test data
 - Use a *training* set of data to fit model
 - Use another *validation* set of data to judge model effectiveness
 - When comparing >1 model, use a *test* dataset.
@@ -188,7 +197,7 @@ Check how good a model is
 - Analogize with models equally good
 - Flowchart:
   [[./img/validation01.png]]
-** Splitting data
+** M3L2: Splitting data
 - How much data goes to each set?
   1. 70 to 90% train, remaining test
   2. 50 to 70% train, remaining evenly split validation & test
@@ -199,7 +208,7 @@ Check how good a model is
      - Need to ensure rotation doesn't introduce bias
   3. Combined:
      60% of Monday data for training, 60^% of Tuesday data for training, etc.
-** Cross-validation
+** M3L3: Cross-validation
 #+BEGIN_QUOTE
 What happens with important data appears only in one data set e.g., validation?
 #+END_QUOTE
@@ -222,12 +231,12 @@ What happens with important data appears only in one data set e.g., validation?
   1. Better uses data
   2. Better estimates model quality
   3. Choose model more effectively
-** Summary
+** M3L4: Summary
 1. Build model with training data
 2. Pick model with validation data
 3. Estimate performance with test data
 * Module 04: Clustering
-** Introduction to clustering
+** M4L1: Introduction to clustering
 - *Unsupervised* method (response not available for use in training)
 - Grouping data points
 - Might help discover attributes in the dataset
@@ -241,7 +250,7 @@ What happens with important data appears only in one data set e.g., validation?
   - Image analysis
   - Exploratory data analysis (different model for each attribute)
 - Example: Miles driven vs. Age
-** Distance Norms
+** M4L2: Distance Norms
 - Straight line distance (Euclidean)
   $\sqrt{(x_1-y_1)^2+(x_2-y_2)^2}$
 - Rectilinear distance (Manhattan, 1-norm)
@@ -255,7 +264,7 @@ What happens with important data appears only in one data set e.g., validation?
   - Largest term dominates the rest, hence simplifies to:
   - $\text{max}_i |x_i-y_i|$
 - Analogize with warehouse picking robot. The operation that takes the longest dominates the total operation time.
-** K-Means Clustering
+** M4L3: K-Means Clustering
 - *Unsupervised* technique
 - Steps to implement K-Means:
   1. Plot data points on suitable axes (e.g., age vs temperature, sepal width vs sepal height)
@@ -278,7 +287,7 @@ What happens with important data appears only in one data set e.g., validation?
      - it is fast and good
      - *not guaranteed* to find global best solution.
   5. It is expectation-maximization (EM), and alternates between expectation (/finding cluster centers/) and maximization (/assigning points to clusters/)
-** Practical details for K-Means
+** M4L4: Practical details for K-Means
 Algorithm just assigns outliers to nearest clusters.
 - Choosing *starting points*:
   1. Run several times with different initial cluster centers
@@ -297,7 +306,7 @@ Algorithm just assigns outliers to nearest clusters.
   - Elbow diagram:
 
     [[./img/04-elbow.png]]
-** Clustering for prediction
+** M4L5: Clustering for prediction
 #+BEGIN_QUOTE
 Given a new point, which cluster should it be in?
 #+END_QUOTE
@@ -305,7 +314,7 @@ Given a new point, which cluster should it be in?
 - Otherwise, what's the nearest cluster center?
 - Asked another way: for the range of the dataset, which areas would we assign to each cluster if a new point appears there?
   - This is a [[https://en.wikipedia.org/wiki/Voronoi_diagram][Voronoi diagram]].
-** Clustering vs Classification
+** M4L6: Clustering vs Classification
 - Since both group data points...
 - The difference is what we know about the data points.
 - For classification, the correct response is known, i.e.
@@ -316,13 +325,13 @@ Given a new point, which cluster should it be in?
   - model decides clusters *only* based on the attributes
 - Supervised learning is more common
 * Module 05: Data preparation
-** Common techniques and problems
+** M5L1: Common techniques and problems
 1. Scale data
    - Outliers?
 2. Extraneous (unnecessary data)
    - Complicates the model and
    - Makes it harder to interpret the solution
-** Outliers
+** M5L2: Outliers
 - Types
   - Point outliers :: one / few points very different from others
   - Contextual outlier :: Value far from other points in time (not in absolute value)
@@ -335,7 +344,7 @@ Given a new point, which cluster should it be in?
   - For multi-dimensional, no good way. We can still:
     1. Fit a model.
     2. Points with large error might be outlier
-** What to do with outliers?
+** M5L3: What to do with outliers?
 - Need to understand why there's outliers
   1. Bad data
      - Sensor fail
@@ -366,7 +375,7 @@ Given a new point, which cluster should it be in?
 - Outliers aren't predictable
 - Investigate the data in case you're wrong
 * Module 06: Change detection
-** Examples
+** M6L1: Examples
 - Usually with time series data
 - Determine if action is needed, e.g.,
   - Time for machine maintenance?
@@ -376,7 +385,7 @@ Given a new point, which cluster should it be in?
   - Did price discount increase sales?
 - Determine changes of current actions, e.g.
   - Did voting patterns change?
-** Cumulative sum for change detection
+** M6L2: Cumulative sum for change detection
 #+BEGIN_QUOTE
 Answers whether mean of the observed distribution gone above a critical level
 #+END_QUOTE
@@ -405,3 +414,5 @@ Answers whether mean of the observed distribution gone above a critical level
   2. How costly is false positive? -> if it's costly, use big C
 - Use a control chart and plot S_t vs t with $T$ as a horizontal line
   [[./img/06-control-chart.png]]
+** TODO M6L3
+To be released Feb 2
