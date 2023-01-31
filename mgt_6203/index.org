@@ -232,6 +232,8 @@ With the Durbin-Watson test
    [[./img/01-residuals-hskd.png]]
 **** Workarounds
 1. Transform the Y variable, e.g. $ln(Y)$, $\frac{1}{Y}$, etc.
-
-***
+*** M1L8 lecture quiz
+1. Scatter plot of Y vs X shows non-linear pattern -> SHOULD change linear regression model
+2. Autocorrelation is the correlation between each of the e_i variables -> True
+3. Heteroskedasticity = constant error variance -> FALSE
 ***
