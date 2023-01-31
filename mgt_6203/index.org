@@ -236,4 +236,25 @@ With the Durbin-Watson test
 1. Scatter plot of Y vs X shows non-linear pattern -> SHOULD change linear regression model
 2. Autocorrelation is the correlation between each of the e_i variables -> True
 3. Heteroskedasticity = constant error variance -> FALSE
-***
+** M1L9 Common problems and fixes in fixing regression (II)
+*** (4) Outliers
+1. y_i value far from predicted $\widehat{y}_i$
+2. Visualise by plotting residuals, or standardized residuals, vs predicted $y$
+3. Causes:
+   1. Incorrect data recording
+   2. Phenomenon is not linear (model is wrong, missing predictor, etc)
+*** (5) High leverage points
+[[./img/0108-high-leverage.png]]
+1. These are observations with predictor value outside normal range of observations
+2. Point has high leverage if its deletion (by itself or with 2-3 other points) causes noticable changes in the model
+3. With many predictors: it's possible to have an observation within range of each predictor's value but still be unusual
+4. Measure with *Cook's distance C_i*, i.e. the difference between coeff's obtained from:
+   1. The full data
+   2. The full data deleting observation $i$
+5. C_i > 1  = highly influential
+*** Plots in R
+plot(lm) model provides plots:
+- Residual vs fitted :: check if residuals have non-linear patterns
+- Normal Q-Q :: check if residuals are normally distributed
+- Scale-location ::  check if standardized residuals are spread equally along fitted values
+- Residuals vs leverage :: finds influential points, with C_i > 1
