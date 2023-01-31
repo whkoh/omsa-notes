@@ -187,12 +187,9 @@ Anova table:
 2. *Small* p-value means that *there is evidence* that coefficient is *not* 0.
 ** M1L8 Common problems and fixes in fixing regression (I)
 *** Assumptions of linear regression
-1. Linearity i.e. $E(y) = b_0 + b_1 x$, i.e. the expected value of Y at each X is approximately a straight line
-2. Assumptions about errors:
-   1. The error terms are independent, and identically distributed (*iid*)
-   2. Each error term has mean 0 and constant variance \sigma^2, i.e. *homoscedastic*
-3. Assumptions about predictors:
-   1. In multiple recession, the predictor variables are linearly independent of each other
+- Linearity :: i.e. $E(y) = b_0 + b_1 x$, i.e. the expected value of Y at each X is approximately a straight line
+- The error terms are independent, and identically distributed (*iid*) ::  Each error term has mean 0 and constant variance \sigma^2, i.e. *homoscedastic*
+- Assumptions about predictors :: In multiple recession, the predictor variables are linearly independent of each other
 *** Common problems in fitting Linear Regression
 1. Response/predictor relationship is non-linear
 2. Error terms are correlated
@@ -209,7 +206,7 @@ Anova table:
 2. Use variance reducing transformations, e.g. log, to get better linear fit
 3. Remove outliers or some parts of the observations driving non-linearity
 4. Check for omitted variables
-5. Check for systematic bias when collecting daya
+5. Check for systematic bias when collecting data
 6. *Check residuals!*
 *** (2) Correlation of error terms
 - There is autocorrelation if error terms are correlated
