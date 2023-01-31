@@ -185,3 +185,53 @@ Anova table:
 ** M1L7 lecture quiz
 1. In general adding more variable *does not decrease* overall $R^2$ value of multiple regression.
 2. *Small* p-value means that *there is evidence* that coefficient is *not* 0.
+** M1L8 Common problems and fixes in fixing regression (I)
+*** Assumptions of linear regression
+1. Linearity i.e. $E(y) = b_0 + b_1 x$, i.e. the expected value of Y at each X is approximately a straight line
+2. Assumptions about errors:
+   1. The error terms are independent, and identically distributed (*iid*)
+   2. Each error term has mean 0 and constant variance \sigma^2, i.e. *homoscedastic*
+3. Assumptions about predictors:
+   1. In multiple recession, the predictor variables are linearly independent of each other
+*** Common problems in fitting Linear Regression
+1. Response/predictor relationship is non-linear
+2. Error terms are correlated
+3. Error terms have non-constant variance
+4. Outliers
+5. High leverage points
+6. Collinearity
+*** (1) Non linear relationship
+**** Checks
+1. Check scatter plots of Y vs X, before fitting model
+2. Check residuals vs fitted values (no pattern = good)
+**** Workarounds
+1. Model non-linear relationship with higher order terms e.g. x^2
+2. Use variance reducing transformations, e.g. log, to get better linear fit
+3. Remove outliers or some parts of the observations driving non-linearity
+4. Check for omitted variables
+5. Check for systematic bias when collecting daya
+6. *Check residuals!*
+*** (2) Correlation of error terms
+- There is autocorrelation if error terms are correlated
+- Knowing error term e_i should not have influence on size of e_{i+1}
+- This assumption is used to estimate standard errors of the model parameters
+- If autocorrelation exists:
+  - Estimated standard errors < true standard errors
+  - Confidence intervals appear narrower than actual
+  - P-values appear lower than actual
+  - False sense of confidence
+**** Checks
+With the Durbin-Watson test
+*** (3) Heteroskedasticity (non-constant error variance)
+- Model assumes: spread of responses around the straight line is the same at all $x$
+- Violated if there is non-constant error present, e.g. if errors increase with fitted values
+- If heteroskedastic:
+  - Hypothesis test and confidence intervals misleading
+**** Checks
+1. Residuals vs fitted values plot
+   [[./img/01-residuals-hskd.png]]
+**** Workarounds
+1. Transform the Y variable, e.g. $ln(Y)$, $\frac{1}{Y}$, etc.
+
+***
+***
