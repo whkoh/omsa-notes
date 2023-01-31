@@ -188,7 +188,7 @@ Anova table:
 ** M1L8 Common problems and fixes in fixing regression (I)
 *** Assumptions of linear regression
 - Linearity :: i.e. $E(y) = b_0 + b_1 x$, i.e. the expected value of Y at each X is approximately a straight line
-- The error terms are independent, and identically distributed (*iid*) ::  Each error term has mean 0 and constant variance \sigma^2, i.e. *homoscedastic*
+- Assumptions about error terms :: (a) The error terms are independent, and identically distributed (*iid*). (b) Each error term has mean 0 and constant variance \sigma^2, i.e. *homoscedastic*
 - Assumptions about predictors :: In multiple recession, the predictor variables are linearly independent of each other
 *** Common problems in fitting Linear Regression
 1. Response/predictor relationship is non-linear
