@@ -291,3 +291,78 @@ plot(lm) model provides plots:
 1. Pick one variable if multiple ones measure the same "thing"
 2. Use PCA or factor analysis to create even more useful variable(s)
 * Module 02: Indicator variables and Interaction Terms
+** M2L1: Intro (Customer Analytics Dataset)
+** M2L2: Creating and Using Indicator Variables
+a.k.a. dummy variables
+** M2L3: Interpreting the coefficients of indicator variables
+** M2L4: Interaction term and interpreting its coefficient
+** M2L5: Another example of using indicator variables
+*** Airbnb Los Angeles dataset
+- e.g. owner aiming to understand key factors that influence price
+- Questions:
+  1. Is there a relationship between capacity and price?
+  2. Does the type of rental (shared, private or full home) change the relationship?
+*** 2DR1: How does room price vary by capacity?
+|              |  Value |
+|--------------+--------|
+| Intercept    | 15.039 |
+| Capacity     | 38.272 |
+| R^2          |  0.367 |
+| Adjusted R^2 |  0.367 |
+Create two dummy variables as follows. Base case (both 0) is "Shared" ~room type~.
+1. ~Private_ind~:
+   1. 1 if "Private room" ~room type~
+   2. 0 otherwise
+2. ~House_ind~
+   1. 1 if "Entire home/apt" ~room type~
+   2. 0 otherwise
+**** 2DR1: Equation
+$$
+\text{Price} = b_0 + b_1*\text{Private_ind} + b_2*\text{House_ind}
+$$
+|             | Estimate | p-value |
+|-------------+----------+---------|
+| Intercept   |   37.149 |   12.58 |
+| Private_ind |   35.666 |   11.42 |
+| House_ind   |  133.442 |   43.64 |
+**** 2DR1: Interpretation:
+- Average price of room = 37.149 :: Shared room
+- Average price of private room :: 37.149+35.666
+- Average price of entire house :: 37.149+133.442
+*** 2DR2: 2nd regression with capacity and dummies
+|             | Estimate | t-value |
+|-------------+----------+---------|
+| Intercept   |  -19.017 |  -7.101 |
+| Capacity    |   29.292 |  82.605 |
+| Private_ind |   30.339 |  11.076 |
+| House_ind   |   75.776 |  27.346 |
+- Equation:
+  $$
+  \text{Price} = b_0 + b_1*\text{Capacity} + b_2*\text{Private_ind} + b_3*\text{House_ind}
+  $$
+- Question: What's the average increase in price for each extra person (capacity)?
+- Image: [[./img/0205-2dr2-slope.png]]
+*** Interaction terms
+1. Create 2 new variables:
+   1. ~P_Cap~: ~Private_ind~ * ~Capacity~
+   2. ~H_Cap~: ~House_ind~ * ~Capacity~
+2. New equation
+ $$
+  \text{Price} = b_0 + b_1*\text{Capacity} + b_2*\text{Private_ind} + b_3*\text{House_ind} + b_4*\text{P_Cap} + b_5*\text{H_Cap}
+  $$
+3. Regression coeff's:
+   |             | Estimate |   t-value |
+   |-------------+----------+-----------|
+   | Intercept   |   35.885 |  8.728*** |
+   | Capacity    |    0.659 |     0.391 |
+   | Private_ind |   20.684 |  4.427*** |
+   | House_ind   |    2.293 |     0.518 |
+   | P_Cap       |    7.080 |  3.636*** |
+   | H_Cap       |   33.414 | 19.323*** |
+   |             |          |       <r> |
+
+**** Interpretation
+1. b_4 is the amount to add to b_1 to get slope for Private room
+2. b_5 is the amount to add to b_1 to get slope for a House
+3. Statistically, capacity and house_ind are not very different from 0.
+   [[./img/0205-interaction-terms-2dr2.png]]
