@@ -246,6 +246,7 @@ With the Durbin-Watson test
    2. Phenomenon is not linear (model is wrong, missing predictor, etc)
 5. Should ensure fit is *not* overly determined by one/ a few observations i.e. outliers
 6. Outlier identified as *influential point* if it unduly influences the regression analysis
+   [[./img/0109-plot-x-y-influential.png]]
 **** Types
 1. Y, response outlier
 2. X, predictor outlier, i.e. leverage point
@@ -271,3 +272,25 @@ plot(lm) model provides plots:
 - Normal Q-Q :: check if residuals are normally distributed
 - Scale-location ::  check if standardized residuals are spread equally along fitted values
 - Residuals vs leverage :: finds influential points, with C_i > 1
+*** (6) Multicollinearity
+- e.g. mpg ~ cyl; mpg ~ cyl + disp + wt.
+- The 2nd module exhibits multicollinearity.
+- Two or more predictors are linearly related
+**** Check
+1. With variance inflation factors, VIF
+   1. Regress X_j against all other X. Name resulting R^2 as $R^2_j$
+   2. Define VIF = $\frac{1}{1-R^2_j}$, $j=1,2,...,p$
+   3. If X_j has strong linear relationship to other X predictors, then R_j^2 is close to 1 and VIF_j is large
+   4. VIF > 5 -> Multicollinearity
+   5. In R, use ~vif(lm(model))~ to check the VIF values
+2. Use correlation matrix
+**** Consequences
+1. OLS estimated parameters may have large variances and covariances, thus precise estimates difficult
+2. Confidence intervals of estimated parameters are larger, hence can't reject H_0 (that b_i = 0)
+3. Regression coeffs might have wrong sign
+4. Regression coeffs might be not significantly different from 0 even for large R^2
+5. Adding explanatory variable changes other varS coeff
+**** Solution
+1. Pick one variable if multiple ones measure the same "thing"
+2. Use PCA or factor analysis to create even more useful variable(s)
+* Module 02: Indicator variables and Interaction Terms
