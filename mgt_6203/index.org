@@ -240,18 +240,31 @@ With the Durbin-Watson test
 *** (4) Outliers
 1. y_i value far from predicted $\widehat{y}_i$
 2. Visualise by plotting residuals, or standardized residuals, vs predicted $y$
-3. Causes:
+3. Points with std residuals > 2-3 sd away from mean (0) are outliers
+4. Causes:
    1. Incorrect data recording
    2. Phenomenon is not linear (model is wrong, missing predictor, etc)
+5. Should ensure fit is *not* overly determined by one/ a few observations i.e. outliers
+6. Outlier identified as *influential point* if it unduly influences the regression analysis
+**** Types
+1. Y, response outlier
+2. X, predictor outlier, i.e. leverage point
+**** Causes
+1. Case by case
+2. Analyse by creating models with/without outlier to see effect on fitted line
+   1. For both predictor and response outliers
 *** (5) High leverage points
 [[./img/0108-high-leverage.png]]
-1. These are observations with predictor value outside normal range of observations
-2. Point has high leverage if its deletion (by itself or with 2-3 other points) causes noticable changes in the model
+1. These are observations with predictor $x$ value outside normal range of observations for $x$
+   1. Does not have large std residual
+   2. Can affect regression results
+2. Point has high leverage if its deletion (by itself or with 2-3 other points) causes noticeable changes in the model
 3. With many predictors: it's possible to have an observation within range of each predictor's value but still be unusual
 4. Measure with *Cook's distance C_i*, i.e. the difference between coeff's obtained from:
    1. The full data
    2. The full data deleting observation $i$
 5. C_i > 1  = highly influential
+   1. *Also* an influential point if C_i > 1
 *** Plots in R
 plot(lm) model provides plots:
 - Residual vs fitted :: check if residuals have non-linear patterns
