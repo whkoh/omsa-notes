@@ -293,7 +293,23 @@ plot(lm) model provides plots:
 * Module 02: Indicator variables and Interaction Terms
 ** M2L1: Intro (Customer Analytics Dataset)
 ** M2L2: Creating and Using Indicator Variables
-a.k.a. dummy variables
+- a.k.a. dummy variables
+- Categorical variables, e.g. age, are also known as factor variables
+  - They have distinct values, e.g. Age = Old, Age = Young, Age = Middle
+- How to include age variable in regression model that requires numeric values?
+- e.g. if we want to investigate the effect of age on AmountSpent
+  - Need to quantify this variable
+- With 3 possible values for $\text{Age}$, we need 2 indicator variables
+  - Base case is both dummies = 0, i.e. Age = Young.
+  - This is the reference group to compare for the other values of the dummy variable.
+  - Any value of the categorical can be used as the base case
+  - In this instance, the dummies created are:
+    1. ~AgeMid~ = 1 if Age = Middle, 0 otherwise
+    2. ~AgeOld~ = 1 if Age = Old, 0 otherwise
+- Regression equation: $\text{AmountSpent} = b_0 + b_1*\text{AgeMid} + b_2*\text{AgeOld}$
+*** M2L2 lecture quiz
+- Can record have AgeMid = 0, AgeOld = 0? :: Yes, when Age = Yound
+- Can record have AgeMid = 1, AgeOld = 1? :: No
 ** M2L3: Interpreting the coefficients of indicator variables
 *** DR1: regression with dummy variable
 - Coeffs:
