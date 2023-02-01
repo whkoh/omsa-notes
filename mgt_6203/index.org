@@ -296,6 +296,47 @@ plot(lm) model provides plots:
 a.k.a. dummy variables
 ** M2L3: Interpreting the coefficients of indicator variables
 ** M2L4: Interaction term and interpreting its coefficient
+- Example: regression with dummy variables.
+- ~Location~ is categorical variable with values:
+  - "Close" = customer lives close to store that sells similar merchandise
+  - "Far" = customer does not live close...
+- Create a new variable ~Far~:
+  - $1$ if ~Location~ = Far
+  - $0$ otherwise
+- Coeffs:
+  |           | Estimate | t-value |
+  |-----------+----------+---------|
+  | Intercept |   -20.48 |   -4.64 |
+  | Salary    |    0.002 |   34.05 |
+  | Far       |    59.06 |   13.38 |
+- Equation: $\text{Amount Spent} = b_0 + b_1 \text{Salary} + b_2 \text{Far}$
+- Estimated amt spent for customer who lives $Far$:
+  - 38.58 + 0.002*Salary
+- Assumptions:
+  - Customers who live far away will spend *at the same rate* that customers who live nearby. Is this realistic?
+*** Interaction term
+- Same example but construct new variable
+- $\text{SalaryFar} = \text{Salary} \times \text{Far}$
+- $\text{Amount Spent} = b_0 + b_1 \text{Salary} + b_2 \text{Far} + b_3 \text{SalaryFar}$
+- New coeffs:
+|           | Estimate | t-value |
+|-----------+----------+---------|
+| Intercept |    1.448 |     0.3 |
+| Salary    |    0.002 |   24.72 |
+| Far       |   -13.46 |   -1.55 |
+| SalaryFar |    0.001 |    9.57 |
+- Interpretation of coefficient for $\text{SalaryFar}$:
+  b_3 is the amount to add to b_1 to get the slope for people who live far away
+  [[./img/0204-interaction_term.png]]
+*** M2L4 lecture quiz
+1. If the salary for customer who lives close increases by $10,000, what is the projected increase in AmountSpent for that customer?
+   - $10000*0.002=$20
+2. What is the equivalent increase for a customer who lives Far?
+   - $10000*0.002+$10000*0.001 = $30
+*** Categorical variable with $\text{M}$ values
+- Indicator variable has $M$ possible values, then need to construct $M-1$ dummy variables.
+- Base case always applied to the group with indicator variables set to $0$.
+- All other cases interpreted with reference to base case.
 ** M2L5: Another example of using indicator variables
 *** Airbnb Los Angeles dataset
 - e.g. owner aiming to understand key factors that influence price
@@ -366,3 +407,4 @@ $$
 2. b_5 is the amount to add to b_1 to get slope for a House
 3. Statistically, capacity and house_ind are not very different from 0.
    [[./img/0205-interaction-terms-2dr2.png]]
+*** No lecture quiz
