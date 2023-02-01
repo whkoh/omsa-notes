@@ -470,3 +470,25 @@ $$
 3. Statistically, capacity and house_ind are not very different from 0.
    [[./img/0205-interaction-terms-2dr2.png]]
 *** No lecture quiz
+* Module 03: Non-linear transformation models
+** M3L1: Intro (and why needed)
+Examples:
+1. Population and rank of cities
+2. Residuals and predicted price (Housing dataset)
+   1. Non-constant variance (heteroskedascity)
+   2. Model A: $\text{price} = b_0 +b_1 *\text{lotsize}$
+      - Q-Q plot shows non-linearity
+      - Residuals vs fitted shows non-constant variance
+- *FOCUS* on natural log transformations in 6203 as these are easier to interpret
+** Summary of models
+|        | Y                                               | log(Y)                                              |
+|--------+-------------------------------------------------+-----------------------------------------------------|
+| X      | Model A: level-level model     $Y=b_0 + b_1X$   | Model C: log-linear model $\log(Y)=b_0+b_1X$        |
+| log(x) | Model B: linear-log model $Y=b_0 + b_1\log(X)$  | Model D log-log model $\log(Y) = b_0 + b_1\log(X)$  |
+Notes: if variable $x$ has values = 0, then use \log(x+1) transformation.
+
+
+** M3L2: Linear-Log model
+** M3L3: Log-Linear model
+** M3L4: Log-Log model
+** M3L5: Polynomial model
