@@ -295,6 +295,45 @@ plot(lm) model provides plots:
 ** M2L2: Creating and Using Indicator Variables
 a.k.a. dummy variables
 ** M2L3: Interpreting the coefficients of indicator variables
+*** DR1: regression with dummy variable
+- Coeffs:
+  |           | Estimate | t-value  |
+  |-----------+----------+----------|
+  | Intercept |   55.862 | 10.93*** |
+  | AgeMid    |   94.307 | 14.75*** |
+  | AgeOld    |   87.350 | 11.03*** |
+- Equation: $\text{AmountSpent} = b_0 + b_1*\text{AgeMid} + b_2*\text{AgeOld}$
+- Age = Young spends average $55.862
+  - This is the base case
+- Middle age average AmountSpent = $55.862+$94.307
+  - The AgeMid coefficient is the increase in AmountSpent for middle aged customers compared to young customers
+- Graphically, the indicator variable shifts up the Mid and Old AmountSpent. All are parallel to x-asis.
+- In R, a factor variable can be used directly without constructing the indicator variable, e.g.
+  ~lm(AmountSpent ~ Age, data=dirmkt)~
+  - R provides the new variables AgeMiddle and AgeYoung
+  - Use contrasts function to find the base case, e.g. ~contrasts(dirmkt$Age)~ which shows:
+    |        | Middle | Young |
+    |--------+--------+-------|
+    | Old    |      0 |     0 |
+    | Middle |      1 |     0 |
+    | Young  |      0 |     1 |
+*** DR2: regression with salary and dummy variables
+- Coeffs
+  |           | Estimate | t-value |
+  |-----------+----------+---------|
+  | Intercept |    -6.12 |   -1.30 |
+  | Salary    |    0.002 |      25 |
+  | AgeMid    |    -4.81 |   -0.75 |
+  | AgeOld    |    23.28 |    3.46 |
+
+- Equation: $\text{AmountSpent} = b_0 + b_1*\text{Salary} + b_2*\text{AgeMid} + b_3*\text{AgeOld}$
+- Graphically:
+  1. b_1 and b_2 are shifting up/down the Amount
+  2. Each age group has lines with slope b_0
+*** M2L3 lecture quiz
+- For the above coeffs, old customers spend more than young customers at the same salary level
+
+
 ** M2L4: Interaction term and interpreting its coefficient
 - Example: regression with dummy variables.
 - ~Location~ is categorical variable with values:
