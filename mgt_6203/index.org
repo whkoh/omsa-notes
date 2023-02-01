@@ -292,6 +292,13 @@ plot(lm) model provides plots:
 2. Use PCA or factor analysis to create even more useful variable(s)
 * Module 02: Indicator variables and Interaction Terms
 ** M2L1: Intro (Customer Analytics Dataset)
+- Direct Marketing dataset
+- Modeling customer characteristics to predict AmountSpent
+- Understand why some individuals spent more than others
+  - In particular, the effect of Salary
+- Scatter plot of Salary vs AmountSpent
+  - Can include the regression line
+*** No lecture quiz
 ** M2L2: Creating and Using Indicator Variables
 - a.k.a. dummy variables
 - Categorical variables, e.g. age, are also known as factor variables
