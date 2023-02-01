@@ -489,6 +489,52 @@ Notes: if variable $x$ has values = 0, then use \log(x+1) transformation.
 
 
 ** M3L2: Linear-Log model
+- Coeff table:
+  |               | Estimate | t-value |
+  |---------------+----------+---------|
+  | Intercept     | -250.728 |  -12.42 |
+  | \log(lotsize) |    37660 |   15.81 |
+
+  - R^2 = 0.315
+  - Adjusted R^2 = 0.3137
+  - Equation:
+    $\text{price} = b_0 + b_1\log(\text{lotsize})$
+    - Creates a new variable \log(lotsize), which is the natural log of $\text{lotsize}$
+*** Interpretation of coefficients
+b_1 = 37660 implies that:
+- for every 1% increase in $\text{lotsize}$:
+- the price increases by $376.60 approximately (i.e. 1/100 coefficient)
+- This works because increasing X by 1% is ~ increasing \log(X) by 0.01
+- Hence the increase changes Y variable by 0.01*b_1
+*** No lecture quiz
 ** M3L3: Log-Linear model
+Model C: $\log(\text{price}) = b_0 + b_1\text{lotsize}$
+- Coeff table
+  |           |   Estimate | t-value |
+  |-----------+------------+---------|
+  | Intercept |      10.58 |  306.51 |
+  | lotsize   | 0.00009315 |   15.08 |
+  - R^2 = 0.2947
+  - Adjusted R^2 = 0.2935
+- Creates a new variable \log(price)
+*** Interpretation of coefficients
+- Coefficient b_1 indicates:
+  - When lotsize increases by 1 sqft,
+  - Price increases by 0.009315% on average, _i.e._
+- Dependent variable changes by $100\times\text{coefficient}$ percent
+  - for a 1 unit increase in independent variable
+  - Keeping all other variables constant
+*** Derivation
+- Increase x by 1 unit increases \log(y) by b_1 units
+- $\log(price) = b_0 + b_1x$ is the same as:
+  $y = e^{(b_0+b_1x)}$
+- Hence: $\frac{dy}{dx} = b_1y$, and $\frac{dy}{y} = b_1dx$
+- Multiplying by 100:
+  - $100\times\frac{dy}{y} = 100\times b_1\times dx$
+- $100\times\frac{dy}{y}$ is the percentage change in $Y$
+- If dx=1, then this 1 unit change in x => 100b_1 % change in $Y$
+- Note that this approximation works when $b_0+b_1x$ is very small
+- Accurate calc: $\text{percentage change in Y} = (e^{b_1}-1)\times100$ for 1 unit change in $X$.
+*** No lecture quiz
 ** M3L4: Log-Log model
 ** M3L5: Polynomial model
