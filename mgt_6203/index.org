@@ -279,7 +279,7 @@ plot(lm) model provides plots:
    2. Define VIF = $\frac{1}{1-R^2_j}$, $j=1,2,...,p$
    3. If X_j has strong linear relationship to other X predictors, then R_j^2 is close to 1 and VIF_j is large
    4. VIF > 5 -> Multicollinearity
-   5. In R, use ~vif(lm(model))~ to check the VIF values
+   5. In R, use ~vif(lm(model))~ to check the VIF values. ~library(car)~ is required.
 2. Use correlation matrix
 **** Consequences
 1. OLS estimated parameters may have large variances and covariances, thus precise estimates difficult
