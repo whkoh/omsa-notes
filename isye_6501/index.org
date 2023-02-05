@@ -577,8 +577,43 @@ ARIMA (p,d,q) model
 - $d^{th}$ order differences
 - $p^{th}$ order autoregression
 - $q^{th}$ order moving average
-- Equation:
+- <<ARIMA Equation>>Equation:
   $$
   D_{(d)t} = \mu + \sum^p_{i=1}\alpha_i D_{(d)t-i} - \sum^q_{i=1} \theta_i (\hat{x}_{t-i}-x_{t-i})
   $$
 - Software can find $d, p, q$
+- Extensions
+  1. Add seasonality (out of scope for IAM)
+  2. Specific models:
+     - ARIMA(0,0,0) :: white noise
+     - ARIMA(0,1,0) :: random walk
+     - ARIMA(p,0,0) :: AR (autoregressive) model
+     - ARIMA(0,0,q) :: MA (moving avg) model
+     - ARIMA(0,1,1) :: basic exponential smoothing model
+- Can be used for short-term forecasting
+  - ARIMA is better than ES when data is more stable with fewer peaks, valleys, outliers
+  - ARIMA needs 40+ historical data points to work well
+** M7L6: GARCH
+- GARCH :: Generalized Autoregressive Conditional Heteroskedasticity
+To estimate or forecast the variance
+*** Variance
+- Estimates the amount of error
+- E.g. forecasting demand for trucks
+  - tell you how much forecast might be higher/lower than the actual value you see (later) to plan accordingly
+- In investment (portfolio optimization):
+  - Balance the expected return in investment with amount of volatility.
+    - Riskier :: higher expected return
+    - Less risky :: lower expected return
+  - Variance is a proxy for amount of volatility or risk
+*** GARCH
+$$
+\sigma^2_t = \omega + \sum^p_{i=1}\beta_i\sigma^2_{t-1}+\sum^q_{i=1} \gamma_i \epsilon^2_{t-i}
+$$
+It looks very similar to [[ARIMA Equation][ARIMA Equation]], but:
+*Differences*:
+- GARCH deals with variances and squared errors :: ARIMA deals with observations and linear errors
+- GARCH deals with raw variances :: ARIMA deals with differences of variances
+*** Summary - three models for time series analysis
+1. Exponential smoothing
+2. ARIMA, a generalization of exponential smoothing
+3. GARCH, an ARIMA-like model for analyzing variance
