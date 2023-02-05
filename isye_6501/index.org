@@ -414,5 +414,40 @@ Answers whether mean of the observed distribution gone above a critical level
   2. How costly is false positive? -> if it's costly, use big C
 - Use a control chart and plot S_t vs t with $T$ as a horizontal line
   [[./img/06-control-chart.png]]
-** TODO M6L3
-To be released Feb 2
+** M6L3: Ethics: Honestly reporting our results
+- Be faithful to data
+- Have sound conclusions drawn from the model and not your own conceptions
+- Always be honest and true to your analysis
+* Module 07: Time series
+** M7L1: Introduction to exponential smoothing
+- Data for the same response is known for many time periods
+- Examples:
+  - Temperature readings
+  - Price of stocks
+  - Daily sales of hamburgers
+  - Blood pressure readings
+- Variation in time series data:
+  1. Trends increase or decrease
+  2. Cyclical variables over a year or a week
+*** Random variation
+- No underlying reason for the variation
+*** Definitions:
+- $S_t$: expected *baseline* response at time period $t$
+- $x_t$: the observed response at $t$
+- Seeing a increase over time, is it
+  1. A real increase?
+  2. Random?
+- There are two ways to answer:
+  1. It's a real increase, hence $S_t = x_t$
+     - the observed reading is real indicator of revised baseline
+  2. It's random, hence $S_t = S_{t-1}$
+     - today's baseline = yesterday's baseline
+*** Exponential smoothing method
+Combines both, i.e.
+$S-t = \alpha x_t + (1-\alpha)S_{t-1}$
+- 0 < \alpha <1
+  - \alpha \rightarrow 0: much chaotic randomness
+    - trust yesterday's baseline more
+  - \alpha \rightarrow 1: order in the system
+    - trust today's reading more
+- How to start? $S_1 = x_1$
