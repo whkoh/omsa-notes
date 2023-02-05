@@ -583,6 +583,35 @@ $$
 *** M3L5 no lecture quiz
 * Module 04: Logistic Regression
 ** M4L1: Odds
+- Odds express the *likelihood* of an event
+- Written as X to Y or X:Y
+- Gambling odds are "odds against" (i.e., the probability that event will *not* happen is greater than that it will)
+  - 10 to 1 means that betting $1 wins $10, /on top of/ getting back the $1
+- In this module, we deal with *odds for* or *odds on*
+  - The probability that an event is more likely to happen than not
+  - 2 to 1 means event is 2x as likely to happen as not
+    - Gambler in this case stakes $2 and wins $1 (+$2) if event happens
+*** /Odds For/ in statistics
+- Odds :: ratio of probabilities
+- Odds for :: ratio of $\frac{\text{probability of event happening}}{\text{probability of event NOT happening}}$
+Take $p$ as probability of event happening, then: Odds for = $\frac{p}{1-p}$
+- If Odds For is 2:1, then:
+  $$
+  \text{Odds for} = \frac{2}{1}
+  = \frac{p}{1-p} \\
+  p = 2-2p \\
+  2=3p \\
+  p=\frac{2}{3}
+  $$
+- Knowing Odds we can get $p$:
+  $$
+  p = \frac{\text{odds for}}{1+\text{odds for}}
+  $$
+*** M4L1 lecture quiz
+1. A betting site shows odds of NE Patriots winning next Super Bowl is 5 to 1 (odds against). What is the probability of them winning the next super bowl?
+   - Answer: 1/6. Odds for = 1/5, apply above formula.
+2. Team Germany has a 12.5% (1/8) probability of winning the next World Cup. What is the odds for Team Germany winning the next World Cup?
+   - Answer: 1/7. Apply above formula.
 ** M4L2: Binary Dependent Variable
 ** M4L3: Logistic Regression
 ** M4L4: Logistic Regression using the /Default/ dataset
