@@ -553,5 +553,20 @@ $$
 - This works because increasing log(X) by 0.01 is almost equal to increase X by 1%, which implies changing Y by b_1 %
 - *Elasticity* = % change in Y for 1% increase in X
 - For log-log model, b_1 = *elasticity*
+*** Reasons for log-transforming data
+1. Achieve more linear r/s
+2. Make distribution more normal
+3. Make variance more constant
+4. Get better fit in model i.e. increase R^2
+*** Summary of models and interpretation
 
+|        | Y                                               | log(Y)                                              |
+|--------+-------------------------------------------------+-----------------------------------------------------|
+| X      | Model A: level-level model     $Y=b_0 + b_1X$   | Model C: log-linear model $\log(Y)=b_0+b_1X$        |
+| log(x) | Model B: linear-log model $Y=b_0 + b_1\log(X)$  | Model D log-log model $\log(Y) = b_0 + b_1\log(X)$  |
+
+|        | Y                                                     | log(Y)                                             |
+|--------+-------------------------------------------------------+----------------------------------------------------|
+| X      | Model A: level-level (X + 1 unit, Y \Delta b_1 units) | Model C: log-linear (X + 1 unit, Y + (b1\times100)% ) |
+| log(x) | Model B: linear-log (X+1%, Y+$\frac{b_1}{100}$ units)  | Model D log-log (X+1%, Y \Delta b_1%) |
 ** M3L5: Polynomial model
