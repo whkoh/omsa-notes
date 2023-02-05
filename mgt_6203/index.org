@@ -581,3 +581,10 @@ $$
   - since $\frac{\text{d(price)}}{\text{d(lotsize)}} = b_1 + 2b_2\times\text{lotsize}$
 - This means the slope is not constant and changes at every point of the quadratic curve
 *** M3L5 no lecture quiz
+* Module 04: Logistic Regression
+** M4L1: Odds
+** M4L2: Binary Dependent Variable
+** M4L3: Logistic Regression
+** M4L4: Logistic Regression using the /Default/ dataset
+** M4L5: Predictions and Confusion Matrix
+** M4L6: Sensitivity, Specificity, and the ROC curve
