@@ -613,7 +613,65 @@ Take $p$ as probability of event happening, then: Odds for = $\frac{p}{1-p}$
 2. Team Germany has a 12.5% (1/8) probability of winning the next World Cup. What is the odds for Team Germany winning the next World Cup?
    - Answer: 1/7. Apply above formula.
 ** M4L2: Binary Dependent Variable
+- Recap: relationship between /Odds For/ and $p$
+- Example of binary dependent variables
+  1. whether student will get A
+  2. whether firm goes bankrupt
+  3. whether customer makes a purchase
+  4. whether debtor defaults
+  5. whether loan is approved
+- Example: `GradesR.csv`
+  - Variables
+    - Grade = 1, student got A, else 0
+    - Hours = amount of time spent
+  - Using linear regression to model *binary* outcomes leads to weirdness, as regression line is continuous
+    1. Predicted values \neq 0 or 1
+    2. Predicted values < 0
+    3. Predicted values > 1
+*** M4L2 no lecture quiz
 ** M4L3: Logistic Regression
-** M4L4: Logistic Regression using the /Default/ dataset
-** M4L5: Predictions and Confusion Matrix
-** M4L6: Sensitivity, Specificity, and the ROC curve
+*** Comparison of logisitic and linear regression
+Logistic regression is similar to linear regression with 2 main differences:
+1. $Y$, i.e. outcome or response, is a *categorical* variable, _e.g._, Yes/No, Approve/Reject, Pass/Fail
+2. Result expressed as *probability* of being in a group. Implies predicted value is [0,1].
+*** Implementing logistic regression
+- We use the logistic function, which gives probability of being in a group
+- $p(x) = \text{Prob}(y=1|x)$, i.e. the probability of $y$ == 1 given an $x$ value
+- Logistic function:
+  $$
+  p(x) = \frac{e^{b_0+b_1x}}{1+e^{b_0+b_1x}}, \text{i.e.,} \\
+  p(x) = \frac{\exp(b_0+b_1x)}{1+\exp(b_0+b_1x)}
+  $$
+- p(x), simplified to $p$, will always be between 0 and 1 for all values of x
+- hence:
+  $$
+  \frac{p}{1-p} = \exp(b_0+b_1x) \\
+  \log(\frac{p}{1-p}) = b_0+b_1x
+  $$
+- $\log(\frac{p}{1-p})$ is the log of odds for, or *logit*
+- <<Logit model>> is:
+  $$
+  \text{logit}(p) = \log(\frac{p}{1-p}) \\
+  = b_0+b_1x
+  $$
+- Other components of the regression model are identical to linear regression
+*** Why transform from probability to log odds?
+- Mapping probability with range (0,1) to log odds with range (-\infty,\infty) will:
+  1. Difficult to model variable with restricted range such as probability
+  2. Get around restricted range problem of probability
+  3. Among possible transformation methods, log odds is among easiest to understand and interpret
+*** Interpreting logistic regression model
+- *logit(p)* = $\log(\frac{p}{1-p}) = b_0+b_1x$ means:
+  1. As $x$ increases by 1 unit, $\log(\text{odds})$ increases by b_1
+  2. Equal to odds increasing by a factor of $\exp(b_1)$, which is approximately 100*b_1 %
+  3. Exact change is (e^{b_1}-1)\times100%
+*** M4L3 lecture quiz
+1. The logistic function, p(x), returns values
+   - [0,1]
+2. $\log{\frac{p}{1-p}}=b_0+b_1x$ means that when $x$ increases by 1 unit,
+   - $\log(\text{odds})$ increase by b_1
+   - odds increase by factor of $\exp(b_1)$
+   - odds increase by roughly $100\times b_1\%$
+** TODO M4L4: Logistic Regression using the /Default/ dataset
+** TODO M4L5: Predictions and Confusion Matrix
+** TODO M4L6: Sensitivity, Specificity, and the ROC curve
