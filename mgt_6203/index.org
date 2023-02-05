@@ -569,4 +569,15 @@ $$
 |--------+-------------------------------------------------------+----------------------------------------------------|
 | X      | Model A: level-level (X + 1 unit, Y \Delta b_1 units) | Model C: log-linear (X + 1 unit, Y + (b1\times100)% ) |
 | log(x) | Model B: linear-log (X+1%, Y+$\frac{b_1}{100}$ units)  | Model D log-log (X+1%, Y \Delta b_1%) |
+*** M3L4 no lecture quiz
 ** M3L5: Polynomial model
+Example:
+$$
+\text{Price} = b_0 + b_1 \times \text{lotsize} + b_2 \times \text{lotsize}^2
+$$
+- Creates a new variable lot_square = lotsize^2 and fit on the formula above
+- *Cannot* interpret different powers by 'holding constant'
+- i.e., a quadratic and higher power model does not allow for an isolated interpretation of coefficients
+  - since $\frac{\text{d(price)}}{\text{d(lotsize)}} = b_1 + 2b_2\times\text{lotsize}$
+- This means the slope is not constant and changes at every point of the quadratic curve
+*** M3L5 no lecture quiz
