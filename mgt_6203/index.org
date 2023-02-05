@@ -480,7 +480,7 @@ Examples:
       - Q-Q plot shows non-linearity
       - Residuals vs fitted shows non-constant variance
 - *FOCUS* on natural log transformations in 6203 as these are easier to interpret
-** Summary of models
+*** Summary of models
 |        | Y                                               | log(Y)                                              |
 |--------+-------------------------------------------------+-----------------------------------------------------|
 | X      | Model A: level-level model     $Y=b_0 + b_1X$   | Model C: log-linear model $\log(Y)=b_0+b_1X$        |
@@ -537,4 +537,21 @@ Model C: $\log(\text{price}) = b_0 + b_1\text{lotsize}$
 - Accurate calc: $\text{percentage change in Y} = (e^{b_1}-1)\times100$ for 1 unit change in $X$.
 *** No lecture quiz
 ** M3L4: Log-Log model
+Both LHS and RHS are log transformed.
+$$
+\log(\text{price}) = b_0 + b_1 \times \log(\text{lotsize})
+$$
+|           | Estimate | t-value |
+|-----------+----------+---------|
+| Intercept |    6.468 |   23.37 |
+| lotsize   |  0.54218 |   16.61 |
+- R^2 = 0.3364
+- Adjusted R^2 = 0.3352
+*** Interpretation
+- Increasing independent variable by 1% increases dependent variable by b_1 %
+- i.e., Increase 1% in lotsize increases price by 0.54218%
+- This works because increasing log(X) by 0.01 is almost equal to increase X by 1%, which implies changing Y by b_1 %
+- *Elasticity* = % change in Y for 1% increase in X
+- For log-log model, b_1 = *elasticity*
+
 ** M3L5: Polynomial model
