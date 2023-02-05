@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-02-05 Sun 18:43 -->
+<!-- 2023-02-05 Sun 20:08 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ISYE 6501 Intro to Analytics Modeling Notes</title>
@@ -44,108 +44,34 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org6a581c9">1. Module 01: Intro</a>
+<li><a href="#orge3fa9bc">1. Module 07: Time series</a>
 <ul>
-<li><a href="#org830937d">1.1. What's analytics?</a></li>
-<li><a href="#org127f67d">1.2. Modeling</a></li>
-<li><a href="#orgdd42b87">1.3. Course structure</a></li>
-<li><a href="#orga85a74c">1.4. Three different things are all models</a></li>
-<li><a href="#org3824b1b">1.5. Hence these are all "models":</a></li>
+<li><a href="#orgf276e1a">1.1. M7L1: Introduction to exponential smoothing</a>
+<ul>
+<li><a href="#org3d9e149">1.1.1. Random variation</a></li>
+<li><a href="#org30d2c18">1.1.2. Definitions:</a></li>
+<li><a href="#orgf293118">1.1.3. Exponential smoothing method</a></li>
 </ul>
 </li>
-<li><a href="#orgf566546">2. Module 02: Classification</a>
+<li><a href="#org161137f">1.2. M7L2: Trend and cyclic effects</a>
 <ul>
-<li><a href="#org8fbbedf">2.1. M1L1: Intro to classification</a></li>
-<li><a href="#orga4a0221">2.2. M1L2: Choosing a Classifier</a>
-<ul>
-<li><a href="#org39de8f8">2.2.1. Example: Loan payment (Income vs credit score)</a></li>
+<li><a href="#orgea9a79c">1.2.1. Trends</a></li>
+<li><a href="#orgeccd8aa">1.2.2. Cyclical patterns</a></li>
+<li><a href="#org8260459">1.2.3. Summary</a></li>
 </ul>
 </li>
-<li><a href="#org6d36038">2.3. M2L3 Data definitions</a>
+<li><a href="#org5047745">1.3. M7L3: Etymology (what the name means)</a>
 <ul>
-<li><a href="#org819f1bc">2.3.1. Data terminology</a></li>
-<li><a href="#orgf3ad56b">2.3.2. Data types</a></li>
+<li><a href="#org05e67c7">1.3.1. Summary</a></li>
 </ul>
 </li>
-<li><a href="#org5436885">2.4. M2L4: Support vector machines</a>
+<li><a href="#org631140a">1.4. M7L4: Forecasting</a></li>
+<li><a href="#org1b1bfd8">1.5. M3L5: ARIMA</a>
 <ul>
-<li><a href="#org9f3db01">2.4.1. When not possible to get full separation</a></li>
-</ul>
-</li>
-<li><a href="#org3e3e684">2.5. M2L5: What SVM means</a></li>
-<li><a href="#org9ac43c0">2.6. M2L6: Advanced SVM</a></li>
-<li><a href="#orgca8e5fd">2.7. M2L7: Scaling and standardization</a>
-<ul>
-<li><a href="#org3778c90">2.7.1. Scaling data</a></li>
-<li><a href="#orgc2d57a8">2.7.2. Standardization of data</a></li>
-<li><a href="#org6fdcc8c">2.7.3. Choosing between scaling vs standardization</a></li>
-</ul>
-</li>
-<li><a href="#orge7229e3">2.8. M2L8: K Nearest Neighbour model (KNN)</a></li>
-</ul>
-</li>
-<li><a href="#org0cd7f6a">3. Module 03: Validation</a>
-<ul>
-<li><a href="#org21e2435">3.1. M3L1: Training, validation and test data</a></li>
-<li><a href="#org9d993cf">3.2. M3L2: Splitting data</a></li>
-<li><a href="#org6489afe">3.3. M3L3: Cross-validation</a></li>
-<li><a href="#orgb2dd209">3.4. M3L4: Summary</a></li>
-</ul>
-</li>
-<li><a href="#org4ed3031">4. Module 04: Clustering</a>
-<ul>
-<li><a href="#org5849ed4">4.1. M4L1: Introduction to clustering</a></li>
-<li><a href="#org495c269">4.2. M4L2: Distance Norms</a></li>
-<li><a href="#orge7dab6f">4.3. M4L3: K-Means Clustering</a></li>
-<li><a href="#org698341c">4.4. M4L4: Practical details for K-Means</a></li>
-<li><a href="#org395cd62">4.5. M4L5: Clustering for prediction</a></li>
-<li><a href="#orgcf98167">4.6. M4L6: Clustering vs Classification</a></li>
-</ul>
-</li>
-<li><a href="#org3c955bb">5. Module 05: Data preparation</a>
-<ul>
-<li><a href="#orgdebb104">5.1. M5L1: Common techniques and problems</a></li>
-<li><a href="#org6694b94">5.2. M5L2: Outliers</a></li>
-<li><a href="#org24c0ac7">5.3. M5L3: What to do with outliers?</a>
-<ul>
-<li><a href="#org40ef02e">5.3.1. Bad data</a></li>
-<li><a href="#org863f9ea">5.3.2. Real / correct data</a></li>
-<li><a href="#orga6b817a">5.3.3. Another way to handle outliers</a></li>
-<li><a href="#org80139d0">5.3.4. Summary</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#orgc93ce57">6. Module 06: Change detection</a>
-<ul>
-<li><a href="#orga569ae4">6.1. M6L1: Examples</a></li>
-<li><a href="#org8c0d56d">6.2. M6L2: Cumulative sum for change detection</a>
-<ul>
-<li><a href="#org400b95a">6.2.1. Interpretation</a></li>
-</ul>
-</li>
-<li><a href="#org5a4811b">6.3. M6L3: Ethics: Honestly reporting our results</a></li>
-</ul>
-</li>
-<li><a href="#orgc69430b">7. Module 07: Time series</a>
-<ul>
-<li><a href="#org0648b66">7.1. M7L1: Introduction to exponential smoothing</a>
-<ul>
-<li><a href="#org8566aa7">7.1.1. Random variation</a></li>
-<li><a href="#org4794e48">7.1.2. Definitions:</a></li>
-<li><a href="#org7697623">7.1.3. Exponential smoothing method</a></li>
-</ul>
-</li>
-<li><a href="#orgec977eb">7.2. M7L2: Trend and cyclic effects</a>
-<ul>
-<li><a href="#orgfebf032">7.2.1. Trends</a></li>
-<li><a href="#org9e7aa8c">7.2.2. Cyclical patterns</a></li>
-<li><a href="#orgb9657e0">7.2.3. Summary</a></li>
-</ul>
-</li>
-<li><a href="#org8c8675e">7.3. M7L3: Etymology (what the name means)</a>
-<ul>
-<li><a href="#orgfecfca9">7.3.1. Summary</a></li>
+<li><a href="#orgdd01119">1.5.1. (I): Differences</a></li>
+<li><a href="#orgad11247">1.5.2. (II): Autogression</a></li>
+<li><a href="#orgfe6a875">1.5.3. (III): Moving Average</a></li>
+<li><a href="#org5924754">1.5.4. ARIMA model</a></li>
 </ul>
 </li>
 </ul>
@@ -153,874 +79,13 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org6a581c9" class="outline-2">
-<h2 id="org6a581c9"><span class="section-number-2">1.</span> Module 01: Intro</h2>
+<div id="outline-container-orge3fa9bc" class="outline-2">
+<h2 id="orge3fa9bc"><span class="section-number-2">1.</span> Module 07: Time series</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org830937d" class="outline-3">
-<h3 id="org830937d"><span class="section-number-3">1.1.</span> What's analytics?</h3>
+<div id="outline-container-orgf276e1a" class="outline-3">
+<h3 id="orgf276e1a"><span class="section-number-3">1.1.</span> M7L1: Introduction to exponential smoothing</h3>
 <div class="outline-text-3" id="text-1-1">
-<p>
-Analytics answers these questions
-</p>
-<ol class="org-ol">
-<li>Descriptive - what happened</li>
-<li>Predictive - what will happen</li>
-<li>Prescriptive - what action is best</li>
-<li>General questions</li>
-</ol>
-</div>
-</div>
-<div id="outline-container-org127f67d" class="outline-3">
-<h3 id="org127f67d"><span class="section-number-3">1.2.</span> Modeling</h3>
-<div class="outline-text-3" id="text-1-2">
-<ol class="org-ol">
-<li>Describe real-life situation with math</li>
-<li>Analyze math</li>
-<li>Turn math answer back to real situation</li>
-</ol>
-</div>
-</div>
-<div id="outline-container-orgdd42b87" class="outline-3">
-<h3 id="orgdd42b87"><span class="section-number-3">1.3.</span> Course structure</h3>
-<div class="outline-text-3" id="text-1-3">
-<p>
-Enough math intuition and detail
-</p>
-<ul class="org-ul">
-<li>Models
-<ul class="org-ul">
-<li>Machine learning</li>
-<li>Regression</li>
-<li>Optimizaton</li>
-</ul></li>
-<li>Cross-cutting
-<ul class="org-ul">
-<li>Data prep</li>
-<li>Output quality</li>
-<li>Missing data</li>
-</ul></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-orga85a74c" class="outline-3">
-<h3 id="orga85a74c"><span class="section-number-3">1.4.</span> Three different things are all models</h3>
-<div class="outline-text-3" id="text-1-4">
-<ol class="org-ol">
-<li>Real life situation expressed as math</li>
-<li>Analyse the math</li>
-<li>Turn mathematical analyse to real-life solution</li>
-</ol>
-</div>
-</div>
-<div id="outline-container-org3824b1b" class="outline-3">
-<h3 id="org3824b1b"><span class="section-number-3">1.5.</span> Hence these are all "models":</h3>
-<div class="outline-text-3" id="text-1-5">
-<ol class="org-ol">
-<li>Regression</li>
-<li>Regression on size, weight, distance</li>
-<li>Regression estimate = 37+81*Size +76*Wt, etc</li>
-</ol>
-</div>
-</div>
-</div>
-<div id="outline-container-orgf566546" class="outline-2">
-<h2 id="orgf566546"><span class="section-number-2">2.</span> Module 02: Classification</h2>
-<div class="outline-text-2" id="text-2">
-<blockquote>
-<p>
-Definition: putting things into groups
-</p>
-</blockquote>
-</div>
-<div id="outline-container-org8fbbedf" class="outline-3">
-<h3 id="org8fbbedf"><span class="section-number-3">2.1.</span> M1L1: Intro to classification</h3>
-<div class="outline-text-3" id="text-2-1">
-<p>
-Types of classification models
-</p>
-<ol class="org-ol">
-<li>Number of groups</li>
-<li>Number of dimensions
-<ul class="org-ul">
-<li>Can 1 dimension be sufficient to classify?</li>
-</ul></li>
-<li>Soft vs hard classifiers (is it 100% error-free?)</li>
-</ol>
-</div>
-</div>
-<div id="outline-container-orga4a0221" class="outline-3">
-<h3 id="orga4a0221"><span class="section-number-3">2.2.</span> M1L2: Choosing a Classifier</h3>
-<div class="outline-text-3" id="text-2-2">
-<p>
-Definition of bad classification
-</p>
-<ul class="org-ul">
-<li>Cost: is one type of mistake worse than the other?</li>
-</ul>
-</div>
-<div id="outline-container-org39de8f8" class="outline-4">
-<h4 id="org39de8f8"><span class="section-number-4">2.2.1.</span> Example: Loan payment (Income vs credit score)</h4>
-<div class="outline-text-4" id="text-2-2-1">
-<ul class="org-ul">
-<li>Plot lines and find one that can separate default vs non-default.</li>
-<li>How do we know the right lines are drawn?</li>
-<li>We want to be as conservative as possible (less error prone)</li>
-</ul>
-</div>
-</div>
-</div>
-<div id="outline-container-org6d36038" class="outline-3">
-<h3 id="org6d36038"><span class="section-number-3">2.3.</span> M2L3 Data definitions</h3>
-<div class="outline-text-3" id="text-2-3">
-</div>
-<div id="outline-container-org819f1bc" class="outline-4">
-<h4 id="org819f1bc"><span class="section-number-4">2.3.1.</span> Data terminology</h4>
-<div class="outline-text-4" id="text-2-3-1">
-<ol class="org-ol">
-<li>Row = data point</li>
-<li>Column = dimension, attribute, feature, predictor, covariate
-<ol class="org-ol">
-<li>Special column = response, outcome</li>
-</ol></li>
-</ol>
-</div>
-</div>
-<div id="outline-container-orgf3ad56b" class="outline-4">
-<h4 id="orgf3ad56b"><span class="section-number-4">2.3.2.</span> Data types</h4>
-<div class="outline-text-4" id="text-2-3-2">
-<ol class="org-ol">
-<li>Structured data
-<ol class="org-ol">
-<li>Quantitative
-<ul class="org-ul">
-<li>Numbers with meaning</li>
-</ul></li>
-<li>Categorical
-<ul class="org-ul">
-<li>Numbers without meaning</li>
-</ul></li>
-<li>Binary data (subset of categorical)</li>
-<li>Unrelated data</li>
-<li>Time series data</li>
-</ol></li>
-<li>Unstructured
-<ol class="org-ol">
-<li>Text data</li>
-</ol></li>
-</ol>
-</div>
-</div>
-</div>
-<div id="outline-container-org5436885" class="outline-3">
-<h3 id="org5436885"><span class="section-number-3">2.4.</span> M2L4: Support vector machines</h3>
-<div class="outline-text-3" id="text-2-4">
-<ul class="org-ul">
-<li><b>Supervised</b> method (algorithm uses known results when training)</li>
-<li>Terminology
-<ul class="org-ul">
-<li>m = number of data points</li>
-<li>n = number of attributes</li>
-<li>x<sub>ij</sub> = j attribute of i data point
-<ul class="org-ul">
-<li>e.g. x<sub>51</sub> = credit score of person 5; x<sub>52</sub> = income of person 5</li>
-</ul></li>
-<li>y<sub>i</sub> = response of data point i
-<ul class="org-ul">
-<li>e.g. 1 if data point is group 1</li>
-<li>-1 if data point is group 2</li>
-</ul></li>
-<li>Line: \(a_1 x_1\) + \(a_2 x_2\) + &#x2026; + \(a_n x_n\) + \(a_0\) = 0</li>
-<li>Note the intercept \(a_0\)</li>
-</ul></li>
-<li>In general: \(\sum_{j=1}^{n} a_j x_j + a_0 = 0\)</li>
-<li>Separation problem: get max distance between lines</li>
-<li>\(2\over{\sqrt(\sum_{j} \left(a_j\right)^2)}\)</li>
-<li>i.e. Min<sub>a<sub>0</sub> &#x2026; a<sub>n</sub></sub>: \(\sum_{j=1}^{n}\left(a_j\right)^2\)</li>
-<li>Subject to constraints</li>
-</ul>
-</div>
-<div id="outline-container-org9f3db01" class="outline-4">
-<h4 id="org9f3db01"><span class="section-number-4">2.4.1.</span> When not possible to get full separation</h4>
-<div class="outline-text-4" id="text-2-4-1">
-<ul class="org-ul">
-<li>Then we minimize error</li>
-<li>There's a trade-off between margin and error</li>
-<li>Error for data point is:
-\[
-  \text{max} \{ 0, 1-(\sum_{j=1}^{n} a_j x_{ij} + a_0) y_i \}
-  \]</li>
-<li>Total error is:
-\[
-  \sum_{i=1}^{m} \text{max} \{ 0, 1 - (\sum_{j=1}^{n} a_j x_{ij} + a_0) y_i \}
-  \]</li>
-<li>Margin denominator: \(\sum_{j=1}^{n}(a_j)^2\)</li>
-
-<li>We multiply margin by \(\lambda\) to <b>assign its importance of margin vs error</b>.</li>
-<li>Hence, the full equation is:
-\[
-  \text{Minimize}_{a_0,...,a_n} \sum_{i=1}^{m} \text{max} \{ 0, 1 - (\sum_{j=1}^{n} a_j x_{ij} + a_0) y_i \}  + \lambda \sum_{j=1}^{n}(a_j)^2
-  \]</li>
-</ul>
-</div>
-</div>
-</div>
-<div id="outline-container-org3e3e684" class="outline-3">
-<h3 id="org3e3e684"><span class="section-number-3">2.5.</span> M2L5: What SVM means</h3>
-<div class="outline-text-3" id="text-2-5">
-<ul class="org-ul">
-<li>Etymology
-<ul class="org-ul">
-<li>Vector = point</li>
-<li><b>Support vector</b> = points that holds up (or, supports) a shape. Shape is correctly balanced on parallel lines</li>
-<li>Model determines the "support vectors"</li>
-<li>Automatically from data hence "<b>machine</b>"</li>
-</ul></li>
-<li>Support can be from top or side</li>
-<li>Looking for max separation i.e. the support vector touches the data points</li>
-<li>Classifier is in between the two support vectors</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org9ac43c0" class="outline-3">
-<h3 id="org9ac43c0"><span class="section-number-3">2.6.</span> M2L6: Advanced SVM</h3>
-<div class="outline-text-3" id="text-2-6">
-<ul class="org-ul">
-<li>The constant term a<sub>0</sub> can be used to adjust the intercept and hence tweak the SVM model.
-<ul class="org-ul">
-<li>If it's more costly to grant a bad loan, e.g.: \(\frac{2}{3}(a_0-1) + \frac{1}{3}(a_0+1)\)</li>
-</ul></li>
-<li>For soft classification, you can add a multiplier m<sub>j</sub> for each type of error:
-<ul class="org-ul">
-<li>m<sub>j</sub> &gt; 1 for more costly</li>
-<li>m<sub>j</sub> &lt; 1 for less costly</li>
-</ul></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-orgca8e5fd" class="outline-3">
-<h3 id="orgca8e5fd"><span class="section-number-3">2.7.</span> M2L7: Scaling and standardization</h3>
-<div class="outline-text-3" id="text-2-7">
-<ul class="org-ul">
-<li>Predictive factors may have different orders of magnitude, i.e.
-<ul class="org-ul">
-<li>Income in \(10^5\)</li>
-<li>Credit score in \(10^2\)</li>
-<li>Classifier is \(0 = a_0 + \sum_{j} a_j x_j\)</li>
-<li>Maximise gap by minimizing: \(\sum_{j} a_j^2\)</li>
-<li>Coefficients might be 10<sup>6</sup> + 5*income + 701*credit score
-<ul class="org-ul">
-<li>Sum of squared coefficients:
-\(\sum_j a_j^2 = 5^2 + 700^2 = 490,025\)</li>
-<li>Changing credit score by 1 increases the sum by 1,401:
-\(\sum_j a_j^2 = 5^2 + 701^2 = 491,426\)</li>
-</ul></li>
-<li>Small change in one coefficient affects the sum a lot due to difference in scales.
-<ul class="org-ul">
-<li>As data has such different scale.</li>
-</ul></li>
-</ul></li>
-</ul>
-</div>
-<div id="outline-container-org3778c90" class="outline-4">
-<h4 id="org3778c90"><span class="section-number-4">2.7.1.</span> Scaling data</h4>
-<div class="outline-text-4" id="text-2-7-1">
-<ul class="org-ul">
-<li>Common scale is between 0 and 1</li>
-<li>Scale data by factor
-\[
-  x_{ij}^{\text{scaled}} = \frac{x_{ij}-x_{\text{min}j}}{x_{\text{max}j} - x_{\text{min}j}}
-  \]</li>
-<li>General scaling between a, b:
-\[
-  x_{ij}^{\text{scaled}[b,a]} = x_{ij}^{\text{scaled}[0,1]}(a-b)+b
-  \]</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-orgc2d57a8" class="outline-4">
-<h4 id="orgc2d57a8"><span class="section-number-4">2.7.2.</span> Standardization of data</h4>
-<div class="outline-text-4" id="text-2-7-2">
-<ul class="org-ul">
-<li>Scale to normal distribution</li>
-<li>Common scale is:
-<ul class="org-ul">
-<li>Mean = 0</li>
-<li>SD = 1</li>
-</ul></li>
-<li>Factor j has:
-<ul class="org-ul">
-<li>mean \(\mu_j = \frac{\sum_{i=1}^n x_{ij}}{n}\)</li>
-<li>SD \(\sigma_j\)</li>
-</ul></li>
-<li>For each data point \(i\):
-\[
-  x_{ij}^{\text{standardized}} = \frac{x_{ij}-\mu_j}{\sigma_j}
-  \]</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org6fdcc8c" class="outline-4">
-<h4 id="org6fdcc8c"><span class="section-number-4">2.7.3.</span> Choosing between scaling vs standardization</h4>
-<div class="outline-text-4" id="text-2-7-3">
-<ul class="org-ul">
-<li>Scale when:
-<ul class="org-ul">
-<li>Data is in bounded (defined) range, e.g.
-<ul class="org-ul">
-<li>Neural networks</li>
-<li>Optimization models requiring bounded data</li>
-<li>Batting averages (between 0 and 1)</li>
-<li>RGB color scale (0-255)</li>
-<li>SAT scores (200-800)</li>
-</ul></li>
-</ul></li>
-<li>Standardization, examples:
-<ul class="org-ul">
-<li>PCA</li>
-<li>Clustering</li>
-</ul></li>
-<li>Try both when not clear</li>
-<li>Should be used throughout course even when not stated explicitly</li>
-</ul>
-</div>
-</div>
-</div>
-<div id="outline-container-orge7229e3" class="outline-3">
-<h3 id="orge7229e3"><span class="section-number-3">2.8.</span> M2L8: K Nearest Neighbour model (KNN)</h3>
-<div class="outline-text-3" id="text-2-8">
-<ul class="org-ul">
-<li><b>Classification</b></li>
-<li>e.g. loan dataset with two predictors and a response</li>
-<li>Assume each point has similar characteristics with its neighbors</li>
-<li>Choice of number of points is denoted by \(k\)</li>
-<li>Algorithm to find color (class) of a new point:
-<ol class="org-ol">
-<li>Pick \(k\) closest points (i.e., nearest neighbours) to the new one</li>
-<li>The new point's class is the most common among the \(k\) neighbors</li>
-</ol></li>
-<li>Complexities
-<ul class="org-ul">
-<li>More than one distance metric (<i>c.f.</i> distance selection topic_).
-<ul class="org-ul">
-<li>Straight line is: \(\sqrt{\sum_{i=1}^n |x_i-y_i|^2}\)</li>
-</ul></li>
-<li>Attributes can be given more weight if more important, \(w_i\)
-<ul class="org-ul">
-<li>Weights to be found with other techniques e.g. regression</li>
-</ul></li>
-<li>Unimportant metrics can be removed
-<ul class="org-ul">
-<li><i>c.f.</i> variable selection topic</li>
-<li>Choose good value of \(k\), <i>c.f.</i> validation @ <a href="#org0cd7f6a">3</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</div>
-</div>
-</div>
-<div id="outline-container-org0cd7f6a" class="outline-2">
-<h2 id="org0cd7f6a"><span class="section-number-2">3.</span> Module 03: Validation</h2>
-<div class="outline-text-2" id="text-3">
-<blockquote>
-<p>
-Check how good a model is
-</p>
-</blockquote>
-</div>
-<div id="outline-container-org21e2435" class="outline-3">
-<h3 id="org21e2435"><span class="section-number-3">3.1.</span> M3L1: Training, validation and test data</h3>
-<div class="outline-text-3" id="text-3-1">
-<ul class="org-ul">
-<li><b>Cannot</b> calculate accuracy or effectiveness metrics from training dataset
-<ul class="org-ul">
-<li>Since model was trained on it</li>
-<li>This doesn't allow separation of real effects from random effects</li>
-</ul></li>
-<li>When fitting a model, this captures both real and random effects
-<ul class="org-ul">
-<li>Real effects: exist in all datasets (or subsets)</li>
-<li>Random effects: different in all datasets</li>
-</ul></li>
-<li>Use a <b>training</b> set of data to fit model</li>
-<li>Use another <b>validation</b> set of data to judge model effectiveness</li>
-<li>When comparing &gt;1 model, use a <b>test</b> dataset.
-<ul class="org-ul">
-<li>e.g. SVM and KNN, with 10 total models, we cannot use the effectiveness metric calculated on the validation set.</li>
-</ul></li>
-<li>Test data is required as high performing models have above average random effects
-<ul class="org-ul">
-<li>Too optimistic; it might have performed well but also likely received a boost from random effects</li>
-</ul></li>
-<li>Analogize with models equally good</li>
-<li>Flowchart:
-<img src="./img/validation01.png" alt="validation01.png" /></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org9d993cf" class="outline-3">
-<h3 id="org9d993cf"><span class="section-number-3">3.2.</span> M3L2: Splitting data</h3>
-<div class="outline-text-3" id="text-3-2">
-<ul class="org-ul">
-<li>How much data goes to each set?
-<ol class="org-ol">
-<li>70 to 90% train, remaining test</li>
-<li>50 to 70% train, remaining evenly split validation &amp; test</li>
-</ol></li>
-<li>Methods of splitting data
-<ol class="org-ol">
-<li>Random</li>
-<li>Rotation (take turn selecting data points into training, test, valid across the sets of split data)
-<ul class="org-ul">
-<li>Advantage: in time series data, may avoid all datasets having early/late data</li>
-<li>Need to ensure rotation doesn't introduce bias</li>
-</ul></li>
-<li>Combined:
-60% of Monday data for training, 60^% of Tuesday data for training, etc.</li>
-</ol></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org6489afe" class="outline-3">
-<h3 id="org6489afe"><span class="section-number-3">3.3.</span> M3L3: Cross-validation</h3>
-<div class="outline-text-3" id="text-3-3">
-<blockquote>
-<p>
-What happens with important data appears only in one data set e.g., validation?
-</p>
-</blockquote>
-<ul class="org-ul">
-<li>Use cross-validation!</li>
-<li>k-fold cross validation
-<ol class="org-ol">
-<li>Split data for testing (e.g. 20%)</li>
-<li>With remaining data, use it for both training and validation by splitting into 4 x 20%, then:
-<ol class="org-ol">
-<li>Train 1, 2, 3, Validate 4</li>
-<li>Train 1, 2, 4, Validate 3</li>
-<li>Train 1, 3, 4, Validate 2</li>
-<li>Train 2, 3, 4, Validate 1</li>
-</ol></li>
-</ol></li>
-<li>Summary of k-fold cross-validation:
-<ul class="org-ul">
-<li>Train model on all other parts</li>
-<li>Evaluate model on remaining part</li>
-<li>Average \(k\) evaluations to estimate the model quality.</li>
-<li>\(10\) is commonly selected for \(k\).</li>
-<li><b>But</b>, the model selected from cross-validation is not used. Coefficients should also not be averaged.</li>
-<li>Once model is selected, <b>retrain</b> with all data</li>
-</ul></li>
-<li>Advantages of k-fold cross-validation:
-<ol class="org-ol">
-<li>Better uses data</li>
-<li>Better estimates model quality</li>
-<li>Choose model more effectively</li>
-</ol></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-orgb2dd209" class="outline-3">
-<h3 id="orgb2dd209"><span class="section-number-3">3.4.</span> M3L4: Summary</h3>
-<div class="outline-text-3" id="text-3-4">
-<ol class="org-ol">
-<li>Build model with training data</li>
-<li>Pick model with validation data</li>
-<li>Estimate performance with test data</li>
-</ol>
-</div>
-</div>
-</div>
-<div id="outline-container-org4ed3031" class="outline-2">
-<h2 id="org4ed3031"><span class="section-number-2">4.</span> Module 04: Clustering</h2>
-<div class="outline-text-2" id="text-4">
-</div>
-<div id="outline-container-org5849ed4" class="outline-3">
-<h3 id="org5849ed4"><span class="section-number-3">4.1.</span> M4L1: Introduction to clustering</h3>
-<div class="outline-text-3" id="text-4-1">
-<ul class="org-ul">
-<li><b>Unsupervised</b> method (response not available for use in training)</li>
-<li>Grouping data points</li>
-<li>Might help discover attributes in the dataset</li>
-<li>Example of use
-<ul class="org-ul">
-<li>Segmenting market of car buyers by:
-<ol class="org-ol">
-<li>Size</li>
-<li>Price</li>
-<li>Versatility, etc</li>
-</ol></li>
-<li>Personalized medicine</li>
-<li>Locating facilities</li>
-<li>Image analysis</li>
-<li>Exploratory data analysis (different model for each attribute)</li>
-</ul></li>
-<li>Example: Miles driven vs. Age</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org495c269" class="outline-3">
-<h3 id="org495c269"><span class="section-number-3">4.2.</span> M4L2: Distance Norms</h3>
-<div class="outline-text-3" id="text-4-2">
-<ul class="org-ul">
-<li>Straight line distance (Euclidean)
-\(\sqrt{(x_1-y_1)^2+(x_2-y_2)^2}\)</li>
-<li>Rectilinear distance (Manhattan, 1-norm)
-\(|x_1-y_1| + |x_2-y_2|\)</li>
-<li>Generalized p-norm (Minkowski)
-\(\sqrt[p]{|x_1-y_1|^p+|x_2-y_2|^p}\)</li>
-<li>&infin;-norm distance
-\(\sqrt[\infty]{\sum_{i=1}^n|x_i-y_i|^{\infty}}\)
-<ul class="org-ul">
-<li>sum = \(|x_i-y_i|^{\infty}\)</li>
-<li>\(\sqrt[\infty]{\text{max}_{i}^n|x_i-y_i|^{\infty}}\)</li>
-<li>Largest term dominates the rest, hence simplifies to:</li>
-<li>\(\text{max}_i |x_i-y_i|\)</li>
-</ul></li>
-<li>Analogize with warehouse picking robot. The operation that takes the longest dominates the total operation time.</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-orge7dab6f" class="outline-3">
-<h3 id="orge7dab6f"><span class="section-number-3">4.3.</span> M4L3: K-Means Clustering</h3>
-<div class="outline-text-3" id="text-4-3">
-<ul class="org-ul">
-<li><b>Unsupervised</b> technique</li>
-<li>Steps to implement K-Means:
-<ol class="org-ol">
-<li>Plot data points on suitable axes (e.g., age vs temperature, sepal width vs sepal height)</li>
-<li>Let:
-<ul class="org-ul">
-<li>\(x_{ij}\) = attribute \(j\) of data point \(i\)</li>
-<li>\(y_{ik}\) = \(1\) iif data point \(i\) in cluster \(k\), else \(0\)</li>
-<li>\(z_{jk}\) = coordinate \(j\) of cluster center \(k\)</li>
-<li>Mathematically, but it takes too long:
-\[
-       \text{Min}_{y,z}\sum_i\sum_k \sqrt{\sum_{j} (x_{ij} - z_{jk})^2}
-       \]
-subject to: \(\sum_k y_{ik} = 1\) for each \(i\)</li>
-</ul></li>
-<li>Practical method:
-<ul class="org-ul">
-<li>Pick \(k\) cluster centers in data</li>
-<li>Assign each point to nearest cluster center</li>
-<li>Recalculate cluster center (centroid)
-<ul class="org-ul">
-<li>Now, data points might not belong to the right cluster</li>
-</ul></li>
-<li>Go back to assign, then re-calc, then assign, then re-calc iteratively until stable</li>
-</ul></li>
-<li>K-Means is a <b>heuristic</b>, i.e.:
-<ul class="org-ul">
-<li>it is fast and good</li>
-<li><b>not guaranteed</b> to find global best solution.</li>
-</ul></li>
-<li>It is expectation-maximization (EM), and alternates between expectation (<i>finding cluster centers</i>) and maximization (<i>assigning points to clusters</i>)</li>
-</ol></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org698341c" class="outline-3">
-<h3 id="org698341c"><span class="section-number-3">4.4.</span> M4L4: Practical details for K-Means</h3>
-<div class="outline-text-3" id="text-4-4">
-<p>
-Algorithm just assigns outliers to nearest clusters.
-</p>
-<ul class="org-ul">
-<li>Choosing <b>starting points</b>:
-<ol class="org-ol">
-<li>Run several times with different initial cluster centers</li>
-<li>Algorithm is non-deterministic, <i>i.e.</i> can produce different results when run with different inputs</li>
-<li>Choose the best solution from the results produced</li>
-</ol></li>
-<li>Handling <b>outliers</b>:
-<ol class="org-ol">
-<li>Discard, but may not be the 'right' answer</li>
-<li>Ask why the outlier happens
-<ul class="org-ul">
-<li>What it means to discard or include the outlier</li>
-<li>Ultimately, algorithm is just a guide. Best solution is what fits the situation.</li>
-</ul></li>
-</ol></li>
-<li>Choosing <b>number of clusters</b>. Is adding a cluster always better?
-<ul class="org-ul">
-<li>It may increase the metric (total distance of each data point to their cluster center), hence clustering appears to work better.</li>
-<li>However, it may defeat the purpose of clustering if every cluster just consists of one data point.</li>
-</ul></li>
-<li>Total distance can be compared to find the 'kink' or 'elbow'.
-<ul class="org-ul">
-<li>After this point, the marginal benefit of adding another cluster decreases.</li>
-<li><p>
-Elbow diagram:
-</p>
-
-
-<div id="orgd3163c7" class="figure">
-<p><img src="./img/04-elbow.png" alt="04-elbow.png" />
-</p>
-</div></li>
-</ul></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org395cd62" class="outline-3">
-<h3 id="org395cd62"><span class="section-number-3">4.5.</span> M4L5: Clustering for prediction</h3>
-<div class="outline-text-3" id="text-4-5">
-<blockquote>
-<p>
-Given a new point, which cluster should it be in?
-</p>
-</blockquote>
-<ul class="org-ul">
-<li>Is point inside cluster?</li>
-<li>Otherwise, what's the nearest cluster center?</li>
-<li>Asked another way: for the range of the dataset, which areas would we assign to each cluster if a new point appears there?
-<ul class="org-ul">
-<li>This is a <a href="https://en.wikipedia.org/wiki/Voronoi_diagram">Voronoi diagram</a>.</li>
-</ul></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-orgcf98167" class="outline-3">
-<h3 id="orgcf98167"><span class="section-number-3">4.6.</span> M4L6: Clustering vs Classification</h3>
-<div class="outline-text-3" id="text-4-6">
-<ul class="org-ul">
-<li>Since both group data points&#x2026;</li>
-<li>The difference is what we know about the data points.</li>
-<li>For classification, the correct response is known, i.e.
-<ul class="org-ul">
-<li>supervised learning</li>
-<li>model uses both attributes <b>and</b> response</li>
-</ul></li>
-<li>For clustering, the 'correct' classification is unknown
-<ul class="org-ul">
-<li>unsupervised learning</li>
-<li>model decides clusters <b>only</b> based on the attributes</li>
-</ul></li>
-<li>Supervised learning is more common</li>
-</ul>
-</div>
-</div>
-</div>
-<div id="outline-container-org3c955bb" class="outline-2">
-<h2 id="org3c955bb"><span class="section-number-2">5.</span> Module 05: Data preparation</h2>
-<div class="outline-text-2" id="text-5">
-</div>
-<div id="outline-container-orgdebb104" class="outline-3">
-<h3 id="orgdebb104"><span class="section-number-3">5.1.</span> M5L1: Common techniques and problems</h3>
-<div class="outline-text-3" id="text-5-1">
-<ol class="org-ol">
-<li>Scale data
-<ul class="org-ul">
-<li>Outliers?</li>
-</ul></li>
-<li>Extraneous (unnecessary data)
-<ul class="org-ul">
-<li>Complicates the model and</li>
-<li>Makes it harder to interpret the solution</li>
-</ul></li>
-</ol>
-</div>
-</div>
-<div id="outline-container-org6694b94" class="outline-3">
-<h3 id="org6694b94"><span class="section-number-3">5.2.</span> M5L2: Outliers</h3>
-<div class="outline-text-3" id="text-5-2">
-<ul class="org-ul">
-<li>Types
-<dl class="org-dl">
-<dt>Point outliers</dt><dd>one / few points very different from others</dd>
-<dt>Contextual outlier</dt><dd>Value far from other points in time (not in absolute value)</dd>
-<dt>Collective outlier</dt><dd>Something missing in a range of points, but not sure exactly where. Outlier by omission.</dd>
-</dl></li>
-<li>How to detect?
-<ul class="org-ul">
-<li>Box-and-whisker plot if data can be plotted in 1-dimension
-<ul class="org-ul">
-<li>Box: 25/75th percentile
-<ul class="org-ul">
-<li>Line: 50th percentile</li>
-</ul></li>
-<li>Whiskers: 10/90th percentile, 5/95th, etc</li>
-</ul></li>
-<li>For multi-dimensional, no good way. We can still:
-<ol class="org-ol">
-<li>Fit a model.</li>
-<li>Points with large error might be outlier</li>
-</ol></li>
-</ul></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org24c0ac7" class="outline-3">
-<h3 id="org24c0ac7"><span class="section-number-3">5.3.</span> M5L3: What to do with outliers?</h3>
-<div class="outline-text-3" id="text-5-3">
-<ul class="org-ul">
-<li>Need to understand why there's outliers
-<ol class="org-ol">
-<li>Bad data
-<ul class="org-ul">
-<li>Sensor fail</li>
-<li>Contaminated experiment</li>
-<li>Wrong data input</li>
-</ul></li>
-<li>Unexpected, real, data
-<ul class="org-ul">
-<li>Need to understand more about the data, e.g.</li>
-<li>Where it came from</li>
-<li>How it was compiled</li>
-<li>Unique situations</li>
-</ul></li>
-</ol></li>
-</ul>
-</div>
-<div id="outline-container-org40ef02e" class="outline-4">
-<h4 id="org40ef02e"><span class="section-number-4">5.3.1.</span> Bad data</h4>
-<div class="outline-text-4" id="text-5-3-1">
-<ul class="org-ul">
-<li>Omit the points</li>
-<li>Use imputation to replace the points</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org863f9ea" class="outline-4">
-<h4 id="org863f9ea"><span class="section-number-4">5.3.2.</span> Real / correct data</h4>
-<div class="outline-text-4" id="text-5-3-2">
-<ul class="org-ul">
-<li>Outliers are somewhat expected in large datasets</li>
-<li>E.g., for normally-distributed data:
-<ul class="org-ul">
-<li>4% will be outside 2 &sigma;</li>
-<li>1e6 data points = 2000 outside 3 &sigma;</li>
-</ul></li>
-<li>Removing <b>real</b> outliers might make model too optimistic. <i>e.g.</i> not account for actual shipments that take a long time from US to Africa</li>
-<li>Outliers might be due to weather, political events</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-orga6b817a" class="outline-4">
-<h4 id="orga6b817a"><span class="section-number-4">5.3.3.</span> Another way to handle outliers</h4>
-<div class="outline-text-4" id="text-5-3-3">
-<ol class="org-ol">
-<li>First build a logistic regression model
-<ul class="org-ul">
-<li>This estimated probability of outliers under different conditions</li>
-</ul></li>
-<li>Next, build the regular model i.e. estimate delivery time under <b>normal conditions</b>
-<ul class="org-ul">
-<li>Use data without outliers</li>
-<li>Report different outcomes&#x2026;</li>
-</ul></li>
-</ol>
-</div>
-</div>
-<div id="outline-container-org80139d0" class="outline-4">
-<h4 id="org80139d0"><span class="section-number-4">5.3.4.</span> Summary</h4>
-<div class="outline-text-4" id="text-5-3-4">
-<ul class="org-ul">
-<li>Outliers aren't predictable</li>
-<li>Investigate the data in case you're wrong</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div id="outline-container-orgc93ce57" class="outline-2">
-<h2 id="orgc93ce57"><span class="section-number-2">6.</span> Module 06: Change detection</h2>
-<div class="outline-text-2" id="text-6">
-</div>
-<div id="outline-container-orga569ae4" class="outline-3">
-<h3 id="orga569ae4"><span class="section-number-3">6.1.</span> M6L1: Examples</h3>
-<div class="outline-text-3" id="text-6-1">
-<ul class="org-ul">
-<li>Usually with time series data</li>
-<li>Determine if action is needed, e.g.,
-<ul class="org-ul">
-<li>Time for machine maintenance?</li>
-<li>Have sales increased?</li>
-</ul></li>
-<li>Determine impact of some past action, e.g.,
-<ul class="org-ul">
-<li>Did new tax / increase rate decrease sales?</li>
-<li>Did price discount increase sales?</li>
-</ul></li>
-<li>Determine changes of current actions, e.g.
-<ul class="org-ul">
-<li>Did voting patterns change?</li>
-</ul></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org8c0d56d" class="outline-3">
-<h3 id="org8c0d56d"><span class="section-number-3">6.2.</span> M6L2: Cumulative sum for change detection</h3>
-<div class="outline-text-3" id="text-6-2">
-<blockquote>
-<p>
-Answers whether mean of the observed distribution gone above a critical level
-</p>
-</blockquote>
-<ul class="org-ul">
-<li>x<sub>t</sub> is observed value at time \(t\)</li>
-<li>&mu; is mean of \(x\), if no change in distribution</li>
-<li>Hence, \((x_t - \mu)\) is how much the observation is above mean at time \(t\)</li>
-<li>Detecting an increase
-\[
-  S_t = \text{max}\{ 0, s_{t-1}+(x_t-\mu-C) \}
-  \]
-<ul class="org-ul">
-<li>Determine threshold \(T\) and ask whether S<sub>t</sub> ⩾ T?
-<ul class="org-ul">
-<li>If running total &lt; 0, it's irrelevant</li>
-<li>There should still be some randomness</li>
-<li>C is a term to control how faster S<sub>t</sub> increases</li>
-</ul></li>
-</ul></li>
-<li>Detecting a decrease
-\[
-  S_t = \text{max}\{ 0, s_{t-1}+(\mu-x_t-C) \}
-  \]
-<ul class="org-ul">
-<li>Is S<sub>t</sub> ⩾ T?</li>
-</ul></li>
-</ul>
-</div>
-<div id="outline-container-org400b95a" class="outline-4">
-<h4 id="org400b95a"><span class="section-number-4">6.2.1.</span> Interpretation</h4>
-<div class="outline-text-4" id="text-6-2-1">
-<ul class="org-ul">
-<li>Choices of model parameters
-<dl class="org-dl">
-<dt>T</dt><dd>the threshold, above which alarm is raised</dd>
-<dt>C</dt><dd>the control term (smaller = more sensitive)</dd>
-</dl></li>
-<li>Consider / trade off:
-<ol class="org-ol">
-<li>How costly is it to delay detection? (false negative) -&gt; if it's costly, use small C</li>
-<li>How costly is false positive? -&gt; if it's costly, use big C</li>
-</ol></li>
-<li>Use a control chart and plot S<sub>t</sub> vs t with \(T\) as a horizontal line
-<img src="./img/06-control-chart.png" alt="06-control-chart.png" /></li>
-</ul>
-</div>
-</div>
-</div>
-<div id="outline-container-org5a4811b" class="outline-3">
-<h3 id="org5a4811b"><span class="section-number-3">6.3.</span> M6L3: Ethics: Honestly reporting our results</h3>
-<div class="outline-text-3" id="text-6-3">
-<ul class="org-ul">
-<li>Be faithful to data</li>
-<li>Have sound conclusions drawn from the model and not your own conceptions</li>
-<li>Always be honest and true to your analysis</li>
-</ul>
-</div>
-</div>
-</div>
-<div id="outline-container-orgc69430b" class="outline-2">
-<h2 id="orgc69430b"><span class="section-number-2">7.</span> Module 07: Time series</h2>
-<div class="outline-text-2" id="text-7">
-</div>
-<div id="outline-container-org0648b66" class="outline-3">
-<h3 id="org0648b66"><span class="section-number-3">7.1.</span> M7L1: Introduction to exponential smoothing</h3>
-<div class="outline-text-3" id="text-7-1">
 <ul class="org-ul">
 <li>Data for the same response is known for many time periods</li>
 <li>Examples:
@@ -1037,17 +102,17 @@ Answers whether mean of the observed distribution gone above a critical level
 </ol></li>
 </ul>
 </div>
-<div id="outline-container-org8566aa7" class="outline-4">
-<h4 id="org8566aa7"><span class="section-number-4">7.1.1.</span> Random variation</h4>
-<div class="outline-text-4" id="text-7-1-1">
+<div id="outline-container-org3d9e149" class="outline-4">
+<h4 id="org3d9e149"><span class="section-number-4">1.1.1.</span> Random variation</h4>
+<div class="outline-text-4" id="text-1-1-1">
 <ul class="org-ul">
 <li>No underlying reason for the variation</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org4794e48" class="outline-4">
-<h4 id="org4794e48"><span class="section-number-4">7.1.2.</span> Definitions:</h4>
-<div class="outline-text-4" id="text-7-1-2">
+<div id="outline-container-org30d2c18" class="outline-4">
+<h4 id="org30d2c18"><span class="section-number-4">1.1.2.</span> Definitions:</h4>
+<div class="outline-text-4" id="text-1-1-2">
 <ul class="org-ul">
 <li>\(S_t\): expected <b>baseline</b> response at time period \(t\)</li>
 <li>\(x_t\): the observed response at \(t\)</li>
@@ -1070,9 +135,9 @@ Answers whether mean of the observed distribution gone above a critical level
 </ul>
 </div>
 </div>
-<div id="outline-container-org7697623" class="outline-4">
-<h4 id="org7697623"><span class="section-number-4">7.1.3.</span> Exponential smoothing method</h4>
-<div class="outline-text-4" id="text-7-1-3">
+<div id="outline-container-orgf293118" class="outline-4">
+<h4 id="orgf293118"><span class="section-number-4">1.1.3.</span> Exponential smoothing method</h4>
+<div class="outline-text-4" id="text-1-1-3">
 <p>
 Combines both, i.e.
 \(S_t = \alpha x_t + (1-\alpha)S_{t-1}\)
@@ -1123,9 +188,9 @@ Combines both, i.e.
 </div>
 </div>
 </div>
-<div id="outline-container-orgec977eb" class="outline-3">
-<h3 id="orgec977eb"><span class="section-number-3">7.2.</span> M7L2: Trend and cyclic effects</h3>
-<div class="outline-text-3" id="text-7-2">
+<div id="outline-container-org161137f" class="outline-3">
+<h3 id="org161137f"><span class="section-number-3">1.2.</span> M7L2: Trend and cyclic effects</h3>
+<div class="outline-text-3" id="text-1-2">
 <p>
 Complexities!
 </p>
@@ -1134,9 +199,9 @@ Complexities!
 <li>Cyclical patterns, e.g. annual, weekly, daily</li>
 </ul>
 </div>
-<div id="outline-container-orgfebf032" class="outline-4">
-<h4 id="orgfebf032"><span class="section-number-4">7.2.1.</span> Trends</h4>
-<div class="outline-text-4" id="text-7-2-1">
+<div id="outline-container-orgea9a79c" class="outline-4">
+<h4 id="orgea9a79c"><span class="section-number-4">1.2.1.</span> Trends</h4>
+<div class="outline-text-4" id="text-1-2-1">
 <ul class="org-ul">
 <li>\(T_t\): the trend at time period \(t\)</li>
 <li>\(S_t = \alpha x_t + (1-\alpha)S_{t-1}\)</li>
@@ -1145,9 +210,9 @@ Complexities!
 </ul>
 </div>
 </div>
-<div id="outline-container-org9e7aa8c" class="outline-4">
-<h4 id="org9e7aa8c"><span class="section-number-4">7.2.2.</span> Cyclical patterns</h4>
-<div class="outline-text-4" id="text-7-2-2">
+<div id="outline-container-orgeccd8aa" class="outline-4">
+<h4 id="orgeccd8aa"><span class="section-number-4">1.2.2.</span> Cyclical patterns</h4>
+<div class="outline-text-4" id="text-1-2-2">
 <ul class="org-ul">
 <li>Make cycles additive: behaves like trend</li>
 <li>Make cycles multiplicative: more notation required
@@ -1182,9 +247,9 @@ Complexities!
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb9657e0" class="outline-4">
-<h4 id="orgb9657e0"><span class="section-number-4">7.2.3.</span> Summary</h4>
-<div class="outline-text-4" id="text-7-2-3">
+<div id="outline-container-org8260459" class="outline-4">
+<h4 id="org8260459"><span class="section-number-4">1.2.3.</span> Summary</h4>
+<div class="outline-text-4" id="text-1-2-3">
 <ul class="org-ul">
 <li>Exponential smoothing
 <ul class="org-ul">
@@ -1199,17 +264,17 @@ Complexities!
 </div>
 </div>
 </div>
-<div id="outline-container-org8c8675e" class="outline-3">
-<h3 id="org8c8675e"><span class="section-number-3">7.3.</span> M7L3: Etymology (what the name means)</h3>
-<div class="outline-text-3" id="text-7-3">
+<div id="outline-container-org5047745" class="outline-3">
+<h3 id="org5047745"><span class="section-number-3">1.3.</span> M7L3: Etymology (what the name means)</h3>
+<div class="outline-text-3" id="text-1-3">
 <p>
 Example equation when \(\alpha = \frac{1}{2}\):
 \(S_t = 0.5 x_t + 0.5 S_{t-1}\)
 </p>
 </div>
 <ol class="org-ol">
-<li><a id="orgb740287"></a>Smoothing<br />
-<div class="outline-text-5" id="text-7-3-0-1">
+<li><a id="orgcacfa4b"></a>Smoothing<br />
+<div class="outline-text-5" id="text-1-3-0-1">
 <ul class="org-ul">
 <li>Note: when x<sub>t</sub> is high, S<sub>t</sub> is <b>not</b> as high, as \((1-\alpha)S_{t-1}\) pulls it down</li>
 <li>Conversely: when x<sub>t</sub> is low, S<sub>t</sub> is <b>not</b> as low, as \((1-\alpha)S_{t-1}\) pulls it up</li>
@@ -1218,8 +283,8 @@ Example equation when \(\alpha = \frac{1}{2}\):
 </ul>
 </div>
 </li>
-<li><a id="orgdb9f59a"></a>Exponential<br />
-<div class="outline-text-5" id="text-7-3-0-2">
+<li><a id="orgeed04cd"></a>Exponential<br />
+<div class="outline-text-5" id="text-1-3-0-2">
 <ul class="org-ul">
 <li>Each \(S_{t-1}\) actually contains every previous value of x!
 <ul class="org-ul">
@@ -1241,9 +306,9 @@ Example equation when \(\alpha = \frac{1}{2}\):
 </div>
 </li>
 </ol>
-<div id="outline-container-orgfecfca9" class="outline-4">
-<h4 id="orgfecfca9"><span class="section-number-4">7.3.1.</span> Summary</h4>
-<div class="outline-text-4" id="text-7-3-1">
+<div id="outline-container-org05e67c7" class="outline-4">
+<h4 id="org05e67c7"><span class="section-number-4">1.3.1.</span> Summary</h4>
+<div class="outline-text-4" id="text-1-3-1">
 <ul class="org-ul">
 <li>Exponential smoothing smooths out jumps in observed data</li>
 <li>It's an exponential weighting of all past observations</li>
@@ -1252,11 +317,146 @@ Example equation when \(\alpha = \frac{1}{2}\):
 </div>
 </div>
 </div>
+<div id="outline-container-org631140a" class="outline-3">
+<h3 id="org631140a"><span class="section-number-3">1.4.</span> M7L4: Forecasting</h3>
+<div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
+<li>Recap: \(S_t = \alpha x_t + (1-\alpha)S_{t-1}\)</li>
+<li>Prediction:
+<ul class="org-ul">
+<li>\(S_{t+1} = \alpha x_{t+1} + (1-\alpha)S_{t}\)</li>
+<li>However x<sub>t+1</sub> is unknown</li>
+<li>Best guess for x<sub>t+1</sub> is \(S_t\)</li>
+</ul></li>
+<li>Our forecast for \(t+1\) is hence (after substituting):
+\[
+  F_{t+1}=\alpha S_t + (1-\alpha) S_t \\
+  F_{t+1} = S_t \\
+  F_{t+k} = S_t \text{when } k=1, 2, ...
+  \]
+<ul class="org-ul">
+<li>note that forecast error becomes larger for larger \(k\)</li>
+</ul></li>
+<li>If including trend:
+\[
+  S_t = \alpha x_t + (1-\alpha)(S_{t-1}+T_{t-1}) \\
+  T_t = \beta (S_t-S_{t-1})+(1-\beta)T_{t-1} \\
+  F_{t+1} = S_t + T_t \\
+  F_{t+k} = S_t + kT_t, k=1,2,...
+  \]
+<dl class="org-dl">
+<dt>Best estimate of next baseline</dt><dd>the most current baseline estimate</dd>
+<dt>Best estimate of the trend</dt><dd>the most current trend estimate</dd>
+</dl></li>
+<li>If including multiplicative seasonality:
+\[
+  S_t = \alpha x_t/C_{t-L} + (1-\alpha)(S_{t-1}+T_{t-1})
+  F_{t+1} = (S_t+T_t)C_{(t+1)-L}
+  \]
+<dl class="org-dl">
+<dt>Best estimate of next time period seasonal factor</dt><dd>the corresponding (lagged) seasonal factor, i.e. \(C_{t+1}=C_{t+1-L}\)</dd>
+</dl></li>
+<li>Finding the right &alpha;, &beta;, &gamma;: use optimization, to be covered in future
+<ul class="org-ul">
+<li>\(\min{(F_t-x_t)^2}\)</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org1b1bfd8" class="outline-3">
+<h3 id="org1b1bfd8"><span class="section-number-3">1.5.</span> M3L5: ARIMA</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+AutoRegressive Integrated Moving Average.
+</p>
+<ul class="org-ul">
+<li>ARIMA <b>theory</b> is not covered in IAM.</li>
+</ul>
+</div>
+<div id="outline-container-orgdd01119" class="outline-4">
+<h4 id="orgdd01119"><span class="section-number-4">1.5.1.</span> (I): Differences</h4>
+<div class="outline-text-4" id="text-1-5-1">
+<ul class="org-ul">
+<li>Exponential smoothing assumes <b>stationary</b> data, i.e.
+<ul class="org-ul">
+<li>mean, variance, other measures are constant over time</li>
+</ul></li>
+<li>ARIMA works for data that's not stationary
+<ul class="org-ul">
+<li>if differences in data are stationary
+<dl class="org-dl">
+<dt>1st order difference D<sub>(1)</sub></dt><dd>difference of consecutive observations, i.e. \(D_{(1)t}=(x_t-x_{t-1})\)</dd>
+<dt>2nd order difference D<sub>(2)</sub></dt><dd>difference of the differences i.e.
+\(D_{(2)t}=(x_t-x_{t-1})-(x_{t-1}-x_{t-2})\)</dd>
+<dt>d<sup>th</sup> order difference D<sub>(d)</sub></dt><dd>diff&#x2026; d times</dd>
+</dl></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgad11247" class="outline-4">
+<h4 id="orgad11247"><span class="section-number-4">1.5.2.</span> (II): Autogression</h4>
+<div class="outline-text-4" id="text-1-5-2">
+<ul class="org-ul">
+<li>Predicting current values based on previous period's values</li>
+<li>Regression: predicting value based on other factors</li>
+<li>Auto: use earlier values to predict. Only works with time series</li>
+<li>When used to forecast, exponential smoothing is an order-&infin; autoregressive model
+<ul class="org-ul">
+<li>All previous values are used to make current prediction</li>
+</ul></li>
+<li>Order-p autoregressive model: S<sub>t</sub> is function of \(\{x_t, x_{t-1}, ..., x_{t-(p-1)}\}\)
+<ul class="org-ul">
+<li>Only go back \(p\) periods</li>
+</ul></li>
+<li>ARIMA: combines autoregression and differencing
+<ul class="org-ul">
+<li>Autoregression on the differences</li>
+<li>Use \(p\) time periods of previous observations to predict \(d^{th}\) order differences</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgfe6a875" class="outline-4">
+<h4 id="orgfe6a875"><span class="section-number-4">1.5.3.</span> (III): Moving Average</h4>
+<div class="outline-text-4" id="text-1-5-3">
+<ul class="org-ul">
+<li>Use previous errors &epsilon;<sub>t</sub> as predictors
+<ul class="org-ul">
+<li>\(\epsilon_t = (\hat{x_t}-x_t)\)</li>
+</ul></li>
+<li>Order-q moving average
+<ul class="org-ul">
+<li>go back \(q\) time periods</li>
+<li>\(\epsilon_{t-1}, \epsilon_{t-2}, ..., \epsilon_{t-q}\)</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5924754" class="outline-4">
+<h4 id="org5924754"><span class="section-number-4">1.5.4.</span> ARIMA model</h4>
+<div class="outline-text-4" id="text-1-5-4">
+<p>
+ARIMA (p,d,q) model
+</p>
+<ul class="org-ul">
+<li>\(d^{th}\) order differences</li>
+<li>\(p^{th}\) order autoregression</li>
+<li>\(q^{th}\) order moving average</li>
+<li>Equation:
+\[
+  D_{(d)t} = \mu + \sum^p_{i=1}\alpha_i D_{(d)t-i} - \sum^q_{i=1} \theta_i (\hat{x}_{t-i}-x_{t-i})
+  \]</li>
+<li>Software can find \(d, p, q\)</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: W</p>
-<p class="date">Created: 2023-02-05 Sun 18:43</p>
+<p class="date">Created: 2023-02-05 Sun 20:08</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

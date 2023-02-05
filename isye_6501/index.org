@@ -513,3 +513,72 @@ $S_t = 0.5 x_t + 0.5 S_{t-1}$
 - Exponential smoothing smooths out jumps in observed data
 - It's an exponential weighting of all past observations
 - More recent observations are more important to the current baseline estimate
+** M7L4: Forecasting
+- Recap: $S_t = \alpha x_t + (1-\alpha)S_{t-1}$
+- Prediction:
+  - $S_{t+1} = \alpha x_{t+1} + (1-\alpha)S_{t}$
+  - However x_{t+1} is unknown
+  - Best guess for x_{t+1} is $S_t$
+- Our forecast for $t+1$ is hence (after substituting):
+  $$
+  F_{t+1}=\alpha S_t + (1-\alpha) S_t \\
+  F_{t+1} = S_t \\
+  F_{t+k} = S_t \text{when } k=1, 2, ...
+  $$
+  - note that forecast error becomes larger for larger $k$
+- If including trend:
+  $$
+  S_t = \alpha x_t + (1-\alpha)(S_{t-1}+T_{t-1}) \\
+  T_t = \beta (S_t-S_{t-1})+(1-\beta)T_{t-1} \\
+  F_{t+1} = S_t + T_t \\
+  F_{t+k} = S_t + kT_t, k=1,2,...
+  $$
+  - Best estimate of next baseline :: the most current baseline estimate
+  - Best estimate of the trend :: the most current trend estimate
+- If including multiplicative seasonality:
+  $$
+  S_t = \alpha x_t/C_{t-L} + (1-\alpha)(S_{t-1}+T_{t-1})
+  F_{t+1} = (S_t+T_t)C_{(t+1)-L}
+  $$
+  - Best estimate of next time period seasonal factor :: the corresponding (lagged) seasonal factor, i.e. $C_{t+1}=C_{t+1-L}$
+- Finding the right \alpha, \beta, \gamma: use optimization, to be covered in future
+  - $\min{(F_t-x_t)^2}$
+** M3L5: ARIMA
+AutoRegressive Integrated Moving Average.
+- ARIMA *theory* is not covered in IAM.
+*** (I): Differences
+- Exponential smoothing assumes *stationary* data, i.e.
+  - mean, variance, other measures are constant over time
+- ARIMA works for data that's not stationary
+  - if differences in data are stationary
+    - 1st order difference D_(1) :: difference of consecutive observations, i.e. $D_{(1)t}=(x_t-x_{t-1})$
+    - 2nd order difference D_(2) :: difference of the differences i.e.
+      $D_{(2)t}=(x_t-x_{t-1})-(x_{t-1}-x_{t-2})$
+    - d^{th} order difference D_(d) :: diff... d times
+*** (II): Autogression
+- Predicting current values based on previous period's values
+- Regression: predicting value based on other factors
+- Auto: use earlier values to predict. Only works with time series
+- When used to forecast, exponential smoothing is an order-\infty autoregressive model
+  - All previous values are used to make current prediction
+- Order-p autoregressive model: S_t is function of $\{x_t, x_{t-1}, ..., x_{t-(p-1)}\}$
+  - Only go back $p$ periods
+- ARIMA: combines autoregression and differencing
+  - Autoregression on the differences
+  - Use $p$ time periods of previous observations to predict $d^{th}$ order differences
+*** (III): Moving Average
+- Use previous errors \epsilon_t as predictors
+  - $\epsilon_t = (\hat{x_t}-x_t)$
+- Order-q moving average
+  - go back $q$ time periods
+  - $\epsilon_{t-1}, \epsilon_{t-2}, ..., \epsilon_{t-q}$
+*** ARIMA model
+ARIMA (p,d,q) model
+- $d^{th}$ order differences
+- $p^{th}$ order autoregression
+- $q^{th}$ order moving average
+- Equation:
+  $$
+  D_{(d)t} = \mu + \sum^p_{i=1}\alpha_i D_{(d)t-i} - \sum^q_{i=1} \theta_i (\hat{x}_{t-i}-x_{t-i})
+  $$
+- Software can find $d, p, q$
