@@ -453,7 +453,40 @@ $S_t = \alpha x_t + (1-\alpha)S_{t-1}$
 
 - How to start? $S_1 = x_1$
 ** M7L2: Trend and cyclic effects
-*** Etymology
+Complexities!
+- Trends, increasing or decreasing
+- Cyclical patterns, e.g. annual, weekly, daily
+*** Trends
+- $T_t$: the trend at time period $t$
+- $S_t = \alpha x_t + (1-\alpha)S_{t-1}$
+- $T_t = \beta(S_t - S_{t-1}) + (1-\beta)T_{t-1}$
+- Initial condition: $T_1=0$
+*** Cyclical patterns
+- Make cycles additive: behaves like trend
+- Make cycles multiplicative: more notation required
+  - L = length of cycle
+  - $C_t$ = the multiplicative seasonality factor
+    - This inflates or deflates the observation
+  - New baseline formula
+    $$
+    S_t = \frac{\alpha x_t}{C_{t-L}} + (1-\alpha)(S_{t-1}+T_{t-1})
+    $$
+  - Need to use the factor from $L$ time periods ago
+    - as that's the most recent cyclic factor we have from that part of the cycle
+  - Update the cyclic factor in a similar way i.e.:
+    - $C_t = \gamma(x_t/S_t) + (1-\gamma)(C_{t-L})$
+    - C_1, ..., C_L = 1
+      - meaning there's no initial cyclic effect
+    - If C = 1.1 on Sunday:
+      - sales are higher by 10% just because it's Sunday
+  - Initial values: first $L$ are set to 1. Multiplying by 1 = no effect
+*** Summary
+- Exponential smoothing
+  - Single
+  - Double (with trend)
+  - Triple (with trend and cyclic effects)
+    - AKA Winter's method, or Holt-Winters
+** M7L3: Etymology (what the name means)
 Example equation when $\alpha = \frac{1}{2}$:
 $S_t = 0.5 x_t + 0.5 S_{t-1}$
 **** Smoothing
@@ -475,4 +508,8 @@ $S_t = 0.5 x_t + 0.5 S_{t-1}$
     $$
 - Each S_t is weighed by (1-\alpha) to an increasing *exponent*
 - This means not only the current observation matters; instead, every past observation contributes to the current baseline estimate
--
+- However, more recent observations are more important as they have higher weight
+*** Summary
+- Exponential smoothing smooths out jumps in observed data
+- It's an exponential weighting of all past observations
+- More recent observations are more important to the current baseline estimate
