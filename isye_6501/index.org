@@ -444,10 +444,35 @@ Answers whether mean of the observed distribution gone above a critical level
      - today's baseline = yesterday's baseline
 *** Exponential smoothing method
 Combines both, i.e.
-$S-t = \alpha x_t + (1-\alpha)S_{t-1}$
+$S_t = \alpha x_t + (1-\alpha)S_{t-1}$
 - 0 < \alpha <1
-  - \alpha \rightarrow 0: much chaotic randomness
-    - trust yesterday's baseline more
-  - \alpha \rightarrow 1: order in the system
-    - trust today's reading more
+  | \alpha | example value of \alpha   | randomness | trust                            |
+  |--------+---------------------------+------------+----------------------------------|
+  | small  | \rightarrow 0 (e.g. 0.01) | high       | previous baseline i.e. $S_{t-1}$ |
+  | large  | \rightarrow 1 (e.g. 0.99) | low        | today's estimate i.e. $x_t$      |
+
 - How to start? $S_1 = x_1$
+** M7L2: Trend and cyclic effects
+*** Etymology
+Example equation when $\alpha = \frac{1}{2}$:
+$S_t = 0.5 x_t + 0.5 S_{t-1}$
+**** Smoothing
+- Note: when x_t is high, S_t is *not* as high, as $(1-\alpha)S_{t-1}$ pulls it down
+- Conversely: when x_t is low, S_t is *not* as low, as $(1-\alpha)S_{t-1}$ pulls it up
+- Peaks and valleys are smoothed out
+  [[./img/07-smoothed-graph.png]]
+**** Exponential
+- Each $S_{t-1}$ actually contains every previous value of x!
+  - When written or expanded out, e.g.
+    $$
+    S_t = \alpha x_t + (1-\alpha)S_{t-1}
+    $$
+    $$
+    S_{t} = \alpha x_t + (1-\alpha)[\alpha x_{t-1} + (1-\alpha)S_{t-2}]
+    $$
+    $$
+    S_{t} = \alpha x_t + (1-\alpha)\alpha x_{t-1} + (1-\alpha)^2S_{t-2}
+    $$
+- Each S_t is weighed by (1-\alpha) to an increasing *exponent*
+- This means not only the current observation matters; instead, every past observation contributes to the current baseline estimate
+-
