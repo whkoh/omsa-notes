@@ -672,6 +672,118 @@ Logistic regression is similar to linear regression with 2 main differences:
    - $\log(\text{odds})$ increase by b_1
    - odds increase by factor of $\exp(b_1)$
    - odds increase by roughly $100\times b_1\%$
-** TODO M4L4: Logistic Regression using the /Default/ dataset
-** TODO M4L5: Predictions and Confusion Matrix
-** TODO M4L6: Sensitivity, Specificity, and the ROC curve
+** M4L4: Logistic Regression using the /Default/ dataset
+- Dataset from ISLR library.
+- Do EDA:
+  - income vs balance, color=Default
+  - box plot for balance vs Default
+- Logistic regression models:
+  1. M1: no predictors $\text{logit}(p) = b_0$
+  2. M2: single binary variable: $\text{logit}(p) = b_0+b_1\times \text{stdt}$
+  3. M3: single continuous predictor var:  $\text{logit}(p) = b_0+b_1\times \text{balance}$
+  4. M4: multiple predictors: $\text{logit}(p) = b_0 + b_1\times \text{balance} + b_2 \times \text{income} + b_3 \times \text{stdt}$
+- Defining $p=\frac{\text{odds}}{1+\text{odds}}$
+  - prob that default = "Yes"
+  - $\text{logit}(p) = \log(\frac{p}{1-p})$
+*** M1: no predictors $\text{logit}(p) = b_0$
+- Intercept = -3.368 = log-odds of being in default for entire population
+- hence $\exp(-3.368)$ = odds = p/(1-p)
+- p = 0.0333
+*** M2: single binary predictor  $\text{logit}(p) = b_0+b_1\times \text{stdt}$
+- Coefficients:
+  - Intercept = -3.50
+  - stdt = 0.40
+- Intercept is for non-students (stdt = 0)
+  - This is the reference / base case
+- Odds for non-student = $\exp(-3.50)$
+  - p=0.0292
+- Odds for student = $\exp(-3.50+0.40)$
+  - p=0.0431 (higher than non-students)
+*** M3: single continuous predictor  $\text{logit}(p) = b_0+b_1\times \text{balance}$
+- Coefficients:
+  - Intercept = -1.065e+01
+  - balance = 5.499e-03 (i.e. 0.0055)
+- $b_1$ = 0.0055
+- Increase in balance is associated with increase in log-odds (and hence the odds for) of default
+- Adding $1 to balance increases log-odds by 0.0055
+- Examples, with $p(x)=\frac{e^{b_0+b_1x}}{1+{e^{b_0+b_1x}}}$
+  |    x |       p |
+  |------+---------|
+  | 1000 | 0.00576 |
+  | 1500 | 0.08317 |
+  | 2000 | 0.5866  |
+- Increasing x by 500 has non-linear effect on p(x)
+*** M4: multiple predictors $\text{logit}(p) = b_0 + b_1\times \text{balance} + b_2 \times \text{income} + b_3 \times \text{stdt}$
+- Coefficients
+   - Intercept: -1.087e+01 (10.87)
+  - balance: 5.737e-03 (0.0057)
+  - income: 3.033e-06 (0.000003)
+  - stdt: -6.468e-01 (-0.65)
+- Interpretation:
+  - Increase of balance associated with increasing log odds and hence probability of default
+  - Adding $1 to balance increases log odds by 0.0057
+  - Students now less likely to default due to -0.65 log odds, *different result from M2*
+    - This can be explained by students carrying more balances, hence they default at higher rate
+    - Log curve is shifted to the right
+    - *Confounding* -> there is correlation between student and balance
+*** M4L4 lecture quiz
+1. For logistic model where Y=1 is the default case:
+   - $b_0$ means the log odds of being in default for the entire population
+** M4L5: Predictions and Confusion Matrix
+- Making predictions on fitted data, e.g. M4: $\text{logit}(p) = b_0 + b_1\times \text{balance} + b_2 \times \text{income} + b_3 \times \text{stdt}$
+- Make predictions by using predict with Model 4, and use 0.5 as the cutoff
+*** True Negative and False Positive
+- Consider all Y=0 observed (no defaults)
+- For each observation, use the logic model to make prediction with the X values
+- If predicted value == 0, that's a true negative
+- Else predicted value == 1, false positive
+- As the cutoff is increased, true negatives increase and false positives decrease
+*** True Positive and False Negative
+- Consider all Y=1 observed (defaults)
+- For each observation, use the logic model to make prediction with the X values
+- If predicted value == 1, that's a true positive
+- Else predicted value == 0, false negative
+- As the cutoff is increased, false negatives increase and true positives decrease
+*** Confusion matrix
+- Shows the intersection of actual and predicted values of model
+- Matrix records the performance of classifier, i.e. lets you gauge how models perform
+- Record predicted value $\hat{y}$ after fitting logit model on dataset.
+** M4L6: Sensitivity, Specificity, and the ROC curve
+*** Definitions
+- Sensitivity :: true positive rate: $\frac{\text{true pos}}{\text{true pos + false neg}}$
+- Specificity :: true negative rate $\frac{\text{true neg}}{\text{true neg + false pos}}$
+- 1-Specificity :: False positive rate $\frac{\text{false pos}}{\text{true neg + false pos}}$
+- Precision :: $P(Y=1|\hat{y}=1) = \frac{\text{true pos}}{\text{true pos+false pos}}$
+- Accuracy :: $\frac{\text{true pos+true neg}}{\text{true pos + false pos + true neg + false neg}}$
+*** Type I and II errors
+- False positive error :: type I error. Falsely reject true (null) hypothesis. true Y=0, predicted Y=1.
+- False negative error :: type II error. Incorrectly retain false (null) hypothesis. True Y=1, predicted Y=0
+**** Cutoff
+1. Increasing cutoff decreases Type I error
+2. Increasing cutoff increases Type II error
+**** In business applications
+Cost of making error depends on situation, e.g.:
+- When modeling marketing spend, false positive means spending marketing costs on non-purchasers. Moderate loss. (Type I) error
+- When modeling customer as non-defaulter who actually defaults. (Type II) error
+*** Calculating sensitivity and specificity for cutoff $p = 0.5$
+|        |   | Predicted     | Values       |       |
+|--------+---+---------------+--------------+-------|
+|        |   | 0             | 1            | Total |
+| True   | 0 | 9627 true neg | 40 false pos |  9667 |
+| Values | 1 | 228 false neg | 105 true pos |   333 |
+|        |   | 9855          | 145          | 10000 |
+- Sensitivity =  $\frac{\text{true pos}}{\text{true pos + false neg}}$ = 105/(105+228) = 0.32
+- Specificity = $\frac{\text{true neg}}{\text{true neg + false pos}}$ = 9627/(9627+40) = 0.996
+*** Increasing cutoff to $p=0.9$
+- Sensitivity decreases to 0.03
+- Specificity increases to 0.9998
+*** Increasing cutoff value of $p$
+- True neg increase, false pos decrease
+- False neg increase, true pos decrease
+*** ROC Curve
+- "Receiver Operating Characteristic" curve
+- Shows diagnostic ability of binary classifier, when the cutoff value is varied
+- Look at area under curve. We want > 0.5
+*** M4L6 lecture quiz
+1. Formula of sensitivity  $\frac{\text{true pos}}{\text{true pos + false neg}}$
+2. Formula of specificity $\frac{\text{true neg}}{\text{true neg + false pos}}$
