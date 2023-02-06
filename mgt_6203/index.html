@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-02-06 Mon 19:55 -->
+<!-- 2023-02-06 Mon 22:13 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>MGT 6203: Data Analytics in Business</title>
@@ -44,215 +44,231 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org0ccdb70">1. Module 01: Linear Regression</a>
+<li><a href="#org18613a1">1. Module 01: Linear Regression</a>
 <ul>
-<li><a href="#org85f5e6e">1.1. Steps in Regression Analysis</a>
+<li><a href="#org19ee3d8">1.1. Steps in Regression Analysis</a>
 <ul>
-<li><a href="#org6de396b">1.1.1. Business examples (Dependent vs independent variables)</a></li>
-<li><a href="#org664348d">1.1.2. M1L1 lecture quiz</a></li>
+<li><a href="#org1642b34">1.1.1. Business examples (Dependent vs independent variables)</a></li>
+<li><a href="#orgd2a293e">1.1.2. M1L1 lecture quiz</a></li>
 </ul>
 </li>
-<li><a href="#org74a3df9">1.2. Real estate pricing example</a>
+<li><a href="#org26fa41f">1.2. Real estate pricing example</a>
 <ul>
-<li><a href="#org987e15a">1.2.1. Housing dataset <code>ecdat</code></a></li>
-<li><a href="#org739adc8">1.2.2. M1L2 lecture quiz</a></li>
+<li><a href="#org6b63969">1.2.1. Housing dataset <code>ecdat</code></a></li>
+<li><a href="#orgef1466a">1.2.2. M1L2 lecture quiz</a></li>
 </ul>
 </li>
-<li><a href="#org1d4c2b5">1.3. Notation in regression analysis</a>
+<li><a href="#org7c50154">1.3. Notation in regression analysis</a>
 <ul>
-<li><a href="#orgce7847d">1.3.1. Steps with example</a></li>
-<li><a href="#org44e2cd8">1.3.2. M1L3 lecture quiz</a></li>
+<li><a href="#org88bb7fd">1.3.1. Steps with example</a></li>
+<li><a href="#orga83635f">1.3.2. M1L3 lecture quiz</a></li>
 </ul>
 </li>
-<li><a href="#orge210bd7">1.4. \(R^2\) and Adjusted \(R^2\)</a>
+<li><a href="#org5c173c7">1.4. \(R^2\) and Adjusted \(R^2\)</a>
 <ul>
-<li><a href="#orgdf1e1b8">1.4.1. Deviations</a></li>
-<li><a href="#orgad72374">1.4.2. Regression output \(R^2\) and Adjusted \(R^2\)</a></li>
-<li><a href="#org3965706">1.4.3. Examples</a></li>
-<li><a href="#org4833f29">1.4.4. M1L4 lecture quiz</a></li>
+<li><a href="#org383c473">1.4.1. Deviations</a></li>
+<li><a href="#org63993cf">1.4.2. Regression output \(R^2\) and Adjusted \(R^2\)</a></li>
+<li><a href="#org617f5e3">1.4.3. Examples</a></li>
+<li><a href="#orgf00808f">1.4.4. M1L4 lecture quiz</a></li>
 </ul>
 </li>
-<li><a href="#org0ea5699">1.5. Simple regression with 1 variable in R</a>
+<li><a href="#org3e3786c">1.5. Simple regression with 1 variable in R</a>
 <ul>
-<li><a href="#org44d44bf">1.5.1. Interpreting coefficients</a></li>
-<li><a href="#orgf5ade3f">1.5.2. F-test: shows whether model is significant</a></li>
-<li><a href="#org15beb1a">1.5.3. M1L5 no lecture quiz</a></li>
+<li><a href="#orgc0a61ee">1.5.1. Interpreting coefficients</a></li>
+<li><a href="#org45e4414">1.5.2. F-test: shows whether model is significant</a></li>
+<li><a href="#org510c609">1.5.3. M1L5 no lecture quiz</a></li>
 </ul>
 </li>
-<li><a href="#org20ea3dd">1.6. Multiple regression</a>
+<li><a href="#orgcf33509">1.6. Multiple regression</a>
 <ul>
-<li><a href="#org3f6497a">1.6.1. Regression output</a></li>
-<li><a href="#orge43fb89">1.6.2. M1L6 no lecture quiz</a></li>
+<li><a href="#org5ca51a3">1.6.1. Regression output</a></li>
+<li><a href="#orgd2cc711">1.6.2. M1L6 no lecture quiz</a></li>
 </ul>
 </li>
-<li><a href="#orga269bde">1.7. \(R^2\) and adjusted \(R^2\) in multiple regression</a></li>
-<li><a href="#org32071e3">1.8. Simple vs multiple regression</a></li>
-<li><a href="#orgf8dc5cf">1.9. M1L7 lecture quiz</a></li>
-<li><a href="#orge9f3f75">1.10. M1L8 Common problems and fixes in fixing regression (I)</a>
+<li><a href="#org83640fc">1.7. \(R^2\) and adjusted \(R^2\) in multiple regression</a></li>
+<li><a href="#org9153f6e">1.8. Simple vs multiple regression</a></li>
+<li><a href="#orge6e2126">1.9. M1L7 lecture quiz</a></li>
+<li><a href="#orgedd6ed4">1.10. M1L8 Common problems and fixes in fixing regression (I)</a>
 <ul>
-<li><a href="#org15902fb">1.10.1. Assumptions of linear regression</a></li>
-<li><a href="#org1b65d8a">1.10.2. Common problems in fitting Linear Regression</a></li>
-<li><a href="#orgf883f8f">1.10.3. (1) Non linear relationship</a></li>
-<li><a href="#org2362351">1.10.4. (2) Correlation of error terms</a></li>
-<li><a href="#orgb67107c">1.10.5. (3) Heteroskedasticity (non-constant error variance)</a></li>
-<li><a href="#org9e14590">1.10.6. M1L8 lecture quiz</a></li>
+<li><a href="#orga94a612">1.10.1. Assumptions of linear regression</a></li>
+<li><a href="#org53e43a3">1.10.2. Common problems in fitting Linear Regression</a></li>
+<li><a href="#org1ab23f1">1.10.3. (1) Non linear relationship</a></li>
+<li><a href="#org0ed957c">1.10.4. (2) Correlation of error terms</a></li>
+<li><a href="#org0a23afe">1.10.5. (3) Heteroskedasticity (non-constant error variance)</a></li>
+<li><a href="#org7f7823f">1.10.6. M1L8 lecture quiz</a></li>
 </ul>
 </li>
-<li><a href="#org924ab7e">1.11. M1L9 Common problems and fixes in fixing regression (II)</a>
+<li><a href="#orgacc9f1f">1.11. M1L9 Common problems and fixes in fixing regression (II)</a>
 <ul>
-<li><a href="#orgd323a22">1.11.1. (4) Outliers</a></li>
-<li><a href="#orgf8e6310">1.11.2. (5) High leverage points</a></li>
-<li><a href="#org017383c">1.11.3. Plots in R</a></li>
-<li><a href="#org1879324">1.11.4. (6) Multicollinearity</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#orgc3629cb">2. Module 02: Indicator variables and Interaction Terms</a>
-<ul>
-<li><a href="#org55b42dd">2.1. M2L1: Intro (Customer Analytics Dataset)</a>
-<ul>
-<li><a href="#org3accf58">2.1.1. No lecture quiz</a></li>
-</ul>
-</li>
-<li><a href="#org26f7ea5">2.2. M2L2: Creating and Using Indicator Variables</a>
-<ul>
-<li><a href="#org85f5501">2.2.1. M2L2 lecture quiz</a></li>
-</ul>
-</li>
-<li><a href="#orgfa1e871">2.3. M2L3: Interpreting the coefficients of indicator variables</a>
-<ul>
-<li><a href="#org2b3060e">2.3.1. DR1: regression with dummy variable</a></li>
-<li><a href="#org5f8d23c">2.3.2. DR2: regression with salary and dummy variables</a></li>
-<li><a href="#org8bf654f">2.3.3. M2L3 lecture quiz</a></li>
-</ul>
-</li>
-<li><a href="#orgd24bf0a">2.4. M2L4: Interaction term and interpreting its coefficient</a>
-<ul>
-<li><a href="#org8d79ab8">2.4.1. Interaction term</a></li>
-<li><a href="#orge14bb8a">2.4.2. M2L4 lecture quiz</a></li>
-<li><a href="#org93098b2">2.4.3. Categorical variable with \(\text{M}\) values</a></li>
-</ul>
-</li>
-<li><a href="#orgac86f31">2.5. M2L5: Another example of using indicator variables</a>
-<ul>
-<li><a href="#orgc5e2dd0">2.5.1. Airbnb Los Angeles dataset</a></li>
-<li><a href="#orgf8a59ac">2.5.2. 2DR1: How does room price vary by capacity?</a></li>
-<li><a href="#org4dd5c0b">2.5.3. 2DR2: 2nd regression with capacity and dummies</a></li>
-<li><a href="#org46e6674">2.5.4. Interaction terms</a></li>
-<li><a href="#org336884d">2.5.5. No lecture quiz</a></li>
+<li><a href="#org378458a">1.11.1. (4) Outliers</a></li>
+<li><a href="#org0f1f749">1.11.2. (5) High leverage points</a></li>
+<li><a href="#orge699b1d">1.11.3. Plots in R</a></li>
+<li><a href="#org0577861">1.11.4. (6) Multicollinearity</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org5a00237">3. Module 03: Non-linear transformation models</a>
+<li><a href="#org797734e">2. Module 02: Indicator variables and Interaction Terms</a>
 <ul>
-<li><a href="#org5e80452">3.1. M3L1: Intro (and why needed)</a>
+<li><a href="#org85aa837">2.1. M2L1: Intro (Customer Analytics Dataset)</a>
 <ul>
-<li><a href="#orgd1eab95">3.1.1. Summary of models</a></li>
+<li><a href="#orgd7b7810">2.1.1. No lecture quiz</a></li>
 </ul>
 </li>
-<li><a href="#org0895011">3.2. M3L2: Linear-Log model</a>
+<li><a href="#orgb4f07a4">2.2. M2L2: Creating and Using Indicator Variables</a>
 <ul>
-<li><a href="#orgb625081">3.2.1. Interpretation of coefficients</a></li>
-<li><a href="#org2572401">3.2.2. No lecture quiz</a></li>
+<li><a href="#orgbfe655c">2.2.1. M2L2 lecture quiz</a></li>
 </ul>
 </li>
-<li><a href="#org029fb12">3.3. M3L3: Log-Linear model</a>
+<li><a href="#org0f15fc7">2.3. M2L3: Interpreting the coefficients of indicator variables</a>
 <ul>
-<li><a href="#orgf632519">3.3.1. Interpretation of coefficients</a></li>
-<li><a href="#org80a572f">3.3.2. Derivation</a></li>
-<li><a href="#org1cb0e20">3.3.3. No lecture quiz</a></li>
+<li><a href="#orgc96a360">2.3.1. DR1: regression with dummy variable</a></li>
+<li><a href="#org09985f4">2.3.2. DR2: regression with salary and dummy variables</a></li>
+<li><a href="#org2e59ed6">2.3.3. M2L3 lecture quiz</a></li>
 </ul>
 </li>
-<li><a href="#org7a78637">3.4. M3L4: Log-Log model</a>
+<li><a href="#orge15148c">2.4. M2L4: Interaction term and interpreting its coefficient</a>
 <ul>
-<li><a href="#org25831d5">3.4.1. Interpretation</a></li>
-<li><a href="#orgeab70a6">3.4.2. Reasons for log-transforming data</a></li>
-<li><a href="#org2bb2005">3.4.3. Summary of models and interpretation</a></li>
-<li><a href="#org36a3c5e">3.4.4. M3L4 no lecture quiz</a></li>
+<li><a href="#org8fca433">2.4.1. Interaction term</a></li>
+<li><a href="#orge3f37c9">2.4.2. M2L4 lecture quiz</a></li>
+<li><a href="#orgbf160e7">2.4.3. Categorical variable with \(\text{M}\) values</a></li>
 </ul>
 </li>
-<li><a href="#org8bad775">3.5. M3L5: Polynomial model</a>
+<li><a href="#orge205dae">2.5. M2L5: Another example of using indicator variables</a>
 <ul>
-<li><a href="#org62faea2">3.5.1. M3L5 no lecture quiz</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#org11d0d8d">4. Module 04: Logistic Regression</a>
-<ul>
-<li><a href="#orgb745d41">4.1. M4L1: Odds</a>
-<ul>
-<li><a href="#org9130e17">4.1.1. <i>Odds For</i> in statistics</a></li>
-<li><a href="#orgbf2072d">4.1.2. M4L1 lecture quiz</a></li>
-</ul>
-</li>
-<li><a href="#org6368f22">4.2. M4L2: Binary Dependent Variable</a>
-<ul>
-<li><a href="#orgaf3271f">4.2.1. M4L2 no lecture quiz</a></li>
-</ul>
-</li>
-<li><a href="#org3c0dfc6">4.3. M4L3: Logistic Regression</a>
-<ul>
-<li><a href="#orgb4bfdaa">4.3.1. Comparison of logisitic and linear regression</a></li>
-<li><a href="#orga264e93">4.3.2. Implementing logistic regression</a></li>
-<li><a href="#org9f81481">4.3.3. Why transform from probability to log odds?</a></li>
-<li><a href="#org1d1f98f">4.3.4. Interpreting logistic regression model</a></li>
-<li><a href="#orgbcb002b">4.3.5. M4L3 lecture quiz</a></li>
-</ul>
-</li>
-<li><a href="#org4c0420b">4.4. M4L4: Logistic Regression using the <i>Default</i> dataset</a>
-<ul>
-<li><a href="#orgc34f85a">4.4.1. M1: no predictors \(\text{logit}(p) = b_0\)</a></li>
-<li><a href="#org2123ced">4.4.2. M2: single binary predictor  \(\text{logit}(p) = b_0+b_1\times \text{stdt}\)</a></li>
-<li><a href="#org53b0e30">4.4.3. M3: single continuous predictor  \(\text{logit}(p) = b_0+b_1\times \text{balance}\)</a></li>
-<li><a href="#org7b0a223">4.4.4. M4: multiple predictors \(\text{logit}(p) = b_0 + b_1\times \text{balance} + b_2 \times \text{income} + b_3 \times \text{stdt}\)</a></li>
-<li><a href="#org2342099">4.4.5. M4L4 lecture quiz</a></li>
-</ul>
-</li>
-<li><a href="#org44b8805">4.5. M4L5: Predictions and Confusion Matrix</a>
-<ul>
-<li><a href="#org0ed982a">4.5.1. True Negative and False Positive</a></li>
-<li><a href="#org6e76616">4.5.2. True Positive and False Negative</a></li>
-<li><a href="#org860577a">4.5.3. Confusion matrix</a></li>
-</ul>
-</li>
-<li><a href="#orgaba4521">4.6. M4L6: Sensitivity, Specificity, and the ROC curve</a>
-<ul>
-<li><a href="#org0356651">4.6.1. Definitions</a></li>
-<li><a href="#org706a535">4.6.2. Type I and II errors</a></li>
-<li><a href="#orgc54bcc7">4.6.3. Calculating sensitivity and specificity for cutoff \(p = 0.5\)</a></li>
-<li><a href="#orgecc5e68">4.6.4. Increasing cutoff to \(p=0.9\)</a></li>
-<li><a href="#org9a1233b">4.6.5. Increasing cutoff value of \(p\)</a></li>
-<li><a href="#orgd0e5ae6">4.6.6. ROC Curve</a></li>
-<li><a href="#org340d874">4.6.7. M4L6 lecture quiz</a></li>
+<li><a href="#org3752c86">2.5.1. Airbnb Los Angeles dataset</a></li>
+<li><a href="#org090068a">2.5.2. 2DR1: How does room price vary by capacity?</a></li>
+<li><a href="#org6ac77cf">2.5.3. 2DR2: 2nd regression with capacity and dummies</a></li>
+<li><a href="#orgea271b1">2.5.4. Interaction terms</a></li>
+<li><a href="#orgad55d12">2.5.5. No lecture quiz</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org9a7ec32">5. Module 05: Treatment Effects</a>
+<li><a href="#org0a2ec1c">3. Module 03: Non-linear transformation models</a>
 <ul>
-<li><a href="#org5afe006">5.1. M5L1: Correlations vs. Causality</a>
+<li><a href="#org7fa18d1">3.1. M3L1: Intro (and why needed)</a>
 <ul>
-<li><a href="#org384fc46">5.1.1. Correlation</a></li>
+<li><a href="#org2e82b2c">3.1.1. Summary of models</a></li>
 </ul>
 </li>
-<li><a href="#org027849a">5.2. M5L2: Selection Bias</a></li>
-<li><a href="#org0958f10">5.3. M5L3: Randomized Controlled Experiment and the Difference Estimator</a></li>
-<li><a href="#org5b09095">5.4. M5L4: Star Experiment: Effect of Small Class Size</a></li>
-<li><a href="#orge887110">5.5. M5L5: Natural Experiments and Difference-in-Difference Estimator</a></li>
+<li><a href="#org45632b1">3.2. M3L2: Linear-Log model</a>
+<ul>
+<li><a href="#org1c991fb">3.2.1. Interpretation of coefficients</a></li>
+<li><a href="#orgd5eeffa">3.2.2. No lecture quiz</a></li>
+</ul>
+</li>
+<li><a href="#org169ada7">3.3. M3L3: Log-Linear model</a>
+<ul>
+<li><a href="#org8eb1570">3.3.1. Interpretation of coefficients</a></li>
+<li><a href="#org0846253">3.3.2. Derivation</a></li>
+<li><a href="#org770f291">3.3.3. No lecture quiz</a></li>
+</ul>
+</li>
+<li><a href="#org91d40ed">3.4. M3L4: Log-Log model</a>
+<ul>
+<li><a href="#org81cb97d">3.4.1. Interpretation</a></li>
+<li><a href="#orge5f02bb">3.4.2. Reasons for log-transforming data</a></li>
+<li><a href="#org02a3346">3.4.3. Summary of models and interpretation</a></li>
+<li><a href="#org5977b8f">3.4.4. M3L4 no lecture quiz</a></li>
+</ul>
+</li>
+<li><a href="#org96ddd95">3.5. M3L5: Polynomial model</a>
+<ul>
+<li><a href="#orge7a676d">3.5.1. M3L5 no lecture quiz</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgef89587">4. Module 04: Logistic Regression</a>
+<ul>
+<li><a href="#org8a6ad7e">4.1. M4L1: Odds</a>
+<ul>
+<li><a href="#orgaaadb01">4.1.1. <i>Odds For</i> in statistics</a></li>
+<li><a href="#orgdb2a3eb">4.1.2. M4L1 lecture quiz</a></li>
+</ul>
+</li>
+<li><a href="#org61326f2">4.2. M4L2: Binary Dependent Variable</a>
+<ul>
+<li><a href="#org7521b38">4.2.1. M4L2 no lecture quiz</a></li>
+</ul>
+</li>
+<li><a href="#orgbeedfd7">4.3. M4L3: Logistic Regression</a>
+<ul>
+<li><a href="#orgd72e7b6">4.3.1. Comparison of logisitic and linear regression</a></li>
+<li><a href="#orgba2485a">4.3.2. Implementing logistic regression</a></li>
+<li><a href="#org0db03d7">4.3.3. Why transform from probability to log odds?</a></li>
+<li><a href="#org5a32416">4.3.4. Interpreting logistic regression model</a></li>
+<li><a href="#org7be142a">4.3.5. M4L3 lecture quiz</a></li>
+</ul>
+</li>
+<li><a href="#org4bc557e">4.4. M4L4: Logistic Regression using the <i>Default</i> dataset</a>
+<ul>
+<li><a href="#org5a015f7">4.4.1. M1: no predictors \(\text{logit}(p) = b_0\)</a></li>
+<li><a href="#org1de6d5e">4.4.2. M2: single binary predictor  \(\text{logit}(p) = b_0+b_1\times \text{stdt}\)</a></li>
+<li><a href="#orgdf2e226">4.4.3. M3: single continuous predictor  \(\text{logit}(p) = b_0+b_1\times \text{balance}\)</a></li>
+<li><a href="#orge60f656">4.4.4. M4: multiple predictors \(\text{logit}(p) = b_0 + b_1\times \text{balance} + b_2 \times \text{income} + b_3 \times \text{stdt}\)</a></li>
+<li><a href="#org150f5dc">4.4.5. M4L4 lecture quiz</a></li>
+</ul>
+</li>
+<li><a href="#orgc660621">4.5. M4L5: Predictions and Confusion Matrix</a>
+<ul>
+<li><a href="#org53ff433">4.5.1. True Negative and False Positive</a></li>
+<li><a href="#org9acb0a1">4.5.2. True Positive and False Negative</a></li>
+<li><a href="#org3bc294b">4.5.3. Confusion matrix</a></li>
+</ul>
+</li>
+<li><a href="#org16e620c">4.6. M4L6: Sensitivity, Specificity, and the ROC curve</a>
+<ul>
+<li><a href="#org7273177">4.6.1. Definitions</a></li>
+<li><a href="#org6a5c9ce">4.6.2. Type I and II errors</a></li>
+<li><a href="#org9decb3a">4.6.3. Calculating sensitivity and specificity for cutoff \(p = 0.5\)</a></li>
+<li><a href="#orgbb249d9">4.6.4. Increasing cutoff to \(p=0.9\)</a></li>
+<li><a href="#org2a8b951">4.6.5. Increasing cutoff value of \(p\)</a></li>
+<li><a href="#orgbf87e9f">4.6.6. ROC Curve</a></li>
+<li><a href="#orga4025f0">4.6.7. M4L6 lecture quiz</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgd9ecff5">5. Module 05: Treatment Effects</a>
+<ul>
+<li><a href="#org3e850e3">5.1. M5L1: Correlations vs. Causality</a>
+<ul>
+<li><a href="#orgc44773e">5.1.1. Correlation</a></li>
+<li><a href="#orgd081358">5.1.2. Strong Corr(A,B)</a></li>
+<li><a href="#org2ed3615">5.1.3. <i>Post hoc ergo propter hoc</i></a></li>
+<li><a href="#org276bdcb">5.1.4. Causation</a></li>
+<li><a href="#org5f39dc5">5.1.5. Relevance</a></li>
+<li><a href="#org30b5e34">5.1.6. M5L1 no lecture quiz</a></li>
+</ul>
+</li>
+<li><a href="#org3c0c6d2">5.2. M5L2: Selection Bias</a>
+<ul>
+<li><a href="#org5dde555">5.2.1. Assumptions in OLS estimation when estimating slope coefficient, \(b_1\)</a></li>
+<li><a href="#orgcefd61a">5.2.2. Controlling selection bias</a></li>
+<li><a href="#org54f891e">5.2.3. M52 no lecture quiz</a></li>
+</ul>
+</li>
+<li><a href="#org550efce">5.3. M5L3: Randomized Controlled Experiment and the Difference Estimator</a>
+<ul>
+<li><a href="#org4412e21">5.3.1. Regression model</a></li>
+<li><a href="#orge0a0b4e">5.3.2. Difference estimator</a></li>
+</ul>
+</li>
+<li><a href="#org9301bed">5.4. M5L4: Star Experiment: Effect of Small Class Size</a></li>
+<li><a href="#org45991c9">5.5. M5L5: Natural Experiments and Difference-in-Difference Estimator</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org0ccdb70" class="outline-2">
-<h2 id="org0ccdb70"><span class="section-number-2">1.</span> Module 01: Linear Regression</h2>
+<div id="outline-container-org18613a1" class="outline-2">
+<h2 id="org18613a1"><span class="section-number-2">1.</span> Module 01: Linear Regression</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org85f5e6e" class="outline-3">
-<h3 id="org85f5e6e"><span class="section-number-3">1.1.</span> Steps in Regression Analysis</h3>
+<div id="outline-container-org19ee3d8" class="outline-3">
+<h3 id="org19ee3d8"><span class="section-number-3">1.1.</span> Steps in Regression Analysis</h3>
 <div class="outline-text-3" id="text-1-1">
 <ol class="org-ol">
 <li>State problem</li>
@@ -282,8 +298,8 @@
 <li>Use model</li>
 </ol>
 </div>
-<div id="outline-container-org6de396b" class="outline-4">
-<h4 id="org6de396b"><span class="section-number-4">1.1.1.</span> Business examples (Dependent vs independent variables)</h4>
+<div id="outline-container-org1642b34" class="outline-4">
+<h4 id="org1642b34"><span class="section-number-4">1.1.1.</span> Business examples (Dependent vs independent variables)</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <dl class="org-dl">
 <dt>Used car price</dt><dd>odometer reading, age of car, condition</dd>
@@ -297,8 +313,8 @@
 </dl>
 </div>
 </div>
-<div id="outline-container-org664348d" class="outline-4">
-<h4 id="org664348d"><span class="section-number-4">1.1.2.</span> M1L1 lecture quiz</h4>
+<div id="outline-container-orgd2a293e" class="outline-4">
+<h4 id="orgd2a293e"><span class="section-number-4">1.1.2.</span> M1L1 lecture quiz</h4>
 <div class="outline-text-4" id="text-1-1-2">
 <ol class="org-ol">
 <li>Variable eg price <b>can</b> be either dependent or independent variable, depends on purpose of model</li>
@@ -307,8 +323,8 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org74a3df9" class="outline-3">
-<h3 id="org74a3df9"><span class="section-number-3">1.2.</span> Real estate pricing example</h3>
+<div id="outline-container-org26fa41f" class="outline-3">
+<h3 id="org26fa41f"><span class="section-number-3">1.2.</span> Real estate pricing example</h3>
 <div class="outline-text-3" id="text-1-2">
 <ol class="org-ol">
 <li>Example: sell house, predict listing price.</li>
@@ -319,8 +335,8 @@
 <li>If actual data with price, size, bedroom and bathroom number, etc, are available, regression can be used to help get a better price estimate</li>
 </ol>
 </div>
-<div id="outline-container-org987e15a" class="outline-4">
-<h4 id="org987e15a"><span class="section-number-4">1.2.1.</span> Housing dataset <code>ecdat</code></h4>
+<div id="outline-container-org6b63969" class="outline-4">
+<h4 id="org6b63969"><span class="section-number-4">1.2.1.</span> Housing dataset <code>ecdat</code></h4>
 <div class="outline-text-4" id="text-1-2-1">
 <ul class="org-ul">
 <li>Can be used for this problem</li>
@@ -335,8 +351,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org739adc8" class="outline-4">
-<h4 id="org739adc8"><span class="section-number-4">1.2.2.</span> M1L2 lecture quiz</h4>
+<div id="outline-container-orgef1466a" class="outline-4">
+<h4 id="orgef1466a"><span class="section-number-4">1.2.2.</span> M1L2 lecture quiz</h4>
 <div class="outline-text-4" id="text-1-2-2">
 <ol class="org-ol">
 <li>For right-skewed distribution, mean is <b>larger</b> than median</li>
@@ -345,8 +361,8 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org1d4c2b5" class="outline-3">
-<h3 id="org1d4c2b5"><span class="section-number-3">1.3.</span> Notation in regression analysis</h3>
+<div id="outline-container-org7c50154" class="outline-3">
+<h3 id="org7c50154"><span class="section-number-3">1.3.</span> Notation in regression analysis</h3>
 <div class="outline-text-3" id="text-1-3">
 <dl class="org-dl">
 <dt>Explanatory</dt><dd>independent variables</dd>
@@ -363,8 +379,8 @@
 <dt>\(\widehat{y}_i\)</dt><dd>estimated value of \(y\) for the \(i\) th observation in sample. Obtain by evaluating regression function at \(x_i\)</dd>
 </dl>
 </div>
-<div id="outline-container-orgce7847d" class="outline-4">
-<h4 id="orgce7847d"><span class="section-number-4">1.3.1.</span> Steps with example</h4>
+<div id="outline-container-org88bb7fd" class="outline-4">
+<h4 id="org88bb7fd"><span class="section-number-4">1.3.1.</span> Steps with example</h4>
 <div class="outline-text-4" id="text-1-3-1">
 <ol class="org-ol">
 <li>Observe data in <code>ecdat</code>, which is a sample</li>
@@ -383,7 +399,7 @@
 </ol>
 </div>
 <ol class="org-ol">
-<li><a id="orgcde07ff"></a>Use OLS to fit the line<br />
+<li><a id="org1615751"></a>Use OLS to fit the line<br />
 <div class="outline-text-5" id="text-1-3-1-1">
 <p>
 Interpretation:
@@ -409,8 +425,8 @@ Interpretation:
 </li>
 </ol>
 </div>
-<div id="outline-container-org44e2cd8" class="outline-4">
-<h4 id="org44e2cd8"><span class="section-number-4">1.3.2.</span> M1L3 lecture quiz</h4>
+<div id="outline-container-orga83635f" class="outline-4">
+<h4 id="orga83635f"><span class="section-number-4">1.3.2.</span> M1L3 lecture quiz</h4>
 <div class="outline-text-4" id="text-1-3-2">
 <ol class="org-ol">
 <li>The total deviation at \((x_i, y_i)\) is \(y_i - \bar{y}\): true</li>
@@ -419,12 +435,12 @@ Interpretation:
 </div>
 </div>
 </div>
-<div id="outline-container-orge210bd7" class="outline-3">
-<h3 id="orge210bd7"><span class="section-number-3">1.4.</span> \(R^2\) and Adjusted \(R^2\)</h3>
+<div id="outline-container-org5c173c7" class="outline-3">
+<h3 id="org5c173c7"><span class="section-number-3">1.4.</span> \(R^2\) and Adjusted \(R^2\)</h3>
 <div class="outline-text-3" id="text-1-4">
 </div>
-<div id="outline-container-orgdf1e1b8" class="outline-4">
-<h4 id="orgdf1e1b8"><span class="section-number-4">1.4.1.</span> Deviations</h4>
+<div id="outline-container-org383c473" class="outline-4">
+<h4 id="org383c473"><span class="section-number-4">1.4.1.</span> Deviations</h4>
 <div class="outline-text-4" id="text-1-4-1">
 <dl class="org-dl">
 <dt>Sum of deviations</dt><dd>SST = SSE + SSR</dd>
@@ -434,8 +450,8 @@ Interpretation:
 </dl>
 </div>
 </div>
-<div id="outline-container-orgad72374" class="outline-4">
-<h4 id="orgad72374"><span class="section-number-4">1.4.2.</span> Regression output \(R^2\) and Adjusted \(R^2\)</h4>
+<div id="outline-container-org63993cf" class="outline-4">
+<h4 id="org63993cf"><span class="section-number-4">1.4.2.</span> Regression output \(R^2\) and Adjusted \(R^2\)</h4>
 <div class="outline-text-4" id="text-1-4-2">
 <dl class="org-dl">
 <dt>\(R^2\)</dt><dd>coefficient of determination. Measures strength of relationship between dependent and independent variables.
@@ -452,8 +468,8 @@ Interpretation:
 </dl>
 </div>
 </div>
-<div id="outline-container-org3965706" class="outline-4">
-<h4 id="org3965706"><span class="section-number-4">1.4.3.</span> Examples</h4>
+<div id="outline-container-org617f5e3" class="outline-4">
+<h4 id="org617f5e3"><span class="section-number-4">1.4.3.</span> Examples</h4>
 <div class="outline-text-4" id="text-1-4-3">
 <dl class="org-dl">
 <dt>When \(R^2\) = 1</dt><dd>X accounts for all variation in Y. SSE = 0</dd>
@@ -462,8 +478,8 @@ Interpretation:
 </dl>
 </div>
 </div>
-<div id="outline-container-org4833f29" class="outline-4">
-<h4 id="org4833f29"><span class="section-number-4">1.4.4.</span> M1L4 lecture quiz</h4>
+<div id="outline-container-orgf00808f" class="outline-4">
+<h4 id="orgf00808f"><span class="section-number-4">1.4.4.</span> M1L4 lecture quiz</h4>
 <div class="outline-text-4" id="text-1-4-4">
 <ol class="org-ol">
 <li>When \(R^2\) = 0, X values account for none of the variation in Y.</li>
@@ -472,8 +488,8 @@ Interpretation:
 </div>
 </div>
 </div>
-<div id="outline-container-org0ea5699" class="outline-3">
-<h3 id="org0ea5699"><span class="section-number-3">1.5.</span> Simple regression with 1 variable in R</h3>
+<div id="outline-container-org3e3786c" class="outline-3">
+<h3 id="org3e3786c"><span class="section-number-3">1.5.</span> Simple regression with 1 variable in R</h3>
 <div class="outline-text-3" id="text-1-5">
 <ul class="org-ul">
 <li>Using <code>lm</code> in R to fit simple linear regression</li>
@@ -493,8 +509,8 @@ Interpretation:
 </ol></li>
 </ul>
 </div>
-<div id="outline-container-org44d44bf" class="outline-4">
-<h4 id="org44d44bf"><span class="section-number-4">1.5.1.</span> Interpreting coefficients</h4>
+<div id="outline-container-orgc0a61ee" class="outline-4">
+<h4 id="orgc0a61ee"><span class="section-number-4">1.5.1.</span> Interpreting coefficients</h4>
 <div class="outline-text-4" id="text-1-5-1">
 <p>
 <code>(Intercept) Estimate: 3.414e+04</code>
@@ -546,8 +562,8 @@ Interpretation:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf5ade3f" class="outline-4">
-<h4 id="orgf5ade3f"><span class="section-number-4">1.5.2.</span> F-test: shows whether model is significant</h4>
+<div id="outline-container-org45e4414" class="outline-4">
+<h4 id="org45e4414"><span class="section-number-4">1.5.2.</span> F-test: shows whether model is significant</h4>
 <div class="outline-text-4" id="text-1-5-2">
 <ul class="org-ul">
 <li>i.e., reject \(H_0\)</li>
@@ -556,12 +572,12 @@ Interpretation:
 </ul>
 </div>
 </div>
-<div id="outline-container-org15beb1a" class="outline-4">
-<h4 id="org15beb1a"><span class="section-number-4">1.5.3.</span> M1L5 no lecture quiz</h4>
+<div id="outline-container-org510c609" class="outline-4">
+<h4 id="org510c609"><span class="section-number-4">1.5.3.</span> M1L5 no lecture quiz</h4>
 </div>
 </div>
-<div id="outline-container-org20ea3dd" class="outline-3">
-<h3 id="org20ea3dd"><span class="section-number-3">1.6.</span> Multiple regression</h3>
+<div id="outline-container-orgcf33509" class="outline-3">
+<h3 id="orgcf33509"><span class="section-number-3">1.6.</span> Multiple regression</h3>
 <div class="outline-text-3" id="text-1-6">
 <ol class="org-ol">
 <li>Linear regression with multiple (\(p\)) explanatory variables</li>
@@ -577,8 +593,8 @@ Interpretation:
 <li>Do EDA with plots/histogram</li>
 </ol>
 </div>
-<div id="outline-container-org3f6497a" class="outline-4">
-<h4 id="org3f6497a"><span class="section-number-4">1.6.1.</span> Regression output</h4>
+<div id="outline-container-org5ca51a3" class="outline-4">
+<h4 id="org5ca51a3"><span class="section-number-4">1.6.1.</span> Regression output</h4>
 <div class="outline-text-4" id="text-1-6-1">
 <p>
 b terms are estimates of true parameters \(\beta\) terms
@@ -625,12 +641,12 @@ all <i>ceteris paribus</i>:
 </dl>
 </div>
 </div>
-<div id="outline-container-orge43fb89" class="outline-4">
-<h4 id="orge43fb89"><span class="section-number-4">1.6.2.</span> M1L6 no lecture quiz</h4>
+<div id="outline-container-orgd2cc711" class="outline-4">
+<h4 id="orgd2cc711"><span class="section-number-4">1.6.2.</span> M1L6 no lecture quiz</h4>
 </div>
 </div>
-<div id="outline-container-orga269bde" class="outline-3">
-<h3 id="orga269bde"><span class="section-number-3">1.7.</span> \(R^2\) and adjusted \(R^2\) in multiple regression</h3>
+<div id="outline-container-org83640fc" class="outline-3">
+<h3 id="org83640fc"><span class="section-number-3">1.7.</span> \(R^2\) and adjusted \(R^2\) in multiple regression</h3>
 <div class="outline-text-3" id="text-1-7">
 <p>
 Anova table:
@@ -685,8 +701,8 @@ Anova table:
 </ul>
 </div>
 </div>
-<div id="outline-container-org32071e3" class="outline-3">
-<h3 id="org32071e3"><span class="section-number-3">1.8.</span> Simple vs multiple regression</h3>
+<div id="outline-container-org9153f6e" class="outline-3">
+<h3 id="org9153f6e"><span class="section-number-3">1.8.</span> Simple vs multiple regression</h3>
 <div class="outline-text-3" id="text-1-8">
 <ul class="org-ul">
 <li>\(R^2\) will not decrease when adding variables</li>
@@ -698,8 +714,8 @@ Anova table:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf8dc5cf" class="outline-3">
-<h3 id="orgf8dc5cf"><span class="section-number-3">1.9.</span> M1L7 lecture quiz</h3>
+<div id="outline-container-orge6e2126" class="outline-3">
+<h3 id="orge6e2126"><span class="section-number-3">1.9.</span> M1L7 lecture quiz</h3>
 <div class="outline-text-3" id="text-1-9">
 <ol class="org-ol">
 <li>In general adding more variable <b>does not decrease</b> overall \(R^2\) value of multiple regression.</li>
@@ -707,12 +723,12 @@ Anova table:
 </ol>
 </div>
 </div>
-<div id="outline-container-orge9f3f75" class="outline-3">
-<h3 id="orge9f3f75"><span class="section-number-3">1.10.</span> M1L8 Common problems and fixes in fixing regression (I)</h3>
+<div id="outline-container-orgedd6ed4" class="outline-3">
+<h3 id="orgedd6ed4"><span class="section-number-3">1.10.</span> M1L8 Common problems and fixes in fixing regression (I)</h3>
 <div class="outline-text-3" id="text-1-10">
 </div>
-<div id="outline-container-org15902fb" class="outline-4">
-<h4 id="org15902fb"><span class="section-number-4">1.10.1.</span> Assumptions of linear regression</h4>
+<div id="outline-container-orga94a612" class="outline-4">
+<h4 id="orga94a612"><span class="section-number-4">1.10.1.</span> Assumptions of linear regression</h4>
 <div class="outline-text-4" id="text-1-10-1">
 <dl class="org-dl">
 <dt>Linearity</dt><dd>i.e. \(E(y) = b_0 + b_1 x\), i.e. the expected value of Y at each X is approximately a straight line</dd>
@@ -721,8 +737,8 @@ Anova table:
 </dl>
 </div>
 </div>
-<div id="outline-container-org1b65d8a" class="outline-4">
-<h4 id="org1b65d8a"><span class="section-number-4">1.10.2.</span> Common problems in fitting Linear Regression</h4>
+<div id="outline-container-org53e43a3" class="outline-4">
+<h4 id="org53e43a3"><span class="section-number-4">1.10.2.</span> Common problems in fitting Linear Regression</h4>
 <div class="outline-text-4" id="text-1-10-2">
 <ol class="org-ol">
 <li>Response/predictor relationship is non-linear</li>
@@ -734,12 +750,12 @@ Anova table:
 </ol>
 </div>
 </div>
-<div id="outline-container-orgf883f8f" class="outline-4">
-<h4 id="orgf883f8f"><span class="section-number-4">1.10.3.</span> (1) Non linear relationship</h4>
+<div id="outline-container-org1ab23f1" class="outline-4">
+<h4 id="org1ab23f1"><span class="section-number-4">1.10.3.</span> (1) Non linear relationship</h4>
 <div class="outline-text-4" id="text-1-10-3">
 </div>
 <ol class="org-ol">
-<li><a id="org8b6daa3"></a>Checks<br />
+<li><a id="org53c4a06"></a>Checks<br />
 <div class="outline-text-5" id="text-1-10-3-1">
 <ol class="org-ol">
 <li>Check scatter plots of Y vs X, before fitting model</li>
@@ -747,7 +763,7 @@ Anova table:
 </ol>
 </div>
 </li>
-<li><a id="org42a61c8"></a>Workarounds<br />
+<li><a id="orgfbf70f5"></a>Workarounds<br />
 <div class="outline-text-5" id="text-1-10-3-2">
 <ol class="org-ol">
 <li>Model non-linear relationship with higher order terms e.g. x<sup>2</sup></li>
@@ -761,8 +777,8 @@ Anova table:
 </li>
 </ol>
 </div>
-<div id="outline-container-org2362351" class="outline-4">
-<h4 id="org2362351"><span class="section-number-4">1.10.4.</span> (2) Correlation of error terms</h4>
+<div id="outline-container-org0ed957c" class="outline-4">
+<h4 id="org0ed957c"><span class="section-number-4">1.10.4.</span> (2) Correlation of error terms</h4>
 <div class="outline-text-4" id="text-1-10-4">
 <ul class="org-ul">
 <li>There is autocorrelation if error terms are correlated</li>
@@ -778,7 +794,7 @@ Anova table:
 </ul>
 </div>
 <ol class="org-ol">
-<li><a id="org9fac559"></a>Checks<br />
+<li><a id="orga06bef6"></a>Checks<br />
 <div class="outline-text-5" id="text-1-10-4-1">
 <p>
 With the Durbin-Watson test
@@ -787,8 +803,8 @@ With the Durbin-Watson test
 </li>
 </ol>
 </div>
-<div id="outline-container-orgb67107c" class="outline-4">
-<h4 id="orgb67107c"><span class="section-number-4">1.10.5.</span> (3) Heteroskedasticity (non-constant error variance)</h4>
+<div id="outline-container-org0a23afe" class="outline-4">
+<h4 id="org0a23afe"><span class="section-number-4">1.10.5.</span> (3) Heteroskedasticity (non-constant error variance)</h4>
 <div class="outline-text-4" id="text-1-10-5">
 <ul class="org-ul">
 <li>Model assumes: spread of responses around the straight line is the same at all \(x\)</li>
@@ -800,7 +816,7 @@ With the Durbin-Watson test
 </ul>
 </div>
 <ol class="org-ol">
-<li><a id="org88645de"></a>Checks<br />
+<li><a id="orgcc7bc0b"></a>Checks<br />
 <div class="outline-text-5" id="text-1-10-5-1">
 <ol class="org-ol">
 <li>Residuals vs fitted values plot
@@ -808,7 +824,7 @@ With the Durbin-Watson test
 </ol>
 </div>
 </li>
-<li><a id="orgd919a69"></a>Workarounds<br />
+<li><a id="org614683e"></a>Workarounds<br />
 <div class="outline-text-5" id="text-1-10-5-2">
 <ol class="org-ol">
 <li>Transform the Y variable, e.g. \(ln(Y)\), \(\frac{1}{Y}\), etc.</li>
@@ -817,8 +833,8 @@ With the Durbin-Watson test
 </li>
 </ol>
 </div>
-<div id="outline-container-org9e14590" class="outline-4">
-<h4 id="org9e14590"><span class="section-number-4">1.10.6.</span> M1L8 lecture quiz</h4>
+<div id="outline-container-org7f7823f" class="outline-4">
+<h4 id="org7f7823f"><span class="section-number-4">1.10.6.</span> M1L8 lecture quiz</h4>
 <div class="outline-text-4" id="text-1-10-6">
 <ol class="org-ol">
 <li>Scatter plot of Y vs X shows non-linear pattern -&gt; SHOULD change linear regression model</li>
@@ -828,12 +844,12 @@ With the Durbin-Watson test
 </div>
 </div>
 </div>
-<div id="outline-container-org924ab7e" class="outline-3">
-<h3 id="org924ab7e"><span class="section-number-3">1.11.</span> M1L9 Common problems and fixes in fixing regression (II)</h3>
+<div id="outline-container-orgacc9f1f" class="outline-3">
+<h3 id="orgacc9f1f"><span class="section-number-3">1.11.</span> M1L9 Common problems and fixes in fixing regression (II)</h3>
 <div class="outline-text-3" id="text-1-11">
 </div>
-<div id="outline-container-orgd323a22" class="outline-4">
-<h4 id="orgd323a22"><span class="section-number-4">1.11.1.</span> (4) Outliers</h4>
+<div id="outline-container-org378458a" class="outline-4">
+<h4 id="org378458a"><span class="section-number-4">1.11.1.</span> (4) Outliers</h4>
 <div class="outline-text-4" id="text-1-11-1">
 <ol class="org-ol">
 <li>y<sub>i</sub> value far from predicted \(\widehat{y}_i\)</li>
@@ -850,7 +866,7 @@ With the Durbin-Watson test
 </ol>
 </div>
 <ol class="org-ol">
-<li><a id="orged82647"></a>Types<br />
+<li><a id="orgb87c563"></a>Types<br />
 <div class="outline-text-5" id="text-1-11-1-1">
 <ol class="org-ol">
 <li>Y, response outlier</li>
@@ -858,7 +874,7 @@ With the Durbin-Watson test
 </ol>
 </div>
 </li>
-<li><a id="org11e8652"></a>Causes<br />
+<li><a id="orgd4b7500"></a>Causes<br />
 <div class="outline-text-5" id="text-1-11-1-2">
 <ol class="org-ol">
 <li>Case by case</li>
@@ -871,11 +887,11 @@ With the Durbin-Watson test
 </li>
 </ol>
 </div>
-<div id="outline-container-orgf8e6310" class="outline-4">
-<h4 id="orgf8e6310"><span class="section-number-4">1.11.2.</span> (5) High leverage points</h4>
+<div id="outline-container-org0f1f749" class="outline-4">
+<h4 id="org0f1f749"><span class="section-number-4">1.11.2.</span> (5) High leverage points</h4>
 <div class="outline-text-4" id="text-1-11-2">
 
-<div id="org36c8f93" class="figure">
+<div id="orgeb23b02" class="figure">
 <p><img src="./img/0108-high-leverage.png" alt="0108-high-leverage.png" />
 </p>
 </div>
@@ -899,8 +915,8 @@ With the Durbin-Watson test
 </ol>
 </div>
 </div>
-<div id="outline-container-org017383c" class="outline-4">
-<h4 id="org017383c"><span class="section-number-4">1.11.3.</span> Plots in R</h4>
+<div id="outline-container-orge699b1d" class="outline-4">
+<h4 id="orge699b1d"><span class="section-number-4">1.11.3.</span> Plots in R</h4>
 <div class="outline-text-4" id="text-1-11-3">
 <p>
 plot(lm) model provides plots:
@@ -913,8 +929,8 @@ plot(lm) model provides plots:
 </dl>
 </div>
 </div>
-<div id="outline-container-org1879324" class="outline-4">
-<h4 id="org1879324"><span class="section-number-4">1.11.4.</span> (6) Multicollinearity</h4>
+<div id="outline-container-org0577861" class="outline-4">
+<h4 id="org0577861"><span class="section-number-4">1.11.4.</span> (6) Multicollinearity</h4>
 <div class="outline-text-4" id="text-1-11-4">
 <ul class="org-ul">
 <li>e.g. mpg ~ cyl; mpg ~ cyl + disp + wt.</li>
@@ -923,7 +939,7 @@ plot(lm) model provides plots:
 </ul>
 </div>
 <ol class="org-ol">
-<li><a id="org2e9a286"></a>Check<br />
+<li><a id="org3b4c367"></a>Check<br />
 <div class="outline-text-5" id="text-1-11-4-1">
 <ol class="org-ol">
 <li>With variance inflation factors, VIF
@@ -938,7 +954,7 @@ plot(lm) model provides plots:
 </ol>
 </div>
 </li>
-<li><a id="org978e7f2"></a>Consequences<br />
+<li><a id="orga9ee256"></a>Consequences<br />
 <div class="outline-text-5" id="text-1-11-4-2">
 <ol class="org-ol">
 <li>OLS estimated parameters may have large variances and covariances, thus precise estimates difficult</li>
@@ -949,7 +965,7 @@ plot(lm) model provides plots:
 </ol>
 </div>
 </li>
-<li><a id="orge62c664"></a>Solution<br />
+<li><a id="org4fc4530"></a>Solution<br />
 <div class="outline-text-5" id="text-1-11-4-3">
 <ol class="org-ol">
 <li>Pick one variable if multiple ones measure the same "thing"</li>
@@ -961,12 +977,12 @@ plot(lm) model provides plots:
 </div>
 </div>
 </div>
-<div id="outline-container-orgc3629cb" class="outline-2">
-<h2 id="orgc3629cb"><span class="section-number-2">2.</span> Module 02: Indicator variables and Interaction Terms</h2>
+<div id="outline-container-org797734e" class="outline-2">
+<h2 id="org797734e"><span class="section-number-2">2.</span> Module 02: Indicator variables and Interaction Terms</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org55b42dd" class="outline-3">
-<h3 id="org55b42dd"><span class="section-number-3">2.1.</span> M2L1: Intro (Customer Analytics Dataset)</h3>
+<div id="outline-container-org85aa837" class="outline-3">
+<h3 id="org85aa837"><span class="section-number-3">2.1.</span> M2L1: Intro (Customer Analytics Dataset)</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li>Direct Marketing dataset</li>
@@ -981,12 +997,12 @@ plot(lm) model provides plots:
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org3accf58" class="outline-4">
-<h4 id="org3accf58"><span class="section-number-4">2.1.1.</span> No lecture quiz</h4>
+<div id="outline-container-orgd7b7810" class="outline-4">
+<h4 id="orgd7b7810"><span class="section-number-4">2.1.1.</span> No lecture quiz</h4>
 </div>
 </div>
-<div id="outline-container-org26f7ea5" class="outline-3">
-<h3 id="org26f7ea5"><span class="section-number-3">2.2.</span> M2L2: Creating and Using Indicator Variables</h3>
+<div id="outline-container-orgb4f07a4" class="outline-3">
+<h3 id="orgb4f07a4"><span class="section-number-3">2.2.</span> M2L2: Creating and Using Indicator Variables</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>a.k.a. dummy variables</li>
@@ -1013,8 +1029,8 @@ plot(lm) model provides plots:
 <li>Regression equation: \(\text{AmountSpent} = b_0 + b_1*\text{AgeMid} + b_2*\text{AgeOld}\)</li>
 </ul>
 </div>
-<div id="outline-container-org85f5501" class="outline-4">
-<h4 id="org85f5501"><span class="section-number-4">2.2.1.</span> M2L2 lecture quiz</h4>
+<div id="outline-container-orgbfe655c" class="outline-4">
+<h4 id="orgbfe655c"><span class="section-number-4">2.2.1.</span> M2L2 lecture quiz</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <dl class="org-dl">
 <dt>Can record have AgeMid = 0, AgeOld = 0?</dt><dd>Yes, when Age = Yound</dd>
@@ -1023,12 +1039,12 @@ plot(lm) model provides plots:
 </div>
 </div>
 </div>
-<div id="outline-container-orgfa1e871" class="outline-3">
-<h3 id="orgfa1e871"><span class="section-number-3">2.3.</span> M2L3: Interpreting the coefficients of indicator variables</h3>
+<div id="outline-container-org0f15fc7" class="outline-3">
+<h3 id="org0f15fc7"><span class="section-number-3">2.3.</span> M2L3: Interpreting the coefficients of indicator variables</h3>
 <div class="outline-text-3" id="text-2-3">
 </div>
-<div id="outline-container-org2b3060e" class="outline-4">
-<h4 id="org2b3060e"><span class="section-number-4">2.3.1.</span> DR1: regression with dummy variable</h4>
+<div id="outline-container-orgc96a360" class="outline-4">
+<h4 id="orgc96a360"><span class="section-number-4">2.3.1.</span> DR1: regression with dummy variable</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <ul class="org-ul">
 <li><p>
@@ -1129,8 +1145,8 @@ Use contrasts function to find the base case, e.g. <code>contrasts(dirmkt$Age)</
 </ul>
 </div>
 </div>
-<div id="outline-container-org5f8d23c" class="outline-4">
-<h4 id="org5f8d23c"><span class="section-number-4">2.3.2.</span> DR2: regression with salary and dummy variables</h4>
+<div id="outline-container-org09985f4" class="outline-4">
+<h4 id="org09985f4"><span class="section-number-4">2.3.2.</span> DR2: regression with salary and dummy variables</h4>
 <div class="outline-text-4" id="text-2-3-2">
 <ul class="org-ul">
 <li><p>
@@ -1189,8 +1205,8 @@ Coeffs
 </ul>
 </div>
 </div>
-<div id="outline-container-org8bf654f" class="outline-4">
-<h4 id="org8bf654f"><span class="section-number-4">2.3.3.</span> M2L3 lecture quiz</h4>
+<div id="outline-container-org2e59ed6" class="outline-4">
+<h4 id="org2e59ed6"><span class="section-number-4">2.3.3.</span> M2L3 lecture quiz</h4>
 <div class="outline-text-4" id="text-2-3-3">
 <ul class="org-ul">
 <li>For the above coeffs, old customers spend more than young customers at the same salary level</li>
@@ -1200,8 +1216,8 @@ Coeffs
 </div>
 
 
-<div id="outline-container-orgd24bf0a" class="outline-3">
-<h3 id="orgd24bf0a"><span class="section-number-3">2.4.</span> M2L4: Interaction term and interpreting its coefficient</h3>
+<div id="outline-container-orge15148c" class="outline-3">
+<h3 id="orge15148c"><span class="section-number-3">2.4.</span> M2L4: Interaction term and interpreting its coefficient</h3>
 <div class="outline-text-3" id="text-2-4">
 <ul class="org-ul">
 <li>Example: regression with dummy variables.</li>
@@ -1266,8 +1282,8 @@ Coeffs:
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org8d79ab8" class="outline-4">
-<h4 id="org8d79ab8"><span class="section-number-4">2.4.1.</span> Interaction term</h4>
+<div id="outline-container-org8fca433" class="outline-4">
+<h4 id="org8fca433"><span class="section-number-4">2.4.1.</span> Interaction term</h4>
 <div class="outline-text-4" id="text-2-4-1">
 <ul class="org-ul">
 <li>Same example but construct new variable</li>
@@ -1325,8 +1341,8 @@ b<sub>3</sub> is the amount to add to b<sub>1</sub> to get the slope for people 
 </ul>
 </div>
 </div>
-<div id="outline-container-orge14bb8a" class="outline-4">
-<h4 id="orge14bb8a"><span class="section-number-4">2.4.2.</span> M2L4 lecture quiz</h4>
+<div id="outline-container-orge3f37c9" class="outline-4">
+<h4 id="orge3f37c9"><span class="section-number-4">2.4.2.</span> M2L4 lecture quiz</h4>
 <div class="outline-text-4" id="text-2-4-2">
 <ol class="org-ol">
 <li>If the salary for customer who lives close increases by $10,000, what is the projected increase in AmountSpent for that customer?
@@ -1340,8 +1356,8 @@ b<sub>3</sub> is the amount to add to b<sub>1</sub> to get the slope for people 
 </ol>
 </div>
 </div>
-<div id="outline-container-org93098b2" class="outline-4">
-<h4 id="org93098b2"><span class="section-number-4">2.4.3.</span> Categorical variable with \(\text{M}\) values</h4>
+<div id="outline-container-orgbf160e7" class="outline-4">
+<h4 id="orgbf160e7"><span class="section-number-4">2.4.3.</span> Categorical variable with \(\text{M}\) values</h4>
 <div class="outline-text-4" id="text-2-4-3">
 <ul class="org-ul">
 <li>Indicator variable has \(M\) possible values, then need to construct \(M-1\) dummy variables.</li>
@@ -1351,12 +1367,12 @@ b<sub>3</sub> is the amount to add to b<sub>1</sub> to get the slope for people 
 </div>
 </div>
 </div>
-<div id="outline-container-orgac86f31" class="outline-3">
-<h3 id="orgac86f31"><span class="section-number-3">2.5.</span> M2L5: Another example of using indicator variables</h3>
+<div id="outline-container-orge205dae" class="outline-3">
+<h3 id="orge205dae"><span class="section-number-3">2.5.</span> M2L5: Another example of using indicator variables</h3>
 <div class="outline-text-3" id="text-2-5">
 </div>
-<div id="outline-container-orgc5e2dd0" class="outline-4">
-<h4 id="orgc5e2dd0"><span class="section-number-4">2.5.1.</span> Airbnb Los Angeles dataset</h4>
+<div id="outline-container-org3752c86" class="outline-4">
+<h4 id="org3752c86"><span class="section-number-4">2.5.1.</span> Airbnb Los Angeles dataset</h4>
 <div class="outline-text-4" id="text-2-5-1">
 <ul class="org-ul">
 <li>e.g. owner aiming to understand key factors that influence price</li>
@@ -1368,8 +1384,8 @@ b<sub>3</sub> is the amount to add to b<sub>1</sub> to get the slope for people 
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf8a59ac" class="outline-4">
-<h4 id="orgf8a59ac"><span class="section-number-4">2.5.2.</span> 2DR1: How does room price vary by capacity?</h4>
+<div id="outline-container-org090068a" class="outline-4">
+<h4 id="org090068a"><span class="section-number-4">2.5.2.</span> 2DR1: How does room price vary by capacity?</h4>
 <div class="outline-text-4" id="text-2-5-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -1424,7 +1440,7 @@ Create two dummy variables as follows. Base case (both 0) is "Shared" <code>room
 </ol>
 </div>
 <ol class="org-ol">
-<li><a id="org4a3ef7d"></a>2DR1: Equation<br />
+<li><a id="org50269bb"></a>2DR1: Equation<br />
 <div class="outline-text-5" id="text-2-5-2-1">
 <p>
 \[
@@ -1470,7 +1486,7 @@ Create two dummy variables as follows. Base case (both 0) is "Shared" <code>room
 </table>
 </div>
 </li>
-<li><a id="org3617c9f"></a>2DR1: Interpretation:<br />
+<li><a id="org1d9abb5"></a>2DR1: Interpretation:<br />
 <div class="outline-text-5" id="text-2-5-2-2">
 <dl class="org-dl">
 <dt>Average price of room = 37.149</dt><dd>Shared room</dd>
@@ -1481,8 +1497,8 @@ Create two dummy variables as follows. Base case (both 0) is "Shared" <code>room
 </li>
 </ol>
 </div>
-<div id="outline-container-org4dd5c0b" class="outline-4">
-<h4 id="org4dd5c0b"><span class="section-number-4">2.5.3.</span> 2DR2: 2nd regression with capacity and dummies</h4>
+<div id="outline-container-org6ac77cf" class="outline-4">
+<h4 id="org6ac77cf"><span class="section-number-4">2.5.3.</span> 2DR2: 2nd regression with capacity and dummies</h4>
 <div class="outline-text-4" id="text-2-5-3">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -1537,8 +1553,8 @@ Create two dummy variables as follows. Base case (both 0) is "Shared" <code>room
 </ul>
 </div>
 </div>
-<div id="outline-container-org46e6674" class="outline-4">
-<h4 id="org46e6674"><span class="section-number-4">2.5.4.</span> Interaction terms</h4>
+<div id="outline-container-orgea271b1" class="outline-4">
+<h4 id="orgea271b1"><span class="section-number-4">2.5.4.</span> Interaction terms</h4>
 <div class="outline-text-4" id="text-2-5-4">
 <ol class="org-ol">
 <li>Create 2 new variables:
@@ -1612,7 +1628,7 @@ Regression coeff's:
 </div>
 
 <ol class="org-ol">
-<li><a id="orgd88e448"></a>Interpretation<br />
+<li><a id="org02d76aa"></a>Interpretation<br />
 <div class="outline-text-5" id="text-2-5-4-1">
 <ol class="org-ol">
 <li>b<sub>4</sub> is the amount to add to b<sub>1</sub> to get slope for Private room</li>
@@ -1624,17 +1640,17 @@ Regression coeff's:
 </li>
 </ol>
 </div>
-<div id="outline-container-org336884d" class="outline-4">
-<h4 id="org336884d"><span class="section-number-4">2.5.5.</span> No lecture quiz</h4>
+<div id="outline-container-orgad55d12" class="outline-4">
+<h4 id="orgad55d12"><span class="section-number-4">2.5.5.</span> No lecture quiz</h4>
 </div>
 </div>
 </div>
-<div id="outline-container-org5a00237" class="outline-2">
-<h2 id="org5a00237"><span class="section-number-2">3.</span> Module 03: Non-linear transformation models</h2>
+<div id="outline-container-org0a2ec1c" class="outline-2">
+<h2 id="org0a2ec1c"><span class="section-number-2">3.</span> Module 03: Non-linear transformation models</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org5e80452" class="outline-3">
-<h3 id="org5e80452"><span class="section-number-3">3.1.</span> M3L1: Intro (and why needed)</h3>
+<div id="outline-container-org7fa18d1" class="outline-3">
+<h3 id="org7fa18d1"><span class="section-number-3">3.1.</span> M3L1: Intro (and why needed)</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 Examples:
@@ -1653,8 +1669,8 @@ Examples:
 <li><b>FOCUS</b> on natural log transformations in 6203 as these are easier to interpret</li>
 </ol>
 </div>
-<div id="outline-container-orgd1eab95" class="outline-4">
-<h4 id="orgd1eab95"><span class="section-number-4">3.1.1.</span> Summary of models</h4>
+<div id="outline-container-org2e82b2c" class="outline-4">
+<h4 id="org2e82b2c"><span class="section-number-4">3.1.1.</span> Summary of models</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -1695,8 +1711,8 @@ Notes: if variable \(x\) has values = 0, then use log(x+1) transformation.
 </div>
 
 
-<div id="outline-container-org0895011" class="outline-3">
-<h3 id="org0895011"><span class="section-number-3">3.2.</span> M3L2: Linear-Log model</h3>
+<div id="outline-container-org45632b1" class="outline-3">
+<h3 id="org45632b1"><span class="section-number-3">3.2.</span> M3L2: Linear-Log model</h3>
 <div class="outline-text-3" id="text-3-2">
 <ul class="org-ul">
 <li><p>
@@ -1745,8 +1761,8 @@ Coeff table:
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-orgb625081" class="outline-4">
-<h4 id="orgb625081"><span class="section-number-4">3.2.1.</span> Interpretation of coefficients</h4>
+<div id="outline-container-org1c991fb" class="outline-4">
+<h4 id="org1c991fb"><span class="section-number-4">3.2.1.</span> Interpretation of coefficients</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <p>
 b<sub>1</sub> = 37660 implies that:
@@ -1759,12 +1775,12 @@ b<sub>1</sub> = 37660 implies that:
 </ul>
 </div>
 </div>
-<div id="outline-container-org2572401" class="outline-4">
-<h4 id="org2572401"><span class="section-number-4">3.2.2.</span> No lecture quiz</h4>
+<div id="outline-container-orgd5eeffa" class="outline-4">
+<h4 id="orgd5eeffa"><span class="section-number-4">3.2.2.</span> No lecture quiz</h4>
 </div>
 </div>
-<div id="outline-container-org029fb12" class="outline-3">
-<h3 id="org029fb12"><span class="section-number-3">3.3.</span> M3L3: Log-Linear model</h3>
+<div id="outline-container-org169ada7" class="outline-3">
+<h3 id="org169ada7"><span class="section-number-3">3.3.</span> M3L3: Log-Linear model</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 Model C: \(\log(\text{price}) = b_0 + b_1\text{lotsize}\)
@@ -1811,8 +1827,8 @@ Coeff table
 <li>Creates a new variable log(price)</li>
 </ul>
 </div>
-<div id="outline-container-orgf632519" class="outline-4">
-<h4 id="orgf632519"><span class="section-number-4">3.3.1.</span> Interpretation of coefficients</h4>
+<div id="outline-container-org8eb1570" class="outline-4">
+<h4 id="org8eb1570"><span class="section-number-4">3.3.1.</span> Interpretation of coefficients</h4>
 <div class="outline-text-4" id="text-3-3-1">
 <ul class="org-ul">
 <li>Coefficient b<sub>1</sub> indicates:
@@ -1828,8 +1844,8 @@ Coeff table
 </ul>
 </div>
 </div>
-<div id="outline-container-org80a572f" class="outline-4">
-<h4 id="org80a572f"><span class="section-number-4">3.3.2.</span> Derivation</h4>
+<div id="outline-container-org0846253" class="outline-4">
+<h4 id="org0846253"><span class="section-number-4">3.3.2.</span> Derivation</h4>
 <div class="outline-text-4" id="text-3-3-2">
 <ul class="org-ul">
 <li>Increase x by 1 unit increases log(y) by b<sub>1</sub> units</li>
@@ -1847,12 +1863,12 @@ Coeff table
 </ul>
 </div>
 </div>
-<div id="outline-container-org1cb0e20" class="outline-4">
-<h4 id="org1cb0e20"><span class="section-number-4">3.3.3.</span> No lecture quiz</h4>
+<div id="outline-container-org770f291" class="outline-4">
+<h4 id="org770f291"><span class="section-number-4">3.3.3.</span> No lecture quiz</h4>
 </div>
 </div>
-<div id="outline-container-org7a78637" class="outline-3">
-<h3 id="org7a78637"><span class="section-number-3">3.4.</span> M3L4: Log-Log model</h3>
+<div id="outline-container-org91d40ed" class="outline-3">
+<h3 id="org91d40ed"><span class="section-number-3">3.4.</span> M3L4: Log-Log model</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 Both LHS and RHS are log transformed.
@@ -1896,8 +1912,8 @@ Both LHS and RHS are log transformed.
 <li>Adjusted R<sup>2</sup> = 0.3352</li>
 </ul>
 </div>
-<div id="outline-container-org25831d5" class="outline-4">
-<h4 id="org25831d5"><span class="section-number-4">3.4.1.</span> Interpretation</h4>
+<div id="outline-container-org81cb97d" class="outline-4">
+<h4 id="org81cb97d"><span class="section-number-4">3.4.1.</span> Interpretation</h4>
 <div class="outline-text-4" id="text-3-4-1">
 <ul class="org-ul">
 <li>Increasing independent variable by 1% increases dependent variable by b<sub>1</sub> %</li>
@@ -1908,8 +1924,8 @@ Both LHS and RHS are log transformed.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgeab70a6" class="outline-4">
-<h4 id="orgeab70a6"><span class="section-number-4">3.4.2.</span> Reasons for log-transforming data</h4>
+<div id="outline-container-orge5f02bb" class="outline-4">
+<h4 id="orge5f02bb"><span class="section-number-4">3.4.2.</span> Reasons for log-transforming data</h4>
 <div class="outline-text-4" id="text-3-4-2">
 <ol class="org-ol">
 <li>Achieve more linear r/s</li>
@@ -1919,8 +1935,8 @@ Both LHS and RHS are log transformed.
 </ol>
 </div>
 </div>
-<div id="outline-container-org2bb2005" class="outline-4">
-<h4 id="org2bb2005"><span class="section-number-4">3.4.3.</span> Summary of models and interpretation</h4>
+<div id="outline-container-org02a3346" class="outline-4">
+<h4 id="org02a3346"><span class="section-number-4">3.4.3.</span> Summary of models and interpretation</h4>
 <div class="outline-text-4" id="text-3-4-3">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -1987,12 +2003,12 @@ Both LHS and RHS are log transformed.
 </table>
 </div>
 </div>
-<div id="outline-container-org36a3c5e" class="outline-4">
-<h4 id="org36a3c5e"><span class="section-number-4">3.4.4.</span> M3L4 no lecture quiz</h4>
+<div id="outline-container-org5977b8f" class="outline-4">
+<h4 id="org5977b8f"><span class="section-number-4">3.4.4.</span> M3L4 no lecture quiz</h4>
 </div>
 </div>
-<div id="outline-container-org8bad775" class="outline-3">
-<h3 id="org8bad775"><span class="section-number-3">3.5.</span> M3L5: Polynomial model</h3>
+<div id="outline-container-org96ddd95" class="outline-3">
+<h3 id="org96ddd95"><span class="section-number-3">3.5.</span> M3L5: Polynomial model</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 Example:
@@ -2010,17 +2026,17 @@ Example:
 <li>This means the slope is not constant and changes at every point of the quadratic curve</li>
 </ul>
 </div>
-<div id="outline-container-org62faea2" class="outline-4">
-<h4 id="org62faea2"><span class="section-number-4">3.5.1.</span> M3L5 no lecture quiz</h4>
+<div id="outline-container-orge7a676d" class="outline-4">
+<h4 id="orge7a676d"><span class="section-number-4">3.5.1.</span> M3L5 no lecture quiz</h4>
 </div>
 </div>
 </div>
-<div id="outline-container-org11d0d8d" class="outline-2">
-<h2 id="org11d0d8d"><span class="section-number-2">4.</span> Module 04: Logistic Regression</h2>
+<div id="outline-container-orgef89587" class="outline-2">
+<h2 id="orgef89587"><span class="section-number-2">4.</span> Module 04: Logistic Regression</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orgb745d41" class="outline-3">
-<h3 id="orgb745d41"><span class="section-number-3">4.1.</span> M4L1: Odds</h3>
+<div id="outline-container-org8a6ad7e" class="outline-3">
+<h3 id="org8a6ad7e"><span class="section-number-3">4.1.</span> M4L1: Odds</h3>
 <div class="outline-text-3" id="text-4-1">
 <ul class="org-ul">
 <li>Odds express the <b>likelihood</b> of an event</li>
@@ -2039,8 +2055,8 @@ Example:
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org9130e17" class="outline-4">
-<h4 id="org9130e17"><span class="section-number-4">4.1.1.</span> <i>Odds For</i> in statistics</h4>
+<div id="outline-container-orgaaadb01" class="outline-4">
+<h4 id="orgaaadb01"><span class="section-number-4">4.1.1.</span> <i>Odds For</i> in statistics</h4>
 <div class="outline-text-4" id="text-4-1-1">
 <dl class="org-dl">
 <dt>Odds</dt><dd>ratio of probabilities</dd>
@@ -2065,8 +2081,8 @@ Take \(p\) as probability of event happening, then: Odds for = \(\frac{p}{1-p}\)
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbf2072d" class="outline-4">
-<h4 id="orgbf2072d"><span class="section-number-4">4.1.2.</span> M4L1 lecture quiz</h4>
+<div id="outline-container-orgdb2a3eb" class="outline-4">
+<h4 id="orgdb2a3eb"><span class="section-number-4">4.1.2.</span> M4L1 lecture quiz</h4>
 <div class="outline-text-4" id="text-4-1-2">
 <ol class="org-ol">
 <li>A betting site shows odds of NE Patriots winning next Super Bowl is 5 to 1 (odds against). What is the probability of them winning the next super bowl?
@@ -2081,8 +2097,8 @@ Take \(p\) as probability of event happening, then: Odds for = \(\frac{p}{1-p}\)
 </div>
 </div>
 </div>
-<div id="outline-container-org6368f22" class="outline-3">
-<h3 id="org6368f22"><span class="section-number-3">4.2.</span> M4L2: Binary Dependent Variable</h3>
+<div id="outline-container-org61326f2" class="outline-3">
+<h3 id="org61326f2"><span class="section-number-3">4.2.</span> M4L2: Binary Dependent Variable</h3>
 <div class="outline-text-3" id="text-4-2">
 <ul class="org-ul">
 <li>Recap: relationship between <i>Odds For</i> and \(p\)</li>
@@ -2110,16 +2126,16 @@ Take \(p\) as probability of event happening, then: Odds for = \(\frac{p}{1-p}\)
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-orgaf3271f" class="outline-4">
-<h4 id="orgaf3271f"><span class="section-number-4">4.2.1.</span> M4L2 no lecture quiz</h4>
+<div id="outline-container-org7521b38" class="outline-4">
+<h4 id="org7521b38"><span class="section-number-4">4.2.1.</span> M4L2 no lecture quiz</h4>
 </div>
 </div>
-<div id="outline-container-org3c0dfc6" class="outline-3">
-<h3 id="org3c0dfc6"><span class="section-number-3">4.3.</span> M4L3: Logistic Regression</h3>
+<div id="outline-container-orgbeedfd7" class="outline-3">
+<h3 id="orgbeedfd7"><span class="section-number-3">4.3.</span> M4L3: Logistic Regression</h3>
 <div class="outline-text-3" id="text-4-3">
 </div>
-<div id="outline-container-orgb4bfdaa" class="outline-4">
-<h4 id="orgb4bfdaa"><span class="section-number-4">4.3.1.</span> Comparison of logisitic and linear regression</h4>
+<div id="outline-container-orgd72e7b6" class="outline-4">
+<h4 id="orgd72e7b6"><span class="section-number-4">4.3.1.</span> Comparison of logisitic and linear regression</h4>
 <div class="outline-text-4" id="text-4-3-1">
 <p>
 Logistic regression is similar to linear regression with 2 main differences:
@@ -2130,8 +2146,8 @@ Logistic regression is similar to linear regression with 2 main differences:
 </ol>
 </div>
 </div>
-<div id="outline-container-orga264e93" class="outline-4">
-<h4 id="orga264e93"><span class="section-number-4">4.3.2.</span> Implementing logistic regression</h4>
+<div id="outline-container-orgba2485a" class="outline-4">
+<h4 id="orgba2485a"><span class="section-number-4">4.3.2.</span> Implementing logistic regression</h4>
 <div class="outline-text-4" id="text-4-3-2">
 <ul class="org-ul">
 <li>We use the logistic function, which gives probability of being in a group</li>
@@ -2148,7 +2164,7 @@ Logistic regression is similar to linear regression with 2 main differences:
   \log(\frac{p}{1-p}) = b_0+b_1x
   \]</li>
 <li>\(\log(\frac{p}{1-p})\) is the log of odds for, or <b>logit</b></li>
-<li><a id="orgf396a61"></a> is:
+<li><a id="org483d7bb"></a> is:
 \[
   \text{logit}(p) = \log(\frac{p}{1-p}) \\
   = b_0+b_1x
@@ -2157,8 +2173,8 @@ Logistic regression is similar to linear regression with 2 main differences:
 </ul>
 </div>
 </div>
-<div id="outline-container-org9f81481" class="outline-4">
-<h4 id="org9f81481"><span class="section-number-4">4.3.3.</span> Why transform from probability to log odds?</h4>
+<div id="outline-container-org0db03d7" class="outline-4">
+<h4 id="org0db03d7"><span class="section-number-4">4.3.3.</span> Why transform from probability to log odds?</h4>
 <div class="outline-text-4" id="text-4-3-3">
 <ul class="org-ul">
 <li>Mapping probability with range (0,1) to log odds with range (-&infin;,&infin;) will:
@@ -2170,8 +2186,8 @@ Logistic regression is similar to linear regression with 2 main differences:
 </ul>
 </div>
 </div>
-<div id="outline-container-org1d1f98f" class="outline-4">
-<h4 id="org1d1f98f"><span class="section-number-4">4.3.4.</span> Interpreting logistic regression model</h4>
+<div id="outline-container-org5a32416" class="outline-4">
+<h4 id="org5a32416"><span class="section-number-4">4.3.4.</span> Interpreting logistic regression model</h4>
 <div class="outline-text-4" id="text-4-3-4">
 <ul class="org-ul">
 <li><b>logit(p)</b> = \(\log(\frac{p}{1-p}) = b_0+b_1x\) means:
@@ -2183,8 +2199,8 @@ Logistic regression is similar to linear regression with 2 main differences:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbcb002b" class="outline-4">
-<h4 id="orgbcb002b"><span class="section-number-4">4.3.5.</span> M4L3 lecture quiz</h4>
+<div id="outline-container-org7be142a" class="outline-4">
+<h4 id="org7be142a"><span class="section-number-4">4.3.5.</span> M4L3 lecture quiz</h4>
 <div class="outline-text-4" id="text-4-3-5">
 <ol class="org-ol">
 <li>The logistic function, p(x), returns values
@@ -2201,8 +2217,8 @@ Logistic regression is similar to linear regression with 2 main differences:
 </div>
 </div>
 </div>
-<div id="outline-container-org4c0420b" class="outline-3">
-<h3 id="org4c0420b"><span class="section-number-3">4.4.</span> M4L4: Logistic Regression using the <i>Default</i> dataset</h3>
+<div id="outline-container-org4bc557e" class="outline-3">
+<h3 id="org4bc557e"><span class="section-number-3">4.4.</span> M4L4: Logistic Regression using the <i>Default</i> dataset</h3>
 <div class="outline-text-3" id="text-4-4">
 <ul class="org-ul">
 <li>Dataset from ISLR library.</li>
@@ -2225,8 +2241,8 @@ Logistic regression is similar to linear regression with 2 main differences:
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-orgc34f85a" class="outline-4">
-<h4 id="orgc34f85a"><span class="section-number-4">4.4.1.</span> M1: no predictors \(\text{logit}(p) = b_0\)</h4>
+<div id="outline-container-org5a015f7" class="outline-4">
+<h4 id="org5a015f7"><span class="section-number-4">4.4.1.</span> M1: no predictors \(\text{logit}(p) = b_0\)</h4>
 <div class="outline-text-4" id="text-4-4-1">
 <ul class="org-ul">
 <li>Intercept = -3.368 = log-odds of being in default for entire population</li>
@@ -2235,8 +2251,8 @@ Logistic regression is similar to linear regression with 2 main differences:
 </ul>
 </div>
 </div>
-<div id="outline-container-org2123ced" class="outline-4">
-<h4 id="org2123ced"><span class="section-number-4">4.4.2.</span> M2: single binary predictor  \(\text{logit}(p) = b_0+b_1\times \text{stdt}\)</h4>
+<div id="outline-container-org1de6d5e" class="outline-4">
+<h4 id="org1de6d5e"><span class="section-number-4">4.4.2.</span> M2: single binary predictor  \(\text{logit}(p) = b_0+b_1\times \text{stdt}\)</h4>
 <div class="outline-text-4" id="text-4-4-2">
 <ul class="org-ul">
 <li>Coefficients:
@@ -2259,8 +2275,8 @@ Logistic regression is similar to linear regression with 2 main differences:
 </ul>
 </div>
 </div>
-<div id="outline-container-org53b0e30" class="outline-4">
-<h4 id="org53b0e30"><span class="section-number-4">4.4.3.</span> M3: single continuous predictor  \(\text{logit}(p) = b_0+b_1\times \text{balance}\)</h4>
+<div id="outline-container-orgdf2e226" class="outline-4">
+<h4 id="orgdf2e226"><span class="section-number-4">4.4.3.</span> M3: single continuous predictor  \(\text{logit}(p) = b_0+b_1\times \text{balance}\)</h4>
 <div class="outline-text-4" id="text-4-4-3">
 <ul class="org-ul">
 <li>Coefficients:
@@ -2309,8 +2325,8 @@ Examples, with \(p(x)=\frac{e^{b_0+b_1x}}{1+{e^{b_0+b_1x}}}\)
 </ul>
 </div>
 </div>
-<div id="outline-container-org7b0a223" class="outline-4">
-<h4 id="org7b0a223"><span class="section-number-4">4.4.4.</span> M4: multiple predictors \(\text{logit}(p) = b_0 + b_1\times \text{balance} + b_2 \times \text{income} + b_3 \times \text{stdt}\)</h4>
+<div id="outline-container-orge60f656" class="outline-4">
+<h4 id="orge60f656"><span class="section-number-4">4.4.4.</span> M4: multiple predictors \(\text{logit}(p) = b_0 + b_1\times \text{balance} + b_2 \times \text{income} + b_3 \times \text{stdt}\)</h4>
 <div class="outline-text-4" id="text-4-4-4">
 <ul class="org-ul">
 <li><p>
@@ -2338,8 +2354,8 @@ Coefficients
 </ul>
 </div>
 </div>
-<div id="outline-container-org2342099" class="outline-4">
-<h4 id="org2342099"><span class="section-number-4">4.4.5.</span> M4L4 lecture quiz</h4>
+<div id="outline-container-org150f5dc" class="outline-4">
+<h4 id="org150f5dc"><span class="section-number-4">4.4.5.</span> M4L4 lecture quiz</h4>
 <div class="outline-text-4" id="text-4-4-5">
 <ol class="org-ol">
 <li>For logistic model where Y=1 is the default case:
@@ -2350,16 +2366,16 @@ Coefficients
 </div>
 </div>
 </div>
-<div id="outline-container-org44b8805" class="outline-3">
-<h3 id="org44b8805"><span class="section-number-3">4.5.</span> M4L5: Predictions and Confusion Matrix</h3>
+<div id="outline-container-orgc660621" class="outline-3">
+<h3 id="orgc660621"><span class="section-number-3">4.5.</span> M4L5: Predictions and Confusion Matrix</h3>
 <div class="outline-text-3" id="text-4-5">
 <ul class="org-ul">
 <li>Making predictions on fitted data, e.g. M4: \(\text{logit}(p) = b_0 + b_1\times \text{balance} + b_2 \times \text{income} + b_3 \times \text{stdt}\)</li>
 <li>Make predictions by using predict with Model 4, and use 0.5 as the cutoff</li>
 </ul>
 </div>
-<div id="outline-container-org0ed982a" class="outline-4">
-<h4 id="org0ed982a"><span class="section-number-4">4.5.1.</span> True Negative and False Positive</h4>
+<div id="outline-container-org53ff433" class="outline-4">
+<h4 id="org53ff433"><span class="section-number-4">4.5.1.</span> True Negative and False Positive</h4>
 <div class="outline-text-4" id="text-4-5-1">
 <ul class="org-ul">
 <li>Consider all Y=0 observed (no defaults)</li>
@@ -2370,8 +2386,8 @@ Coefficients
 </ul>
 </div>
 </div>
-<div id="outline-container-org6e76616" class="outline-4">
-<h4 id="org6e76616"><span class="section-number-4">4.5.2.</span> True Positive and False Negative</h4>
+<div id="outline-container-org9acb0a1" class="outline-4">
+<h4 id="org9acb0a1"><span class="section-number-4">4.5.2.</span> True Positive and False Negative</h4>
 <div class="outline-text-4" id="text-4-5-2">
 <ul class="org-ul">
 <li>Consider all Y=1 observed (defaults)</li>
@@ -2382,8 +2398,8 @@ Coefficients
 </ul>
 </div>
 </div>
-<div id="outline-container-org860577a" class="outline-4">
-<h4 id="org860577a"><span class="section-number-4">4.5.3.</span> Confusion matrix</h4>
+<div id="outline-container-org3bc294b" class="outline-4">
+<h4 id="org3bc294b"><span class="section-number-4">4.5.3.</span> Confusion matrix</h4>
 <div class="outline-text-4" id="text-4-5-3">
 <ul class="org-ul">
 <li>Shows the intersection of actual and predicted values of model</li>
@@ -2393,12 +2409,12 @@ Coefficients
 </div>
 </div>
 </div>
-<div id="outline-container-orgaba4521" class="outline-3">
-<h3 id="orgaba4521"><span class="section-number-3">4.6.</span> M4L6: Sensitivity, Specificity, and the ROC curve</h3>
+<div id="outline-container-org16e620c" class="outline-3">
+<h3 id="org16e620c"><span class="section-number-3">4.6.</span> M4L6: Sensitivity, Specificity, and the ROC curve</h3>
 <div class="outline-text-3" id="text-4-6">
 </div>
-<div id="outline-container-org0356651" class="outline-4">
-<h4 id="org0356651"><span class="section-number-4">4.6.1.</span> Definitions</h4>
+<div id="outline-container-org7273177" class="outline-4">
+<h4 id="org7273177"><span class="section-number-4">4.6.1.</span> Definitions</h4>
 <div class="outline-text-4" id="text-4-6-1">
 <dl class="org-dl">
 <dt>Sensitivity</dt><dd>true positive rate: \(\frac{\text{true pos}}{\text{true pos + false neg}}\)</dd>
@@ -2409,8 +2425,8 @@ Coefficients
 </dl>
 </div>
 </div>
-<div id="outline-container-org706a535" class="outline-4">
-<h4 id="org706a535"><span class="section-number-4">4.6.2.</span> Type I and II errors</h4>
+<div id="outline-container-org6a5c9ce" class="outline-4">
+<h4 id="org6a5c9ce"><span class="section-number-4">4.6.2.</span> Type I and II errors</h4>
 <div class="outline-text-4" id="text-4-6-2">
 <dl class="org-dl">
 <dt>False positive error</dt><dd>type I error. Falsely reject true (null) hypothesis. true Y=0, predicted Y=1.</dd>
@@ -2418,7 +2434,7 @@ Coefficients
 </dl>
 </div>
 <ol class="org-ol">
-<li><a id="orgb8a738a"></a>Cutoff<br />
+<li><a id="org2b93fb3"></a>Cutoff<br />
 <div class="outline-text-5" id="text-4-6-2-1">
 <ol class="org-ol">
 <li>Increasing cutoff decreases Type I error</li>
@@ -2426,7 +2442,7 @@ Coefficients
 </ol>
 </div>
 </li>
-<li><a id="orgea2d4cb"></a>In business applications<br />
+<li><a id="org562b018"></a>In business applications<br />
 <div class="outline-text-5" id="text-4-6-2-2">
 <p>
 Cost of making error depends on situation, e.g.:
@@ -2439,8 +2455,8 @@ Cost of making error depends on situation, e.g.:
 </li>
 </ol>
 </div>
-<div id="outline-container-orgc54bcc7" class="outline-4">
-<h4 id="orgc54bcc7"><span class="section-number-4">4.6.3.</span> Calculating sensitivity and specificity for cutoff \(p = 0.5\)</h4>
+<div id="outline-container-org9decb3a" class="outline-4">
+<h4 id="org9decb3a"><span class="section-number-4">4.6.3.</span> Calculating sensitivity and specificity for cutoff \(p = 0.5\)</h4>
 <div class="outline-text-4" id="text-4-6-3">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -2505,8 +2521,8 @@ Cost of making error depends on situation, e.g.:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgecc5e68" class="outline-4">
-<h4 id="orgecc5e68"><span class="section-number-4">4.6.4.</span> Increasing cutoff to \(p=0.9\)</h4>
+<div id="outline-container-orgbb249d9" class="outline-4">
+<h4 id="orgbb249d9"><span class="section-number-4">4.6.4.</span> Increasing cutoff to \(p=0.9\)</h4>
 <div class="outline-text-4" id="text-4-6-4">
 <ul class="org-ul">
 <li>Sensitivity decreases to 0.03</li>
@@ -2514,8 +2530,8 @@ Cost of making error depends on situation, e.g.:
 </ul>
 </div>
 </div>
-<div id="outline-container-org9a1233b" class="outline-4">
-<h4 id="org9a1233b"><span class="section-number-4">4.6.5.</span> Increasing cutoff value of \(p\)</h4>
+<div id="outline-container-org2a8b951" class="outline-4">
+<h4 id="org2a8b951"><span class="section-number-4">4.6.5.</span> Increasing cutoff value of \(p\)</h4>
 <div class="outline-text-4" id="text-4-6-5">
 <ul class="org-ul">
 <li>True neg increase, false pos decrease</li>
@@ -2523,8 +2539,8 @@ Cost of making error depends on situation, e.g.:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd0e5ae6" class="outline-4">
-<h4 id="orgd0e5ae6"><span class="section-number-4">4.6.6.</span> ROC Curve</h4>
+<div id="outline-container-orgbf87e9f" class="outline-4">
+<h4 id="orgbf87e9f"><span class="section-number-4">4.6.6.</span> ROC Curve</h4>
 <div class="outline-text-4" id="text-4-6-6">
 <ul class="org-ul">
 <li>"Receiver Operating Characteristic" curve</li>
@@ -2533,8 +2549,8 @@ Cost of making error depends on situation, e.g.:
 </ul>
 </div>
 </div>
-<div id="outline-container-org340d874" class="outline-4">
-<h4 id="org340d874"><span class="section-number-4">4.6.7.</span> M4L6 lecture quiz</h4>
+<div id="outline-container-orga4025f0" class="outline-4">
+<h4 id="orga4025f0"><span class="section-number-4">4.6.7.</span> M4L6 lecture quiz</h4>
 <div class="outline-text-4" id="text-4-6-7">
 <ol class="org-ol">
 <li>Formula of sensitivity  \(\frac{\text{true pos}}{\text{true pos + false neg}}\)</li>
@@ -2544,16 +2560,16 @@ Cost of making error depends on situation, e.g.:
 </div>
 </div>
 </div>
-<div id="outline-container-org9a7ec32" class="outline-2">
-<h2 id="org9a7ec32"><span class="section-number-2">5.</span> Module 05: Treatment Effects</h2>
+<div id="outline-container-orgd9ecff5" class="outline-2">
+<h2 id="orgd9ecff5"><span class="section-number-2">5.</span> Module 05: Treatment Effects</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-org5afe006" class="outline-3">
-<h3 id="org5afe006"><span class="section-number-3">5.1.</span> M5L1: Correlations vs. Causality</h3>
+<div id="outline-container-org3e850e3" class="outline-3">
+<h3 id="org3e850e3"><span class="section-number-3">5.1.</span> M5L1: Correlations vs. Causality</h3>
 <div class="outline-text-3" id="text-5-1">
 </div>
-<div id="outline-container-org384fc46" class="outline-4">
-<h4 id="org384fc46"><span class="section-number-4">5.1.1.</span> Correlation</h4>
+<div id="outline-container-orgc44773e" class="outline-4">
+<h4 id="orgc44773e"><span class="section-number-4">5.1.1.</span> Correlation</h4>
 <div class="outline-text-4" id="text-5-1-1">
 <p>
 \[
@@ -2570,25 +2586,236 @@ Corr(X,Y) = \frac{\sum^n_{i=1}(x_i-\bar{x})(y_i-\bar{y})}
 </ul>
 </div>
 </div>
+<div id="outline-container-orgd081358" class="outline-4">
+<h4 id="orgd081358"><span class="section-number-4">5.1.2.</span> Strong Corr(A,B)</h4>
+<div class="outline-text-4" id="text-5-1-2">
+<p>
+Possibilities:
+</p>
+<ol class="org-ol">
+<li>A causes B</li>
+<li>B causes A
+<ul class="org-ul">
+<li>Note reverse causality! e.g., the faster windmill rotates -&gt; faster windspeed observed</li>
+</ul></li>
+<li>A and B are consequence of another common cause C
+<ul class="org-ul">
+<li>e.g. ice cream sales increase, more drownings.</li>
+<li>common cause is summer</li>
+</ul></li>
+<li>A -&gt; C -&gt; B</li>
+<li>Correlation is by chance</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org2ed3615" class="outline-4">
+<h4 id="org2ed3615"><span class="section-number-4">5.1.3.</span> <i>Post hoc ergo propter hoc</i></h4>
+<div class="outline-text-4" id="text-5-1-3">
+<blockquote>
+<p>
+After this, therefore because of this
+</p>
+</blockquote>
+<ul class="org-ul">
+<li>Logical fallacy that if A happened, then B happened, A must have caused B to happen</li>
+<li>E.g. rooster crows just before sunrise, hence rooster causes sun to rise</li>
+<li>Please consider other factors that could be responsible for the result
+<ul class="org-ul">
+<li>that might rule out the sequence connection</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org276bdcb" class="outline-4">
+<h4 id="org276bdcb"><span class="section-number-4">5.1.4.</span> Causation</h4>
+<div class="outline-text-4" id="text-5-1-4">
+<p>
+To establish causation:
+</p>
+<ol class="org-ol">
+<li>Time-wise, hypothesized cause <b>must</b> be before anticipated effect</li>
+<li>Change in cause <b>must</b> lead to change in effect</li>
+<li><b>Must</b> discount all plausible explanations that could explain the relationship, other than the proposed cause</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org5f39dc5" class="outline-4">
+<h4 id="org5f39dc5"><span class="section-number-4">5.1.5.</span> Relevance</h4>
+<div class="outline-text-4" id="text-5-1-5">
+<ul class="org-ul">
+<li>Needed in fields e.g. medicine</li>
+<li>Causal models used to build theories
+<ul class="org-ul">
+<li>Managers need to know "how things work" i.e. theories</li>
+</ul></li>
+<li>For managers to make changes to price, mix, promotions, hence causal impact must be attributable</li>
+<li>If X does not cause Y, then don't bother spending effort in X</li>
+<li>If X causes Y, then can use a theory to explain why</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org30b5e34" class="outline-4">
+<h4 id="org30b5e34"><span class="section-number-4">5.1.6.</span> M5L1 no lecture quiz</h4>
+</div>
+</div>
+<div id="outline-container-org3c0c6d2" class="outline-3">
+<h3 id="org3c0c6d2"><span class="section-number-3">5.2.</span> M5L2: Selection Bias</h3>
+<div class="outline-text-3" id="text-5-2">
+<ul class="org-ul">
+<li>Occurs when individuals selected for treatment without proper randomization</li>
+<li>Can be caused by:
+<ol class="org-ol">
+<li>Self-selection, especially in poorly-designed experiments. Participants could be motivated to participate, or not.</li>
+<li>Voluntary response bias, participants are already interested in topic, thus over-represents vs population.</li>
+<li>Non-response bias, problem in surveys with low response rate</li>
+</ol></li>
+</ul>
+</div>
+<div id="outline-container-org5dde555" class="outline-4">
+<h4 id="org5dde555"><span class="section-number-4">5.2.1.</span> Assumptions in OLS estimation when estimating slope coefficient, \(b_1\)</h4>
+<div class="outline-text-4" id="text-5-2-1">
+<ul class="org-ul">
+<li>OLS estimator is used to estimate b<sub>1</sub> in regression:
+\[
+  Y = b_0 + b_1 X + \epsilon \\
+  b_{OLS} = \frac{Cov(X,Y)}{Cov(X,X)} \\
+  = \frac{Cov(b_0+b_1X+e,X)}{Cov(X,X)} \\
+  = \frac{b_1 Cov(X,X)+Cov(e,X)}{Cov(X,X)}
+  = b_1 + \frac{Cov(e,X)}{Cov(X,X)}
+  \]</li>
+<li>This assumes <b>orthogonality</b>: \(Cov(e,X)=0\)</li>
+<li>When X, e are <b>uncorrelated</b>, b<sub>OLS</sub> is a good estimator of b<sub>1</sub></li>
+<li>When X, e are <b>correlated</b>, b<sub>OLS</sub> is a bad estimator of b<sub>1</sub></li>
+<li>When X is a dummy variable,
+\[
+  b_{OLS} = b_1 + \frac{Cov(e,X)}{Cov(X,X)} \\
+  = b_1 + (\bar{e_1}-\bar{e_0})
+  \]
+<dl class="org-dl">
+<dt>b<sub>1</sub></dt><dd>treatment effect</dd>
+<dt>\((\bar{e_1}-\bar{e_0})\)</dt><dd>selection bias</dd>
+</dl></li>
+<li>\((\bar{e_1}-\bar{e_0})\), the selection bias
+<ul class="org-ul">
+<li>if = 0, b<sub>OLS</sub> is good estimate of b<sub>1</sub></li>
+<li>if &ne; 0, b<sub>OLS</sub> is bad estimate of b<sub>1</sub></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgcefd61a" class="outline-4">
+<h4 id="orgcefd61a"><span class="section-number-4">5.2.2.</span> Controlling selection bias</h4>
+<div class="outline-text-4" id="text-5-2-2">
+<ul class="org-ul">
+<li>Randomized controlled experiment
+<ul class="org-ul">
+<li>Assign test subjects into treatment and control groups
+<ul class="org-ul">
+<li>Used in science, e.g. medicine, agriculture</li>
+<li>Difficult in economics</li>
+<li>Getting easier in business</li>
+</ul></li>
+</ul></li>
+<li>Natural experiment</li>
+<li>Add control variables
+<ul class="org-ul">
+<li>However this is a weaker approach</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org54f891e" class="outline-4">
+<h4 id="org54f891e"><span class="section-number-4">5.2.3.</span> M52 no lecture quiz</h4>
+</div>
+</div>
+<div id="outline-container-org550efce" class="outline-3">
+<h3 id="org550efce"><span class="section-number-3">5.3.</span> M5L3: Randomized Controlled Experiment and the Difference Estimator</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+Setting up RCT
+</p>
+<ol class="org-ol">
+<li>Create initial sample
+Random assignment by generating random numbers in [0,1]</li>
+<li>If rn &lt; 0.5 -&gt; go to control group, no treatment (or placebo). \(d=0\) (dummy variable)</li>
+<li>If rn &gt;= 0.5 -&gt; go to test group, treatment. \(d=1\)</li>
+</ol>
+</div>
+<div id="outline-container-org4412e21" class="outline-4">
+<h4 id="org4412e21"><span class="section-number-4">5.3.1.</span> Regression model</h4>
+<div class="outline-text-4" id="text-5-3-1">
+<ul class="org-ul">
+<li>To analyze results, define \(d\) as:
+\[
+  d_i = 1 \text{ if individual i is in treatment group, else 0}
+  \]</li>
+<li>Regression model with \(N\) individuals being studied
+\[
+  y_i = b_0 + b_1 d_i+e_i, \\
+  i = 1, 2, ..., N
+  \]</li>
+<li>Regression functions:
+\[
+  \text{In treatment group: } (d_i=1) \\
+  E(y_i) = b_0 + b_1 \\
+  \text{In control group: } (d_i=0)\\
+  E(y_i) = b_0
+  \]</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orge0a0b4e" class="outline-4">
+<h4 id="orge0a0b4e"><span class="section-number-4">5.3.2.</span> Difference estimator</h4>
+<div class="outline-text-4" id="text-5-3-2">
+<ul class="org-ul">
+<li>OLS estimator for b<sub>1</sub> is:
+\[
+  b_{OLS} = \frac{Cov(X,Y)}{Cov(X,X)} \\
+  = \frac{\sum^N_{i=1}(d_i-\bar{d})(y_i-\bar{y})}
+  {\sum^N_{i=1}(d_i-\bar{d})^2} \\
+  = \bar{y_1} - \bar{y_0} \\
+  \bar{y_1} = \sum^N_{i=1}\frac{y_i}{N_1} \\
+  \bar{y_0} = \sum^{N_0}_{i=1}\frac{y_i}{N_0}
+  \]
+<dl class="org-dl">
+<dt>N<sub>1</sub></dt><dd>number of obs. in treatment group</dd>
+<dt>N<sub>0</sub></dt><dd>number of obs. in control group</dd>
+<dt>b<sub>OLS</sub></dt><dd>difference estimate, as it's the difference between sample means of treatment and control groups</dd>
+</dl></li>
+<li>Difference estimator can be rewritten as:
+\[
+  b_{OLS} = \frac{\sum^N_{i=1}(d_i-\bar{d})(e_i-\bar{e})}
+  {\sum^N_{i=1}(d_i-\bar{d})^2} \\
+  = b_1 + (\bar{e}_1 - \bar{e}_0)
+  \]</li>
+<li>If individuals can self-select into groups, then the selection bias in estimating treatment effect is:
+\(E(\bar{e}_1 - \bar{e}_0)\)</li>
+<li>Random assignment of individuals:
+<ul class="org-ul">
+<li>No systematic differences</li>
+<li>The only difference is the treatment</li>
+</ul></li>
+<li>Random assignment: \(E(\bar{e}_1 - \bar{e}_0) = 0\)
+<ul class="org-ul">
+<li>OLS estimator is thus unbiased.</li>
+<li>\(E\) is commutative.</li>
+</ul></li>
+</ul>
+</div>
+</div>
 </div>
 
-<div id="outline-container-org027849a" class="outline-3">
-<h3 id="org027849a"><span class="section-number-3">5.2.</span> M5L2: Selection Bias</h3>
+<div id="outline-container-org9301bed" class="outline-3">
+<h3 id="org9301bed"><span class="section-number-3">5.4.</span> M5L4: Star Experiment: Effect of Small Class Size</h3>
 </div>
-<div id="outline-container-org0958f10" class="outline-3">
-<h3 id="org0958f10"><span class="section-number-3">5.3.</span> M5L3: Randomized Controlled Experiment and the Difference Estimator</h3>
-</div>
-<div id="outline-container-org5b09095" class="outline-3">
-<h3 id="org5b09095"><span class="section-number-3">5.4.</span> M5L4: Star Experiment: Effect of Small Class Size</h3>
-</div>
-<div id="outline-container-orge887110" class="outline-3">
-<h3 id="orge887110"><span class="section-number-3">5.5.</span> M5L5: Natural Experiments and Difference-in-Difference Estimator</h3>
+<div id="outline-container-org45991c9" class="outline-3">
+<h3 id="org45991c9"><span class="section-number-3">5.5.</span> M5L5: Natural Experiments and Difference-in-Difference Estimator</h3>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: W</p>
-<p class="date">Created: 2023-02-06 Mon 19:55</p>
+<p class="date">Created: 2023-02-06 Mon 22:13</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -820,7 +820,102 @@ To establish causation:
 1. Time-wise, hypothesized cause *must* be before anticipated effect
 2. Change in cause *must* lead to change in effect
 3. *Must* discount all plausible explanations that could explain the relationship, other than the proposed cause
+*** Relevance
+- Needed in fields e.g. medicine
+- Causal models used to build theories
+  - Managers need to know "how things work" i.e. theories
+- For managers to make changes to price, mix, promotions, hence causal impact must be attributable
+- If X does not cause Y, then don't bother spending effort in X
+- If X causes Y, then can use a theory to explain why
+*** M5L1 no lecture quiz
 ** M5L2: Selection Bias
+- Occurs when individuals selected for treatment without proper randomization
+- Can be caused by:
+  1. Self-selection, especially in poorly-designed experiments. Participants could be motivated to participate, or not.
+  2. Voluntary response bias, participants are already interested in topic, thus over-represents vs population.
+  3. Non-response bias, problem in surveys with low response rate
+*** Assumptions in OLS estimation when estimating slope coefficient, $b_1$
+- OLS estimator is used to estimate b_1 in regression:
+  $$
+  Y = b_0 + b_1 X + \epsilon \\
+  b_{OLS} = \frac{Cov(X,Y)}{Cov(X,X)} \\
+  = \frac{Cov(b_0+b_1X+e,X)}{Cov(X,X)} \\
+  = \frac{b_1 Cov(X,X)+Cov(e,X)}{Cov(X,X)}
+  = b_1 + \frac{Cov(e,X)}{Cov(X,X)}
+  $$
+- This assumes *orthogonality*: $Cov(e,X)=0$
+- When X, e are *uncorrelated*, b_{OLS} is a good estimator of b_1
+- When X, e are *correlated*, b_{OLS} is a bad estimator of b_1
+- When X is a dummy variable,
+  $$
+  b_{OLS} = b_1 + \frac{Cov(e,X)}{Cov(X,X)} \\
+  = b_1 + (\bar{e_1}-\bar{e_0})
+  $$
+  - b_1 :: treatment effect
+  - $(\bar{e_1}-\bar{e_0})$ :: selection bias
+- $(\bar{e_1}-\bar{e_0})$, the selection bias
+  - if = 0, b_{OLS} is good estimate of b_1
+  - if \neq 0, b_{OLS} is bad estimate of b_1
+*** Controlling selection bias
+- Randomized controlled experiment
+  - Assign test subjects into treatment and control groups
+    - Used in science, e.g. medicine, agriculture
+    - Difficult in economics
+    - Getting easier in business
+- Natural experiment
+- Add control variables
+  - However this is a weaker approach
+*** M52 no lecture quiz
 ** M5L3: Randomized Controlled Experiment and the Difference Estimator
+Setting up RCT
+1. Create initial sample
+   Random assignment by generating random numbers in [0,1]
+2. If rn < 0.5 -> go to control group, no treatment (or placebo). $d=0$ (dummy variable)
+3. If rn >= 0.5 -> go to test group, treatment. $d=1$
+*** Regression model
+- To analyze results, define $d$ as:
+  $$
+  d_i = 1 \text{ if individual i is in treatment group, else 0}
+  $$
+- Regression model with $N$ individuals being studied
+  $$
+  y_i = b_0 + b_1 d_i+e_i, \\
+  i = 1, 2, ..., N
+  $$
+- Regression functions:
+  $$
+  \text{In treatment group: } (d_i=1) \\
+  E(y_i) = b_0 + b_1 \\
+  \text{In control group: } (d_i=0)\\
+  E(y_i) = b_0
+  $$
+*** Difference estimator
+- OLS estimator for b_1 is:
+  $$
+  b_{OLS} = \frac{Cov(X,Y)}{Cov(X,X)} \\
+  = \frac{\sum^N_{i=1}(d_i-\bar{d})(y_i-\bar{y})}
+  {\sum^N_{i=1}(d_i-\bar{d})^2} \\
+  = \bar{y_1} - \bar{y_0} \\
+  \bar{y_1} = \sum^N_{i=1}\frac{y_i}{N_1} \\
+  \bar{y_0} = \sum^{N_0}_{i=1}\frac{y_i}{N_0}
+  $$
+  - N_1 :: number of obs. in treatment group
+  - N_0 ::  number of obs. in control group
+  - b_{OLS} :: difference estimate, as it's the difference between sample means of treatment and control groups
+- Difference estimator can be rewritten as:
+  $$
+  b_{OLS} = \frac{\sum^N_{i=1}(d_i-\bar{d})(e_i-\bar{e})}
+  {\sum^N_{i=1}(d_i-\bar{d})^2} \\
+  = b_1 + (\bar{e}_1 - \bar{e}_0)
+  $$
+- If individuals can self-select into groups, then the selection bias in estimating treatment effect is:
+  $E(\bar{e}_1 - \bar{e}_0)$
+- Random assignment of individuals:
+  - No systematic differences
+  - The only difference is the treatment
+- Random assignment: $E(\bar{e}_1 - \bar{e}_0) = 0$
+  - OLS estimator is thus unbiased.
+  - $E$ is commutative.
+
 ** M5L4: Star Experiment: Effect of Small Class Size
 ** M5L5: Natural Experiments and Difference-in-Difference Estimator
