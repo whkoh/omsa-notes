@@ -757,7 +757,7 @@ Logistic regression is similar to linear regression with 2 main differences:
 - Accuracy :: $\frac{\text{true pos+true neg}}{\text{true pos + false pos + true neg + false neg}}$
 *** Type I and II errors
 - False positive error :: type I error. Falsely reject true (null) hypothesis. true Y=0, predicted Y=1.
-- False negative error :: type II error. Incorrectly retain false (null) hypothesis. True Y=1, predicted Y=0
+- False negative error :: type II error. Incorrectly retain - fail to reject - false (null) hypothesis. True Y=1, predicted Y=0
 **** Cutoff
 1. Increasing cutoff decreases Type I error
 2. Increasing cutoff increases Type II error
