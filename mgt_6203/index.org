@@ -787,3 +787,40 @@ Cost of making error depends on situation, e.g.:
 *** M4L6 lecture quiz
 1. Formula of sensitivity  $\frac{\text{true pos}}{\text{true pos + false neg}}$
 2. Formula of specificity $\frac{\text{true neg}}{\text{true neg + false pos}}$
+* Module 05: Treatment Effects
+** M5L1: Correlations vs. Causality
+*** Correlation
+$$
+Corr(X,Y) = \frac{\sum^n_{i=1}(x_i-\bar{x})(y_i-\bar{y})}
+{\sqrt{\sum^n_{i=1}(x_i-\bar{x})^2} \sqrt{\sum^n_{i=1}(y_i-\bar{y})^2}}
+$$
+- Correlation measures the *linear* relationship between X and Y
+  - i.e., if Y=X^2, Corr(X,Y) is 0 even though they're perfectly related
+- Correlation(X,Y) has range (-1,1)
+*** Strong Corr(A,B)
+Possibilities:
+1. A causes B
+2. B causes A
+   - Note reverse causality! e.g., the faster windmill rotates -> faster windspeed observed
+3. A and B are consequence of another common cause C
+   - e.g. ice cream sales increase, more drownings.
+   - common cause is summer
+4. A -> C -> B
+5. Correlation is by chance
+*** /Post hoc ergo propter hoc/
+#+BEGIN_QUOTE
+After this, therefore because of this
+#+END_QUOTE
+- Logical fallacy that if A happened, then B happened, A must have caused B to happen
+- E.g. rooster crows just before sunrise, hence rooster causes sun to rise
+- Please consider other factors that could be responsible for the result
+  - that might rule out the sequence connection
+*** Causation
+To establish causation:
+1. Time-wise, hypothesized cause *must* be before anticipated effect
+2. Change in cause *must* lead to change in effect
+3. *Must* discount all plausible explanations that could explain the relationship, other than the proposed cause
+** M5L2: Selection Bias
+** M5L3: Randomized Controlled Experiment and the Difference Estimator
+** M5L4: Star Experiment: Effect of Small Class Size
+** M5L5: Natural Experiments and Difference-in-Difference Estimator
