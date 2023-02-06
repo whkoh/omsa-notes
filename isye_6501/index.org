@@ -617,3 +617,10 @@ It looks very similar to [[ARIMA Equation][ARIMA Equation]], but:
 1. Exponential smoothing
 2. ARIMA, a generalization of exponential smoothing
 3. GARCH, an ARIMA-like model for analyzing variance
+* Module 08: Regression
+** M8L1: Intro to Regression
+** M8L2: Maximum Likelihood and Information Criteria
+** M8L3: Using Regression
+** M8L4: Causation vs Correlation
+** M8L5: Transformations and Interactions
+** M6L6: Output
