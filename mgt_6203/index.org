@@ -918,4 +918,118 @@ Setting up RCT
   - $E$ is commutative.
 
 ** M5L4: Star Experiment: Effect of Small Class Size
+*** Summary
+- Tennessee students randomly assigned in schools to:
+  1. small class
+  2. regular class
+  3. regular class with paid aide
+- Teachers randomly assigned to same groups
+- data in ~ecdat::star~
+- ~totalscore = tmathssk + treadssk~ (math + reading scores)
+- Indicator variables:
+  1. ~small~ = 1 if it's a small class
+  2. ~boy~ = 1 if sex = boy
+  3. ~whiteother~ = 1 if race = 'white or other'
+  4. ~freelunch~ = 1 if lunch was free
+*** Check for random assignment
+- Regress $\text{small ~ .}$ to check for significant coefficients
+  - If random assignment, no significant coefficients
+  - Use linear probability as small is 1/0
+  - All coefficients are *not* statistically significantly different from 0
+    - Hence there is random assignment
+  - Cannot reject b_0 = 0.5
+*** Summary stats
+- Difference between small = 0 and small = 1 classes of ~totalscore~ in summary stats:
+  - mean of small = 0 (regular): 917.94
+  - mean of small = 1 (small): 932.05
+*** First regression
+Regression of $\text{totalscore} = b_0 + b_1\text{small}+e$
+- small class sizes have significantly different scores than regular
+- b_1 estimate, 14.109, is statistically different from 0
+- This is also the difference in the means in summary stats above
+- Interpretation: 14.109 on above is added to students' total score if moved from regular-sized class to small-sized class
+*** Second regression
+Add teacher experience, i.e. $\text{totalscore} = b_0 + b_1\text{small}+b_2\text{totexpk}+e$
+- b_2 estimate is 1.1580, and it is statistically significant
+- i.e. each additional year of teacher experience adds 1.16 points to total score on average
+- Difference estimator, b_1, = 14.21
+- The effect of small class size is approximately the same as having teacher with $\frac{14.21}{1.16} = 12$ additional years of experience.
+*** M5L4 no lecture quiz
 ** M5L5: Natural Experiments and Difference-in-Difference Estimator
+*** Definition
+- Observational study from real-world conditions
+- **Approximates** what would happen in randomized controlled trial
+- Subjects **cannot** choose which group they're in
+  - Treatment
+  - Control
+- This choice is made by external factor, e.g. weather, policy, etc
+- There must be subjects in both groups
+- Compare the average change, over time, of the response Y variable in treatment group vs control group.
+  - **a.k.a.** difference in difference
+- Use panel data to measure these differences
+*** Examples
+- Treatment that just happened, not intentionally designed, e.g.
+  1. Change in law for some people only
+  2. IT system for BOPIS in some stores not others
+  3. Hurricane hits some stores, not others
+  4. Mobile carrier tweak price plan for some customers, not others
+  5. Minimum wage changed in some states, not others
+*** Counterfactual
+These are required to estimate the causal impact of treatment.
+1. Need to compare the outcome with intervention vs. what would have been **without** the intervention
+   1. This is the counterfactual
+2. Control group must be relatively similar to the treatment group
+3. If not possible to establish counterfactuals, it is impossible to estimate treatment effects properly
+*** Example of natural experiment
+- NYC lower sales tax rates
+  - Other neighbouring states do not
+- Estimate the difference in purchase behaviour between NYC and neighbouring states
+- Is the effect:
+  1. Lower internet sales
+  2. Stronger tendency to purchase locally?
+*** Difference-in-difference (D-in-D)
+- Consider times
+  - t_1: occurs before treatment
+  - t_2: occurs after treatment
+- Measure the average value of dependent variable $Y$
+  1. $A$ = $\bar{Y}$ for control group at t_1
+  2. $B$ = $\bar{Y}$ for treatment group at t_1
+  3. $C$ = $\bar{Y}$ for control group at t_2
+  4. $D$ = $\bar{Y}$ for treatment group at t_2
+  |         | Before | After | Difference |
+  |---------+--------+-------+------------|
+  | Control | A      | C     | C-A        |
+  | Treated | B      | D     | D-B        |
+
+  Hence difference-in-difference is (D-B) - (C-A)
+  [[./img/0505-dind.png]]
+  - This is D-E in the graph
+*** Estimating D-in-D with regression
+- NYC dataset: create two dummies:
+  1. $\text{NYC}$ = 1 if store in NYC, else 0
+  2. $\text{After}$ = 1 if observation is in after, else 0
+- Define an interaction variable, $\text{NYCAfter} = \text{NYC}*\text{After}*$
+- Observe sales in stores in
+  - regions: NYC and other
+  - time: before and after change in sales tax
+- Model:
+  $$
+  \text{sales} = b_0 + b_1\text{NYC} + b_2\text{After} + b_3\text{NYCAfter}
+  $$
+- Graphically:
+  [[./img/0505-dind1.png]]
+*** Model
+|         | Before   | After                 | Diff. (Before-After) |
+|---------+----------+-----------------------+----------------------|
+| Control | b_0      | b_0 + b_2             | b_2                  |
+| Treated | b_0 + b1 | b_0 + b_1 + b_2 + b_3 | b_2 + b_3            |
+Hence the diff-in-diff estimator is the difference between the two differences, i.e.
+b_2 + b_3 - b_2 = b_3
+*** Steps in natural experiment
+1. Understand the treatment that just happened
+2. Determine if the treatment appears to be randomly assigned:
+   1. assignment orthogonal to unobserved factors, X orthogonal to \epsilon
+3. Determine if there's control and treatment groups
+4. Determine if there's evidence to show the two groups are roughly the same before experiment
+5. Analyze treatment effect with diff-in-diff estimator
+*** M5L5 no lecture quiz
