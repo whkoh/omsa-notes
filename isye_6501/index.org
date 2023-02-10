@@ -771,4 +771,62 @@ $$
 - Per capita consumption of mozzarella with number of civil engineering doctorates awarded
 - [[http://tylervigen.com/spurious-correlations][link]]
 ** M8L5: Transformations and Interactions
+- Recall: $y=a_0+a_1x_1+...+a_mx_m$
+- What if the fit isn't linear for x?
+- Answer: transforming the data!
+*** Transforming the data
+- Quadratic regression, e.g.
+  $$
+  y = a_0 + a_1 x_1 + a_2 x_1^2
+  $$
+- Trigonometric:
+  $$
+  y = a_0 + a_2 \sin(x^2)
+  $$
+- Response transform:
+  $$
+  \log(y) = a_0 + a_1 x_1 + ... + a_m x_m
+  $$
+- etc.
+- Box-Cox transforms can be automated
+*** Interaction terms, e.g. product of inputs
+- Child's heights might be influenced by *product* of father and mother's heights ($x_1x_2$)
+- $y = a_0 + a_1 x_1 + a_2 x_2 + a_3 (x_1 x_2)$
+- *Treat x_1 x_2 as new input, x_3*
+-  Then find best fit coefficients in the last module
 ** M6L6: Output
+*** p-Values
+- Estimates the *probability* that coefficient is actually 0
+  - A hypothesis test
+- If p-value is big (>0.05), the coefficient is likely 0, hence remove its attribute from the model
+**** Other thresholds
+| Threshold      | Number of factors included | Risk                        |
+|----------------+----------------------------+-----------------------------|
+| Higher (>0.05) | More factors included      | Irrelevant factors included |
+| Lower (<0.05)  | Less factors included      | Relevant factors left out |
+**** Warnings
+- With lots of data:
+  - p-values can get small and seem significant even when attributes aren't related to response
+- Even when meaningful, p-values only represent *probabilities*
+  1. With 100 attributes having p-value 0.02:
+  2. Each of them have 2% chance of *not* being significant
+  3. Hence on average 2/100 are actually irrelevant
+*** Confidence interval
+- Mostly given at 95% level around the coefficient
+- Range of where the coefficient probably lies
+- And how close that is to zero
+- Related to p-value
+*** T-statistic
+- $\frac{\text{Coefficient}}{\text{Std error}}$
+- Related to p-value
+*** Coefficient itself
+- If very small, then when multiplied by attribute, it's likely irrelevant
+*** $R^2$
+- Estimate of how much variability can be explained by the model
+- E.g. R^2 = 0.59:
+  - 0.59 of data variability can be explained by the model
+  - remaining 0.41 is either:
+    - random variation
+    - or other factors
+**** Adjusted $R^2$
+- Accounts for (penalizes) the number of attributes used
