@@ -619,7 +619,94 @@ It looks very similar to [[ARIMA Equation][ARIMA Equation]], but:
 3. GARCH, an ARIMA-like model for analyzing variance
 * Module 08: Regression
 ** M8L1: Intro to Regression
+*** What questions can regression answer?
+1. How do systems work? (descriptive)
+2. What will happen in the future? (predictive)
+*** Simple linear regression
+- Linear regression with one predictor, e.g. $y = a_0 + a_1x+1$
+  - Date point $i$'s prediction error
+    $= y_i - \hat{y}_i -(a_0+a_1x_1)$
+  - Sum of squared errors
+    $=\sum^n_{i=1}(y_i - \hat{y}_i)^2$
+    $=\sum^n_{i=1}(y_i-(a_0+a_1x_1))^2$
+- Best fit regression line
+  - Minimizes sum of squared errors
+  - Defined by a_0 and a_1
+- Underlying math
+  - Minimize convex quadratic function
+  - Set partial derivatives to 0
+  - Solve simultaneous equations
 ** M8L2: Maximum Likelihood and Information Criteria
+*** Likelihood
+- Measure the probability density of a parameter set
+- Maximum likelihood :: the parameters that give the highest probability
+- Assuming:
+  1. Errors are normally distributed with mean 0, variance \sigma^2, independently and identically distributed
+  2. Observations are z_1 to z_n
+  3. Model estimates are y_1 to y_n
+- Probability density of observing z_i if true value y_i is
+  $$
+  \frac{1}{\sigma\sqrt(2\pi)}e^-\frac{(z_u-y_i)^2}{2\sigma^2}
+  $$
+- Joint density over $n$ terms
+  $$
+  \prod^n_{i=1}\frac{1}{\sigma\sqrt(2\pi)}e^-\frac{(z_u-y_i)^2}{2\sigma^2} \\
+  = (\frac{1}{\sigma\sqrt{2\pi}})^n e^-\frac{1}{2\sigma^2}\sum^n_{i=1}(z_i-y_i)^2
+  $$
+- Hence *to minimize* $\sum^n_{i=1}(z_i-y_i)^2$ over a_0, ..., a_m:
+  equals to minimizing $\sum^n_{i=1}(z_i-(a_0 + \sum^m_{j=1}a_jx_{ij}))^2$
+*** Maximum likelihood fitting
+- Simplest example is regression with i.i.d. errors
+- Complex examples:
+  - Different estimation formulas
+  - Different error assumptions
+- Good software can handle complex cases
+*** Akaike Information Criterion
+- L^{*} :: maximum likelihood value
+- $k$ :: number of parameters being estimated
+- AIC :: $2k-2\log(L^{*})$
+- Penalty term :: balances likelihood with simplicity, helps avoid overfitting
+**** For simple regression
+- AIC ::
+  $$
+  2(m+1) - 2\log(\frac{1}{\sigma\sqrt(2\pi)}^ne^{-\frac{1}{2\sigma^2}}\sum^n_{i=1}(z_i-(a_0 + \sum^m_{j=1}a_jx_{ij}))^2)
+  $$
+- Preference :: smaller AIC models
+- Requires :: infinitely many data points
+*** Corrected AIC (AIC_c)
+Use for smaller datasets.
+$$
+AIC_c = AIC + \frac{2k(k+1)}{n-k-1} \\
+= 2k-2\log(L^{*})+\frac{2k(k+1)}{n-k-1}
+$$
+*** AIC_c example
+- Model 1: AIC 75; Model 2: AIC 80
+- Relative likelihood equals:
+  $$
+  e^\frac{AIC_1-AIC_2}{2} \\
+  = 8.2%
+  $$
+- Hence, Model 2 (larger AIC) is 8.2% as likely as Model 1 to be better
+  - Model 1 is probably better
+*** Bayesian Information Criterion
+- BIC:
+  $$
+  k\log(n)-2\log(L^{*})
+  $$
+- Similar to AIC, but
+  - bigger penalty term than AIC's penalty term
+  - encourages models with fewer parameters
+- Use BIC when there are *more data points* than parameters
+- Rule of thumb for |BIC_1 - BIC_2|
+  | value | interpretation for smaller BIC model |
+  |-------+--------------------------------------|
+  |   >10 | very likely better                   |
+  |  6-10 | likely better                        |
+  |   2-6 | somewhat likely better               |
+  |   0-2 | slightly likely better               |
+*** Summary
+- No definite rules for AIC, BIC, maximum likelihood
+- Can look at all 3 to decide what's best
 ** M8L3: Using Regression
 ** M8L4: Causation vs Correlation
 ** M8L5: Transformations and Interactions
