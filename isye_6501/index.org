@@ -740,7 +740,35 @@ $$
     $$
     \text{Adult height} = a_0 + a_1\text{Father's height} + a_2 \text{Mother's height} + ... + a_4\text{Male or female}
     $$
-***
 ** M8L4: Causation vs Correlation
+- Causation :: one thing causes another thing
+- Correlation :: two things tend to happen / not happen together, but neither one causes the other
+*** Example: winter recreation
+- y: hours per day spent outdoors in winter
+- x_1: city's average daily winter temperature
+- Equation: $y=a_0+a_1x_1$
+- Correlation between y and x_1
+  - with low p-value of a_1
+- Does higher temperature in winter cause people to go outside?
+  - Probably
+- Reversing the equation:
+  - y: hours per day spent outdoors in winter
+  - x_1: city's average daily winter temperature
+  - Equation: $x_1 = b_0 + b_1y$
+  - Same correlation between y, x_1
+    - Same p-value of b_1 and a_1
+  - Hence, does spending more time outside *cause* higher winter temperatures?
+    - No
+*** Example: tiredness vs scruffiness
+- Neither one caused another, they're just related to a common tired factor, kids
+*** How to tell causation?
+- When is there causation?
+  1. Cause before effect
+  2. Idea of causation makes sense
+  3. No outside factors can cause the relationship (hard to ensure this - need to consider *all* other factors)
+- Be careful before claiming causation
+*** Meaningless correlations
+- Per capita consumption of mozzarella with number of civil engineering doctorates awarded
+- [[http://tylervigen.com/spurious-correlations][link]]
 ** M8L5: Transformations and Interactions
 ** M6L6: Output

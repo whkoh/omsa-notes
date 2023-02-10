@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-02-10 Fri 17:33 -->
+<!-- 2023-02-10 Fri 17:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ISYE 6501 Intro to Analytics Modeling Notes</title>
@@ -44,63 +44,85 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org10b9110">1. M8L3: Using Regression</a>
+<li><a href="#orge444999">1. M8L4: Causation vs Correlation</a>
 <ul>
-<li><a href="#orgea066aa">1.1. Regression coefficients</a></li>
+<li><a href="#org75fbd3f">1.1. Example: winter recreation</a></li>
+<li><a href="#org5ae81ea">1.2. Example: tiredness vs scruffiness</a></li>
+<li><a href="#org8cfeb9c">1.3. How to tell causation?</a></li>
+<li><a href="#org5e1ef51">1.4. Meaningless correlations</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org10b9110" class="outline-2">
-<h2 id="org10b9110"><span class="section-number-2">1.</span> M8L3: Using Regression</h2>
+<div id="outline-container-orge444999" class="outline-2">
+<h2 id="orge444999"><span class="section-number-2">1.</span> M8L4: Causation vs Correlation</h2>
 <div class="outline-text-2" id="text-1">
+<dl class="org-dl">
+<dt>Causation</dt><dd>one thing causes another thing</dd>
+<dt>Correlation</dt><dd>two things tend to happen / not happen together, but neither one causes the other</dd>
+</dl>
 </div>
-<div id="outline-container-orgea066aa" class="outline-3">
-<h3 id="orgea066aa"><span class="section-number-3">1.1.</span> Regression coefficients</h3>
+<div id="outline-container-org75fbd3f" class="outline-3">
+<h3 id="org75fbd3f"><span class="section-number-3">1.1.</span> Example: winter recreation</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
-<li>a<sub>0</sub>, a<sub>1</sub>, &#x2026;, a<sub>m</sub> for the equation:</li>
-<li>\(y=a_0+a_1x_1+...+a_mx_m\)</li>
-<li>Example for baseball, descriptive question:
+<li>y: hours per day spent outdoors in winter</li>
+<li>x<sub>1</sub>: city's average daily winter temperature</li>
+<li>Equation: \(y=a_0+a_1x_1\)</li>
+<li>Correlation between y and x<sub>1</sub>
 <ul class="org-ul">
-<li>How many runs is associated with every homerun</li>
-<li>Response: how many runs are scored by a team</li>
-<li>Predictors:
+<li>with low p-value of a<sub>1</sub></li>
+</ul></li>
+<li>Does higher temperature in winter cause people to go outside?
+<ul class="org-ul">
+<li>Probably</li>
+</ul></li>
+<li>Reversing the equation:
+<ul class="org-ul">
+<li>y: hours per day spent outdoors in winter</li>
+<li>x<sub>1</sub>: city's average daily winter temperature</li>
+<li>Equation: \(x_1 = b_0 + b_1y\)</li>
+<li>Same correlation between y, x<sub>1</sub>
+<ul class="org-ul">
+<li>Same p-value of b<sub>1</sub> and a<sub>1</sub></li>
+</ul></li>
+<li>Hence, does spending more time outside <b>cause</b> higher winter temperatures?
+<ul class="org-ul">
+<li>No</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5ae81ea" class="outline-3">
+<h3 id="org5ae81ea"><span class="section-number-3">1.2.</span> Example: tiredness vs scruffiness</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>Neither one caused another, they're just related to a common tired factor, kids</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8cfeb9c" class="outline-3">
+<h3 id="org8cfeb9c"><span class="section-number-3">1.3.</span> How to tell causation?</h3>
+<div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li>When is there causation?
 <ol class="org-ol">
-<li>Number of HR</li>
-<li>Triples</li>
-<li>Doubles</li>
-<li>Singles</li>
-<li>Outs</li>
-<li>Double Plays</li>
-<li>Stolen bases, etc</li>
+<li>Cause before effect</li>
+<li>Idea of causation makes sense</li>
+<li>No outside factors can cause the relationship (hard to ensure this - need to consider <b>all</b> other factors)</li>
 </ol></li>
-<li>Equation:
-\[
-    \text{Runs scored} = a_0 + a_1\text{Number of HR} + a_2\text{Number of triples} + ... + a_7\text{Number of stolen bases}
-    \]</li>
-<li>a<sub>1</sub> = 1.4
+<li>Be careful before claiming causation</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5e1ef51" class="outline-3">
+<h3 id="org5e1ef51"><span class="section-number-3">1.4.</span> Meaningless correlations</h3>
+<div class="outline-text-3" id="text-1-4">
 <ul class="org-ul">
-<li>Means that every HR adds 1.4 runs scored on average, ceteris paribus</li>
-</ul></li>
-</ul></li>
-<li>Example: height, predictive question:
-<ul class="org-ul">
-<li>How tall will a 2-year old be as an adult?</li>
-<li>Response: a person's adult height</li>
-<li>Predictors:
-<ol class="org-ol">
-<li>Father's height</li>
-<li>Mother's height</li>
-<li>Height at age 2</li>
-<li>Male, female</li>
-</ol></li>
-<li>Equation:
-\[
-    \text{Adult height} = a_0 + a_1\text{Father's height} + a_2 \text{Mother's height} + ... + a_4\text{Male or female}
-    \]</li>
-</ul></li>
+<li>Per capita consumption of mozzarella with number of civil engineering doctorates awarded</li>
+<li><a href="http://tylervigen.com/spurious-correlations">link</a></li>
 </ul>
 </div>
 </div>
@@ -108,7 +130,7 @@
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: W</p>
-<p class="date">Created: 2023-02-10 Fri 17:33</p>
+<p class="date">Created: 2023-02-10 Fri 17:48</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
