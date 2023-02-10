@@ -708,6 +708,39 @@ $$
 - No definite rules for AIC, BIC, maximum likelihood
 - Can look at all 3 to decide what's best
 ** M8L3: Using Regression
+*** Regression coefficients
+- a_0, a_1, ..., a_m for the equation:
+- $y=a_0+a_1x_1+...+a_mx_m$
+- Example for baseball, descriptive question:
+  - How many runs is associated with every homerun
+  - Response: how many runs are scored by a team
+  - Predictors:
+    1. Number of HR
+    2. Triples
+    3. Doubles
+    4. Singles
+    5. Outs
+    6. Double Plays
+    7. Stolen bases, etc
+  - Equation:
+    $$
+    \text{Runs scored} = a_0 + a_1\text{Number of HR} + a_2\text{Number of triples} + ... + a_7\text{Number of stolen bases}
+    $$
+  - a_1 = 1.4
+    - Means that every HR adds 1.4 runs scored on average, ceteris paribus
+- Example: height, predictive question:
+  - How tall will a 2-year old be as an adult?
+  - Response: a person's adult height
+  - Predictors:
+    1. Father's height
+    2. Mother's height
+    3. Height at age 2
+    4. Male, female
+  - Equation:
+    $$
+    \text{Adult height} = a_0 + a_1\text{Father's height} + a_2 \text{Mother's height} + ... + a_4\text{Male or female}
+    $$
+***
 ** M8L4: Causation vs Correlation
 ** M8L5: Transformations and Interactions
 ** M6L6: Output
