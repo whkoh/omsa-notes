@@ -830,3 +830,10 @@ $$
     - or other factors
 **** Adjusted $R^2$
 - Accounts for (penalizes) the number of attributes used
+* Module 09: Advanced Data Preparation
+** M9L1: Box-Cox Transformations
+** M9L2: Detrending
+** M9L3: Intro to PCA
+** M9L4: Using PCA
+** M9L5: Eigenvalues and Eigenvectors
+** M9L6: PCA: The good and the bad

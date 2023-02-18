@@ -1033,3 +1033,97 @@ b_2 + b_3 - b_2 = b_3
 4. Determine if there's evidence to show the two groups are roughly the same before experiment
 5. Analyze treatment effect with diff-in-diff estimator
 *** M5L5 no lecture quiz
+* Module 06: Measuring Returns
+** M6L1: Introduction
+Parts of discussion:
+1. Measuring risk and return
+2. Measuring risk-adjusted performance and market efficiency
+3. Factors that drive returns
+** M6L2: Simple and compound returns
+*** Objectives
+1. Understand simple and compound returns
+2. Using R to calculate values for a given asset
+*** Simple return
+- Simple return :: The percentage change in the stock price from one period to the next
+E.g.:
+- April 2019: $15
+- May 2019: $17
+- Stock return = (17-15)/15 = 13.33%
+**** Caveat on calculating returns
+- Need to adjust for stock splits and dividends.
+- General expression: $r_t = \frac{p_tf_t+d_t}{p_{t-1}}-1$
+  - p :: price
+  - f :: adjustment factor for stock splits
+  - d :: dividend
+- Stock splits are only cosmetic events
+**** Example of simple returns
+| Date   |  Price | Dividend | Split   | Return                        |
+|--------+--------+----------+---------+-------------------------------|
+| Sep 91 | 31.125 |          |         |                               |
+| Oct 91 | 37.750 |     0.06 |         | (37.75+0.06)/31.25-1 = 20.9%/ |
+| Nov 91 |  32.75 |          |         | (32.75/37.75)-1 = -13.25%     |
+| Dec 91 | 30.375 |          | 3 for 2 | (30.37*1.5)/32.75-1 = 39.1%   |
+*** Compounded returns
+- Assets are normally held for multiple periods
+- How to calculate total return over this period?
+- Definitions
+  - Compound return :: cumulative effect a series of gains or losses has on original investment over a period of time
+  - Formula :: (r_1 + 1) x (r_2 + 1) + ... + (r_n+1)-1
+- E.g. for above example, compounded return = (1+0.299)*(1-0.1325)*(1+0.3912)-1=46%
+*** Calculating compound returns in R
+- Use ~PerformanceAnalytics~, ~xts~, ~lubridate~
+- Formula for cumulative return: ~Return.cumulative(df$ContraRet, geometric=T)~
+- Compounded return as chart:
+  ~chart.CumReturns(df$ContraRet, wealth.index=F, geometric=T)~
+*** M6L2 Summary (No lecture quiz)
+- Returns allow us to understand how investments are growing
+- Simple and compound returns are both informative
+** M6L3: Measuring risk
+*** Both risk *and* return matter when investing
+- Risk also matters
+- Investors care about:
+  - Volatility: how much prices fluctuate, i.e.
+  - How much money they stand to gain or lose
+*** Standard deviation of returns
+- Measures variation by looking at how far the observations' values are from the mean value
+- Formula: $s=\sqrt{\frac{\sum(x_i-\bar x)^2}{n-1}}$
+- Higher sd = higher level of risk
+*** Standard deviation ~ Total risk
+- Total risk comprises both:
+  1. Firm specific risk: good or bad news about the firm, e.g. product recall, lawsuit
+  2. Market-wide: news about the overall economy, e.g. interest rate movements, recession likelihoods
+- As more stocks are held in portfolio, the firm-specific risk decreases
+  [[./img/m6l2-firmrisk.png]]
+*** Decomposing risk
+- Into firm-specific and market-wide components
+- Can be estimated with this regression model:
+  $r_i=\alpha + \beta r_m + \epsilon$
+  - r_m :: return on broad stock index portfolio
+  - \beta :: measure of stock sensitivity to overall market movement
+  - R^2 :: measures the % of fund performance as a result of the market
+- Higher R^2 = more correlated with the market
+*** Interpreting \beta
+- Higher \beta represent higher market risk
+  - Risk free asset \beta = 0
+  - Overall stock market \beta = 1
+*** High-water mark and drawdown
+- Formulas
+  - High-water mark (HWM) :: highest price a fund has achieved in the past
+  - Drawdown (DD) :: cumulative loss since losses started. Formula is $DD_t = \frac{HWM_t-P_t}{HWM_t}$
+- Drawdown measures the peak-to-trough decline in investment
+*** Estimating mean return and standard deviation
+- Use the same file ~contrafund.csv~ and the same packages as above
+- To calculate standard deviation, use ~table.Stats(df$ContrRet)~
+*** Estimating \beta and R^2
+- \beta and R^2 can be estimated with linear regression:
+  ~model = lm(ContraRet~Market.Return, df)~
+- Summary regression output example:
+  - \beta is the coefficient on Market.Return, e.g. 0.9004
+  - Adjusted R^2 = 0.8313 indicating the fund is correlated with overall market
+*** Drawdown
+- Plotting: ~chart.Drawdown(df$ContraRev)~~
+- Show largest 5 drawdowns: ~table.Drawdowns(df$ContraRev, top=5, digits=4)~
+*** Summary
+- Not sufficient to know just the returns
+- Standard deviation measures total return, while \beta measures sensitivity to market moveemnts
+** M6L4: Historical returns
