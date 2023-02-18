@@ -1123,7 +1123,36 @@ E.g.:
 *** Drawdown
 - Plotting: ~chart.Drawdown(df$ContraRev)~~
 - Show largest 5 drawdowns: ~table.Drawdowns(df$ContraRev, top=5, digits=4)~
-*** Summary
+*** Summary (no lecture quiz)
 - Not sufficient to know just the returns
 - Standard deviation measures total return, while \beta measures sensitivity to market moveemnts
 ** M6L4: Historical returns
+*** Asset classes
+1. Small cap stocks: smallest 30% traded on US exchanges
+2. Large cap stocks: largest 30% traded on US exchanges
+3. Treasury bills: short-term US treasury debt
+4. Treasury bonds: long-term US treasury debt
+5. Comparison with inflation rate
+*** Value of $1 invested in different asset classes:
+Largest to smallest:
+- small cap
+- large cap
+- bonds
+- bills
+- inflation
+Conclusion: equities > government debt
+*** Risk
+- Risk between equities and government debt is very different. Equities much riskier
+- Riskier investments have higher return and higher standard deviation
+  |           | Standard deviation | Mean return |
+  |-----------+--------------------+-------------|
+  | Small cap |              33.3% |       16.5% |
+  | Large cap |              19.3% |       11.2% |
+  | Inflation |               3.8% |        3.1% |
+  | Bills     |               3.2% |        3.4% |
+  | Bonds     |               2.8% |        5.0% |
+*** Summary (no lecture quiz)
+- Risk and return are linked
+- Over time, more risky assets generate higher returns.
+- However, they also have higher year-to-year variations
+- This is the risk-return tradeoff
