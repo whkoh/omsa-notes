@@ -832,8 +832,99 @@ $$
 - Accounts for (penalizes) the number of attributes used
 * Module 09: Advanced Data Preparation
 ** M9L1: Box-Cox Transformations
+- Models may require data to be normally distributed
+- What happens when this assumption isn't valid in the data?
+  - Results will have bias in this case
+  - Data exhibits heteroskedasicity
+  - i.e., variances are not i.i.d.
+- Another example is time series data, where later values have higher variance
+- Box-Cox is a logarithmic transformation that:
+  1. Stretches smaller range to increase variability
+  2. Shrinks larger range to reduce variability
+- E.g. $t(y)=\frac{y^\lambda-a}{\lambda}$
+  - t(y) can become close to normally distributed
+- Need to remember to check for normality (e.g., with Normal Q-Q plot)
 ** M9L2: Detrending
+- For time series data with trends, i.e. an increase or decrease over time
+  - For example: increase in price of gold over time but need to account for inflation over time (value of $ decreases over time)
+  - The trend if not correct can mess up a factor-based analysis
+  - Can detrend:
+    - Response
+    - Predictors
+    - Factor-based model (consider whenever using these models)
+      - Regression, SVM, etc.
+- How to detrend:
+  - Factor by factor for one-dimensional regression, y=a_0+a_1x
+    - Simple, works well to remove trend for factor-based analysis
+    - This requires going factor by factor and fitting a linear regression model on it
+    - E.g. for simple linear regression for gold prices:
+      - Price = - 45600 + 23.2xYear
+      - Detrend end price = Actual price -(-45600+23.2+year)
+      - This produces a similar graph to the inflation-adjusted rate
+      - Useful when we don’t know the response (as in most cases)
 ** M9L3: Intro to PCA
+  - Works on high dimensional and correlated data
+    - Which subset of features are important to predict response?
+    - e.g. which stocks can predict how well the market performs the next day?
+      - 6K securities
+      - Remove days that have major events
+    - Issues:
+      - 6K predictors need many many data points to avoid overfitting (need to reduce predictors)
+        - However, even with unlimited data, the underlying situation could have changed over time
+        - E.g. TSLA stock is good predictor now but it was only listed 5 years ago
+      - High correlation between predictors
+  - PCA transforms data by:
+    - Removing correlations within predictors
+    - Ranking coordinates by importance
+      - Most important are first
+    - By concentrating on first *n* principal components
+      - This reduces random effects and
+      - These PCs have higher signal to noise ratio
+    - Graphically:
+      - rotate plot until it’s orthogonal to the correlation
+    - If D1 and D2 are the new PCs,
+      - D1 (that explains more variance) will be the first factor
+
 ** M9L4: Using PCA
+*** Math of PCA
+- Definitions
+  - $X$ :: initial matrix of data
+  - $x_{ij}$ :: j^{th} factor of i^{th} data point
+  - Scale to: :: $\frac{1}{m}\sum_i x_{ij} = \mu_j = 0$
+- To find all eigenvectors of X^T X, where:
+  - V :: Matrix of eigenvectors, sorted by eigenvalue
+  - V :: [V_1 V_2 ... ]
+  - V_j :: j^{th} eigenvector of X^T X
+- PCA is a linear combination:
+  - 1st component is XV_1, then 2nd is XV_2, ...
+  - k^{th} new factor for i^{th} data point:
+    $$
+    t_{ik} = \sum^m_{ik} x_{ij}v_{jk}
+    $$
+  - t_{ik} is the factor after PCA
+*** PCA as linear combination
+- It **removes** correlation between factors
+- In order to have fewer variables/factors in the model:
+  - Choose to include only first /n/ principal components
+- PCA can also deal with non-linear functions, using kernels. This is similar to SVM modeling
+*** PCA for regression
+- How to interpret the new model in terms of original factors?
+- Example: PCA finds $L$ new factors (each $t_{ik}$), and regression coefficients b_0, b_1, ... b_L:
+  $$
+  y_i = b_0 + \sum^L_{k=1}b_k t_{ik} \\
+ = b_0 + \sum^L_{k=1}b_k [\sum^m_{j=1} x_{ij} v{jk}] \\
+ = b_0 + \sum^m_{j=1}x_{ij} [\sum^L_{k=1}b_kv_{jk}]
+ \\
+ = b_0 + \sum^m_{j=1}x_{ij}[a_j]
+  $$
+- Each t vector does not have nice intuitive explanations as they are linear combinations of original factors.
+- Hence just plug in the transformation for each t factor:
+  $$
+  a_j = \sum^L_{k=1}b_kv_{jk}
+  $$
+*** Summary of PCA
+- Use PCA for high-dimensional and correlated data
+- PCA removes these correlations and ranks coordinates by importance (PC1 > PC2 > PC3, etc)
+- PCA can be transformed back to the original factor space to get intuitive explanations
 ** M9L5: Eigenvalues and Eigenvectors
 ** M9L6: PCA: The good and the bad
