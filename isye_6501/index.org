@@ -924,7 +924,43 @@ $$
   $$
 *** Summary of PCA
 - Use PCA for high-dimensional and correlated data
-- PCA removes these correlations and ranks coordinates by importance (PC1 > PC2 > PC3, etc)
+- PCA removes these correlations and ranks coordinates by importance (i.e., variability explained)
+  - PC1 > PC2 > PC3, etc
 - PCA can be transformed back to the original factor space to get intuitive explanations
+- PCA allows use of fewer variables
+  - Pick the ones that explain the most variability
 ** M9L5: Eigenvalues and Eigenvectors
+*** Initial example
+- Definitions:
+  - $A$ :: a square matrix
+  - $v$ :: a vector such that $Av=\lambda v$
+  - $V$ :: eigenvector of $A$
+  - $\lambda$ :: eigenvalue of $A$, i.e. det(A-\lambda I) = 0. Every \lambda is eigenvalue of A
+- Given \lambda, solve $Av=\lambda v$ to find the eigenvector $v$
+*** Important: know how eigenvalues and eigenvectors are important to PCA
+- With a scaled matrix $X$ of data, and x_{ij} is factor value for i^{th} data point after scaling,
+- Find eigenvectors v_1 ... v_n of $(X^TX)$
+- Then, find the principal components:
+  1. Multiply $X$ by the eigenvectors
+  2. $Xv_1, Xv_2, ..., Xv_n$ are the principal components
+     - i.e. the transformed set of orthogonal coordinate directions
+
 ** M9L6: PCA: The good and the bad
+- Summary
+  [[./img/m9l6-pca-summary.png]]
+- D_1 has more explanatory power (vaariation)
+- But it may not be the most helpful for explanatory/predictive modeling
+- *PCA depends only on the independent variables*, not the response variable
+  - It's possible response is affected by variables with low variability instead of those with high variability!
+*** Example where PCA is good
+- Assume PCA is used for classification
+- PC1 has most of the variance and PC1 can classify red and blue points
+  [[./img/m9l6-pca-good.png]]
+*** Example where PCA is bad
+- PC1, though it has more variance, cannot classify the red and blue points
+- PC2 has less variance but it can classify the points exactly
+  [[./img/m9l6-pca-bad.png]]
+*** Summary
+- We still use PCA (or try to!) as dimensions have higher variation specifically because they contain more information
+- However, this is not always true
+- PCA is a helpful approach to try
