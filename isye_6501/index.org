@@ -964,3 +964,133 @@ $$
 - We still use PCA (or try to!) as dimensions have higher variation specifically because they contain more information
 - However, this is not always true
 - PCA is a helpful approach to try
+* Module 10: Advanced Regression
+#+BEGIN_QUOTE
+Midterm 1 covers up to Module 10
+#+END_QUOTE
+** M10L01: Introduction to CART
+#+BEGIN_QUOTE
+Classification and Regression Trees
+#+END_QUOTE
+*** Trees in regression
+**** Uses
+1. Classification
+2. Decision tree
+*** Recall
+In simple linear regression, e.g.:
+impact of marketing email on recipient spending.
+- Predictors:
+  1. Demographics e.g. age, sex, number of children, income
+  2. Purchasing factors e.g. amount spent per month
+  3. Binary factor e.g. was email received and opened
+*** What if responses can be differentiated by a factor?
+(The above example of simple linear regression assumes every data point behaves the same way)
+If each group instead have their own characteristics and responses, two regressions can thus be fitted, e.g.:
+1. 25 years or younger
+   $\text{Money spent}=50+13.75\times\text{Number of Children}+0\times\text{Income over 30,000}+\text{...}$
+2. older than 25
+   $\text{Money spent}=32+28.13\times\text{Number of children}+7.13\times\text{Income over 30,000}+\text{...}$
+*** Further splits are possible
+- Each branch is further split
+- Each ending is a /"leaf"/
+  - /Descriptively/: Each leaf's coefficients explains behaviour in that leaf
+  - /Predictively/: Each leaf's regression model can be used to predict a new point in that branch.
+- Each branch can run $R^2$ and those with low $R^2$ can be investigated/improved.
+*** Disadvantages
+- Lots of computations and regressions
+- Fewer and fewer data points in each node
+**** Hence:
+Simplify the regression by just using the constant term input
+- e.g. $y=a_0$ instead of $y=a_0+a_1x+\text{...}$
+- This is the mean response over all data points in the node, i.e.
+  $$
+  a_0 = \frac{\sum_i\text{in node }y_i}{\text{count of data points in node}} \\
+  = \text{avg response in node}
+  $$
+*** Other places to use trees
+- The branching concept can be applied to:
+  - Logistic regression model
+    - fraction of node's data points with True response
+  - Classification model
+    - Most common classification among node's data points
+  - Decision model
+    - Each leaf is the decision "do I send a marketing email?"
+*** Common questions
+1. How to choose the branches?
+2. When to stop branching?
+3. Why is this called a regression tree?
+*** Etymology of "tree"
+[[./img/m1001-tree.png]]
+** M10L02: Branching
+*** Main questions
+1. Which factors are used to decide on branching?
+2. How to split data?
+In practice, no good algorithm to help decide. Instead, branch on 1 factor at a time.
+*** Branching methods
+1. Start with half of data and run a regression
+2. Split the data into 2 halves based on some factor we can branch from (e.g. age >25)
+3. For each leaf:
+   1. Calculate variance of response amongst all data points in each leaf
+   2. Test splitting on each factor to see how much lower total variance of two branches would be vs. the least variance.
+   3. Choose the factor with lowest total variance.
+   4. Make split iif:
+      1. Enough data points in each branch
+      2. Decrease is lower than threshold \delta
+   5. Otherwise, don't split the leaf
+4. Go backwards to *prune* using the 2nd half of data not used in initial branching. For each pair of leaves created in each branch:
+   1. Use the other half of data in each branch to see if estimation error was improved by branching
+      1. If error increases/no change, then remove branch
+      2. Else, keep the branch
+*** Generic branching concept
+#+BEGIN_QUOTE
+Overfitting can be costly; make sure the benefit of each branch is greater than its cost
+#+END_QUOTE
+Key ideas
+1. Use a metric related to model quality
+2. Find 'best factor' to branch with
+3. *Check*: did this improve the model?
+   1. If not, prune the branch back.
+Rejecting potential branches
+1. Low improvement benefit
+2. Some side of branch has too few data points after branching
+   1. Each leaf should contain \geq5% of original data (we don't want to over-fit the model)
+** M10L03: Random Forests
+*** Intro summary
+- Introduce randomness
+- Generate lots of random trees
+  - Each has its strengths and weaknesses
+- Key concept: average better than single tree
+*** Introducing randomness
+#+BEGIN_QUOTE
+via bootstrapping
+#+END_QUOTE
+- With $n$ number of original data points, we make trees each with $n$ points.
+  - However, some points can be picked multiple times while others get picked 0 times.
+- When branching:
+  - Not as before (before: we choose 1 factor at a time)
+  - In RF: pick a small number of factors $X$
+  - Choose the best factor in that set to branch on
+  - Common number of factors used: $1+\log(n)$
+- No need to prune tree
+*** Note
+- Each tree has slightly different data
+- Will end up with lots of different trees (500-1000 are common)
+- Each tree gives a slightly different regression model
+- Which one to use?
+  - Regression trees: use the *average* predicted response
+  - Classification trees: use the *most common* predicted response
+- Benefits of RF:
+  - Better overall estimate
+  - Average between tree can somewhat address over-fitting
+- Disadvantages of RF:
+  - Harder to explain and interpret results
+  - Cannot explain how variables interact, or how some sequence of branches is helpful/meaningful (which can be found in single tree)
+  - Can't give specific model from the data
+*** Summary of RF
+- Method: introduce randomness into the trees
+- Good as 'black box' predictor
+- Cannot give much detailed insight
+** M10L04: Explainability and Interpretability
+** M10L05: Confusion Matrices
+** M10L06: Situationally-Driven Comparisons
+** L10L07: Advanced Topics in Regression
