@@ -1091,6 +1091,142 @@ via bootstrapping
 - Good as 'black box' predictor
 - Cannot give much detailed insight
 ** M10L04: Explainability and Interpretability
+#+BEGIN_QUOTE
+How easy or not it is to understand how models create their output?
+#+END_QUOTE
+*** Example: linear regression
+$$y=a_0 + \sum^n_{j=1}a_j x_{ij}$$
+To answer "how is the value of $y$ affected by different values of the predictor?" with:
+- y :: Number of tickets sold this year
+- x_1 :: Salary of top 4 stars
+- x_2 :: Number of movies with similar plots this year
+- x_3 :: Rated *R* or more restrictive (1=yes)
+- x_4 :: Number of days left in the year
+- a_0 :: 1,000,000
+- a_1 :: 0.25
+- a_2 :: -1,000,000
+- a_3 :: -1,000,000
+- a_4 :: 20,000
+The interpretation is thus:
+- Baseline is 1,000,000 tickets (a_0)
+- Salary of star, each dollar increases number of tickets sold by $0.25 (a_1)
+- Similar movie: each similar movie decreases number of tickets sold by 1,000,000 (a_2)
+- Restrictive rating: decreases number of tickets sold by 1,000,000
+- Days left in year: each day increases number of tickets sold by 20,000
+*** Example: regression tree
+- With the same values above, it becomes a long if_else statement
+- Can describe detail of tree but it's not helpful for understanding
+*** Example: random forests
+- If one tree is hard to explain, 500 are even worse
+- Although random forests give relative branching importance of each variable,
+  - They do not say *how*
+  - Hence RF are not precise for interpretability or explainability
+*** Comparisons
+| Model             | Explainability | Performance      |
+|-------------------+----------------+------------------|
+| Linear regression | Higher         |                  |
+| Regression tree   | Medium         |                  |
+| Random forest     | Lower          | Sometimes higher |
+
+More explainable models:
+- help us understand "why"
+- help decision makers to choose between models
+- can be a legal requirement, e.g. in finance
+However, less explainable models can give better results at times as they can identify and model more complex patterns
+*** Tradeoff
+Pay attention to tradeoffs when proposing a model:
+| Explainability | Value            | Adoption    | Legal requirement |
+|----------------+------------------+-------------+-------------------|
+| Less           | Potentially more | ?           | ?                 |
+| More           | ?                | More likely | Might be required |
+
 ** M10L05: Confusion Matrices
+#+BEGIN_QUOTE
+Answers: How to measure how well a classification-type model works?
+#+END_QUOTE
+This is a confusion matrix:
+|                |     | Model   | Classification |
+|----------------+-----+---------+----------------|
+|                |     | Yes     | No             |
+| True           | Yes | Correct | Wrong          |
+| Classification | No  | Wrong   | Correct        |
+
+It shows how much the model is confusing the two categories.
+*** Details
+|                |     | Model     | Classification |
+|----------------+-----+-----------+----------------|
+|                |     | Yes       | No             |
+| True           | Yes | True Pos  | False Neg      |
+| Classification | No  | False Pos | True Neg       |
+- Positive: model *says* it's in the category
+- Negative: model *says* it's NOT in the category
+- True: model got it right
+- False: model got it wrong
+*** Definitions
+- Sensitivity :: TP/(TP+FN), i.e. TP / All actual positives
+- Specificity :: TN/(TN+FP), i.e. TN/ All actual negatives
+Others: don't memorize, just refer.
 ** M10L06: Situationally-Driven Comparisons
+*** Example: from spam detection
+|                |     | Model | Classification |
+|----------------+-----+-------+----------------|
+|                |     |   Yes |             No |
+| True           | Yes |   490 |             10 |
+| Classification | No  |   100 |            400 |
+- Cost: $0 for correct classification
+  - $0.04 to read spam
+  - $1 to miss a real message
+- If 50% of email is spam, the total cost is \sum:
+  1. 490 \times $0 + 440 \times $0 = 0
+  2. 10 \times $1 = $10
+  3. 100 \times $0.04 = $4, i.e.
+$0.014 per email
+- If 40% of email is spam: total cost is \sum:
+  1. 490 \times 0.6/0.5 \times 0 + 400 \times 0.4/0.5 \ times 0 = $0
+  2. 10 \times 0.6/0.5 \times $1 = $12
+  3. 100 \times 0.4/0.5 \times $0.04 = $3.2
+$0.0152 per email
+*** Evaluating quality / changing metrics
+- E.g. make model stricter that can reject more spam
+- This can make model reject more spam, but also cause more false negatives (which are much more costly)
+  Hence overall cost is higher at $52 ($0.104 per email)
 ** L10L07: Advanced Topics in Regression
+*** Poisson regression
+Use when response follows a Poisson distribution i.e.
+$$
+f(z) = \frac{\lambda^Z e^{-z}}{z!}
+$$
+Examples:
+- Count of arrivals at airport security
+- Arrival rate might be function of *time*
+- Hence, estimate \lambda(x)
+*** Regression splines
+Spline: function of polynomials that connect to each other
+[[./img/10-07-spline.png]]
+- Different functions are fitted to different parts of the data set
+- Hence, smoothens connections between parts
+- "Order-k" regression spline means that polynomials are all order k.
+- Example: multi-adaptive regression splines (MARS)
+  - Called "Earth" in many stats libraries
+*** Bayesian regression
+- Start with:
+  - Data AND
+  - Estimate of how regression coefficients and random error is distributed
+- Example: to predict how tall a child will be as an adult, based on:
+  - Data: heights of child's parents
+  - Expert opinion: starting distribution, coefficients of father's and mother's heights are normally distributed between 0.8 and 1.2
+- Then use Baye's theorem to update estimate
+- *Helpful when data is lacking*:
+  - Combines expert opinion with the data we do have.
+  - Can replace expert opinion with a broad prior distribution (e.g., uniform over a large interval) as seed data
+*** k-Nearest Neighbour Regression
+- Similar to KNN for classification
+- Hence, *KNN can be used for both regression and classification*
+- Implementation:
+  - No estimate of prediction function (function-less)
+  - Plot all data
+  - To predict response for a new point:
+    - Average response of $k$ closest data points
+  - Can be made fancier, e.g.:
+    - Weight each dimension of distance
+    - Removing dimensions that are not predictive
