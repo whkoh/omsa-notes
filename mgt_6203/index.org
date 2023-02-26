@@ -737,13 +737,15 @@ Logistic regression is similar to linear regression with 2 main differences:
 - For each observation, use the logic model to make prediction with the X values
 - If predicted value == 0, that's a true negative
 - Else predicted value == 1, false positive
-- As the cutoff is increased, true negatives increase and false positives decrease
+- As the cutoff is increased, true negatives increase and false positives decrease:
+  -  *Specificity* increases
 *** True Positive and False Negative
 - Consider all Y=1 observed (defaults)
 - For each observation, use the logic model to make prediction with the X values
 - If predicted value == 1, that's a true positive
 - Else predicted value == 0, false negative
-- As the cutoff is increased, false negatives increase and true positives decrease
+- As the cutoff is increased, false negatives increase and true positives decrease:
+  -  *Sensitivity* decreases
 *** Confusion matrix
 - Shows the intersection of actual and predicted values of model
 - Matrix records the performance of classifier, i.e. lets you gauge how models perform
@@ -778,8 +780,8 @@ Cost of making error depends on situation, e.g.:
 - Sensitivity decreases to 0.03
 - Specificity increases to 0.9998
 *** Increasing cutoff value of $p$
-- True neg increase, false pos decrease
-- False neg increase, true pos decrease
+- True neg increase, false pos decrease.
+- False neg increase, true pos decrease.
 *** ROC Curve
 - "Receiver Operating Characteristic" curve
 - Shows diagnostic ability of binary classifier, when the cutoff value is varied
@@ -1156,3 +1158,55 @@ Conclusion: equities > government debt
 - Over time, more risky assets generate higher returns.
 - However, they also have higher year-to-year variations
 - This is the risk-return tradeoff
+* Module 07: Measuring Risk-Adjusted Performance
+** M7L1: Risk Adjusted Performance
+*** A Way to Keep Score
+- Need some way to measure whether investments are outperforming expectations
+- To measure abnormal return i.e.
+  Abnormal return = Actual return - Expected return
+*** Benchmark comparisons
+- Compare to a benchmark, e.g.
+  ~Return.cumulative(All.data, geometric=T)~
+  ~chart.CumReturns(All.dat, wealth.index=F, geometric=T)~
+*** Sharpe ratio
+- Measures investment reward per unit of risk
+- $\frac{R-R^f}{\sigma(R-R^f)}$
+- Definitions
+  - R-R^f :: excess of portfolio returns above risk free rate
+  - \sigma(R-R^f) :: standard deviation of the excess return
+- Higher ratios are better
+- Higher ratio indicates higher return per unit of risk
+**** Calculating Sharpe ratio in R
+- ~SharpeRatio(All.dat$ContraRet, All.dat$Risk.Free)~
+  - Output: 0.19
+- Market's Sharpe ratio: 0.153
+- Hence the Contra fund is out-performing market
+*** Treynor Ratio
+- Similar to Sharpe, except the denominator is \beta
+- $\frac{(R-R^f)}{\beta}$
+- Similarly, higher Treynor Ratio means higher reward per unit of risk
+**** In R
+- Function is ~TreynorRatio(All.dat$ContrRev, All.dat$Market.Return, All.dat$Risk.Free)~
+  - Contra fund: 0.10
+  - Market index: 0.07
+- Contra fund has outperformed market
+*** Jensen's alpha
+- Measures the abnormal return that portfolio earns after adjusting for \beta
+- Estimate this regression:
+- $r_{i,t} - r_f = \alpha_i + \beta_i(R_{m,t}-r_f) + \epsilon_{i,t}$
+- Definitions:
+  - $r_{i,t}$ :: return on asset $i$ at time $t$
+  - $r_f$ :: risk-free rate
+  - $R_{m,t}$ :: return on market index at time $t$
+  - \alpha_i :: regression coefficient to be estimated
+  - \beta_i :: regression coefficient to be estimated
+**** Steps to calculate Jensen's alpha
+1. Calculate return in excess of risk-free rate, $r_{i,t}-r_f$
+2. Calculate the return on market index in excess of risk-free rate, $R_{m,t}-r_f$
+3. Run regression of $(r_{i,t}-rf)$ on $(R_{m,t}-r_f)$
+4. Focus on regression intercepts:
+   1. If positive and statistically significant, the fund has outperformed benchmark
+   2. Else, the fund has underperformed
+** M7L2: Transaction Costs
+** M7L3: Market Efficiency
+** M7L4: Behavioural Finance
