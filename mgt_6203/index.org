@@ -1208,5 +1208,111 @@ Conclusion: equities > government debt
    1. If positive and statistically significant, the fund has outperformed benchmark
    2. Else, the fund has underperformed
 ** M7L2: Transaction Costs
+*** Impact of transaction costs on performance
+- Without costs:
+  - acquire $1000 of shares, get 10% return, get $1100, net return 10%
+- with transaction costs, 150bps, only $985 worth of shares bought
+  - when sold, another 150bps paid, after 10% increase, only get $1067.25
+- Transaction costs *always* lower returns
+*** Over investing lifetime, transaction costs can have big impact
+- Low fee fund 0.1% per year
+- High fee fund 1% per year
+- Initial investment $100,000
+- Amount after 30 years:
+  - Low fee fund: $1.74M
+  - High fee fund: $1.33M
+*** Types / components of transaction costs
+- Commission :: fixed charge for executing trade
+- Bid-ask spread :: price diff between immediate sale (offer/ask) and immediate buy (bid)
+- Delay :: loss in investment decision between investment decision made and time trade executed
+*** Bid-ask spread illustration
+- Buying 1000 shares of XYZ
+  - Best offer price: $25.42 (lowest price to buy)
+  - Best bid price: $25.38 (highest price to sell)
+  - Quote spread: $0.04, 16bps
+    - difference between best bid and offer
+  - Larger orders pay higher transaction costs
+*** Delay cost example
+- Fund manager wants to buy current stock at $50, for total $250K. By the time the order can be executed, price rose to $50.25
+- Delay cost: $0.25, 50bps
+*** Size of trading cost
+- bps :: basis point
+- 1 bps :: 0.01%
+*** Summary (no lecture quiz)
+- Transaction costs lower investment returns
+- Components:
+  1. commission
+  2. Bid-ask spread
+  3. Delay
+- As investors, we care about returns net of transaction costs
 ** M7L3: Market Efficiency
+*** Stock price reflects information
+- If some stock pattern *guarantees* profit, what should you do?
+  - Definitely exploit it
+  - By borrowing as much money as possible to invest
+- Process of exploiting it makes the opportunity vanish as:
+  - stock price bids up when you buy it
+  - stock price bids down when it's cold
+- Pattern is eliminated by observing it
+*** The Army of Investors
+- Other than individual investors, there is also an 'army' of intelligent and well-informed security analysts, traders, etc hunting for mispriced or following patters
+  - Have computers, databases, analytical techniques, etc
+  - Can assess and act on information very quickly
+  - May police market so efficiently that they drive asset prices to fully reflect all available information quickly
+*** Implications
+- Competition is fierce for finding mispriced securities
+- Competition always kills the sure-profit pattern
+  - If there is one, it would be exploited by the first person
+  - First person can make profit
+  - First person not likely to be you
+- Implies:
+  - Stock prices should have reflected all available information
+  - Stock returns can be unpredictable
+*** Efficient markets
+- Efficient capital market :: one in which stock prices fully reflect available information
+- Weak form :: security prices reflect all information found in past price and volume
+- Semi-strong :: security prices reflect all publicly-available information
+- Strong :: Security prices reflect all information, public and private
+*** Market efficiency: 'theory of sharks'
+- Instead of presenting market efficiency as one of a rational man,
+- It's a theory of intense competition:
+  - In liquid markets, profit opportunities bring about infinite discrepancies between supply and demand
+  - Well financed, knowledgeable arbitrageurs spot these opportunities, etc, and by their actions close the aberrant price diff
+*** Evidence of market efficiency
+- If market is semi-strongly efficient, then no matter what publicly available information is used to pick stocks, they should have same average returns as those of average investor in the market
+- Can test efficiency by comparing performance of professionally managed mutual funds with performance of market index
+*** Not easy to beat market
+- Very few active US equity funds outperform passive benchmarks
+- At long time horizons, most funds fail to outperform
+- Most evidence shows you can't predict the funds that will outperform
+*** Summary (no lecture quiz)
+- Efficient markets result from intense competition
+- If markets are efficient, it should not be possible to consistently generate alpha or to outperform a passive benchmark
+- Performance of mutual funds suggest the markets is efficient
 ** M7L4: Behavioural Finance
+*** Markets cannot be perfectly efficient
+- If they were, there would be no incentive to collect information
+- A lot of evidence on behavioural biases and failure of market efficiency
+- E.g. CUBA fund
+  - 69% are US stocks, others Mexican
+  - No assets in Cuba
+  - Upon lifting of assets on Cuba, the CUBA fund price increased by 70%
+*** Behavioural finance
+- Key ingredients
+  1. Investors are not fully rational. Deviation from rationality are correlated across investors
+     - i.e., many investors make the same mistake
+  2. Arbitrage forces are limited, by:
+     - Limited capital
+     - Investment constraints, e.g. unable to short
+     - Noise trader risk. Arbitrageurs may have limited time horizons so mispricing can persist over long periods of time
+- If true:
+  - Irrational behavior can push prices away from fundamental value
+  - Arbitrage is limited and cannot completely eliminated mispricing
+*** Investors have many behavioural biases
+- Overconfidence :: tendency to overestimate one's ability
+- Loss aversion :: tendency of individuals to seek pride and avoid regret in their decisions
+- Recency :: overemphasis of recent information when making investment decisions
+- Anchoring :: Individuals tend to decide based on single fact or figure that should have little bearing on their decision, while ignoring more important information
+*** Summary (no lecture quiz)
+- Investors suffer from various biases
+- Coupled with market frictions, this may push prices away from fundamental value
