@@ -458,7 +458,7 @@ Complexities!
 - Cyclical patterns, e.g. annual, weekly, daily
 *** Trends
 - $T_t$: the trend at time period $t$
-- $S_t = \alpha x_t + (1-\alpha)S_{t-1}$
+- $S_t = \alpha x_t + (1-\alpha)(S_{t-1}+T_{t-1})$
 - $T_t = \beta(S_t - S_{t-1}) + (1-\beta)T_{t-1}$
 - Initial condition: $T_1=0$
 *** Cyclical patterns
