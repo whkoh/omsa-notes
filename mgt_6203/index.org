@@ -1316,3 +1316,91 @@ Conclusion: equities > government debt
 *** Summary (no lecture quiz)
 - Investors suffer from various biases
 - Coupled with market frictions, this may push prices away from fundamental value
+* Module 08: Factor-based Investing (Investing Analytics)
+** M8L1: Identifying factors
+Which factors drive returns?
+*** Size effect
+- Smaller firms have higher returns
+  - By around 3% / year since 1927
+- Size measured by market capitalization
+*** Value effect
+- Inexpensive stocks have higher returns
+  - Fama and French (1993)
+- Measured by book value-market value ratio (B/M)
+  - High B/M means stock is inexpensive
+  - By around 4.67% / year
+*** Momentum effect
+- Stocks that have performed well tend to continue performing well
+  - Past winners outperform past losers
+  - By around 9.23% / year
+*** Profitability effect (i.e., Quality)
+- Profitable stocks outperform unprofitable stocks
+  - Fama and French (2015)
+  - By around 3.2% a year
+*** Risk effect
+- Low beta assets outperform high beta assets
+  - Betting against beta
+  - Frazzini and Pedersen (2014)
+  - By around 12.2% / year
+** M8L2: Interpreting factor regressions
+- Factors driving stock returns (recap):
+  1. Beta: r^m - r^t
+  2. Size: SMB
+  3. Value: HML
+  4. Momentum: MOM
+  5. Quality: BAB
+  6. Risk: QMJ
+*** Factor regressions
+- Can estimate model factors using linear regression
+- Dependent (response) variable is fund's excess return above risk-free rate
+- Factors are independent variables
+- Typically:
+  $$
+  r_t^{fund}-r^f_t = \alpha + \beta_1(r_t^m-r_t^f) + \beta_2 SMB_t + \beta_3 HML_t + \beta_4 MOM_t + \beta_5 BAB_t + \beta_6 QMJ_t + \epsilon_t
+  $$
+*** Interpreting factor regressions
+- Fund's coefficients tell us about exposure to different factors. A *positive* coefficient for this factor indicates
+  - SMB :: tilt towards small cap stocks
+  - HML :: tilt towards value stocks
+  - MOM :: tilt towards high momentum stocks
+  - QMJ :: tilt towards profitable stocks
+  - BAB :: tilt towards safe stocks
+- Intercept represents \alpha
+  - Indicates skill of fund manager
+  - Positive and significant: fund manager has outperformed
+  - True \alpha indicated after adjusting for all factors e.g. beta, size, value...
+*** Takeaways from factor regression
+- Allows us to uncover reasons for fund's out-performance
+- It's becoming popular
+- But:
+  - Performance may dissipate due to popularity
+  - Each factor has experienced prolonged periods of underperformance as well
+    - Patience is required for some of these factors
+*** Summary
+- Factor regressions help us understand the drivers of a fund's return
+- Intercept from regression indicates skill of fund manager
+** M8L3: Concluding
+- 3 core concepts covered
+  1. Quantifying prices in financial markets
+  2. Identifying superior performance in financial markets
+  3. Describing driving forces of returns in stock markets
+*** Topic 1 recap
+- Ways to think about stock and fund prices:
+  - Simple and compound returns
+  - Standard deviation
+  - Beta
+  - R^2
+  - Drawdown
+*** Topic 2 recap
+- Measuring performance via:
+  - Comparing to benchmark
+  - Sharpe ratio
+  - Treynor ratio
+  - Jensen's alpha
+*** Topic 3 recap
+- Drivers of returns:
+  - Size
+  - Value
+  - Momentum
+  - Profitability
+  - Volatility
