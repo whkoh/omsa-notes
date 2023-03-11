@@ -1448,6 +1448,24 @@ Other examples that can work:
 *** Types of Q-Q plots
 - Understand how to read the plots rather than memorize shapes
 ** M13L5: Queuing
+- Telemarketing example with autodialer in marketing
+*** Queuing example
+- Qn: how many employees should we have?
+- Variables:
+  - Number of people who answer the autodialer
+  - Duration of call once it starts
+- Probability distributions:
+  - Call arrives to queue:
+    - Based on probability distribution of time between arrivals
+  - Call finish:
+    - Based on probability distribution of talking time
+- Call arrival e.g. poisson
+- Call duration e.g. exponential
+*** More complex example
+- New factors:
+  - Limited number of calls in queue
+  - Additional employee
+- New concept: *memoryless property*
 ** M13L6: Simulation basics
 ** M13L7: Prescriptive simulation
 ** M13L8: Markov chains
