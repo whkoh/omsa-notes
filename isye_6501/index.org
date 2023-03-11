@@ -95,7 +95,7 @@ Definition of bad classification
 
 - We multiply margin by $\lambda$ to *assign its importance of margin vs error*.
 - Hence, the full equation is:
-   $$
+  $$
   \text{Minimize}_{a_0,...,a_n} \sum_{i=1}^{m} \text{max} \{ 0, 1 - (\sum_{j=1}^{n} a_j x_{ij} + a_0) y_i \}  + \lambda \sum_{j=1}^{n}(a_j)^2
   $$
 ** M2L5: What SVM means
@@ -863,27 +863,27 @@ $$
       - This produces a similar graph to the inflation-adjusted rate
       - Useful when we don’t know the response (as in most cases)
 ** M9L3: Intro to PCA
-  - Works on high dimensional and correlated data
-    - Which subset of features are important to predict response?
-    - e.g. which stocks can predict how well the market performs the next day?
-      - 6K securities
-      - Remove days that have major events
-    - Issues:
-      - 6K predictors need many many data points to avoid overfitting (need to reduce predictors)
-        - However, even with unlimited data, the underlying situation could have changed over time
-        - E.g. TSLA stock is good predictor now but it was only listed 5 years ago
-      - High correlation between predictors
-  - PCA transforms data by:
-    - Removing correlations within predictors
-    - Ranking coordinates by importance
-      - Most important are first
-    - By concentrating on first *n* principal components
-      - This reduces random effects and
-      - These PCs have higher signal to noise ratio
-    - Graphically:
-      - rotate plot until it’s orthogonal to the correlation
-    - If D1 and D2 are the new PCs,
-      - D1 (that explains more variance) will be the first factor
+- Works on high dimensional and correlated data
+  - Which subset of features are important to predict response?
+  - e.g. which stocks can predict how well the market performs the next day?
+    - 6K securities
+    - Remove days that have major events
+  - Issues:
+    - 6K predictors need many many data points to avoid overfitting (need to reduce predictors)
+      - However, even with unlimited data, the underlying situation could have changed over time
+      - E.g. TSLA stock is good predictor now but it was only listed 5 years ago
+    - High correlation between predictors
+- PCA transforms data by:
+  - Removing correlations within predictors
+  - Ranking coordinates by importance
+    - Most important are first
+  - By concentrating on first *n* principal components
+    - This reduces random effects and
+    - These PCs have higher signal to noise ratio
+  - Graphically:
+    - rotate plot until it’s orthogonal to the correlation
+  - If D1 and D2 are the new PCs,
+    - D1 (that explains more variance) will be the first factor
 
 ** M9L4: Using PCA
 *** Math of PCA
@@ -912,10 +912,10 @@ $$
 - Example: PCA finds $L$ new factors (each $t_{ik}$), and regression coefficients b_0, b_1, ... b_L:
   $$
   y_i = b_0 + \sum^L_{k=1}b_k t_{ik} \\
- = b_0 + \sum^L_{k=1}b_k [\sum^m_{j=1} x_{ij} v{jk}] \\
- = b_0 + \sum^m_{j=1}x_{ij} [\sum^L_{k=1}b_kv_{jk}]
- \\
- = b_0 + \sum^m_{j=1}x_{ij}[a_j]
+  = b_0 + \sum^L_{k=1}b_k [\sum^m_{j=1} x_{ij} v{jk}] \\
+  = b_0 + \sum^m_{j=1}x_{ij} [\sum^L_{k=1}b_kv_{jk}]
+  \\
+  = b_0 + \sum^m_{j=1}x_{ij}[a_j]
   $$
 - Each t vector does not have nice intuitive explanations as they are linear combinations of original factors.
 - Hence just plug in the transformation for each t factor:
@@ -1230,3 +1230,138 @@ Spline: function of polynomials that connect to each other
   - Can be made fancier, e.g.:
     - Weight each dimension of distance
     - Removing dimensions that are not predictive
+* Module 11: Variable Selection
+- Factor based models:
+  1. Classification
+  2. Clustering
+  3. Regression
+** M11L1: Introduction
+*** Why bother limiting factors?
+1. Prevents overfitting
+   - When number of factors close to number of data points
+     - Cause bad estimates
+   - Model fits too closely to the random effects
+2. Simplicity
+   - Simple models better than complex models
+     - Less data required
+     - Less chance of insignificant factors
+     - Easier to interpret
+   - Factors can be illegal to use
+     - race, sex, religion, marital status cannot be used to make credit decisions
+     - factors correlated to these also cannot be used
+** M11L2: Models for variable selection
+*** Forward selection
+- Start with no factors, then add
+  [[/Users/whkoh/git-repos/omsa-notes/isye_6501/img/m11-fwd-sel.png]]
+*** Backward elimination
+- Start with all factors, then eliminate
+  [[/Users/whkoh/git-repos/omsa-notes/isye_6501/img/m11-backw-elim.png]]
+*** Stepwise regression
+- Combines forward selection and backward elimination
+  [[/Users/whkoh/git-repos/omsa-notes/isye_6501/img/m11-stepwise.png]]
+*** Types of approaches
+- Greedy
+  - Decisions are made stp by step
+  - Known as /Greedy Algorithm/
+  - At each step, take one thing that looks best
+    - Doesn't consider future options
+- Global (see below)
+*** Lasso approach
+- Add constraint to standard regression equation
+  - Still min SSE, *and* keep:
+  - Sum of coefficients less than threshold T $\sum_{j=1}^n|a_j| \leq T$
+- Gives regression a budget to use on coefficients
+  - Most important coefficients kept
+  - Others given 0
+- Important to scale data and pick T correctly
+- *Scaling* is important (e.g. age in years will be much bigger than age in days)
+- Picking $T$ depends on:
+  1. Number of variables
+  2. Quality of model
+  3. Best tradeoff is to use LASSO method with different T values and assess
+*** Elastic net
+- Constraint combination of abs. values of coefficients and their squares
+  $\bar{\lambda}\sum_{j=1}^n|a_j| +(1-\bar{\lambda})\sum_{j=1}^na_j^2 \leq T$
+- Important to scale data and pick T, $\bar{\lambda}$ correctly
+*** Ridge regression
+- Take out absolute value term from elastic net
+- Ridge regression doesn't do variable selection
+- It can lead to better predictive models
+
+** M11L3: Lasso vs Ridge regression
+-
+** M11L4: Bias-Variance tradeoff
+** M11L5: Ridge regression / regularization
+** M11L6: Choosing a variable selection model
+* Module 12: Design of Experiments
+** M12L1: Intro
+What if dataset is hard to get/requires some process to get?
+Examples:
+1. determining which ad is better for advertising OMSA.
+2. which similar or related product to show to users?
+3. how to get representative sample of all relevant factors?
+4. combinations of medical treatments
+5. maximizing agricultural productiveness
+*** Comparison and control
+- Answering whether red used cars sell for higher prices than blue used cars?
+- Control other factors:
+  1. Color
+  2. Age
+  3. Sports vs family car
+*** Blocking
+- A blocking factor creates variation
+- E.g. sports car vs family car
+- Sports car more likely to be red
+- Analyzing red sports cars vs red family cars have less variance than all red cars
+** M12L2: A/B testing
+Choosing the best out of alternatives. Example:  banner ads: how to decide which version to show?
+- Show two different ads and how often each ad was clicked
+- This is binomial data; use hypothesis testing to test for statistical significance.
+*** Required to use A/B testing
+1. Data can be collected quickly
+2. Data must be representative
+3. Data collected is small vs. entire population (cost: does not make sense to spend 2000/2500 on building model. Remaining 500 too little to exploit.)
+** M12L3: Factorial design
+*** Full factorial design
+- Test every combination and use ANOVA to determine the importance of each factor
+- Explodes with number of combinations, e.g. 7 factors x 3 choices = 3^7 = 2187 combinations
+*** Fractional factorial design
+- Test subset of combinations
+- Balanced design
+  - Test each choice the same # of times
+  - Test each pair of choices the same # of times
+*** Independent factors
+- Factors need to be independent
+- Test subset of combinations
+  - Use regression to estimate effects
+- But there still some interaction factors, e.g. white background can't be used with white font color
+*** Summary
+- Factorial methods can be very useful before data is collected
+** M12L4: Multi-armed bandits
+- What if there are > 2 possible alternatives
+*** Exploration vs exploitation
+- With 10 alternatives, 1000 tests on each alternative:
+  - 10000 test total, but only 1 is best
+  - So 9000 tests lost value
+- Trade-off between having more information and immediate value
+  - Exploration :: more information
+  - Exploitation :: immediate value
+*** Multi-armed bandit
+- Finding the slot machine with the highest payout requires testing them all
+- Each slot machine is a 'single-armed bandit'
+**** Implementation
+1. Start with K alternatives, no information
+   - Equal probability of selecting each alternative
+2. Repeat
+   - Choose an alternative to test
+     - Based on probability of each alternative being best
+   - After test, update probabilities of each one being best
+   - Until the best alternative is clear
+**** Parameters
+- Number of tests between recalculating probabilities
+- How to update probabilities
+- How to pick an alternative to test based on probabilities and / or expected values
+**** Summary
+- No simple rule
+- Usually better than fix/large number of tests
+- Learn faster along the fly and create more value while doing so
