@@ -1,0 +1,10 @@
+#+LATEX_HEADER: \usepackage[margin=0.2in]{geometry}
+#+OPTIONS: toc:nil
+#+latex_header: \usepackage{extsizes}
+#+latex_header: \documentclass[6pt]{extreport}
+#+latex_header: \usepackage{setspace}
+#+latex_header: \onehalfspacing
+#+latex_header: \linespread{8pt}
+* Linear regression assumptions
+   1. $\epsilon_i$ are independently and identically distributed (iid) random variables, normally distributed with mean 0 and s.d. $\sigma$
+   2. Population model is *homoskedastic* i.e., has constant $\sigma$, and has mean 0.
