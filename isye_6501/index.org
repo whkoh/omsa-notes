@@ -1365,3 +1365,89 @@ Choosing the best out of alternatives. Example:  banner ads: how to decide which
 - No simple rule
 - Usually better than fix/large number of tests
 - Learn faster along the fly and create more value while doing so
+* Module 13: Probability-based Models
+** M13L1: Intro
+*** Simple modelling
+- Examples:
+  - Airline security flows
+  - Will season ticket owners show up?
+  - Staffing fast food outlets
+*** Example on ticket owner not showing up
+- How long should we wait before selling seat upgrade?
+- Fan can pay more if they get the seat earlier, however, this increases risk that the ticket owner will arrive
+**** Factors
+- About ticket holder (age, children, past data)
+- About the team (standings, players, etc)
+- About the game (opponent, star players, etc)
+- Day factors (week, season, holiday)
+**** Simple model can still work better
+- Probability-distribution analysis can work just as well e.g. ticket holder X tends to arrive after about 60% of other fans
+- Less dependency vs other factors
+- Just use this instead of collecting other data
+*** Summary
+Other examples that can work:
+- Broken equipment
+- Website purchases
+** M13L2: Bernoulli, Binomial and Geometric Distributions
+*** Bernoulli distribution
+- E.g., flipping a coin that's not 50:50
+- Can specify:
+  - $p$ :: probability it comes up heads
+  - $$1-p :: probability that it comes up tails
+- By itself, talks about 1 data point
+- How to relate to other data points?
+**** Example
+- P(Sends donations) = p
+- p does not differ from month to month
+- Number of donations each month is binomially distributed
+*** Binomial distribution
+- Probability of getting $x$ successes from $n$ iid Bernoulli ($p$) trials
+- **Large** $n$:
+  - Converges to normal distribution
+    - Useful for predicting errors
+*** Geometric distribution
+- Probability of having $x$ Bernoulli ($p$) failures until first success?
+  - Equivalently: having x Bernoulli ($1-p$) success until first failure
+- Need to define $p$ and $1-p$ carefully
+**** Can also answer questions about process
+- If it fits geometric distribution, then hits are i.i.d. Bernoulli trials
+- If it does not fit, hits are not i.i.d., and need to consider other factors
+- Are airport screeners more likely to screen if there hasn't been a screening in a while?
+  - Observe the graph and see whether it fits a geometric distribution
+** M13L3: Poisson, Weibull and Exponential Distributions
+*** Poisson
+- Good at modelling random  arrivals
+  - \lambda :: the average number of arrivals per time period
+- Arrivals are i.i.d.
+*** Exponential distribution
+- Related to Poisson
+- If arrivals are Poisson(\lambda):
+  - Time between successive arrivals is distributed by exponential(\lambda) distribution
+- Poisson # of arrivals <==> exponential inter-arrival time
+*** Weibull
+- Models the *time* between failures
+- Whereas geometric models the *number of tries* between failures
+- $k < 1$
+  - Modelling when failure rate *decreases* with time
+  - "Worst things fail first"
+- $k > 1$
+  - Modelling when failure rate *increases* with time
+  - "Things that wear out" e.g. tires
+- $k = 1$
+  - Modelling when failure rate is constant with time
+  - This is equal to the *exponential distribution*
+    - With different notation
+*** Software can help but may be confusing
+** M13L4: Q-Q plots
+*** Visualizing
+- Whether 2 distributions (different datasets) are about the same
+- Whether a dataset is distributed similarly to a probability distribution
+  - Horizontal axis :: data
+  - Vertical axis :: theoretical values of percentiles of a probability distribution
+- Statistical tests work but can hide details about ranges, overall etc.
+*** Types of Q-Q plots
+- Understand how to read the plots rather than memorize shapes
+** M13L5: Queuing
+** M13L6: Simulation basics
+** M13L7: Prescriptive simulation
+** M13L8: Markov chains
