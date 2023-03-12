@@ -1466,6 +1466,60 @@ Other examples that can work:
   - Limited number of calls in queue
   - Additional employee
 - New concept: *memoryless property*
+  - This means it doesn't matter what happened in the past, only what's happening *now*
+  - E.g. memoryless exponential distribution
+    - Regardless of current call duration, the /remaining/ call time distribution = /initial/ distribution of call time using the distribution
+    - Therefore can discover from the distribution
+  - E.g. memoryless Posson distribution
+- If data fits exponential distribution => It is memoryless
+- Otherwise, not fitting exponential distribution => not memoryless
+*** Queuing models
+- Parameters:
+  - A :: General arrival distribution
+  - S :: General service distribution
+  - c :: Number of servers
+  - K :: Size of queue
+  - N :: Population size
+  - D :: Queuing discipline
+- Kendall notation M/M/1 queue
+- Potential extensions:
+  - Hangups, balking etc
 ** M13L6: Simulation basics
+*** Types of simulations
+- Random behaviour?
+  - Deterministic (no randomness)
+    - Same inputs give identical outputs
+  - Stochastic (includes randoness)
+    - Outputs may differ even for identical inputs
+- Time
+  - Continuous-time
+    - Changes happen continuously
+    - E.g. chemical processes, disease spread
+    - Use differential equation models
+  - Discrete event simulations
+    - The *focus*
+    - Example: call center simulations
+*** Discrete-event stochastic simulations
+- Use when systems have high variability
+- Averages are not good enough
+*** Simulation software
+- Elements include:
+  - Entities :: things that move through simulations, e.g. bags, people
+  - Modules :: represent part of process, e.g. queues, storage
+  - Actions :: thing to do
+  - Resources :: e.g. workers
+  - Decision points :: can affect flow
+- Can output statisntics for tracking
+- Random numbers are important!
+*** Replications
+- The number of runs of simulation
+- One run is insufficient due to the random nature; not representative
+- Run multiple times to get distribution of outcomes
+- E.g. simulating average throughout
+*** Simulation validation
+- Use real data to validate that the simulation is giving valid results
+  - Problems:
+    - Real average differs from simulated average
+    - Real variance differs from simulated variance
 ** M13L7: Prescriptive simulation
 ** M13L8: Markov chains
