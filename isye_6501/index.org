@@ -1522,4 +1522,56 @@ Other examples that can work:
     - Real average differs from simulated average
     - Real variance differs from simulated variance
 ** M13L7: Prescriptive simulation
+- Once validated simulation, use it for "what-if" questions
+  - e.g. what if $1000 is invested, what is the improvement?
+  - where to place baggage tugs?
+- Heuristic optimization can also be possible
+*** Simulation comparisons
+Can be run by hand:
+- e.g. 1 tug per gate
+  - vs. 1 tug per two gates
+- be careful, each could be influenced by which set of random numbers are chosen
+  - Use the same random numbers for comparison
+- Simulation can be a powerful tool but:
+  - Model only as good as input's quality
+  - Missing or incorrect information leads to incorrect answers
+- Example: call center simulation
+  - If it assumes all workers answer calls as quickly as each other, wrong, can lead to bad decisions
+*** Validation can be hard
+- Especially if it's something that doesn't exist
+*** Simulation/validation should consider all processes
+- E.g. data collection
 ** M13L8: Markov chains
+- Based on states, e.g. cloudy, sunny, etc
+- For each state /i/,
+  - p_{ij} = transition probability from state /i/ to state /j/
+  - P = {p_{ij}} is the transition matrix
+*** Answering questions with the transition matrix
+- What's the long-run probability of rainy days?
+- \pi = (0.5, 0.25, 0.25) for (Sunny, Cloudy, Rainy)
+- \pi \times P = (0.525, 0.25, 0.225) the probabilities of (Sunny, Cloudy, Rainy) tomorrow
+- \pi \times P^{2} ...
+**** Long term probability?
+- Use steady state to apply P and get the initial vector back
+  - \pi \times P = \pi
+- Solve for \pi P = \pi and \sum_i \pi_i = 1
+- Not always a steady state
+- **Steady state only exists when:**
+  1. possible to get from one state to all other states
+  2. no cyclic behaviour
+*** Key assumption
+- Memoryless:
+  - State transitions only depend on *most recent* state
+    - E.g. weather: tomorrow's only depends on today's
+- Most systems are not memoryless
+  - But still useful because it's still useful e.g. for PageRank
+- Other applications
+  1. Rank basketball teams
+  2. Urban sprawl, population, disease
+- Markov chains can still work in long-run even if not memoryless in short-run
+* Module 14: Missing Data
+* Module 15: Optimization
+* Module 16: Advanced Models
+#+BEGIN_QUOTE
+Midterm 2: modules 11-16 (from variable selection to optimization and advanced models) -- weeks 8-12
+#+END_QUOTE
