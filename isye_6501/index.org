@@ -1891,7 +1891,7 @@ Mann-Whitney test is used to compare two samples where the outcomes are not pair
    $$
 4. Find significance with software or a statistical table
 *** Summary from video
-[[./img/nonparam-tests-flow.png]]
+[[./img/m16-nonparam-tests-flow.png]]
 - Use non-parametric tests when you know nothing about distribution
 - # datasets = 2
   - Paired Yes/No :: use McNemar's test
@@ -1934,10 +1934,11 @@ Finally, the lesson provides an example to illustrate how to choose the appropri
     C. Binomial-based test
     D. Paired test
     #+END_QUOTE
-***
+*** Summary from lecture
+[[./img/m16-np-testing-types.png]]
 
 ** M16L02: Bayesian modeling
-
+#+BEGIN_QUOTE
 The passage introduces Bayesian models and their usage in analytics. It explains the basics of Bayes rule, which is a rule of conditional probability, and provides an example of using Bayes theorem to calculate the probability of having a disease given a positive test. The passage also describes empirical Bayes modeling, which is commonly used when there is little data available for a specific case. An example of using empirical Bayes modeling to estimate the strength difference between two basketball teams is provided, which shows how the model can make a prediction based on a single observation and a broader set of relevant observations. The passage emphasizes that understanding the intuition behind Bayesian models is crucial in explaining them to decision-makers who may not have a mathematical background.
 
 1. What is the purpose of the examples given in the passage?
@@ -1960,8 +1961,52 @@ The passage introduces Bayesian models and their usage in analytics. It explains
    B. Bayesian models can only be understood by decision-makers with a mathematical background.
    C. Bayesian models can be very helpful, especially in the absence of lots of data.
    D. Bayesian models are not useful for making predictions based on a single observation.
-** M16L03: Communities in graphs
+#+END_QUOTE
 
+*** Bayesian models
+- Conditional probability: Baye's rule
+  $P(A|B) = \frac{P(B|A)P(A)}{P(B)}$
+- Eg Medical test for disease
+  - TP = 98%
+  - FP = 8%
+  - 1% of population has disease
+  - 8.9% of population test +ve
+  - *Question*: if someone tests +ve, what is the probability they have disease?
+    - A: has disease
+    - B: tested +ve, hence
+    - P(A|B) = 98%*1%/8.9% = 11%
+    - It means that after testing +ve, only 11% chance of actually having disease
+    - Because: many more people don't actually have the disease, so many more FP than TP.
+*** Empirical Bayes modeling
+- Overall distribution is known, or is estimated
+  - But only sample data is available
+- Eg predicting outcomes of NCAA basketball
+  - Let $X$ = difference in points scored by home vs road team
+  - X has normal distribution $X\sim N(m+h,\sigma^2)$
+  - $h$: home court advantage
+  - $m$: true diff in team strength, which is unknown
+  - $\sigma^2$: variance
+  - Difference can be modelled as $m\sim (0,\tau^2)$
+  - Observed data:
+    - $x$ = observed point distance
+    - $m$ = real difference, but $m \neq x$
+  - $$
+    P(M=m|X=x) = \frac{P(X=x|M=m)P(M=m)}{P(X=x)} \\
+    M|X = x\sim N(\frac{\tau^2}{\tau^2+\sigma^2}(x-h),
+    \frac{\tau^2\sigma^2}{\tau^2+\sigma^2})
+    $$
+  - Get \sigma, \tau, $h$ from past data and then:
+    - $\int^\infty_0 P(M=m|X=x)dm$
+  - If home team won by 20 pts,
+    - home court advantage $h$ is \approx 4
+    - std dev in team strength diff \tau \approx 6
+    - std error from variance \sigma \approx 11
+  - Interpretation: most of the points is explained by randomness and only 3.5 pts is explained by actual difference in strength
+*** Lecture summary
+- Even a single observation, when combined with a broader set of observations, can make a deduction or prediction
+- Bayesian models work especially when we don't have lots of data
+** M16L03: Communities in graphs
+*** Transcript summary
 The lesson introduces a model called the Louvain algorithm for finding highly interconnected subpopulations in large interconnected populations, such as social media networks, disease outbreaks, computer viruses, language spread, and terrorist networks.
 
 The lesson explains the standard terminology used in graph theory, including nodes, edges, cliques, and communities. The Louvain algorithm maximizes the modularity of a graph, a measure of how well the graph is separated into communities that are highly connected internally but not much between each other.
@@ -1991,8 +2036,43 @@ The algorithm has a few mostly repeated steps, including creating super-nodes an
     B. No, it's not guaranteed to find the absolute best partition of a graph into communities because it's a heuristic.
     C. It depends on the size of the graph.
     D. It depends on the number of nodes in each community.
+*** Uses
+- Marketing / social media
+- Disease outbreaks
+- Computer viruses
+- Words spread
+- Terror network communication
+*** Specifically
+- Automated ways of finding highly-interconnected subpopulations
+*** Definitions
+- Community :: set of circles highly connected within itself
+- Circles :: nodes or vertices
+- Lines :: arcs or edges
+- Clique :: a set of nodes that all have edges between each other
+*** Louvain algorithm
+- Decomposes graph into communities
+- Maximises the modularity of a graph
+- Terms
+  - $a_{ij}$ :: weight of arc between nodes $i$ and $j$
+  - $w_i$ :: total weight of arcs connected to $i$
+  - $W$ :: total weight of all the arcs
+  - Modularity :: $\frac{1}{2W} \sum_{i,j \text{in the same community}}(a_{ij}-\frac{w_iw_j}{2W})$
+    - Measures how well the graph is separated into communities (modules) that are connected internally but not with each other
+- Steps
+  1. Each node is its own community
+  2. Repeat the following
+     1. Make *biggest* modularity increase by moving node from its community to an adjacent node's community
+     2. Until no move increases modularity
+  3. Each community is a super-node. Repeat step 1 using super-nodes.
+*** Lecture summary
+- Finding communities in graphs
+- Louvain algorithm
+  - Heuristic, hence:
+  - Not guaranteed to find the absolute best partition
+  - Gives very good solutions very quickly
 ** M16L04: Neural networks and deep learning
-
+*** Transcript summary
+#+BEGIN_QUOTE
 The lesson introduces two analytics models: neural networks and deep learning, which are often used for recognizing patterns that are difficult to specify using rules or algorithms.
 
 Neural networks are modeled after the way neurons work in the brain, with input neurons, hidden neurons, and output neurons. The weights of the inputs are adjusted based on how wrong the outputs are, using algorithms like gradient descent.
@@ -2026,8 +2106,43 @@ Although deep learning is a hot research topic, it's often used for processing t
     B. It's often hard to choose and tune the learning algorithm
     C. It's harder compared to many other model types
     D. All of the above
+#+END_QUOTE
+*** Reacting to patterns that we don't understand
+- Examples
+  - Neural networks
+  - Deep learning
+- Train system to react to patterns that human brains can react to
+- Cannot specify rules or algorithms exactly, without knowing what they're reacting to
+*** Neural networks
+- Three levels of neurons:
+  1. Input level
+  2. Hidden level (might have several layers)
+  3. Output level (use inputs to find results)
+- Each neuron:
+  1. Gets inputs from previous layer
+  2. Calculates function of weighted inputs
+  3. Gives it output to the next layer
+- Important step:
+  - The weights/functions are updated based on the correctness of the results, e.g. by gradient descent using the slope of the function
+- Eventually, if working well, all weights will be adjusted so the correct output is generated.
+- Needs much training data
+- Difficult to train and tune the model:
+  - Balance between changes that are too quick and too slow
+- Harder than other model types to make generalizable (eg English vs other languages must be trained separately from scratch)
+*** Deep learning
+- Old idea
+- New ability to make it work well
+- Very similar to neural network
+- But is many layers deep
+- Better approach than neural networks
+- Success in:
+  1. Natural language processing
+  2. Speech recognition
+  3. Image recognition
+
 ** M16L05: Competitive models
 *** Summary
+#+BEGIN_QUOTE
 In this lesson, the topic of discussion is competitive decision-making, where analytics models consider all sides of a system in a situation involving competition and cooperation.
 
 The models are used to determine the best action to take, assuming the process will change intelligently. The concept of game theory and its basic concepts are also introduced, along with a demo showcasing how the model works.
@@ -2059,8 +2174,53 @@ Lastly, the lesson covers the use of different optimization models to find the b
     B) To determine the best thing to do assuming the process won't change
     C) To find hidden relationships in the data
     D) To tease out an understanding of reality hidden in the data.
+#+END_QUOTE
+*** Us against data?
+- Descriptive models: gain an understanding of data
+- Predictive models: find hidden relationships and predict the future
+- Prescriptive models: find the best thing to do
+- Assuming the system does not react
+- What if system reacts intelligently?
+  - Use analytics to consider all sides of the system
+*** Examples:
+- Past purchase data is used to set prices, but competitor change their prices
+- Company reaction to govt tax policy
+- Employee reaction to company incentive policy
+- Competitor reaction to proactively adjusted bid
+- Cooperative and competitive supply chain
+*** Game theory
+- Competitive decision-making
+- Cooperative game theory:
+  - Competition
+  - Cooperation
+*** Timing
+- Make decisions simultaneously
+  - Can't change decision once made, eg sealed bid auction
+- Strategy
+  - Counter-strategy ad nauseum
+- If sequential: i.e. decisions made sequentially
+*** Types of strategy
+- Pure: just one choice
+- Mixed: randomize decisions according to probabilities
+  - Example: rock paper scissors
+    - Cannot always choose the same
+*** Information levels
+- Perfect information:
+  - Know everything about everyone else's situation, e.g. playing chess
+- Imperfect:
+  - Some know more than others
+*** Zero-sum vs non-zero-sum games
+- Zero-sum:
+  - What one side gets, the other side loses
+  - E.g. rock paper scissors
+- Non-zero-sum:
+  - Total benefit might be higher or lower
+  - E.g. economics
+*** Lecture summary
+- How to determine best strategy? Optimization
 ** M16L05a: Competitive model demo
 *** Summary
+#+BEGIN_QUOTE
 In this lesson, the concept of competitive decision-making using game theory is introduced. Game theory is used in situations where the outcome of a decision depends on the decisions of others.
 
 The lesson explains the basics of game theory using the example of two gas stations competing for customers. The gas stations can set their prices to $2.50 or $2. If they both set the same price, they will split the demand half and half.
@@ -2090,8 +2250,20 @@ The lesson shows how the gas stations will arrive at a stable equilibrium with b
     B. Force companies to set their prices higher
     C. Increase the demand for products
     D. Result in higher profits for companies
+#+END_QUOTE
+*** Stable equilibrium
+- Neither has incentive to change, hence...
+  - Outcome is *worse* than if they had colluded to both charge the higher price
+  - Not always true but here it is
+- This is prisoner's dilemma, where:
+  - Even if agree on higher price, both still have incentive to cheat, hence both end up with lower price
+- This isn't always true in game theory
+*** Extension of example
+- Set at any price
+- May have incentive to charger higher price
 ** M16L06: Natural language processing
 *** Summary
+#+BEGIN_QUOTE
 In this lesson, Joel Sokol explains how natural language processing (NLP) is a type of data that requires different modeling techniques.
 
 NLP models can help machines to recognize and understand human language, which can be useful in various fields such as healthcare, technical support, and legal document searching.
@@ -2123,8 +2295,26 @@ While NLP is an important and growing application of analytics and data science,
     B) The lack of available data
     C) The need for expensive hardware
     D) The slow processing speed
+#+END_QUOTE
+*** When?
+- Words and meaning of words
+- Industries
+  - Healthcare
+  - Tech support
+  - Document search
+  - Document classification
+  - Sentiment analysis
+*** Why hard?
+- Same word can have different meanings
+*** Natural language processing
+- Speech to text
+- Recognizing names and co-references
+- Determining meaning in context
+- Understanding sentiment
+- Inversely, choose words to convey a message
 ** M16L07: Survival models
 *** Summary
+#+BEGIN_QUOTE
 This lesson introduces survival models, which are used to predict the probability of an event happening or not happening before a certain time.
 
 These models are used in various applications, such as insurance, medical research, and machinery. The Cox proportional hazards model is also introduced, which estimates survival probability based on predictor variables.
@@ -2152,8 +2342,40 @@ These models are used in various applications, such as insurance, medical resear
    b) Data that is lost
    c) Data that is hidden from view
    d) Data where we either don't have data before or after a specific time, or where we only have data until we've observed enough events.
+#+END_QUOTE
+*** What are survival models?
+- Predict the probability of an event happening (or not) before a certain time
+  - Based on predictor variables
+- Not just on probability distribution but from the values themselves
+*** Uses of survival models
+- Insurance (e.g. life, auto, theft/loss, etc)
+- Medicine (effects of treatment)
+- Machinery/sensors (maintenance and replacement)
+*** Cox proportional hazard model
+- Uses an exponential function to estimate survival probability
+- Given (for each data point):
+  - Predictor variables x_1, ..., x_n
+  - Event time $y$
+  - $h(t) = h_0(t) e^{\beta_1 x_1 + ... + \beta_n x_n}$
+    - $h(t)$ :: probability of event happening at time $t$ given specific values of predictors
+    - $h_0(t)$ :: the baseline probability of event happening at $t$ if all predictor variables are 0
+    - $\beta_j$ :: the coefficient for each predictor variable $j$
+  - Expanding, this equals:
+    $h_0(t)e^{\beta_1x_1}e^{\beta_2x_2}...
+    e^{\beta_nx_n}$, hence:
+    - $\beta_j = 0$ :: x_j has no effect
+    - $\beta_j > 0$ :: x_j is positive, has higher probability
+    - $\beta_j < 0$ :: x_j is negative, has lower probability
+*** Data...
+Can't tell how long patient will survive for
+- **Censored data*
+  - No data before or after a specific time
+  - No data after certain number of occurrences
+  - Can be dealt with...
+***
 ** M16L08: Gradient boosting
 *** Summary
+#+BEGIN_QUOTE
 The lesson introduces the concept of gradient boosting, which is a way to improve the performance of a predictive model by adding other models to it.
 
 Gradient boosting uses the gradient information to fit those models. The basic idea of gradient boosting is to start with a single predictive model, and then find another function that can be added to it to improve its performance.
@@ -2185,6 +2407,25 @@ Gradient boosting can be used with factor-based models, regression, classificati
     B) To start with a single predictive model and add other models to improve its performance
     C) To use gradient information to fit models
     D) To use tree-based models
+#+END_QUOTE
+*** Computing topic, i.e.
+Using additional models to augment your model
+*** Basic idea
+- Instead of fitting a single model, we can start with one and augment its performance with other models
+- Gradient: we're using gradient information to fit other models
+*** In detail
+1. Fit the first model F(x)
+   - Predictors: $x$
+   - Response: $y$
+   - Predictions: $F(x)$
+   - Errors: $y-F(x)$
+2. Find $H(x) = y-F(x)$
+   - If found: F+H is perfect fit for training data
+   - For H(x):
+     - Predictors: $x$
+     - Response: *Negative gradient of quality metric evaluated at F's prediction*
+     - For regression, this equals $y-F(x)$
+
 ** M16L08a: Gradient boosting example
 *** Summary
 

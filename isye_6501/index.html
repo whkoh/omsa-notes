@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-04-02 Sun 20:52 -->
+<!-- 2023-04-02 Sun 23:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ISYE 6501 Intro to Analytics Modeling Notes</title>
@@ -44,550 +44,25 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgcf1e9e9">1. Module 16: Advanced Models</a>
+<li><a href="#orgdc4a210">1. M16L07: Survival models</a>
 <ul>
-<li><a href="#org26d6edc">1.1. M16L01: Non-parametric methods</a>
-<ul>
-<li><a href="#org14b6c2f">1.1.1. Non-parametric tests: Statistics tests when the distribution is unknown</a></li>
-<li><a href="#orgcf4e43f">1.1.2. McNemar's test is paired</a></li>
-<li><a href="#org661a7b7">1.1.3. Wilcoxon Signed Rank Test for Medians</a></li>
-<li><a href="#org9cc8967">1.1.4. Mann-Whitney test</a></li>
-<li><a href="#org28e5d93">1.1.5. Summary from video</a></li>
-</ul>
-</li>
-<li><a href="#orgf466512">1.2. M16L01a: Matching tests for situations</a>
-<ul>
-<li><a href="#orgcd625e6">1.2.1. Summary</a></li>
-</ul>
-</li>
-<li><a href="#org756475e">1.3. M16L02: Bayesian modeling</a></li>
-<li><a href="#org87a2d8b">1.4. M16L03: Communities in graphs</a></li>
-<li><a href="#org5d4c174">1.5. M16L04: Neural networks and deep learning</a></li>
-<li><a href="#org786d49b">1.6. M16L05: Competitive models</a>
-<ul>
-<li><a href="#orgf9279d2">1.6.1. Summary</a></li>
-</ul>
-</li>
-<li><a href="#orgdf68fef">1.7. M16L05a: Competitive model demo</a>
-<ul>
-<li><a href="#org35c331e">1.7.1. Summary</a></li>
-</ul>
-</li>
-<li><a href="#org249dfe0">1.8. M16L06: Natural language processing</a>
-<ul>
-<li><a href="#orgc8e6f0a">1.8.1. Summary</a></li>
-</ul>
-</li>
-<li><a href="#org204aca6">1.9. M16L07: Survival models</a>
-<ul>
-<li><a href="#orgb8f3e02">1.9.1. Summary</a></li>
-</ul>
-</li>
-<li><a href="#org0f2964b">1.10. M16L08: Gradient boosting</a>
-<ul>
-<li><a href="#org3d7f5a2">1.10.1. Summary</a></li>
-</ul>
-</li>
-<li><a href="#org2e96ab6">1.11. M16L08a: Gradient boosting example</a>
-<ul>
-<li><a href="#org889354c">1.11.1. Summary</a></li>
-</ul>
-</li>
+<li><a href="#org6e232b5">1.1. Summary</a></li>
+<li><a href="#org0198e94">1.2. What are survival models?</a></li>
+<li><a href="#orged57c53">1.3. Uses of survival models</a></li>
+<li><a href="#org7a703e4">1.4. Cox proportional hazard model</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgcf1e9e9" class="outline-2">
-<h2 id="orgcf1e9e9"><span class="section-number-2">1.</span> Module 16: Advanced Models</h2>
+<div id="outline-container-orgdc4a210" class="outline-2">
+<h2 id="orgdc4a210"><span class="section-number-2">1.</span> M16L07: Survival models</h2>
 <div class="outline-text-2" id="text-1">
-<blockquote>
-<p>
-Midterm 2: modules 11-16 (from variable selection to optimization and advanced models) &#x2013; weeks 8-12
-</p>
-</blockquote>
 </div>
-<div id="outline-container-org26d6edc" class="outline-3">
-<h3 id="org26d6edc"><span class="section-number-3">1.1.</span> M16L01: Non-parametric methods</h3>
+<div id="outline-container-org6e232b5" class="outline-3">
+<h3 id="org6e232b5"><span class="section-number-3">1.1.</span> Summary</h3>
 <div class="outline-text-3" id="text-1-1">
 <blockquote>
-<p>
-In this text, Joel Sokol, Director of the Master of Science and Analytics degree at Georgia Tech, explains three non-parametric statistical tests: McNamara's Test, Wilcoxon signed rank test, and Mann-Whitney test.
-</p>
-
-<p>
-These tests are not advanced analytics methods, but they are not usually covered in basic statistics prerequisites.
-</p>
-
-<p>
-McNamara's test is used to compare two competing treatments when they are tested on different patients, and there is no underlying distribution.
-</p>
-
-<p>
-Wilcoxon signed rank test is used when we have no assumptions about what the response function is mathematically, and we only assume that it is continuous and symmetric. The test answers whether the median of the distribution is different from a specific value M.
-</p>
-
-<p>
-Mann-Whitney test is used to compare two samples where the outcomes are not paired, and we assume that all the observations are independent of each other.
-</p>
-</blockquote>
-</div>
-<div id="outline-container-org14b6c2f" class="outline-4">
-<h4 id="org14b6c2f"><span class="section-number-4">1.1.1.</span> Non-parametric tests: Statistics tests when the distribution is unknown</h4>
-</div>
-<div id="outline-container-orgcf4e43f" class="outline-4">
-<h4 id="orgcf4e43f"><span class="section-number-4">1.1.2.</span> McNemar's test is paired</h4>
-<div class="outline-text-4" id="text-1-1-2">
-<ul class="org-ul">
-<li>Compare results on <b>pairs</b> of responses</li>
-<li>eg: two different treatments for a virus
-<ul class="org-ul">
-<li>Treatment A or B better?</li>
-<li>Are the observations just luck?</li>
-</ul></li>
-<li>Analysis is using p-value similar to a 'normal' hypothesis test</li>
-</ul>
-</div>
-<ol class="org-ol">
-<li><a id="orgedddfa8"></a>Summary<br />
-<div class="outline-text-5" id="text-1-1-2-1">
-<ul class="org-ul">
-<li>McNemar's (Binomial) test: Only consider when A and B are different.</li>
-<li>Does not require or assume knowledge about the distribution.</li>
-</ul>
-</div>
-</li>
-</ol>
-</div>
-<div id="outline-container-org661a7b7" class="outline-4">
-<h4 id="org661a7b7"><span class="section-number-4">1.1.3.</span> Wilcoxon Signed Rank Test for Medians</h4>
-<div class="outline-text-4" id="text-1-1-3">
-<ul class="org-ul">
-<li>Assumption:
-<ol class="org-ol">
-<li>Distribution is continuous</li>
-<li>Distribution is symmetric</li>
-</ol></li>
-<li>Question:
-<ul class="org-ul">
-<li>Is the <b>median</b> of the distribution different from a value \(m\)?</li>
-</ul></li>
-</ul>
-</div>
-<ol class="org-ol">
-<li><a id="org357a3d9"></a>Procedure<br />
-<div class="outline-text-5" id="text-1-1-3-1">
-<ol class="org-ol">
-<li>With responses y<sub>1</sub> to y<sub>n</sub></li>
-<li>Rank |y<sub>1</sub>-y<sub>m</sub>|, &#x2026;., |y<sub>n</sub>-y<sub>m</sub>| from smallest to largest</li>
-<li>\(W = \sum_{y_i>m}\text{rank}(y_i-m)\) is the sum of all ranks where y<sub>i</sub> &gt; m</li>
-<li>p-value test for \(W\)</li>
-</ol>
-</div>
-</li>
-<li><a id="orgeb2521c"></a>Question<br />
-<div class="outline-text-5" id="text-1-1-3-2">
-<ol class="org-ol">
-<li>Given pairs (y<sub>1</sub>, z<sub>1</sub>), &#x2026;, (y<sub>n</sub>, z<sub>n</sub>) from observations y and z</li>
-<li>Use |y<sub>1</sub>-z<sub>1</sub>|, &#x2026;, |y<sub>n</sub>-z<sub>n</sub>| for rank test</li>
-</ol>
-</div>
-</li>
-<li><a id="orgca3d6a8"></a>Comparison<br />
-<div class="outline-text-5" id="text-1-1-3-3">
-<ul class="org-ul">
-<li>For numeric data, use the Wilcoxon test</li>
-<li>For binary data, use McNemar's test</li>
-</ul>
-</div>
-</li>
-</ol>
-</div>
-<div id="outline-container-org9cc8967" class="outline-4">
-<h4 id="org9cc8967"><span class="section-number-4">1.1.4.</span> Mann-Whitney test</h4>
-<div class="outline-text-4" id="text-1-1-4">
-<ul class="org-ul">
-<li>Use when there are two datasets but no paired samples</li>
-</ul>
-</div>
-<ol class="org-ol">
-<li><a id="org06d9b8e"></a>Procedure<br />
-<div class="outline-text-5" id="text-1-1-4-1">
-<ol class="org-ol">
-<li>Given independent observations y<sub>1</sub>, &#x2026;, y<sub>n</sub> and z<sub>1</sub>, &#x2026;, z<sub>m</sub></li>
-<li>Rank all observations</li>
-<li>U = smaller of two adjusted rank sums
-\[
-   U = min(U_y, U_z) \\
-   U_y = \sum^n_{i=1}\text{rank}(y_i)-\frac{n(n+1)}{2} \\
-   U_z = \sum^m_{j=1}\text{rank}(z_j)-\frac{m(m+1)}{2}
-   \]</li>
-<li>Find significance with software or a statistical table</li>
-</ol>
-</div>
-</li>
-</ol>
-</div>
-<div id="outline-container-org28e5d93" class="outline-4">
-<h4 id="org28e5d93"><span class="section-number-4">1.1.5.</span> Summary from video</h4>
-<div class="outline-text-4" id="text-1-1-5">
-
-<div id="orgf6243a9" class="figure">
-<p><img src="./img/nonparam-tests-flow.png" alt="nonparam-tests-flow.png" />
-</p>
-</div>
-<ul class="org-ul">
-<li>Use non-parametric tests when you know nothing about distribution</li>
-<li># datasets = 2
-<dl class="org-dl">
-<dt>Paired Yes/No</dt><dd>use McNemar's test</dd>
-<dt>Paired Numeric</dt><dd>use Wilcoxon signed rank test</dd>
-<dt>Unpaired doubles</dt><dd>use Mann-Whitney test</dd>
-</dl></li>
-<li># datasets = 1
-<dl class="org-dl">
-<dt>Compare possible median</dt><dd>use Wilcoxon signed rank test</dd>
-</dl></li>
-</ul>
-</div>
-</div>
-</div>
-<div id="outline-container-orgf466512" class="outline-3">
-<h3 id="orgf466512"><span class="section-number-3">1.2.</span> M16L01a: Matching tests for situations</h3>
-<div class="outline-text-3" id="text-1-2">
-</div>
-<div id="outline-container-orgcd625e6" class="outline-4">
-<h4 id="orgcd625e6"><span class="section-number-4">1.2.1.</span> Summary</h4>
-<div class="outline-text-4" id="text-1-2-1">
-<blockquote>
-<p>
-This lesson discusses how to choose the appropriate statistical test for different types of situations.
-</p>
-
-<p>
-The different types of tests include parametric tests, non-parametric tests related to the median, and a specific type of non-parametric test that tracks successes and failures.
-</p>
-
-<p>
-The lesson also covers two aspects of choosing the right statistical test: determining whether to use a one or two sample test, and deciding which type of test to use depending on the type of data involved.
-</p>
-
-<p>
-Finally, the lesson provides an example to illustrate how to choose the appropriate test in a given situation.
-</p>
-
-<ol class="org-ol">
-<li>Which type of test would you use if you are analyzing the mean of a single data set?
-A. One sample parametric test
-B. Two sample parametric test
-C. One sample non-parametric test
-D. Paired binomial-based test</li>
-
-<li>When comparing two data sets, which test would you use if the data sets are not inherently paired?
-A. Paired parametric test
-B. Unpaired parametric test
-C. Paired non-parametric test
-D. Unpaired binomial-based test</li>
-
-<li>If you are analyzing the median of two data sets, which type of test should you use?
-A. Parametric test
-B. Non-parametric test
-C. Binomial-based test
-D. Paired test</li>
-
-<li>In a situation where you are analyzing binary outcomes such as successes or failures, which type of test should you use?
-A. Parametric test
-B. Non-parametric test
-C. Binomial-based test
-D. Paired test</li>
-</ol>
-</blockquote>
-<p>
-<b>*</b>
-</p>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org756475e" class="outline-3">
-<h3 id="org756475e"><span class="section-number-3">1.3.</span> M16L02: Bayesian modeling</h3>
-<div class="outline-text-3" id="text-1-3">
-<p>
-The passage introduces Bayesian models and their usage in analytics. It explains the basics of Bayes rule, which is a rule of conditional probability, and provides an example of using Bayes theorem to calculate the probability of having a disease given a positive test. The passage also describes empirical Bayes modeling, which is commonly used when there is little data available for a specific case. An example of using empirical Bayes modeling to estimate the strength difference between two basketball teams is provided, which shows how the model can make a prediction based on a single observation and a broader set of relevant observations. The passage emphasizes that understanding the intuition behind Bayesian models is crucial in explaining them to decision-makers who may not have a mathematical background.
-</p>
-
-<ol class="org-ol">
-<li>What is the purpose of the examples given in the passage?
-A. To show that Bayesian models are more difficult than other models.
-B. To demonstrate how counter-intuitive results can arise from Bayesian models.
-C. To explain how to calculate the probability of having a disease given a positive test.
-D. To provide examples of how to estimate the strength difference between basketball teams.</li>
-<li>What is Bayes rule or Bayes theorem?
-A. A rule of conditional probability.
-B. A way to estimate the strength difference between basketball teams.
-C. A formula to calculate the probability of having a disease given a positive test.
-D. A model that predicts outcomes of the NCAA basketball tournament.</li>
-<li>What is empirical Bayes modeling commonly used for?
-A. When there is a lot of data available for a specific case.
-B. When the overall distribution of something is not known or estimated.
-C. When there is little data available for a specific case.
-D. When there is only one observation available for a specific case.</li>
-<li>What is the main takeaway from the passage?
-A. Bayesian models are more complicated than other models.
-B. Bayesian models can only be understood by decision-makers with a mathematical background.
-C. Bayesian models can be very helpful, especially in the absence of lots of data.
-D. Bayesian models are not useful for making predictions based on a single observation.</li>
-</ol>
-</div>
-</div>
-<div id="outline-container-org87a2d8b" class="outline-3">
-<h3 id="org87a2d8b"><span class="section-number-3">1.4.</span> M16L03: Communities in graphs</h3>
-<div class="outline-text-3" id="text-1-4">
-<p>
-The lesson introduces a model called the Louvain algorithm for finding highly interconnected subpopulations in large interconnected populations, such as social media networks, disease outbreaks, computer viruses, language spread, and terrorist networks.
-</p>
-
-<p>
-The lesson explains the standard terminology used in graph theory, including nodes, edges, cliques, and communities. The Louvain algorithm maximizes the modularity of a graph, a measure of how well the graph is separated into communities that are highly connected internally but not much between each other.
-</p>
-
-<p>
-The algorithm has a few mostly repeated steps, including creating super-nodes and super-arcs between communities. Although the Louvain algorithm is a heuristic and not guaranteed to find the best partition of a graph, it often provides good solutions quickly and is useful for finding communities in large networks.
-</p>
-
-<ol class="org-ol">
-<li>What is the Louvain algorithm used for?
-A. Solving mathematically hard problems
-B. Finding highly interconnected subpopulations in large interconnected populations
-C. Separating a graph into communities that are highly connected between each other
-D. Maximizing the weight of arcs in a graph</li>
-
-<li>What is a clique in graph theory?
-A. A small group of people who stick together and exclude others
-B. A set of nodes that all have edges between each other
-C. The total weight of all the arcs connected to a node
-D. A measure of how well a graph is separated into communities</li>
-
-<li>What is the modularity of a graph?
-A. A measure of how well a graph is separated into communities that are highly connected internally but not much between each other
-B. The total weight of all the arcs in a graph
-C. The weight of an arc between two nodes in a graph
-D. The weight of a node in a graph</li>
-
-<li>Is the Louvain algorithm guaranteed to find the absolute best partition of a graph into communities?
-A. Yes, it always finds the absolute best partition of a graph into communities.
-B. No, it's not guaranteed to find the absolute best partition of a graph into communities because it's a heuristic.
-C. It depends on the size of the graph.
-D. It depends on the number of nodes in each community.</li>
-</ol>
-</div>
-</div>
-<div id="outline-container-org5d4c174" class="outline-3">
-<h3 id="org5d4c174"><span class="section-number-3">1.5.</span> M16L04: Neural networks and deep learning</h3>
-<div class="outline-text-3" id="text-1-5">
-<p>
-The lesson introduces two analytics models: neural networks and deep learning, which are often used for recognizing patterns that are difficult to specify using rules or algorithms.
-</p>
-
-<p>
-Neural networks are modeled after the way neurons work in the brain, with input neurons, hidden neurons, and output neurons. The weights of the inputs are adjusted based on how wrong the outputs are, using algorithms like gradient descent.
-</p>
-
-<p>
-Training neural networks is difficult, as they require a lot of training data, and it's hard to choose and tune the learning algorithm.
-</p>
-
-<p>
-Deep learning is a similar approach to neural networks but with more layers, which has had success in natural language processing, speech recognition, and image recognition.
-</p>
-
-<p>
-Although deep learning is a hot research topic, it's often used for processing text and language, and it's covered in an elective course.
-</p>
-
-<ol class="org-ol">
-<li>Why are neural networks and deep learning used?
-A. To specify patterns using rules or algorithms
-B. To react to patterns that we don't understand
-C. To separate input and output neurons
-D. To adjust the weights of the inputs based on the output</li>
-
-<li>What is the input level in an artificial neural network?
-A. The output level on one side
-B. The hidden level in the middle
-C. The level where external inputs come into each input neuron
-D. The level where simulated neurons calculate a weighted value of the inputs</li>
-
-<li>What is the difference between neural networks and deep learning?
-A. Neural networks have more layers than deep learning
-B. Deep learning is a better approach than neural networks
-C. Neural networks are used for speech recognition and image recognition, while deep learning is used for natural language processing
-D. Deep learning has more layers than neural networks and is often a better approach</li>
-
-<li>Why is it difficult to make a neural network model generalizable?
-A. It requires a lot of training data
-B. It's often hard to choose and tune the learning algorithm
-C. It's harder compared to many other model types
-D. All of the above</li>
-</ol>
-</div>
-</div>
-<div id="outline-container-org786d49b" class="outline-3">
-<h3 id="org786d49b"><span class="section-number-3">1.6.</span> M16L05: Competitive models</h3>
-<div class="outline-text-3" id="text-1-6">
-</div>
-<div id="outline-container-orgf9279d2" class="outline-4">
-<h4 id="orgf9279d2"><span class="section-number-4">1.6.1.</span> Summary</h4>
-<div class="outline-text-4" id="text-1-6-1">
-<p>
-In this lesson, the topic of discussion is competitive decision-making, where analytics models consider all sides of a system in a situation involving competition and cooperation.
-</p>
-
-<p>
-The models are used to determine the best action to take, assuming the process will change intelligently. The concept of game theory and its basic concepts are also introduced, along with a demo showcasing how the model works.
-</p>
-
-<p>
-Different types of games and strategies, perfect and imperfect information, and zero-sum and non-zero-sum games are also discussed.
-</p>
-
-<p>
-Lastly, the lesson covers the use of different optimization models to find the best decisions in competitive situations.
-</p>
-
-<ol class="org-ol">
-<li>What is the main concept discussed in the lesson?
-A) Deep learning
- B) Competitive decision-making
- C) Predictive models
- D) Descriptive models</li>
-
-<li>What is the purpose of using analytics models in competitive decision-making?
-A) To consider all sides of the system
-B) To find hidden relationships in the data
-C) To optimize a process that won't change
-D) To predict what's going to happen in the future</li>
-
-<li>What is the term used for a situation involving competition and cooperation?
-A) Sequential game
-B) Non-zero-sum game
-C) Zero-sum game
-D) Cooperative game theory</li>
-
-<li>What is the purpose of using optimization models in competitive situations?
-A) To find the best or optimal strategy
-B) To determine the best thing to do assuming the process won't change
-C) To find hidden relationships in the data
-D) To tease out an understanding of reality hidden in the data.</li>
-</ol>
-</div>
-</div>
-</div>
-<div id="outline-container-orgdf68fef" class="outline-3">
-<h3 id="orgdf68fef"><span class="section-number-3">1.7.</span> M16L05a: Competitive model demo</h3>
-<div class="outline-text-3" id="text-1-7">
-</div>
-<div id="outline-container-org35c331e" class="outline-4">
-<h4 id="org35c331e"><span class="section-number-4">1.7.1.</span> Summary</h4>
-<div class="outline-text-4" id="text-1-7-1">
-<p>
-In this lesson, the concept of competitive decision-making using game theory is introduced. Game theory is used in situations where the outcome of a decision depends on the decisions of others.
-</p>
-
-<p>
-The lesson explains the basics of game theory using the example of two gas stations competing for customers. The gas stations can set their prices to $2.50 or $2. If they both set the same price, they will split the demand half and half.
-</p>
-
-<p>
-The lesson shows how the gas stations will arrive at a stable equilibrium with both choosing the lower price point. The lesson also explains that in some situations, competition can drive down prices or incentivize companies to differentiate their products to give consumers more choices.
-</p>
-
-<ol class="org-ol">
-<li>What is the main topic of this lesson?
-A. How to set prices for a new product
-B. How to predict the future using data analytics
-C. Competitive decision-making using game theory
-D. The benefits of product differentiation for consumers</li>
-
-<li>What is game theory used for?
-A. Situations where the outcome of a decision depends on the decisions of others
-B. Finding hidden relationships in data
-C. Determining the best thing to do using data
-D. Identifying trends in data to predict the future</li>
-
-<li>What is the stable equilibrium in the gas station example?
-A. Both gas stations charging $2.50
-B. Both gas stations charging $2
-C. BP charging $2 and Shell charging $2.50
-D. BP charging $2.50 and Shell charging $2</li>
-
-<li>What can competition do in some situations?
-A. Drive down prices or incentivize companies to differentiate their products
-B. Force companies to set their prices higher
-C. Increase the demand for products
-D. Result in higher profits for companies</li>
-</ol>
-</div>
-</div>
-</div>
-<div id="outline-container-org249dfe0" class="outline-3">
-<h3 id="org249dfe0"><span class="section-number-3">1.8.</span> M16L06: Natural language processing</h3>
-<div class="outline-text-3" id="text-1-8">
-</div>
-<div id="outline-container-orgc8e6f0a" class="outline-4">
-<h4 id="orgc8e6f0a"><span class="section-number-4">1.8.1.</span> Summary</h4>
-<div class="outline-text-4" id="text-1-8-1">
-<p>
-In this lesson, Joel Sokol explains how natural language processing (NLP) is a type of data that requires different modeling techniques.
-</p>
-
-<p>
-NLP models can help machines to recognize and understand human language, which can be useful in various fields such as healthcare, technical support, and legal document searching.
-</p>
-
-<p>
-NLP includes several tasks such as speech to text, identifying the speaker's words and meaning, co-reference, grammatical tagging, sentiment analysis, and message construction.
-</p>
-
-<p>
-While NLP is an important and growing application of analytics and data science, it can still be challenging due to the complexities of language, including idioms, metaphors, and multiple word definitions. The lesson concludes with a humorous anecdote about a call center operator with a voice that sounded like a machine, demonstrating that even humans can struggle with language understanding.
-</p>
-
-<ol class="org-ol">
-<li>What is natural language processing?
-A) A type of data that requires different modeling techniques
-B) A process of analyzing structured data
-C) A method of machine learning
-D) A type of data that is easy to model</li>
-
-<li>What are some fields where natural language processing can be useful?
-A) Education and childcare
-B) Agriculture and forestry
-C) Healthcare and technical support
-D) Transportation and logistics</li>
-
-<li>What are some tasks included in natural language processing?
-A) Identifying colors and shapes
-B) Recognizing facial expressions
-C) Speech to text and sentiment analysis
-D) Tracking eye movements and blink rates</li>
-
-<li>What is the main challenge of natural language processing?
-A) The complexities of language, including idioms and metaphors
-B) The lack of available data
-C) The need for expensive hardware
-D) The slow processing speed</li>
-</ol>
-</div>
-</div>
-</div>
-<div id="outline-container-org204aca6" class="outline-3">
-<h3 id="org204aca6"><span class="section-number-3">1.9.</span> M16L07: Survival models</h3>
-<div class="outline-text-3" id="text-1-9">
-</div>
-<div id="outline-container-orgb8f3e02" class="outline-4">
-<h4 id="orgb8f3e02"><span class="section-number-4">1.9.1.</span> Summary</h4>
-<div class="outline-text-4" id="text-1-9-1">
 <p>
 This lesson introduces survival models, which are used to predict the probability of an event happening or not happening before a certain time.
 </p>
@@ -621,112 +96,58 @@ b) Data that is lost
 c) Data that is hidden from view
 d) Data where we either don't have data before or after a specific time, or where we only have data until we've observed enough events.</li>
 </ol>
+</blockquote>
 </div>
 </div>
-</div>
-<div id="outline-container-org0f2964b" class="outline-3">
-<h3 id="org0f2964b"><span class="section-number-3">1.10.</span> M16L08: Gradient boosting</h3>
-<div class="outline-text-3" id="text-1-10">
-</div>
-<div id="outline-container-org3d7f5a2" class="outline-4">
-<h4 id="org3d7f5a2"><span class="section-number-4">1.10.1.</span> Summary</h4>
-<div class="outline-text-4" id="text-1-10-1">
-<p>
-The lesson introduces the concept of gradient boosting, which is a way to improve the performance of a predictive model by adding other models to it.
-</p>
-
-<p>
-Gradient boosting uses the gradient information to fit those models. The basic idea of gradient boosting is to start with a single predictive model, and then find another function that can be added to it to improve its performance.
-</p>
-
-<p>
-The function that is added is trained to fit the errors in the predictions of the first model. The process is repeated until there is no significant improvement in performance or until a specific stopping criterion is reached.
-</p>
-
-<p>
-Gradient boosting can be used with factor-based models, regression, classification, and tree-based models based on those.
-</p>
-
-<ol class="org-ol">
-<li>What is gradient boosting?
-A) A type of predictive model
-B) A way to improve the performance of a predictive model by adding other models to it
-C) A way to fit a single model to a large dataset
-D) A way to visualize the results of a predictive model</li>
-
-<li>What is the boosting part of the name gradient boosting?
-A) The process of adding models together
-B) The process of finding the gradient information
-C) The process of fitting errors in the predictions
-D) The process of using tree-based models</li>
-
-<li>What is the gradient part of the name gradient boosting?
-A) The process of adding models together
-B) The process of finding the gradient information
-C) The process of fitting errors in the predictions
-D) The process of using tree-based models</li>
-
-<li>What is the basic idea of gradient boosting?
-A) To fit a single model to a large dataset
-B) To start with a single predictive model and add other models to improve its performance
-C) To use gradient information to fit models
-D) To use tree-based models</li>
-</ol>
+<div id="outline-container-org0198e94" class="outline-3">
+<h3 id="org0198e94"><span class="section-number-3">1.2.</span> What are survival models?</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>Predict the probability of an event happening (or not) before a certain time
+<ul class="org-ul">
+<li>Based on predictor variables</li>
+</ul></li>
+<li>Not just on probability distribution but from the values themselves</li>
+</ul>
 </div>
 </div>
+<div id="outline-container-orged57c53" class="outline-3">
+<h3 id="orged57c53"><span class="section-number-3">1.3.</span> Uses of survival models</h3>
+<div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li>Insurance (e.g. life, auto, theft/loss, etc)</li>
+<li>Medicine (effects of treatment)</li>
+<li>Machinery/sensors (maintenance and replacement)</li>
+</ul>
 </div>
-<div id="outline-container-org2e96ab6" class="outline-3">
-<h3 id="org2e96ab6"><span class="section-number-3">1.11.</span> M16L08a: Gradient boosting example</h3>
-<div class="outline-text-3" id="text-1-11">
 </div>
-<div id="outline-container-org889354c" class="outline-4">
-<h4 id="org889354c"><span class="section-number-4">1.11.1.</span> Summary</h4>
-<div class="outline-text-4" id="text-1-11-1">
-<p>
-The lesson explains how gradient boosting works as a way to augment the performance of factor-based models.
-</p>
-
-<p>
-It involves starting with a single model and then adding other models to it that are trained to fit the errors in the initial model's predictions. The process is repeated until there isn't much improvement or until time runs out.
-</p>
-
-<p>
-The lesson provides a simple example of one iteration of the process using a small dataset and regression trees.
-</p>
-
-<ol class="org-ol">
-<li>Which of the following is true about gradient boosting?
-A) It involves starting with many models and then combining them into a single model.
-B) It is a modeling technique that can only be applied to tree-based models.
-C) It works by adding other models to an initial model to improve its performance.
-D) It involves training a single model to fit the errors in the initial model's predictions.</li>
-
-<li>What is the loss function used in the example in this lesson?
-A) Sum of squared errors
-B) Mean squared error
-C) Absolute error
-D) Log loss</li>
-
-<li>What is the formula for calculating the negative gradient of the loss function?
-A) The partial derivative of the loss function with respect to the predicted response
-B) The partial derivative of the predicted response with respect to the predictors
-C) The negative of the partial derivative of the loss function with respect to the predicted response
-D) The negative of the partial derivative of the predicted response with respect to the predictors</li>
-
-<li>What is the optimal multiplier value used to update F in the example in this lesson?
-A) 0.25
-B) 0.50
-C) 0.56
-D) 0.75</li>
-</ol>
-</div>
+<div id="outline-container-org7a703e4" class="outline-3">
+<h3 id="org7a703e4"><span class="section-number-3">1.4.</span> Cox proportional hazard model</h3>
+<div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
+<li>Uses an exponential function to estimate survival probability</li>
+<li>Given (for each data point):
+<ul class="org-ul">
+<li>Predictor variables x<sub>1</sub>, &#x2026;, x<sub>n</sub></li>
+<li>Event time \(y\)</li>
+<li>\(h(t) = h_0(t) e^{\beta_1 x_1 + ... + \beta_n x_n}\)
+<dl class="org-dl">
+<dt>\(h(t)\)</dt><dd>probability of event happening at time \(t\) given specific values of predictors</dd>
+<dt>\(h_0(t)\)</dt><dd>the baseline probability of event happening at \(t\) if all predictor variables are 0</dd>
+<dt>\(\beta_j\)</dt><dd>the coefficient for each predictor variable \(j\)</dd>
+</dl></li>
+<li>Expanding, this equals:
+\(h_0(t)e^{\beta_1x_1}e^{\beta_2x_2}...
+    e^{\beta_nx_n}\)</li>
+</ul></li>
+</ul>
 </div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: W</p>
-<p class="date">Created: 2023-04-02 Sun 20:52</p>
+<p class="date">Created: 2023-04-02 Sun 23:28</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
