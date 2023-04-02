@@ -1268,8 +1268,12 @@ Spline: function of polynomials that connect to each other
 - Global (see below)
 *** Lasso approach
 - Add constraint to standard regression equation
-  - Still min SSE, *and* keep:
-  - Sum of coefficients less than threshold T $\sum_{j=1}^n|a_j| \leq T$
+  - Still min SSE
+    $$
+    \sum^m_{i=1}(y_i - (a_0 + \sum^n_{j=1}a_jx_{ij}))^2
+    $$
+     *and* keep:
+  - Sum of coefficients less than threshold T $\sum_{j=1}^n|a_j| \leq \tau_{\text{Lasso}}$
 - Gives regression a budget to use on coefficients
   - Most important coefficients kept
   - Others given 0
@@ -1285,14 +1289,77 @@ Spline: function of polynomials that connect to each other
 - Important to scale data and pick T, $\bar{\lambda}$ correctly
 *** Ridge regression
 - Take out absolute value term from elastic net
-- Ridge regression doesn't do variable selection
+- Unlike Lasso, Ridge regression **does not** do variable selection
 - It can lead to better predictive models
 
 ** M11L3: Lasso vs Ridge regression
--
+- Ridge regression is very similar to lasso
+  - Lasso does variable selection, ridge does not
+- The restriction for ridge regression is:
+  $\sum_{j=1}^n(a_j)^2 \leq \tau_{\text{Ridge}}$
+*** The key difference
+- The constraint or restriction is different
+- Graphically on which points are *allowed*:
+  [[./img/m11-lasso-ridge.png]]
+  - Lasso is a diamond
+  - Ridge is a circle
+- Which points are *the best*?
+  - The total error area is a circle
+  - Lasso regression shape is diamond so it is more likely to hit a point where one of the variables (of a_1 and a_2) is zero, hence selecting the *other* variable
+  - Ridge regression shape is a circle, hence it is extremely unlikely that both circles will coincide to remove one of the variables (a_1 or a_2)
 ** M11L4: Bias-Variance tradeoff
+*** Fit and real vs random patterns
+- There is a natural tradeoff between more and less fit:
+  - Less fit :: bad (less fit to real patterns); good (less fit to random patterns); underfit
+  - More fit :: good (better fit to real patterns); bad (more fit to random patterns); overfit
+- Put another way:
+  - Less variables = less fit = underfit to real patterns
+    - Less relationship between constant and response
+    - Smaller coefficients
+    - *High bias*: misses or minimizes real effects
+    - *Low variance*: less diff between predictions
+  - More variables = more fit = overfit to random patterns
+    - *Low bias*: real effects ok
+    - *High variance*: more diff between predictions (though.. random patterns)
+*** Summary
+- Difficult to model well (high fit to real; low to random)
+- Easy to model badly (choose some random variable)
 ** M11L5: Ridge regression / regularization
+*** Ridge regression
+- Reduces the *size* of coefficients if the error points start from outside the ridge regression threshold circle
+- Does not work if the error points are already inside the threshold circle
+  - In this case, reduce the size of \tau_\text{Ridge} until it reaches point outside the circle
+*** Coefficients -> magnitude of effect
+- We want to reduce the amount of fit
+- This is accomplished by reducing the magnitude of the regression coefficients
+- Ideally, reduce only fit to random patterns, however this is impossible, hence reduce fit to all
+- Reducing magnitude -> reduces variance -> reduce fit
+*** Ridge regression limits the magnitude of the regression coefficient instead of the number of variables
+- This technique is also known as regularization
 ** M11L6: Choosing a variable selection model
+- Recap on methods of variable selection:
+  - Good for initial analysis but often lacks performance
+    - forward
+    - backward
+    - stepwise regression
+  - Slower, better performing
+    - lasso
+    - elastic net
+*** Lasso vs ridge vs elastic net
+- Elastic net is like lasso + ridge
+  - Start with lasso adds absolute value term in constraint;
+  - Ridge adds quadratic (squared) term;
+- Lasso: some coefficients forced to 0 to simplify model
+- Ridge: coefficients shrink towards 0 to reduce variance in estimate
+*** Elastic net
+- Benefits:
+  - Has variable selection like Lasso
+  - Has predictive benefits like Ridge
+- Downsides:
+  - Rules out some correlated variables like Lasso (only one is kept but it may not be the best one)
+  - Underestimates very predictive variables like Ridge
+*** Which one to use?
+- No good rule of thumb. Compare and contrast.
 * Module 12: Design of Experiments
 ** M12L1: Intro
 What if dataset is hard to get/requires some process to get?
@@ -1570,7 +1637,204 @@ Can be run by hand:
   2. Urban sprawl, population, disease
 - Markov chains can still work in long-run even if not memoryless in short-run
 * Module 14: Missing Data
+** M14L01: Intro to missing data
+*** When is there missing data?
+1. Broken collection equipment
+2. Transmission breaks down
+3. Human interaction (wrong forms, unavailable data, etc)
+*** Data problems
+- Missing data
+- Incorrect data
+- There are often patterns in missing or wrong data
+- Extremely wrong: /outlier/
+*** Patterns in missing data
+- How easy is it to collect/observe data?
+- Income (higher income household might choose to omit)
+- Radar gun accuracy/reliability
+
+- If missing data is biased in some way, need additional methods to deal with it
+** M14L02: Methods not requiring imputation
+*** Dealing with missing data
+1. Discard records
+2. Indicate with categorical variables
+3. Estimate missing value
+*** Discard records
+- Pros:
+  - Easy to implement
+  - Does not introduce errors
+- Cons:
+  - Data point is lost
+  - Potentially censors or biases missing data (e.g. high income not reporting income)
+- Check pattern of missing data!
+*** Categorical variable approach
+1. Qualitative field
+   1. Add category: `missing`
+2. Quantitative field
+   1. Set missing to $0$
+   2. Add new categorical variable `missing`
+   3. Create interaction terms. This become similar to a tree-model if interaction terms are created for all variables
+*** Summary
+This lesson's approach avoids estimating the missing data.
+** M14L03: Imputation methods
+*** Mid-range value
+Mean or median (numeric) or mode (categorical)
+- Pros:
+  - Will not be too wrong
+  - Simple
+- Cons:
+  - Biased imputation if the missing data is biased
+*** Regression
+- Pros:
+  - Reduce or eliminates bias.
+- Cons:
+  - Could be over-fitting as regression is used to fit model and to predict.
+  - Complex to build, fit, validate, test
+  - Doesn't capture all variability in the rest of the data.
+    - The same imputed amount will be assigned to all with similar predictors.
+*** Regression with perturbation (imputation with variability)
+- Adds some randomness (perturbation) to each imputed value
+- E.g., normally distributed variation
+- Less accurate predictions on average, but:
+- More accurate variability
+*** Imputation approaches
+- Data used twice (over-fits)
+- Limit to max 5% per factor
+- Does imputation cause additional error?
+  1. Imputation error
+  2. Perturbation error
+  3. Model error
+- Yes, but regular data also has errors most times
+*** Summary
+- Data is always imperfect
+  - Errors
+  - Outliers
+  - Missing data
 * Module 15: Optimization
+Key underlying part of descriptive and prescriptive analytics.
+** M15L01: Intro to Optimization
+*** Examples
+- Schedule airplane mechanics
+- Plan crude oil shipments
+- Allocate server farms
+- Schedule machine shop
+- Route car routes
+- Define asset usage
+- Determine sports draft
+- Route and deliver worldwide oil
+- Plan electricity generation based on weather patterns
+*** Optimization provides direction for an organization
+- Sits on top of descriptive and predictive analytics
+*** Optimization software
+- Model building automatically in software is still not available
+** M15L02: Elements of Optimization Models
+- Variables :: decisions to be made
+- Constraints :: restrictions on values of variables
+- Objective function :: measure of quality of solution
+- Solution :: value for each variable
+- Feasible solution :: variable value that satisfy all constraints
+- Optimal solution :: feasible solution with the **best** objective value
+** M15L03: Optimization is an art
+*** Examples
+**** US Army diet
+- US Army diet problem: what to feed soldiers at minimum cost?
+  - $n$ foods
+  - $m$ nutritional value
+  - $a_{ij}$ amount of nutrition $j$ per unit of food $i$
+  - $m_j$ min daily intake of nutrient $j$
+  - $M_j$ Max daily intake of nutrient $j$
+  - $c_i$ per-unit cost of food $i$
+- Optimization model
+  - Variables
+    - $x_i$ :: the amount of food $i$ in daily diet
+  - Constraints
+    - $\sum_i a_{ij}x_i \gt m_j$ :: for each nutrient $j$
+    - $\sum_i a_{ij}x_i$ \leq M_j :: for each nutrient $j$
+    - $x_i \geq 0$  :: for each food $i$
+  - Objective function
+    - Minimize $\sum_i c_i x_i$
+- Complexities in model
+  - Variety in diets
+  - Seasonal cost might differ
+  - Food might not taste good in general
+  - Food might not taste good in combination
+**** Call center scheduling
+- Meet forecast demand $d_i$ for each day of week $i$
+  - Workers work 5 days then rest 2 days
+  - Minimize worker-days total
+- Wrong model:
+  - Variables
+    - $x_i$ :: number of people working on day $i$
+  - Constraints
+    - $x_i \geq d_i$ :: meet demand
+    - $int(x_i)$ :: $x_i$ is integer for all days $i$
+    - ?? :: 5-day requirement
+  - Objective function
+    - Minimize $x_{\text{Sunday}} + x_{\text{Monday}} + ... + x_{\text{Saturday}}$
+  - Difficult to model!
+- Right model:
+  - Variables
+    - $x_i$ :: number of people who *start* working on day $i$
+  - Objective function
+    - Minimize $5 \times $x_{\text{Sunday}} + x_{\text{Monday}} + ... + x_{\text{Saturday}}$
+  - Constraints
+    - $\sum_j \text{working on day i} x_j \geq d_i$ :: meet demand
+      - Example: $x_{fri} + ... + x_{tue} \geq d_{tue}$
+    - $x_i \geq 0$ :: non negative for all days $i$
+    - $int(x_i)$ :: $x_i$ is integer for all days $i$
+** M15L04: Modeling with binary variables
+*** Example: stock market investment
+Invest to balance risk and return
+- Where:
+  - $B$ :: investment budget
+  - $n$ :: number of stocks available
+  - $r_i$ :: expected return of stock $i$ relative to market
+  - $Q_{ij}$ :: covariance of returns of stocks $i$ and $j$
+- Variables
+  - $x_i$ :: amount invested in stock $i$
+- Constraints
+  - $\sum_ix_i \leq B$ :: can meet budget
+  - $x_i \geq 0$ :: no shorting
+- Objective function
+  - Maximize $\sum_ir_ix_i - \theta \sum_i\sum_jQ_{ij}x_ix_j$
+    - first part is return
+    - second part is risk
+- To consider: transaction fees
+  - But no binary indicators if transaction fee is paid or not paid. Can create $y_i = 1$ if invest, else 0
+  - New objective function: Maximize $\sum_ir_ix_i - \theta \sum_i\sum_jQ_{ij}x_ix_j - \sum_ity_i$
+  - New additional constraint: $x_i \leq By_i$, which in effect means:
+    - when $y_i = 0$: $x_i \leq 0$
+    - when $y_i = 1$: $x_i \leq B$
+- To consider: minimum investment in each stock
+  - New term $m_i$: the minimum dollar amount invested in stock $i$
+  - New constraint: $x_i \geq m_iy_i$ for all stocks $i$
+- To consider: personal constraints e.g. can only invest in Tesla; AMZN, GOOG, AAPL
+  - $y_{Tesla} = 1$ or $y_{Amazon} + y_{Google} + y_{Apple} \geq 1$
+- Related constraints, e..g if invest in energy stock, must invest in at least 5
+  - Change constraint: sum $y_i$ for energy stocks $\geq y_i$ for the 5 energy stocks
+*** Recap uses of integer variables in optimization
+- Fixed charges
+- Constraints in terms of choosing options
+- Constraints in requiring same or opposite choices
+- If/then constraints
+** M15L05: Discovering the real questions
+*** Real life
+- Is often less specific, with information isn't fully specified or available
+- Discovery is hard
+  1. Too many constraints to remember or recite
+  2. Easy to forget obscure ones
+  3. Easy to omit "obvious" ones
+     1. E.g. 5-day work week definition
+     2. E.g. partial shifts
+*** Summary
+- Need to discover details:
+  - Constraints, objective function, etc
+- /Potentially/, build other models to determine inputs for optimization
+- Iterate between:
+  1. Build model
+  2. Optimize
+  3. Get feedback
+  4. Tweak/build model
+- Applies to other analytics/data science modelling
 * Module 16: Advanced Models
 #+BEGIN_QUOTE
 Midterm 2: modules 11-16 (from variable selection to optimization and advanced models) -- weeks 8-12
