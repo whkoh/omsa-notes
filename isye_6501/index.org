@@ -2099,4 +2099,67 @@ These models are used in various applications, such as insurance, medical resear
    c) Data that is hidden from view
    d) Data where we either don't have data before or after a specific time, or where we only have data until we've observed enough events.
 ** M16L08: Gradient boosting
+*** Summary
+The lesson introduces the concept of gradient boosting, which is a way to improve the performance of a predictive model by adding other models to it.
+
+Gradient boosting uses the gradient information to fit those models. The basic idea of gradient boosting is to start with a single predictive model, and then find another function that can be added to it to improve its performance.
+
+The function that is added is trained to fit the errors in the predictions of the first model. The process is repeated until there is no significant improvement in performance or until a specific stopping criterion is reached.
+
+Gradient boosting can be used with factor-based models, regression, classification, and tree-based models based on those.
+
+1. What is gradient boosting?
+    A) A type of predictive model
+    B) A way to improve the performance of a predictive model by adding other models to it
+    C) A way to fit a single model to a large dataset
+    D) A way to visualize the results of a predictive model
+
+2. What is the boosting part of the name gradient boosting?
+    A) The process of adding models together
+    B) The process of finding the gradient information
+    C) The process of fitting errors in the predictions
+    D) The process of using tree-based models
+
+3. What is the gradient part of the name gradient boosting?
+    A) The process of adding models together
+    B) The process of finding the gradient information
+    C) The process of fitting errors in the predictions
+    D) The process of using tree-based models
+
+4. What is the basic idea of gradient boosting?
+    A) To fit a single model to a large dataset
+    B) To start with a single predictive model and add other models to improve its performance
+    C) To use gradient information to fit models
+    D) To use tree-based models
 ** M16L08a: Gradient boosting example
+*** Summary
+
+The lesson explains how gradient boosting works as a way to augment the performance of factor-based models.
+
+It involves starting with a single model and then adding other models to it that are trained to fit the errors in the initial model's predictions. The process is repeated until there isn't much improvement or until time runs out.
+
+The lesson provides a simple example of one iteration of the process using a small dataset and regression trees.
+
+1. Which of the following is true about gradient boosting?
+   A) It involves starting with many models and then combining them into a single model.
+   B) It is a modeling technique that can only be applied to tree-based models.
+   C) It works by adding other models to an initial model to improve its performance.
+   D) It involves training a single model to fit the errors in the initial model's predictions.
+
+2. What is the loss function used in the example in this lesson?
+   A) Sum of squared errors
+   B) Mean squared error
+   C) Absolute error
+   D) Log loss
+
+3. What is the formula for calculating the negative gradient of the loss function?
+   A) The partial derivative of the loss function with respect to the predicted response
+   B) The partial derivative of the predicted response with respect to the predictors
+   C) The negative of the partial derivative of the loss function with respect to the predicted response
+   D) The negative of the partial derivative of the predicted response with respect to the predictors
+
+4. What is the optimal multiplier value used to update F in the example in this lesson?
+   A) 0.25
+   B) 0.50
+   C) 0.56
+   D) 0.75
