@@ -1840,6 +1840,7 @@ Invest to balance risk and return
 Midterm 2: modules 11-16 (from variable selection to optimization and advanced models) -- weeks 8-12
 #+END_QUOTE
 ** M16L01: Non-parametric methods
+#+BEGIN_QUOTE
 In this text, Joel Sokol, Director of the Master of Science and Analytics degree at Georgia Tech, explains three non-parametric statistical tests: McNamara's Test, Wilcoxon signed rank test, and Mann-Whitney test.
 
 These tests are not advanced analytics methods, but they are not usually covered in basic statistics prerequisites.
@@ -1849,7 +1850,58 @@ McNamara's test is used to compare two competing treatments when they are tested
 Wilcoxon signed rank test is used when we have no assumptions about what the response function is mathematically, and we only assume that it is continuous and symmetric. The test answers whether the median of the distribution is different from a specific value M.
 
 Mann-Whitney test is used to compare two samples where the outcomes are not paired, and we assume that all the observations are independent of each other.
+#+END_QUOTE
+*** Non-parametric tests: Statistics tests when the distribution is unknown
+*** McNemar's test is paired
+- Compare results on *pairs* of responses
+- eg: two different treatments for a virus
+  - Treatment A or B better?
+  - Are the observations just luck?
+- Analysis is using p-value similar to a 'normal' hypothesis test
+**** Summary
+- McNemar's (Binomial) test: Only consider when A and B are different.
+- Does not require or assume knowledge about the distribution.
+*** Wilcoxon Signed Rank Test for Medians
+- Assumption:
+  1. Distribution is continuous
+  2. Distribution is symmetric
+- Question:
+  - Is the *median* of the distribution different from a value $m$?
+**** Procedure
+1. With responses y_1 to y_n
+2. Rank |y_1-y_m|, ...., |y_n-y_m| from smallest to largest
+3. $W = \sum_{y_i>m}\text{rank}(y_i-m)$ is the sum of all ranks where y_i > m
+4. p-value test for $W$
+**** Question
+1. Given pairs (y_1, z_1), ..., (y_n, z_n) from observations y and z
+2. Use |y_1-z_1|, ..., |y_n-z_n| for rank test
+**** Comparison
+- For numeric data, use the Wilcoxon test
+- For binary data, use McNemar's test
+*** Mann-Whitney test
+- Use when there are two datasets but no paired samples
+**** Procedure
+1. Given independent observations y_1, ..., y_n and z_1, ..., z_m
+2. Rank all observations
+3. U = smaller of two adjusted rank sums
+   $$
+   U = min(U_y, U_z) \\
+   U_y = \sum^n_{i=1}\text{rank}(y_i)-\frac{n(n+1)}{2} \\
+   U_z = \sum^m_{j=1}\text{rank}(z_j)-\frac{m(m+1)}{2}
+   $$
+4. Find significance with software or a statistical table
+*** Summary from video
+[[./img/nonparam-tests-flow.png]]
+- Use non-parametric tests when you know nothing about distribution
+- # datasets = 2
+  - Paired Yes/No :: use McNemar's test
+  - Paired Numeric :: use Wilcoxon signed rank test
+  - Unpaired doubles :: use Mann-Whitney test
+- # datasets = 1
+  - Compare possible median :: use Wilcoxon signed rank test
 ** M16L01a: Matching tests for situations
+*** Summary
+#+BEGIN_QUOTE
 This lesson discusses how to choose the appropriate statistical test for different types of situations.
 
 The different types of tests include parametric tests, non-parametric tests related to the median, and a specific type of non-parametric test that tracks successes and failures.
@@ -1881,6 +1933,8 @@ Finally, the lesson provides an example to illustrate how to choose the appropri
     B. Non-parametric test
     C. Binomial-based test
     D. Paired test
+    #+END_QUOTE
+***
 
 ** M16L02: Bayesian modeling
 
