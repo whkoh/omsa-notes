@@ -2424,11 +2424,22 @@ Using additional models to augment your model
    - For H(x):
      - Predictors: $x$
      - Response: *Negative gradient of quality metric evaluated at F's prediction*
-     - For regression, this equals $y-F(x)$
-
+       - Don't fit to response directly since F(x) is doing that already
+       - Instead, this counteracts the errors, even better!
+       - Quality metric = Loss function
+       - H(x) often trained as tree-based model eg regression tree, classification tree
+     - For regression, this equals $y-F(x)$, or $-\nabla L(F(x))$
+     - Add \gamma_0 H(x) to F(x) -> F_1(x)
+     - ...
+3. After k iterations,
+   $$
+   F_k(x) = F_0(x) + \gamma_0 H_0(x) + ... +
+   \gamma_k H_k(x)
+   $$
+4. *Boosting* = adding the models together (F and H)
 ** M16L08a: Gradient boosting example
 *** Summary
-
+#+BEGIN_QUOTE
 The lesson explains how gradient boosting works as a way to augment the performance of factor-based models.
 
 It involves starting with a single model and then adding other models to it that are trained to fit the errors in the initial model's predictions. The process is repeated until there isn't much improvement or until time runs out.
@@ -2458,3 +2469,17 @@ The lesson provides a simple example of one iteration of the process using a sma
    B) 0.50
    C) 0.56
    D) 0.75
+#+END_QUOTE
+*** Detailed steps
+1. L is the loss function
+2. L=2
+3. $$
+   L = \sum^m_{i=1}(y_i-F_0 (x_i))^2 \\
+   = (y_1-F_0(x_1))^2 + ... + (y_4-F_0(x_4))^2
+   $$
+4. Take partial derivative at each point
+5. Plug in y and F_0 to get the gradient
+6. To get the optimal gradient (\gamma_0), use optimization and solve the partial derivative
+7. The output is two regression trees eg:
+   - $F_0(x_i) = x_{i1} < 2; x_{i1} \geq 2$
+   - $H_0(x_i) = x_{i2} < 5; x_{i2} \geq 5$
