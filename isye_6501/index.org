@@ -1428,7 +1428,7 @@ Examples:
   2. Age
   3. Sports vs family car
 *** Blocking
-- A blocking factor creates variation
+- A {{{hl(blocking factor)}}} creates variation
 - E.g. sports car vs family car
 - Sports car more likely to be red
 - Analyzing red sports cars vs red family cars have less variance than all red cars
@@ -1437,6 +1437,7 @@ Choosing the best out of alternatives. Example:  banner ads: how to decide which
 - Show two different ads and how often each ad was clicked
 - This is binomial data; use hypothesis testing to test for statistical significance.
 *** Required to use A/B testing
+{{{hl(Note:)}}}
 1. Data can be collected quickly
 2. Data must be representative
 3. Data collected is small vs. entire population (cost: does not make sense to spend 2000/2500 on building model. Remaining 500 too little to exploit.)
@@ -1458,11 +1459,59 @@ Choosing the best out of alternatives. Example:  banner ads: how to decide which
 - Factorial methods can be very useful before data is collected
 ** M12L4: Multi-armed bandits
 - What if there are > 2 possible alternatives
+
+  #+BEGIN_QUOTE
+  Question 1: In the context of A/B testing, what are the two types of benefits referred to as exploration and exploitation?
+
+  a) Exploration refers to gaining more information, while exploitation refers to obtaining immediate value.
+b) Exploration refers to obtaining immediate value, while exploitation refers to gaining more information.
+c) Exploration refers to minimizing costs, while exploitation refers to maximizing revenue.
+d) Exploration refers to maximizing revenue, while exploitation refers to minimizing costs.
+
+Answer: a) Exploration refers to gaining more information, while exploitation refers to obtaining immediate value.
+
+Question 2: What is the multi-armed bandit problem?
+
+a) A slot machine with multiple levers and different expected payouts.
+b) A problem involving the trade-off between exploration and exploitation in analytics.
+c) The challenge of determining the optimal number of tests for each alternative.
+d) A machine-learning algorithm that focuses on exploitation only.
+
+Answer: b) A problem involving the trade-off between exploration and exploitation in analytics.
+
+Question 3: In the multi-armed bandit approach, how are new tests assigned after performing some tests and updating probabilities?
+
+a) Only the best alternative is tested further.
+b) Tests are assigned randomly, without considering the updated probabilities.
+c) Tests are assigned according to the updated probabilities of each alternative being the best.
+d) All alternatives are tested with equal probability.
+
+Answer: c) Tests are assigned according to the updated probabilities of each alternative being the best.
+
+Question 4: Why is the multi-armed bandit approach considered better than running a fixed, large number of tests for every alternative?
+
+a) It reduces the overall number of tests required.
+b) It learns faster on the fly and creates more value along the way.
+c) It guarantees that the best alternative will always be chosen.
+d) It avoids the need for any exploration at all.
+
+Answer: b) It learns faster on the fly and creates more value along the way.
+
+Question 5: Which of the following is NOT a parameter that can be varied in the multi-armed bandit algorithm?
+
+a) The number of tests between re-calculating probabilities.
+b) The method of updating the probabilities.
+c) The way new tests are assigned.
+d) The total number of alternatives available.
+
+Answer: d) The total number of alternatives available.
+  #+END_QUOTE
+
 *** Exploration vs exploitation
 - With 10 alternatives, 1000 tests on each alternative:
   - 10000 test total, but only 1 is best
   - So 9000 tests lost value
-- Trade-off between having more information and immediate value
+- {{{hl(Trade-off between having more information and immediate value)}}}
   - Exploration :: more information
   - Exploitation :: immediate value
 *** Multi-armed bandit
@@ -1483,7 +1532,7 @@ Choosing the best out of alternatives. Example:  banner ads: how to decide which
 **** Summary
 - No simple rule
 - Usually better than fix/large number of tests
-- Learn faster along the fly and create more value while doing so
+- {{{hl(Learn faster along the fly and create more value while doing so)}}}
 * Module 13: Probability-based Models
 ** M13L1: Intro
 *** Simple modelling
@@ -1508,11 +1557,57 @@ Other examples that can work:
 - Broken equipment
 - Website purchases
 ** M13L2: Bernoulli, Binomial and Geometric Distributions
+#+BEGIN_QUOTE
+Question 1: The binomial distribution can be used to answer which type of question?
+
+a. How many trials are needed before getting the first success?
+b. What is the probability of getting a specific number of successes in a fixed number of trials?
+c. What is the probability of getting at least a specific number of successes in a fixed number of trials?
+d. What is the probability of an event occurring in any given trial?
+
+Answer: c
+
+Question 2: What is the main difference between the Bernoulli distribution and the binomial distribution?
+
+a. The Bernoulli distribution models a single event, while the binomial distribution models multiple events.
+b. The binomial distribution models a single event, while the Bernoulli distribution models multiple events.
+c. The Bernoulli distribution models continuous events, while the binomial distribution models discrete events.
+d. The binomial distribution models continuous events, while the Bernoulli distribution models discrete events.
+
+Answer: a
+
+Question 3: When the number of trials in a binomial distribution becomes very large, the binomial distribution converges to which distribution?
+
+a. Poisson distribution
+b. Normal distribution
+c. Exponential distribution
+d. Uniform distribution
+
+Answer: b
+
+Question 4: The geometric distribution can be used to answer which type of question?
+
+a. How many trials are needed before getting the first success?
+b. What is the probability of getting a specific number of successes in a fixed number of trials?
+c. What is the probability of getting at least a specific number of successes in a fixed number of trials?
+d. What is the probability of an event occurring in any given trial?
+
+Answer: a
+
+Question 5: What should be considered when defining p and 1 minus p in a geometric distribution?
+
+a. Whether p represents the probability of a good or bad outcome
+b. Whether p represents the probability of a continuous or discrete outcome
+c. Whether p represents the probability of a single event or multiple events
+d. Whether p represents the probability of an event occurring in any given trial
+
+Answer: a
+#+END_QUOTE
 *** Bernoulli distribution
 - E.g., flipping a coin that's not 50:50
 - Can specify:
   - $p$ :: probability it comes up heads
-  - $$1-p :: probability that it comes up tails
+  - $1-p$ :: probability that it comes up tails
 - By itself, talks about 1 data point
 - How to relate to other data points?
 **** Example
@@ -1534,6 +1629,47 @@ Other examples that can work:
 - Are airport screeners more likely to screen if there hasn't been a screening in a while?
   - Observe the graph and see whether it fits a geometric distribution
 ** M13L3: Poisson, Weibull and Exponential Distributions
+#+BEGIN_QUOTE
+What is the Poisson distribution good at modeling?
+
+a. The amount of time it takes something to fail.
+b. The number of trials it takes to get a success.
+c. The amount of time between failures.
+d. The number of people who arrive in a time period.
+Answer: d.
+
+What is the relationship between the Poisson and exponential distributions?
+
+a. If arrivals are Poisson with arrival rate Lambda, then the arrivals follow the exponential distribution with an average of Lambda arrivals per unit time.
+b. If arrivals are Poisson with arrival rate Lambda, then the time between arrivals follows the exponential distribution with an average of Lambda inter-arrival time.
+c. If arrivals are exponentially distributed with an average inter-arrival time 1 over Lambda, then the arrivals follow the Poisson distribution with an average of Lambda arrivals per unit time.
+d. If arrivals are exponentially distributed with an average inter-arrival time 1 over Lambda, then the time between arrivals follows the Poisson distribution with an average of Lambda inter-arrival time.
+Answer: b.
+
+What is the Weibull distribution good at modeling when k is less than 1?
+
+a. Situations where the failure rate increases over time.
+b. Situations where the failure rate is constant over time.
+c. Situations where the failure rate decreases over time.
+d. Situations where the failure rate is not applicable.
+Answer: c.
+
+When is the Weibull distribution good at modeling situations where the failure rate increases over time?
+
+a. When k is less than 1.
+b. When k is equal to 1.
+c. When k is greater than 1.
+d. When the failure rate is constant over time.
+Answer: c.
+
+What is the relationship between the Weibull and exponential distributions?
+
+a. When k equals 1, the Weibull distribution reduces to the exponential distribution.
+b. When k equals 0, the Weibull distribution reduces to the exponential distribution.
+c. When k is greater than 1, the Weibull distribution reduces to the exponential distribution.
+d. The Weibull and exponential distributions have no relationship.
+Answer: a.
+#+END_QUOTE
 *** Poisson
 - Good at modelling random  arrivals
   - \lambda :: the average number of arrivals per time period
