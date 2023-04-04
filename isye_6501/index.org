@@ -1,5 +1,6 @@
 #+AUTHOR: W
 #+SETUPFILE: /Users/whkoh/git-repos/org-html-themes/org/theme-readtheorg-local.setup
+#+INCLUDE: /Users/whkoh/git-repos/org-macros/org/org-macros.setup
 #+TITLE: ISYE 6501 Intro to Analytics Modeling Notes
 * Module 01: Intro
 ** What's analytics?
@@ -1237,7 +1238,7 @@ Spline: function of polynomials that connect to each other
   3. Regression
 ** M11L1: Introduction
 *** Why bother limiting factors?
-1. Prevents overfitting
+1. {{{hl(Prevents overfitting)}}}
    - When number of factors close to number of data points
      - Cause bad estimates
    - Model fits too closely to the random effects
@@ -1245,27 +1246,28 @@ Spline: function of polynomials that connect to each other
    - Simple models better than complex models
      - Less data required
      - Less chance of insignificant factors
-     - Easier to interpret
+     - {{{hl(Easier to interpret)}}}
    - Factors can be illegal to use
      - race, sex, religion, marital status cannot be used to make credit decisions
      - factors correlated to these also cannot be used
 ** M11L2: Models for variable selection
 *** Forward selection
 - Start with no factors, then add
-  [[/Users/whkoh/git-repos/omsa-notes/isye_6501/img/m11-fwd-sel.png]]
+  [[./img/m11-fwd-sel.png]]
 *** Backward elimination
 - Start with all factors, then eliminate
-  [[/Users/whkoh/git-repos/omsa-notes/isye_6501/img/m11-backw-elim.png]]
+  [[./img/m11-backw-elim.png]]
 *** Stepwise regression
 - Combines forward selection and backward elimination
-  [[/Users/whkoh/git-repos/omsa-notes/isye_6501/img/m11-stepwise.png]]
+  [[./img/m11-stepwise.png]]
 *** Types of approaches
 - Greedy
   - Decisions are made stp by step
-  - Known as /Greedy Algorithm/
+  - Known as {{{hl(Greedy Algorithm)}}}
   - At each step, take one thing that looks best
     - Doesn't consider future options
 - Global (see below)
+  - Optimization-based
 *** Lasso approach
 - Add constraint to standard regression equation
   - Still min SSE
@@ -1278,7 +1280,7 @@ Spline: function of polynomials that connect to each other
   - Most important coefficients kept
   - Others given 0
 - Important to scale data and pick T correctly
-- *Scaling* is important (e.g. age in years will be much bigger than age in days)
+- {{{hl(*Scaling*)}}} is important (e.g. age in years will be much bigger than age in days)
 - Picking $T$ depends on:
   1. Number of variables
   2. Quality of model
@@ -1312,7 +1314,7 @@ Spline: function of polynomials that connect to each other
 - There is a natural tradeoff between more and less fit:
   - Less fit :: bad (less fit to real patterns); good (less fit to random patterns); underfit
   - More fit :: good (better fit to real patterns); bad (more fit to random patterns); overfit
-- Put another way:
+- {{{hl(Bias vs Variance)}}}
   - Less variables = less fit = underfit to real patterns
     - Less relationship between constant and response
     - Smaller coefficients
@@ -1320,23 +1322,73 @@ Spline: function of polynomials that connect to each other
     - *Low variance*: less diff between predictions
   - More variables = more fit = overfit to random patterns
     - *Low bias*: real effects ok
-    - *High variance*: more diff between predictions (though.. random patterns)
+    - *High variance*: more diff between predictions (though random patterns)
 *** Summary
 - Difficult to model well (high fit to real; low to random)
 - Easy to model badly (choose some random variable)
 ** M11L5: Ridge regression / regularization
 *** Ridge regression
 - Reduces the *size* of coefficients if the error points start from outside the ridge regression threshold circle
-- Does not work if the error points are already inside the threshold circle
+- Ridge regression {{{hl(does nothing)}}} if the error points are already inside the threshold circle
   - In this case, reduce the size of \tau_\text{Ridge} until it reaches point outside the circle
-*** Coefficients -> magnitude of effect
+*** Coefficients show the magnitude of effect
 - We want to reduce the amount of fit
 - This is accomplished by reducing the magnitude of the regression coefficients
 - Ideally, reduce only fit to random patterns, however this is impossible, hence reduce fit to all
-- Reducing magnitude -> reduces variance -> reduce fit
-*** Ridge regression limits the magnitude of the regression coefficient instead of the number of variables
+- {{{hl(Reducing magnitude -> reduces variance -> reduce fit)}}}
+*** Ridge regression:
+- {{{hl(limits the magnitude)}}} of the regression coefficient
+  - does not reduce the number of variables
 - This technique is also known as regularization
 ** M11L6: Choosing a variable selection model
+*** Bot
+#+BEGIN_QUOTE
+Question 1: Which variable selection method is most commonly used as a generalization of the other two greedy approaches?
+
+a) Forward selection
+b) Backward elimination
+c) Stepwise regression
+d) LASSO
+
+Answer: c) Stepwise regression
+
+Question 2: In contrast to LASSO, what is the primary effect of the quadratic term in Ridge Regression on the coefficients?
+
+a) It makes more coefficients equal to zero.
+b) It increases the number of factors with non-zero coefficients.
+c) It shrinks the coefficient values.
+d) It eliminates multicollinearity.
+
+Answer: c) It shrinks the coefficient values.
+
+Question 3: Elastic net combines the benefits of LASSO and Ridge Regression. Which of the following is NOT a drawback of elastic net?
+
+a) It may include expensive factors instead of inexpensive ones.
+b) It tends to shrink the coefficients toward each other.
+c) It makes more coefficients equal to zero.
+d) It may underestimate good predictors.
+
+Answer: c) It makes more coefficients equal to zero.
+
+Question 4: Which of the following methods is recommended for initial data analysis due to its speed?
+
+a) LASSO
+b) Elastic net
+c) Stepwise regression
+d) Ridge Regression
+
+Answer: c) Stepwise regression
+
+Question 5: In the context of Ridge Regression, what is the main reason for trading off bias for variance?
+
+a) To decrease the number of factors with non-zero coefficients
+b) To increase the R-squared value
+c) To create better predictive models
+d) To completely eliminate multicollinearity
+
+Answer: c) To create better predictive models
+#+END_QUOTE
+*** Intro
 - Recap on methods of variable selection:
   - Good for initial analysis but often lacks performance
     - forward
