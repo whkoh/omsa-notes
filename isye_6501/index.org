@@ -1,6 +1,5 @@
 #+AUTHOR: W
 #+SETUPFILE: /Users/whkoh/git-repos/org-html-themes/org/theme-readtheorg-local.setup
-#+INCLUDE: /Users/whkoh/git-repos/org-macros/org/org-macros.setup
 #+TITLE: ISYE 6501 Intro to Analytics Modeling Notes
 * Module 01: Intro
 ** What's analytics?
@@ -1960,14 +1959,14 @@ Key underlying part of descriptive and prescriptive analytics.
 *** Optimization provides direction for an organization
 - Sits on top of descriptive and predictive analytics
 *** Optimization software
-- Model building automatically in software is still not available
+- Model building automatically in software is still {{{hl(not)}}} available
 ** M15L02: Elements of Optimization Models
-- Variables :: decisions to be made
+- Variables :: {{{hl(decisions)}}} to be made
 - Constraints :: restrictions on values of variables
-- Objective function :: measure of quality of solution
+- Objective function :: {{{hl(measure of quality)}}} of solution
 - Solution :: value for each variable
-- Feasible solution :: variable value that satisfy all constraints
-- Optimal solution :: feasible solution with the **best** objective value
+- Feasible solution :: variable value that {{{hl(satisfy all)}}} constraints
+- Optimal solution :: feasible solution with the **{{{hl(best)}}}** {{{hl(objective value)}}}
 ** M15L03: Optimization is an art
 *** Examples
 **** US Army diet
@@ -2034,7 +2033,7 @@ Invest to balance risk and return
     - first part is return
     - second part is risk
 - To consider: transaction fees
-  - But no binary indicators if transaction fee is paid or not paid. Can create $y_i = 1$ if invest, else 0
+  - But no {{{hl(binary indicators)}}} if transaction fee is paid or not paid. Can create $y_i = 1$ if invest, else 0
   - New objective function: Maximize $\sum_ir_ix_i - \theta \sum_i\sum_jQ_{ij}x_ix_j - \sum_ity_i$
   - New additional constraint: $x_i \leq By_i$, which in effect means:
     - when $y_i = 0$: $x_i \leq 0$
@@ -2047,10 +2046,10 @@ Invest to balance risk and return
 - Related constraints, e..g if invest in energy stock, must invest in at least 5
   - Change constraint: sum $y_i$ for energy stocks $\geq y_i$ for the 5 energy stocks
 *** Recap uses of integer variables in optimization
-- Fixed charges
-- Constraints in terms of choosing options
-- Constraints in requiring same or opposite choices
-- If/then constraints
+- {{{hl(Fixed)}}} charges
+- Constraints in terms of {{{hl(choosing options)}}}
+- Constraints in requiring {{{hl(same or opposite)}}} choices
+- {{{hl(If/then)}}} constraints
 ** M15L05: Discovering the real questions
 *** Real life
 - Is often less specific, with information isn't fully specified or available
@@ -2064,7 +2063,7 @@ Invest to balance risk and return
 - Need to discover details:
   - Constraints, objective function, etc
 - /Potentially/, build other models to determine inputs for optimization
-- Iterate between:
+- {{{hl(Iterate)}}} between:
   1. Build model
   2. Optimize
   3. Get feedback
@@ -2238,7 +2237,7 @@ The passage introduces Bayesian models and their usage in analytics. It explains
     - std error from variance \sigma \approx 11
   - Interpretation: most of the points is explained by randomness and only 3.5 pts is explained by actual difference in strength
 *** Lecture summary
-- Even a single observation, when combined with a broader set of observations, can make a deduction or prediction
+- Even a single observation, when {{{hl(combined with a broader set of observations)}}}, can make a deduction or prediction
 - Bayesian models work especially when we {{{hl(don't)}}} have lots of data
 ** M16L03: Communities in graphs
 #+BEGIN_QUOTE
@@ -2303,8 +2302,8 @@ The algorithm has a few mostly repeated steps, including creating super-nodes an
 *** Lecture summary
 - Finding communities in graphs
 - Louvain algorithm
-  - Heuristic, hence:
-  - Not guaranteed to find the absolute best partition
+  - {{{hl(Heuristic)}}}, hence:
+  - Not guaranteed to find the absolute best solution
   - Gives very good solutions very quickly
 ** M16L04: Neural networks and deep learning
 *** Transcript summary
@@ -2436,8 +2435,8 @@ Lastly, the lesson covers the use of different optimization models to find the b
   - Counter-strategy ad nauseum
 - If sequential: i.e. decisions made sequentially
 *** {{{hl(Types of strategy)}}}
-- Pure: just one choice
-- Mixed: randomize decisions according to probabilities
+- {{{hl(Pure)}}}: just one choice
+- {{{hl(Mixed)}}}: randomize decisions according to probabilities
   - Example: rock paper scissors
     - Cannot always choose the same
 *** Information levels
@@ -2541,7 +2540,7 @@ While NLP is an important and growing application of analytics and data science,
   - Document classification
   - Sentiment analysis
 *** Why hard?
-- Same word can have different meanings
+- Same word can have {{{hl(different meanings)}}}
 *** Natural language processing
 - Speech to text
 - Recognizing names and co-references
