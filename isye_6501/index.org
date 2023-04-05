@@ -1608,7 +1608,7 @@ Answer: a
 - Can specify:
   - $p$ :: probability it comes up heads
   - $1-p$ :: probability that it comes up tails
-- By itself, talks about 1 data point
+- By itself, {{{hl(talks about 1 data point)}}}
 - How to relate to other data points?
 **** Example
 - P(Sends donations) = p
@@ -1616,11 +1616,12 @@ Answer: a
 - Number of donations each month is binomially distributed
 *** Binomial distribution
 - Probability of getting $x$ successes from $n$ iid Bernoulli ($p$) trials
+  - {{{hl(Use Binomial to model the larger population that is each a Bernoulli distribution)}}}
 - **Large** $n$:
   - Converges to normal distribution
     - Useful for predicting errors
 *** Geometric distribution
-- Probability of having $x$ Bernoulli ($p$) failures until first success?
+- {{{hl(Probability of having x Bernoulli (each probability p) failures until first success?)}}}
   - Equivalently: having x Bernoulli ($1-p$) success until first failure
 - Need to define $p$ and $1-p$ carefully
 **** Can also answer questions about process
@@ -1671,32 +1672,78 @@ d. The Weibull and exponential distributions have no relationship.
 Answer: a.
 #+END_QUOTE
 *** Poisson
-- Good at modelling random  arrivals
+- Good at {{{hl(modelling random  arrivals)}}}
   - \lambda :: the average number of arrivals per time period
 - Arrivals are i.i.d.
 *** Exponential distribution
 - Related to Poisson
 - If arrivals are Poisson(\lambda):
-  - Time between successive arrivals is distributed by exponential(\lambda) distribution
+  - {{{hl(Time between successive arrivals)}}} is distributed by exponential(\lambda) distribution
 - Poisson # of arrivals <==> exponential inter-arrival time
 *** Weibull
-- Models the *time* between failures
-- Whereas geometric models the *number of tries* between failures
+- Weibull models the *{{{hl(time)}}}* between failures, or {{{hl(time until first occurrence)}}}
+- Whereas geometric models the *{{{hl(number of tries)}}}* between failures
 - $k < 1$
   - Modelling when failure rate *decreases* with time
-  - "Worst things fail first"
+  - {{{hl("Worst things fail first")}}}
 - $k > 1$
   - Modelling when failure rate *increases* with time
-  - "Things that wear out" e.g. tires
+  - {{{hl("Things that wear out")}}} e.g. tires
 - $k = 1$
   - Modelling when failure rate is constant with time
   - This is equal to the *exponential distribution*
     - With different notation
 *** Software can help but may be confusing
 ** M13L4: Q-Q plots
+#+BEGIN_QUOTE
+Question 1: What is the primary purpose of a Q-Q plot?
+
+a. To visualize whether two distributions of data are about the same
+b. To determine the statistical significance of the difference between two datasets
+c. To measure the central tendency of a dataset
+d. To calculate the correlation between two variables
+
+Answer: a. To visualize whether two distributions of data are about the same
+
+Question 2: In a Q-Q plot, if two datasets are a good match, where should the points fall?
+
+a. On a horizontal line
+b. On a vertical line
+c. On or near the 45-degree line
+d. On a curve
+
+Answer: c. On or near the 45-degree line
+
+Question 3: What can a Q-Q plot reveal that a statistical test might not?
+
+a. The specific values in the datasets
+b. The exact percentile of each value
+c. Qualitative differences between datasets, especially in the tails
+d. The probability distribution of the datasets
+
+Answer: c. Qualitative differences between datasets, especially in the tails
+
+Question 4: How can a Q-Q plot be used to test whether a single dataset is a good fit to a probability distribution?
+
+a. By plotting the dataset against a histogram of the distribution
+b. By comparing the dataset to the theoretical values of the quantiles in a perfect distribution
+c. By plotting the dataset against a scatterplot of the distribution
+d. By calculating the correlation coefficient between the dataset and the distribution
+
+Answer: b. By comparing the dataset to the theoretical values of the quantiles in a perfect distribution
+
+Question 5: In a Q-Q plot, if dataset two has larger values for lower quantiles and smaller values for higher quantiles, what does this indicate about the data in the second set?
+
+a. The data is more spread out
+b. The data is more squashed toward the middle
+c. The data is skewed to the right
+d. The data is skewed to the left
+
+Answer: b. The data is more squashed toward the middle
+#+END_QUOTE
 *** Visualizing
 - Whether 2 distributions (different datasets) are about the same
-- Whether a dataset is distributed similarly to a probability distribution
+- Whether a dataset is {{{hl(distributed similarly)}}} to a probability distribution
   - Horizontal axis :: data
   - Vertical axis :: theoretical values of percentiles of a probability distribution
 - Statistical tests work but can hide details about ranges, overall etc.
@@ -1720,13 +1767,13 @@ Answer: a.
 - New factors:
   - Limited number of calls in queue
   - Additional employee
-- New concept: *memoryless property*
+- New concept: *{{{hl(memoryless property)}}}*
   - This means it doesn't matter what happened in the past, only what's happening *now*
   - E.g. memoryless exponential distribution
     - Regardless of current call duration, the /remaining/ call time distribution = /initial/ distribution of call time using the distribution
     - Therefore can discover from the distribution
   - E.g. memoryless Posson distribution
-- If data fits exponential distribution => It is memoryless
+- If data fits {{{hl(exponential distribution)}}} \rightarrow It is memoryless
 - Otherwise, not fitting exponential distribution => not memoryless
 *** Queuing models
 - Parameters:
@@ -1751,7 +1798,7 @@ Answer: a.
     - Changes happen continuously
     - E.g. chemical processes, disease spread
     - Use differential equation models
-  - Discrete event simulations
+  - {{{hl(Discrete event simulations)}}}
     - The *focus*
     - Example: call center simulations
 *** Discrete-event stochastic simulations
@@ -1768,10 +1815,10 @@ Answer: a.
 - Random numbers are important!
 *** Replications
 - The number of runs of simulation
-- One run is insufficient due to the random nature; not representative
+- {{{hl(One run is insufficient)}}} due to the random nature; not representative
 - Run multiple times to get distribution of outcomes
 - E.g. simulating average throughout
-*** Simulation validation
+*** Simulation {{{hl(validation)}}}
 - Use real data to validate that the simulation is giving valid results
   - Problems:
     - Real average differs from simulated average
@@ -1791,7 +1838,7 @@ Can be run by hand:
   - Model only as good as input's quality
   - Missing or incorrect information leads to incorrect answers
 - Example: call center simulation
-  - If it assumes all workers answer calls as quickly as each other, wrong, can lead to bad decisions
+  - If it assumes all workers answer calls as quickly as each other, {{{hl(wrong)}}}, can lead to bad decisions
 *** Validation can be hard
 - Especially if it's something that doesn't exist
 *** Simulation/validation should consider all processes
@@ -1811,15 +1858,15 @@ Can be run by hand:
   - \pi \times P = \pi
 - Solve for \pi P = \pi and \sum_i \pi_i = 1
 - Not always a steady state
-- **Steady state only exists when:**
+- **{{{hl(Steady state only exists when:)}}}**
   1. possible to get from one state to all other states
   2. no cyclic behaviour
 *** Key assumption
 - Memoryless:
-  - State transitions only depend on *most recent* state
+  - State transitions only {{{hl(depend on most recent)}}} state
     - E.g. weather: tomorrow's only depends on today's
 - Most systems are not memoryless
-  - But still useful because it's still useful e.g. for PageRank
+  - But still useful for {{{hl(combining smaller amounts of information to find patterns)}}} e.g. for PageRank
 - Other applications
   1. Rank basketball teams
   2. Urban sprawl, population, disease
@@ -2039,22 +2086,22 @@ Wilcoxon signed rank test is used when we have no assumptions about what the res
 
 Mann-Whitney test is used to compare two samples where the outcomes are not paired, and we assume that all the observations are independent of each other.
 #+END_QUOTE
-*** Non-parametric tests: Statistics tests when the distribution is unknown
+Non-parametric tests: Statistics tests when the distribution is unknown
 *** McNemar's test is paired
-- Compare results on *pairs* of responses
+- Compare results on {{{hl(*pairs* of responses)}}}
 - eg: two different treatments for a virus
   - Treatment A or B better?
   - Are the observations just luck?
 - Analysis is using p-value similar to a 'normal' hypothesis test
 **** Summary
-- McNemar's (Binomial) test: Only consider when A and B are different.
+- McNemar's (Binomial) test: Only consider when A and B {{{hl(are different)}}}.
 - Does not require or assume knowledge about the distribution.
 *** Wilcoxon Signed Rank Test for Medians
 - Assumption:
-  1. Distribution is continuous
-  2. Distribution is symmetric
+  1. Distribution is {{{hl(continuous)}}}
+  2. Distribution is {{{hl(symmetric)}}}
 - Question:
-  - Is the *median* of the distribution different from a value $m$?
+  - Is the {{{hl(*median*)}}} of the distribution different from a value $m$?
 **** Procedure
 1. With responses y_1 to y_n
 2. Rank |y_1-y_m|, ...., |y_n-y_m| from smallest to largest
@@ -2063,11 +2110,11 @@ Mann-Whitney test is used to compare two samples where the outcomes are not pair
 **** Question
 1. Given pairs (y_1, z_1), ..., (y_n, z_n) from observations y and z
 2. Use |y_1-z_1|, ..., |y_n-z_n| for rank test
-**** Comparison
+**** {{{hl(Comparison)}}}
 - For numeric data, use the Wilcoxon test
 - For binary data, use McNemar's test
 *** Mann-Whitney test
-- Use when there are two datasets but no paired samples
+- Use when there are two datasets but {{{hl(no paired samples)}}}
 **** Procedure
 1. Given independent observations y_1, ..., y_n and z_1, ..., z_m
 2. Rank all observations
@@ -2080,7 +2127,7 @@ Mann-Whitney test is used to compare two samples where the outcomes are not pair
 4. Find significance with software or a statistical table
 *** Summary from video
 [[./img/m16-nonparam-tests-flow.png]]
-- Use non-parametric tests when you know nothing about distribution
+- Use non-parametric tests when you {{{hl(know nothing)}}} about distribution
 - # datasets = 2
   - Paired Yes/No :: use McNemar's test
   - Paired Numeric :: use Wilcoxon signed rank test
@@ -2167,7 +2214,7 @@ The passage introduces Bayesian models and their usage in analytics. It explains
     - Because: many more people don't actually have the disease, so many more FP than TP.
 *** Empirical Bayes modeling
 - Overall distribution is known, or is estimated
-  - But only sample data is available
+  - But {{{hl(only sample data)}}} is available
 - Eg predicting outcomes of NCAA basketball
   - Let $X$ = difference in points scored by home vs road team
   - X has normal distribution $X\sim N(m+h,\sigma^2)$
@@ -2192,9 +2239,9 @@ The passage introduces Bayesian models and their usage in analytics. It explains
   - Interpretation: most of the points is explained by randomness and only 3.5 pts is explained by actual difference in strength
 *** Lecture summary
 - Even a single observation, when combined with a broader set of observations, can make a deduction or prediction
-- Bayesian models work especially when we don't have lots of data
+- Bayesian models work especially when we {{{hl(don't)}}} have lots of data
 ** M16L03: Communities in graphs
-*** Transcript summary
+#+BEGIN_QUOTE
 The lesson introduces a model called the Louvain algorithm for finding highly interconnected subpopulations in large interconnected populations, such as social media networks, disease outbreaks, computer viruses, language spread, and terrorist networks.
 
 The lesson explains the standard terminology used in graph theory, including nodes, edges, cliques, and communities. The Louvain algorithm maximizes the modularity of a graph, a measure of how well the graph is separated into communities that are highly connected internally but not much between each other.
@@ -2224,6 +2271,7 @@ The algorithm has a few mostly repeated steps, including creating super-nodes an
     B. No, it's not guaranteed to find the absolute best partition of a graph into communities because it's a heuristic.
     C. It depends on the size of the graph.
     D. It depends on the number of nodes in each community.
+    #+END_QUOTE
 *** Uses
 - Marketing / social media
 - Disease outbreaks
@@ -2239,13 +2287,13 @@ The algorithm has a few mostly repeated steps, including creating super-nodes an
 - Clique :: a set of nodes that all have edges between each other
 *** Louvain algorithm
 - Decomposes graph into communities
-- Maximises the modularity of a graph
+- {{{hl(Maximises the modularity)}}} of a graph
 - Terms
   - $a_{ij}$ :: weight of arc between nodes $i$ and $j$
   - $w_i$ :: total weight of arcs connected to $i$
   - $W$ :: total weight of all the arcs
   - Modularity :: $\frac{1}{2W} \sum_{i,j \text{in the same community}}(a_{ij}-\frac{w_iw_j}{2W})$
-    - Measures how well the graph is separated into communities (modules) that are connected internally but not with each other
+    - Measures {{{hl(how well the graph is separated)}}} into communities (modules) that are connected internally but not with each other
 - Steps
   1. Each node is its own community
   2. Repeat the following
@@ -2311,7 +2359,7 @@ Although deep learning is a hot research topic, it's often used for processing t
   2. Calculates function of weighted inputs
   3. Gives it output to the next layer
 - Important step:
-  - The weights/functions are updated based on the correctness of the results, e.g. by gradient descent using the slope of the function
+  - The {{{hl(weights/functions are updated based on the correctness of the results)}}}, e.g. by gradient descent using the slope of the function
 - Eventually, if working well, all weights will be adjusted so the correct output is generated.
 - Needs much training data
 - Difficult to train and tune the model:
@@ -2322,7 +2370,7 @@ Although deep learning is a hot research topic, it's often used for processing t
 - New ability to make it work well
 - Very similar to neural network
 - But is many layers deep
-- Better approach than neural networks
+- {{{hl(Better approach)}}} than neural networks
 - Success in:
   1. Natural language processing
   2. Speech recognition
@@ -2369,7 +2417,7 @@ Lastly, the lesson covers the use of different optimization models to find the b
 - Prescriptive models: find the best thing to do
 - Assuming the system does not react
 - What if system reacts intelligently?
-  - Use analytics to consider all sides of the system
+  - Use analytics to consider {{{hl(all sides)}}} of the system
 *** Examples:
 - Past purchase data is used to set prices, but competitor change their prices
 - Company reaction to govt tax policy
@@ -2387,7 +2435,7 @@ Lastly, the lesson covers the use of different optimization models to find the b
 - Strategy
   - Counter-strategy ad nauseum
 - If sequential: i.e. decisions made sequentially
-*** Types of strategy
+*** {{{hl(Types of strategy)}}}
 - Pure: just one choice
 - Mixed: randomize decisions according to probabilities
   - Example: rock paper scissors
@@ -2441,7 +2489,7 @@ The lesson shows how the gas stations will arrive at a stable equilibrium with b
 #+END_QUOTE
 *** Stable equilibrium
 - Neither has incentive to change, hence...
-  - Outcome is *worse* than if they had colluded to both charge the higher price
+  - {{{hl(Outcome is *worse*)}}} than if they had colluded to both charge the higher price
   - Not always true but here it is
 - This is prisoner's dilemma, where:
   - Even if agree on higher price, both still have incentive to cheat, hence both end up with lower price
@@ -2532,7 +2580,7 @@ These models are used in various applications, such as insurance, medical resear
    d) Data where we either don't have data before or after a specific time, or where we only have data until we've observed enough events.
 #+END_QUOTE
 *** What are survival models?
-- Predict the probability of an event happening (or not) before a certain time
+- Predict the {{{hl(probability of an event happening)}}} (or not) before a certain time
   - Based on predictor variables
 - Not just on probability distribution but from the values themselves
 *** Uses of survival models
@@ -2540,7 +2588,7 @@ These models are used in various applications, such as insurance, medical resear
 - Medicine (effects of treatment)
 - Machinery/sensors (maintenance and replacement)
 *** Cox proportional hazard model
-- Uses an exponential function to estimate survival probability
+- Uses an {{{hl(exponential function to estimate survival probability)}}}
 - Given (for each data point):
   - Predictor variables x_1, ..., x_n
   - Event time $y$
@@ -2556,11 +2604,10 @@ These models are used in various applications, such as insurance, medical resear
     - $\beta_j < 0$ :: x_j is negative, has lower probability
 *** Data...
 Can't tell how long patient will survive for
-- **Censored data*
+- **Censored data**
   - No data before or after a specific time
   - No data after certain number of occurrences
   - Can be dealt with...
-***
 ** M16L08: Gradient boosting
 *** Summary
 #+BEGIN_QUOTE
@@ -2597,10 +2644,10 @@ Gradient boosting can be used with factor-based models, regression, classificati
     D) To use tree-based models
 #+END_QUOTE
 *** Computing topic, i.e.
-Using additional models to augment your model
+Using {{{hl(additional models)}}} to augment your model
 *** Basic idea
 - Instead of fitting a single model, we can start with one and augment its performance with other models
-- Gradient: we're using gradient information to fit other models
+- Gradient: we're using {{{hl(gradient)}}} information to fit other models
 *** In detail
 1. Fit the first model F(x)
    - Predictors: $x$
@@ -2624,7 +2671,7 @@ Using additional models to augment your model
    F_k(x) = F_0(x) + \gamma_0 H_0(x) + ... +
    \gamma_k H_k(x)
    $$
-4. *Boosting* = adding the models together (F and H)
+4. *{{{hl(Boosting)}}}* = adding the models together (F and H)
 ** M16L08a: Gradient boosting example
 *** Summary
 #+BEGIN_QUOTE
