@@ -1788,9 +1788,9 @@ Answer: b. The data is more squashed toward the middle
 ** M13L6: Simulation basics
 *** Types of simulations
 - Random behaviour?
-  - Deterministic (no randomness)
+  - {{{hl(Deterministic)}}} (no randomness)
     - Same inputs give identical outputs
-  - Stochastic (includes randoness)
+  - {{{hl(Stochastic)}}} (includes randoness)
     - Outputs may differ even for identical inputs
 - Time
   - Continuous-time
