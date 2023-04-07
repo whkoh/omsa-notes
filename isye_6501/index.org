@@ -1329,7 +1329,7 @@ Spline: function of polynomials that connect to each other
 *** Ridge regression
 - Reduces the *size* of coefficients if the error points start from outside the ridge regression threshold circle
 - Ridge regression {{{hl(does nothing)}}} if the error points are already inside the threshold circle
-  - In this case, reduce the size of \tau_\text{Ridge} until it reaches point outside the circle
+  - In this case, reduce the size of $\tau_\text{Ridge}$ until it reaches point outside the circle
 *** Coefficients show the magnitude of effect
 - We want to reduce the amount of fit
 - This is accomplished by reducing the magnitude of the regression coefficients
@@ -2050,7 +2050,7 @@ Invest to balance risk and return
 - Constraints in terms of {{{hl(choosing options)}}}
 - Constraints in requiring {{{hl(same or opposite)}}} choices
 - {{{hl(If/then)}}} constraints
-** M15L05: Discovering the real questions
+** M15L04a: Discovering the real questions
 *** Real life
 - Is often less specific, with information isn't fully specified or available
 - Discovery is hard
@@ -2069,6 +2069,124 @@ Invest to balance risk and return
   3. Get feedback
   4. Tweak/build model
 - Applies to other analytics/data science modelling
+** M15L05: Optimization for Statistical Models
+*** Examples
+- Linear regression model
+  - Variables: coefficients a_0 and a_1 through a_m
+  - No constraints
+  - Objective: minimize squared error
+- Lasso regression
+  - Standard regression with constraint on {{{hl(sum of variables)}}}
+- Ridge regression
+  - Similar to lasso, but constraint on sum of {{{hl(squares of variables)}}}
+- Elastic net
+  - Combination of lasso and ridge constraints
+- Logistic regression
+  - Variables: regression coefficients
+  - No constraints
+  - Objective: minimize prediction error
+- Support vector machine
+  - Hard classification
+    - Variables: coefficients a_0 and a_1 through a_m
+    - Constraints: {{{hl(correct classification)}}} of each data point
+    - Objective: maximize distance between support vectors
+  - Soft classification
+    - Same variables, no constraints
+    - Different objective function
+- Exponential smoothing model
+  - Variables: Alpha, Beta, and Gamma
+  - Constraints: {{{hl(variables between 0 and 1)}}}
+  - Objective: minimize prediction error
+- ARIMA model
+  - Variables: Mu, Thetas, and Phi's
+  - No constraints
+  - Objective: minimize error
+- GARCH model
+  - Similar to ARIMA in terms of optimization
+- Clustering
+  - Variables: cluster center coordinates and binary variables for cluster assignment
+  - Constraints: each data point {{{hl(assigned to one)}}} cluster
+  - Objective: minimize sum of distances to cluster centers
+*** Summary
+- Optimization models underlie many analytics techniques
+- Some models are easier and faster to solve than others
+** M15L05a: Using Optimization to Customize Statistical Models
+*** Summary
+- Optimization models underlie many fundamental analytics and data science models
+- Optimization can help {{{hl(customize)}}} standard models when they are not appropriate for specific needs
+- Linear regression example: {{{hl(change the exponent)}}} or use {{{hl(absolute value of residuals)}}} (instead of sum of squared errors)
+- {{{hl(Constraints)}}} can be added to linear regression (e.g. Lasso, Ridge, Elastic Net)
+  - Constraints can also be fundamental, like setting the intercept to zero
+  - Example of ordered constraint regression used in various industries
+- Optimization can be used for variable/feature selection directly
+  - Lasso regression model uses the value of \Tau to **indirectly** restrict the number of features
+  - With optimization, **directly** restrict the regression to a specific number of features using binary variables
+- Two ways to {{{hl(customize)}}} statistical and ML models:
+  1. Adding custom constraints
+  2. Selecting features
+** M15L06: Classification of Optimization Models
+*** Types of Optimization Models
+- General format:
+  - Minimize or maximize objective function f(x)
+  - Subject to constraints x in set X
+*** Linear program:
+- {{{hl(Linear objective function)}}} and {{{hl(linear constraints)}}}
+- Fast to solve, even with large instances
+*** Convex quadratic program
+- Convex quadratic objective function and linear constraints (equations/inequalities)
+- Quickly solvable, but slower than linear programs
+*** Convex optimization problem
+- Concave/convex objective function and convex constraint set
+- Easy to solve mathematically, but can take longer for optimal solutions
+*** Integer program
+- Linear program with integer variables
+- Good software available, but some instances are difficult to solve optimally
+*** General non-convex problem
+- All others
+- Very hard to find optimal solutions
+*** Solution approaches
+- Heuristics for hard problems
+*** Another type of linear program
+- Network optimization problems
+  - Quickly solvable
+  - Models have nodes, arcs, and flow constraints
+  - Examples:
+    - Shortest path problem
+    - Assignment problem
+    - Maximum flow model
+** M15L07: Stochastic Optimization
+- In optimization models, input data is often assumed to be known and certain.
+- However, in some cases, it is important to model uncertainty and randomness in the optimization framework.
+*** Be conservative
+- One approach is to be {{{hl(conservative)}}} in modeling by adding a buffer to the constraint's right-hand side.
+*** Scenario modelling
+- Another approach is to use {{{hl(scenario modeling)}}} by defining various scenarios and optimizing over {{{hl(all of them)}}}.
+  - Scenario modeling can be expensive, and for each scenario, there is a separate set of constraints.
+*** Other models
+- {{{hl(Dynamic programming)}}}:
+  - States :: the {{{hl(exact)}}} situations and their values
+  - Decision :: choices of next state
+  - Bellman's equation :: determine optimal decisions
+- {{{hl(Stochastic)}}} dynamic program
+  - As above, but with {{{hl(probabilities)}}} incorporated.
+- {{{hl(Markov)}}} decision process
+  - Stochastic dynamic program with discrete states and decisions
+  - Probabilities depend only on current state and decision
+** M15L08: Basics of Optimization Algorithms
+- Optimization models are solved using different algorithms, but most algorithms have two main steps.
+*** Solving an optimization model
+1. {{{hl(initialization)}}} to create a starting solution, which might not satisfy all constraints.
+2. Repeat a two-stage process of:
+   1. finding an improving direction
+   2. use a step size to make changes to each variable.
+   3. The new solution is the old solution plus the improving direction times the step size.
+   4. Stop when solution doesn't change much, or time runs out
+*** Analogy from calculus
+- Newton's method
+*** Convergence
+- Convex problem: guaranteeed to find the optimal solution
+- Non-convex problem: not guaranteed to find optimal solution (might converge to infeasible or local optimum)
+- Algorithms for solving integer programs can take a lot longer to converge than other algorithms.
 * Module 16: Advanced Models
 #+BEGIN_QUOTE
 Midterm 2: modules 11-16 (from variable selection to optimization and advanced models) -- weeks 8-12
