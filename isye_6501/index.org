@@ -1267,6 +1267,7 @@ Spline: function of polynomials that connect to each other
     - Doesn't consider future options
 - Global (see below)
   - Optimization-based
+  - Needs {{{hl(scaling)}}}!
 *** Lasso approach
 - Add constraint to standard regression equation
   - Still min SSE
@@ -1400,8 +1401,8 @@ Answer: c) To create better predictive models
 - Elastic net is like lasso + ridge
   - Start with lasso adds absolute value term in constraint;
   - Ridge adds quadratic (squared) term;
-- Lasso: some coefficients forced to 0 to simplify model
-- Ridge: coefficients shrink towards 0 to reduce variance in estimate
+- Lasso: {{{hl(some coefficients forced to )}}}0 to simplify model
+- Ridge: coefficients {{{hl(shrink)}}} towards 0 to reduce variance in estimate (will still have small coefficients)
 *** Elastic net
 - Benefits:
   - Has variable selection like Lasso
@@ -1442,7 +1443,7 @@ Choosing the best out of alternatives. Example:  banner ads: how to decide which
 3. Data collected is small vs. entire population (cost: does not make sense to spend 2000/2500 on building model. Remaining 500 too little to exploit.)
 ** M12L3: Factorial design
 *** Full factorial design
-- Test every combination and use ANOVA to determine the importance of each factor
+- Test every {{{hl(combination)}}} and use ANOVA to determine the importance of each factor
 - Explodes with number of combinations, e.g. 7 factors x 3 choices = 3^7 = 2187 combinations
 *** Fractional factorial design
 - Test subset of combinations
@@ -1531,7 +1532,8 @@ Answer: d) The total number of alternatives available.
 **** Summary
 - No simple rule
 - Usually better than fix/large number of tests
-- {{{hl(Learn faster along the fly and create more value while doing so)}}}
+- {{{hl(Learn faster along the fly and create more value while doing so)}}} i.e.
+  - {{{hl(As we get more sure of best ans, more likely to choose it)}}}
 * Module 13: Probability-based Models
 ** M13L1: Intro
 *** Simple modelling
@@ -1861,10 +1863,10 @@ Can be run by hand:
   1. possible to get from one state to all other states
   2. no cyclic behaviour
 *** Key assumption
-- Memoryless:
+- Needs to be memoryless:
   - State transitions only {{{hl(depend on most recent)}}} state
     - E.g. weather: tomorrow's only depends on today's
-- Most systems are not memoryless
+- However, most systems are not memoryless
   - But still useful for {{{hl(combining smaller amounts of information to find patterns)}}} e.g. for PageRank
 - Other applications
   1. Rank basketball teams
@@ -2184,7 +2186,7 @@ Invest to balance risk and return
 *** Analogy from calculus
 - Newton's method
 *** Convergence
-- Convex problem: guaranteeed to find the optimal solution
+- Convex problem: guaranteed to find the optimal solution
 - Non-convex problem: not guaranteed to find optimal solution (might converge to infeasible or local optimum)
 - Algorithms for solving integer programs can take a lot longer to converge than other algorithms.
 * Module 16: Advanced Models
@@ -2244,7 +2246,8 @@ Non-parametric tests: Statistics tests when the distribution is unknown
 4. Find significance with software or a statistical table
 *** Summary from video
 [[./img/m16-nonparam-tests-flow.png]]
-- Use non-parametric tests when you {{{hl(know nothing)}}} about distribution
+- Use non-parametric tests when you {{{hl(know nothing)}}} about distribution, or have {{{hl(little data)}}}
+- Non-parametric tests deal more with {{{hl(median)}}}
 - # datasets = 2
   - Paired Yes/No :: use McNemar's test
   - Paired Numeric :: use Wilcoxon signed rank test
@@ -2356,6 +2359,7 @@ The passage introduces Bayesian models and their usage in analytics. It explains
   - Interpretation: most of the points is explained by randomness and only 3.5 pts is explained by actual difference in strength
 *** Lecture summary
 - Even a single observation, when {{{hl(combined with a broader set of observations)}}}, can make a deduction or prediction
+  - This can be an expert opinion ({{{hl(prior distribution)}}}) too
 - Bayesian models work especially when we {{{hl(don't)}}} have lots of data
 ** M16L03: Communities in graphs
 #+BEGIN_QUOTE
@@ -2417,6 +2421,8 @@ The algorithm has a few mostly repeated steps, including creating super-nodes an
      1. Make *biggest* modularity increase by moving node from its community to an adjacent node's community
      2. Until no move increases modularity
   3. Each community is a super-node. Repeat step 1 using super-nodes.
+- To split nodes into communities that have {{{hl(very little)}}} connections, change Louvain's algorithm:
+  - For every pair of nodes, if there's an edge, remove it; If no edge, add it, then run Louvain
 *** Lecture summary
 - Finding communities in graphs
 - Louvain algorithm
