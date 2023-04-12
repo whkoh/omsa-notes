@@ -1404,3 +1404,104 @@ Which factors drive returns?
   - Momentum
   - Profitability
   - Volatility
+
+* Module 09: Marketing and Advertising
+** M09L01: Marketing and Advertising
+*** Traditional advertising (5 types)
+1. Outdoors display and promotions
+2. Print: newspapers and magazines
+3. Mailings door to door
+4. Radio
+5. TV
+*** Methods of sale for traditional
+- CPM = Cost per Mille
+- Thousands of people watching
+*** TV advertising: rating methods
+1. HUT = Households using TV/Total TV households = 6/10 or 60
+2. Rating = Channel 2 households/Total TV households = 3/10 or 30
+3. Share = Channel 2 households/Households Using TV = 3/6 or 50
+4. Rating = Share x HUT
+5. GRPs = sum of ratings
+6. Reach = Channel 2 households/Total TV households e.g. 7/10 or 70
+7. Frequency = GRPs/Reach = 150/70 = 2.1
+*** Digital advertising (5 types)
+1. Display ads
+2. Search engine marketing
+3. Social media marketing
+4. Mobile marketing
+5. Email marketing
+** M09L02: Evolution of advertising companies and methods
+*** Key examples of digital advertising companies
+1. Netscape
+2. Google
+3. Facebook
+*** Ad serving platforms / programmatic ads
+Advertiser -> Ad placement system -> ads
+*** Media buying agency
+Optimize ad placement according to content and audience relevance
+*** What digital marketers do
+1. Build campaigns
+2. Buy media (ad placements)
+3. Optimize campaigns
+** M09L03: Overview of digital ad market
+*** Overview
+- High growth 1996-2018 overall
+- Strong growth in mobile advertising
+- Search > banner > video
+- Social media advertising also has strong growth
+*** Pricing models
+1. CPM is decreasing
+2. Performance is increasing
+3. Hybrid is around the same
+*** Next
+- Privacy and trust is compromised
+* Module 10: Implementing Integrated Digital Marketing
+** M10L01-L03: Five methods of digital advertising
+1. Display advertising
+   Many sizes but low CTR
+2. Search engine marketing
+   1. Pay per click
+      1. Paid vs organic
+   2. Search engine results page
+   3. Keyword
+   4. Click through rate
+   5. Landing page
+   6. Vickrey auction model
+   7. Relevance is key for Google
+      1. Quality score factors
+         1. Keywords
+         2. Ad copy
+         3. Landing page
+         4. Historical CTR
+      2. CPC x Quality score = Ad rank = Ad position
+   8. Profitability of ad camapaign
+      1. CPC
+      2. Conversion rate
+      3. Sale value
+      4. profit margin
+      5. lifetime value
+         1. Repeat sale is cheaper than new sale
+      6. Low CPC breakeven:
+         1. Use long-tail keywords
+         2. High CTR, high conversion rate
+         3. Profit margin per sale -> BEP CPC per average sale (based on conversion rate)
+         4. BEP CPC for LTV -> factor up LTV/Avg Sale value
+3. Social media marketing
+   1. Facebook > Insta > LinkedIn
+   2. Goals -> Presence -> Content Size/Type
+** M10L04: Advertising Deals and Tools
+*** Payment methods
+1. Fixed
+2. CPM
+3. CPV (view)
+4. CPC (click)
+5. CPA (acquisition)
+6. CPS (sale/commission)
+*** Risk principle
+Advertisers: highest risk CPM
+Publishers: highest risk CPS
+*** Tools
+1. E.g. Adwords, Audience Planner, Analytics, Facebook Ads
+2. Allow insight into digital marketing
+3. Use to interpret campaign performance
+4. Analyse and measure performance
