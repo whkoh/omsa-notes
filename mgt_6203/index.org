@@ -1505,3 +1505,46 @@ Publishers: highest risk CPS
 2. Allow insight into digital marketing
 3. Use to interpret campaign performance
 4. Analyse and measure performance
+
+* Module 12: Operations Management
+** M12L01: What is Operations Management
+*** Intro
+- OM :: how to make stuff
+- Stuff :: includes *services* and products
+- Goals :: make it well, on time, low cost, enough to meet demand
+- Formally :: the management (design, operation and improvement) of the processes that transform material, labour, energy and information into goods and services
+*** It's in the middle
+- OM sits between Inputs and Outputs.
+- OM is the Transformation Process.
+*** Decisions in OM
+- Strategic :: long term impact
+  - Product, process selection
+  - Location
+  - Capacity (manufacturing)
+  - Projects (product development)
+  - Training of staff (services)
+
+- Tactical :: medium term impact
+  - Number of employees, hours of work
+  - Inventory levels / should we make more? (manufacturing)
+  - Order quantity and frequency
+  - Share design info with manufacturing? (product dev)
+  - Types of queues (Services)
+
+- Operational :: short term impact
+  - Job scheduling
+  - Priorities
+  - Which part to make first? (Manufacturing)
+  - Should queue be FCFS? (Services)
+  - Critical path of project? (Product dev)
+*** Goal of OM
+Needs a *tradeoff* between:
+- Efficiency :: lowest cost
+- Effectiveness :: do the right things
+- Value :: Quality / Price
+
+** M12L02: Importance of OM
+** M12L03: Future of OM
+** M12L04: Queuing Theory Basics
+** M12L05: Queuing Theory MM1 model
+** M12L06: Operations Management Recap
