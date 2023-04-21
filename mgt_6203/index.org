@@ -1544,7 +1544,106 @@ Needs a *tradeoff* between:
 - Value :: Quality / Price
 
 ** M12L02: Importance of OM
+*** Value of OM
+1. Supply chain disruption is bad
+   1. Lower sales, profits, returns, stock price, etc
+2. Reasons for disruptions
+   1. Internal (equipment breakdown, quality, poor records, labour shortages, etc)
+   2. Supplier failure
+   3. Customer issue
+   4. Part shortages
+*** Which fields need OM?
+All fields.
 ** M12L03: Future of OM
+*** New technologies
+1. 3D printing
+2. Artificial intelligence
+3. Robotics
+4. Autonomous vehicles
+*** Commonalities
+- All require data
+- All will fundamentally change how companies do business
 ** M12L04: Queuing Theory Basics
+*** Suggestions
+1. Determine an acceptable waiting time for your customers
+2. Try to divert the customer’s attention when waiting
+3. Inform the customer of what to expect
+4. Keep employees not serving the customers out of sight
+5. Segment the customers
+6. Train your employees to be friendly
+7. Encourage customers to come during off-peak times (happy hours)
+8. Take a long-term perspective towards minimizing queues
+*** Concepts
+- State :: System is at steady state
+- Customer population :: finite vs infinite
+- Arrival rate \lambda :: Constant vs variable
+  - Does inter-arrival time follow a distribution?
+    - exponential distribution.
+      $$
+      f(t) = \lambda e^{-\lambda t}
+      $$
+  - How many arrivals per time period $T$?
+    - Poisson
+      $$
+      P_T(n) = \frac{(\lambda T)^n e^{-\lambda T}}{n!}
+      $$
+- Line length :: finite vs infinite
+- Number of lines :: self explanatory
+- Queue discipline :: FCFS, reservations or most profitable first?
+- Serivce rate \mu :: Constant vs variable
+  - Exponentially distributed service time
+    $$
+    f(t) = \mu e^{-\mu t}
+    $$
+- Number of channels :: workers
+- Number of phases :: how many queues does customer need to join?!?!
+- Probability of re-service :: self-explanatory
 ** M12L05: Queuing Theory MM1 model
+*** Assumptions
+- Customer population :: \infty
+- Arrivals :: Random, poisson
+- Queue length :: unlimited
+- Lines :: 1
+- Queue discipline :: FCFS
+- Channels :: 1, exponential
+- Phase :: 1
+- Examples :: 1-lane toll bridge, McDonalds Drive Thru
+*** Formulas
+- Utilization
+  $$
+  \rho = \frac{\lambda}{\mu}
+  $$
+- Average number of customers in system (not queue)
+  $$
+  L_s = \frac{\lambda}{\mu-\lambda}
+  $$
+- Average number of customers in queue
+  $$
+  L_q = \frac{\lambda ^2}{\mu (\mu - \lambda)} = L_s \times \rho
+  $$
+- Average time of customer in system
+  $$
+  W_s = \frac{1}{\mu - \lambda} = \frac{L_s}{\lambda}
+  $$
+- Average time of customer in queue
+  $$
+  W_q = \frac{\lambda}{\mu(\mu - \lambda)} = \frac{L_q}{\lambda}
+  $$
+- Probability of $n$ units in the system
+  $$
+  P_n = (1 - \frac{\lambda}{\mu})(\frac{\lambda}{\mu})^n = (1-\rho)(\rho)^n
+  $$
+*** Operationalising
+- Find likelihood of 3 or fewer cars (i.e., find 0, 1, 2, 3)
+- Find what value of \rho gives 95% service level
+  $$
+  P_0 + ... + P_3 = 0.95 \\
+  1-\rho^4 = 0.95 \\
+  \rho = \lambda / \mu
+  $$
+
 ** M12L06: Operations Management Recap
+- Operations management is the direction and control of the processes that transform material, labor, energy, and information into finished goods and services.
+- Operations management is at the core of every company.
+- Several technologies maturing that promise to radically change how companies transform inputs. Analytics will be key here.
+- Queuing theory can be used to analyze waiting lines.
