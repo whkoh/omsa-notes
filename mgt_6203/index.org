@@ -1647,3 +1647,113 @@ All fields.
 - Operations management is at the core of every company.
 - Several technologies maturing that promise to radically change how companies transform inputs. Analytics will be key here.
 - Queuing theory can be used to analyze waiting lines.
+
+* Module 13: Quality
+** M13L01: Quality intro
+*** What is quality?
+- Quality :: meeting or exceeding customer's expectations
+*** Garvin's 8 dimensions of product quality
+Refers to {{{hl(product)}}}.
+1. Performance
+2. Functionality
+3. Durability
+4. Reliability
+5. Conformance to specifications
+6. Serviceability
+7. Aesthetics
+8. Perceived quality
+*** Dimensions of service quality
+1. Consistency
+2. Courtesy
+3. Convenience and availability
+4. Communication
+5. Accuracy and reliability
+6. Timeliness and responsiveness
+7. Credibility and trustworthiness
+** M13L02: Costs of Quality
+*** Costs of good quality
+**** Appraisal costs
+1. Inspection and testing
+2. Lab
+3. Calibration
+4. Product/process audits
+**** Prevention costs
+1. Training
+2. Quality improvement
+3. Quality audits
+4. Quality planning
+*** Costs of bad quality
+**** Internal failure costs
+1. Scrap
+2. Rework
+3. Re-testing
+**** External failure costs
+1. Warranty
+2. Reputation
+3. Returns
+4. Litigation
+** M13L03: Variation
+*** Definition
+A measure of the change in data, a variable or a function.
+*** Causes of variation
+- Random causes
+  - Inherent in process
+  - Unavoidable
+- Assignable or special causes
+  - Can be identified
+  - Can be corrected/fixed
+*** Distribution of weights with only 'normal/random' causes of variation
+- Normal distribution
+- Mostly within 3 s.d.
+** M13L04: Control chart basics
+*** What's a control chart
+- Has central line (mean)
+- Has upper control limit (UCL)
+- Has lower control limit (LCL)
+- X-dimension is time or # of observations
+*** Relationship to types of variation
+- UCL and LCL are set based on common and random causes of variation for the process
+  - These will be on a normal distribution
+- Plot data and monitor to watch for assignable and special causes of variation
+  - These we can do something about
+*** Investigate when
+- Control points outside UCL or LCL
+- Two points near control (UCL or LCL)
+- Run on 5 points above or below central line
+- Trends of 5 points in the same direction
+- Erratic behaviour bouncing between extremes
+- Sudden change in level
+** M13L05: Control chart for variables
+*** Central limit theorem
+Sample of 5 boxes of cereal, repeated 20-30 points on the average (5 box) of weight should be a normal distribution.
+*** Thinking more
+- Take periodic samples and use information to represent population
+  - Good for expensive measurements
+- 99.73% of all values should fall within +/- 3 SD of mean
+  - Also can be stated as: 99.73% probability that at assignable cause of variation has occurred if it falls outside 3 SD of mean
+- Use mean and SD to monitor the distribution
+  - $\bar{x}$ chart and $r$ chart
+*** $\bar{x}$ chart
+- monitors the mean
+- assuming 3\sigma limits:
+  - UCLx = $\bar{\bar{x}} + A_2 \times \bar{R}$
+  - LCLx = $\bar{\bar{x}} - A_2 \times \bar{R}$
+*** R chart
+- monitors the spread
+- assuming 3\sigma limits:
+  - UCLr = $D_4 \times \bar{R}$
+  - LCLr = $D_3 \times \bar{R}$
+*** Steps to set up control charts
+1. Collect data
+2. Calculate $\bar{R}$
+   1. Calculate UCLr and LCLr
+   2. Plot the R chart
+3. Calculate $\bar{x}$
+   1. Calculate UCLx and LCLx
+   2. Plot the $\bar{X}$ chart
+*** Summary
+1. Control charts look to identify *assignable* causes of variation
+2. Can be used to reduce defects
+** M13L06: Sample problem
+** M13L07: Process capability
+** M13L08: SPC recap
