@@ -1735,14 +1735,17 @@ Sample of 5 boxes of cereal, repeated 20-30 points on the average (5 box) of wei
   - $\bar{x}$ chart and $r$ chart
 *** $\bar{x}$ chart
 - monitors the mean
+- $\bar{R}$ is the *average* range
 - assuming 3\sigma limits:
   - UCLx = $\bar{\bar{x}} + A_2 \times \bar{R}$
+    - A_2 depends on sample size
   - LCLx = $\bar{\bar{x}} - A_2 \times \bar{R}$
 *** R chart
 - monitors the spread
 - assuming 3\sigma limits:
   - UCLr = $D_4 \times \bar{R}$
   - LCLr = $D_3 \times \bar{R}$
+- D_3 and D_4 depends on sample size
 *** Steps to set up control charts
 1. Collect data
 2. Calculate $\bar{R}$
@@ -1756,4 +1759,20 @@ Sample of 5 boxes of cereal, repeated 20-30 points on the average (5 box) of wei
 2. Can be used to reduce defects
 ** M13L06: Sample problem
 ** M13L07: Process capability
+- SPC tells us if a process is showing signs of an assignable cause of variation
+  - But there is another important aspect of a given process:
+  - Is a process actually *capable* of meeting a desired specification?
+*** Process capability
+- Parts are often given design tolerances
+  - e.g. 15 inches \pm 0.5
+- Common measurements are:
+  1. Process capability ratio
+  2. Process capability index
+*** Process capability ratio
+$$
+C_p = \frac{\text{Upper specification} - \text{Lower specification}}{6\sigma}
+$$
+- 6\sigma equates to Cp \geq 2.0
+- Cp looks only at spread
+- Cp does *not* look at how well a process is centered on target.
 ** M13L08: SPC recap
