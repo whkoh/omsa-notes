@@ -1505,6 +1505,65 @@ Publishers: highest risk CPS
 2. Allow insight into digital marketing
 3. Use to interpret campaign performance
 4. Analyse and measure performance
+*** What Digital Marketers do?
+1. Plan and build campaigns
+2. Buy media or ad placements
+3. Optimize campaigns
+* Module 11: Implementing Predictive Marketing Across Channels
+** M11L01: Conversion rate optimization, A/B testing and Funnel Analysis
+*** Conversion rate optimization
+Goals:
+1. Increase traffic
+2. Increase engagement
+3. Drive leads
+4. Grow sales
+5. Improve conversion
+   1. To leads
+   2. To sales
+*** Site analytics considerations
+1. Source of traffic
+2. Audience characteristics
+3. Audience behaviours
+4. Mobile metrics
+*** Data viz
+1. Graphs
+2. Charts
+3. heat maps
+4. word counts
+*** Sales funnel step - example
+- Step 1 :: Search for all available hotel dates
+- Step 2 :: Check prices and amenities
+- Step 3 :: Select hotel and check out
+- Step 4 :: Enter details and pay
+*** Search ads - {{{hl(variables)}}}
+1. Headline
+2. Body text
+3. Link
+4. Ad extensions
+*** Landing page - {{{hl(variables)}}}
+1. Heading
+2. Copy
+3. CTA
+4. Color
+5. Images
+6. Offer
+*** E-Commerce - variables
+1. Images
+2. CTA
+3. Shipping details
+4. Credibility
+*** Data analysis process
+1. Gather data
+2. Mine data
+3. Come up with hypothesis
+4. Validate hypotheses
+5. Make decision and act
+6. Monitor
+7. Universal analytics
+** M11L02: Google Analytics
+** M11L03: Social Media Analytics
+** M11L04: Advertisers in Social Media
+** M11L05: Ad campaigns in Social Media
 
 * Module 12: Operations Management
 ** M12L01: What is Operations Management
