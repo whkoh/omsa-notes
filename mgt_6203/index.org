@@ -1405,7 +1405,13 @@ Which factors drive returns?
   - Profitability
   - Volatility
 
-* Module 09: Marketing and Advertising
+* DONE Module 09: Marketing and Advertising
+CLOSED: [2023-04-23 Sun 18:44]
+#+BEGIN_QUOTE
+Midterms ended at Module 9
+Finals has 1/3 of content (Mod 1-8) and 2/3 of content (Mod 9-15).
+Finals has 1 paper of cheatsheet with 2 sides total. Calculator permitted.
+#+END_QUOTE
 ** M09L01: Marketing and Advertising
 *** Traditional advertising (5 types)
 1. Outdoors display and promotions
@@ -1455,7 +1461,8 @@ Optimize ad placement according to content and audience relevance
 3. Hybrid is around the same
 *** Next
 - Privacy and trust is compromised
-* Module 10: Implementing Integrated Digital Marketing
+* DONE Module 10: Implementing Integrated Digital Marketing
+CLOSED: [2023-04-23 Sun 18:44]
 ** M10L01-L03: Five methods of digital advertising
 1. Display advertising
    Many sizes but low CTR
@@ -1509,7 +1516,7 @@ Publishers: highest risk CPS
 1. Plan and build campaigns
 2. Buy media or ad placements
 3. Optimize campaigns
-* Module 11: Implementing Predictive Marketing Across Channels
+* TODO Module 11: Implementing Predictive Marketing Across Channels
 ** M11L01: Conversion rate optimization, A/B testing and Funnel Analysis
 *** Conversion rate optimization
 Goals:
@@ -1565,7 +1572,8 @@ Goals:
 ** M11L04: Advertisers in Social Media
 ** M11L05: Ad campaigns in Social Media
 
-* Module 12: Operations Management
+* DONE Module 12: Operations Management
+CLOSED: [2023-04-23 Sun 18:45]
 ** M12L01: What is Operations Management
 *** Intro
 - OM :: how to make stuff
@@ -1707,7 +1715,8 @@ All fields.
 - Several technologies maturing that promise to radically change how companies transform inputs. Analytics will be key here.
 - Queuing theory can be used to analyze waiting lines.
 
-* Module 13: Quality
+* DONE Module 13: Quality
+CLOSED: [2023-04-23 Sun 18:45]
 ** M13L01: Quality intro
 *** What is quality?
 - Quality :: meeting or exceeding customer's expectations
