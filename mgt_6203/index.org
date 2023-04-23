@@ -1405,8 +1405,7 @@ Which factors drive returns?
   - Profitability
   - Volatility
 
-* DONE Module 09: Marketing and Advertising
-CLOSED: [2023-04-23 Sun 18:44]
+* Module 09: Marketing and Advertising
 #+BEGIN_QUOTE
 Midterms ended at Module 9
 Finals has 1/3 of content (Mod 1-8) and 2/3 of content (Mod 9-15).
@@ -1461,8 +1460,7 @@ Optimize ad placement according to content and audience relevance
 3. Hybrid is around the same
 *** Next
 - Privacy and trust is compromised
-* DONE Module 10: Implementing Integrated Digital Marketing
-CLOSED: [2023-04-23 Sun 18:44]
+* Module 10: Implementing Integrated Digital Marketing
 ** M10L01-L03: Five methods of digital advertising
 1. Display advertising
    Many sizes but low CTR
@@ -1516,7 +1514,7 @@ Publishers: highest risk CPS
 1. Plan and build campaigns
 2. Buy media or ad placements
 3. Optimize campaigns
-* TODO Module 11: Implementing Predictive Marketing Across Channels
+* Module 11: Implementing Predictive Marketing Across Channels
 ** M11L01: Conversion rate optimization, A/B testing and Funnel Analysis
 *** Conversion rate optimization
 Goals:
@@ -1568,12 +1566,75 @@ Goals:
 6. Monitor
 7. Universal analytics
 ** M11L02: Google Analytics
-** M11L03: Social Media Analytics
+*** What's Google Analytics
+- Allow tracking of data on site performance, traffic and user behaviour
+- Automated analytics
+- Free for small biz
+*** Why use Google Analytics?
+- Automates data collection
+- Easily integrates with other G tools
+- Customized reports
+- Can measure internal site search
+  - Helps understand why internal traffic not leading to conversions
+- To understand audience characteristics
+- Free
+*** Google Analytics Hierarchy
+- Account
+  - Property
+    - Views
+*** Types of reports
+- Acquisition
+- Behaviour
+- Conversion
+- Real-time
+- Audience
+*** Dimensions
+- Browser
+- Landing Page
+- Campaign
+- Exit page
+*** Metrics
+- Users
+- Bounce rate
+- Sessions
+- Average duration
+- % of new sessions
+- Pages per session (engagement)
+- Pageviews
+** M11L03: Social Media Insights and Ads
+*** Facebook pages types
+- Personal
+- Group
+- Public for brands, fans, etc.
+*** Content posts displayed in
+- News feed
+- Pages
+- Sponsored posts
+- Sidebar ads
 ** M11L04: Advertisers in Social Media
+*** Types of ads in Facebook
+- Sponsored side bar ads
+- Sponsored posts in news feed
+*** Settings
+Can be customized in your personal page
 ** M11L05: Ad campaigns in Social Media
+*** Steps for advertising
+Ad = Audience + Creative
+1. Decide on objective
+2. Select target audience
+3. Upload the creative
+*** Types of ad placement
+Where?
+1. Facebook
+2. Instagram
+3. Audience Network
 
-* DONE Module 12: Operations Management
-CLOSED: [2023-04-23 Sun 18:45]
+Who optimize?
+1. Facebook
+2. DIY
+*** Facebook Blueprint
+i.e., Facebook's social media academy
+* Module 12: Operations Management
 ** M12L01: What is Operations Management
 *** Intro
 - OM :: how to make stuff
@@ -1715,8 +1776,7 @@ All fields.
 - Several technologies maturing that promise to radically change how companies transform inputs. Analytics will be key here.
 - Queuing theory can be used to analyze waiting lines.
 
-* DONE Module 13: Quality
-CLOSED: [2023-04-23 Sun 18:45]
+* Module 13: Quality
 ** M13L01: Quality intro
 *** What is quality?
 - Quality :: meeting or exceeding customer's expectations
