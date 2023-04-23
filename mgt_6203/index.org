@@ -1905,7 +1905,7 @@ $$
 - Cp does *not* look at how well a process is centered on target.
 *** Process capability ratio, $Cpk$
 $$
-Cpk = \text{Min of} ((\text{upper spec} - \bar{\bar{x}} / 3\sigma), (\bar{\bar{x}}-\text{lower spec} / 3\sigma))
+Cpk = \text{Min of} (\frac{\text{upper spec} - \bar{\bar{x}}}{ 3\sigma}, \frac{\bar{\bar{x}}-\text{lower spec}} {3\sigma})
 $$
 - Gives the proportion of variation between the center of process and the nearest specification limit
 *** Interpretation of Cpk values
