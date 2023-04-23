@@ -1924,3 +1924,106 @@ Bigger Cpk is better.
   - Some variation might be good (i.e. variance unexpectedly lower)
 - Other uses:
   - P and C charts for attributes in services (good/bad, pass/fall)
+* Module 14: Forecasting (Demand)
+** M14L01: Forecasting
+*** What's forecasting
+Prediction of future events for planning.
+
+Uses:
+- Strategic planning :: long-term capacity
+- Finance and accounting :: budgeting, cost control
+- Marketing :: Future sales trends, NPI
+- Production and operations :: staffing, supplier relations
+*** Forecast characteristics
+- Almost always wrong
+- More accurate at aggregate level (errors offset)
+- More accurate at short time horizon
+- Should include {{{hl(error estimate)}}}/ranges
+- Does not sub for actual demand
+*** Patterns of demand
+1. Trend
+2. Seasonality
+3. Cyclic elements
+4. Autocorrelation
+5. Random variation
+*** Multiple patterns
+Are possible. e.g. seasonal variation can exist within a wider linear trend
+*** Questions
+- Why forecast?
+- What systems will consume the forecast?
+- How important is the past in predicting future?
+
+Answers will determine time horizons, techniques, LOD.
+*** Forecasting methods
+- Qualitative :: rely on expert opinion
+- Quantitative :: rely on data and analytical techniques
+*** Quantitative methods
+- Time series :: models predict future demand based on past history trends
+- Causal relationships :: models use stats to establish relationships between various drivers and demand, e.g.: Linear Regression
+- Simulation :: models that can incorporate randomness and non-linear effects
+*** Lecture summary
+- Forecasts seek to predict future events for planning
+- In OM, forecasting demand is key
+- Demand exhibits multiple patterns
+- Focus: time series
+** M14L02: Exponential smoothing
+*** ES is one time series technique
+- Prediction of future mostly depends on:
+  - mostly most recent observation and
+  - the error on the latest forecast
+*** Smoothing constant, \alpha
+- Denotes the importance of past error
+*** Benefits of ES
+- Uses less data
+- Extremely accurate
+- Easy to understand
+- Low complexity in calculations
+*** ES formula
+$$
+F_t = F_{t-1} + \alpha(A_{t-1}-F_{t-1}) \\
+0 \leq \alpha \leq 1
+$$
+Where:
+- $F_{t-1}$ :: Forecast for last period
+- $A_{t-1}$ :: Actual demand for last period
+- \alpha :: smoothing constant, denotes how much forecast reacts to diff between A and F
+
+For \alpha:
+- Low :: little reaction to difference, smooth graph
+- High :: big reaction to difference, responsive graph
+*** Getting started
+- Must have initial forecast
+- Can set to equal actual demand, or use other methods
+- Initial forecast not calc from ES.
+  - Do not use initial forecast to evaluate accuracy.
+*** Summary
+- ES is a common method used to forecast random behaviours in demand
+- Uses prior forecast and error to predict the next period's demand
+- Smoothing constant \alpha determines how much error alters the next prediction
+** M14L03: Exponential smoothing with trend
+*** Trends without adjustments
+ES will lag behind trends if not adjusted for.
+*** Forecast Including Trend (FIT)
+$$
+FIT_t = F_t + T_t \\
+F_t = FIT_{t-1} + \alpha (A_{t-1} - FIT_{t-1}) \\
+T_t = T_{t-1} + \delta (F_t - FIT_{t-1})
+$$
+where:
+- \delta :: trend smoothing constant
+*** Results
+- Will result in ES prediction being closer to actuals than without adjusting for seasonality
+*** More on ES with/without trend
+- ES and FIT require initial estimates for F and T.
+  - Prior period actuals can be used as baseline
+- Values for \alpha or \delta are found by:
+  - trial and error
+  - optimization
+- If initial guesses are incorrect, model takes longer to stabilize
+- ES and FIT use only prior period's data to estimate current period demand, hence making calc and storage easier
+*** Lecture summary
+- To account for trends, FIT are more accurate than just ES
+- Initial trend and forecast values may cause model to take some time to stabilize if very 'off'
+** M14L04: Exponential smoothing with seasonality
+** M14L05: Error methods
+** M14L06: Forecasting recap
