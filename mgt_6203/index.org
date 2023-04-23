@@ -2025,5 +2025,105 @@ where:
 - To account for trends, FIT are more accurate than just ES
 - Initial trend and forecast values may cause model to take some time to stabilize if very 'off'
 ** M14L04: Exponential smoothing with seasonality
+*** Seasonality calculation
+- Measures the seasonal variation in demand
+- Relates average demand in particular period to the average demand across all periods
+- Seasonal index: (period average demand) / (average demand for all periods)
+*** Calculation, e.g.
+- June sales = 400
+- Average monthly sales = 200
+- Seasonal index for June = 400/200 = 2.0
+*** Calculate ES with Seasonal Forecast
+1. Inputs:
+   - realized seasonal demand in previous period (~$A_t$)
+   - seasonal forecast for previous period (~$F_t$) and
+   - smoothing constant, \alpha
+2. De-seasonalize demand and forecasts to obtain $A_t$ and $F_t$
+   $$
+   A_t = \sim\frac{A_t}{SI_t} \\
+   F_t = \sim\frac{F_t}{SI_t}
+   $$
+3. Use ES formula to obtain de-seasonalized forecast $F_{t+1}$
+   $$
+   F_{t+1} = \alpha A_t + (1-\alpha)F_t
+   $$
+4. Re-seasonalize the forecast to get ~ $F_{t+1}$
+   $$
+   \sim F_{t+1} = F_{t+1} \times SI_{t+1}
+   $$
+*** Lecture summary
+- Method can capture more than 1 seasonal pattern
+- Method can be combined with FIT to model demand that has random, trend, and seasonal behaviour
 ** M14L05: Error methods
+*** Comparing different models
+- Needs a metric that provides estimates of accuracy
+- Forecast error = difference between actual and forecast value,
+  - AKA 'residual'
+- Errors can be:
+  - Biased (consistent)
+  - Random
+*** Measures of forecast accuracy
+- Error :: Actual - Forecast
+  $$
+  e_t = A_t - F_t
+  $$
+  - e_t can be positive or negative
+    - +ve: forecast was too low
+    - -ve: forecast too high
+- RSFE :: Running sum of forecast error
+  $$
+  \sum (A_i-F_i) = \sum e_i
+  $$
+- MFE :: Mean forecast error (bias)
+  $$
+  MFE = \frac{\sum(A_i - F_i)}{n} = frac{RSFE}{n}
+  $$
+  - Means {{{hl(average erorr in the observation)}}}
+  - More +ve or -ve means worse performance
+    - i.e., the forecast on average is biased vs. actual demand
+- MAD :: mean absolute deviation
+  $$
+  MAD = \frac{\sum |A_i - F_i|}{n}
+  $$
+  - {{{hl(Average absolute error in the observation)}}}
+  - Higher = worse
+- Tracking signal :: fraction of
+  $$
+  TS = \frac{RSFE}{MAD}
+  $$
+*** Dartboard analogy for MFE and MAD
+[[./img/1405-dartboard.png]]
+- MFE measures overall average accuracy, and lower is better
+- MAD measures overall variability of errors terms, and lower is better
+*** Tracking accuracy with Tracking Signal
+- Measures how often estimates are above or below actuals
+- Used to decide {{{hl(when to)}}} re-evaluate model
+
+Interpretations:
+- Positive :: Most of the time, actuals are above forecast
+- Negative :: actuals below forecast
+- <-4, or > 4 :: Investigate!
+*** Lecture summary
+- Error measurements are used to evaluate different forecast models
+- Tracking signal is used to alert to changes in pattern of demand
 ** M14L06: Forecasting recap
+*** Which forecast method to use?
+- Gather data
+- Divide into train and validation
+- Use train data to fit models
+- Use validation data to evaluate models
+- Compare:
+  - MAD, MFE
+  - Tracking signal
+- Use seasonality and trending if it seems that the data exhibits those
+*** Recap
+- Forecast assumes past can predict future
+- Components of demand: average, trend, seasonality, cyclical elements, random variation, auto-correlation
+- Qualitative methods used when hard data is not available
+- Exponential smoothing uses the most recent data and forecast error
+- FIT extends ES to applications with clear trend
+- Seasonality can be further incorporated into forecasting models
+- Forecast error: difference between actual and forecast values
+- MFE is Mean Forecast Error, bias. Measure of the overall average of forecast to actual demand
+- MAD is Mean Absolute Deviation. Measure of the overall variation in error between forecast and actuals.
+- Tracking Signal: whether a forecast is above/below actual, and by how much. Investigate |TS| > 4.
