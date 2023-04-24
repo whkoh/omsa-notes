@@ -2127,3 +2127,146 @@ Interpretations:
 - MFE is Mean Forecast Error, bias. Measure of the overall average of forecast to actual demand
 - MAD is Mean Absolute Deviation. Measure of the overall variation in error between forecast and actuals.
 - Tracking Signal: whether a forecast is above/below actual, and by how much. Investigate |TS| > 4.
+* Module 15: Inventory
+** M15L01: Inventory basics
+*** What is inventory
+- Anything that a company uses or sells
+- Includes RM, WIP, Component Parts, MRO, Finished Goods
+*** Key activity in inventory management
+- Matching supply and demand
+- How much inventory should be kept?
+*** Considerations
+- Keep more :: Protects against uncertain demand, supply disruptions, quantity discount
+- Keey less :: Obsolete, spoilage, shrinkage, holding costs, opportunity costs
+*** Key IM decisions
+1. How much to order?
+2. When to order? (in terms of how many units left)
+*** Summary
+1. There are different kinds of inventory
+2. Key objective is to match supply and demand
+3. Pressure to keep and not keep inventory
+4. Policy comes down to how much and when to order
+** M15L02: Economic Order Quantity
+*** EOQ
+- Tries to balance scale
+- Total cost = Ordering cost + inventory cost
+  - Ordering cost :: nr. of orders per year \times cost per order
+  - Inventory cost :: average inventory \times holding cost per year
+*** Assumptions
+- Is retailer
+- Demand is known and constant at $D$/year
+- Known ordering cost = $S$ and immediate replenishment
+- No limit on order qty
+- Annual holding cost = $H$ per unit
+*** EOQ = How much
+[[./img/1502-EOQ.png]]
+To solve, set Ordering Costs = Holding Costs
+
+$$
+\frac{D}{Q} \times S = \frac{Q}{2} \times H \\
+\text{Solve for Q, i.e. Q*} \\
+Q* = \sqrt{\frac{2\times SD}{H}}
+$$
+*** Number of orders per year
+Expected number of orders
+$$
+N = \frac{D}{Q*}
+$$
+
+Expected time between orders
+$$
+T = \frac{\text{Working days}/\text{year}}{N}
+$$
+** M15L03: EOQ with quantity discount
+*** Accounting for quantity discount
+$$
+\text{Expanded total cost} =
+\frac{D}{Q} \times S + \frac{Q}{2}\times H +
+P\times Q
+$$
+- D :: Annual demand
+- Q :: Quantity ordered
+- S :: Set up or order cost
+- H :: Holding cost per unit per year
+- P :: Price per unit
+
+Next, calculate EOQ for each price point
+$$
+EOQ = \sqrt{\frac{2\times D\times S}{I\times P}}
+$$
+
+Adjust EOQ for each price point up or down to hit discount quantity.
+
+Determine expanded total cost for each adjusted EOQ.
+
+Pick the lowest ETC.
+** M15L04: Re-order Point
+EOQ answers how much to order.
+ROP answers when to order - in terms of number of units.
+*** When should we order?
+Lead time: diff between when order and when receive.
+Assumptions:
+1. demand is known and constant
+2. lead time is known and constant
+
+$ROP = \bar{d}\times L$
+** M15L05: Re-order Point when Demand Varies
+i.e. demand is no longer constant
+*** What if demand is not constant?
+- Assume demand can be modeled with probability distribution (normal dist)
+- Will add buffer called 'safety stock'
+- Size depends on:
+  - Lead time
+  - Demand certainty
+  - How important is it to not run out?
+*** If actual demand < expected?
+- Excess inventory (holding costs too high)
+*** If demand > expected?
+- Insuffiicent inventory (lost sales)
+*** Uncertain demand - service level
+- Assume 50% service level
+- Excess inventory 50% of time
+- Run out 50% of time
+*** Safety stock: reduce the probability of stock-out
+- Protects against unexpected increases in demand
+*** Service level
+Probability of NOT stocking out, i.e. probability of satisfying all demand
+- Service level will determine the safety stock.
+- P(safety stock excess) + P(Stock out) = 100%
+- Safety stock = safety factor \times Std Dev in LT demand
+
+$SS = z \times \sigma_{LT}$
+*** Standard deviation in lead-time demand
+- Variance over multiple periods = sum of variances of each period, assuming independence
+
+$$
+\sigma_{LT} = \sqrt{L\times\sigma_p^2}
+= \sigma_D \sqrt{L} \neq
+\sigma_D \times L
+$$
+
+i.e.: {{{hl(standard deviation over multiple periods is the square root of sum of variances)}}}, not the sum of the standard deviations.
+*** Putting it together
+ROP = [(avg daily demand) \times LT] + SS
+ROP = Expected demand during lead time + Z_{\sigma D}\sqrt(LT)
+- Z :: number of standard deviations (from Z table)
+- \sigma_D :: standard deviation of demand
+- LT :: lead time
+*** Summary
+- Accounted for varying demand using the reorder point equation
+- Impacts on safety stock
+  1. How strong desire to not run out?
+  2. Demand uncertainty
+  3. Lead time
+** M15L06: Re-order Point when Demand Varies Example
+- 10% stock out probability is 90% service level
+
+** M15L07: Inventory Policy
+- Another worked example.
+- Calculate EOQ
+- Calculate ROP
+** M15l08: Inventory Recap
+- There are different kinds of inventory.
+- Inventory Management is about matching supply with demand.
+- Even if demand varies, we can make some optimization decisions.
+- We looked at EOQ and ROP to define an inventory policy.
