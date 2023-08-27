@@ -8,5 +8,9 @@
 1. [[./isye_6501/index.html][ISYE 6501: Intro to Analytics Modeling]]
 2. [[./mgt_6203/index.html][MGT 6203: Data Analytics in Business]]
 * Summer 2023
-1. ISYE 6644
+1. ISYE 6644: Simulation and Modeling for Engineering and Science
 * Fall 2023
+1. CSE 6242: Data & Visual Analytics
+
+** Prep
+1. [[./no_bs/index.html][No BS Guide to Linear Algebra]]
