@@ -3,3 +3,4 @@
 #+TITLE: No BS Guide to Linear Algebra
 * Chapter 1: Math Fundamentals
 * Chapter 2: Intro to Linear Algebra
+* C3: C4: C5

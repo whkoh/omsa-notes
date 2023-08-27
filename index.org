@@ -9,3 +9,4 @@
 2. [[./mgt_6203/index.html][MGT 6203: Data Analytics in Business]]
 * Summer 2023
 1. ISYE 6644
+* Fall 2023
