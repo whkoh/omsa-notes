@@ -7,3 +7,5 @@
 * Spring 2023
 1. [[./isye_6501/index.html][ISYE 6501: Intro to Analytics Modeling]]
 2. [[./mgt_6203/index.html][MGT 6203: Data Analytics in Business]]
+* Summer 2023
+1. ISYE 6644

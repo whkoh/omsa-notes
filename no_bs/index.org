@@ -1,0 +1,5 @@
+#+AUTHOR: W
+#+SETUPFILE: /Users/whkoh/git-repos/org-html-themes/org/theme-readtheorg-local.setup
+#+TITLE: No BS Guide to Linear Algebra
+* Chapter 1: Math Fundamentals
+* Chapter 2: Intro to Linear Algebra
