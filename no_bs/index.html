@@ -3,18 +3,39 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-08-27 Sun 21:10 -->
+<!-- 2023-08-27 Sun 22:07 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>No BS Guide to Linear Algebra</title>
 <meta name="author" content="W" />
 <meta name="generator" content="Org Mode" />
-<link rel="stylesheet" type="text/css" href="src/readtheorg_theme/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="src/readtheorg_theme/css/readtheorg.css"/>
-<script type="text/javascript" src="src/lib/js/jquery.min.js"></script>
-<script type="text/javascript" src="src/lib/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="src/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="src/readtheorg_theme/js/readtheorg.js"></script>
+<link rel="stylesheet" type="text/css" href="../src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="../src/readtheorg_theme/css/readtheorg.css"/>
+<script type="text/javascript" src="../src/lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="../src/lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="../src/readtheorg_theme/js/readtheorg.js"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content" class="content">
@@ -23,25 +44,45 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org90069d0">1. Chapter 1: Math Fundamentals</a></li>
-<li><a href="#orgde4302f">2. Chapter 2: Intro to Linear Algebra</a></li>
-<li><a href="#org677131a">3. C3: C4: C5</a></li>
+<li><a href="#orgbb9ef6e">1. Chapter 1: Math Fundamentals</a>
+<ul>
+<li><a href="#org64d7128">1.1. Completing the square</a></li>
+<li><a href="#orga05a87e">1.2. Quadratic formula</a></li>
+</ul>
+</li>
+<li><a href="#org9c6ef96">2. Chapter 2: Intro to Linear Algebra</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org90069d0" class="outline-2">
-<h2 id="org90069d0"><span class="section-number-2">1.</span> Chapter 1: Math Fundamentals</h2>
+<div id="outline-container-orgbb9ef6e" class="outline-2">
+<h2 id="orgbb9ef6e"><span class="section-number-2">1.</span> Chapter 1: Math Fundamentals</h2>
+<div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgde4302f" class="outline-2">
-<h2 id="orgde4302f"><span class="section-number-2">2.</span> Chapter 2: Intro to Linear Algebra</h2>
+<div id="outline-container-org64d7128" class="outline-3">
+<h3 id="org64d7128"><span class="section-number-3">1.1.</span> Completing the square</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>Rewrite any quadratic expression \(x^2 + BX + C\) as perfect square + some correction factor, i.e. \((x+p)^2 + k\).</li>
+<li>Becomes: \(x^2 + Bx + C = (x+\frac{B}{2})^2 + C - (\frac{B}{2})^2\)</li>
+</ul>
 </div>
-<div id="outline-container-org677131a" class="outline-2">
-<h2 id="org677131a"><span class="section-number-2">3.</span> C3: C4: C5</h2>
+</div>
+<div id="outline-container-orga05a87e" class="outline-3">
+<h3 id="orga05a87e"><span class="section-number-3">1.2.</span> Quadratic formula</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+\(x = \frac{-b\pm \sqrt{b^2-4ac}}{2a}\)
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org9c6ef96" class="outline-2">
+<h2 id="org9c6ef96"><span class="section-number-2">2.</span> Chapter 2: Intro to Linear Algebra</h2>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: W</p>
-<p class="date">Created: 2023-08-27 Sun 21:10</p>
+<p class="date">Created: 2023-08-27 Sun 22:07</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

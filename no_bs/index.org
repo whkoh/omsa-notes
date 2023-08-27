@@ -1,6 +1,10 @@
 #+AUTHOR: W
-#+SETUPFILE: /Users/whkoh/git-repos/org-html-themes/org/theme-readtheorg-local.setup
+#+SETUPFILE: /Users/whkoh/git-repos/org-html-themes/org/theme-readtheorg-local-parent.setup
 #+TITLE: No BS Guide to Linear Algebra
 * Chapter 1: Math Fundamentals
+** Completing the square
+- Rewrite any quadratic expression $x^2 + BX + C$ as perfect square + some correction factor, i.e. $(x+p)^2 + k$.
+- Becomes: $x^2 + Bx + C = (x+\frac{B}{2})^2 + C - (\frac{B}{2})^2$
+** Quadratic formula
+$x = \frac{-b\pm \sqrt{b^2-4ac}}{2a}$
 * Chapter 2: Intro to Linear Algebra
-* C3: C4: C5
