@@ -1,0 +1,7 @@
+#+AUTHOR: W
+#+SETUPFILE: /Users/whkoh/git-repos/org-html-themes/org/theme-readtheorg-local-parent.setup
+#+TITLE: CSE 8803: Applied Natural Language Processing
+* Week 2: Text Representations
+** One Hot Encoding
+** Bag of Words (Frequency Counting)
+** TF-IDF (Term Frequency-Inverse Document Frequency)
