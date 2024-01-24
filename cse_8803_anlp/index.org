@@ -1,7 +1,69 @@
 #+AUTHOR: W
 #+SETUPFILE: /Users/whkoh/git-repos/org-html-themes/org/theme-readtheorg-local-parent.setup
 #+TITLE: CSE 8803: Applied Natural Language Processing
-* Week 2: Text Representations
+* Week 2: (Discrete) Text Representations
+** Why?
+- NLP :: design algorithms to allow computers to understand natural language, so as to perform some task
+- Required :: convert text data to numerical data that can be used in model
+** Representing Words
+- Can be represented by vectors of 0 & 1 where 1 indicates the position of the word, e.g. lorem = ~[1, 0]~, ipsum = ~[0, 1]~, etc.
+** Representing sentences/documents
+- Vectors of vectors eg ~[[1,0], [0,1]]~
 ** One Hot Encoding
+*** Definitions
+- corpus :: all texts
+- vocabulary, _V_ :: all unique words
+- vocabulary size, _d_ :: number of unique words, "dimensions"
+- word, _w_ :: represented by vector $X$
+$X^w_i$ = 1 if idw(w) = 1, 0 otherwise
+- document :: represented by matrix sized $n \times d$
+- _n_ ::  number of words in document
+- _d_ :: a single vector with multiple values of 1 where vocab. words are present
+- Document, _D_ :: e.g. _this is a sentence_
+- Vocabulary, _V_ :: e.g. ~[aardvark, ..., sentence, ..., zither]~
+- OHE, $X^D$ :: ~[0, ..., 1, ...1]~
+*** Advantages and disadvantages
+- Advantages: easy to implement
+- Disadvantages:
+  - not scalable for large vocabulary
+  - high dimensional sparse matrix results in expensive memory + computation
+  - each word represented individually, hence *no notion of similarity or meaning*. All vectors are orthogonal
+
+    $(w^{good})^T \cdot w^{great} = (w^{good})^T \cdot w^{bad} = 0$
 ** Bag of Words (Frequency Counting)
+- Summary :: Represents each document as a bag of words. **Ignores** order of words.
+- Document :: a column vector of $X$ word counts
+- Representation :: Fixed-length representation
+- Document, _D_ :: e.g. ~It was the best of times, it was the worst of times~
+- Vocabulary, _V_ :: e.g. ~[aardvark, ..., zither]~
+- Bag of words: _X_ :: [2, ..., 1]
+- Size of _X_ :: $1 \times d$ ($d$ = vocabulary size)
+Hence $n$ documents can be represented by matrix of size $n \times d$.
+*** Advantages and disadvantages
+- Advantages: easy to implement
+- Disadvantages:
+  - Not scalable for large vocabulary
+  - high dimensional sparse matrix results in expensive memory + computation
+  - Order of words is disregarded; **no meaning** from context
 ** TF-IDF (Term Frequency-Inverse Document Frequency)
+*** Why needed?
+- BoW does not provide logical importance
+  - i.e., each word is equally important
+- TF-IDF assigns more logical importance to words in each document
+*** What is TF-IDF and when to use TF-IDF
+- Definition of TF-IDF :: a word's **importance score** in a document among $N$ documents
+- _N_ :: total number of documents
+- Word count :: likely TF-IDF
+- Term frequency, _TF_ :: the number of times a word appears in **a document**.
+  TF is high if word appears many times in document, e.g. _the_, _a_, etc.
+- Inverse document frequency, _IDF_ :: $\log(\frac{N}{\text{number of docs containing the term}})$.
+  If all (or most) documents contain that term, then IDF will be **very small**
+- Word's importance score :: $TF \times IDF$.
+  Higher score = more "characteristic"
+*** Advantages and disadvantages
+- Advantages:
+  - Easy to implement
+  - Higher score = "more characteristic". Common words will have very small scores.
+  - Good technique to search for documents, find similar documents, cluster documents
+- Disadvantages
+  - Does not consider position of words when creating matrix. Similar problem as with BoW.
