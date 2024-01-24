@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-01-24 Wed 18:19 -->
+<!-- 2024-01-24 Wed 20:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>CSE 8803: Applied Natural Language Processing</title>
@@ -44,27 +44,52 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org9676b7a">1. Week 2: (Discrete) Text Representations</a>
+<li><a href="#org7419da2">1. Week 1: Text data preprocessing + Course Intro</a>
 <ul>
-<li><a href="#orgea4a851">1.1. Why?</a></li>
-<li><a href="#orgee85252">1.2. Representing Words</a></li>
-<li><a href="#orgcbf898e">1.3. Representing sentences/documents</a></li>
-<li><a href="#org523e02e">1.4. One Hot Encoding</a>
+<li><a href="#orgddced39">1.1. Why ANLP?</a></li>
+<li><a href="#org3d901ee">1.2. Lots of text and written information</a></li>
+<li><a href="#org22e8cd7">1.3. Example applications of NLP</a></li>
+<li><a href="#orgaa90200">1.4. Challenges of NLP</a></li>
+<li><a href="#orgead5fb1">1.5. Class overview</a></li>
+<li><a href="#orga2b805c">1.6. Deliverables</a>
 <ul>
-<li><a href="#orgf469b3c">1.4.1. Definitions</a></li>
-<li><a href="#org07b021f">1.4.2. Advantages and disadvantages</a></li>
+<li><a href="#org1c219ba">1.6.1. Homework</a></li>
+<li><a href="#org800bcbe">1.6.2. Quizzes (10)</a></li>
 </ul>
 </li>
-<li><a href="#orgafadf28">1.5. Bag of Words (Frequency Counting)</a>
+<li><a href="#org7fddf4a">1.7. Course goals</a></li>
+<li><a href="#org7cb9bf2">1.8. Text Preprocessing Techniques</a>
 <ul>
-<li><a href="#orgcb67e17">1.5.1. Advantages and disadvantages</a></li>
+<li><a href="#org3ab2309">1.8.1. Terminology</a></li>
+<li><a href="#orgcd1e7bb">1.8.2. Preprocessing text data</a></li>
+<li><a href="#org52edcff">1.8.3. Noise removal</a></li>
+<li><a href="#orge81b2d3">1.8.4. Tokenization</a></li>
+<li><a href="#orga65219d">1.8.5. Text normalization</a></li>
 </ul>
 </li>
-<li><a href="#org42ba909">1.6. TF-IDF (Term Frequency-Inverse Document Frequency)</a>
+</ul>
+</li>
+<li><a href="#org994d21e">2. Week 2: (Discrete) Text Representations</a>
 <ul>
-<li><a href="#org40c3ba7">1.6.1. Why needed?</a></li>
-<li><a href="#org6fbffa9">1.6.2. What is TF-IDF and when to use TF-IDF</a></li>
-<li><a href="#org475c3a3">1.6.3. Advantages and disadvantages</a></li>
+<li><a href="#orgc5df3e6">2.1. Why?</a></li>
+<li><a href="#org655122c">2.2. Representing Words</a></li>
+<li><a href="#org8cf8573">2.3. Representing sentences/documents</a></li>
+<li><a href="#org9ecdf09">2.4. One Hot Encoding</a>
+<ul>
+<li><a href="#orge4d00b6">2.4.1. Definitions</a></li>
+<li><a href="#org65fad62">2.4.2. Advantages and disadvantages</a></li>
+</ul>
+</li>
+<li><a href="#org1532d75">2.5. Bag of Words (Frequency Counting)</a>
+<ul>
+<li><a href="#org0c065d1">2.5.1. Advantages and disadvantages</a></li>
+</ul>
+</li>
+<li><a href="#org79b9bfe">2.6. TF-IDF (Term Frequency-Inverse Document Frequency)</a>
+<ul>
+<li><a href="#org2fdd402">2.6.1. Why needed?</a></li>
+<li><a href="#org76d31f3">2.6.2. What is TF-IDF and when to use TF-IDF</a></li>
+<li><a href="#orgf05f9f5">2.6.3. Advantages and disadvantages</a></li>
 </ul>
 </li>
 </ul>
@@ -72,42 +97,284 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org9676b7a" class="outline-2">
-<h2 id="org9676b7a"><span class="section-number-2">1.</span> Week 2: (Discrete) Text Representations</h2>
+<div id="outline-container-org7419da2" class="outline-2">
+<h2 id="org7419da2"><span class="section-number-2">1.</span> Week 1: Text data preprocessing + Course Intro</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgea4a851" class="outline-3">
-<h3 id="orgea4a851"><span class="section-number-3">1.1.</span> Why?</h3>
+<div id="outline-container-orgddced39" class="outline-3">
+<h3 id="orgddced39"><span class="section-number-3">1.1.</span> Why ANLP?</h3>
 <div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>Text and docs are everywhere</li>
+<li>Hundreds of languages in the world</li>
+<li>Primary information artifacts</li>
+<li>Large volumes of textual data</li>
+<li>Big and small companies looking for this skill</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3d901ee" class="outline-3">
+<h3 id="org3d901ee"><span class="section-number-3">1.2.</span> Lots of text and written information</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>Internet</li>
+<li>Webpages, Facebook, Wikipedia, etc.</li>
+<li>Digital libraries: Google Books, ACM, IEEE</li>
+<li>Lyrics, subtitles, etc.</li>
+<li>Police case reports</li>
+<li>Legislation</li>
+<li>Reviews</li>
+<li>Medical reports</li>
+<li>Job descriptions</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org22e8cd7" class="outline-3">
+<h3 id="org22e8cd7"><span class="section-number-3">1.3.</span> Example applications of NLP</h3>
+<div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li>Establish authenticity, detect plagiarism</li>
+<li>Classification of genres</li>
+<li>Classification of tone; sentiment analysis</li>
+<li>Syntax analysis in code</li>
+<li>Machine translation</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgaa90200" class="outline-3">
+<h3 id="orgaa90200"><span class="section-number-3">1.4.</span> Challenges of NLP</h3>
+<div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
+<li>Interdisciplinary field</li>
+<li>Ambiguity at many levels of language:
+<ol class="org-ol">
+<li>Lexical (Word level)</li>
+<li>Syntactic: different ways of parsing</li>
+<li>Partial information: e.g., how to interpret pronouns</li>
+<li>Contextual information: context of sentence may affect meaning of sentence</li>
+</ol></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgead5fb1" class="outline-3">
+<h3 id="orgead5fb1"><span class="section-number-3">1.5.</span> Class overview</h3>
+<div class="outline-text-3" id="text-1-5">
+<ul class="org-ul">
+<li>Preprocessing:
+<ul class="org-ul">
+<li>Clean text and documents</li>
+<li>Tokenization</li>
+<li>Reducing inflectional forms of a word:
+<ul class="org-ul">
+<li>Stemming</li>
+<li>Lemmatization</li>
+</ul></li>
+<li>Normalization</li>
+</ul></li>
+<li>Text representation
+<ul class="org-ul">
+<li>One hot encoding</li>
+<li>Bag of words (Frequency counting)</li>
+<li>Term frequency-Inverse document frequency (TF-IDF)</li>
+<li>Embeddings</li>
+</ul></li>
+<li>Overview of classification methods
+<ul class="org-ul">
+<li>Naive Bayes</li>
+<li>Logistic regression</li>
+<li>SVM</li>
+<li>Perceptron</li>
+<li>Nerual Network</li>
+</ul></li>
+<li>Overview of Deep Learning
+<ul class="org-ul">
+<li>Convolutional neural network</li>
+<li>Recurrent neural network</li>
+<li>Long short-term memory</li>
+</ul></li>
+<li>Overview of topic modelling
+<ul class="org-ul">
+<li>Principal component analysis</li>
+<li>Singular value decomposition</li>
+<li>Latent Dirichlet Allocation</li>
+</ul></li>
+<li>Overview of Transformer methods
+<ul class="org-ul">
+<li>Bidirectional Encoder Representations from Transformers</li>
+<li>Generative Pre-trained Transformers (GPT)</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga2b805c" class="outline-3">
+<h3 id="orga2b805c"><span class="section-number-3">1.6.</span> Deliverables</h3>
+<div class="outline-text-3" id="text-1-6">
+</div>
+<div id="outline-container-org1c219ba" class="outline-4">
+<h4 id="org1c219ba"><span class="section-number-4">1.6.1.</span> Homework</h4>
+<div class="outline-text-4" id="text-1-6-1">
+<ul class="org-ul">
+<li>HW1: Text preprocessing and classification intro</li>
+<li>HW2: Classification methods, dimensionality reduction, SVD</li>
+<li>HW3: Deep learning</li>
+<li>HW4: Transformers and unsupervised methods</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org800bcbe" class="outline-4">
+<h4 id="org800bcbe"><span class="section-number-4">1.6.2.</span> Quizzes (10)</h4>
+<div class="outline-text-4" id="text-1-6-2">
+<ul class="org-ul">
+<li>Measure understanding of topic</li>
+<li>Mostly conceptual questions</li>
+<li>MCQ</li>
+<li>Limited time to do the test</li>
+<li>Mandatory</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org7fddf4a" class="outline-3">
+<h3 id="org7fddf4a"><span class="section-number-3">1.7.</span> Course goals</h3>
+<div class="outline-text-3" id="text-1-7">
+<ul class="org-ul">
+<li>Demonstrate how to pre-process textual data</li>
+<li>Differentiate text representation methods and techniques</li>
+<li>Explain different NLP tasks</li>
+<li>Develop and assess performance of different NLP models using a variety of techniques</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org7cb9bf2" class="outline-3">
+<h3 id="org7cb9bf2"><span class="section-number-3">1.8.</span> Text Preprocessing Techniques</h3>
+<div class="outline-text-3" id="text-1-8">
+</div>
+<div id="outline-container-org3ab2309" class="outline-4">
+<h4 id="org3ab2309"><span class="section-number-4">1.8.1.</span> Terminology</h4>
+<div class="outline-text-4" id="text-1-8-1">
+<dl class="org-dl">
+<dt>Corpus</dt><dd>collection of text, e.g. Yelp reviews, Wikipedia articles</dd>
+<dt>Syntax</dt><dd>Grammatical structure of text</dd>
+<dt>Syntactic parsing</dt><dd>process of analyzing natural language with grammatical rules</dd>
+<dt>Semantics</dt><dd>meaning of text</dd>
+<dt>Tokenization</dt><dd>splitting long pieces of text into smaller pieces (tokens). e.g.: <code>This is a simple sentence</code> -&gt; <code>["This", "is", "a", "simple", "sentence"]</code></dd>
+<dt>Stop words</dt><dd>commonly used words, e.g. "the", "a", "an", "is", "are". Do not contribute to overall meaning</dd>
+<dt>N-grams</dt><dd>consecutive sequence of words (commonly: 2-5) in a text. 1-gram (unigram), 2-gram (bigram), 3-gram (trigram). Example of bigrams: <code>"This is", "is a", "a simple", "simple sentence"</code></dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-orgcd1e7bb" class="outline-4">
+<h4 id="orgcd1e7bb"><span class="section-number-4">1.8.2.</span> Preprocessing text data</h4>
+<div class="outline-text-4" id="text-1-8-2">
+<ul class="org-ul">
+<li>Text is unstructured, so preprocessing is the first step to prepare and clean text data to perform a NLP task</li>
+<li>Useful libraries:
+<ul class="org-ul">
+<li>re: regular expressions</li>
+<li>nltk: natural language toolkit</li>
+</ul></li>
+<li>Common steps:
+<ul class="org-ul">
+<li>Noise removal</li>
+<li>Tokenization</li>
+<li>Text normalization</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org52edcff" class="outline-4">
+<h4 id="org52edcff"><span class="section-number-4">1.8.3.</span> Noise removal</h4>
+<div class="outline-text-4" id="text-1-8-3">
+<p>
+Removal of unwanted text formatting information, e.g.:
+</p>
+<ul class="org-ul">
+<li>Punctuation</li>
+<li>Accent marks</li>
+<li>Special characters</li>
+<li>Numeric digits (could be replaced with words)</li>
+<li>Leading, ending and vertical whitespace</li>
+<li>HTML formatting</li>
+</ul>
+
+<p>
+Example: <code>This is a 'simple'' sentence !!! 1+ \n</code> -&gt; <code>This is a simple sentence</code>
+</p>
+</div>
+</div>
+<div id="outline-container-orge81b2d3" class="outline-4">
+<h4 id="orge81b2d3"><span class="section-number-4">1.8.4.</span> Tokenization</h4>
+<div class="outline-text-4" id="text-1-8-4">
+<p>
+Example:
+<code>This is a simple sentence</code> -&gt;
+<code>['This', 'is', 'a', 'simple', 'sentence', '.']</code>
+</p>
+</div>
+</div>
+<div id="outline-container-orga65219d" class="outline-4">
+<h4 id="orga65219d"><span class="section-number-4">1.8.5.</span> Text normalization</h4>
+<div class="outline-text-4" id="text-1-8-5">
+<p>
+Removing variations in the text to bring it to a standard form.
+</p>
+<ul class="org-ul">
+<li>Case: Convert all letters to upper or lower case</li>
+<li>Removing stop words, sparse terms, other special / particular words.</li>
+</ul>
+
+<p>
+Example of text normalization:
+<code>This is a Simple SenTence</code> -&gt;
+<code>simple sentence</code>
+</p>
+<ul class="org-ul">
+<li>Stemming: reduce words to word stem, base, or root form.
+Example: <code>There are several tytpes of stemming algorithms</code> -&gt; <code>there are sever type fo stem algorithms.</code></li>
+<li>Lemmatization: similar to stemming. Reduces inflectional forms to a common base form, <b><b>the lemma</b></b>. Does <b><b>not</b></b> simply chop off inflections. Uses <b><b>lexical knowledge</b></b> to get the correct base form of words.
+Example: <code>There are several tytpes of stemming algorithms</code> -&gt; <code>There are several type of stemming algorithms.</code></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org994d21e" class="outline-2">
+<h2 id="org994d21e"><span class="section-number-2">2.</span> Week 2: (Discrete) Text Representations</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orgc5df3e6" class="outline-3">
+<h3 id="orgc5df3e6"><span class="section-number-3">2.1.</span> Why?</h3>
+<div class="outline-text-3" id="text-2-1">
 <dl class="org-dl">
 <dt>NLP</dt><dd>design algorithms to allow computers to understand natural language, so as to perform some task</dd>
 <dt>Required</dt><dd>convert text data to numerical data that can be used in model</dd>
 </dl>
 </div>
 </div>
-<div id="outline-container-orgee85252" class="outline-3">
-<h3 id="orgee85252"><span class="section-number-3">1.2.</span> Representing Words</h3>
-<div class="outline-text-3" id="text-1-2">
+<div id="outline-container-org655122c" class="outline-3">
+<h3 id="org655122c"><span class="section-number-3">2.2.</span> Representing Words</h3>
+<div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>Can be represented by vectors of 0 &amp; 1 where 1 indicates the position of the word, e.g. lorem = <code>[1, 0]</code>, ipsum = <code>[0, 1]</code>, etc.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgcbf898e" class="outline-3">
-<h3 id="orgcbf898e"><span class="section-number-3">1.3.</span> Representing sentences/documents</h3>
-<div class="outline-text-3" id="text-1-3">
+<div id="outline-container-org8cf8573" class="outline-3">
+<h3 id="org8cf8573"><span class="section-number-3">2.3.</span> Representing sentences/documents</h3>
+<div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li>Vectors of vectors eg <code>[[1,0], [0,1]]</code></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org523e02e" class="outline-3">
-<h3 id="org523e02e"><span class="section-number-3">1.4.</span> One Hot Encoding</h3>
-<div class="outline-text-3" id="text-1-4">
+<div id="outline-container-org9ecdf09" class="outline-3">
+<h3 id="org9ecdf09"><span class="section-number-3">2.4.</span> One Hot Encoding</h3>
+<div class="outline-text-3" id="text-2-4">
 </div>
-<div id="outline-container-orgf469b3c" class="outline-4">
-<h4 id="orgf469b3c"><span class="section-number-4">1.4.1.</span> Definitions</h4>
-<div class="outline-text-4" id="text-1-4-1">
+<div id="outline-container-orge4d00b6" class="outline-4">
+<h4 id="orge4d00b6"><span class="section-number-4">2.4.1.</span> Definitions</h4>
+<div class="outline-text-4" id="text-2-4-1">
 <dl class="org-dl">
 <dt>corpus</dt><dd>all texts</dd>
 <dt>vocabulary, <span class="underline">V</span></dt><dd>all unique words</dd>
@@ -127,9 +394,9 @@
 </dl>
 </div>
 </div>
-<div id="outline-container-org07b021f" class="outline-4">
-<h4 id="org07b021f"><span class="section-number-4">1.4.2.</span> Advantages and disadvantages</h4>
-<div class="outline-text-4" id="text-1-4-2">
+<div id="outline-container-org65fad62" class="outline-4">
+<h4 id="org65fad62"><span class="section-number-4">2.4.2.</span> Advantages and disadvantages</h4>
+<div class="outline-text-4" id="text-2-4-2">
 <ul class="org-ul">
 <li>Advantages: easy to implement</li>
 <li>Disadvantages:
@@ -148,9 +415,9 @@ each word represented individually, hence <b>no notion of similarity or meaning<
 </div>
 </div>
 </div>
-<div id="outline-container-orgafadf28" class="outline-3">
-<h3 id="orgafadf28"><span class="section-number-3">1.5.</span> Bag of Words (Frequency Counting)</h3>
-<div class="outline-text-3" id="text-1-5">
+<div id="outline-container-org1532d75" class="outline-3">
+<h3 id="org1532d75"><span class="section-number-3">2.5.</span> Bag of Words (Frequency Counting)</h3>
+<div class="outline-text-3" id="text-2-5">
 <dl class="org-dl">
 <dt>Summary</dt><dd>Represents each document as a bag of words. <b><b>Ignores</b></b> order of words.</dd>
 <dt>Document</dt><dd>a column vector of \(X\) word counts</dd>
@@ -164,9 +431,9 @@ each word represented individually, hence <b>no notion of similarity or meaning<
 Hence \(n\) documents can be represented by matrix of size \(n \times d\).
 </p>
 </div>
-<div id="outline-container-orgcb67e17" class="outline-4">
-<h4 id="orgcb67e17"><span class="section-number-4">1.5.1.</span> Advantages and disadvantages</h4>
-<div class="outline-text-4" id="text-1-5-1">
+<div id="outline-container-org0c065d1" class="outline-4">
+<h4 id="org0c065d1"><span class="section-number-4">2.5.1.</span> Advantages and disadvantages</h4>
+<div class="outline-text-4" id="text-2-5-1">
 <ul class="org-ul">
 <li>Advantages: easy to implement</li>
 <li>Disadvantages:
@@ -179,13 +446,13 @@ Hence \(n\) documents can be represented by matrix of size \(n \times d\).
 </div>
 </div>
 </div>
-<div id="outline-container-org42ba909" class="outline-3">
-<h3 id="org42ba909"><span class="section-number-3">1.6.</span> TF-IDF (Term Frequency-Inverse Document Frequency)</h3>
-<div class="outline-text-3" id="text-1-6">
+<div id="outline-container-org79b9bfe" class="outline-3">
+<h3 id="org79b9bfe"><span class="section-number-3">2.6.</span> TF-IDF (Term Frequency-Inverse Document Frequency)</h3>
+<div class="outline-text-3" id="text-2-6">
 </div>
-<div id="outline-container-org40c3ba7" class="outline-4">
-<h4 id="org40c3ba7"><span class="section-number-4">1.6.1.</span> Why needed?</h4>
-<div class="outline-text-4" id="text-1-6-1">
+<div id="outline-container-org2fdd402" class="outline-4">
+<h4 id="org2fdd402"><span class="section-number-4">2.6.1.</span> Why needed?</h4>
+<div class="outline-text-4" id="text-2-6-1">
 <ul class="org-ul">
 <li>BoW does not provide logical importance
 <ul class="org-ul">
@@ -195,9 +462,9 @@ Hence \(n\) documents can be represented by matrix of size \(n \times d\).
 </ul>
 </div>
 </div>
-<div id="outline-container-org6fbffa9" class="outline-4">
-<h4 id="org6fbffa9"><span class="section-number-4">1.6.2.</span> What is TF-IDF and when to use TF-IDF</h4>
-<div class="outline-text-4" id="text-1-6-2">
+<div id="outline-container-org76d31f3" class="outline-4">
+<h4 id="org76d31f3"><span class="section-number-4">2.6.2.</span> What is TF-IDF and when to use TF-IDF</h4>
+<div class="outline-text-4" id="text-2-6-2">
 <dl class="org-dl">
 <dt>Definition of TF-IDF</dt><dd>a word's <b><b>importance score</b></b> in a document among \(N\) documents</dd>
 <dt><span class="underline">N</span></dt><dd>total number of documents</dd>
@@ -211,9 +478,9 @@ Higher score = more "characteristic"</dd>
 </dl>
 </div>
 </div>
-<div id="outline-container-org475c3a3" class="outline-4">
-<h4 id="org475c3a3"><span class="section-number-4">1.6.3.</span> Advantages and disadvantages</h4>
-<div class="outline-text-4" id="text-1-6-3">
+<div id="outline-container-orgf05f9f5" class="outline-4">
+<h4 id="orgf05f9f5"><span class="section-number-4">2.6.3.</span> Advantages and disadvantages</h4>
+<div class="outline-text-4" id="text-2-6-3">
 <ul class="org-ul">
 <li>Advantages:
 <ul class="org-ul">
@@ -233,7 +500,7 @@ Higher score = more "characteristic"</dd>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: W</p>
-<p class="date">Created: 2024-01-24 Wed 18:19</p>
+<p class="date">Created: 2024-01-24 Wed 20:28</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

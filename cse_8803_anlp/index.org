@@ -1,6 +1,128 @@
 #+AUTHOR: W
 #+SETUPFILE: /Users/whkoh/git-repos/org-html-themes/org/theme-readtheorg-local-parent.setup
 #+TITLE: CSE 8803: Applied Natural Language Processing
+* Week 1: Text data preprocessing + Course Intro
+** Why ANLP?
+- Text and docs are everywhere
+- Hundreds of languages in the world
+- Primary information artifacts
+- Large volumes of textual data
+- Big and small companies looking for this skill
+** Lots of text and written information
+- Internet
+- Webpages, Facebook, Wikipedia, etc.
+- Digital libraries: Google Books, ACM, IEEE
+- Lyrics, subtitles, etc.
+- Police case reports
+- Legislation
+- Reviews
+- Medical reports
+- Job descriptions
+** Example applications of NLP
+- Establish authenticity, detect plagiarism
+- Classification of genres
+- Classification of tone; sentiment analysis
+- Syntax analysis in code
+- Machine translation
+** Challenges of NLP
+- Interdisciplinary field
+- Ambiguity at many levels of language:
+  1. Lexical (Word level)
+  2. Syntactic: different ways of parsing
+  3. Partial information: e.g., how to interpret pronouns
+  4. Contextual information: context of sentence may affect meaning of sentence
+** Class overview
+- Preprocessing:
+  - Clean text and documents
+  - Tokenization
+  - Reducing inflectional forms of a word:
+    - Stemming
+    - Lemmatization
+  - Normalization
+- Text representation
+  - One hot encoding
+  - Bag of words (Frequency counting)
+  - Term frequency-Inverse document frequency (TF-IDF)
+  - Embeddings
+- Overview of classification methods
+  - Naive Bayes
+  - Logistic regression
+  - SVM
+  - Perceptron
+  - Nerual Network
+- Overview of Deep Learning
+  - Convolutional neural network
+  - Recurrent neural network
+  - Long short-term memory
+- Overview of topic modelling
+  - Principal component analysis
+  - Singular value decomposition
+  - Latent Dirichlet Allocation
+- Overview of Transformer methods
+  - Bidirectional Encoder Representations from Transformers
+  - Generative Pre-trained Transformers (GPT)
+** Deliverables
+*** Homework
+- HW1: Text preprocessing and classification intro
+- HW2: Classification methods, dimensionality reduction, SVD
+- HW3: Deep learning
+- HW4: Transformers and unsupervised methods
+*** Quizzes (10)
+- Measure understanding of topic
+- Mostly conceptual questions
+- MCQ
+- Limited time to do the test
+- Mandatory
+** Course goals
+- Demonstrate how to pre-process textual data
+- Differentiate text representation methods and techniques
+- Explain different NLP tasks
+- Develop and assess performance of different NLP models using a variety of techniques
+** Text Preprocessing Techniques
+*** Terminology
+- Corpus :: collection of text, e.g. Yelp reviews, Wikipedia articles
+- Syntax :: Grammatical structure of text
+- Syntactic parsing :: process of analyzing natural language with grammatical rules
+- Semantics :: meaning of text
+- Tokenization :: splitting long pieces of text into smaller pieces (tokens). e.g.: ~This is a simple sentence~ -> ~["This", "is", "a", "simple", "sentence"]~
+- Stop words :: commonly used words, e.g. "the", "a", "an", "is", "are". Do not contribute to overall meaning
+- N-grams :: consecutive sequence of words (commonly: 2-5) in a text. 1-gram (unigram), 2-gram (bigram), 3-gram (trigram). Example of bigrams: ~"This is", "is a", "a simple", "simple sentence"~
+*** Preprocessing text data
+- Text is unstructured, so preprocessing is the first step to prepare and clean text data to perform a NLP task
+- Useful libraries:
+  - re: regular expressions
+  - nltk: natural language toolkit
+- Common steps:
+  - Noise removal
+  - Tokenization
+  - Text normalization
+*** Noise removal
+Removal of unwanted text formatting information, e.g.:
+- Punctuation
+- Accent marks
+- Special characters
+- Numeric digits (could be replaced with words)
+- Leading, ending and vertical whitespace
+- HTML formatting
+
+Example: ~This is a 'simple'' sentence !!! 1+ \n~ -> ~This is a simple sentence~
+*** Tokenization
+Example:
+~This is a simple sentence~ ->
+~['This', 'is', 'a', 'simple', 'sentence', '.']~
+*** Text normalization
+Removing variations in the text to bring it to a standard form.
+- Case: Convert all letters to upper or lower case
+- Removing stop words, sparse terms, other special / particular words.
+
+Example of text normalization:
+~This is a Simple SenTence~ ->
+~simple sentence~
+- Stemming: reduce words to word stem, base, or root form.
+  Example: ~There are several tytpes of stemming algorithms~ -> ~there are sever type fo stem algorithms.~
+- Lemmatization: similar to stemming. Reduces inflectional forms to a common base form, **the lemma**. Does **not** simply chop off inflections. Uses **lexical knowledge** to get the correct base form of words.
+  Example: ~There are several tytpes of stemming algorithms~ -> ~There are several type of stemming algorithms.~
+
 * Week 2: (Discrete) Text Representations
 ** Why?
 - NLP :: design algorithms to allow computers to understand natural language, so as to perform some task
