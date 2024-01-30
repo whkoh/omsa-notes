@@ -189,3 +189,7 @@ Hence $n$ documents can be represented by matrix of size $n \times d$.
   - Good technique to search for documents, find similar documents, cluster documents
 - Disadvantages
   - Does not consider position of words when creating matrix. Similar problem as with BoW.
+* Week 3: Linear Text Classification
+** Classification / ML introduction
+** Naive Bayes
+** Classification Model Evaluation
