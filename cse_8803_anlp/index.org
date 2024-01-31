@@ -190,6 +190,139 @@ Hence $n$ documents can be represented by matrix of size $n \times d$.
 - Disadvantages
   - Does not consider position of words when creating matrix. Similar problem as with BoW.
 * Week 3: Linear Text Classification
-** Classification / ML introduction
+** Classification introduction
+Note: **classification**.
+*** Supervised learning: definitions
+
+- Word count matrix / document term matrix :: dataset generated from documents
+- Rows of matrix :: each row is 1 document
+- Columns of matrix :: each column is 1 unique word
+- Unique words: synonyms :: features, dimensions, attributes, variables, columns
+- Documents: synonyms :: rows, data points, instances
+- Model weights :: = model parameters, i.e. what the model learns
+- Function $F$ :: maps $X$ to $Y$
+- Training data $(x_i, y_i)$ :: within set of ${X \times Y}$
+- Learning - find $\hat{f}$ :: $\hat{f} \in F$ s.t. $y_i \approx \hat{f} (x_i)$
+- New data :: $x$
+- Prediction $y$ :: $= \hat{f} (x)$
+
+Supervised learning thus takes **labelled** training data and **learns** or **derives** a function $f(x): y = f(x)$.
+
+*** Categories of supervised learning
+- continuous $y$ :: regression i.e. curve fitting
+- discrete $y$ :: classification i.e. class estimation
+
+*** Regression
+- Errors represent how much predictions deviate from actual values.
+- Minimum error = 0, however beware of overfitting, where test errors will be high (trained model cannot generalize).
+- Example: apartment rent prediction, stock price prediction (difficult due to many predictors, known and unknown).
+
+*** Classification
+- Linear classification can be used for spam detection, sentiment analysis, handwriting digit recognition (0.4% error here), etc.
+- Prepare, clean data, fit a classifier
+- Retraining is required due to new evolving context, new lingo, etc. Can be implemented into a learning system.
+
 ** Naive Bayes
+*** Method / concepts
+Bayes Decision Rule.
+- $x$ :: encoded document, e.g. by BoW
+- $y$ :: label of document, i.e. whether document contains positive or negative message
+- Posterior :: $P(y|x)$
+- Likelihood :: $P(x|y)$
+- Prior :: $P(y)$
+- Normalization constant :: $P(x)$
+
+$$
+P(y|x) = \frac{P(x|y)P(y)}{P(x)} = \frac{P(x,y)}{\sum_y P(x,y)}
+$$
+*** Bayes decision rule
+- {{{hl(important)}}}: normalization constant is the same for +ve and -ve labels, hence no need to calculate when predicting sentiment
+*** Generative vs discriminative models
+Naive Bayes is a generative model
+- Generative model: able to generate synthetic data points
+  - **Need** to model prior and likelihood distributions.
+  - In Naive Bayes, we normally replace likelihood with the conditional distribution.
+  - Conditional distribution is the pdf/pmf to generate data points.
+    - Determining this distribution might be difficult.
+  - Generative models e.g.: Naive Bayes, Hidden Markov Models
+- Discriminative models:
+  - Directly estimate posteriors
+  - No need to model prior and likelihood distributions
+  - e.g.: logistic regression, SVM, neural networks
+*** Details of Naive Bayes
+Bayes decision rule:
+$$
+P(y|x) = \frac{P(x|y)P(y)}{P(x)}
+$$
+- {{{hl(assumption)}}}: all dimensions (unique words) are independent of each other, i.e. $p(x|y = 1)$ fully factorized, hence: $P(x|y=1) = \prod^d_{i=1} P(x_i|y = 1)$
+  - Thus, likelihood can be written in fully factorized way.
+  - It becomes a big joint probability of all unique words (dimensions).
+  - Conditional independence, hence likelihood can be written as multiplication of every dimension given the label.
+  - i.e., the variables corresponding to each dimension are independent given the label.
+*** Naive Conditional Independence Assumption
+$$
+P(y|x) = \frac{P(x|y)P(y)}{P(x)}
+$$
+
+For vocabulary $V$, ~[nice, give, us, this, iu, ssn, information, job, a]~
+
+$P(\text{document} | y = \text{positive})P(y=\text{positive})$
+
+= $P(x=\text{nice}) ... P(x=a|y=\text{positive})$ $\cdot P(y= \text{positive})$
+
+similarly for negatives:
+
+$P(\text{document} | y = \text{negative})P(y=\text{negative})$
+
+= $P(x=\text{nice}) ... P(x=a|y=\text{negative})$ $\cdot P(y= \text{negative })$
+**** Representing the likelihood
+Common distribution: **multinomial distribution**.
+
+$$
+P(x=\text{nice} | y = \text{positive})
+$$
+
+$$
+= \frac{\text{count of word }\textbf{nice} \text{ in all positive label docs }}{\text{count all words with } \textbf{positive}  \text{  labels}}
+$$
+
+Then to calc priors:
+
+$$
+P(y = \text{positive}) = \frac{\text{count # +ve docs}}{\text{count # all docs}}
+$$
+
+Repeat above for negatives.
+*** Advantages and disadvantages
+- Advantages
+  - Simple, easy to implement
+  - No training required
+  - Good results in general
+- Disadvantages
+  - Position of words do not matter (no semantic meaning) due to BoW approach
+  - Requires / assumes conditional independence
+
 ** Classification Model Evaluation
+*** Common metrics
+- Classification: accuracy, precision, recall, cross-entropy, perplexity, and F1 score
+- Regression: MSE, MAE
+*** Confusion matrix
+- e.g. for multi-label confusion matrix
+- rows are the actual classes (sport, news politics)
+- columns are the predicted classes
+- diagonal elements are number of accurate predictions
+- off-diagonals: inaccurate predictions
+- But difficult to parse, can consider using a heat map on the confusion matrix instead of raw #
+- {{{hl(meaning of positive and negative in a confusion matrix)}}}: not related to sentiment. Only indicator of the label, e.g. sport = positive, news = negative.
+*** Accuracy
+- Accuracy = (True Positive + True Negative) / Total observations, i.e. sum of diagonals / count observations.
+- May not be represent "goodness" since false positives and false negatives have identical treatment.
+- FP and FN may be important specifically for some fields e.g. medicine.
+- Another metric, false alarm (false positive, type I error) is easy to remember in security contexts.
+*** RoC-AUC curve
+- ROC: Receiver Operating Characteristic
+- Changing thresholds: how to change, what should the new threshold be?
+- TP (y-axis) vs FP (x-axis)
+- AUC (area under the curve) represents the how performant the predictive model is. Max is 1.0.
+- But 0.9 may not be good either.
+  - Are there some thresholds where TP = 0? Are these important in the context?

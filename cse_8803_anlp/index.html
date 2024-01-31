@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-01-24 Wed 20:28 -->
+<!-- 2024-01-31 Wed 19:59 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>CSE 8803: Applied Natural Language Processing</title>
@@ -44,52 +44,82 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org7419da2">1. Week 1: Text data preprocessing + Course Intro</a>
+<li><a href="#orgfd47ad7">1. Week 1: Text data preprocessing + Course Intro</a>
 <ul>
-<li><a href="#orgddced39">1.1. Why ANLP?</a></li>
-<li><a href="#org3d901ee">1.2. Lots of text and written information</a></li>
-<li><a href="#org22e8cd7">1.3. Example applications of NLP</a></li>
-<li><a href="#orgaa90200">1.4. Challenges of NLP</a></li>
-<li><a href="#orgead5fb1">1.5. Class overview</a></li>
-<li><a href="#orga2b805c">1.6. Deliverables</a>
+<li><a href="#orgccecc68">1.1. Why ANLP?</a></li>
+<li><a href="#org9bc89d6">1.2. Lots of text and written information</a></li>
+<li><a href="#orgc10502d">1.3. Example applications of NLP</a></li>
+<li><a href="#org2b18f2d">1.4. Challenges of NLP</a></li>
+<li><a href="#org03ca860">1.5. Class overview</a></li>
+<li><a href="#org63927f1">1.6. Deliverables</a>
 <ul>
-<li><a href="#org1c219ba">1.6.1. Homework</a></li>
-<li><a href="#org800bcbe">1.6.2. Quizzes (10)</a></li>
+<li><a href="#org6aa8a2b">1.6.1. Homework</a></li>
+<li><a href="#orgb5a90da">1.6.2. Quizzes (10)</a></li>
 </ul>
 </li>
-<li><a href="#org7fddf4a">1.7. Course goals</a></li>
-<li><a href="#org7cb9bf2">1.8. Text Preprocessing Techniques</a>
+<li><a href="#org57eabb8">1.7. Course goals</a></li>
+<li><a href="#orga343b41">1.8. Text Preprocessing Techniques</a>
 <ul>
-<li><a href="#org3ab2309">1.8.1. Terminology</a></li>
-<li><a href="#orgcd1e7bb">1.8.2. Preprocessing text data</a></li>
-<li><a href="#org52edcff">1.8.3. Noise removal</a></li>
-<li><a href="#orge81b2d3">1.8.4. Tokenization</a></li>
-<li><a href="#orga65219d">1.8.5. Text normalization</a></li>
+<li><a href="#orgd3149bf">1.8.1. Terminology</a></li>
+<li><a href="#org478b72f">1.8.2. Preprocessing text data</a></li>
+<li><a href="#orgba892d6">1.8.3. Noise removal</a></li>
+<li><a href="#org299c1a6">1.8.4. Tokenization</a></li>
+<li><a href="#org1504624">1.8.5. Text normalization</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org994d21e">2. Week 2: (Discrete) Text Representations</a>
+<li><a href="#orgec7b7cd">2. Week 2: (Discrete) Text Representations</a>
 <ul>
-<li><a href="#orgc5df3e6">2.1. Why?</a></li>
-<li><a href="#org655122c">2.2. Representing Words</a></li>
-<li><a href="#org8cf8573">2.3. Representing sentences/documents</a></li>
-<li><a href="#org9ecdf09">2.4. One Hot Encoding</a>
+<li><a href="#org073a49d">2.1. Why?</a></li>
+<li><a href="#orgdf2538d">2.2. Representing Words</a></li>
+<li><a href="#org62d70ec">2.3. Representing sentences/documents</a></li>
+<li><a href="#org7075b76">2.4. One Hot Encoding</a>
 <ul>
-<li><a href="#orge4d00b6">2.4.1. Definitions</a></li>
-<li><a href="#org65fad62">2.4.2. Advantages and disadvantages</a></li>
+<li><a href="#org5144271">2.4.1. Definitions</a></li>
+<li><a href="#org35babca">2.4.2. Advantages and disadvantages</a></li>
 </ul>
 </li>
-<li><a href="#org1532d75">2.5. Bag of Words (Frequency Counting)</a>
+<li><a href="#org05bd9fc">2.5. Bag of Words (Frequency Counting)</a>
 <ul>
-<li><a href="#org0c065d1">2.5.1. Advantages and disadvantages</a></li>
+<li><a href="#org4da9f38">2.5.1. Advantages and disadvantages</a></li>
 </ul>
 </li>
-<li><a href="#org79b9bfe">2.6. TF-IDF (Term Frequency-Inverse Document Frequency)</a>
+<li><a href="#orgbbfb0ca">2.6. TF-IDF (Term Frequency-Inverse Document Frequency)</a>
 <ul>
-<li><a href="#org2fdd402">2.6.1. Why needed?</a></li>
-<li><a href="#org76d31f3">2.6.2. What is TF-IDF and when to use TF-IDF</a></li>
-<li><a href="#orgf05f9f5">2.6.3. Advantages and disadvantages</a></li>
+<li><a href="#org1078e50">2.6.1. Why needed?</a></li>
+<li><a href="#orgc715916">2.6.2. What is TF-IDF and when to use TF-IDF</a></li>
+<li><a href="#orgc56790e">2.6.3. Advantages and disadvantages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org0a1dde2">3. Week 3: Linear Text Classification</a>
+<ul>
+<li><a href="#orge183140">3.1. Classification introduction</a>
+<ul>
+<li><a href="#org75fb2f8">3.1.1. Supervised learning: definitions</a></li>
+<li><a href="#orga7fe856">3.1.2. Categories of supervised learning</a></li>
+<li><a href="#orgf55c064">3.1.3. Regression</a></li>
+<li><a href="#orgd4b6979">3.1.4. Classification</a></li>
+</ul>
+</li>
+<li><a href="#org2dc7e51">3.2. Naive Bayes</a>
+<ul>
+<li><a href="#org18726a4">3.2.1. Method / concepts</a></li>
+<li><a href="#org3af57e6">3.2.2. Bayes decision rule</a></li>
+<li><a href="#orgff93d02">3.2.3. Generative vs discriminative models</a></li>
+<li><a href="#orgab6837f">3.2.4. Details of Naive Bayes</a></li>
+<li><a href="#org62c8ff9">3.2.5. Naive Conditional Independence Assumption</a></li>
+<li><a href="#org49d3926">3.2.6. Advantages and disadvantages</a></li>
+</ul>
+</li>
+<li><a href="#org7b88169">3.3. Classification Model Evaluation</a>
+<ul>
+<li><a href="#orgc0ceee2">3.3.1. Common metrics</a></li>
+<li><a href="#org6a228bf">3.3.2. Confusion matrix</a></li>
+<li><a href="#org439a9fd">3.3.3. Accuracy</a></li>
+<li><a href="#org3e6dccc">3.3.4. RoC-AUC curve</a></li>
 </ul>
 </li>
 </ul>
@@ -97,12 +127,12 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org7419da2" class="outline-2">
-<h2 id="org7419da2"><span class="section-number-2">1.</span> Week 1: Text data preprocessing + Course Intro</h2>
+<div id="outline-container-orgfd47ad7" class="outline-2">
+<h2 id="orgfd47ad7"><span class="section-number-2">1.</span> Week 1: Text data preprocessing + Course Intro</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgddced39" class="outline-3">
-<h3 id="orgddced39"><span class="section-number-3">1.1.</span> Why ANLP?</h3>
+<div id="outline-container-orgccecc68" class="outline-3">
+<h3 id="orgccecc68"><span class="section-number-3">1.1.</span> Why ANLP?</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li>Text and docs are everywhere</li>
@@ -113,8 +143,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org3d901ee" class="outline-3">
-<h3 id="org3d901ee"><span class="section-number-3">1.2.</span> Lots of text and written information</h3>
+<div id="outline-container-org9bc89d6" class="outline-3">
+<h3 id="org9bc89d6"><span class="section-number-3">1.2.</span> Lots of text and written information</h3>
 <div class="outline-text-3" id="text-1-2">
 <ul class="org-ul">
 <li>Internet</li>
@@ -129,8 +159,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org22e8cd7" class="outline-3">
-<h3 id="org22e8cd7"><span class="section-number-3">1.3.</span> Example applications of NLP</h3>
+<div id="outline-container-orgc10502d" class="outline-3">
+<h3 id="orgc10502d"><span class="section-number-3">1.3.</span> Example applications of NLP</h3>
 <div class="outline-text-3" id="text-1-3">
 <ul class="org-ul">
 <li>Establish authenticity, detect plagiarism</li>
@@ -141,8 +171,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgaa90200" class="outline-3">
-<h3 id="orgaa90200"><span class="section-number-3">1.4.</span> Challenges of NLP</h3>
+<div id="outline-container-org2b18f2d" class="outline-3">
+<h3 id="org2b18f2d"><span class="section-number-3">1.4.</span> Challenges of NLP</h3>
 <div class="outline-text-3" id="text-1-4">
 <ul class="org-ul">
 <li>Interdisciplinary field</li>
@@ -156,8 +186,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgead5fb1" class="outline-3">
-<h3 id="orgead5fb1"><span class="section-number-3">1.5.</span> Class overview</h3>
+<div id="outline-container-org03ca860" class="outline-3">
+<h3 id="org03ca860"><span class="section-number-3">1.5.</span> Class overview</h3>
 <div class="outline-text-3" id="text-1-5">
 <ul class="org-ul">
 <li>Preprocessing:
@@ -206,12 +236,12 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orga2b805c" class="outline-3">
-<h3 id="orga2b805c"><span class="section-number-3">1.6.</span> Deliverables</h3>
+<div id="outline-container-org63927f1" class="outline-3">
+<h3 id="org63927f1"><span class="section-number-3">1.6.</span> Deliverables</h3>
 <div class="outline-text-3" id="text-1-6">
 </div>
-<div id="outline-container-org1c219ba" class="outline-4">
-<h4 id="org1c219ba"><span class="section-number-4">1.6.1.</span> Homework</h4>
+<div id="outline-container-org6aa8a2b" class="outline-4">
+<h4 id="org6aa8a2b"><span class="section-number-4">1.6.1.</span> Homework</h4>
 <div class="outline-text-4" id="text-1-6-1">
 <ul class="org-ul">
 <li>HW1: Text preprocessing and classification intro</li>
@@ -221,8 +251,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org800bcbe" class="outline-4">
-<h4 id="org800bcbe"><span class="section-number-4">1.6.2.</span> Quizzes (10)</h4>
+<div id="outline-container-orgb5a90da" class="outline-4">
+<h4 id="orgb5a90da"><span class="section-number-4">1.6.2.</span> Quizzes (10)</h4>
 <div class="outline-text-4" id="text-1-6-2">
 <ul class="org-ul">
 <li>Measure understanding of topic</li>
@@ -234,8 +264,8 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org7fddf4a" class="outline-3">
-<h3 id="org7fddf4a"><span class="section-number-3">1.7.</span> Course goals</h3>
+<div id="outline-container-org57eabb8" class="outline-3">
+<h3 id="org57eabb8"><span class="section-number-3">1.7.</span> Course goals</h3>
 <div class="outline-text-3" id="text-1-7">
 <ul class="org-ul">
 <li>Demonstrate how to pre-process textual data</li>
@@ -245,12 +275,12 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org7cb9bf2" class="outline-3">
-<h3 id="org7cb9bf2"><span class="section-number-3">1.8.</span> Text Preprocessing Techniques</h3>
+<div id="outline-container-orga343b41" class="outline-3">
+<h3 id="orga343b41"><span class="section-number-3">1.8.</span> Text Preprocessing Techniques</h3>
 <div class="outline-text-3" id="text-1-8">
 </div>
-<div id="outline-container-org3ab2309" class="outline-4">
-<h4 id="org3ab2309"><span class="section-number-4">1.8.1.</span> Terminology</h4>
+<div id="outline-container-orgd3149bf" class="outline-4">
+<h4 id="orgd3149bf"><span class="section-number-4">1.8.1.</span> Terminology</h4>
 <div class="outline-text-4" id="text-1-8-1">
 <dl class="org-dl">
 <dt>Corpus</dt><dd>collection of text, e.g. Yelp reviews, Wikipedia articles</dd>
@@ -263,8 +293,8 @@
 </dl>
 </div>
 </div>
-<div id="outline-container-orgcd1e7bb" class="outline-4">
-<h4 id="orgcd1e7bb"><span class="section-number-4">1.8.2.</span> Preprocessing text data</h4>
+<div id="outline-container-org478b72f" class="outline-4">
+<h4 id="org478b72f"><span class="section-number-4">1.8.2.</span> Preprocessing text data</h4>
 <div class="outline-text-4" id="text-1-8-2">
 <ul class="org-ul">
 <li>Text is unstructured, so preprocessing is the first step to prepare and clean text data to perform a NLP task</li>
@@ -282,8 +312,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org52edcff" class="outline-4">
-<h4 id="org52edcff"><span class="section-number-4">1.8.3.</span> Noise removal</h4>
+<div id="outline-container-orgba892d6" class="outline-4">
+<h4 id="orgba892d6"><span class="section-number-4">1.8.3.</span> Noise removal</h4>
 <div class="outline-text-4" id="text-1-8-3">
 <p>
 Removal of unwanted text formatting information, e.g.:
@@ -302,8 +332,8 @@ Example: <code>This is a 'simple'' sentence !!! 1+ \n</code> -&gt; <code>This is
 </p>
 </div>
 </div>
-<div id="outline-container-orge81b2d3" class="outline-4">
-<h4 id="orge81b2d3"><span class="section-number-4">1.8.4.</span> Tokenization</h4>
+<div id="outline-container-org299c1a6" class="outline-4">
+<h4 id="org299c1a6"><span class="section-number-4">1.8.4.</span> Tokenization</h4>
 <div class="outline-text-4" id="text-1-8-4">
 <p>
 Example:
@@ -312,8 +342,8 @@ Example:
 </p>
 </div>
 </div>
-<div id="outline-container-orga65219d" class="outline-4">
-<h4 id="orga65219d"><span class="section-number-4">1.8.5.</span> Text normalization</h4>
+<div id="outline-container-org1504624" class="outline-4">
+<h4 id="org1504624"><span class="section-number-4">1.8.5.</span> Text normalization</h4>
 <div class="outline-text-4" id="text-1-8-5">
 <p>
 Removing variations in the text to bring it to a standard form.
@@ -339,12 +369,12 @@ Example: <code>There are several tytpes of stemming algorithms</code> -&gt; <cod
 </div>
 </div>
 
-<div id="outline-container-org994d21e" class="outline-2">
-<h2 id="org994d21e"><span class="section-number-2">2.</span> Week 2: (Discrete) Text Representations</h2>
+<div id="outline-container-orgec7b7cd" class="outline-2">
+<h2 id="orgec7b7cd"><span class="section-number-2">2.</span> Week 2: (Discrete) Text Representations</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgc5df3e6" class="outline-3">
-<h3 id="orgc5df3e6"><span class="section-number-3">2.1.</span> Why?</h3>
+<div id="outline-container-org073a49d" class="outline-3">
+<h3 id="org073a49d"><span class="section-number-3">2.1.</span> Why?</h3>
 <div class="outline-text-3" id="text-2-1">
 <dl class="org-dl">
 <dt>NLP</dt><dd>design algorithms to allow computers to understand natural language, so as to perform some task</dd>
@@ -352,28 +382,28 @@ Example: <code>There are several tytpes of stemming algorithms</code> -&gt; <cod
 </dl>
 </div>
 </div>
-<div id="outline-container-org655122c" class="outline-3">
-<h3 id="org655122c"><span class="section-number-3">2.2.</span> Representing Words</h3>
+<div id="outline-container-orgdf2538d" class="outline-3">
+<h3 id="orgdf2538d"><span class="section-number-3">2.2.</span> Representing Words</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>Can be represented by vectors of 0 &amp; 1 where 1 indicates the position of the word, e.g. lorem = <code>[1, 0]</code>, ipsum = <code>[0, 1]</code>, etc.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org8cf8573" class="outline-3">
-<h3 id="org8cf8573"><span class="section-number-3">2.3.</span> Representing sentences/documents</h3>
+<div id="outline-container-org62d70ec" class="outline-3">
+<h3 id="org62d70ec"><span class="section-number-3">2.3.</span> Representing sentences/documents</h3>
 <div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li>Vectors of vectors eg <code>[[1,0], [0,1]]</code></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org9ecdf09" class="outline-3">
-<h3 id="org9ecdf09"><span class="section-number-3">2.4.</span> One Hot Encoding</h3>
+<div id="outline-container-org7075b76" class="outline-3">
+<h3 id="org7075b76"><span class="section-number-3">2.4.</span> One Hot Encoding</h3>
 <div class="outline-text-3" id="text-2-4">
 </div>
-<div id="outline-container-orge4d00b6" class="outline-4">
-<h4 id="orge4d00b6"><span class="section-number-4">2.4.1.</span> Definitions</h4>
+<div id="outline-container-org5144271" class="outline-4">
+<h4 id="org5144271"><span class="section-number-4">2.4.1.</span> Definitions</h4>
 <div class="outline-text-4" id="text-2-4-1">
 <dl class="org-dl">
 <dt>corpus</dt><dd>all texts</dd>
@@ -394,8 +424,8 @@ Example: <code>There are several tytpes of stemming algorithms</code> -&gt; <cod
 </dl>
 </div>
 </div>
-<div id="outline-container-org65fad62" class="outline-4">
-<h4 id="org65fad62"><span class="section-number-4">2.4.2.</span> Advantages and disadvantages</h4>
+<div id="outline-container-org35babca" class="outline-4">
+<h4 id="org35babca"><span class="section-number-4">2.4.2.</span> Advantages and disadvantages</h4>
 <div class="outline-text-4" id="text-2-4-2">
 <ul class="org-ul">
 <li>Advantages: easy to implement</li>
@@ -415,8 +445,8 @@ each word represented individually, hence <b>no notion of similarity or meaning<
 </div>
 </div>
 </div>
-<div id="outline-container-org1532d75" class="outline-3">
-<h3 id="org1532d75"><span class="section-number-3">2.5.</span> Bag of Words (Frequency Counting)</h3>
+<div id="outline-container-org05bd9fc" class="outline-3">
+<h3 id="org05bd9fc"><span class="section-number-3">2.5.</span> Bag of Words (Frequency Counting)</h3>
 <div class="outline-text-3" id="text-2-5">
 <dl class="org-dl">
 <dt>Summary</dt><dd>Represents each document as a bag of words. <b><b>Ignores</b></b> order of words.</dd>
@@ -431,8 +461,8 @@ each word represented individually, hence <b>no notion of similarity or meaning<
 Hence \(n\) documents can be represented by matrix of size \(n \times d\).
 </p>
 </div>
-<div id="outline-container-org0c065d1" class="outline-4">
-<h4 id="org0c065d1"><span class="section-number-4">2.5.1.</span> Advantages and disadvantages</h4>
+<div id="outline-container-org4da9f38" class="outline-4">
+<h4 id="org4da9f38"><span class="section-number-4">2.5.1.</span> Advantages and disadvantages</h4>
 <div class="outline-text-4" id="text-2-5-1">
 <ul class="org-ul">
 <li>Advantages: easy to implement</li>
@@ -446,12 +476,12 @@ Hence \(n\) documents can be represented by matrix of size \(n \times d\).
 </div>
 </div>
 </div>
-<div id="outline-container-org79b9bfe" class="outline-3">
-<h3 id="org79b9bfe"><span class="section-number-3">2.6.</span> TF-IDF (Term Frequency-Inverse Document Frequency)</h3>
+<div id="outline-container-orgbbfb0ca" class="outline-3">
+<h3 id="orgbbfb0ca"><span class="section-number-3">2.6.</span> TF-IDF (Term Frequency-Inverse Document Frequency)</h3>
 <div class="outline-text-3" id="text-2-6">
 </div>
-<div id="outline-container-org2fdd402" class="outline-4">
-<h4 id="org2fdd402"><span class="section-number-4">2.6.1.</span> Why needed?</h4>
+<div id="outline-container-org1078e50" class="outline-4">
+<h4 id="org1078e50"><span class="section-number-4">2.6.1.</span> Why needed?</h4>
 <div class="outline-text-4" id="text-2-6-1">
 <ul class="org-ul">
 <li>BoW does not provide logical importance
@@ -462,8 +492,8 @@ Hence \(n\) documents can be represented by matrix of size \(n \times d\).
 </ul>
 </div>
 </div>
-<div id="outline-container-org76d31f3" class="outline-4">
-<h4 id="org76d31f3"><span class="section-number-4">2.6.2.</span> What is TF-IDF and when to use TF-IDF</h4>
+<div id="outline-container-orgc715916" class="outline-4">
+<h4 id="orgc715916"><span class="section-number-4">2.6.2.</span> What is TF-IDF and when to use TF-IDF</h4>
 <div class="outline-text-4" id="text-2-6-2">
 <dl class="org-dl">
 <dt>Definition of TF-IDF</dt><dd>a word's <b><b>importance score</b></b> in a document among \(N\) documents</dd>
@@ -478,8 +508,8 @@ Higher score = more "characteristic"</dd>
 </dl>
 </div>
 </div>
-<div id="outline-container-orgf05f9f5" class="outline-4">
-<h4 id="orgf05f9f5"><span class="section-number-4">2.6.3.</span> Advantages and disadvantages</h4>
+<div id="outline-container-orgc56790e" class="outline-4">
+<h4 id="orgc56790e"><span class="section-number-4">2.6.3.</span> Advantages and disadvantages</h4>
 <div class="outline-text-4" id="text-2-6-3">
 <ul class="org-ul">
 <li>Advantages:
@@ -497,10 +527,301 @@ Higher score = more "characteristic"</dd>
 </div>
 </div>
 </div>
+<div id="outline-container-org0a1dde2" class="outline-2">
+<h2 id="org0a1dde2"><span class="section-number-2">3.</span> Week 3: Linear Text Classification</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orge183140" class="outline-3">
+<h3 id="orge183140"><span class="section-number-3">3.1.</span> Classification introduction</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Note: <b><b>classification</b></b>.
+</p>
+</div>
+<div id="outline-container-org75fb2f8" class="outline-4">
+<h4 id="org75fb2f8"><span class="section-number-4">3.1.1.</span> Supervised learning: definitions</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<dl class="org-dl">
+<dt>Word count matrix / document term matrix</dt><dd>dataset generated from documents</dd>
+<dt>Rows of matrix</dt><dd>each row is 1 document</dd>
+<dt>Columns of matrix</dt><dd>each column is 1 unique word</dd>
+<dt>Unique words: synonyms</dt><dd>features, dimensions, attributes, variables, columns</dd>
+<dt>Documents: synonyms</dt><dd>rows, data points, instances</dd>
+<dt>Model weights</dt><dd>= model parameters, i.e. what the model learns</dd>
+<dt>Function \(F\)</dt><dd>maps \(X\) to \(Y\)</dd>
+<dt>Training data \((x_i, y_i)\)</dt><dd>within set of \({X \times Y}\)</dd>
+<dt>Learning - find \(\hat{f}\)</dt><dd>\(\hat{f} \in F\) s.t. \(y_i \approx \hat{f} (x_i)\)</dd>
+<dt>New data</dt><dd>\(x\)</dd>
+<dt>Prediction \(y\)</dt><dd>\(= \hat{f} (x)\)</dd>
+</dl>
+
+<p>
+Supervised learning thus takes <b><b>labelled</b></b> training data and <b><b>learns</b></b> or <b><b>derives</b></b> a function \(f(x): y = f(x)\).
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga7fe856" class="outline-4">
+<h4 id="orga7fe856"><span class="section-number-4">3.1.2.</span> Categories of supervised learning</h4>
+<div class="outline-text-4" id="text-3-1-2">
+<dl class="org-dl">
+<dt>continuous \(y\)</dt><dd>regression i.e. curve fitting</dd>
+<dt>discrete \(y\)</dt><dd>classification i.e. class estimation</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-orgf55c064" class="outline-4">
+<h4 id="orgf55c064"><span class="section-number-4">3.1.3.</span> Regression</h4>
+<div class="outline-text-4" id="text-3-1-3">
+<ul class="org-ul">
+<li>Errors represent how much predictions deviate from actual values.</li>
+<li>Minimum error = 0, however beware of overfitting, where test errors will be high (trained model cannot generalize).</li>
+<li>Example: apartment rent prediction, stock price prediction (difficult due to many predictors, known and unknown).</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd4b6979" class="outline-4">
+<h4 id="orgd4b6979"><span class="section-number-4">3.1.4.</span> Classification</h4>
+<div class="outline-text-4" id="text-3-1-4">
+<ul class="org-ul">
+<li>Linear classification can be used for spam detection, sentiment analysis, handwriting digit recognition (0.4% error here), etc.</li>
+<li>Prepare, clean data, fit a classifier</li>
+<li>Retraining is required due to new evolving context, new lingo, etc. Can be implemented into a learning system.</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2dc7e51" class="outline-3">
+<h3 id="org2dc7e51"><span class="section-number-3">3.2.</span> Naive Bayes</h3>
+<div class="outline-text-3" id="text-3-2">
+</div>
+<div id="outline-container-org18726a4" class="outline-4">
+<h4 id="org18726a4"><span class="section-number-4">3.2.1.</span> Method / concepts</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<p>
+Bayes Decision Rule.
+</p>
+<dl class="org-dl">
+<dt>\(x\)</dt><dd>encoded document, e.g. by BoW</dd>
+<dt>\(y\)</dt><dd>label of document, i.e. whether document contains positive or negative message</dd>
+<dt>Posterior</dt><dd>\(P(y|x)\)</dd>
+<dt>Likelihood</dt><dd>\(P(x|y)\)</dd>
+<dt>Prior</dt><dd>\(P(y)\)</dd>
+<dt>Normalization constant</dt><dd>\(P(x)\)</dd>
+</dl>
+
+<p>
+\[
+P(y|x) = \frac{P(x|y)P(y)}{P(x)} = \frac{P(x,y)}{\sum_y P(x,y)}
+\]
+</p>
+</div>
+</div>
+<div id="outline-container-org3af57e6" class="outline-4">
+<h4 id="org3af57e6"><span class="section-number-4">3.2.2.</span> Bayes decision rule</h4>
+<div class="outline-text-4" id="text-3-2-2">
+<ul class="org-ul">
+<li><span style='background-color: #FFFF00;'>important</span>: normalization constant is the same for +ve and -ve labels, hence no need to calculate when predicting sentiment</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgff93d02" class="outline-4">
+<h4 id="orgff93d02"><span class="section-number-4">3.2.3.</span> Generative vs discriminative models</h4>
+<div class="outline-text-4" id="text-3-2-3">
+<p>
+Naive Bayes is a generative model
+</p>
+<ul class="org-ul">
+<li>Generative model: able to generate synthetic data points
+<ul class="org-ul">
+<li><b><b>Need</b></b> to model prior and likelihood distributions.</li>
+<li>In Naive Bayes, we normally replace likelihood with the conditional distribution.</li>
+<li>Conditional distribution is the pdf/pmf to generate data points.
+<ul class="org-ul">
+<li>Determining this distribution might be difficult.</li>
+</ul></li>
+<li>Generative models e.g.: Naive Bayes, Hidden Markov Models</li>
+</ul></li>
+<li>Discriminative models:
+<ul class="org-ul">
+<li>Directly estimate posteriors</li>
+<li>No need to model prior and likelihood distributions</li>
+<li>e.g.: logistic regression, SVM, neural networks</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgab6837f" class="outline-4">
+<h4 id="orgab6837f"><span class="section-number-4">3.2.4.</span> Details of Naive Bayes</h4>
+<div class="outline-text-4" id="text-3-2-4">
+<p>
+Bayes decision rule:
+\[
+P(y|x) = \frac{P(x|y)P(y)}{P(x)}
+\]
+</p>
+<ul class="org-ul">
+<li><span style='background-color: #FFFF00;'>assumption</span>: all dimensions (unique words) are independent of each other, i.e. \(p(x|y = 1)\) fully factorized, hence: \(P(x|y=1) = \prod^d_{i=1} P(x_i|y = 1)\)
+<ul class="org-ul">
+<li>Thus, likelihood can be written in fully factorized way.</li>
+<li>It becomes a big joint probability of all unique words (dimensions).</li>
+<li>Conditional independence, hence likelihood can be written as multiplication of every dimension given the label.</li>
+<li>i.e., the variables corresponding to each dimension are independent given the label.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org62c8ff9" class="outline-4">
+<h4 id="org62c8ff9"><span class="section-number-4">3.2.5.</span> Naive Conditional Independence Assumption</h4>
+<div class="outline-text-4" id="text-3-2-5">
+<p>
+\[
+P(y|x) = \frac{P(x|y)P(y)}{P(x)}
+\]
+</p>
+
+<p>
+For vocabulary \(V\), <code>[nice, give, us, this, iu, ssn, information, job, a]</code>
+</p>
+
+<p>
+\(P(\text{document} | y = \text{positive})P(y=\text{positive})\)
+</p>
+
+<p>
+= \(P(x=\text{nice}) ... P(x=a|y=\text{positive})\) \(\cdot P(y= \text{positive})\)
+</p>
+
+<p>
+similarly for negatives:
+</p>
+
+<p>
+\(P(\text{document} | y = \text{negative})P(y=\text{negative})\)
+</p>
+
+<p>
+= \(P(x=\text{nice}) ... P(x=a|y=\text{negative})\) \(\cdot P(y= \text{negative })\)
+</p>
+</div>
+<ol class="org-ol">
+<li><a id="org49a471f"></a>Representing the likelihood<br />
+<div class="outline-text-5" id="text-3-2-5-1">
+<p>
+Common distribution: <b><b>multinomial distribution</b></b>.
+</p>
+
+<p>
+\[
+P(x=\text{nice} | y = \text{positive})
+\]
+</p>
+
+<p>
+\[
+= \frac{\text{count of word }\textbf{nice} \text{ in all positive label docs }}{\text{count all words with } \textbf{positive}  \text{  labels}}
+\]
+</p>
+
+<p>
+Then to calc priors:
+</p>
+
+<p>
+\[
+P(y = \text{positive}) = \frac{\text{count # +ve docs}}{\text{count # all docs}}
+\]
+</p>
+
+<p>
+Repeat above for negatives.
+</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-org49d3926" class="outline-4">
+<h4 id="org49d3926"><span class="section-number-4">3.2.6.</span> Advantages and disadvantages</h4>
+<div class="outline-text-4" id="text-3-2-6">
+<ul class="org-ul">
+<li>Advantages
+<ul class="org-ul">
+<li>Simple, easy to implement</li>
+<li>No training required</li>
+<li>Good results in general</li>
+</ul></li>
+<li>Disadvantages
+<ul class="org-ul">
+<li>Position of words do not matter (no semantic meaning) due to BoW approach</li>
+<li>Requires / assumes conditional independence</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7b88169" class="outline-3">
+<h3 id="org7b88169"><span class="section-number-3">3.3.</span> Classification Model Evaluation</h3>
+<div class="outline-text-3" id="text-3-3">
+</div>
+<div id="outline-container-orgc0ceee2" class="outline-4">
+<h4 id="orgc0ceee2"><span class="section-number-4">3.3.1.</span> Common metrics</h4>
+<div class="outline-text-4" id="text-3-3-1">
+<ul class="org-ul">
+<li>Classification: accuracy, precision, recall, cross-entropy, perplexity, and F1 score</li>
+<li>Regression: MSE, MAE</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org6a228bf" class="outline-4">
+<h4 id="org6a228bf"><span class="section-number-4">3.3.2.</span> Confusion matrix</h4>
+<div class="outline-text-4" id="text-3-3-2">
+<ul class="org-ul">
+<li>e.g. for multi-label confusion matrix</li>
+<li>rows are the actual classes (sport, news politics)</li>
+<li>columns are the predicted classes</li>
+<li>diagonal elements are number of accurate predictions</li>
+<li>off-diagonals: inaccurate predictions</li>
+<li>But difficult to parse, can consider using a heat map on the confusion matrix instead of raw #</li>
+<li><span style='background-color: #FFFF00;'>meaning of positive and negative in a confusion matrix</span>: not related to sentiment. Only indicator of the label, e.g. sport = positive, news = negative.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org439a9fd" class="outline-4">
+<h4 id="org439a9fd"><span class="section-number-4">3.3.3.</span> Accuracy</h4>
+<div class="outline-text-4" id="text-3-3-3">
+<ul class="org-ul">
+<li>Accuracy = (True Positive + True Negative) / Total observations, i.e. sum of diagonals / count observations.</li>
+<li>May not be represent "goodness" since false positives and false negatives have identical treatment.</li>
+<li>FP and FN may be important specifically for some fields e.g. medicine.</li>
+<li>Another metric, false alarm (false positive, type I error) is easy to remember in security contexts.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3e6dccc" class="outline-4">
+<h4 id="org3e6dccc"><span class="section-number-4">3.3.4.</span> RoC-AUC curve</h4>
+<div class="outline-text-4" id="text-3-3-4">
+<ul class="org-ul">
+<li>ROC: Receiver Operating Characteristic</li>
+<li>Changing thresholds: how to change, what should the new threshold be?</li>
+<li>TP (y-axis) vs FP (x-axis)</li>
+<li>AUC (area under the curve) represents the how performant the predictive model is. Max is 1.0.</li>
+<li>But 0.9 may not be good either.
+<ul class="org-ul">
+<li>Are there some thresholds where TP = 0? Are these important in the context?</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: W</p>
-<p class="date">Created: 2024-01-24 Wed 20:28</p>
+<p class="date">Created: 2024-01-31 Wed 19:59</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
