@@ -1,0 +1,122 @@
+#+AUTHOR: W
+#+SETUPFILE: /Users/whkoh/git-repos/org-html-themes/org/theme-readtheorg-local-parent.setup
+#+TITLE: ISYE 7406: Data Mining and Statistical Learning
+* Week 3: Linear Regression (II)
+M2T2
+** James-Stein Estimator
+*** It's a special case of linear regression
+in LR model with
+$$
+Y_{n\times 1} = X_{n\times p} \beta_{p\times 1} + \epsilon_{n\times 1}, \text{s.t.} \epsilon \sim N(0, \sigma^2 I_{n\times n})
+$$
+
+Special case:
+- $n=p$
+- $X_{n\times p} = I_{p\times p}$
+
+OLS yields the estimator of:
+
+$$
+\hat{\beta_{ols}} = (X^T X)^{-1} X^T Y =
+(I^T_{p\times p} I_{p\times p})^{-1}
+I^T_{p\times p} Y_{p\times 1} =
+\bf{Y_{p\times 1}}
+$$
+
+When $\bf{p\ge 3}$, is it possible to do better than OLS?
+*** Simultaneous estimation
+- Problem of estimating $p$ # of parameters $\beta_i$'s simultaneously from $p$ observations ($Y_i$'s) under model:
+
+  $$
+  \bf{Y_i} \sim N(\beta_i, \sigma^2), \text{for }i = 1, 2, ..., p
+  $$
+- OLS (a.k.a. Maximum Likelihood Estimator, MLE) yields estimator:
+
+  $$
+  \hat{\beta_i} = Y_i \text{ for }i = 1, 2, ..., p
+  $$
+
+  Is it possible to do better here?
+*** JS estimator
+- Showed MLS/MLE estimator inadmissible for $p\ge 3$; dominated by JS estimator.
+
+  $$
+  \hat{\beta_i^{MLE}} = Y_i \text{ for }i = 1, 2, ..., p
+  $$
+
+  $$
+  \hat{\beta_i^{(JS)}} = w Y_i + (1-w) \bar{Y} \text{ for }i = 1, 2, ..., p;
+  $$
+
+  $$
+  w = 1 - \frac{(p-3)\sigma^2}{\sum^p_i(Y_i-\bar{Y})^2}
+  $$
+*** Baseball example
+- Observe $Y_1, Y_2, ... Y_p$ batting averages (where $Y_i$ is the batting average for p=18 players), 45 AB
+- "True" values $\mu_i$ are the averages over remainder of seasons, 370 AB
+- Qn: how to predict season averages $\mu_i$ from early statistics $Y_i$?
+- Estimators: MLE and JS
+*** Comparing MLE and JS
+- JS has lower predictive squared error than MLS (by 50%)
+- JS estimator is **shrinkage** estimator.
+  - Each MLE value shrunken towards **grand mean**
+  - Data-based estimator, compromises between:
+    - null hypothesis: all means the same
+    - MLE assumption: no relationship between all $\mu_i$ values
+  - Difficult to estimate $p\ge 3$ parameters simultaneously.
+** Shrinkage Methods
+- Estimation in linear regression: JS works in only specific cases ([[It's a special case of linear regression]]) when $p\ge 3$
+- How to do better /generally/?
+- Shrinkage methods (penalized, regularized)
+  - Based on subtracting penalty from log-likelihood
+  - Penalty is a function of /decay parameter/
+  - Sort the variables to be included by size of /decay parameter/
+  - This reduces to a nested case
+  - After estimating /decay parameter/, variable or model selection is complete!
+*** Setting up shrinkage method
+- Needs: $Y_1, x_{11}, x_{12}, ..., x_{1,p}, \text{such that } i = 1,2,...,n$
+- Assume all X & Y are standardized i.e.:
+  $$
+  \sum^n_{i=1}Y_i = 0,
+  \sum^n_{i=i}x_{ij} = 0,
+  \sum^n_{i=1}x^2_{ij} = 1
+  $$
+- If not standardized, do linear transformations:
+  $$
+  Y^{*}_i = Y_i - \bar{Y}
+  $$
+
+  $$
+  x^{*}_{ij} = \frac{x_{ij}-\bar{x_j}}{\sqrt{\text{Var}_j}}
+  $$
+- With this assumption, $\beta_0 = 0$ in the model, i.e.
+  $$
+  Y_i = \bf{0 } \beta_1 x_{i1} + \beta_2 x_{i2} + ... + \beta_p x_{i,p} + \epsilon_i
+  $$
+- *The shrinkage method solves this optimization problem*
+
+  $$
+  \parallel
+  Y_{n\times 1}-X_{n\times p}\beta_{p\times 1}
+  \parallel^2 + \lambda\sum^p_{j=1}J(|\beta_j|)
+  $$
+  - penalty function :: $J(|\beta_j)$
+  - decay or tuning parameter :: $\lambda \ge 0$
+*** Alternative formulation
+- Shrinkage method solves the *unconstrained* optimization problem
+  $$
+  \parallel
+  Y_{n\times 1}-X_{n\times p}\beta_{p\times 1}
+  \parallel^2 + \lambda\sum^p_{j=1}J(|\beta_j|)
+  $$
+- Alternative formulation solves a *constrained* optimization problem
+
+  $$
+  \min_{\beta} \parallel Y_{n\times 1} - X_{n\times p} \beta_{p\times 1} \parallel^2, \text{ subject to: }
+  \sum^p_{j=1} J(|B_j|) \le s
+  $$
+  - tuning parameter :: $s \gt 0$
+
+- The alternative formulation may greatly facilitate computation *at times*, e.g. in LASSO which is piecewise linear in $s$.
+*** Bayesian interpretation
+-
