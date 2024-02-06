@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-02-05 Mon 19:38 -->
+<!-- 2024-02-06 Tue 22:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ISYE 7406: Data Mining and Statistical Learning</title>
@@ -44,21 +44,37 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgd1f32d9">1. Week 3: Linear Regression (II)</a>
+<li><a href="#orgf18457b">1. Week 3: Linear Regression (II)</a>
 <ul>
-<li><a href="#org18a5bfe">1.1. James-Stein Estimator</a>
+<li><a href="#org0222c3b">1.1. James-Stein Estimator</a>
 <ul>
-<li><a href="#org2ef5a6e">1.1.1. It's a special case of linear regression</a></li>
-<li><a href="#orgdbf79fd">1.1.2. Simultaneous estimation</a></li>
-<li><a href="#org8063f2f">1.1.3. JS estimator</a></li>
-<li><a href="#org1bff097">1.1.4. Baseball example</a></li>
-<li><a href="#org7c663aa">1.1.5. Comparing MLE and JS</a></li>
+<li><a href="#orgee2358b">1.1.1. It's a special case of linear regression</a></li>
+<li><a href="#orgb2fc69f">1.1.2. Simultaneous estimation</a></li>
+<li><a href="#org5381111">1.1.3. JS estimator</a></li>
+<li><a href="#orgf62a5fd">1.1.4. Baseball example</a></li>
+<li><a href="#org1e9cd06">1.1.5. Comparing MLE and JS</a></li>
 </ul>
 </li>
-<li><a href="#orgd660797">1.2. Shrinkage Methods</a>
+<li><a href="#orgf7e3635">1.2. Shrinkage Methods</a>
 <ul>
-<li><a href="#orgfbd5da3">1.2.1. Setting up shrinkage method</a></li>
-<li><a href="#org4a510b2">1.2.2. Alternative formulation</a></li>
+<li><a href="#org8e3ad2d">1.2.1. Setting up shrinkage method</a></li>
+<li><a href="#org769a51d">1.2.2. Alternative formulation</a></li>
+<li><a href="#org8502e39">1.2.3. Bayesian interpretation</a></li>
+<li><a href="#org6f9a3cd">1.2.4. Choices of priors</a></li>
+<li><a href="#org390d50c">1.2.5. Ridge regression</a></li>
+<li><a href="#orgf983f79">1.2.6. LASSO estimator</a></li>
+</ul>
+</li>
+<li><a href="#orgdb726db">1.3. Ridge Regression</a>
+<ul>
+<li><a href="#orgaab3000">1.3.1. Ridge Regression Estimator</a></li>
+<li><a href="#orgb9b8407">1.3.2. Mathematical solution</a></li>
+<li><a href="#orgdd1c101">1.3.3. Properties of Ridge Regression</a></li>
+<li><a href="#org27d60bd">1.3.4. Computational issues</a></li>
+<li><a href="#org75e600c">1.3.5. Example of SVD</a></li>
+<li><a href="#orgc96e41c">1.3.6. SVD Example (I): \(XX^T\)</a></li>
+<li><a href="#orgbf18b13">1.3.7. SVD Example (II): \(X^T X\)</a></li>
+<li><a href="#org92de112">1.3.8. SVD verification</a></li>
 </ul>
 </li>
 </ul>
@@ -66,19 +82,19 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd1f32d9" class="outline-2">
-<h2 id="orgd1f32d9"><span class="section-number-2">1.</span> Week 3: Linear Regression (II)</h2>
+<div id="outline-container-orgf18457b" class="outline-2">
+<h2 id="orgf18457b"><span class="section-number-2">1.</span> Week 3: Linear Regression (II)</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 M2T2
 </p>
 </div>
-<div id="outline-container-org18a5bfe" class="outline-3">
-<h3 id="org18a5bfe"><span class="section-number-3">1.1.</span> James-Stein Estimator</h3>
+<div id="outline-container-org0222c3b" class="outline-3">
+<h3 id="org0222c3b"><span class="section-number-3">1.1.</span> James-Stein Estimator</h3>
 <div class="outline-text-3" id="text-1-1">
 </div>
-<div id="outline-container-org2ef5a6e" class="outline-4">
-<h4 id="org2ef5a6e"><span class="section-number-4">1.1.1.</span> It's a special case of linear regression</h4>
+<div id="outline-container-orgee2358b" class="outline-4">
+<h4 id="orgee2358b"><span class="section-number-4">1.1.1.</span> It's a special case of linear regression</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <p>
 in LR model with
@@ -113,8 +129,8 @@ When \(\bf{p\ge 3}\), is it possible to do better than OLS?
 </p>
 </div>
 </div>
-<div id="outline-container-orgdbf79fd" class="outline-4">
-<h4 id="orgdbf79fd"><span class="section-number-4">1.1.2.</span> Simultaneous estimation</h4>
+<div id="outline-container-orgb2fc69f" class="outline-4">
+<h4 id="orgb2fc69f"><span class="section-number-4">1.1.2.</span> Simultaneous estimation</h4>
 <div class="outline-text-4" id="text-1-1-2">
 <ul class="org-ul">
 <li><p>
@@ -142,8 +158,8 @@ Is it possible to do better here?
 </ul>
 </div>
 </div>
-<div id="outline-container-org8063f2f" class="outline-4">
-<h4 id="org8063f2f"><span class="section-number-4">1.1.3.</span> JS estimator</h4>
+<div id="outline-container-org5381111" class="outline-4">
+<h4 id="org5381111"><span class="section-number-4">1.1.3.</span> JS estimator</h4>
 <div class="outline-text-4" id="text-1-1-3">
 <ul class="org-ul">
 <li><p>
@@ -170,8 +186,8 @@ Showed MLS/MLE estimator inadmissible for \(p\ge 3\); dominated by JS estimator.
 </ul>
 </div>
 </div>
-<div id="outline-container-org1bff097" class="outline-4">
-<h4 id="org1bff097"><span class="section-number-4">1.1.4.</span> Baseball example</h4>
+<div id="outline-container-orgf62a5fd" class="outline-4">
+<h4 id="orgf62a5fd"><span class="section-number-4">1.1.4.</span> Baseball example</h4>
 <div class="outline-text-4" id="text-1-1-4">
 <ul class="org-ul">
 <li>Observe \(Y_1, Y_2, ... Y_p\) batting averages (where \(Y_i\) is the batting average for p=18 players), 45 AB</li>
@@ -181,8 +197,8 @@ Showed MLS/MLE estimator inadmissible for \(p\ge 3\); dominated by JS estimator.
 </ul>
 </div>
 </div>
-<div id="outline-container-org7c663aa" class="outline-4">
-<h4 id="org7c663aa"><span class="section-number-4">1.1.5.</span> Comparing MLE and JS</h4>
+<div id="outline-container-org1e9cd06" class="outline-4">
+<h4 id="org1e9cd06"><span class="section-number-4">1.1.5.</span> Comparing MLE and JS</h4>
 <div class="outline-text-4" id="text-1-1-5">
 <ul class="org-ul">
 <li>JS has lower predictive squared error than MLS (by 50%)</li>
@@ -200,11 +216,11 @@ Showed MLS/MLE estimator inadmissible for \(p\ge 3\); dominated by JS estimator.
 </div>
 </div>
 </div>
-<div id="outline-container-orgd660797" class="outline-3">
-<h3 id="orgd660797"><span class="section-number-3">1.2.</span> Shrinkage Methods</h3>
+<div id="outline-container-orgf7e3635" class="outline-3">
+<h3 id="orgf7e3635"><span class="section-number-3">1.2.</span> Shrinkage Methods</h3>
 <div class="outline-text-3" id="text-1-2">
 <ul class="org-ul">
-<li>Estimation in linear regression: JS works in only specific cases (<a href="#org2ef5a6e">1.1.1</a>) when \(p\ge 3\)</li>
+<li>Estimation in linear regression: JS works in only specific cases (<a href="#orgee2358b">1.1.1</a>) when \(p\ge 3\)</li>
 <li>How to do better <i>generally</i>?</li>
 <li>Shrinkage methods (penalized, regularized)
 <ul class="org-ul">
@@ -216,8 +232,8 @@ Showed MLS/MLE estimator inadmissible for \(p\ge 3\); dominated by JS estimator.
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-orgfbd5da3" class="outline-4">
-<h4 id="orgfbd5da3"><span class="section-number-4">1.2.1.</span> Setting up shrinkage method</h4>
+<div id="outline-container-org8e3ad2d" class="outline-4">
+<h4 id="org8e3ad2d"><span class="section-number-4">1.2.1.</span> Setting up shrinkage method</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <ul class="org-ul">
 <li>Needs: \(Y_1, x_{11}, x_{12}, ..., x_{1,p}, \text{such that } i = 1,2,...,n\)</li>
@@ -261,8 +277,8 @@ If not standardized, do linear transformations:
 </ul>
 </div>
 </div>
-<div id="outline-container-org4a510b2" class="outline-4">
-<h4 id="org4a510b2"><span class="section-number-4">1.2.2.</span> Alternative formulation</h4>
+<div id="outline-container-org769a51d" class="outline-4">
+<h4 id="org769a51d"><span class="section-number-4">1.2.2.</span> Alternative formulation</h4>
 <div class="outline-text-4" id="text-1-2-2">
 <ul class="org-ul">
 <li>Shrinkage method solves the <b>unconstrained</b> optimization problem
@@ -284,7 +300,322 @@ Alternative formulation solves a <b>constrained</b> optimization problem
 <dl class="org-dl">
 <dt>tuning parameter</dt><dd>\(s \gt 0\)</dd>
 </dl></li>
+
+<li>The alternative formulation may greatly facilitate computation <b>at times</b>, e.g. in LASSO which is piecewise linear in \(s\).</li>
 </ul>
+</div>
+</div>
+<div id="outline-container-org8502e39" class="outline-4">
+<h4 id="org8502e39"><span class="section-number-4">1.2.3.</span> Bayesian interpretation</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<ul class="org-ul">
+<li>For LR model (<a href="#orgee2358b">1.1.1</a>):
+<dl class="org-dl">
+<dt>prior on &beta;</dt><dd>\(\pi(\beta)\)</dd>
+<dt>independent prior on \(\sigma^2\)</dt><dd>\(\pi(\sigma^2)\)</dd>
+<dt>posterior for \((\beta, sigma^2)\)</dt><dd>proportional to
+\[
+    \pi (\sigma^2)(\sigma^2)^{(n-1)/2}\exp\{-\frac{1}{2\sigma^2} \parallel Y_{n\times 1} - X_{n\times p} \beta_{p\times 1} \parallel^2 + \log \pi(\beta) \}
+    \]</dd>
+</dl></li>
+<li><p>
+<b>Posterior maximization method</b> yields shrinkage estimator
+</p>
+
+<p>
+\[
+  \parallel Y_{n\times 1} - X_{n\times p} \beta_{p\times 1} \parallel^2 + \lambda \textbf{Pen}(\beta)
+  \]
+</p></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org6f9a3cd" class="outline-4">
+<h4 id="org6f9a3cd"><span class="section-number-4">1.2.4.</span> Choices of priors</h4>
+<div class="outline-text-4" id="text-1-2-4">
+<p>
+i.e. choice of prior \(\pi(\beta)\)
+</p>
+<dl class="org-dl">
+<dt>Normal prior</dt><dd>yields <b>ridge regression</b> etsimator</dd>
+<dt>Laplace prior</dt><dd>yields <b>LASSO</b> estimator</dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-org390d50c" class="outline-4">
+<h4 id="org390d50c"><span class="section-number-4">1.2.5.</span> Ridge regression</h4>
+<div class="outline-text-4" id="text-1-2-5">
+<p>
+<b>Normal prior</b> assumes \(\beta_1 ... \beta_p\) are i.i.d. \(N(0, \tau^2)\) with prior density
+\[
+\pi(\beta) = \prod^p_{i=1} \frac{1}{\sqrt{2\pi}\tau} \exp\left
+(-\frac{1}{2\tau^2}\beta_i^2\right)
+\]
+</p>
+
+<p>
+Yields <b>ridge regression</b> estimator, which minimizes
+</p>
+
+<p>
+\[
+\parallel Y_{n\times 1} - X_{n\times p} \beta_{p\times 1} \parallel^2 + \lambda \sum^p_{j=1}(\beta_i)^2
+\]
+</p>
+</div>
+</div>
+<div id="outline-container-orgf983f79" class="outline-4">
+<h4 id="orgf983f79"><span class="section-number-4">1.2.6.</span> LASSO estimator</h4>
+<div class="outline-text-4" id="text-1-2-6">
+<ul class="org-ul">
+<li><b>Laplace Prior</b>, assume  \(\beta_1 ... \beta_p\) are i.i.d. double-exponential (Laplace) \(\sim \text{Lapalce} (,\tau)\) with prior density
+\[
+  \pi(\beta) = \prod^p_{i=1} \frac{1}{2\tau} \exp \left(- \frac{1}{\tau} |\beta_i| \right)
+  \]</li>
+<li><p>
+Yields <b>LASSO</b> estimator that minimizes
+</p>
+
+<p>
+\[
+  \parallel Y_{n\times 1} - X_{n\times p} \beta_{p\times 1} \parallel^2 + \lambda \sum^p_{j=1}|\beta_i|
+  \]
+</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgdb726db" class="outline-3">
+<h3 id="orgdb726db"><span class="section-number-3">1.3.</span> Ridge Regression</h3>
+<div class="outline-text-3" id="text-1-3">
+</div>
+<div id="outline-container-orgaab3000" class="outline-4">
+<h4 id="orgaab3000"><span class="section-number-4">1.3.1.</span> Ridge Regression Estimator</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<p>
+Assume these are observed: \(Y_i, x_{i1}, ..., x_{ip}\), and all are standardized:
+\[
+\sum^n_{i=1} Y_i = 0,
+\sum^n_{i=1} x_{ij} = 0,
+\sum^n_{i=1} x^2_{ij} = 1
+\]
+</p>
+
+<p>
+In linear regression model without intercepts (<a href="#orgee2358b">1.1.1</a>)
+</p>
+
+<p>
+The ridge regression estimator is defined as:
+</p>
+
+<p>
+\[
+\hat{\beta^{\text{ridge}}} = \min_{\beta}
+  \parallel Y_{n\times 1} - X_{n\times p} \beta_{p\times 1} \parallel^2 + \lambda \sum^p_{j=1}(\beta_i)^2
+\]
+</p>
+</div>
+</div>
+<div id="outline-container-orgb9b8407" class="outline-4">
+<h4 id="orgb9b8407"><span class="section-number-4">1.3.2.</span> Mathematical solution</h4>
+<div class="outline-text-4" id="text-1-3-2">
+<ul class="org-ul">
+<li>Explicit expression is thus
+\[
+  \hat{\beta^{\text{ridge}}} = (X^T_{n\times p}X_{n\times p}+\lambda I_{p\times p})^{-1} X^T_{n\times p}Y_{n\times 1}
+  \]</li>
+<li>Ridge regression <b>estimator or prediction</b>:
+\[
+  \hat{Y}^{\text{ridge}} = X_{n\times p}  \hat{\beta^{\text{ridge}}}
+  \]</li>
+<li>Requires <b>choosing</b> the tuning parameter \(\lambda\), based on data, usually <b>by cross-validation</b></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgdd1c101" class="outline-4">
+<h4 id="orgdd1c101"><span class="section-number-4">1.3.3.</span> Properties of Ridge Regression</h4>
+<div class="outline-text-4" id="text-1-3-3">
+<ul class="org-ul">
+<li>Ridge regression <b>most useful</b> when \(X_{n\times p}\) is <b>non-singular</b>, but has <b>high collinearity</b>
+<ul class="org-ul">
+<li>i.e. \(X^T_{n\times p} X_{n\times p}\) has eigenvalue close to 0</li>
+</ul></li>
+<li>\(\hat{\beta^{\text{ridge}}}\) is biased, with bias \(\rightarrow\) 0 as \(\lambda \rightarrow 0\)</li>
+<li>As \(\lambda\) increases, \(\hat{\beta^{\text{ridge}}}\) \(\rightarrow 0\), though rarely = 0.</li>
+<li>Despite the bias, \(\text{Var}(\hat{\beta^{\text{ridge}}})\) will usually be smaller than OLS
+<ul class="org-ul">
+<li>Therefore better prediction than OLS.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org27d60bd" class="outline-4">
+<h4 id="org27d60bd"><span class="section-number-4">1.3.4.</span> Computational issues</h4>
+<div class="outline-text-4" id="text-1-3-4">
+<ul class="org-ul">
+<li>How to compute ridge regression efficiently for any \(\lambda\)?
+\[
+  \hat{\beta^{\text{ridge}}} = (X^T_{n\times p}X_{n\times p}+\lambda I_{p\times p})^{-1} X^T_{n\times p}Y_{n\times 1}
+  \]</li>
+<li>It is highly non-trivial to compute the inverse of a large \(p\times p\) matrix.</li>
+<li><b>Singular Value Decomposition</b> (SVD) algorithm:
+<ul class="org-ul">
+<li>Write the matrix \(X_{n\times p}\) in its SVD form
+\[
+    X_{n\times p} = U_{n\times p} D_{p\times p} V^T_{p\times p}
+    \]
+where: \(U\) and $V are orthogonal; D = diag(\(d_1, ..., d_p\)) is diagonal.</li>
+</ul></li>
+<li>Then: ridge regression estimator becomes the matrix product:
+\[
+   \hat{\beta^{\text{ridge}}} = V_{p\times p} \text{diag} \left(\frac{d_1}{d^2_1 + \lambda}, ..., \frac{d_p}{d^2_p + \lambda} \right) U^T_{p\times n} Y_{n\times 1}
+  \]</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org75e600c" class="outline-4">
+<h4 id="org75e600c"><span class="section-number-4">1.3.5.</span> Example of SVD</h4>
+<div class="outline-text-4" id="text-1-3-5">
+<ul class="org-ul">
+<li>Find SVD of matrix
+\[
+  X_{3 \times 2}
+  = \begin{pmatrix}
+  1 & 0 \\
+  0 & 1 \\
+  1 & 1 \\
+  \end{pmatrix}
+  = U_{n\times p} D_{p\times p} V^T_{p\times p}
+  \]</li>
+<li>Steps (required: \(p \leq n\)):
+<ol class="org-ol">
+<li>\(U_{n\times p}\) is the normalized \(p\) (largest) eigenvectors of \(XX^T\)</li>
+<li>\(V_{p\times p}\) is the normalized eigenvectors of \(X^T X\)</li>
+<li>Matrix \(D = \text{diag}(d_1, ..., d_p)\) with \(d_j\) being the square root of \(p\) (largest) eigenvalues of \(XX^T\) or \(X^T X\).</li>
+</ol></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc96e41c" class="outline-4">
+<h4 id="orgc96e41c"><span class="section-number-4">1.3.6.</span> SVD Example (I): \(XX^T\)</h4>
+<div class="outline-text-4" id="text-1-3-6">
+<p>
+For matrix <a href="#org75e600c">1.3.5</a>:
+we have
+\[
+XX^T = \begin{pmatrix}
+1 & 0 & 1\\
+0 & 1 & 1 \\
+1 & 1 &2\end{pmatrix}
+\]
+</p>
+<ul class="org-ul">
+<li>Characteristic polynomial is
+\(-\lambda^3 + 4\lambda^2 - 3\lambda = -\lambda(\lambda-1)(\lambda-3)\)</li>
+<li>The eigenvalues of \(XX^T\) are \(\lambda = 3, 1, 0\)</li>
+<li>Corresponding eigenvectors are:
+\[
+  u'_1 = \begin{pmatrix}
+  1 \\
+  1 \\
+  2\end{pmatrix},
+  u'_2 = \begin{pmatrix}
+  1 \\
+  -1 \\
+  0\end{pmatrix},
+  u'_3 = \begin{pmatrix}
+  1 \\
+  1 \\
+  -1\end{pmatrix},
+  \]</li>
+<li>Normalizing yields
+\[
+  U_{3\times 2} = \begin{pmatrix}
+  1\over{\sqrt{6}} & 1\over{\sqrt{2}} \\
+  1\over{\sqrt{6}} & -1\over{\sqrt{2}} \\
+  2\over{\sqrt{6}} & 0 \end{pmatrix},
+  \]</li>
+<li>\(d_1 = \sqrt{3}, d_2 = \sqrt{1} = 1\)</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgbf18b13" class="outline-4">
+<h4 id="orgbf18b13"><span class="section-number-4">1.3.7.</span> SVD Example (II): \(X^T X\)</h4>
+<div class="outline-text-4" id="text-1-3-7">
+<p>
+For matrix <a href="#org75e600c">1.3.5</a>:
+\[
+X^T X
+= \begin{pmatrix}
+2 & 1 \\
+1 & 2 \\
+\end{pmatrix}
+\]
+</p>
+
+<ul class="org-ul">
+<li>Characteristic polynomial is
+\(\lambda^2 - 4\lambda + 3 = (\lambda -1)(\lambda -3)\)</li>
+<li>Eigenvalues of \(XX^T\) are: \(\lambda = 3, 1\).</li>
+<li>Corresponding eigenvalues are:
+\[
+  v'_1 = \begin{pmatrix}
+  1 \\
+  1\end{pmatrix},
+  v'_2 = \begin{pmatrix}
+  1 \\
+  -1\end{pmatrix}
+  \]</li>
+<li>Normalizing them yields:
+\[
+  V_{2\times 2} = (v_1, v_2) =
+  \begin{pmatrix}
+  1\over\sqrt{2} & 1\over\sqrt{2} \\
+  1\over\sqrt{2} & -1\over\sqrt{2}\end{pmatrix},
+  \]</li>
+<li>\(d_1 = \sqrt{3}, d_2 = \sqrt{1} = 1\)</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org92de112" class="outline-4">
+<h4 id="org92de112"><span class="section-number-4">1.3.8.</span> SVD verification</h4>
+<div class="outline-text-4" id="text-1-3-8">
+<p>
+Might need to multiply some eigenvectors by -1.
+</p>
+
+<p>
+\[
+X_{n\times p} =
+\]
+</p>
+
+\begin{pmatrix}
+1 & 0 \\
+0 & 1 \\
+1 & 1\end{pmatrix}
+
+<p>
+\(=\)
+</p>
+
+
+\begin{pmatrix}
+1\over{\sqrt{6}} & 1\over{\sqrt{2}} \\
+1\over{\sqrt{6}} & -1\over{\sqrt{2}} \\
+2\over{\sqrt{6}} & 0\end{pmatrix}
+\begin{pmatrix}
+\sqrt{3} & 0 \\
+0 & 1\end{pmatrix}
+\begin{pmatrix}
+1\over{\sqrt{2}} & 1\over{\sqrt{2}} \\
+1\over{\sqrt{2}} & -1\over{\sqrt{2}}\end{pmatrix}
+
+<p>
+\(= U_{n\times p} D_{p\times p}V^T_{p\times p}\)
+</p>
 </div>
 </div>
 </div>
@@ -292,7 +623,7 @@ Alternative formulation solves a <b>constrained</b> optimization problem
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: W</p>
-<p class="date">Created: 2024-02-05 Mon 19:38</p>
+<p class="date">Created: 2024-02-06 Tue 22:28</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

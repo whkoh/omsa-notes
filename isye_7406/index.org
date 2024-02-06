@@ -119,4 +119,199 @@ When $\bf{p\ge 3}$, is it possible to do better than OLS?
 
 - The alternative formulation may greatly facilitate computation *at times*, e.g. in LASSO which is piecewise linear in $s$.
 *** Bayesian interpretation
--
+- For LR model ([[It's a special case of linear regression]]):
+  - prior on \beta :: $\pi(\beta)$
+  - independent prior on $\sigma^2$ :: $\pi(\sigma^2)$
+  - posterior for $(\beta, sigma^2)$ :: proportional to
+    $$
+    \pi (\sigma^2)(\sigma^2)^{(n-1)/2}\exp\{-\frac{1}{2\sigma^2} \parallel Y_{n\times 1} - X_{n\times p} \beta_{p\times 1} \parallel^2 + \log \pi(\beta) \}
+    $$
+- *Posterior maximization method* yields shrinkage estimator
+
+  $$
+  \parallel Y_{n\times 1} - X_{n\times p} \beta_{p\times 1} \parallel^2 + \lambda \textbf{Pen}(\beta)
+  $$
+*** Choices of priors
+i.e. choice of prior $\pi(\beta)$
+- Normal prior :: yields *ridge regression* etsimator
+- Laplace prior :: yields *LASSO* estimator
+*** Ridge regression
+*Normal prior* assumes $\beta_1 ... \beta_p$ are i.i.d. $N(0, \tau^2)$ with prior density
+$$
+\pi(\beta) = \prod^p_{i=1} \frac{1}{\sqrt{2\pi}\tau} \exp\left
+(-\frac{1}{2\tau^2}\beta_i^2\right)
+$$
+
+Yields *ridge regression* estimator, which minimizes
+
+$$
+\parallel Y_{n\times 1} - X_{n\times p} \beta_{p\times 1} \parallel^2 + \lambda \sum^p_{j=1}(\beta_i)^2
+$$
+*** LASSO estimator
+- *Laplace Prior*, assume  $\beta_1 ... \beta_p$ are i.i.d. double-exponential (Laplace) $\sim \text{Lapalce} (,\tau)$ with prior density
+  $$
+  \pi(\beta) = \prod^p_{i=1} \frac{1}{2\tau} \exp \left(- \frac{1}{\tau} |\beta_i| \right)
+  $$
+- Yields *LASSO* estimator that minimizes
+
+  $$
+  \parallel Y_{n\times 1} - X_{n\times p} \beta_{p\times 1} \parallel^2 + \lambda \sum^p_{j=1}|\beta_i|
+  $$
+** Ridge Regression
+*** Ridge Regression Estimator
+Assume these are observed: $Y_i, x_{i1}, ..., x_{ip}$, and all are standardized:
+$$
+\sum^n_{i=1} Y_i = 0,
+\sum^n_{i=1} x_{ij} = 0,
+\sum^n_{i=1} x^2_{ij} = 1
+$$
+
+In linear regression model without intercepts ([[It's a special case of linear regression]])
+
+The ridge regression estimator is defined as:
+
+$$
+\hat{\beta^{\text{ridge}}} = \min_{\beta}
+  \parallel Y_{n\times 1} - X_{n\times p} \beta_{p\times 1} \parallel^2 + \lambda \sum^p_{j=1}(\beta_i)^2
+$$
+*** Mathematical solution
+- Explicit expression is thus
+  $$
+  \hat{\beta^{\text{ridge}}} = (X^T_{n\times p}X_{n\times p}+\lambda I_{p\times p})^{-1} X^T_{n\times p}Y_{n\times 1}
+  $$
+- Ridge regression *estimator or prediction*:
+  $$
+  \hat{Y}^{\text{ridge}} = X_{n\times p}  \hat{\beta^{\text{ridge}}}
+  $$
+- Requires *choosing* the tuning parameter $\lambda$, based on data, usually *by cross-validation*
+*** Properties of Ridge Regression
+- Ridge regression *most useful* when $X_{n\times p}$ is *non-singular*, but has *high collinearity*
+  - i.e. $X^T_{n\times p} X_{n\times p}$ has eigenvalue close to 0
+- $\hat{\beta^{\text{ridge}}}$ is biased, with bias $\rightarrow$ 0 as $\lambda \rightarrow 0$
+- As $\lambda$ increases, $\hat{\beta^{\text{ridge}}}$ $\rightarrow 0$, though rarely = 0.
+- Despite the bias, $\text{Var}(\hat{\beta^{\text{ridge}}})$ will usually be smaller than OLS
+  - Therefore better prediction than OLS.
+*** Computational issues
+- How to compute ridge regression efficiently for any $\lambda$?
+  $$
+  \hat{\beta^{\text{ridge}}} = (X^T_{n\times p}X_{n\times p}+\lambda I_{p\times p})^{-1} X^T_{n\times p}Y_{n\times 1}
+  $$
+- It is highly non-trivial to compute the inverse of a large $p\times p$ matrix.
+- *Singular Value Decomposition* (SVD) algorithm:
+  - Write the matrix $X_{n\times p}$ in its SVD form
+    $$
+    X_{n\times p} = U_{n\times p} D_{p\times p} V^T_{p\times p}
+    $$
+    where: $U$ and $V are orthogonal; D = diag($d_1, ..., d_p$) is diagonal.
+- Then: ridge regression estimator becomes the matrix product:
+  $$
+   \hat{\beta^{\text{ridge}}} = V_{p\times p} \text{diag} \left(\frac{d_1}{d^2_1 + \lambda}, ..., \frac{d_p}{d^2_p + \lambda} \right) U^T_{p\times n} Y_{n\times 1}
+  $$
+*** Example of SVD
+- Find SVD of matrix
+  $$
+  X_{3 \times 2}
+  = \begin{pmatrix}
+  1 & 0 \\
+  0 & 1 \\
+  1 & 1 \\
+  \end{pmatrix}
+  = U_{n\times p} D_{p\times p} V^T_{p\times p}
+  $$
+- Steps (required: $p \leq n$):
+  1. $U_{n\times p}$ is the normalized $p$ (largest) eigenvectors of $XX^T$
+  2. $V_{p\times p}$ is the normalized eigenvectors of $X^T X$
+  3. Matrix $D = \text{diag}(d_1, ..., d_p)$ with $d_j$ being the square root of $p$ (largest) eigenvalues of $XX^T$ or $X^T X$.
+*** SVD Example (I): $XX^T$
+For matrix [[Example of SVD]]:
+we have
+$$
+XX^T = \begin{pmatrix}
+1 & 0 & 1\\
+0 & 1 & 1 \\
+1 & 1 &2\end{pmatrix}
+$$
+- Characteristic polynomial is
+  $-\lambda^3 + 4\lambda^2 - 3\lambda = -\lambda(\lambda-1)(\lambda-3)$
+- The eigenvalues of $XX^T$ are $\lambda = 3, 1, 0$
+- Corresponding eigenvectors are:
+  $$
+  u'_1 = \begin{pmatrix}
+  1 \\
+  1 \\
+  2\end{pmatrix},
+  u'_2 = \begin{pmatrix}
+  1 \\
+  -1 \\
+  0\end{pmatrix},
+  u'_3 = \begin{pmatrix}
+  1 \\
+  1 \\
+  -1\end{pmatrix},
+  $$
+- Normalizing yields
+  $$
+  U_{3\times 2} = \begin{pmatrix}
+  1\over{\sqrt{6}} & 1\over{\sqrt{2}} \\
+  1\over{\sqrt{6}} & -1\over{\sqrt{2}} \\
+  2\over{\sqrt{6}} & 0 \end{pmatrix},
+  $$
+- $d_1 = \sqrt{3}, d_2 = \sqrt{1} = 1$
+
+*** SVD Example (II): $X^T X$
+For matrix [[Example of SVD]]:
+$$
+X^T X
+= \begin{pmatrix}
+2 & 1 \\
+1 & 2 \\
+\end{pmatrix}
+$$
+
+- Characteristic polynomial is
+  $\lambda^2 - 4\lambda + 3 = (\lambda -1)(\lambda -3)$
+- Eigenvalues of $XX^T$ are: $\lambda = 3, 1$.
+- Corresponding eigenvalues are:
+  $$
+  v'_1 = \begin{pmatrix}
+  1 \\
+  1\end{pmatrix},
+  v'_2 = \begin{pmatrix}
+  1 \\
+  -1\end{pmatrix}
+  $$
+- Normalizing them yields:
+  $$
+  V_{2\times 2} = (v_1, v_2) =
+  \begin{pmatrix}
+  1\over\sqrt{2} & 1\over\sqrt{2} \\
+  1\over\sqrt{2} & -1\over\sqrt{2}\end{pmatrix},
+  $$
+- $d_1 = \sqrt{3}, d_2 = \sqrt{1} = 1$
+*** SVD verification
+Might need to multiply some eigenvectors by -1.
+
+$$
+X_{n\times p} =
+$$
+
+\begin{pmatrix}
+1 & 0 \\
+0 & 1 \\
+1 & 1\end{pmatrix}
+
+$=$
+
+
+\begin{pmatrix}
+1\over{\sqrt{6}} & 1\over{\sqrt{2}} \\
+1\over{\sqrt{6}} & -1\over{\sqrt{2}} \\
+2\over{\sqrt{6}} & 0\end{pmatrix}
+\begin{pmatrix}
+\sqrt{3} & 0 \\
+0 & 1\end{pmatrix}
+\begin{pmatrix}
+1\over{\sqrt{2}} & 1\over{\sqrt{2}} \\
+1\over{\sqrt{2}} & -1\over{\sqrt{2}}\end{pmatrix}
+
+$= U_{n\times p} D_{p\times p}V^T_{p\times p}$
