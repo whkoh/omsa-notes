@@ -315,3 +315,18 @@ $=$
 1\over{\sqrt{2}} & -1\over{\sqrt{2}}\end{pmatrix}
 
 $= U_{n\times p} D_{p\times p}V^T_{p\times p}$
+
+$$
+= \lambda_1 u_1 v^T_1 + \lambda_2 u_2 v^T_2 =
+$$
+
+0.5
+\begin{pmatrix}
+1 & 1 \\
+1 & 1 \\
+2 & 2 \end{pmatrix} +
+0.5
+\begin{pmatrix}
+1 & -1 \\
+-1 & 1 \\
+0 & 0 \end{pmatrix}
