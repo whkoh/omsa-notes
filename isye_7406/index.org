@@ -291,18 +291,14 @@ $$
 *** SVD verification
 Might need to multiply some eigenvectors by -1.
 
-$$
-X_{n\times p} =
-$$
-
+\begin{equation}
+X_{n\times p}
+=
 \begin{pmatrix}
 1 & 0 \\
 0 & 1 \\
 1 & 1\end{pmatrix}
-
-$=$
-
-
+=
 \begin{pmatrix}
 1\over{\sqrt{6}} & 1\over{\sqrt{2}} \\
 1\over{\sqrt{6}} & -1\over{\sqrt{2}} \\
@@ -314,19 +310,104 @@ $=$
 1\over{\sqrt{2}} & 1\over{\sqrt{2}} \\
 1\over{\sqrt{2}} & -1\over{\sqrt{2}}\end{pmatrix}
 
-$= U_{n\times p} D_{p\times p}V^T_{p\times p}$
+= U_{n\times p} D_{p\times p}V^T_{p\times p}
+\end{equation}
 
-$$
+\begin{equation}
 = \lambda_1 u_1 v^T_1 + \lambda_2 u_2 v^T_2 =
-$$
-
-0.5
-\begin{pmatrix}
+0.5\begin{pmatrix}
 1 & 1 \\
 1 & 1 \\
 2 & 2 \end{pmatrix} +
-0.5
-\begin{pmatrix}
+0.5\begin{pmatrix}
 1 & -1 \\
 -1 & 1 \\
 0 & 0 \end{pmatrix}
+\end{equation}
+** LASSO (3.2.1)
+*** LASSO estimator
+- Assume these are observed: $Y_i, x_{i1}, ..., x_{ip}$, and all are standardized:
+$$
+\sum^n_{i=1} Y_i = 0,
+\sum^n_{i=1} x_{ij} = 0,
+\sum^n_{i=1} x^2_{ij} = 1
+$$
+
+In linear regression model without intercepts ([[It's a special case of linear regression]])
+
+- LASSO :: Least Absolute Selection and Shrinkage Operator
+
+- Definition ::
+
+  $$
+  \hat{\beta}^{\text{lasso}} = \min_\beta \parallel Y_{n\times 1} - X_{n\times p} \beta_{p\times 1} \parallel^2 + \lambda \sum^p_{j=1} |\beta_j|
+  $$
+- s.t. :: tuning parameter $\lambda > 0$
+*** L2-norm vs L1-norm
+[[./img/l2-l1-norm.png]]
+- L1-norm: *sparse*, as boundary points of the L1-norm ball have lower dimensions (are in lower-dimensional space, $x_1 = 0, or x_2=0$)
+*** Mathematical solution for LASSO estimator
+- In the LASSO optimization, there is *no explicit* mathematical solution to $\hat{\beta}^{\text{lasso}}$
+- Hence, need to use computational algorithms to get solution
+- Explicit solution only available when $X^T X = I_{n\times n}$
+  - In this case, LASSO estimator is:
+
+    \begin{equation}
+    \hat{\beta}^{\text{lasso}}_j =
+    \begin{cases}
+      \hat{\beta}_j^{ols} - \frac{\lambda}{2} & \text{if }\hat{\beta}_j^{ols}> \frac{\lambda}{2}\\
+      0 & \text{if }|\hat{\beta}_j^{ols}| \leq \frac{\lambda}{2}\\
+      \hat{\beta}_j^{ols} + \frac{\lambda}{2} & \text{if }\hat{\beta}_j^{ols} < -\frac{\lambda}{2}\\
+    \end{cases}
+    \end{equation}
+- As: LASSO can be simplified to 1-dimensional optimization problem
+
+  $$
+  \min_{-\infty < x < \infty} (x - \hat{\beta}_j^{ols})^2 + \lambda |x|
+  $$
+
+since:
+
+$$
+\parallel Y - X\beta \parallel^2 = \parallel Y-X\hat{\beta}^{ols} \parallel^2 + (\beta - \hat{\beta}^{ols})^T X^T X(\beta - \hat{\beta}^{ols})
+$$
+*** Properties of LASSO
+- *Good empirical performance when true model is sparse*
+  - If so, outperforms AIC, BIC, stepwise, ridge
+- Nice theoretical properties, i.e. high probability of the following under certain regularity conditions:
+  - parameter recovery :: when $|\hat{\beta}_j^{lasso}-\hat{\beta}^{true}|^2$ is small
+  - variable selection :: $\textbf{supp}(\hat{\beta}_j^{lasso}) = \textbf{supp}(\beta^{true})$
+  - prediction error bound ::  $|X\hat{\beta}_j^{lasso} - X\beta^{true}|^2$ is small
+*** LASSO weaknesses
+- Not always consistent
+- Tends to select over-parameterized model
+- Does poorly when
+  1. True model is *not sparse*
+  2. When few X variables are highly correlated (LASSO picks 1 randomly)
+  3. When the design $X$ matrix is too correlated (Ridge outperforms)
+  4. When there are outliers in responses
+*** Computation issues of LASSO
+- Computation algorithms include:
+  - Coordinate descent
+  - Sub-gradient methods
+  - Proximal gradient methods
+- Would be ideal to compute entire solution path all at once, i.e. for all values for $\lambda$ simultaneously.
+*** LASSO is piecewise linear
+- The number of linear pieces in LASSO path is approximately $p$,
+- The computational complexity of getting whole LASSO path is $O(np^2)$
+  - i.e. same cost as computing least-squares fit
+*** Standard error of LASSO
+- How to estimate standard error of LASSO estimator i.e.
+  $$
+  \hat{\beta}^{\text{lasso}} = \min_\beta \parallel Y_{n\times 1} - X_{n\times p} \beta_{p\times 1} \parallel^2 + \lambda \sum^p_{j=1} |\beta_j|
+  $$
+- Answer: bootstrapping:
+  1. Fix $\lambda$, generate a set of bootstrap samples
+  2. Obtain corresponding $\hat{\beta}^{lasso}(\lambda)$
+  3. Repeat for $L$ times and use them to estimate standard error
+  4. If not determined/fixed, $\lambda$ can be estimated by cross-validation (e.g. 5 fold CV).
+*** Variants of L1-norm
+- Elastic net
+  $$
+  \hat{\beta}^{enet} = \min_\beta \parallel Y_{n\times 1} - X_{n \times p} \beta_{p \times 1} \parallel^2 + \lambda_1 \sum^p_{j=1} |\beta_j| + \lambda_2 \sum^p_j (\beta_j)^2
+  $$
