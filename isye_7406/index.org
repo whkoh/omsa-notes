@@ -411,3 +411,144 @@ $$
   $$
   \hat{\beta}^{enet} = \min_\beta \parallel Y_{n\times 1} - X_{n \times p} \beta_{p \times 1} \parallel^2 + \lambda_1 \sum^p_{j=1} |\beta_j| + \lambda_2 \sum^p_j (\beta_j)^2
   $$
+** Principal Components (3.2.2)
+Assume these are observed: $Y_i, x_{i1}, ..., x_{ip}$ for $i=1,2,...,n$
+
+Classical datasets: mostly small values of $p$; modern datasets: large $p$.
+
+Essential to conduct *dimension reduction* to reduce the number of variables.
+*** Dimension reduction
+- 2 approaches:
+  1. *variable selection*, i.e.: AIC, BIC, stepwise algorithm, LASSO, etc.
+  2. *feature extraction*, i.e. identify which functions of data are most important. *no restricted* to using existing features/variables. Options are:
+     - Principal component analysis
+     - Partial least squares
+*** Motivation of PCA
+"Obtain more variance by transforming axes"
+- Find *linear combinations* of $(x_1, ..., x_p)$ that express as much variability in $X$ as possible.
+  - A linear combination with *high* variance will likely affect the response the most
+  - If most variation of $X$ comes from the first few PCs then: enough to build models.
+  - Other linear combination vary so little among different observations \rightarrow can be ignored
+*** Find the PC's:  Population version
+- *Optimization problem for PC's*: Given a $p$ -dim random vector
+  $$
+  \textbf{X} = (X_1, ..., X_p)^T, \text{ with covariance } \Sigma = \text{Cov}(X)
+  $$
+- PC1: Find $U_1 = \alpha_1 X_1 + ... + \alpha_p X_p$ that maximizes
+  $$
+  \textbf{Var}(\alpha_1 X_1 + ... + \alpha_p X_p) = \textbf{Var}(\alpha^T \textbf{X}) = \alpha^T \Sigma \alpha
+  $$
+  subject to:
+  $$
+  \alpha^2_1 + ... \alpha^2_p = 1, \text{i.e. } \alpha^T \alpha = 1, \text{where } \alpha = (\alpha_1, ..., \alpha_p)^T
+  $$
+- PC2: Find $U_2 = \alpha_1 X_1 + ... + \alpha_p X_p$ that maximizes \text{Var}(\alpha^T X) = \alpha^T \Sigma\alpha$, subject to *constraints*: - $\alpha^T \alpha = 1$
+  - $\text{Cov}(U_1, U_2) = 0$
+- Other (later) PC are defined analogously and uncorrelated with all previous PC's
+*** Eigenvectors lead to PC's
+- Theorem: Let covariance matrix $\bf{\Sigma} = \text{Cov}(\bf{X})$ have eignvectors $e_1, ..., e_p$ with corresponding eigenvalues $\lambda_1 \ge ... \ge \lambda_p \ge 0$. For $j=1,2,...,p$,
+  - $j$ -th PC is
+    $$
+    U_j = e_j^T X = e_{j1}X_1 + ... + e_{jp}X_p
+    $$
+  - Variance of $j$ -th PC is
+    $$
+    \text{Var}(U_j) = \bf{e_j^T\Sigma e_j} = \lambda_j
+    $$
+*** Proof by Lagrange Multipliers
+- The Lagrange multiplier is to maximize
+  $$
+  \phi(\alpha) = \alpha^T \Sigma\alpha - \lambda(\alpha^T \alpha -1)
+  $$
+- Setting derivatives qual = 0 gives:
+  $$
+  \frac{\partial \phi(\alpha)}{\partial\alpha} = 2\Sigma\alpha - 2\lambda\alpha = 0
+  $$
+- Thus: $\Sigma\alpha = \lambda\alpha$ \rightarrow
+  \lambda is an eigenvalue of \Sigma and \alpha is the corresponding normalized eigenvector.
+- For $U = \alpha^T X$, we have $\text{Var}(U) = \alpha^T \Sigma\alpha = \alpha^T (\lambda\alpha) = \lambda$.
+- For PC1, we need to find largest eigenvector of \Sigma.
+- Proofs of other Pcs are similar.
+*** PCs in Empirical Version
+In many real world applications, only given dataset
+$Y_i, x_{i1}, ..., x_{ip}$ for $i=1,2,...,n$
+How to find PC's?
+- Key idea: estimate the unknown \Sigma by $\hat{\Sigma}_{p\times p}$ from the data, then find the PC's by the eigenvalues and eigenvectors of $\hat{\Sigma}_{p \times p}$
+- *Empirical covariance matrix* $\hat{\Sigma}_{p\times p}$ is widely used when $p<n$
+  - Here, the $(r,s)$ entry of $\hat{\Sigma}_{p\times p}$ is defined as:
+    $$
+    \hat{\Sigma}_{rs} = \frac{1}{n} \sum^n_i(x_{ir}-\bar{x}_r)(x_{is}-\bar{x}_s)
+    $$
+  - Research tbd on how to estimate $\Sigma$ effectively when $p>>n$.
+*** Principal component regression
+- Original data: $Y_i, x_{i1}, ..., x_{ip}$ for $i=1,2,...,n$
+- After we extract all PC's, raw data can be written as new format
+  $(Y_i, u_{i1}, ..., u_{ip})$ for $i=1,2,...,n$
+- Principal component regression: linear regression by using only first $k$ PC's:
+  $$
+  Y_i = \beta_0 + \beta_1 u_{i1} + ... + \beta_k u_{ik} + \epsilon_i
+  $$
+- Choosing $k$: done by *cross-validation*.
+** Partial least squares (3.2.3)
+*** Dimension reduction
+There are 2 kinds of dimension reduction algorithms:
+1. Unsupervised dimension reduction, e.g. PCA. Criticisms: it explains $X$ but no reason to be sure that the result also explains a response $Y$.
+2. Supervised dimension reduction, i.e. conduct reduction on $X$ by using the extra information in $Y$.
+   - Reasonable to believe that supervised techniques will *do better*
+   - *Partial least squares* is one such technique
+*** Partial least squares
+Collection of techniques with 2 common properties:
+1. *Maximizes correlation between $Y \& X$*, rather than maximizing variance of $Y$ only.
+2. Can be interpreted as finding the underlying factors of $X$ that are also underlying factors of $Y$.
+*** 2 versions of PLS
+1. Simple PLS algorithm: variant of PC's but using *correlation* instead of variance
+2. PLS model: identify common factors of $X \& Y$
+*** Simple PLS algorithm
+- Given $Y_i, x_{i1}, ..., x_{ip}$ for $i=1,2,...,n$
+- Let $x_i = (x_{i1}, ..., x_{ip})^T$.
+- First PLS, $V_1 = \alpha_1 X_1 + ... + \alpha_p X_p$ is defined as finding $\alpha = (\alpha_1, ..., \alpha_p)^T$ that maximizes *covariance*
+  $$
+  \hat{\textbf{CoV}}(Y, V_1) = \frac{1}{n} \sum^n_i (Y_i-\bar{Y})(v_i-\bar{v}),
+  $$
+  when
+  $v_i = \alpha_1 x_{i1} + ... + \alpha_p x_{ip}$ for $i=1,2,...n$ subject to $\alpha^T \alpha = 1$
+- Later PLSs are defined analogously to maximize the covariance and are *assumed to be uncorrelated* with all previous PLSs.
+- *Solution*: the $\alpha$'s are the eigenvectors of the $p \times p$ matrix $X^T Y Y^T X$ when the data matrices $X \& Y$ have column mean zero.
+*** The PLS model
+- Data: $Y_i, x_{i1}, ..., x_{ip}$ for $i=1,2,...,n$
+- Assume data have mean 0.
+- Write data matrix as $(Y_{n \times  q}, X_{n \times  p})$
+- Goal: find $\ell$ linear combinations from $X \& Y$ to use as new dimensions.
+- The PLS model: noniterative iterative partial least squares (NIPALS):
+
+  $$
+  X_{n \times  p} = T_{n \times \ell} P_{\ell \times  p} + E,
+  Y_{n \times  q} = U_{n \times  \ell} Q_{\ell \times  q} + F
+  $$
+  where:
+  - $T_{n \times \ell}$ and $U_{n \times \ell}$ represent $\ell$ factors
+  - $P_{\ell \times  p}$ and $Q_{\ell \times q}$ are loadings.
+*** Key idea in The PLS Model
+- How to estimate the \ell factors, or the $T_{n \times \ell}$ and $U_{n \times \ell}$ matrices?
+- Answer:
+  - Write the first column of  $T_{n \times \ell}$ and $U_{n \times \ell}$  as $t=\bf{X} r$ and $u=\bf{Y} s$ for two unit vectors, $\parallel r \parallel = \parallel s \parallel = 1$
+  - Find $r$ and $s$ that maximizes the *covariance-squared*: $\textbf{Cov}^2(Xr, Ys)$
+*** PLS for linear regression
+- Original data: $Y_i, x_{i1}, ..., x_{ip}$ for $i=1,2,...,n$
+- After extracting all PLS's, raw data can be written as new formats $(Y_i, v_{i1}, ..., v_{ip})$ for $i=1,2,...,n$
+- Partial least squares regression: linear regression using only *first k* PLSs:
+  $$
+  Y_i = \beta_0 + \beta_1 v_[i1] + ... + \beta_k v_{ik} + \epsilon_i
+  $$
+- Choosing $k$: by *cross-validation*
+*** Canonical correlation analysis (CCA)
+- CCA: find the unit vectors $(r, s)$ that maximizes the *correlation coefficient*
+  $$
+  \text{Corr}(Xr, Ys) = \frac{r^T \Sigma_{XY}s}{\sqrt{r^T \Sigma_{XX}r}\sqrt{s^T \Sigma_{YY}s}}
+  $$
+- Solution: in the population(?) version with $(X_1, ..., X_p)$ and $(Y_1, ..., Y_q)$, consider $r^T X = r_1 X_1 + ... + r_p X_p$ and $s^T Y = s_1 Y_1 + ... + s_q Y_q$, the optimal $r, s$ values are the respective eigenvectors of
+
+  $$
+  \Sigma^{-1}_{XX} \Sigma^{-1}_{YY} \Sigma_{YX} \text{ and }
+  \Sigma^{-1}_{YY} \Sigma^{-1}_{XX} \Sigma_{XY}
+  $$

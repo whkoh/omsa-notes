@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-02-07 Wed 18:58 -->
+<!-- 2024-02-08 Thu 18:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ISYE 7406: Data Mining and Statistical Learning</title>
@@ -44,50 +44,73 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgf487cfc">1. Week 3: Linear Regression (II)</a>
+<li><a href="#org2c056ce">1. Week 3: Linear Regression (II)</a>
 <ul>
-<li><a href="#org8751a9b">1.1. James-Stein Estimator</a>
+<li><a href="#org9abf402">1.1. James-Stein Estimator</a>
 <ul>
-<li><a href="#org386d306">1.1.1. It's a special case of linear regression</a></li>
-<li><a href="#org6c41186">1.1.2. Simultaneous estimation</a></li>
-<li><a href="#orgfebe56c">1.1.3. JS estimator</a></li>
-<li><a href="#orgd991d3d">1.1.4. Baseball example</a></li>
-<li><a href="#org711ec2d">1.1.5. Comparing MLE and JS</a></li>
+<li><a href="#org0063e08">1.1.1. It's a special case of linear regression</a></li>
+<li><a href="#org0f31dda">1.1.2. Simultaneous estimation</a></li>
+<li><a href="#org8d3c1a5">1.1.3. JS estimator</a></li>
+<li><a href="#org39daa01">1.1.4. Baseball example</a></li>
+<li><a href="#org3cdaed0">1.1.5. Comparing MLE and JS</a></li>
 </ul>
 </li>
-<li><a href="#org0fa8b6f">1.2. Shrinkage Methods</a>
+<li><a href="#org941ac28">1.2. Shrinkage Methods</a>
 <ul>
-<li><a href="#orgfa50d91">1.2.1. Setting up shrinkage method</a></li>
-<li><a href="#orgf2eaae7">1.2.2. Alternative formulation</a></li>
-<li><a href="#org3ea001a">1.2.3. Bayesian interpretation</a></li>
-<li><a href="#orge0d302b">1.2.4. Choices of priors</a></li>
-<li><a href="#org2ffbe4e">1.2.5. Ridge regression</a></li>
-<li><a href="#org4651250">1.2.6. LASSO estimator</a></li>
+<li><a href="#orgf53ab60">1.2.1. Setting up shrinkage method</a></li>
+<li><a href="#orgacf20fe">1.2.2. Alternative formulation</a></li>
+<li><a href="#org6095aa0">1.2.3. Bayesian interpretation</a></li>
+<li><a href="#org220131a">1.2.4. Choices of priors</a></li>
+<li><a href="#org70a8d6a">1.2.5. Ridge regression</a></li>
+<li><a href="#org35c856c">1.2.6. LASSO estimator</a></li>
 </ul>
 </li>
-<li><a href="#orgd146ead">1.3. Ridge Regression</a>
+<li><a href="#orgbd0f280">1.3. Ridge Regression</a>
 <ul>
-<li><a href="#orged98d8f">1.3.1. Ridge Regression Estimator</a></li>
-<li><a href="#orgfd03a95">1.3.2. Mathematical solution</a></li>
-<li><a href="#orgeef2b09">1.3.3. Properties of Ridge Regression</a></li>
-<li><a href="#org1aa9732">1.3.4. Computational issues</a></li>
-<li><a href="#orgc89b3cf">1.3.5. Example of SVD</a></li>
-<li><a href="#org69776b4">1.3.6. SVD Example (I): \(XX^T\)</a></li>
-<li><a href="#orgbe81b31">1.3.7. SVD Example (II): \(X^T X\)</a></li>
-<li><a href="#orge738bd4">1.3.8. SVD verification</a></li>
+<li><a href="#orgf63468e">1.3.1. Ridge Regression Estimator</a></li>
+<li><a href="#orgd06ffe3">1.3.2. Mathematical solution</a></li>
+<li><a href="#org9dec8c5">1.3.3. Properties of Ridge Regression</a></li>
+<li><a href="#org93a0bfd">1.3.4. Computational issues</a></li>
+<li><a href="#org968eb17">1.3.5. Example of SVD</a></li>
+<li><a href="#org12f7433">1.3.6. SVD Example (I): \(XX^T\)</a></li>
+<li><a href="#org3e48a71">1.3.7. SVD Example (II): \(X^T X\)</a></li>
+<li><a href="#org9aa1a22">1.3.8. SVD verification</a></li>
 </ul>
 </li>
-<li><a href="#org61ddad7">1.4. LASSO (3.2.1)</a>
+<li><a href="#org544c777">1.4. LASSO (3.2.1)</a>
 <ul>
-<li><a href="#orgdad7fb1">1.4.1. LASSO estimator</a></li>
-<li><a href="#org93dc82a">1.4.2. L2-norm vs L1-norm</a></li>
-<li><a href="#org60351e0">1.4.3. Mathematical solution for LASSO estimator</a></li>
-<li><a href="#org81bccf4">1.4.4. Properties of LASSO</a></li>
-<li><a href="#org3bcb741">1.4.5. LASSO weaknesses</a></li>
-<li><a href="#org90fcee5">1.4.6. Computation issues of LASSO</a></li>
-<li><a href="#orge362ef5">1.4.7. LASSO is piecewise linear</a></li>
-<li><a href="#org56e65ef">1.4.8. Standard error of LASSO</a></li>
-<li><a href="#orga2bb8d1">1.4.9. Variants of L1-norm</a></li>
+<li><a href="#org3caf3b3">1.4.1. LASSO estimator</a></li>
+<li><a href="#org6c89215">1.4.2. L2-norm vs L1-norm</a></li>
+<li><a href="#orgc949def">1.4.3. Mathematical solution for LASSO estimator</a></li>
+<li><a href="#org8ca2312">1.4.4. Properties of LASSO</a></li>
+<li><a href="#org5db8afb">1.4.5. LASSO weaknesses</a></li>
+<li><a href="#org40152c0">1.4.6. Computation issues of LASSO</a></li>
+<li><a href="#org3fddbe0">1.4.7. LASSO is piecewise linear</a></li>
+<li><a href="#orgfe54e88">1.4.8. Standard error of LASSO</a></li>
+<li><a href="#orge39933e">1.4.9. Variants of L1-norm</a></li>
+</ul>
+</li>
+<li><a href="#org64b6aa4">1.5. Principal Components (3.2.2)</a>
+<ul>
+<li><a href="#org6873a7e">1.5.1. Dimension reduction</a></li>
+<li><a href="#org83de30a">1.5.2. Motivation of PCA</a></li>
+<li><a href="#org2f50c0b">1.5.3. Find the PC's:  Population version</a></li>
+<li><a href="#orgb2d3641">1.5.4. Eigenvectors lead to PC's</a></li>
+<li><a href="#orgc2469d8">1.5.5. Proof by Lagrange Multipliers</a></li>
+<li><a href="#org65708ad">1.5.6. PCs in Empirical Version</a></li>
+<li><a href="#orgd60a20d">1.5.7. Principal component regression</a></li>
+</ul>
+</li>
+<li><a href="#org3f31853">1.6. Partial least squares (3.2.3)</a>
+<ul>
+<li><a href="#org3fbd2e3">1.6.1. Dimension reduction</a></li>
+<li><a href="#org715089e">1.6.2. Partial least squares</a></li>
+<li><a href="#org0710faa">1.6.3. 2 versions of PLS</a></li>
+<li><a href="#org7066fd3">1.6.4. Simple PLS algorithm</a></li>
+<li><a href="#orge14a8fb">1.6.5. The PLS model</a></li>
+<li><a href="#orgf15cae4">1.6.6. Key idea in The PLS Model</a></li>
+<li><a href="#orgdde641b">1.6.7. PLS for linear regression</a></li>
+<li><a href="#orgae2e5df">1.6.8. Canonical correlation analysis (CCA)</a></li>
 </ul>
 </li>
 </ul>
@@ -95,19 +118,19 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf487cfc" class="outline-2">
-<h2 id="orgf487cfc"><span class="section-number-2">1.</span> Week 3: Linear Regression (II)</h2>
+<div id="outline-container-org2c056ce" class="outline-2">
+<h2 id="org2c056ce"><span class="section-number-2">1.</span> Week 3: Linear Regression (II)</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 M2T2
 </p>
 </div>
-<div id="outline-container-org8751a9b" class="outline-3">
-<h3 id="org8751a9b"><span class="section-number-3">1.1.</span> James-Stein Estimator</h3>
+<div id="outline-container-org9abf402" class="outline-3">
+<h3 id="org9abf402"><span class="section-number-3">1.1.</span> James-Stein Estimator</h3>
 <div class="outline-text-3" id="text-1-1">
 </div>
-<div id="outline-container-org386d306" class="outline-4">
-<h4 id="org386d306"><span class="section-number-4">1.1.1.</span> It's a special case of linear regression</h4>
+<div id="outline-container-org0063e08" class="outline-4">
+<h4 id="org0063e08"><span class="section-number-4">1.1.1.</span> It's a special case of linear regression</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <p>
 in LR model with
@@ -142,8 +165,8 @@ When \(\bf{p\ge 3}\), is it possible to do better than OLS?
 </p>
 </div>
 </div>
-<div id="outline-container-org6c41186" class="outline-4">
-<h4 id="org6c41186"><span class="section-number-4">1.1.2.</span> Simultaneous estimation</h4>
+<div id="outline-container-org0f31dda" class="outline-4">
+<h4 id="org0f31dda"><span class="section-number-4">1.1.2.</span> Simultaneous estimation</h4>
 <div class="outline-text-4" id="text-1-1-2">
 <ul class="org-ul">
 <li><p>
@@ -171,8 +194,8 @@ Is it possible to do better here?
 </ul>
 </div>
 </div>
-<div id="outline-container-orgfebe56c" class="outline-4">
-<h4 id="orgfebe56c"><span class="section-number-4">1.1.3.</span> JS estimator</h4>
+<div id="outline-container-org8d3c1a5" class="outline-4">
+<h4 id="org8d3c1a5"><span class="section-number-4">1.1.3.</span> JS estimator</h4>
 <div class="outline-text-4" id="text-1-1-3">
 <ul class="org-ul">
 <li><p>
@@ -199,8 +222,8 @@ Showed MLS/MLE estimator inadmissible for \(p\ge 3\); dominated by JS estimator.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd991d3d" class="outline-4">
-<h4 id="orgd991d3d"><span class="section-number-4">1.1.4.</span> Baseball example</h4>
+<div id="outline-container-org39daa01" class="outline-4">
+<h4 id="org39daa01"><span class="section-number-4">1.1.4.</span> Baseball example</h4>
 <div class="outline-text-4" id="text-1-1-4">
 <ul class="org-ul">
 <li>Observe \(Y_1, Y_2, ... Y_p\) batting averages (where \(Y_i\) is the batting average for p=18 players), 45 AB</li>
@@ -210,8 +233,8 @@ Showed MLS/MLE estimator inadmissible for \(p\ge 3\); dominated by JS estimator.
 </ul>
 </div>
 </div>
-<div id="outline-container-org711ec2d" class="outline-4">
-<h4 id="org711ec2d"><span class="section-number-4">1.1.5.</span> Comparing MLE and JS</h4>
+<div id="outline-container-org3cdaed0" class="outline-4">
+<h4 id="org3cdaed0"><span class="section-number-4">1.1.5.</span> Comparing MLE and JS</h4>
 <div class="outline-text-4" id="text-1-1-5">
 <ul class="org-ul">
 <li>JS has lower predictive squared error than MLS (by 50%)</li>
@@ -229,11 +252,11 @@ Showed MLS/MLE estimator inadmissible for \(p\ge 3\); dominated by JS estimator.
 </div>
 </div>
 </div>
-<div id="outline-container-org0fa8b6f" class="outline-3">
-<h3 id="org0fa8b6f"><span class="section-number-3">1.2.</span> Shrinkage Methods</h3>
+<div id="outline-container-org941ac28" class="outline-3">
+<h3 id="org941ac28"><span class="section-number-3">1.2.</span> Shrinkage Methods</h3>
 <div class="outline-text-3" id="text-1-2">
 <ul class="org-ul">
-<li>Estimation in linear regression: JS works in only specific cases (<a href="#org386d306">1.1.1</a>) when \(p\ge 3\)</li>
+<li>Estimation in linear regression: JS works in only specific cases (<a href="#org0063e08">1.1.1</a>) when \(p\ge 3\)</li>
 <li>How to do better <i>generally</i>?</li>
 <li>Shrinkage methods (penalized, regularized)
 <ul class="org-ul">
@@ -245,8 +268,8 @@ Showed MLS/MLE estimator inadmissible for \(p\ge 3\); dominated by JS estimator.
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-orgfa50d91" class="outline-4">
-<h4 id="orgfa50d91"><span class="section-number-4">1.2.1.</span> Setting up shrinkage method</h4>
+<div id="outline-container-orgf53ab60" class="outline-4">
+<h4 id="orgf53ab60"><span class="section-number-4">1.2.1.</span> Setting up shrinkage method</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <ul class="org-ul">
 <li>Needs: \(Y_1, x_{11}, x_{12}, ..., x_{1,p}, \text{such that } i = 1,2,...,n\)</li>
@@ -290,8 +313,8 @@ If not standardized, do linear transformations:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf2eaae7" class="outline-4">
-<h4 id="orgf2eaae7"><span class="section-number-4">1.2.2.</span> Alternative formulation</h4>
+<div id="outline-container-orgacf20fe" class="outline-4">
+<h4 id="orgacf20fe"><span class="section-number-4">1.2.2.</span> Alternative formulation</h4>
 <div class="outline-text-4" id="text-1-2-2">
 <ul class="org-ul">
 <li>Shrinkage method solves the <b>unconstrained</b> optimization problem
@@ -318,11 +341,11 @@ Alternative formulation solves a <b>constrained</b> optimization problem
 </ul>
 </div>
 </div>
-<div id="outline-container-org3ea001a" class="outline-4">
-<h4 id="org3ea001a"><span class="section-number-4">1.2.3.</span> Bayesian interpretation</h4>
+<div id="outline-container-org6095aa0" class="outline-4">
+<h4 id="org6095aa0"><span class="section-number-4">1.2.3.</span> Bayesian interpretation</h4>
 <div class="outline-text-4" id="text-1-2-3">
 <ul class="org-ul">
-<li>For LR model (<a href="#org386d306">1.1.1</a>):
+<li>For LR model (<a href="#org0063e08">1.1.1</a>):
 <dl class="org-dl">
 <dt>prior on &beta;</dt><dd>\(\pi(\beta)\)</dd>
 <dt>independent prior on \(\sigma^2\)</dt><dd>\(\pi(\sigma^2)\)</dd>
@@ -343,8 +366,8 @@ Alternative formulation solves a <b>constrained</b> optimization problem
 </ul>
 </div>
 </div>
-<div id="outline-container-orge0d302b" class="outline-4">
-<h4 id="orge0d302b"><span class="section-number-4">1.2.4.</span> Choices of priors</h4>
+<div id="outline-container-org220131a" class="outline-4">
+<h4 id="org220131a"><span class="section-number-4">1.2.4.</span> Choices of priors</h4>
 <div class="outline-text-4" id="text-1-2-4">
 <p>
 i.e. choice of prior \(\pi(\beta)\)
@@ -355,8 +378,8 @@ i.e. choice of prior \(\pi(\beta)\)
 </dl>
 </div>
 </div>
-<div id="outline-container-org2ffbe4e" class="outline-4">
-<h4 id="org2ffbe4e"><span class="section-number-4">1.2.5.</span> Ridge regression</h4>
+<div id="outline-container-org70a8d6a" class="outline-4">
+<h4 id="org70a8d6a"><span class="section-number-4">1.2.5.</span> Ridge regression</h4>
 <div class="outline-text-4" id="text-1-2-5">
 <p>
 <b>Normal prior</b> assumes \(\beta_1 ... \beta_p\) are i.i.d. \(N(0, \tau^2)\) with prior density
@@ -377,8 +400,8 @@ Yields <b>ridge regression</b> estimator, which minimizes
 </p>
 </div>
 </div>
-<div id="outline-container-org4651250" class="outline-4">
-<h4 id="org4651250"><span class="section-number-4">1.2.6.</span> LASSO estimator</h4>
+<div id="outline-container-org35c856c" class="outline-4">
+<h4 id="org35c856c"><span class="section-number-4">1.2.6.</span> LASSO estimator</h4>
 <div class="outline-text-4" id="text-1-2-6">
 <ul class="org-ul">
 <li><b>Laplace Prior</b>, assume  \(\beta_1 ... \beta_p\) are i.i.d. double-exponential (Laplace) \(\sim \text{Lapalce} (,\tau)\) with prior density
@@ -398,12 +421,12 @@ Yields <b>LASSO</b> estimator that minimizes
 </div>
 </div>
 </div>
-<div id="outline-container-orgd146ead" class="outline-3">
-<h3 id="orgd146ead"><span class="section-number-3">1.3.</span> Ridge Regression</h3>
+<div id="outline-container-orgbd0f280" class="outline-3">
+<h3 id="orgbd0f280"><span class="section-number-3">1.3.</span> Ridge Regression</h3>
 <div class="outline-text-3" id="text-1-3">
 </div>
-<div id="outline-container-orged98d8f" class="outline-4">
-<h4 id="orged98d8f"><span class="section-number-4">1.3.1.</span> Ridge Regression Estimator</h4>
+<div id="outline-container-orgf63468e" class="outline-4">
+<h4 id="orgf63468e"><span class="section-number-4">1.3.1.</span> Ridge Regression Estimator</h4>
 <div class="outline-text-4" id="text-1-3-1">
 <p>
 Assume these are observed: \(Y_i, x_{i1}, ..., x_{ip}\), and all are standardized:
@@ -415,7 +438,7 @@ Assume these are observed: \(Y_i, x_{i1}, ..., x_{ip}\), and all are standardize
 </p>
 
 <p>
-In linear regression model without intercepts (<a href="#org386d306">1.1.1</a>)
+In linear regression model without intercepts (<a href="#org0063e08">1.1.1</a>)
 </p>
 
 <p>
@@ -430,8 +453,8 @@ The ridge regression estimator is defined as:
 </p>
 </div>
 </div>
-<div id="outline-container-orgfd03a95" class="outline-4">
-<h4 id="orgfd03a95"><span class="section-number-4">1.3.2.</span> Mathematical solution</h4>
+<div id="outline-container-orgd06ffe3" class="outline-4">
+<h4 id="orgd06ffe3"><span class="section-number-4">1.3.2.</span> Mathematical solution</h4>
 <div class="outline-text-4" id="text-1-3-2">
 <ul class="org-ul">
 <li>Explicit expression is thus
@@ -446,8 +469,8 @@ The ridge regression estimator is defined as:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgeef2b09" class="outline-4">
-<h4 id="orgeef2b09"><span class="section-number-4">1.3.3.</span> Properties of Ridge Regression</h4>
+<div id="outline-container-org9dec8c5" class="outline-4">
+<h4 id="org9dec8c5"><span class="section-number-4">1.3.3.</span> Properties of Ridge Regression</h4>
 <div class="outline-text-4" id="text-1-3-3">
 <ul class="org-ul">
 <li>Ridge regression <b>most useful</b> when \(X_{n\times p}\) is <b>non-singular</b>, but has <b>high collinearity</b>
@@ -463,8 +486,8 @@ The ridge regression estimator is defined as:
 </ul>
 </div>
 </div>
-<div id="outline-container-org1aa9732" class="outline-4">
-<h4 id="org1aa9732"><span class="section-number-4">1.3.4.</span> Computational issues</h4>
+<div id="outline-container-org93a0bfd" class="outline-4">
+<h4 id="org93a0bfd"><span class="section-number-4">1.3.4.</span> Computational issues</h4>
 <div class="outline-text-4" id="text-1-3-4">
 <ul class="org-ul">
 <li>How to compute ridge regression efficiently for any \(\lambda\)?
@@ -487,8 +510,8 @@ where: \(U\) and $V are orthogonal; D = diag(\(d_1, ..., d_p\)) is diagonal.</li
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc89b3cf" class="outline-4">
-<h4 id="orgc89b3cf"><span class="section-number-4">1.3.5.</span> Example of SVD</h4>
+<div id="outline-container-org968eb17" class="outline-4">
+<h4 id="org968eb17"><span class="section-number-4">1.3.5.</span> Example of SVD</h4>
 <div class="outline-text-4" id="text-1-3-5">
 <ul class="org-ul">
 <li>Find SVD of matrix
@@ -510,11 +533,11 @@ where: \(U\) and $V are orthogonal; D = diag(\(d_1, ..., d_p\)) is diagonal.</li
 </ul>
 </div>
 </div>
-<div id="outline-container-org69776b4" class="outline-4">
-<h4 id="org69776b4"><span class="section-number-4">1.3.6.</span> SVD Example (I): \(XX^T\)</h4>
+<div id="outline-container-org12f7433" class="outline-4">
+<h4 id="org12f7433"><span class="section-number-4">1.3.6.</span> SVD Example (I): \(XX^T\)</h4>
 <div class="outline-text-4" id="text-1-3-6">
 <p>
-For matrix <a href="#orgc89b3cf">1.3.5</a>:
+For matrix <a href="#org968eb17">1.3.5</a>:
 we have
 \[
 XX^T = \begin{pmatrix}
@@ -554,11 +577,11 @@ XX^T = \begin{pmatrix}
 </div>
 </div>
 
-<div id="outline-container-orgbe81b31" class="outline-4">
-<h4 id="orgbe81b31"><span class="section-number-4">1.3.7.</span> SVD Example (II): \(X^T X\)</h4>
+<div id="outline-container-org3e48a71" class="outline-4">
+<h4 id="org3e48a71"><span class="section-number-4">1.3.7.</span> SVD Example (II): \(X^T X\)</h4>
 <div class="outline-text-4" id="text-1-3-7">
 <p>
-For matrix <a href="#orgc89b3cf">1.3.5</a>:
+For matrix <a href="#org968eb17">1.3.5</a>:
 \[
 X^T X
 = \begin{pmatrix}
@@ -592,8 +615,8 @@ X^T X
 </ul>
 </div>
 </div>
-<div id="outline-container-orge738bd4" class="outline-4">
-<h4 id="orge738bd4"><span class="section-number-4">1.3.8.</span> SVD verification</h4>
+<div id="outline-container-org9aa1a22" class="outline-4">
+<h4 id="org9aa1a22"><span class="section-number-4">1.3.8.</span> SVD verification</h4>
 <div class="outline-text-4" id="text-1-3-8">
 <p>
 Might need to multiply some eigenvectors by -1.
@@ -635,12 +658,12 @@ X_{n\times p}
 </div>
 </div>
 </div>
-<div id="outline-container-org61ddad7" class="outline-3">
-<h3 id="org61ddad7"><span class="section-number-3">1.4.</span> LASSO (3.2.1)</h3>
+<div id="outline-container-org544c777" class="outline-3">
+<h3 id="org544c777"><span class="section-number-3">1.4.</span> LASSO (3.2.1)</h3>
 <div class="outline-text-3" id="text-1-4">
 </div>
-<div id="outline-container-orgdad7fb1" class="outline-4">
-<h4 id="orgdad7fb1"><span class="section-number-4">1.4.1.</span> LASSO estimator</h4>
+<div id="outline-container-org3caf3b3" class="outline-4">
+<h4 id="org3caf3b3"><span class="section-number-4">1.4.1.</span> LASSO estimator</h4>
 <div class="outline-text-4" id="text-1-4-1">
 <ul class="org-ul">
 <li>Assume these are observed: \(Y_i, x_{i1}, ..., x_{ip}\), and all are standardized:</li>
@@ -654,7 +677,7 @@ X_{n\times p}
 </p>
 
 <p>
-In linear regression model without intercepts (<a href="#org386d306">1.1.1</a>)
+In linear regression model without intercepts (<a href="#org0063e08">1.1.1</a>)
 </p>
 
 <dl class="org-dl">
@@ -667,11 +690,11 @@ In linear regression model without intercepts (<a href="#org386d306">1.1.1</a>)
 </dl>
 </div>
 </div>
-<div id="outline-container-org93dc82a" class="outline-4">
-<h4 id="org93dc82a"><span class="section-number-4">1.4.2.</span> L2-norm vs L1-norm</h4>
+<div id="outline-container-org6c89215" class="outline-4">
+<h4 id="org6c89215"><span class="section-number-4">1.4.2.</span> L2-norm vs L1-norm</h4>
 <div class="outline-text-4" id="text-1-4-2">
 
-<div id="orgb24cfad" class="figure">
+<div id="org8e78f83" class="figure">
 <p><img src="./img/l2-l1-norm.png" alt="l2-l1-norm.png" />
 </p>
 </div>
@@ -680,8 +703,8 @@ In linear regression model without intercepts (<a href="#org386d306">1.1.1</a>)
 </ul>
 </div>
 </div>
-<div id="outline-container-org60351e0" class="outline-4">
-<h4 id="org60351e0"><span class="section-number-4">1.4.3.</span> Mathematical solution for LASSO estimator</h4>
+<div id="outline-container-orgc949def" class="outline-4">
+<h4 id="orgc949def"><span class="section-number-4">1.4.3.</span> Mathematical solution for LASSO estimator</h4>
 <div class="outline-text-4" id="text-1-4-3">
 <ul class="org-ul">
 <li>In the LASSO optimization, there is <b>no explicit</b> mathematical solution to \(\hat{\beta}^{\text{lasso}}\)</li>
@@ -723,8 +746,8 @@ since:
 </p>
 </div>
 </div>
-<div id="outline-container-org81bccf4" class="outline-4">
-<h4 id="org81bccf4"><span class="section-number-4">1.4.4.</span> Properties of LASSO</h4>
+<div id="outline-container-org8ca2312" class="outline-4">
+<h4 id="org8ca2312"><span class="section-number-4">1.4.4.</span> Properties of LASSO</h4>
 <div class="outline-text-4" id="text-1-4-4">
 <ul class="org-ul">
 <li><b>Good empirical performance when true model is sparse</b>
@@ -740,8 +763,8 @@ since:
 </ul>
 </div>
 </div>
-<div id="outline-container-org3bcb741" class="outline-4">
-<h4 id="org3bcb741"><span class="section-number-4">1.4.5.</span> LASSO weaknesses</h4>
+<div id="outline-container-org5db8afb" class="outline-4">
+<h4 id="org5db8afb"><span class="section-number-4">1.4.5.</span> LASSO weaknesses</h4>
 <div class="outline-text-4" id="text-1-4-5">
 <ul class="org-ul">
 <li>Not always consistent</li>
@@ -756,8 +779,8 @@ since:
 </ul>
 </div>
 </div>
-<div id="outline-container-org90fcee5" class="outline-4">
-<h4 id="org90fcee5"><span class="section-number-4">1.4.6.</span> Computation issues of LASSO</h4>
+<div id="outline-container-org40152c0" class="outline-4">
+<h4 id="org40152c0"><span class="section-number-4">1.4.6.</span> Computation issues of LASSO</h4>
 <div class="outline-text-4" id="text-1-4-6">
 <ul class="org-ul">
 <li>Computation algorithms include:
@@ -770,8 +793,8 @@ since:
 </ul>
 </div>
 </div>
-<div id="outline-container-orge362ef5" class="outline-4">
-<h4 id="orge362ef5"><span class="section-number-4">1.4.7.</span> LASSO is piecewise linear</h4>
+<div id="outline-container-org3fddbe0" class="outline-4">
+<h4 id="org3fddbe0"><span class="section-number-4">1.4.7.</span> LASSO is piecewise linear</h4>
 <div class="outline-text-4" id="text-1-4-7">
 <ul class="org-ul">
 <li>The number of linear pieces in LASSO path is approximately \(p\),</li>
@@ -782,8 +805,8 @@ since:
 </ul>
 </div>
 </div>
-<div id="outline-container-org56e65ef" class="outline-4">
-<h4 id="org56e65ef"><span class="section-number-4">1.4.8.</span> Standard error of LASSO</h4>
+<div id="outline-container-orgfe54e88" class="outline-4">
+<h4 id="orgfe54e88"><span class="section-number-4">1.4.8.</span> Standard error of LASSO</h4>
 <div class="outline-text-4" id="text-1-4-8">
 <ul class="org-ul">
 <li>How to estimate standard error of LASSO estimator i.e.
@@ -800,8 +823,8 @@ since:
 </ul>
 </div>
 </div>
-<div id="outline-container-orga2bb8d1" class="outline-4">
-<h4 id="orga2bb8d1"><span class="section-number-4">1.4.9.</span> Variants of L1-norm</h4>
+<div id="outline-container-orge39933e" class="outline-4">
+<h4 id="orge39933e"><span class="section-number-4">1.4.9.</span> Variants of L1-norm</h4>
 <div class="outline-text-4" id="text-1-4-9">
 <ul class="org-ul">
 <li>Elastic net
@@ -812,11 +835,290 @@ since:
 </div>
 </div>
 </div>
+<div id="outline-container-org64b6aa4" class="outline-3">
+<h3 id="org64b6aa4"><span class="section-number-3">1.5.</span> Principal Components (3.2.2)</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+Assume these are observed: \(Y_i, x_{i1}, ..., x_{ip}\) for \(i=1,2,...,n\)
+</p>
+
+<p>
+Classical datasets: mostly small values of \(p\); modern datasets: large \(p\).
+</p>
+
+<p>
+Essential to conduct <b>dimension reduction</b> to reduce the number of variables.
+</p>
+</div>
+<div id="outline-container-org6873a7e" class="outline-4">
+<h4 id="org6873a7e"><span class="section-number-4">1.5.1.</span> Dimension reduction</h4>
+<div class="outline-text-4" id="text-1-5-1">
+<ul class="org-ul">
+<li>2 approaches:
+<ol class="org-ol">
+<li><b>variable selection</b>, i.e.: AIC, BIC, stepwise algorithm, LASSO, etc.</li>
+<li><b>feature extraction</b>, i.e. identify which functions of data are most important. <b>no restricted</b> to using existing features/variables. Options are:
+<ul class="org-ul">
+<li>Principal component analysis</li>
+<li>Partial least squares</li>
+</ul></li>
+</ol></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org83de30a" class="outline-4">
+<h4 id="org83de30a"><span class="section-number-4">1.5.2.</span> Motivation of PCA</h4>
+<div class="outline-text-4" id="text-1-5-2">
+<p>
+"Obtain more variance by transforming axes"
+</p>
+<ul class="org-ul">
+<li>Find <b>linear combinations</b> of \((x_1, ..., x_p)\) that express as much variability in \(X\) as possible.
+<ul class="org-ul">
+<li>A linear combination with <b>high</b> variance will likely affect the response the most</li>
+<li>If most variation of \(X\) comes from the first few PCs then: enough to build models.</li>
+<li>Other linear combination vary so little among different observations &rarr; can be ignored</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2f50c0b" class="outline-4">
+<h4 id="org2f50c0b"><span class="section-number-4">1.5.3.</span> Find the PC's:  Population version</h4>
+<div class="outline-text-4" id="text-1-5-3">
+<ul class="org-ul">
+<li><b>Optimization problem for PC's</b>: Given a \(p\) -dim random vector
+\[
+  \textbf{X} = (X_1, ..., X_p)^T, \text{ with covariance } \Sigma = \text{Cov}(X)
+  \]</li>
+<li>PC1: Find \(U_1 = \alpha_1 X_1 + ... + \alpha_p X_p\) that maximizes
+\[
+  \textbf{Var}(\alpha_1 X_1 + ... + \alpha_p X_p) = \textbf{Var}(\alpha^T \textbf{X}) = \alpha^T \Sigma \alpha
+  \]
+subject to:
+\[
+  \alpha^2_1 + ... \alpha^2_p = 1, \text{i.e. } \alpha^T \alpha = 1, \text{where } \alpha = (\alpha_1, ..., \alpha_p)^T
+  \]</li>
+<li>PC2: Find \(U_2 = \alpha_1 X_1 + ... + \alpha_p X_p\) that maximizes \text{Var}(&alpha;<sup>T</sup> X) = &alpha;<sup>T</sup> &Sigma;&alpha;$, subject to <b>constraints</b>: - \(\alpha^T \alpha = 1\)
+<ul class="org-ul">
+<li>\(\text{Cov}(U_1, U_2) = 0\)</li>
+</ul></li>
+<li>Other (later) PC are defined analogously and uncorrelated with all previous PC's</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb2d3641" class="outline-4">
+<h4 id="orgb2d3641"><span class="section-number-4">1.5.4.</span> Eigenvectors lead to PC's</h4>
+<div class="outline-text-4" id="text-1-5-4">
+<ul class="org-ul">
+<li>Theorem: Let covariance matrix \(\bf{\Sigma} = \text{Cov}(\bf{X})\) have eignvectors \(e_1, ..., e_p\) with corresponding eigenvalues \(\lambda_1 \ge ... \ge \lambda_p \ge 0\). For \(j=1,2,...,p\),
+<ul class="org-ul">
+<li>\(j\) -th PC is
+\[
+    U_j = e_j^T X = e_{j1}X_1 + ... + e_{jp}X_p
+    \]</li>
+<li>Variance of \(j\) -th PC is
+\[
+    \text{Var}(U_j) = \bf{e_j^T\Sigma e_j} = \lambda_j
+    \]</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc2469d8" class="outline-4">
+<h4 id="orgc2469d8"><span class="section-number-4">1.5.5.</span> Proof by Lagrange Multipliers</h4>
+<div class="outline-text-4" id="text-1-5-5">
+<ul class="org-ul">
+<li>The Lagrange multiplier is to maximize
+\[
+  \phi(\alpha) = \alpha^T \Sigma\alpha - \lambda(\alpha^T \alpha -1)
+  \]</li>
+<li>Setting derivatives qual = 0 gives:
+\[
+  \frac{\partial \phi(\alpha)}{\partial\alpha} = 2\Sigma\alpha - 2\lambda\alpha = 0
+  \]</li>
+<li>Thus: \(\Sigma\alpha = \lambda\alpha\) &rarr;
+&lambda; is an eigenvalue of &Sigma; and &alpha; is the corresponding normalized eigenvector.</li>
+<li>For \(U = \alpha^T X\), we have \(\text{Var}(U) = \alpha^T \Sigma\alpha = \alpha^T (\lambda\alpha) = \lambda\).</li>
+<li>For PC1, we need to find largest eigenvector of &Sigma;.</li>
+<li>Proofs of other Pcs are similar.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org65708ad" class="outline-4">
+<h4 id="org65708ad"><span class="section-number-4">1.5.6.</span> PCs in Empirical Version</h4>
+<div class="outline-text-4" id="text-1-5-6">
+<p>
+In many real world applications, only given dataset
+\(Y_i, x_{i1}, ..., x_{ip}\) for \(i=1,2,...,n\)
+How to find PC's?
+</p>
+<ul class="org-ul">
+<li>Key idea: estimate the unknown &Sigma; by \(\hat{\Sigma}_{p\times p}\) from the data, then find the PC's by the eigenvalues and eigenvectors of \(\hat{\Sigma}_{p \times p}\)</li>
+<li><b>Empirical covariance matrix</b> \(\hat{\Sigma}_{p\times p}\) is widely used when \(p<n\)
+<ul class="org-ul">
+<li>Here, the \((r,s)\) entry of \(\hat{\Sigma}_{p\times p}\) is defined as:
+\[
+    \hat{\Sigma}_{rs} = \frac{1}{n} \sum^n_i(x_{ir}-\bar{x}_r)(x_{is}-\bar{x}_s)
+    \]</li>
+<li>Research tbd on how to estimate \(\Sigma\) effectively when \(p>>n\).</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd60a20d" class="outline-4">
+<h4 id="orgd60a20d"><span class="section-number-4">1.5.7.</span> Principal component regression</h4>
+<div class="outline-text-4" id="text-1-5-7">
+<ul class="org-ul">
+<li>Original data: \(Y_i, x_{i1}, ..., x_{ip}\) for \(i=1,2,...,n\)</li>
+<li>After we extract all PC's, raw data can be written as new format
+\((Y_i, u_{i1}, ..., u_{ip})\) for \(i=1,2,...,n\)</li>
+<li>Principal component regression: linear regression by using only first \(k\) PC's:
+\[
+  Y_i = \beta_0 + \beta_1 u_{i1} + ... + \beta_k u_{ik} + \epsilon_i
+  \]</li>
+<li>Choosing \(k\): done by <b>cross-validation</b>.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org3f31853" class="outline-3">
+<h3 id="org3f31853"><span class="section-number-3">1.6.</span> Partial least squares (3.2.3)</h3>
+<div class="outline-text-3" id="text-1-6">
+</div>
+<div id="outline-container-org3fbd2e3" class="outline-4">
+<h4 id="org3fbd2e3"><span class="section-number-4">1.6.1.</span> Dimension reduction</h4>
+<div class="outline-text-4" id="text-1-6-1">
+<p>
+There are 2 kinds of dimension reduction algorithms:
+</p>
+<ol class="org-ol">
+<li>Unsupervised dimension reduction, e.g. PCA. Criticisms: it explains \(X\) but no reason to be sure that the result also explains a response \(Y\).</li>
+<li>Supervised dimension reduction, i.e. conduct reduction on \(X\) by using the extra information in \(Y\).
+<ul class="org-ul">
+<li>Reasonable to believe that supervised techniques will <b>do better</b></li>
+<li><b>Partial least squares</b> is one such technique</li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org715089e" class="outline-4">
+<h4 id="org715089e"><span class="section-number-4">1.6.2.</span> Partial least squares</h4>
+<div class="outline-text-4" id="text-1-6-2">
+<p>
+Collection of techniques with 2 common properties:
+</p>
+<ol class="org-ol">
+<li><b>Maximizes correlation between \(Y \& X\)</b>, rather than maximizing variance of \(Y\) only.</li>
+<li>Can be interpreted as finding the underlying factors of \(X\) that are also underlying factors of \(Y\).</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org0710faa" class="outline-4">
+<h4 id="org0710faa"><span class="section-number-4">1.6.3.</span> 2 versions of PLS</h4>
+<div class="outline-text-4" id="text-1-6-3">
+<ol class="org-ol">
+<li>Simple PLS algorithm: variant of PC's but using <b>correlation</b> instead of variance</li>
+<li>PLS model: identify common factors of \(X \& Y\)</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org7066fd3" class="outline-4">
+<h4 id="org7066fd3"><span class="section-number-4">1.6.4.</span> Simple PLS algorithm</h4>
+<div class="outline-text-4" id="text-1-6-4">
+<ul class="org-ul">
+<li>Given \(Y_i, x_{i1}, ..., x_{ip}\) for \(i=1,2,...,n\)</li>
+<li>Let \(x_i = (x_{i1}, ..., x_{ip})^T\).</li>
+<li>First PLS, \(V_1 = \alpha_1 X_1 + ... + \alpha_p X_p\) is defined as finding \(\alpha = (\alpha_1, ..., \alpha_p)^T\) that maximizes <b>covariance</b>
+\[
+  \hat{\textbf{CoV}}(Y, V_1) = \frac{1}{n} \sum^n_i (Y_i-\bar{Y})(v_i-\bar{v}),
+  \]
+when
+\(v_i = \alpha_1 x_{i1} + ... + \alpha_p x_{ip}\) for \(i=1,2,...n\) subject to \(\alpha^T \alpha = 1\)</li>
+<li>Later PLSs are defined analogously to maximize the covariance and are <b>assumed to be uncorrelated</b> with all previous PLSs.</li>
+<li><b>Solution</b>: the \(\alpha\)'s are the eigenvectors of the \(p \times p\) matrix \(X^T Y Y^T X\) when the data matrices \(X \& Y\) have column mean zero.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orge14a8fb" class="outline-4">
+<h4 id="orge14a8fb"><span class="section-number-4">1.6.5.</span> The PLS model</h4>
+<div class="outline-text-4" id="text-1-6-5">
+<ul class="org-ul">
+<li>Data: \(Y_i, x_{i1}, ..., x_{ip}\) for \(i=1,2,...,n\)</li>
+<li>Assume data have mean 0.</li>
+<li>Write data matrix as \((Y_{n \times  q}, X_{n \times  p})\)</li>
+<li>Goal: find \(\ell\) linear combinations from \(X \& Y\) to use as new dimensions.</li>
+<li><p>
+The PLS model: noniterative iterative partial least squares (NIPALS):
+</p>
+
+<p>
+\[
+  X_{n \times  p} = T_{n \times \ell} P_{\ell \times  p} + E,
+  Y_{n \times  q} = U_{n \times  \ell} Q_{\ell \times  q} + F
+  \]
+where:
+</p>
+<ul class="org-ul">
+<li>\(T_{n \times \ell}\) and \(U_{n \times \ell}\) represent \(\ell\) factors</li>
+<li>\(P_{\ell \times  p}\) and \(Q_{\ell \times q}\) are loadings.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf15cae4" class="outline-4">
+<h4 id="orgf15cae4"><span class="section-number-4">1.6.6.</span> Key idea in The PLS Model</h4>
+<div class="outline-text-4" id="text-1-6-6">
+<ul class="org-ul">
+<li>How to estimate the &ell; factors, or the \(T_{n \times \ell}\) and \(U_{n \times \ell}\) matrices?</li>
+<li>Answer:
+<ul class="org-ul">
+<li>Write the first column of  \(T_{n \times \ell}\) and \(U_{n \times \ell}\)  as \(t=\bf{X} r\) and \(u=\bf{Y} s\) for two unit vectors, \(\parallel r \parallel = \parallel s \parallel = 1\)</li>
+<li>Find \(r\) and \(s\) that maximizes the <b>covariance-squared</b>: \(\textbf{Cov}^2(Xr, Ys)\)</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgdde641b" class="outline-4">
+<h4 id="orgdde641b"><span class="section-number-4">1.6.7.</span> PLS for linear regression</h4>
+<div class="outline-text-4" id="text-1-6-7">
+<ul class="org-ul">
+<li>Original data: \(Y_i, x_{i1}, ..., x_{ip}\) for \(i=1,2,...,n\)</li>
+<li>After extracting all PLS's, raw data can be written as new formats \((Y_i, v_{i1}, ..., v_{ip})\) for \(i=1,2,...,n\)</li>
+<li>Partial least squares regression: linear regression using only <b>first k</b> PLSs:
+\[
+  Y_i = \beta_0 + \beta_1 v_[i1] + ... + \beta_k v_{ik} + \epsilon_i
+  \]</li>
+<li>Choosing \(k\): by <b>cross-validation</b></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgae2e5df" class="outline-4">
+<h4 id="orgae2e5df"><span class="section-number-4">1.6.8.</span> Canonical correlation analysis (CCA)</h4>
+<div class="outline-text-4" id="text-1-6-8">
+<ul class="org-ul">
+<li>CCA: find the unit vectors \((r, s)\) that maximizes the <b>correlation coefficient</b>
+\[
+  \text{Corr}(Xr, Ys) = \frac{r^T \Sigma_{XY}s}{\sqrt{r^T \Sigma_{XX}r}\sqrt{s^T \Sigma_{YY}s}}
+  \]</li>
+<li><p>
+Solution: in the population(?) version with \((X_1, ..., X_p)\) and \((Y_1, ..., Y_q)\), consider \(r^T X = r_1 X_1 + ... + r_p X_p\) and \(s^T Y = s_1 Y_1 + ... + s_q Y_q\), the optimal \(r, s\) values are the respective eigenvectors of
+</p>
+
+<p>
+\[
+  \Sigma^{-1}_{XX} \Sigma^{-1}_{YY} \Sigma_{YX} \text{ and }
+  \Sigma^{-1}_{YY} \Sigma^{-1}_{XX} \Sigma_{XY}
+  \]
+</p></li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: W</p>
-<p class="date">Created: 2024-02-07 Wed 18:58</p>
+<p class="date">Created: 2024-02-08 Thu 18:54</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
