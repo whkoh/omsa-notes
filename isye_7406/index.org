@@ -552,3 +552,278 @@ Collection of techniques with 2 common properties:
   \Sigma^{-1}_{XX} \Sigma^{-1}_{YY} \Sigma_{YX} \text{ and }
   \Sigma^{-1}_{YY} \Sigma^{-1}_{XX} \Sigma_{XY}
   $$
+* Week 4: Linear Classification
+** Overview of Linear Discriminant Analysis (4.1.1)
+Supervised learning recap
+- Data: $Y_i, x_{i1}, ..., x_{ip}$ for $i=1,2,...,n$
+- Objective: predict $Y$ for given new input $x_{\text{new}} = (x_1, ..., x_p)$
+- Types of tasks:
+  1. Regression: why response $Y$ is continuous
+  2. Regression: When response $Y is binary, or discrete values representing classes
+*** Classification problem
+- For $Y_i, x_{i1}, ..., x_{ip}$ for $i=1,2,...,n$ where $Y_i \in {1, 2, ...K}$ is the class label
+- Objective: find a decision function to *discriminate* among data form the $K$ different classes.
+  - Learn a decision rule $h(x) \in {1, 2, ...k}$ used to separate the $K$ classes
+  - Predict the class label for new input $x_{\text{new}}$
+- Example: classifying patients in hospital ER into classes (low, med, high risk) by age, gender, weight, BP, insurance, etc.
+  - Assign treatment priority to high-risk patients?
+*** Popular classification methods and R packages
+- Discriminant analysis :: ?
+a- Tree-based classifiers :: ~rpart~
+- Boosting :: ~gbm~
+- Random forest :: ~randomForest~
+- Neural networks :: ~nnet~
+- svm :: ~e1071~
+*** Discriminant analysis
+- A multi-classifier is associated with a $K$ - dim vector
+  $$
+  d(x) = (d_1 (x), ..., d_K (x))
+  $$
+  where $d_k (x)$ represents the strength of evidence that $x$ is in class $k$.
+- For given new input $x_{\text{new}}$, predict the class label
+
+  $$
+  \hat{k} = \text{argmax}_{k=1, 2, ..., K} d_k (x_\text{new})
+  $$
+- Discriminant functions $d_k (x)$ are *linear* functions of $x = (x_1, ..., x_p)$
+*** Example for 3-class problem
+[[./img/3-class.png]]
+Predict $Y \in {1,2,3}$ based on $(X_1, X_2)$:
+- Class 1 if $d_1 > \max(d_2, d_3)$
+- Class 2 if $d_2 > \max(d_1, d_3)$
+- Class 3 if $d_3 > \max(d_1, d_2)$
+
+  In this example, boundaries ${(x_1, x_2): d_i (x_1, x_2) = d_j(x_1, x_2)}$ are linear.
+*** Discriminant functions
+How to construct discriminant functions $d_k (x)$ 's?
+3 approaches are available:
+1. Distance-based discriminant analysis, e.g. $d_k$ is the distance between the sample mean of the $k$ -th class and the new input $x$.
+2. Bayes Rules
+3. Probability-based rule, i.e. Logistic Regression
+*** Multi-class vs. Binary
+If the number $K$ of classes is not too large, can simplify the multi-class problems into *series of* binary problems via two approaches:
+- one vs rest :: training binary classifiers with \partial_k(X) separating class $k$ from the rest. It's easy to implement but poor performance if no dominating class. Binary problems are unbalanced.
+- pairwise comparison approach :: train $K(K-1)/2$ binary classifiers. The final class prediction is decided by a voting scheme among all classifiers.
+** Linear discrimination analysis continued (4.1.2)
+See: [[Discriminant analysis]].
+
+LDA was first developed as distance-based classification (Fisher, 1936). Alternate interpretation: Bayes.
+*** Bayes classifier
+- Under $0-1$ loss, Bayes classifier is
+  $$
+  \text{argmax}_k  (P(Y=k | x))
+  = \text{argmax}_k (\pi_k f_k (x))
+  = \text{argmax}_k (\log(\pi_k) + \log(f_k (x)))
+  $$
+  where:
+  - $\pi_k$ :: a prior
+  - $f_k$ ::  the density function of the $k$ -th class
+*** Normality asumption
+LDA is the Bayes Rule under assumption that *densities* $f_k$ are *multivariate normal* with the *common covariance*, i.e. $N(\mu_k, \Sigma)$.
+
+Mathematically, LDA assumes:
+$$
+f_k(x) = \frac{1}{\sqrt{2\pi}|\text{det}(\Sigma)} \exp\left({-\frac{1}{2} (x-\mu_k)^T \Sigma^{-1}(x-\mu_k)}\right)
+$$
+for $k=1,2,...,K$
+*** Bayes classifier for normal distribution
+- If the $f_k$ are normal with common variance, i.e. $N(\mu_k, \Sigma)$, then the Bayes classification rule is
+  $$
+  \text{argmax}_k \left(
+  -\frac{1}{2} \text{logdet}(\Sigma) - \frac{1}{2}(x-\mu_k)^T\Sigma^{-1}(x-\mu_k) + \log \pi_k
+  \right)
+  $$
+
+  $$
+  = \text{argmax}_k \left(
+  x^T\Sigma^{-1}\mu_k - \frac{1}{2}\mu^T_k \Sigma^{-1} \mu_k + \log \pi_k
+  \right)
+  $$
+
+  since the common variance term drops out.
+
+- Leads to linear discrimination function:
+  $$
+  d_k(x) = x^T \Sigma^{-1} \mu_k - \frac{1}{2}\mu_k^T \Sigma^{-1} \mu_k + \log \pi_k
+  $$
+*** LDA in practice
+- Data: for $Y_i, x_{i1}, ..., x_{ip}$ for $i=1,2,...,n$ where $Y_i \in {1, 2, ...K}$ is the class label
+- LDA uses the  discrimination function:
+  $$
+  d_k(x) = x^T \Sigma^{-1} \mu_k - \frac{1}{2}\mu_k^T \Sigma^{-1} \mu_k + \log \pi_k
+  $$
+- In practice, parameters are estimated from training data as follows:
+  - $\hat{\pi_k}$ :: $\frac{n_k}{n}$
+  - $\hat{\mu_k}$ :: $\frac{1}{n_k} \sum_{y_i=k} x_i$ where $n_k$ is the no. of observations in class $k$
+  - $\hat{\Sigma}$ :: $\frac{1}{\sum^K_{k=1}(n_k -1)} \sum^K_{k=1} \sum_{y_i=k}(x_i - \hat{\mu}_k)(x_i-\hat{\mu}_k)^T$ which is the within-class sample variance
+*** LDA for K=2 classes
+- Classifies into class 2 if and only if
+  \begin{equation}
+  x_T \hat{\Sigma}^{-1} - \frac{1}{2} \hat{\mu}^T_2 \hat{\Sigma}^{-1} \hat{\mu}_2 + \log \hat{\pi}_2 >
+  x^T \Sigma^{-1}\hat{\mu}_1 - \frac{1}{2} \hat{\mu}_1^T \hat{\Sigma}^{-1} \hat{\Sigma}_1 + \log \hat{\pi}_1
+  \end{equation}
+  or
+  \begin{equation}
+  x^T \Sigma^{-1}(\hat{\mu}_2- \hat{\mu}_1) >
+   \frac{1}{2} \hat{\mu}_2^T \hat{\Sigma}^{-1} \hat{\mu}_2 -
+   \frac{1}{2}\hat{\mu}_1^T \Sigma^{-1} \hat{\mu}_1 + \log{\frac{n_1}{n}} - \log{\frac{n_2}{n}}
+ \end{equation}
+
+ - let $w=\Sigma^{-1} (\hat{\mu}_2 - \hat{\mu}_1)$, the LHS = $x^T w = w \cdot x = w_1 x_1 + ... + w_p x_p$, is the projection of the $p$ -th dimensional vector $x$ to a real-valued number
+*** Fisher's distance-based approach
+- for $k=2$ classes:
+  - projects the p-dimensional vector $\textbf{x}$ to a real-valued number
+    $$
+    L = \textbf{w} \cdot \textbf{x} = x^T w = w_1x_1 + ... + w_p x_p
+    $$
+  - Find the optimal direction $\textbf{w}$ that best separates two classes on the projection line, using *training data*
+  - Assign new point $x$ to class 2 if and only if:
+    $$
+    \textbf{w} \cdot \textbf{x} > \textbf{w} \cdot \frac{\hat{\mu}_1 + \hat{\mu}_2}{2}
+    $$
+  - Equivalently: assign $x$ to class 2 if
+    \begin{equation}
+    x^T \Sigma^{-1}(\hat{\mu}_2- \hat{\mu}_1) > \frac{1}{2} \hat{\mu}_2^T \hat{\Sigma}^{-1} \hat{\mu}_2 - \frac{1}{2}\hat{\mu}_1^T \Sigma^{-1} \hat{\mu}_1
+    \end{equation}
+
+    which is the same as Bayes-based LDA when the classes have equal numbers of observations.
+** Quadratic Discrimination Analysis classifier (4.1.3)
+See [[Discriminant analysis]].
+How to choose suitable discriminant functions $d_k(x)$?
+*** Bayes classifier
+- The discriminant functions $d_k(x)$ are based on *posterior* distributions
+- The Bayes classifier is defined as:
+  \begin{equation}
+  \text{argmax}_k (P(Y=k|x))
+  = \text{argmax}_k (\pi_k f_k (x))
+  = \text{argmax}_k (\log \pi_k + \log f_k (x))
+  \end{equation}
+  where:
+  - $\pi_k$ is a *prior*
+  - $f_k$ is the density function of the $k$ th class
+  Question: how to model the density functions $f_k$? *Normal distribution!*
+*** Normal distribution
+Univariate normal distribution $N(\mu, \sigma^2)$
+- Probability density function is given by:
+  $$
+  p(x) = \frac{1}{\sqrt{2\pi}\sigma} \exp \left( -\frac{1}{2\sigma^2} (x-\mu)^2\right)
+  $$
+- parameter estimation of $(\mu, \sigma^2)$ from training data:
+  - sample mean, $\hat{\mu}$ :: $\bar{x} = \frac{1}{n} \sum^n_{i=1}x_i$
+  - sample variance, $\hat{\sigma}^2$ :: $\frac{1}{n-1} \sum^n_{i=1} (x_i - \bar{x})^2$
+- properties: the components of $X$ are independent iif $\Sigma$ is diagonal!
+*** Normal model for $f_k$
+- See [[Discriminant analysis]]
+- Bayes classifier:
+  $\text{argmax}_k (\log \pi_k + \log f_k (x))$ where $\pi_k$ is a prior and $f_k$ is the pdf of the $k$ th class.
+- Model: assume pdfs $f_k(x) = f_k(x_1, ..., x_p) \sim N(\mu_k, \Sigma_k)$
+- Question: how to estimate $(\mu_k, \Sigma_k)$?
+*** Three approaches to estimate
+Different assumptions:
+- Linear discriminant analysis :: When $\Sigma_k \equiv \Sigma$ (common variance), estimated by within-sample covariance
+- Quadratic discriminant analysis :: when $\Sigma_k$ is estimated by the sample covariance of the $k$ -th class
+- Naive Bayes :: when each component of $\textbf{X}$ is independent, i.e. when $\Sigma_k \equiv \Sigma = \text{diag}(\sigma^2_{k1}, ..., \sigma^2_{kp})$
+*** QDA classifier
+- Assumes that $f_k$ are normal $N(\mu_k, \Sigma_k)$
+- Assigns data $x$ to the class:
+  $$
+  \text{argmax}_k \left(
+  -\frac{1}{2} \log \text{det}(\Sigma_k) -
+  \frac{1}{2}(x-\mu_k)^T \Sigma^{-1}_k (x-\mu_k) + \log \pi_k
+  \right)
+  $$
+- In practice, estimated from training data:
+  - $\hat{\pi}_k$ :: $\frac{n_k}{n}$
+  - $\hat{\mu}_k$ :: $\frac{1}{n_k} \sum_{y_i = k} x_i$ where n_k is the no. of observations in class $k$
+  - $\hat{\Sigma}_k$ :: $\frac{1}{n_k-1} \sum_{y_i=k} (x_i-\hat{\mu}_k)(x_i - \hat{\mu}_k)^T$ which is the sample covariance of class $k$
+*** Naive Bayes classifier
+- Assumes that $\Sigma_k \equiv \Sigma = \text{diag}(\sigma^2_{k1}, ..., \sigma^2_{kp})$, or equivalently:
+  $$
+  f_k(x) = f_k (x_1, ..., x_p) = \prod^p_{j=1} f_{kj}(x_j),
+  f_{kj} \sim N(\mu_{kj}, \sigma^2_{kj})
+  $$
+- Assigns $x$ to class $\text{argmax}_k (\pi_k \prod^p_{j=1}) f_{k,j}(x_j)$
+- In practice, parameters $(\mu_{kj}, \sigma^2_{kj})$ estimated from the $j$ -th component of $X$ variables for $k$ -th class in training data:
+  - $\hat{\pi}$ :: $\frac{n_k}{n}$
+  - $\hat{\mu}_{kj}$ :: $\frac{1}{n_k} \sum_{y_i = k} x_{ij}$
+  - $\hat{\sigma^2_{kj}}$ :: $\frac{1}{n_k-1} \sum_{y_i = k} (x_{ij}-\bar{x}_j)^2$
+*** General Naive Bayes classifier
+- *Ignore* any dependence between explanatory variables and assume that $X_j$'s are independent.
+- Thus, corresponding classifier is
+  $$
+  \text{argmax}_k (\pi_k \prod^p_{j=1}f_{k,j}(x_j))
+  $$
+- In practice, marginal densities $f_{k,j} (\cdot)$ are usually assumed to be parameterized by some parameters, which must be estimated, e.g.:
+  - Gaussian Naive Bayes
+  - Bernoulli Naive Bayes
+  - Multinomial Naive Bayes
+  - Poisson Naive Bayes
+** Logistic Regression: Estimation (4.2.1)
+*** Classification methods
+- With data $(Y_i, X_i)$ for $i=1,...,n$, where $Y_i$ is the class label
+- Two approaches to develop classifiers:
+  1. Model conditional densities $f_k = p(\textbf{X}|Y=k)$ at the given $k$ -th class
+     - *Normality assumption on X*: LDA, QDA, Naive Bayes
+  2. Model the conditional density $P(Y=k|\textbf{X})$ directly:
+     - *Bernoulli assumption on Y*: Logistic Regression
+*** Binary logistic regression
+- With data: $(Y_i, x_{i1}, ..., x_{i,p-1})$ for $i=1,...,n$, where $Y_i \in {0,1}$ is the class label
+- Logistic regression defined as 2 components:
+  1. Model the response $\textbf{Y}$ as Bernoulli distribution:
+     $$
+     P(Y_i=1) = \pi_i \\ P(Y_i = 0) = 1-\pi_i
+     $$
+  2. Link the model parameters to the independent $\textbf{X}$ variables:
+     $$
+     \log \frac{\pi_i}{1-\pi_i} = \beta_0 + \beta_1 x_{i1} + ... + \beta_{p-1} x_{i,p-1}
+     $$
+     with $p$ = number of $\beta$ coefficients
+*** Conditional probability
+- Under logistic regression, at given $X=(x_1, ..., x_{p-1})$, the conditional probabilities are
+  $$
+  P(Y=1|X) = \pi = \frac{e^{\beta_0 + \beta_1 x_1 + ... + \beta_{p-1} x_{p-1}}}{1+ e^{\beta_0 + \beta_1 x_1 + ... + \beta_{p-1} x_{p-1}}} \\
+  P(Y=0|X) = 1-\pi = \frac{1}{1+ e^{\beta_0 + \beta_1 x_1 + ... + \beta_{p-1} x_{p-1}}}
+  $$
+*** Statistical inference
+Statistical questions in logistic regression:
+- How to estimate the $\beta$ parameters in the logistic regression model from training data?
+- How to conduct hypothesis testing or get confidence interval?
+- How to use logistic regression model for prediction?
+*** Maximum likelihood estimation
+- The likelihood function of the logistic regression model is
+  $$
+  L(\beta) = \prod^n_{i=1} \pi_i^{y_i} (1-\pi_i)^{1-y_i} \\
+  = ... \\
+  = \prod^n_{i=1} \frac{e^{y_i(\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + ... + \beta_{p-1} x_{i,p-1})}}{1+e^{\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + ... + \beta_{p-1} x_{i,p-1}}}
+  $$
+- MLE $\hat{\beta}$ of the $\beta_i$ 's can be found by maximizing $L(\beta)$.
+*** Asymptotic properties of MLE
+- MLE $\hat{\beta}$ has nice asymptotic properties:
+  $$
+  \hat{\beta} \sim N(\beta, I^{-1}_{p\times p})
+  $$
+  where $I_{p\times p}$ is the observed Fisher Information Matrix defined by the negative values of the *2nd order derivatives* of the log-likelihood function ($\log L(\beta)$) at $\hat{\beta}$, i.e.
+
+  $$
+  I_{p\times p} = (-\frac{\partial^2\log L}{\partial \beta_i \partial \beta_j})|_{\hat{\beta}}
+  $$
+*** Other link function
+- With data: $(Y_i, x_{i1}, ..., x_{i,p-1})$ for $i=1,...,n$, where $Y_i \in {0,1}$ is the class label
+- Generalized linear model: two steps
+  1. $$
+     P(Y_i = 1) = \pi_i, P(Y_i = 0) = 1-\pi_i
+     $$
+  2. $$
+     g(\pi_i) = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + ... + \beta_{p-1} x_{i, p-1}
+     $$
+     where $g(\cdot): (0,1) \rightarrow (-\infty, infty)$ is called a *link function*
+- Other link functions available:
+  1. Normal/probit link: $g=\phi^{-1}$ where $\phi(t) = P(N(0,1) \le t)$ is the c.d.f. of the normal distribution
+*** Logistic or LDA?
+Comparison:
+- Similar: both have discriminant functions that are linear combinations of independent $X$ variables
+- Difference: how to estimate linear coefficients
+  - LDA: assume $X|Y = k$ is *Gaussian*
+  - Logistic regression: *ignore* $\textbf{P(X)}$
+- Generally, *logistic regression* is thought to be *safer & more robust* than LDA
+  - Often, same results
