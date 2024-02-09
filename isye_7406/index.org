@@ -827,3 +827,167 @@ Comparison:
   - Logistic regression: *ignore* $\textbf{P(X)}$
 - Generally, *logistic regression* is thought to be *safer & more robust* than LDA
   - Often, same results
+** Optimizations in Logistic Regression (4.2.2)
+*** Logistic regression recap
+- With data: $(Y_i, x_{i1}, ..., x_{i,p-1})$ for $i=1,...,n$, where $Y_i \in {0,1}$ is the class label
+- Logistic regression model defined as 2 components
+  $$
+  P(Y_i=1) = \pi_i \\
+  P(Y_i = 0) = 1-\pi_i \\
+  \log \frac{\pi_i}{1-\pi_i} = \beta_0 + \beta_1 x_{i1} + ... + \beta_{p-1} x_{i,p-1}
+  $$
+- *Question*: how to estimate the $\beta_i$ in the model?
+*** MLE in logistic regression
+As seen previously, MLE can be found by maximizing likelihood function:
+$$
+L(\beta) =
+\prod^n_{i=1} \frac{e^{y_i(\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + ... + \beta_{p-1} x_{i,p-1})}}{1+e^{\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + ... + \beta_{p-1} x_{i,p-1}}}
+$$
+- Challenges:
+  - *No explicit* solutions to MLE $\hat{\beta}$.
+  - Need to rely on numerical solutions to apply efficient optimization algorithm to find MLE $\hat{\beta}$.
+*** Optimization problem
+In statistics and machine learning, we often face optimization problem, e.g.:
+$$
+\hat{\theta} =
+\text{argmin}_{\theta \in \Theta \subset \Re^p}
+$$
+Often $h(\theta)$ is smooth and we want to solve the first derivative $h'(\theta) = 0$.
+- *Iterative method*: one widely used optimization algorithm:
+  1. Find sequence of $\theta^{(i)}$ values until convergence to $\hat{\theta}$.
+  2. When converged, we have $h'(\hat{\theta}) = 0$.
+*** Optimization algorithms
+Two basic iterative algorithms to solve $\hat{\theta} = \text{argmin}_\theta h(\theta)$:
+1. *Gradient descent*, widely used in machine learning
+   $$
+   \theta_{\text{new}} = \theta_{\text{old}} - \lambda h'(\theta_{\text{old}})
+   $$
+   where $\lambda$ is the learning rate
+2. *Newton-Raphson Method*, very popular in statistics
+   $$
+   \theta_{\text{new}} = \theta_{\text{old}} - [h''(\theta_{\text{old}})]^{-1} h'(\theta_{\text{old}})
+   $$
+*** Newton-Raphson Method
+[[./img/n-r-method.png]]
+Mathematically:
+1. When starting at $\theta_{\text{old}}$ and want to update to $\theta_{\text{new}} = \theta_{\text{old}} + \epsilon$, *how to choose $\epsilon$* so that $h'(\theta_{\text{new}})=0$?
+2. Answer: Taylor series expansion of $h(\theta)$ on $\theta_{\text{old}}$!
+*** Taylor Expansion consideration
+- When $\theta$ is 1-dim, by *Taylor series expansion*,
+  $$
+  h'(\theta_{\text{old}} + \epsilon) \approx h'(\theta_{\text{old}}) + \epsilon h''(\theta_{\text{old}})
+  $$
+- Setting to 0 yields:
+  $$
+  \epsilon \approx - \frac{h'(\theta_{\text{old}})}{h''(\theta_{\text{old}})}
+  $$
+- The idea is identical for high-dim \theta. This leads to Newton-Raphson method:
+  $$
+  \theta_{\text{new}} = \theta_{\text{old}} - [h''(\theta_{\text{old}})]^{-1} h'(\theta_{\text{old}})
+  $$
+  where updates are done till $\theta$ converges.
+*** Newton-Raphson Method in Statistics
+Why is this method popular in statistics?
+- When converged, Newton-Raphson Method provides 2 values:
+  $$
+  \hat{\theta} \text{ and} \\
+  \hat{V} = -[h''(\hat{\theta})]^{-1}
+  $$
+- When $h(\theta)$ is the log-likelihood function in statistics, the maximum likelihood estimator is $\hat{\theta}$
+  - By the asymptotic theory of MLE, $\frac{\hat{\theta}-\theta}{\sqrt{\hat{V}}} \sim N(0,1)$ and thus the 95% CI on $\theta$ is $\hat{\theta} \pm 1.96 \sqrt{\hat{V}}$
+*** MLE of logistic regression
+- In logistic regression, the log-likelihood function (in vector notation) is:
+  $$
+  \log L(\beta) = \sum^n_{i=1} [y_i \beta^T x_i - \log(1+e^{\beta^T x_i})]
+  $$
+- First order derivative
+  $$
+  \frac{\partial \log L(\beta)}{\partial\beta} = \sum^n_{i=1} [y_i x_i - \frac{e^{\beta^T x_i}}{1+e^{\beta^T x_i}}x_i] \\
+  = \sum^n_{i=1} (y_i - \pi_i)x_i
+  $$
+- Second order derivatives
+  $$
+  \frac{\partial^2 \log L(\beta)}{\partial \beta \partial\beta^T} \\
+  = -\sum^n_{i=1} x_i \frac{e^{\beta^T x_i}(1+e^{\beta^T x_i})-e^{\beta^T x_i}\cdot e^{\beta^T x_i}}{(1-e^{\beta^T x_i})^2}x^T_i \\
+  = -\sum^n_{i=1} x_i \pi_i (1-\pi_i)x_i^T
+  $$
+- Let:
+  \begin{equation}
+  \pi =
+  \begin{pmatrix}
+  \pi_1 \\
+  ... \\
+  \pi_n
+  \end{pmatrix}
+  ;
+  W =
+  \begin{pmatrix}
+  \pi_1 (1-\pi_1) & & \\
+   & ... & \\
+   & & \pi_n (1-\pi_n)
+   \end{pmatrix}
+   \end{equation}
+- We have $h'(\beta) = X^T (Y-\pi)$ and $h''(\beta) = -X^T WX$
+- Applying Newton-Raphson Method to the MLE of logistic regression:
+  $$
+  \beta_{\text{new}} = \beta_{\text{old}} - [h''(\beta_{\text{old}})]^{-1} h'\beta_{\text{old}} \\
+  = \beta_{\text{old}} + (X^T WX)^{-1} X^T(Y-\pi) \\
+  = (X^T WX)^{-1} X^T W [X\beta_{\text{old}} + W^{-1}(Y-\pi)] \\
+  = (X^T WX)^{-1} X^T WZ
+  $$
+  where $Z = X\beta_{\text{old}} + W^{-1}(Y-\pi)$
+- This is *weighted least squares*.
+*** Algorithm for MLE in logistic regression
+- Initialize $\beta_{\text{init}}=0$
+- Given $\beta_{\text{old}}$,
+  1. Compute 3 new variables:
+     $$
+     \hat{\pi_i} = \frac{e^{\beta^T_{\text{old}}}x_i}{1+e^{\beta^T_{\text{old}}}x_i} \\
+     w_i = \hat{\pi}_i (1-\hat{\pi}_i) \\
+     Z_i = \beta^T_{\text{old}} x_i + \frac{Y_i - \hat{\pi}_i}{\hat{\pi}_i (1-\hat{\pi}_i)}
+     $$
+  2. Conduct weighted least squares:
+     $$
+     \beta_{\text{new}} \leftarrow \text{argmin}_{\beta} [(Z_X\beta)^T W(Z-X\beta)]
+     $$
+- Repeat the 2nd step until convergence.
+** Simplest logistic regression (4.2.3)
+- With data: $(Y_i, x_{i1}, ..., x_{i,p-1})$ for $i=1,...,n$, where $Y_i \in {0,1}$ is the class label
+- Logistic regression is defined as two components:
+  $$
+  P(Y_i=1) = \pi_i \\
+  P(Y_i = 0) = 1-\pi_i \\
+  \log \frac{\pi_i}{1-\pi_i} = \beta_0 + \beta_1 x_{i1} + ... + \beta_{p-1} x_{i,p-1}
+  $$
+- Simplest logistic regression model is when $p = 2$ and $x_{i1}\in{0,1}$
+  - Explicit solution of MLE exists
+  - Helps to better understand general theory
+*** Data in Simplest Logistic Regression
+[[./img/data-slr.png]]
+Can also be summarised as 2x2 table, typical in biostatistics, i.e.:
+
+$n=a+b+c+d$
+|         | Y_i = 1 | Y_i=0 | Sum |
+|---------+---------+-------+-----|
+| x_i = 1 | a       | b     | a+b |
+| x_i = 0 | c       | d     | c+d |
+*** Is X and Y associated?
+- Example context:
+  - X refers to exposure, e.g. does subject smoke?
+  - Y refers to disease, e.g. does subject have lung cancer
+- Based on the table, is X associated with Y?
+- Equivalent to hypothesis test:
+  $$
+  H_0: \beta_1 = 0 \text{ vs. } H_1: \beta_1 \neq 0
+  $$
+- If we can find 95% CI of $\beta_1$, e.g.
+  $$
+  \hat{\beta_1} \pm 1.96 \sqrt{\hat{\text{Var}}(\hat{\beta_1})}
+  $$
+- Then we reject $H_0$ if and only if 0 is *outside* the CI.
+*** The likelihood function
+is:
+$$
+L(\beta) = \prod^n_{i=1} \frac{e^{Y_i}(\beta_0+\beta_1 x_i)}{1+e^{\beta_0 + \beta_1 x_i}} \\
+= \frac{e^{\beta_0(a+c) + \beta_1 a}}{(1+e^{\beta_0+\beta_1})^{a+b}(1+e^{\beta_0})^{c+d}}
+$$

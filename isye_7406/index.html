@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-02-09 Fri 18:40 -->
+<!-- 2024-02-09 Fri 22:21 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ISYE 7406: Data Mining and Statistical Learning</title>
@@ -44,120 +44,140 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org372ced5">1. Week 3: Linear Regression (II)</a>
+<li><a href="#orgb7d279a">1. Week 3: Linear Regression (II)</a>
 <ul>
-<li><a href="#org433ec01">1.1. James-Stein Estimator</a>
+<li><a href="#org8cd7c20">1.1. James-Stein Estimator</a>
 <ul>
-<li><a href="#orgd2e3766">1.1.1. It's a special case of linear regression</a></li>
-<li><a href="#orgab86526">1.1.2. Simultaneous estimation</a></li>
-<li><a href="#org17509ac">1.1.3. JS estimator</a></li>
-<li><a href="#orgc7fbce3">1.1.4. Baseball example</a></li>
-<li><a href="#org30a623a">1.1.5. Comparing MLE and JS</a></li>
+<li><a href="#orgf57cb1f">1.1.1. It's a special case of linear regression</a></li>
+<li><a href="#org055a939">1.1.2. Simultaneous estimation</a></li>
+<li><a href="#org64e054b">1.1.3. JS estimator</a></li>
+<li><a href="#org44e07da">1.1.4. Baseball example</a></li>
+<li><a href="#orgfc5f16a">1.1.5. Comparing MLE and JS</a></li>
 </ul>
 </li>
-<li><a href="#orge3000ef">1.2. Shrinkage Methods</a>
+<li><a href="#org93c70a0">1.2. Shrinkage Methods</a>
 <ul>
-<li><a href="#orgd69492e">1.2.1. Setting up shrinkage method</a></li>
-<li><a href="#orgb1a3e45">1.2.2. Alternative formulation</a></li>
-<li><a href="#org91684c9">1.2.3. Bayesian interpretation</a></li>
-<li><a href="#org442cad8">1.2.4. Choices of priors</a></li>
-<li><a href="#orgb021faa">1.2.5. Ridge regression</a></li>
-<li><a href="#org9b92d65">1.2.6. LASSO estimator</a></li>
+<li><a href="#orgefee1b3">1.2.1. Setting up shrinkage method</a></li>
+<li><a href="#orgbd23429">1.2.2. Alternative formulation</a></li>
+<li><a href="#orgba442e8">1.2.3. Bayesian interpretation</a></li>
+<li><a href="#org3cdf314">1.2.4. Choices of priors</a></li>
+<li><a href="#orge1f0a9c">1.2.5. Ridge regression</a></li>
+<li><a href="#org7d57883">1.2.6. LASSO estimator</a></li>
 </ul>
 </li>
-<li><a href="#org334af2e">1.3. Ridge Regression</a>
+<li><a href="#orgdd20627">1.3. Ridge Regression</a>
 <ul>
-<li><a href="#org234ed2c">1.3.1. Ridge Regression Estimator</a></li>
-<li><a href="#orgb26b9a7">1.3.2. Mathematical solution</a></li>
-<li><a href="#org73b94b3">1.3.3. Properties of Ridge Regression</a></li>
-<li><a href="#orgedcacd9">1.3.4. Computational issues</a></li>
-<li><a href="#org9d4d4c6">1.3.5. Example of SVD</a></li>
-<li><a href="#org2b15aa0">1.3.6. SVD Example (I): \(XX^T\)</a></li>
-<li><a href="#org6ec2f30">1.3.7. SVD Example (II): \(X^T X\)</a></li>
-<li><a href="#org4546b56">1.3.8. SVD verification</a></li>
+<li><a href="#org0988d11">1.3.1. Ridge Regression Estimator</a></li>
+<li><a href="#orgd5e693c">1.3.2. Mathematical solution</a></li>
+<li><a href="#org10a1425">1.3.3. Properties of Ridge Regression</a></li>
+<li><a href="#org47ced76">1.3.4. Computational issues</a></li>
+<li><a href="#org91c6a30">1.3.5. Example of SVD</a></li>
+<li><a href="#orge45fb09">1.3.6. SVD Example (I): \(XX^T\)</a></li>
+<li><a href="#orgc06f43b">1.3.7. SVD Example (II): \(X^T X\)</a></li>
+<li><a href="#orgf69a755">1.3.8. SVD verification</a></li>
 </ul>
 </li>
-<li><a href="#org81ecaed">1.4. LASSO (3.2.1)</a>
+<li><a href="#orgc58756c">1.4. LASSO (3.2.1)</a>
 <ul>
-<li><a href="#org239a1e1">1.4.1. LASSO estimator</a></li>
-<li><a href="#orgb488f31">1.4.2. L2-norm vs L1-norm</a></li>
-<li><a href="#org3c8a29a">1.4.3. Mathematical solution for LASSO estimator</a></li>
-<li><a href="#orge3b4b8f">1.4.4. Properties of LASSO</a></li>
-<li><a href="#org02111e3">1.4.5. LASSO weaknesses</a></li>
-<li><a href="#org73208fe">1.4.6. Computation issues of LASSO</a></li>
-<li><a href="#org8519d7e">1.4.7. LASSO is piecewise linear</a></li>
-<li><a href="#orgb284cf0">1.4.8. Standard error of LASSO</a></li>
-<li><a href="#orge0becd7">1.4.9. Variants of L1-norm</a></li>
+<li><a href="#org81024cf">1.4.1. LASSO estimator</a></li>
+<li><a href="#orga430ce8">1.4.2. L2-norm vs L1-norm</a></li>
+<li><a href="#orgf48100b">1.4.3. Mathematical solution for LASSO estimator</a></li>
+<li><a href="#org1263121">1.4.4. Properties of LASSO</a></li>
+<li><a href="#org8abc999">1.4.5. LASSO weaknesses</a></li>
+<li><a href="#org3f8da3e">1.4.6. Computation issues of LASSO</a></li>
+<li><a href="#orgad1f429">1.4.7. LASSO is piecewise linear</a></li>
+<li><a href="#org2776f28">1.4.8. Standard error of LASSO</a></li>
+<li><a href="#org619fb18">1.4.9. Variants of L1-norm</a></li>
 </ul>
 </li>
-<li><a href="#org64a0ef4">1.5. Principal Components (3.2.2)</a>
+<li><a href="#orgd0a5b18">1.5. Principal Components (3.2.2)</a>
 <ul>
-<li><a href="#org71203a2">1.5.1. Dimension reduction</a></li>
-<li><a href="#org4b9f9b8">1.5.2. Motivation of PCA</a></li>
-<li><a href="#orge8f1b5d">1.5.3. Find the PC's:  Population version</a></li>
-<li><a href="#org03f6900">1.5.4. Eigenvectors lead to PC's</a></li>
-<li><a href="#org14fcde0">1.5.5. Proof by Lagrange Multipliers</a></li>
-<li><a href="#orgdfbc1d5">1.5.6. PCs in Empirical Version</a></li>
-<li><a href="#orgb2bad38">1.5.7. Principal component regression</a></li>
+<li><a href="#org4e86e55">1.5.1. Dimension reduction</a></li>
+<li><a href="#org8aa7d43">1.5.2. Motivation of PCA</a></li>
+<li><a href="#orgc24164f">1.5.3. Find the PC's:  Population version</a></li>
+<li><a href="#org528d641">1.5.4. Eigenvectors lead to PC's</a></li>
+<li><a href="#org8b1cdd3">1.5.5. Proof by Lagrange Multipliers</a></li>
+<li><a href="#orgcee0e29">1.5.6. PCs in Empirical Version</a></li>
+<li><a href="#org8e4dd20">1.5.7. Principal component regression</a></li>
 </ul>
 </li>
-<li><a href="#orgafffd1c">1.6. Partial least squares (3.2.3)</a>
+<li><a href="#org0cb0442">1.6. Partial least squares (3.2.3)</a>
 <ul>
-<li><a href="#org85f38b7">1.6.1. Dimension reduction</a></li>
-<li><a href="#org363c5c9">1.6.2. Partial least squares</a></li>
-<li><a href="#org4e4aac5">1.6.3. 2 versions of PLS</a></li>
-<li><a href="#orgbcc911d">1.6.4. Simple PLS algorithm</a></li>
-<li><a href="#orgc2b0919">1.6.5. The PLS model</a></li>
-<li><a href="#org808f74f">1.6.6. Key idea in The PLS Model</a></li>
-<li><a href="#orga5764e0">1.6.7. PLS for linear regression</a></li>
-<li><a href="#orgf3ca7b4">1.6.8. Canonical correlation analysis (CCA)</a></li>
+<li><a href="#org6db7d65">1.6.1. Dimension reduction</a></li>
+<li><a href="#org1bfbcb4">1.6.2. Partial least squares</a></li>
+<li><a href="#orga3a4b17">1.6.3. 2 versions of PLS</a></li>
+<li><a href="#org1174922">1.6.4. Simple PLS algorithm</a></li>
+<li><a href="#org66d60e4">1.6.5. The PLS model</a></li>
+<li><a href="#org7de1f0c">1.6.6. Key idea in The PLS Model</a></li>
+<li><a href="#org80a62c9">1.6.7. PLS for linear regression</a></li>
+<li><a href="#org7480ce4">1.6.8. Canonical correlation analysis (CCA)</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org86e4513">2. Week 4: Linear Classification</a>
+<li><a href="#org425d4bb">2. Week 4: Linear Classification</a>
 <ul>
-<li><a href="#orgdcf0964">2.1. Overview of Linear Discriminant Analysis (4.1.1)</a>
+<li><a href="#orgb294c1a">2.1. Overview of Linear Discriminant Analysis (4.1.1)</a>
 <ul>
-<li><a href="#orga622f90">2.1.1. Classification problem</a></li>
-<li><a href="#org29105d4">2.1.2. Popular classification methods and R packages</a></li>
-<li><a href="#orgd3bcd37">2.1.3. Discriminant analysis</a></li>
-<li><a href="#orgbdc7cbd">2.1.4. Example for 3-class problem</a></li>
-<li><a href="#org5ce0ed6">2.1.5. Discriminant functions</a></li>
-<li><a href="#org866bef0">2.1.6. Multi-class vs. Binary</a></li>
+<li><a href="#org94cb913">2.1.1. Classification problem</a></li>
+<li><a href="#orgcb722ea">2.1.2. Popular classification methods and R packages</a></li>
+<li><a href="#org90fee4c">2.1.3. Discriminant analysis</a></li>
+<li><a href="#org468d3ad">2.1.4. Example for 3-class problem</a></li>
+<li><a href="#org2ce1903">2.1.5. Discriminant functions</a></li>
+<li><a href="#org9a8bc05">2.1.6. Multi-class vs. Binary</a></li>
 </ul>
 </li>
-<li><a href="#orgaf5d8c5">2.2. Linear discrimination analysis continued (4.1.2)</a>
+<li><a href="#org7a9b7d3">2.2. Linear discrimination analysis continued (4.1.2)</a>
 <ul>
-<li><a href="#orge50db44">2.2.1. Bayes classifier</a></li>
-<li><a href="#org8cb019d">2.2.2. Normality asumption</a></li>
-<li><a href="#org67e775b">2.2.3. Bayes classifier for normal distribution</a></li>
-<li><a href="#orga8605a1">2.2.4. LDA in practice</a></li>
-<li><a href="#org2802fca">2.2.5. LDA for K=2 classes</a></li>
-<li><a href="#orge715ea2">2.2.6. Fisher's distance-based approach</a></li>
+<li><a href="#orgbf6a8d4">2.2.1. Bayes classifier</a></li>
+<li><a href="#orgd2556d5">2.2.2. Normality asumption</a></li>
+<li><a href="#org37b9e34">2.2.3. Bayes classifier for normal distribution</a></li>
+<li><a href="#org20f811a">2.2.4. LDA in practice</a></li>
+<li><a href="#org74c1581">2.2.5. LDA for K=2 classes</a></li>
+<li><a href="#orgd576bf3">2.2.6. Fisher's distance-based approach</a></li>
 </ul>
 </li>
-<li><a href="#orga001928">2.3. Quadratic Discrimination Analysis classifier (4.1.3)</a>
+<li><a href="#org49ec4e6">2.3. Quadratic Discrimination Analysis classifier (4.1.3)</a>
 <ul>
-<li><a href="#orgf409618">2.3.1. Bayes classifier</a></li>
-<li><a href="#org1e7498c">2.3.2. Normal distribution</a></li>
-<li><a href="#org3bc0dba">2.3.3. Normal model for \(f_k\)</a></li>
-<li><a href="#org8520a2b">2.3.4. Three approaches to estimate</a></li>
-<li><a href="#org8cd3fb9">2.3.5. QDA classifier</a></li>
-<li><a href="#org4703aec">2.3.6. Naive Bayes classifier</a></li>
-<li><a href="#org645cba5">2.3.7. General Naive Bayes classifier</a></li>
+<li><a href="#org0ee6d8b">2.3.1. Bayes classifier</a></li>
+<li><a href="#orgb58f6f6">2.3.2. Normal distribution</a></li>
+<li><a href="#orga1d0063">2.3.3. Normal model for \(f_k\)</a></li>
+<li><a href="#orga3cf938">2.3.4. Three approaches to estimate</a></li>
+<li><a href="#orgbd86906">2.3.5. QDA classifier</a></li>
+<li><a href="#orgcbdff0f">2.3.6. Naive Bayes classifier</a></li>
+<li><a href="#org5a0dec6">2.3.7. General Naive Bayes classifier</a></li>
 </ul>
 </li>
-<li><a href="#orge6236e4">2.4. Logistic Regression: Estimation (4.2.1)</a>
+<li><a href="#orgc4dbbf3">2.4. Logistic Regression: Estimation (4.2.1)</a>
 <ul>
-<li><a href="#org48c0295">2.4.1. Classification methods</a></li>
-<li><a href="#orgf16f3b8">2.4.2. Binary logistic regression</a></li>
-<li><a href="#org076258d">2.4.3. Conditional probability</a></li>
-<li><a href="#org65b0fb1">2.4.4. Statistical inference</a></li>
-<li><a href="#orgbe2ede9">2.4.5. Maximum likelihood estimation</a></li>
-<li><a href="#org8cd4c1c">2.4.6. Asymptotic properties of MLE</a></li>
-<li><a href="#org81f5797">2.4.7. Other link function</a></li>
-<li><a href="#orgc11d619">2.4.8. Logistic or LDA?</a></li>
+<li><a href="#orgda325bb">2.4.1. Classification methods</a></li>
+<li><a href="#org8b81416">2.4.2. Binary logistic regression</a></li>
+<li><a href="#orgef8cdb5">2.4.3. Conditional probability</a></li>
+<li><a href="#org9b83261">2.4.4. Statistical inference</a></li>
+<li><a href="#org7dded2f">2.4.5. Maximum likelihood estimation</a></li>
+<li><a href="#org24d6b1f">2.4.6. Asymptotic properties of MLE</a></li>
+<li><a href="#org4c84587">2.4.7. Other link function</a></li>
+<li><a href="#org19f2078">2.4.8. Logistic or LDA?</a></li>
+</ul>
+</li>
+<li><a href="#org8fbfbeb">2.5. Optimizations in Logistic Regression (4.2.2)</a>
+<ul>
+<li><a href="#org3787ee1">2.5.1. Logistic regression recap</a></li>
+<li><a href="#org5c9f4ab">2.5.2. MLE in logistic regression</a></li>
+<li><a href="#org8fb08cb">2.5.3. Optimization problem</a></li>
+<li><a href="#org71b973a">2.5.4. Optimization algorithms</a></li>
+<li><a href="#orgb48cf8c">2.5.5. Newton-Raphson Method</a></li>
+<li><a href="#orgb2b8b49">2.5.6. Taylor Expansion consideration</a></li>
+<li><a href="#org9f7f8a2">2.5.7. Newton-Raphson Method in Statistics</a></li>
+<li><a href="#org614d494">2.5.8. MLE of logistic regression</a></li>
+<li><a href="#org3073ce9">2.5.9. Algorithm for MLE in logistic regression</a></li>
+</ul>
+</li>
+<li><a href="#orge916b86">2.6. Simplest logistic regression (4.2.3)</a>
+<ul>
+<li><a href="#org48348e9">2.6.1. Data in Simplest Logistic Regression</a></li>
+<li><a href="#orgfdaef79">2.6.2. Is X and Y associated?</a></li>
+<li><a href="#orgbdf7c4a">2.6.3. The likelihood function</a></li>
 </ul>
 </li>
 </ul>
@@ -165,19 +185,19 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org372ced5" class="outline-2">
-<h2 id="org372ced5"><span class="section-number-2">1.</span> Week 3: Linear Regression (II)</h2>
+<div id="outline-container-orgb7d279a" class="outline-2">
+<h2 id="orgb7d279a"><span class="section-number-2">1.</span> Week 3: Linear Regression (II)</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 M2T2
 </p>
 </div>
-<div id="outline-container-org433ec01" class="outline-3">
-<h3 id="org433ec01"><span class="section-number-3">1.1.</span> James-Stein Estimator</h3>
+<div id="outline-container-org8cd7c20" class="outline-3">
+<h3 id="org8cd7c20"><span class="section-number-3">1.1.</span> James-Stein Estimator</h3>
 <div class="outline-text-3" id="text-1-1">
 </div>
-<div id="outline-container-orgd2e3766" class="outline-4">
-<h4 id="orgd2e3766"><span class="section-number-4">1.1.1.</span> It's a special case of linear regression</h4>
+<div id="outline-container-orgf57cb1f" class="outline-4">
+<h4 id="orgf57cb1f"><span class="section-number-4">1.1.1.</span> It's a special case of linear regression</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <p>
 in LR model with
@@ -212,8 +232,8 @@ When \(\bf{p\ge 3}\), is it possible to do better than OLS?
 </p>
 </div>
 </div>
-<div id="outline-container-orgab86526" class="outline-4">
-<h4 id="orgab86526"><span class="section-number-4">1.1.2.</span> Simultaneous estimation</h4>
+<div id="outline-container-org055a939" class="outline-4">
+<h4 id="org055a939"><span class="section-number-4">1.1.2.</span> Simultaneous estimation</h4>
 <div class="outline-text-4" id="text-1-1-2">
 <ul class="org-ul">
 <li><p>
@@ -241,8 +261,8 @@ Is it possible to do better here?
 </ul>
 </div>
 </div>
-<div id="outline-container-org17509ac" class="outline-4">
-<h4 id="org17509ac"><span class="section-number-4">1.1.3.</span> JS estimator</h4>
+<div id="outline-container-org64e054b" class="outline-4">
+<h4 id="org64e054b"><span class="section-number-4">1.1.3.</span> JS estimator</h4>
 <div class="outline-text-4" id="text-1-1-3">
 <ul class="org-ul">
 <li><p>
@@ -269,8 +289,8 @@ Showed MLS/MLE estimator inadmissible for \(p\ge 3\); dominated by JS estimator.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc7fbce3" class="outline-4">
-<h4 id="orgc7fbce3"><span class="section-number-4">1.1.4.</span> Baseball example</h4>
+<div id="outline-container-org44e07da" class="outline-4">
+<h4 id="org44e07da"><span class="section-number-4">1.1.4.</span> Baseball example</h4>
 <div class="outline-text-4" id="text-1-1-4">
 <ul class="org-ul">
 <li>Observe \(Y_1, Y_2, ... Y_p\) batting averages (where \(Y_i\) is the batting average for p=18 players), 45 AB</li>
@@ -280,8 +300,8 @@ Showed MLS/MLE estimator inadmissible for \(p\ge 3\); dominated by JS estimator.
 </ul>
 </div>
 </div>
-<div id="outline-container-org30a623a" class="outline-4">
-<h4 id="org30a623a"><span class="section-number-4">1.1.5.</span> Comparing MLE and JS</h4>
+<div id="outline-container-orgfc5f16a" class="outline-4">
+<h4 id="orgfc5f16a"><span class="section-number-4">1.1.5.</span> Comparing MLE and JS</h4>
 <div class="outline-text-4" id="text-1-1-5">
 <ul class="org-ul">
 <li>JS has lower predictive squared error than MLS (by 50%)</li>
@@ -299,11 +319,11 @@ Showed MLS/MLE estimator inadmissible for \(p\ge 3\); dominated by JS estimator.
 </div>
 </div>
 </div>
-<div id="outline-container-orge3000ef" class="outline-3">
-<h3 id="orge3000ef"><span class="section-number-3">1.2.</span> Shrinkage Methods</h3>
+<div id="outline-container-org93c70a0" class="outline-3">
+<h3 id="org93c70a0"><span class="section-number-3">1.2.</span> Shrinkage Methods</h3>
 <div class="outline-text-3" id="text-1-2">
 <ul class="org-ul">
-<li>Estimation in linear regression: JS works in only specific cases (<a href="#orgd2e3766">1.1.1</a>) when \(p\ge 3\)</li>
+<li>Estimation in linear regression: JS works in only specific cases (<a href="#orgf57cb1f">1.1.1</a>) when \(p\ge 3\)</li>
 <li>How to do better <i>generally</i>?</li>
 <li>Shrinkage methods (penalized, regularized)
 <ul class="org-ul">
@@ -315,8 +335,8 @@ Showed MLS/MLE estimator inadmissible for \(p\ge 3\); dominated by JS estimator.
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-orgd69492e" class="outline-4">
-<h4 id="orgd69492e"><span class="section-number-4">1.2.1.</span> Setting up shrinkage method</h4>
+<div id="outline-container-orgefee1b3" class="outline-4">
+<h4 id="orgefee1b3"><span class="section-number-4">1.2.1.</span> Setting up shrinkage method</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <ul class="org-ul">
 <li>Needs: \(Y_1, x_{11}, x_{12}, ..., x_{1,p}, \text{such that } i = 1,2,...,n\)</li>
@@ -360,8 +380,8 @@ If not standardized, do linear transformations:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb1a3e45" class="outline-4">
-<h4 id="orgb1a3e45"><span class="section-number-4">1.2.2.</span> Alternative formulation</h4>
+<div id="outline-container-orgbd23429" class="outline-4">
+<h4 id="orgbd23429"><span class="section-number-4">1.2.2.</span> Alternative formulation</h4>
 <div class="outline-text-4" id="text-1-2-2">
 <ul class="org-ul">
 <li>Shrinkage method solves the <b>unconstrained</b> optimization problem
@@ -388,11 +408,11 @@ Alternative formulation solves a <b>constrained</b> optimization problem
 </ul>
 </div>
 </div>
-<div id="outline-container-org91684c9" class="outline-4">
-<h4 id="org91684c9"><span class="section-number-4">1.2.3.</span> Bayesian interpretation</h4>
+<div id="outline-container-orgba442e8" class="outline-4">
+<h4 id="orgba442e8"><span class="section-number-4">1.2.3.</span> Bayesian interpretation</h4>
 <div class="outline-text-4" id="text-1-2-3">
 <ul class="org-ul">
-<li>For LR model (<a href="#orgd2e3766">1.1.1</a>):
+<li>For LR model (<a href="#orgf57cb1f">1.1.1</a>):
 <dl class="org-dl">
 <dt>prior on &beta;</dt><dd>\(\pi(\beta)\)</dd>
 <dt>independent prior on \(\sigma^2\)</dt><dd>\(\pi(\sigma^2)\)</dd>
@@ -413,8 +433,8 @@ Alternative formulation solves a <b>constrained</b> optimization problem
 </ul>
 </div>
 </div>
-<div id="outline-container-org442cad8" class="outline-4">
-<h4 id="org442cad8"><span class="section-number-4">1.2.4.</span> Choices of priors</h4>
+<div id="outline-container-org3cdf314" class="outline-4">
+<h4 id="org3cdf314"><span class="section-number-4">1.2.4.</span> Choices of priors</h4>
 <div class="outline-text-4" id="text-1-2-4">
 <p>
 i.e. choice of prior \(\pi(\beta)\)
@@ -425,8 +445,8 @@ i.e. choice of prior \(\pi(\beta)\)
 </dl>
 </div>
 </div>
-<div id="outline-container-orgb021faa" class="outline-4">
-<h4 id="orgb021faa"><span class="section-number-4">1.2.5.</span> Ridge regression</h4>
+<div id="outline-container-orge1f0a9c" class="outline-4">
+<h4 id="orge1f0a9c"><span class="section-number-4">1.2.5.</span> Ridge regression</h4>
 <div class="outline-text-4" id="text-1-2-5">
 <p>
 <b>Normal prior</b> assumes \(\beta_1 ... \beta_p\) are i.i.d. \(N(0, \tau^2)\) with prior density
@@ -447,8 +467,8 @@ Yields <b>ridge regression</b> estimator, which minimizes
 </p>
 </div>
 </div>
-<div id="outline-container-org9b92d65" class="outline-4">
-<h4 id="org9b92d65"><span class="section-number-4">1.2.6.</span> LASSO estimator</h4>
+<div id="outline-container-org7d57883" class="outline-4">
+<h4 id="org7d57883"><span class="section-number-4">1.2.6.</span> LASSO estimator</h4>
 <div class="outline-text-4" id="text-1-2-6">
 <ul class="org-ul">
 <li><b>Laplace Prior</b>, assume  \(\beta_1 ... \beta_p\) are i.i.d. double-exponential (Laplace) \(\sim \text{Lapalce} (,\tau)\) with prior density
@@ -468,12 +488,12 @@ Yields <b>LASSO</b> estimator that minimizes
 </div>
 </div>
 </div>
-<div id="outline-container-org334af2e" class="outline-3">
-<h3 id="org334af2e"><span class="section-number-3">1.3.</span> Ridge Regression</h3>
+<div id="outline-container-orgdd20627" class="outline-3">
+<h3 id="orgdd20627"><span class="section-number-3">1.3.</span> Ridge Regression</h3>
 <div class="outline-text-3" id="text-1-3">
 </div>
-<div id="outline-container-org234ed2c" class="outline-4">
-<h4 id="org234ed2c"><span class="section-number-4">1.3.1.</span> Ridge Regression Estimator</h4>
+<div id="outline-container-org0988d11" class="outline-4">
+<h4 id="org0988d11"><span class="section-number-4">1.3.1.</span> Ridge Regression Estimator</h4>
 <div class="outline-text-4" id="text-1-3-1">
 <p>
 Assume these are observed: \(Y_i, x_{i1}, ..., x_{ip}\), and all are standardized:
@@ -485,7 +505,7 @@ Assume these are observed: \(Y_i, x_{i1}, ..., x_{ip}\), and all are standardize
 </p>
 
 <p>
-In linear regression model without intercepts (<a href="#orgd2e3766">1.1.1</a>)
+In linear regression model without intercepts (<a href="#orgf57cb1f">1.1.1</a>)
 </p>
 
 <p>
@@ -500,8 +520,8 @@ The ridge regression estimator is defined as:
 </p>
 </div>
 </div>
-<div id="outline-container-orgb26b9a7" class="outline-4">
-<h4 id="orgb26b9a7"><span class="section-number-4">1.3.2.</span> Mathematical solution</h4>
+<div id="outline-container-orgd5e693c" class="outline-4">
+<h4 id="orgd5e693c"><span class="section-number-4">1.3.2.</span> Mathematical solution</h4>
 <div class="outline-text-4" id="text-1-3-2">
 <ul class="org-ul">
 <li>Explicit expression is thus
@@ -516,8 +536,8 @@ The ridge regression estimator is defined as:
 </ul>
 </div>
 </div>
-<div id="outline-container-org73b94b3" class="outline-4">
-<h4 id="org73b94b3"><span class="section-number-4">1.3.3.</span> Properties of Ridge Regression</h4>
+<div id="outline-container-org10a1425" class="outline-4">
+<h4 id="org10a1425"><span class="section-number-4">1.3.3.</span> Properties of Ridge Regression</h4>
 <div class="outline-text-4" id="text-1-3-3">
 <ul class="org-ul">
 <li>Ridge regression <b>most useful</b> when \(X_{n\times p}\) is <b>non-singular</b>, but has <b>high collinearity</b>
@@ -533,8 +553,8 @@ The ridge regression estimator is defined as:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgedcacd9" class="outline-4">
-<h4 id="orgedcacd9"><span class="section-number-4">1.3.4.</span> Computational issues</h4>
+<div id="outline-container-org47ced76" class="outline-4">
+<h4 id="org47ced76"><span class="section-number-4">1.3.4.</span> Computational issues</h4>
 <div class="outline-text-4" id="text-1-3-4">
 <ul class="org-ul">
 <li>How to compute ridge regression efficiently for any \(\lambda\)?
@@ -557,8 +577,8 @@ where: \(U\) and $V are orthogonal; D = diag(\(d_1, ..., d_p\)) is diagonal.</li
 </ul>
 </div>
 </div>
-<div id="outline-container-org9d4d4c6" class="outline-4">
-<h4 id="org9d4d4c6"><span class="section-number-4">1.3.5.</span> Example of SVD</h4>
+<div id="outline-container-org91c6a30" class="outline-4">
+<h4 id="org91c6a30"><span class="section-number-4">1.3.5.</span> Example of SVD</h4>
 <div class="outline-text-4" id="text-1-3-5">
 <ul class="org-ul">
 <li>Find SVD of matrix
@@ -580,11 +600,11 @@ where: \(U\) and $V are orthogonal; D = diag(\(d_1, ..., d_p\)) is diagonal.</li
 </ul>
 </div>
 </div>
-<div id="outline-container-org2b15aa0" class="outline-4">
-<h4 id="org2b15aa0"><span class="section-number-4">1.3.6.</span> SVD Example (I): \(XX^T\)</h4>
+<div id="outline-container-orge45fb09" class="outline-4">
+<h4 id="orge45fb09"><span class="section-number-4">1.3.6.</span> SVD Example (I): \(XX^T\)</h4>
 <div class="outline-text-4" id="text-1-3-6">
 <p>
-For matrix <a href="#org9d4d4c6">1.3.5</a>:
+For matrix <a href="#org91c6a30">1.3.5</a>:
 we have
 \[
 XX^T = \begin{pmatrix}
@@ -624,11 +644,11 @@ XX^T = \begin{pmatrix}
 </div>
 </div>
 
-<div id="outline-container-org6ec2f30" class="outline-4">
-<h4 id="org6ec2f30"><span class="section-number-4">1.3.7.</span> SVD Example (II): \(X^T X\)</h4>
+<div id="outline-container-orgc06f43b" class="outline-4">
+<h4 id="orgc06f43b"><span class="section-number-4">1.3.7.</span> SVD Example (II): \(X^T X\)</h4>
 <div class="outline-text-4" id="text-1-3-7">
 <p>
-For matrix <a href="#org9d4d4c6">1.3.5</a>:
+For matrix <a href="#org91c6a30">1.3.5</a>:
 \[
 X^T X
 = \begin{pmatrix}
@@ -662,8 +682,8 @@ X^T X
 </ul>
 </div>
 </div>
-<div id="outline-container-org4546b56" class="outline-4">
-<h4 id="org4546b56"><span class="section-number-4">1.3.8.</span> SVD verification</h4>
+<div id="outline-container-orgf69a755" class="outline-4">
+<h4 id="orgf69a755"><span class="section-number-4">1.3.8.</span> SVD verification</h4>
 <div class="outline-text-4" id="text-1-3-8">
 <p>
 Might need to multiply some eigenvectors by -1.
@@ -705,12 +725,12 @@ X_{n\times p}
 </div>
 </div>
 </div>
-<div id="outline-container-org81ecaed" class="outline-3">
-<h3 id="org81ecaed"><span class="section-number-3">1.4.</span> LASSO (3.2.1)</h3>
+<div id="outline-container-orgc58756c" class="outline-3">
+<h3 id="orgc58756c"><span class="section-number-3">1.4.</span> LASSO (3.2.1)</h3>
 <div class="outline-text-3" id="text-1-4">
 </div>
-<div id="outline-container-org239a1e1" class="outline-4">
-<h4 id="org239a1e1"><span class="section-number-4">1.4.1.</span> LASSO estimator</h4>
+<div id="outline-container-org81024cf" class="outline-4">
+<h4 id="org81024cf"><span class="section-number-4">1.4.1.</span> LASSO estimator</h4>
 <div class="outline-text-4" id="text-1-4-1">
 <ul class="org-ul">
 <li>Assume these are observed: \(Y_i, x_{i1}, ..., x_{ip}\), and all are standardized:</li>
@@ -724,7 +744,7 @@ X_{n\times p}
 </p>
 
 <p>
-In linear regression model without intercepts (<a href="#orgd2e3766">1.1.1</a>)
+In linear regression model without intercepts (<a href="#orgf57cb1f">1.1.1</a>)
 </p>
 
 <dl class="org-dl">
@@ -737,11 +757,11 @@ In linear regression model without intercepts (<a href="#orgd2e3766">1.1.1</a>)
 </dl>
 </div>
 </div>
-<div id="outline-container-orgb488f31" class="outline-4">
-<h4 id="orgb488f31"><span class="section-number-4">1.4.2.</span> L2-norm vs L1-norm</h4>
+<div id="outline-container-orga430ce8" class="outline-4">
+<h4 id="orga430ce8"><span class="section-number-4">1.4.2.</span> L2-norm vs L1-norm</h4>
 <div class="outline-text-4" id="text-1-4-2">
 
-<div id="org1a356ea" class="figure">
+<div id="orge8a211a" class="figure">
 <p><img src="./img/l2-l1-norm.png" alt="l2-l1-norm.png" />
 </p>
 </div>
@@ -750,8 +770,8 @@ In linear regression model without intercepts (<a href="#orgd2e3766">1.1.1</a>)
 </ul>
 </div>
 </div>
-<div id="outline-container-org3c8a29a" class="outline-4">
-<h4 id="org3c8a29a"><span class="section-number-4">1.4.3.</span> Mathematical solution for LASSO estimator</h4>
+<div id="outline-container-orgf48100b" class="outline-4">
+<h4 id="orgf48100b"><span class="section-number-4">1.4.3.</span> Mathematical solution for LASSO estimator</h4>
 <div class="outline-text-4" id="text-1-4-3">
 <ul class="org-ul">
 <li>In the LASSO optimization, there is <b>no explicit</b> mathematical solution to \(\hat{\beta}^{\text{lasso}}\)</li>
@@ -793,8 +813,8 @@ since:
 </p>
 </div>
 </div>
-<div id="outline-container-orge3b4b8f" class="outline-4">
-<h4 id="orge3b4b8f"><span class="section-number-4">1.4.4.</span> Properties of LASSO</h4>
+<div id="outline-container-org1263121" class="outline-4">
+<h4 id="org1263121"><span class="section-number-4">1.4.4.</span> Properties of LASSO</h4>
 <div class="outline-text-4" id="text-1-4-4">
 <ul class="org-ul">
 <li><b>Good empirical performance when true model is sparse</b>
@@ -810,8 +830,8 @@ since:
 </ul>
 </div>
 </div>
-<div id="outline-container-org02111e3" class="outline-4">
-<h4 id="org02111e3"><span class="section-number-4">1.4.5.</span> LASSO weaknesses</h4>
+<div id="outline-container-org8abc999" class="outline-4">
+<h4 id="org8abc999"><span class="section-number-4">1.4.5.</span> LASSO weaknesses</h4>
 <div class="outline-text-4" id="text-1-4-5">
 <ul class="org-ul">
 <li>Not always consistent</li>
@@ -826,8 +846,8 @@ since:
 </ul>
 </div>
 </div>
-<div id="outline-container-org73208fe" class="outline-4">
-<h4 id="org73208fe"><span class="section-number-4">1.4.6.</span> Computation issues of LASSO</h4>
+<div id="outline-container-org3f8da3e" class="outline-4">
+<h4 id="org3f8da3e"><span class="section-number-4">1.4.6.</span> Computation issues of LASSO</h4>
 <div class="outline-text-4" id="text-1-4-6">
 <ul class="org-ul">
 <li>Computation algorithms include:
@@ -840,8 +860,8 @@ since:
 </ul>
 </div>
 </div>
-<div id="outline-container-org8519d7e" class="outline-4">
-<h4 id="org8519d7e"><span class="section-number-4">1.4.7.</span> LASSO is piecewise linear</h4>
+<div id="outline-container-orgad1f429" class="outline-4">
+<h4 id="orgad1f429"><span class="section-number-4">1.4.7.</span> LASSO is piecewise linear</h4>
 <div class="outline-text-4" id="text-1-4-7">
 <ul class="org-ul">
 <li>The number of linear pieces in LASSO path is approximately \(p\),</li>
@@ -852,8 +872,8 @@ since:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb284cf0" class="outline-4">
-<h4 id="orgb284cf0"><span class="section-number-4">1.4.8.</span> Standard error of LASSO</h4>
+<div id="outline-container-org2776f28" class="outline-4">
+<h4 id="org2776f28"><span class="section-number-4">1.4.8.</span> Standard error of LASSO</h4>
 <div class="outline-text-4" id="text-1-4-8">
 <ul class="org-ul">
 <li>How to estimate standard error of LASSO estimator i.e.
@@ -870,8 +890,8 @@ since:
 </ul>
 </div>
 </div>
-<div id="outline-container-orge0becd7" class="outline-4">
-<h4 id="orge0becd7"><span class="section-number-4">1.4.9.</span> Variants of L1-norm</h4>
+<div id="outline-container-org619fb18" class="outline-4">
+<h4 id="org619fb18"><span class="section-number-4">1.4.9.</span> Variants of L1-norm</h4>
 <div class="outline-text-4" id="text-1-4-9">
 <ul class="org-ul">
 <li>Elastic net
@@ -882,8 +902,8 @@ since:
 </div>
 </div>
 </div>
-<div id="outline-container-org64a0ef4" class="outline-3">
-<h3 id="org64a0ef4"><span class="section-number-3">1.5.</span> Principal Components (3.2.2)</h3>
+<div id="outline-container-orgd0a5b18" class="outline-3">
+<h3 id="orgd0a5b18"><span class="section-number-3">1.5.</span> Principal Components (3.2.2)</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 Assume these are observed: \(Y_i, x_{i1}, ..., x_{ip}\) for \(i=1,2,...,n\)
@@ -897,8 +917,8 @@ Classical datasets: mostly small values of \(p\); modern datasets: large \(p\).
 Essential to conduct <b>dimension reduction</b> to reduce the number of variables.
 </p>
 </div>
-<div id="outline-container-org71203a2" class="outline-4">
-<h4 id="org71203a2"><span class="section-number-4">1.5.1.</span> Dimension reduction</h4>
+<div id="outline-container-org4e86e55" class="outline-4">
+<h4 id="org4e86e55"><span class="section-number-4">1.5.1.</span> Dimension reduction</h4>
 <div class="outline-text-4" id="text-1-5-1">
 <ul class="org-ul">
 <li>2 approaches:
@@ -913,8 +933,8 @@ Essential to conduct <b>dimension reduction</b> to reduce the number of variable
 </ul>
 </div>
 </div>
-<div id="outline-container-org4b9f9b8" class="outline-4">
-<h4 id="org4b9f9b8"><span class="section-number-4">1.5.2.</span> Motivation of PCA</h4>
+<div id="outline-container-org8aa7d43" class="outline-4">
+<h4 id="org8aa7d43"><span class="section-number-4">1.5.2.</span> Motivation of PCA</h4>
 <div class="outline-text-4" id="text-1-5-2">
 <p>
 "Obtain more variance by transforming axes"
@@ -929,8 +949,8 @@ Essential to conduct <b>dimension reduction</b> to reduce the number of variable
 </ul>
 </div>
 </div>
-<div id="outline-container-orge8f1b5d" class="outline-4">
-<h4 id="orge8f1b5d"><span class="section-number-4">1.5.3.</span> Find the PC's:  Population version</h4>
+<div id="outline-container-orgc24164f" class="outline-4">
+<h4 id="orgc24164f"><span class="section-number-4">1.5.3.</span> Find the PC's:  Population version</h4>
 <div class="outline-text-4" id="text-1-5-3">
 <ul class="org-ul">
 <li><b>Optimization problem for PC's</b>: Given a \(p\) -dim random vector
@@ -953,8 +973,8 @@ subject to:
 </ul>
 </div>
 </div>
-<div id="outline-container-org03f6900" class="outline-4">
-<h4 id="org03f6900"><span class="section-number-4">1.5.4.</span> Eigenvectors lead to PC's</h4>
+<div id="outline-container-org528d641" class="outline-4">
+<h4 id="org528d641"><span class="section-number-4">1.5.4.</span> Eigenvectors lead to PC's</h4>
 <div class="outline-text-4" id="text-1-5-4">
 <ul class="org-ul">
 <li>Theorem: Let covariance matrix \(\bf{\Sigma} = \text{Cov}(\bf{X})\) have eignvectors \(e_1, ..., e_p\) with corresponding eigenvalues \(\lambda_1 \ge ... \ge \lambda_p \ge 0\). For \(j=1,2,...,p\),
@@ -971,8 +991,8 @@ subject to:
 </ul>
 </div>
 </div>
-<div id="outline-container-org14fcde0" class="outline-4">
-<h4 id="org14fcde0"><span class="section-number-4">1.5.5.</span> Proof by Lagrange Multipliers</h4>
+<div id="outline-container-org8b1cdd3" class="outline-4">
+<h4 id="org8b1cdd3"><span class="section-number-4">1.5.5.</span> Proof by Lagrange Multipliers</h4>
 <div class="outline-text-4" id="text-1-5-5">
 <ul class="org-ul">
 <li>The Lagrange multiplier is to maximize
@@ -991,8 +1011,8 @@ subject to:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgdfbc1d5" class="outline-4">
-<h4 id="orgdfbc1d5"><span class="section-number-4">1.5.6.</span> PCs in Empirical Version</h4>
+<div id="outline-container-orgcee0e29" class="outline-4">
+<h4 id="orgcee0e29"><span class="section-number-4">1.5.6.</span> PCs in Empirical Version</h4>
 <div class="outline-text-4" id="text-1-5-6">
 <p>
 In many real world applications, only given dataset
@@ -1012,8 +1032,8 @@ How to find PC's?
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb2bad38" class="outline-4">
-<h4 id="orgb2bad38"><span class="section-number-4">1.5.7.</span> Principal component regression</h4>
+<div id="outline-container-org8e4dd20" class="outline-4">
+<h4 id="org8e4dd20"><span class="section-number-4">1.5.7.</span> Principal component regression</h4>
 <div class="outline-text-4" id="text-1-5-7">
 <ul class="org-ul">
 <li>Original data: \(Y_i, x_{i1}, ..., x_{ip}\) for \(i=1,2,...,n\)</li>
@@ -1028,12 +1048,12 @@ How to find PC's?
 </div>
 </div>
 </div>
-<div id="outline-container-orgafffd1c" class="outline-3">
-<h3 id="orgafffd1c"><span class="section-number-3">1.6.</span> Partial least squares (3.2.3)</h3>
+<div id="outline-container-org0cb0442" class="outline-3">
+<h3 id="org0cb0442"><span class="section-number-3">1.6.</span> Partial least squares (3.2.3)</h3>
 <div class="outline-text-3" id="text-1-6">
 </div>
-<div id="outline-container-org85f38b7" class="outline-4">
-<h4 id="org85f38b7"><span class="section-number-4">1.6.1.</span> Dimension reduction</h4>
+<div id="outline-container-org6db7d65" class="outline-4">
+<h4 id="org6db7d65"><span class="section-number-4">1.6.1.</span> Dimension reduction</h4>
 <div class="outline-text-4" id="text-1-6-1">
 <p>
 There are 2 kinds of dimension reduction algorithms:
@@ -1048,8 +1068,8 @@ There are 2 kinds of dimension reduction algorithms:
 </ol>
 </div>
 </div>
-<div id="outline-container-org363c5c9" class="outline-4">
-<h4 id="org363c5c9"><span class="section-number-4">1.6.2.</span> Partial least squares</h4>
+<div id="outline-container-org1bfbcb4" class="outline-4">
+<h4 id="org1bfbcb4"><span class="section-number-4">1.6.2.</span> Partial least squares</h4>
 <div class="outline-text-4" id="text-1-6-2">
 <p>
 Collection of techniques with 2 common properties:
@@ -1060,8 +1080,8 @@ Collection of techniques with 2 common properties:
 </ol>
 </div>
 </div>
-<div id="outline-container-org4e4aac5" class="outline-4">
-<h4 id="org4e4aac5"><span class="section-number-4">1.6.3.</span> 2 versions of PLS</h4>
+<div id="outline-container-orga3a4b17" class="outline-4">
+<h4 id="orga3a4b17"><span class="section-number-4">1.6.3.</span> 2 versions of PLS</h4>
 <div class="outline-text-4" id="text-1-6-3">
 <ol class="org-ol">
 <li>Simple PLS algorithm: variant of PC's but using <b>correlation</b> instead of variance</li>
@@ -1069,8 +1089,8 @@ Collection of techniques with 2 common properties:
 </ol>
 </div>
 </div>
-<div id="outline-container-orgbcc911d" class="outline-4">
-<h4 id="orgbcc911d"><span class="section-number-4">1.6.4.</span> Simple PLS algorithm</h4>
+<div id="outline-container-org1174922" class="outline-4">
+<h4 id="org1174922"><span class="section-number-4">1.6.4.</span> Simple PLS algorithm</h4>
 <div class="outline-text-4" id="text-1-6-4">
 <ul class="org-ul">
 <li>Given \(Y_i, x_{i1}, ..., x_{ip}\) for \(i=1,2,...,n\)</li>
@@ -1086,8 +1106,8 @@ when
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc2b0919" class="outline-4">
-<h4 id="orgc2b0919"><span class="section-number-4">1.6.5.</span> The PLS model</h4>
+<div id="outline-container-org66d60e4" class="outline-4">
+<h4 id="org66d60e4"><span class="section-number-4">1.6.5.</span> The PLS model</h4>
 <div class="outline-text-4" id="text-1-6-5">
 <ul class="org-ul">
 <li>Data: \(Y_i, x_{i1}, ..., x_{ip}\) for \(i=1,2,...,n\)</li>
@@ -1112,8 +1132,8 @@ where:
 </ul>
 </div>
 </div>
-<div id="outline-container-org808f74f" class="outline-4">
-<h4 id="org808f74f"><span class="section-number-4">1.6.6.</span> Key idea in The PLS Model</h4>
+<div id="outline-container-org7de1f0c" class="outline-4">
+<h4 id="org7de1f0c"><span class="section-number-4">1.6.6.</span> Key idea in The PLS Model</h4>
 <div class="outline-text-4" id="text-1-6-6">
 <ul class="org-ul">
 <li>How to estimate the &ell; factors, or the \(T_{n \times \ell}\) and \(U_{n \times \ell}\) matrices?</li>
@@ -1125,8 +1145,8 @@ where:
 </ul>
 </div>
 </div>
-<div id="outline-container-orga5764e0" class="outline-4">
-<h4 id="orga5764e0"><span class="section-number-4">1.6.7.</span> PLS for linear regression</h4>
+<div id="outline-container-org80a62c9" class="outline-4">
+<h4 id="org80a62c9"><span class="section-number-4">1.6.7.</span> PLS for linear regression</h4>
 <div class="outline-text-4" id="text-1-6-7">
 <ul class="org-ul">
 <li>Original data: \(Y_i, x_{i1}, ..., x_{ip}\) for \(i=1,2,...,n\)</li>
@@ -1139,8 +1159,8 @@ where:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf3ca7b4" class="outline-4">
-<h4 id="orgf3ca7b4"><span class="section-number-4">1.6.8.</span> Canonical correlation analysis (CCA)</h4>
+<div id="outline-container-org7480ce4" class="outline-4">
+<h4 id="org7480ce4"><span class="section-number-4">1.6.8.</span> Canonical correlation analysis (CCA)</h4>
 <div class="outline-text-4" id="text-1-6-8">
 <ul class="org-ul">
 <li>CCA: find the unit vectors \((r, s)\) that maximizes the <b>correlation coefficient</b>
@@ -1162,12 +1182,12 @@ Solution: in the population(?) version with \((X_1, ..., X_p)\) and \((Y_1, ...,
 </div>
 </div>
 </div>
-<div id="outline-container-org86e4513" class="outline-2">
-<h2 id="org86e4513"><span class="section-number-2">2.</span> Week 4: Linear Classification</h2>
+<div id="outline-container-org425d4bb" class="outline-2">
+<h2 id="org425d4bb"><span class="section-number-2">2.</span> Week 4: Linear Classification</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgdcf0964" class="outline-3">
-<h3 id="orgdcf0964"><span class="section-number-3">2.1.</span> Overview of Linear Discriminant Analysis (4.1.1)</h3>
+<div id="outline-container-orgb294c1a" class="outline-3">
+<h3 id="orgb294c1a"><span class="section-number-3">2.1.</span> Overview of Linear Discriminant Analysis (4.1.1)</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Supervised learning recap
@@ -1182,8 +1202,8 @@ Supervised learning recap
 </ol></li>
 </ul>
 </div>
-<div id="outline-container-orga622f90" class="outline-4">
-<h4 id="orga622f90"><span class="section-number-4">2.1.1.</span> Classification problem</h4>
+<div id="outline-container-org94cb913" class="outline-4">
+<h4 id="org94cb913"><span class="section-number-4">2.1.1.</span> Classification problem</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <ul class="org-ul">
 <li>For \(Y_i, x_{i1}, ..., x_{ip}\) for \(i=1,2,...,n\) where \(Y_i \in {1, 2, ...K}\) is the class label</li>
@@ -1199,8 +1219,8 @@ Supervised learning recap
 </ul>
 </div>
 </div>
-<div id="outline-container-org29105d4" class="outline-4">
-<h4 id="org29105d4"><span class="section-number-4">2.1.2.</span> Popular classification methods and R packages</h4>
+<div id="outline-container-orgcb722ea" class="outline-4">
+<h4 id="orgcb722ea"><span class="section-number-4">2.1.2.</span> Popular classification methods and R packages</h4>
 <div class="outline-text-4" id="text-2-1-2">
 <dl class="org-dl">
 <dt>Discriminant analysis</dt><dd>?</dd>
@@ -1216,8 +1236,8 @@ a- Tree-based classifiers :: <code>rpart</code>
 </dl>
 </div>
 </div>
-<div id="outline-container-orgd3bcd37" class="outline-4">
-<h4 id="orgd3bcd37"><span class="section-number-4">2.1.3.</span> Discriminant analysis</h4>
+<div id="outline-container-org90fee4c" class="outline-4">
+<h4 id="org90fee4c"><span class="section-number-4">2.1.3.</span> Discriminant analysis</h4>
 <div class="outline-text-4" id="text-2-1-3">
 <ul class="org-ul">
 <li>A multi-classifier is associated with a \(K\) - dim vector
@@ -1238,8 +1258,8 @@ For given new input \(x_{\text{new}}\), predict the class label
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbdc7cbd" class="outline-4">
-<h4 id="orgbdc7cbd"><span class="section-number-4">2.1.4.</span> Example for 3-class problem</h4>
+<div id="outline-container-org468d3ad" class="outline-4">
+<h4 id="org468d3ad"><span class="section-number-4">2.1.4.</span> Example for 3-class problem</h4>
 <div class="outline-text-4" id="text-2-1-4">
 <p>
 <img src="./img/3-class.png" alt="3-class.png" />
@@ -1258,8 +1278,8 @@ In this example, boundaries \({(x_1, x_2): d_i (x_1, x_2) = d_j(x_1, x_2)}\) are
 </ul>
 </div>
 </div>
-<div id="outline-container-org5ce0ed6" class="outline-4">
-<h4 id="org5ce0ed6"><span class="section-number-4">2.1.5.</span> Discriminant functions</h4>
+<div id="outline-container-org2ce1903" class="outline-4">
+<h4 id="org2ce1903"><span class="section-number-4">2.1.5.</span> Discriminant functions</h4>
 <div class="outline-text-4" id="text-2-1-5">
 <p>
 How to construct discriminant functions \(d_k (x)\) 's?
@@ -1272,8 +1292,8 @@ How to construct discriminant functions \(d_k (x)\) 's?
 </ol>
 </div>
 </div>
-<div id="outline-container-org866bef0" class="outline-4">
-<h4 id="org866bef0"><span class="section-number-4">2.1.6.</span> Multi-class vs. Binary</h4>
+<div id="outline-container-org9a8bc05" class="outline-4">
+<h4 id="org9a8bc05"><span class="section-number-4">2.1.6.</span> Multi-class vs. Binary</h4>
 <div class="outline-text-4" id="text-2-1-6">
 <p>
 If the number \(K\) of classes is not too large, can simplify the multi-class problems into <b>series of</b> binary problems via two approaches:
@@ -1285,19 +1305,19 @@ If the number \(K\) of classes is not too large, can simplify the multi-class pr
 </div>
 </div>
 </div>
-<div id="outline-container-orgaf5d8c5" class="outline-3">
-<h3 id="orgaf5d8c5"><span class="section-number-3">2.2.</span> Linear discrimination analysis continued (4.1.2)</h3>
+<div id="outline-container-org7a9b7d3" class="outline-3">
+<h3 id="org7a9b7d3"><span class="section-number-3">2.2.</span> Linear discrimination analysis continued (4.1.2)</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
-See: <a href="#orgd3bcd37">2.1.3</a>.
+See: <a href="#org90fee4c">2.1.3</a>.
 </p>
 
 <p>
 LDA was first developed as distance-based classification (Fisher, 1936). Alternate interpretation: Bayes.
 </p>
 </div>
-<div id="outline-container-orge50db44" class="outline-4">
-<h4 id="orge50db44"><span class="section-number-4">2.2.1.</span> Bayes classifier</h4>
+<div id="outline-container-orgbf6a8d4" class="outline-4">
+<h4 id="orgbf6a8d4"><span class="section-number-4">2.2.1.</span> Bayes classifier</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <ul class="org-ul">
 <li>Under \(0-1\) loss, Bayes classifier is
@@ -1314,8 +1334,8 @@ where:
 </ul>
 </div>
 </div>
-<div id="outline-container-org8cb019d" class="outline-4">
-<h4 id="org8cb019d"><span class="section-number-4">2.2.2.</span> Normality asumption</h4>
+<div id="outline-container-orgd2556d5" class="outline-4">
+<h4 id="orgd2556d5"><span class="section-number-4">2.2.2.</span> Normality asumption</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <p>
 LDA is the Bayes Rule under assumption that <b>densities</b> \(f_k\) are <b>multivariate normal</b> with the <b>common covariance</b>, i.e. \(N(\mu_k, \Sigma)\).
@@ -1330,8 +1350,8 @@ for \(k=1,2,...,K\)
 </p>
 </div>
 </div>
-<div id="outline-container-org67e775b" class="outline-4">
-<h4 id="org67e775b"><span class="section-number-4">2.2.3.</span> Bayes classifier for normal distribution</h4>
+<div id="outline-container-org37b9e34" class="outline-4">
+<h4 id="org37b9e34"><span class="section-number-4">2.2.3.</span> Bayes classifier for normal distribution</h4>
 <div class="outline-text-4" id="text-2-2-3">
 <ul class="org-ul">
 <li><p>
@@ -1362,8 +1382,8 @@ since the common variance term drops out.
 </ul>
 </div>
 </div>
-<div id="outline-container-orga8605a1" class="outline-4">
-<h4 id="orga8605a1"><span class="section-number-4">2.2.4.</span> LDA in practice</h4>
+<div id="outline-container-org20f811a" class="outline-4">
+<h4 id="org20f811a"><span class="section-number-4">2.2.4.</span> LDA in practice</h4>
 <div class="outline-text-4" id="text-2-2-4">
 <ul class="org-ul">
 <li>Data: for \(Y_i, x_{i1}, ..., x_{ip}\) for \(i=1,2,...,n\) where \(Y_i \in {1, 2, ...K}\) is the class label</li>
@@ -1380,8 +1400,8 @@ since the common variance term drops out.
 </ul>
 </div>
 </div>
-<div id="outline-container-org2802fca" class="outline-4">
-<h4 id="org2802fca"><span class="section-number-4">2.2.5.</span> LDA for K=2 classes</h4>
+<div id="outline-container-org74c1581" class="outline-4">
+<h4 id="org74c1581"><span class="section-number-4">2.2.5.</span> LDA for K=2 classes</h4>
 <div class="outline-text-4" id="text-2-2-5">
 <ul class="org-ul">
 <li><p>
@@ -1406,8 +1426,8 @@ or
 </ul>
 </div>
 </div>
-<div id="outline-container-orge715ea2" class="outline-4">
-<h4 id="orge715ea2"><span class="section-number-4">2.2.6.</span> Fisher's distance-based approach</h4>
+<div id="outline-container-orgd576bf3" class="outline-4">
+<h4 id="orgd576bf3"><span class="section-number-4">2.2.6.</span> Fisher's distance-based approach</h4>
 <div class="outline-text-4" id="text-2-2-6">
 <ul class="org-ul">
 <li>for \(k=2\) classes:
@@ -1436,16 +1456,16 @@ which is the same as Bayes-based LDA when the classes have equal numbers of obse
 </div>
 </div>
 </div>
-<div id="outline-container-orga001928" class="outline-3">
-<h3 id="orga001928"><span class="section-number-3">2.3.</span> Quadratic Discrimination Analysis classifier (4.1.3)</h3>
+<div id="outline-container-org49ec4e6" class="outline-3">
+<h3 id="org49ec4e6"><span class="section-number-3">2.3.</span> Quadratic Discrimination Analysis classifier (4.1.3)</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
-See <a href="#orgd3bcd37">2.1.3</a>.
+See <a href="#org90fee4c">2.1.3</a>.
 How to choose suitable discriminant functions \(d_k(x)\)?
 </p>
 </div>
-<div id="outline-container-orgf409618" class="outline-4">
-<h4 id="orgf409618"><span class="section-number-4">2.3.1.</span> Bayes classifier</h4>
+<div id="outline-container-org0ee6d8b" class="outline-4">
+<h4 id="org0ee6d8b"><span class="section-number-4">2.3.1.</span> Bayes classifier</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <ul class="org-ul">
 <li>The discriminant functions \(d_k(x)\) are based on <b>posterior</b> distributions</li>
@@ -1470,8 +1490,8 @@ Question: how to model the density functions \(f_k\)? <b>Normal distribution!</b
 </ul>
 </div>
 </div>
-<div id="outline-container-org1e7498c" class="outline-4">
-<h4 id="org1e7498c"><span class="section-number-4">2.3.2.</span> Normal distribution</h4>
+<div id="outline-container-orgb58f6f6" class="outline-4">
+<h4 id="orgb58f6f6"><span class="section-number-4">2.3.2.</span> Normal distribution</h4>
 <div class="outline-text-4" id="text-2-3-2">
 <p>
 Univariate normal distribution \(N(\mu, \sigma^2)\)
@@ -1490,11 +1510,11 @@ Univariate normal distribution \(N(\mu, \sigma^2)\)
 </ul>
 </div>
 </div>
-<div id="outline-container-org3bc0dba" class="outline-4">
-<h4 id="org3bc0dba"><span class="section-number-4">2.3.3.</span> Normal model for \(f_k\)</h4>
+<div id="outline-container-orga1d0063" class="outline-4">
+<h4 id="orga1d0063"><span class="section-number-4">2.3.3.</span> Normal model for \(f_k\)</h4>
 <div class="outline-text-4" id="text-2-3-3">
 <ul class="org-ul">
-<li>See <a href="#orgd3bcd37">2.1.3</a></li>
+<li>See <a href="#org90fee4c">2.1.3</a></li>
 <li>Bayes classifier:
 \(\text{argmax}_k (\log \pi_k + \log f_k (x))\) where \(\pi_k\) is a prior and \(f_k\) is the pdf of the \(k\) th class.</li>
 <li>Model: assume pdfs \(f_k(x) = f_k(x_1, ..., x_p) \sim N(\mu_k, \Sigma_k)\)</li>
@@ -1502,8 +1522,8 @@ Univariate normal distribution \(N(\mu, \sigma^2)\)
 </ul>
 </div>
 </div>
-<div id="outline-container-org8520a2b" class="outline-4">
-<h4 id="org8520a2b"><span class="section-number-4">2.3.4.</span> Three approaches to estimate</h4>
+<div id="outline-container-orga3cf938" class="outline-4">
+<h4 id="orga3cf938"><span class="section-number-4">2.3.4.</span> Three approaches to estimate</h4>
 <div class="outline-text-4" id="text-2-3-4">
 <p>
 Different assumptions:
@@ -1515,8 +1535,8 @@ Different assumptions:
 </dl>
 </div>
 </div>
-<div id="outline-container-org8cd3fb9" class="outline-4">
-<h4 id="org8cd3fb9"><span class="section-number-4">2.3.5.</span> QDA classifier</h4>
+<div id="outline-container-orgbd86906" class="outline-4">
+<h4 id="orgbd86906"><span class="section-number-4">2.3.5.</span> QDA classifier</h4>
 <div class="outline-text-4" id="text-2-3-5">
 <ul class="org-ul">
 <li>Assumes that \(f_k\) are normal \(N(\mu_k, \Sigma_k)\)</li>
@@ -1536,8 +1556,8 @@ Different assumptions:
 </ul>
 </div>
 </div>
-<div id="outline-container-org4703aec" class="outline-4">
-<h4 id="org4703aec"><span class="section-number-4">2.3.6.</span> Naive Bayes classifier</h4>
+<div id="outline-container-orgcbdff0f" class="outline-4">
+<h4 id="orgcbdff0f"><span class="section-number-4">2.3.6.</span> Naive Bayes classifier</h4>
 <div class="outline-text-4" id="text-2-3-6">
 <ul class="org-ul">
 <li>Assumes that \(\Sigma_k \equiv \Sigma = \text{diag}(\sigma^2_{k1}, ..., \sigma^2_{kp})\), or equivalently:
@@ -1555,8 +1575,8 @@ Different assumptions:
 </ul>
 </div>
 </div>
-<div id="outline-container-org645cba5" class="outline-4">
-<h4 id="org645cba5"><span class="section-number-4">2.3.7.</span> General Naive Bayes classifier</h4>
+<div id="outline-container-org5a0dec6" class="outline-4">
+<h4 id="org5a0dec6"><span class="section-number-4">2.3.7.</span> General Naive Bayes classifier</h4>
 <div class="outline-text-4" id="text-2-3-7">
 <ul class="org-ul">
 <li><b>Ignore</b> any dependence between explanatory variables and assume that \(X_j\)'s are independent.</li>
@@ -1575,12 +1595,12 @@ Different assumptions:
 </div>
 </div>
 </div>
-<div id="outline-container-orge6236e4" class="outline-3">
-<h3 id="orge6236e4"><span class="section-number-3">2.4.</span> Logistic Regression: Estimation (4.2.1)</h3>
+<div id="outline-container-orgc4dbbf3" class="outline-3">
+<h3 id="orgc4dbbf3"><span class="section-number-3">2.4.</span> Logistic Regression: Estimation (4.2.1)</h3>
 <div class="outline-text-3" id="text-2-4">
 </div>
-<div id="outline-container-org48c0295" class="outline-4">
-<h4 id="org48c0295"><span class="section-number-4">2.4.1.</span> Classification methods</h4>
+<div id="outline-container-orgda325bb" class="outline-4">
+<h4 id="orgda325bb"><span class="section-number-4">2.4.1.</span> Classification methods</h4>
 <div class="outline-text-4" id="text-2-4-1">
 <ul class="org-ul">
 <li>With data \((Y_i, X_i)\) for \(i=1,...,n\), where \(Y_i\) is the class label</li>
@@ -1598,8 +1618,8 @@ Different assumptions:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf16f3b8" class="outline-4">
-<h4 id="orgf16f3b8"><span class="section-number-4">2.4.2.</span> Binary logistic regression</h4>
+<div id="outline-container-org8b81416" class="outline-4">
+<h4 id="org8b81416"><span class="section-number-4">2.4.2.</span> Binary logistic regression</h4>
 <div class="outline-text-4" id="text-2-4-2">
 <ul class="org-ul">
 <li>With data: \((Y_i, x_{i1}, ..., x_{i,p-1})\) for \(i=1,...,n\), where \(Y_i \in {0,1}\) is the class label</li>
@@ -1618,8 +1638,8 @@ with \(p\) = number of \(\beta\) coefficients</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org076258d" class="outline-4">
-<h4 id="org076258d"><span class="section-number-4">2.4.3.</span> Conditional probability</h4>
+<div id="outline-container-orgef8cdb5" class="outline-4">
+<h4 id="orgef8cdb5"><span class="section-number-4">2.4.3.</span> Conditional probability</h4>
 <div class="outline-text-4" id="text-2-4-3">
 <ul class="org-ul">
 <li>Under logistic regression, at given \(X=(x_1, ..., x_{p-1})\), the conditional probabilities are
@@ -1630,8 +1650,8 @@ with \(p\) = number of \(\beta\) coefficients</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org65b0fb1" class="outline-4">
-<h4 id="org65b0fb1"><span class="section-number-4">2.4.4.</span> Statistical inference</h4>
+<div id="outline-container-org9b83261" class="outline-4">
+<h4 id="org9b83261"><span class="section-number-4">2.4.4.</span> Statistical inference</h4>
 <div class="outline-text-4" id="text-2-4-4">
 <p>
 Statistical questions in logistic regression:
@@ -1643,8 +1663,8 @@ Statistical questions in logistic regression:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbe2ede9" class="outline-4">
-<h4 id="orgbe2ede9"><span class="section-number-4">2.4.5.</span> Maximum likelihood estimation</h4>
+<div id="outline-container-org7dded2f" class="outline-4">
+<h4 id="org7dded2f"><span class="section-number-4">2.4.5.</span> Maximum likelihood estimation</h4>
 <div class="outline-text-4" id="text-2-4-5">
 <ul class="org-ul">
 <li>The likelihood function of the logistic regression model is
@@ -1657,8 +1677,8 @@ Statistical questions in logistic regression:
 </ul>
 </div>
 </div>
-<div id="outline-container-org8cd4c1c" class="outline-4">
-<h4 id="org8cd4c1c"><span class="section-number-4">2.4.6.</span> Asymptotic properties of MLE</h4>
+<div id="outline-container-org24d6b1f" class="outline-4">
+<h4 id="org24d6b1f"><span class="section-number-4">2.4.6.</span> Asymptotic properties of MLE</h4>
 <div class="outline-text-4" id="text-2-4-6">
 <ul class="org-ul">
 <li><p>
@@ -1677,8 +1697,8 @@ where \(I_{p\times p}\) is the observed Fisher Information Matrix defined by the
 </ul>
 </div>
 </div>
-<div id="outline-container-org81f5797" class="outline-4">
-<h4 id="org81f5797"><span class="section-number-4">2.4.7.</span> Other link function</h4>
+<div id="outline-container-org4c84587" class="outline-4">
+<h4 id="org4c84587"><span class="section-number-4">2.4.7.</span> Other link function</h4>
 <div class="outline-text-4" id="text-2-4-7">
 <ul class="org-ul">
 <li>With data: \((Y_i, x_{i1}, ..., x_{i,p-1})\) for \(i=1,...,n\), where \(Y_i \in {0,1}\) is the class label</li>
@@ -1699,8 +1719,8 @@ where \(g(\cdot): (0,1) \rightarrow (-\infty, infty)\) is called a <b>link funct
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc11d619" class="outline-4">
-<h4 id="orgc11d619"><span class="section-number-4">2.4.8.</span> Logistic or LDA?</h4>
+<div id="outline-container-org19f2078" class="outline-4">
+<h4 id="org19f2078"><span class="section-number-4">2.4.8.</span> Logistic or LDA?</h4>
 <div class="outline-text-4" id="text-2-4-8">
 <p>
 Comparison:
@@ -1720,11 +1740,315 @@ Comparison:
 </div>
 </div>
 </div>
+<div id="outline-container-org8fbfbeb" class="outline-3">
+<h3 id="org8fbfbeb"><span class="section-number-3">2.5.</span> Optimizations in Logistic Regression (4.2.2)</h3>
+<div class="outline-text-3" id="text-2-5">
+</div>
+<div id="outline-container-org3787ee1" class="outline-4">
+<h4 id="org3787ee1"><span class="section-number-4">2.5.1.</span> Logistic regression recap</h4>
+<div class="outline-text-4" id="text-2-5-1">
+<ul class="org-ul">
+<li>With data: \((Y_i, x_{i1}, ..., x_{i,p-1})\) for \(i=1,...,n\), where \(Y_i \in {0,1}\) is the class label</li>
+<li>Logistic regression model defined as 2 components
+\[
+  P(Y_i=1) = \pi_i \\
+  P(Y_i = 0) = 1-\pi_i \\
+  \log \frac{\pi_i}{1-\pi_i} = \beta_0 + \beta_1 x_{i1} + ... + \beta_{p-1} x_{i,p-1}
+  \]</li>
+<li><b>Question</b>: how to estimate the \(\beta_i\) in the model?</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5c9f4ab" class="outline-4">
+<h4 id="org5c9f4ab"><span class="section-number-4">2.5.2.</span> MLE in logistic regression</h4>
+<div class="outline-text-4" id="text-2-5-2">
+<p>
+As seen previously, MLE can be found by maximizing likelihood function:
+\[
+L(\beta) =
+\prod^n_{i=1} \frac{e^{y_i(\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + ... + \beta_{p-1} x_{i,p-1})}}{1+e^{\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + ... + \beta_{p-1} x_{i,p-1}}}
+\]
+</p>
+<ul class="org-ul">
+<li>Challenges:
+<ul class="org-ul">
+<li><b>No explicit</b> solutions to MLE \(\hat{\beta}\).</li>
+<li>Need to rely on numerical solutions to apply efficient optimization algorithm to find MLE \(\hat{\beta}\).</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8fb08cb" class="outline-4">
+<h4 id="org8fb08cb"><span class="section-number-4">2.5.3.</span> Optimization problem</h4>
+<div class="outline-text-4" id="text-2-5-3">
+<p>
+In statistics and machine learning, we often face optimization problem, e.g.:
+\[
+\hat{\theta} =
+\text{argmin}_{\theta \in \Theta \subset \Re^p}
+\]
+Often \(h(\theta)\) is smooth and we want to solve the first derivative \(h'(\theta) = 0\).
+</p>
+<ul class="org-ul">
+<li><b>Iterative method</b>: one widely used optimization algorithm:
+<ol class="org-ol">
+<li>Find sequence of \(\theta^{(i)}\) values until convergence to \(\hat{\theta}\).</li>
+<li>When converged, we have \(h'(\hat{\theta}) = 0\).</li>
+</ol></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org71b973a" class="outline-4">
+<h4 id="org71b973a"><span class="section-number-4">2.5.4.</span> Optimization algorithms</h4>
+<div class="outline-text-4" id="text-2-5-4">
+<p>
+Two basic iterative algorithms to solve \(\hat{\theta} = \text{argmin}_\theta h(\theta)\):
+</p>
+<ol class="org-ol">
+<li><b>Gradient descent</b>, widely used in machine learning
+\[
+   \theta_{\text{new}} = \theta_{\text{old}} - \lambda h'(\theta_{\text{old}})
+   \]
+where \(\lambda\) is the learning rate</li>
+<li><b>Newton-Raphson Method</b>, very popular in statistics
+\[
+   \theta_{\text{new}} = \theta_{\text{old}} - [h''(\theta_{\text{old}})]^{-1} h'(\theta_{\text{old}})
+   \]</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgb48cf8c" class="outline-4">
+<h4 id="orgb48cf8c"><span class="section-number-4">2.5.5.</span> Newton-Raphson Method</h4>
+<div class="outline-text-4" id="text-2-5-5">
+<p>
+<img src="./img/n-r-method.png" alt="n-r-method.png" />
+Mathematically:
+</p>
+<ol class="org-ol">
+<li>When starting at \(\theta_{\text{old}}\) and want to update to \(\theta_{\text{new}} = \theta_{\text{old}} + \epsilon\), <b>how to choose \(\epsilon\)</b> so that \(h'(\theta_{\text{new}})=0\)?</li>
+<li>Answer: Taylor series expansion of \(h(\theta)\) on \(\theta_{\text{old}}\)!</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgb2b8b49" class="outline-4">
+<h4 id="orgb2b8b49"><span class="section-number-4">2.5.6.</span> Taylor Expansion consideration</h4>
+<div class="outline-text-4" id="text-2-5-6">
+<ul class="org-ul">
+<li>When \(\theta\) is 1-dim, by <b>Taylor series expansion</b>,
+\[
+  h'(\theta_{\text{old}} + \epsilon) \approx h'(\theta_{\text{old}}) + \epsilon h''(\theta_{\text{old}})
+  \]</li>
+<li>Setting to 0 yields:
+\[
+  \epsilon \approx - \frac{h'(\theta_{\text{old}})}{h''(\theta_{\text{old}})}
+  \]</li>
+<li>The idea is identical for high-dim &theta;. This leads to Newton-Raphson method:
+\[
+  \theta_{\text{new}} = \theta_{\text{old}} - [h''(\theta_{\text{old}})]^{-1} h'(\theta_{\text{old}})
+  \]
+where updates are done till \(\theta\) converges.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9f7f8a2" class="outline-4">
+<h4 id="org9f7f8a2"><span class="section-number-4">2.5.7.</span> Newton-Raphson Method in Statistics</h4>
+<div class="outline-text-4" id="text-2-5-7">
+<p>
+Why is this method popular in statistics?
+</p>
+<ul class="org-ul">
+<li>When converged, Newton-Raphson Method provides 2 values:
+\[
+  \hat{\theta} \text{ and} \\
+  \hat{V} = -[h''(\hat{\theta})]^{-1}
+  \]</li>
+<li>When \(h(\theta)\) is the log-likelihood function in statistics, the maximum likelihood estimator is \(\hat{\theta}\)
+<ul class="org-ul">
+<li>By the asymptotic theory of MLE, \(\frac{\hat{\theta}-\theta}{\sqrt{\hat{V}}} \sim N(0,1)\) and thus the 95% CI on \(\theta\) is \(\hat{\theta} \pm 1.96 \sqrt{\hat{V}}\)</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org614d494" class="outline-4">
+<h4 id="org614d494"><span class="section-number-4">2.5.8.</span> MLE of logistic regression</h4>
+<div class="outline-text-4" id="text-2-5-8">
+<ul class="org-ul">
+<li>In logistic regression, the log-likelihood function (in vector notation) is:
+\[
+  \log L(\beta) = \sum^n_{i=1} [y_i \beta^T x_i - \log(1+e^{\beta^T x_i})]
+  \]</li>
+<li>First order derivative
+\[
+  \frac{\partial \log L(\beta)}{\partial\beta} = \sum^n_{i=1} [y_i x_i - \frac{e^{\beta^T x_i}}{1+e^{\beta^T x_i}}x_i] \\
+  = \sum^n_{i=1} (y_i - \pi_i)x_i
+  \]</li>
+<li>Second order derivatives
+\[
+  \frac{\partial^2 \log L(\beta)}{\partial \beta \partial\beta^T} \\
+  = -\sum^n_{i=1} x_i \frac{e^{\beta^T x_i}(1+e^{\beta^T x_i})-e^{\beta^T x_i}\cdot e^{\beta^T x_i}}{(1-e^{\beta^T x_i})^2}x^T_i \\
+  = -\sum^n_{i=1} x_i \pi_i (1-\pi_i)x_i^T
+  \]</li>
+<li><p>
+Let:
+</p>
+\begin{equation}
+\pi =
+\begin{pmatrix}
+\pi_1 \\
+... \\
+\pi_n
+\end{pmatrix}
+;
+W =
+\begin{pmatrix}
+\pi_1 (1-\pi_1) & & \\
+ & ... & \\
+ & & \pi_n (1-\pi_n)
+ \end{pmatrix}
+ \end{equation}</li>
+<li>We have \(h'(\beta) = X^T (Y-\pi)\) and \(h''(\beta) = -X^T WX\)</li>
+<li>Applying Newton-Raphson Method to the MLE of logistic regression:
+\[
+  \beta_{\text{new}} = \beta_{\text{old}} - [h''(\beta_{\text{old}})]^{-1} h'\beta_{\text{old}} \\
+  = \beta_{\text{old}} + (X^T WX)^{-1} X^T(Y-\pi) \\
+  = (X^T WX)^{-1} X^T W [X\beta_{\text{old}} + W^{-1}(Y-\pi)] \\
+  = (X^T WX)^{-1} X^T WZ
+  \]
+where \(Z = X\beta_{\text{old}} + W^{-1}(Y-\pi)\)</li>
+<li>This is <b>weighted least squares</b>.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3073ce9" class="outline-4">
+<h4 id="org3073ce9"><span class="section-number-4">2.5.9.</span> Algorithm for MLE in logistic regression</h4>
+<div class="outline-text-4" id="text-2-5-9">
+<ul class="org-ul">
+<li>Initialize \(\beta_{\text{init}}=0\)</li>
+<li>Given \(\beta_{\text{old}}\),
+<ol class="org-ol">
+<li>Compute 3 new variables:
+\[
+     \hat{\pi_i} = \frac{e^{\beta^T_{\text{old}}}x_i}{1+e^{\beta^T_{\text{old}}}x_i} \\
+     w_i = \hat{\pi}_i (1-\hat{\pi}_i) \\
+     Z_i = \beta^T_{\text{old}} x_i + \frac{Y_i - \hat{\pi}_i}{\hat{\pi}_i (1-\hat{\pi}_i)}
+     \]</li>
+<li>Conduct weighted least squares:
+\[
+     \beta_{\text{new}} \leftarrow \text{argmin}_{\beta} [(Z_X\beta)^T W(Z-X\beta)]
+     \]</li>
+</ol></li>
+<li>Repeat the 2nd step until convergence.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orge916b86" class="outline-3">
+<h3 id="orge916b86"><span class="section-number-3">2.6.</span> Simplest logistic regression (4.2.3)</h3>
+<div class="outline-text-3" id="text-2-6">
+<ul class="org-ul">
+<li>With data: \((Y_i, x_{i1}, ..., x_{i,p-1})\) for \(i=1,...,n\), where \(Y_i \in {0,1}\) is the class label</li>
+<li>Logistic regression is defined as two components:
+\[
+  P(Y_i=1) = \pi_i \\
+  P(Y_i = 0) = 1-\pi_i \\
+  \log \frac{\pi_i}{1-\pi_i} = \beta_0 + \beta_1 x_{i1} + ... + \beta_{p-1} x_{i,p-1}
+  \]</li>
+<li>Simplest logistic regression model is when \(p = 2\) and \(x_{i1}\in{0,1}\)
+<ul class="org-ul">
+<li>Explicit solution of MLE exists</li>
+<li>Helps to better understand general theory</li>
+</ul></li>
+</ul>
+</div>
+<div id="outline-container-org48348e9" class="outline-4">
+<h4 id="org48348e9"><span class="section-number-4">2.6.1.</span> Data in Simplest Logistic Regression</h4>
+<div class="outline-text-4" id="text-2-6-1">
+<p>
+<img src="./img/data-slr.png" alt="data-slr.png" />
+Can also be summarised as 2x2 table, typical in biostatistics, i.e.:
+</p>
+
+<p>
+\(n=a+b+c+d\)
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">Y<sub>i</sub> = 1</th>
+<th scope="col" class="org-left">Y<sub>i</sub>=0</th>
+<th scope="col" class="org-left">Sum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">x<sub>i</sub> = 1</td>
+<td class="org-left">a</td>
+<td class="org-left">b</td>
+<td class="org-left">a+b</td>
+</tr>
+
+<tr>
+<td class="org-left">x<sub>i</sub> = 0</td>
+<td class="org-left">c</td>
+<td class="org-left">d</td>
+<td class="org-left">c+d</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orgfdaef79" class="outline-4">
+<h4 id="orgfdaef79"><span class="section-number-4">2.6.2.</span> Is X and Y associated?</h4>
+<div class="outline-text-4" id="text-2-6-2">
+<ul class="org-ul">
+<li>Example context:
+<ul class="org-ul">
+<li>X refers to exposure, e.g. does subject smoke?</li>
+<li>Y refers to disease, e.g. does subject have lung cancer</li>
+</ul></li>
+<li>Based on the table, is X associated with Y?</li>
+<li>Equivalent to hypothesis test:
+\[
+  H_0: \beta_1 = 0 \text{ vs. } H_1: \beta_1 \neq 0
+  \]</li>
+<li>If we can find 95% CI of \(\beta_1\), e.g.
+\[
+  \hat{\beta_1} \pm 1.96 \sqrt{\hat{\text{Var}}(\hat{\beta_1})}
+  \]</li>
+<li>Then we reject \(H_0\) if and only if 0 is <b>outside</b> the CI.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgbdf7c4a" class="outline-4">
+<h4 id="orgbdf7c4a"><span class="section-number-4">2.6.3.</span> The likelihood function</h4>
+<div class="outline-text-4" id="text-2-6-3">
+<p>
+is:
+\[
+L(\beta) = \prod^n_{i=1} \frac{e^{Y_i}(\beta_0+\beta_1 x_i)}{1+e^{\beta_0 + \beta_1 x_i}} \\
+= \frac{e^{\beta_0(a+c) + \beta_1 a}}{(1+e^{\beta_0+\beta_1})^{a+b}(1+e^{\beta_0})^{c+d}}
+\]
+</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: W</p>
-<p class="date">Created: 2024-02-09 Fri 18:40</p>
+<p class="date">Created: 2024-02-09 Fri 22:21</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
