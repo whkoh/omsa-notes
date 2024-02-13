@@ -991,3 +991,74 @@ $$
 L(\beta) = \prod^n_{i=1} \frac{e^{Y_i}(\beta_0+\beta_1 x_i)}{1+e^{\beta_0 + \beta_1 x_i}} \\
 = \frac{e^{\beta_0(a+c) + \beta_1 a}}{(1+e^{\beta_0+\beta_1})^{a+b}(1+e^{\beta_0})^{c+d}}
 $$
+*** The MLE estimator of $\beta_i$ 's
+- The log-likelihood function
+  $$
+  \log L = (a+c) \beta_0 + \alpha \beta_1 - (c+d)\log(1+e^{\beta_0}) - (a+b) \log(1+e^{\beta_0 + \beta_1})
+  $$
+- Setting derivatives to 0 yields:
+  $$
+  \frac{\partial \log L}{\partial \beta_0}
+  = (a+c) - (c+d) \frac{e^{\beta_0}}{1+e^{\beta_0}} - (a+b) \frac{e^{\beta_0 + \beta_1}}{1+ e^{\beta_0 + \beta_1}} = 0 \\
+  \frac{\partial \log L}{\partial \beta_1} = a - (a+b) \frac{e^{\beta_0 + \beta_1}}{1+ e^{\beta_0+\beta_1}} = 0
+  $$
+- Solving these equations simultaneously yields MLE:
+  $$
+  \hat{\beta_0} = \log(\frac{c}{d})
+  \text{ and }
+  \hat{\beta_1} = \log(\frac{ad}{bc})
+  $$
+*** Fisher Information Matrix
+- For $\theta$ = (\beta_0, \beta_1)^T, the 2nd order derivatives yield the Fisher Information Matrix:
+  \begin{equation}
+  \frac{\partial^2 \log L(\theta)}{\partial\theta\partial\theta^T} =
+  \begin{pmatrix}
+  -\frac{(a+b)e^{\beta_0+\beta_1}}{(1+e^{\beta_0+\beta_1})^2}-\frac{(c+d)e^{\beta_0}}{(1+e^{\beta_0})^2} &
+  -\frac{(a+b)e^{\beta_0+\beta_1}}{(1+e^{\beta_0+\beta_1})^2} \\
+  -\frac{(a+b)e^{\beta_0+\beta_1}}{(1+e^{\beta_0+\beta_1})^2} & -\frac{(a+b)e^{\beta_0+\beta_1}}{(1+e^{\beta_0+\beta_1})^2}
+  \end{pmatrix}
+  \end{equation}
+  \begin{equation}
+  I(\hat{\theta}) = -\frac{\partial^2\log L(\theta)}{\partial\theta\partial\theta^T} |_{\hat{\theta}} =
+
+  \begin{pmatrix}
+  \frac{ab}{a+b}+\frac{cd}{c+d} & \frac{ab}{a+b} \\
+  \frac{ab}{a+b} & \frac{ab}{a+b}
+  \end{pmatrix}
+  \end{equation}
+*** Variance of MLE
+- By general theory of MLE,
+  \begin{equation}
+  \text{Cov}(\hat{\theta}) = I(\hat{\theta})^{-1} =
+  \begin{pmatrix}
+  \frac{1}{c} + \frac{1}{d} & -(\frac{1}{c} + \frac{1}{d}) \\
+  -(\frac{1}{c} + \frac{1}{d}) & 1/a + 1/b + 1/c + 1/d
+  \end{pmatrix}
+  \end{equation}
+- Use the fact of the inverse 2\times 2 matrix:
+  \begin{equation}
+  \begin{pmatrix}
+  \alpha & \gamma \\
+  \beta & \delta
+  \end{pmatrix} ^{-1}
+  = \frac{1}{\alpha\delta - \beta\gamma}
+  \begin{pmatrix}
+  \delta & -\gamma \\
+  -\beta & \alpha
+  \end{pmatrix}
+  \end{equation}
+*** Are X and Y associated?
+
+|     | Y=1 | Y=0 | Sum |
+|-----+-----+-----+-----|
+| X=1 | a   | b   | a+b |
+| X=0 | c   | d   | c+d |
+
+- Thus $\beta_1 = \log \frac{ad}{bc}$ , $\hat{\text{Var}}(\hat{\beta_1}) = 1/a+1/b+1/c+1/d$
+- A 95% approximate CI for $\beta_1$ is
+  $$
+  \log \frac{ad}{bc} \pm 1.96 \sqrt{1/a+1/b+1/c+1/d}
+  $$
+**** MLEs
+- MLE of $\beta_0 = \ln(\frac{c}{d})$
+- MLE of $\beta_1 = \ln(\frac{ad}{bc})$

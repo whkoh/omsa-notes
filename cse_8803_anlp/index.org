@@ -326,3 +326,300 @@ Repeat above for negatives.
 - AUC (area under the curve) represents the how performant the predictive model is. Max is 1.0.
 - But 0.9 may not be good either.
   - Are there some thresholds where TP = 0? Are these important in the context?
+* Week 5: Log Regression, SVM and Perceptron (Module 4)
+** Logistic Regression
+- Backbone of neural network model
+- Created on linear combination of features
+- Outputs a *probability*
+  - Logistic regression is thus a *soft classification*
+*** Generative vs Discriminative Models (again)
+- Generative model: able to generate synthetic data points
+  - **Need** to model prior and likelihood distributions.
+  - Conditional distribution is the pdf/pmf to generate data points.
+    - Determining this distribution might be difficult.
+  - Generative models e.g.: Naive Bayes, Hidden Markov Models (HMM)
+- Discriminative models:
+  - Directly estimate posteriors
+  - No need to model prior and likelihood distributions
+  - e.g.: logistic regression, SVM, neural networks
+*** Bayes equation again
+$$
+P(y|x) = \frac{P(x|y)P(y)}{P(x)} = \frac{P(x,y)}{\sum_y P(x,y)}
+$$
+- Generative models :: need to calculate likelihood and prior explicitly
+- Discriminative models :: can we calculate posterior directly without using Bayes equation?
+*** Logistic Function for posterior probability
+i.e. the following function
+
+$$
+P(y|x) = g(s) = \frac{e^s}{1+e^s} = \frac{1}{1+e^{-s}}
+$$
+
+- This function is known as the **sigmoid function**.
+- Easy to use this for optimization
+- Threshold: always 0.5?
+  - Threshold can be investigated with ROC-AUC to determine best threshold
+- Neural network with just 1 block is similar to logistic regression
+- Logistic regression: sigmoid is the activation function
+
+[[./img/sigmoid.png]]
+
+- Three linear models with different activation functions
+  - Using a **sine** activation function: it will be transformed to perceptron, a hard classification
+*** Sigmoid is interpreted as probability
+- e.g., does a customer like a product based on feedback?
+  - Input: $x$ a BoW or TF-IDF of a document that contains customer's feedback
+  - $g(s)$ is the probability of whether a customer likes a product
+  - Cannot have hard prediction or classification here
+  \begin{equation}
+  s = x\theta \text{ the risk score} \\
+  h_\theta (x) = p(y|x) =
+  \begin{cases}
+  g(s) & y=1 \\
+  1-(gs) & y=0 \text{ using posterior probability directly}
+  \end{cases}
+  \end{equation}
+- Sigmoid is the inverse of *logit* function (or the log-odds ratio)
+*** Logistic regression model
+- Expanding equation and replacing $g(s)$ with linear combination of features
+- Probabilistic model
+- Uses MLE to optimize linear combination of features
+- Use log-likelihood for better numerical stability
+- To find \theta parameters, for $n$ data points:
+  \begin{equation}
+  P(y|x) =
+  \begin{cases}
+  \frac{1}{1+ \exp(-x\theta)} & y=1 \\
+  1-\frac{1}{1+\exp(-x\theta)} = \frac{\exp(-x\theta)}{1+\exp(-x\theta)} & y=0
+  \end{cases}
+  \end{equation}
+*** The gradient of $l(\theta)$
+$$
+l(\theta) := \log \prod^n_{i=1} p(y_i, |x_i, \theta) \\
+= \sum_i \theta^T x_i^T (y_i -1) - \log(1+\exp(-x_i \theta))
+$$
+**Gradient**:
+$$
+\frac{\partial l(\theta)}{\partial \theta} =
+\sum_i x_i^T (y_i-1) + x_i^T \frac{\exp(-x_i \theta)}{1+\exp(-x_i \theta)}
+$$
+- Even when set to 0, there is **no** closed-form solution.
+  - Even though there is a global solution
+  - Unlike linear regression where there is a closed-form solution
+  - Hence, logistic regression is unconstrained, but
+  - Can optimize using iterative approach such as gradient descent
+*** Gradient descent
+- One way to solve unconstrained optimization problem is gradient descent
+- Given initial guess, we iteratively refine the guess by taking the direction of the {{{hl(negative gradient)}}}
+- Analogous to going down the hill by taking steepest direction at each step
+- Update rule
+  $$
+  x_{k+1} = x_k - \eta_k \nabla f(x_k)
+  $$
+  $\eta_k$ is the {{{hl(step size or learning rate)}}}
+- Step taken should be small enough
+*** Gradient ascent (concave) / descent (convex) algorithm
+- Initialize parameter $\theta_0$
+- Do:
+  $$
+  \theta_{t+1} \leftarrow \theta^t + \eta \sum_i x_i^T (y_i-1) + x_i^T \frac{\exp(-x_i \theta)}{1+\exp(-x_i \theta)}
+  $$
+- while:
+  $$
+  \parallel \theta^{t+1} - \theta^t \parallel > \epsilon
+  $$
+- ascent: maximize function
+- descent: minimize
+- Thus:
+  - Logical threshold = 0.5, i.e. predict 1 if $g(s) \ge 0.5$
+*** Advantages and disadvantages of logistic regression
+- Advantages:
+  - Simple
+  - No need to model prior or likelihood
+  - Provides probability output
+  - Works with datasets with few features
+- Disadvantages:
+  - Needs to have discriminative model assumption
+  - Model needs to be optimized using numerical approach
+  - Might not work with complicated dataset
+**
+** Support vector machine
+- SVM is a large margin classifier
+*** Linear separation
+- Can have different separating lines, so which line is the best?
+  - Why is having bigger margin better?
+  - What \theta maximizes margin?
+[[./img/lin-sep.png]]
+- All cases, error is zero and they are linear, so they are all good for generalization.
+- SVM focuses on just one solution (compared to perceptron) and that's the maximum margin solution
+- SVM maximizes margin and provides decision line with maximized margin, which is the {{{hl(most stable)}}} under perturbations of inputs
+*** Finding \theta that maximizes margin
+- Objective function created by constructing linear combination of features.
+  - Solution (decision boundary) of the line
+    $$
+    x \theta = 0
+    $$
+  - Let $x_i$ be the nearest data point to the line/plane
+  - Decision boundary is thus $x\theta + b = 0$
+    - Below decision line: \le 0
+    - Above decision line: \ge 0
+  - Scaling up / down \theta thus allows you to set the nearest point to $1$.
+*** Length of margin
+$$
+\text{distance} = \frac{1}{\parallel \theta \parallel} |(x_i \theta - x \theta)|
+= \frac{1}{\parallel \theta \parallel}|(x_i \theta + b - x\theta -b)|
+$$
+where:
+- $x_i \theta + b$ :: my constraint $\equiv |x_i \theta + b| = 1$
+- $-x\theta - b$ :: a point on the decision line $\equiv x\theta + b = 0$
+
+Therefore total margin is: $\frac{2}{\parallel \theta \parallel}$ (since there are 2 points on each side of the decision line)
+
+[[./img/large-margin.png]]
+
+- \theta is {{{hl(orthogonal)}}} to the decision line
+*** Maximizing margin
+- Maximize $\frac{2}{\parallel \theta \parallel}$ in the objective function
+- Subject to $\min_{i=1,2,...,N} |x_i \theta + b| = 1$ which is the nearest neighbour, sign-agnostic for labels here, hence absolute.
+- Hard to optimize this due to the "min" in the constraint (non-convex form)
+- To get rid of the absolute value in the constraint, (and to get the correct prediction, predicted value must have same sign as actual)
+  $$
+  \left|x_i \theta + b\right| = y_i(x_i \theta + b) \rightarrow \text{for correct classification} \\
+  \text{ if} \min |x_i \theta + b | = 1 \rightarrow \text{ it can be at least 1}
+  $$
+- Hence,
+  $$
+  \max \frac{2}{\parallel \theta \parallel}
+  \\
+  \text{subject to } y_i (x_i \theta + b) \ge 1 \text{ for } i=1,2,...,N
+  $$
+*** Geometric representation
+[[./img/geom-rep.png]]
+- Decision line :: $x\theta + b = 0$
+- Margin line :: $x \theta + b = 1$
+- Blue colors :: constraint (data points beyond margin line); beyond margin line the margin \ge 1, correctly classified
+**** Converting problem
+- Many ML libraries can solve minimization problems instead of maximization
+- Hence, convert from:
+  $$
+  \max(\frac{2}{\parallel \theta \parallel}) \\
+  \text{subject to } y_i (x_i \theta + b) \ge 1 \text{ for }i=1,2,...,N
+  $$
+- to:
+  $$
+  \min(\frac{1}{2} \theta\theta^T) \\
+  \text{subject to } y_i (x_i \theta + b) \ge 1 \text{ for }i=1,2,...,N
+  $$
+*** Lagrange formulation (not in detail)
+$$
+\min(\frac{1}{2} \theta\theta^T) \\
+\text{subject to } y_i (x_i \theta + b) -1 \ge 0  \\
+\textit{L}(\theta, b, \alpha) = \frac{1}{2}\theta\theta^T - \sum^N_{i=1} \alpha_i (y_i(x_i \theta + b)-1)
+$$
+becomes:
+$$
+\min \text{w.r.t. } \theta, b \text{ and } \max \text{w.r.t. each } \alpha_i \ge 0 \\
+\nabla_\theta L(\theta, b, \alpha) = \theta - \sum^N_{i=1} \alpha_i y_i x_i = 0 \\
+\nabla_b L(\theta, b, \alpha) = -sum^N{i=1} \alpha_i y_i = 0
+$$
+under KKT conditions,
+where:
+- $\theta$ :: model parameter
+- $b$ :: bias term
+- $\alpha$ :: Lagrange multiplier
+Need to convert primal form to dual form.
+Take gradient w.r.t. \theta, b, set to 0.
+Calculate parametric value of \theta and new constraints.
+Convert objective function to dual form.
+$$
+\theta = \sum^N_{i=1} \alpha_i y_i x_i \text{ and } \sum^N_{i=1} \alpha_i y_i = 0 \\
+L(\theta, b, \alpha) = \sum^N{i=1} \alpha_i - \frac{1}{2} \theta \theta^T \\
+L(\theta, b, \alpha) = \sum^N_{i=1} \alpha_i - \frac{1}{2} \sum^N_{i=1} \sum^N_{j=1} y_i y_j \alpha_i \alpha_j x_i x_j^T
+\\
+\max \text{ w.r.t. each } \alpha_i \ge 0 \text{ for }i=1,...,N \text{ and }
+\sum^N_{i=1} \alpha_i y_i = 0
+$$
+*** Usage
+- Dual form good for binary classification, e.g. spam or not spam.
+- Training
+  $$
+  \theta = \sum^N_{i=1} \alpha_i y_i x_i
+  $$
+  - No need to go over all data points
+  - $$
+    \rightarrow \theta = \sum_{x \in \text{ SV}} \alpha_i y_i x_i
+    $$
+  - and for $b$ pick any support vector, and calculate $y_i (x_i \theta + b) = 1$
+- Testing
+  - For new point $s$, compute:
+    $$
+    s \theta + b = \sum_{x_i \in \text{ SV}} \alpha_i y_i x_i s^T + b
+    $$
+  - Classify $s$ as class 1 if positive, else classify as class 2.
+*** From $x$ to $z$ space
+- SVM can only be used when a linear decision line can be used
+- Sometimes it may be possible to work around by moving from Cartesian to Polar space
+- Not necessarily applicable to NLP since there are many many dimensions.
+- Instead, kernel trick can be utilised in the dual form model, do feature engineering and handle millions of features.
+**** Kernel trick
+Main premise is to take data from original space to newer space with higher dimensions, which make it more likely to have linear separation in the newer space.
+
+In $x$ space, they are called pre-images of support vectors.
+** Perceptron
+[[./img/spam.png]]
+- Needs to be linearly separable to work
+- Can be used for text classification, sentiment analysis
+- Given training data $(x_i, y_i)$ for $i = 1,...,N, x_i \in \mathbb{R}^d \text{ and }y_i \in {-1,1}$ learn a classifier $f(x)$ such that
+  \begin{equation}
+  f(x_i)
+  \begin{cases}
+  \ge 0 & +1 & \text{Non-spam document} \\
+  \lt 0 & -1 & \text{Spam document}
+  \end{cases}
+  \end{equation}
+- i.e. $y_i f(x_i) \gt 0$ for a correct classification
+*** Linearly separable
+[[./img/linear-sep.png]]
+- The two labels must be separable by a **straight** line
+- Perceptron uses linear classifier, as it uses linear combination of features
+*** Linear classifier
+[[./img/lin-class.png]]
+Linear classifier has the form
+$$
+f(x) = x\theta + \theta_0
+$$
+- In 2D, the discriminant is a line
+- $\theta$ is the **normal** to the decision line
+- $\theta_0$, is the bias term
+- $\theta$ is known as the model {{{hl(parameter)}}} or the {{{hl(weight vector)}}}
+- Decision boundary has $d-1$ dimensions where $d$ is the number of features
+**** Linear classifier for higher dimensions
+- In 3D, the discriminant is a plane
+- in nD, the discriminant is a hyperplane
+*** The Perceptron Classifier
+- {{{hl(hard classifier)}}}
+- Considering $x$ is linearly separable
+- $y$ has 2 labels $\{-1,1 \}$
+- $f(x_i) = x_i \theta$, where bias is inside $\theta$
+- How to separate data points with label 1 from those with -1 using a **line**?
+- Perceptron classifier is a simple for-loop
+  - Goes inside every single data point to check whether it's classified correctly
+**** Algorithm
+[[./img/perceptron.png]]
+1. Initialise $\theta = 0$
+2. Go through each data point $\{x_i, y_i \}$
+   1. If $x_i$ is misclassified, then $\theta^{t+1} \leftarrow \theta^t + \alpha y_i x_i$ (i.e. moving the decision line towards the correct label)
+3. Until all data points are correctly classified
+*** Perceptron activation
+[[./img/perceptron-activation.png]]
+- LHS = number of lines = number of features
+- output of linear combination of features, $f(x)$ is real number,
+- fed into activation function in red, which is +1 or -1
+*** Advantages and disadvantages of Perceptron
+- Advantages
+  - Very simple
+  - Fast, does not require any parameters
+  - Quick training to optimize parameters
+- Disadvantages
+  - Works only for linearly separable data
+  - Does not provide unique decision boundary
