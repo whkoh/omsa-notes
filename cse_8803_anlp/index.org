@@ -565,6 +565,10 @@ $$
 Main premise is to take data from original space to newer space with higher dimensions, which make it more likely to have linear separation in the newer space.
 
 In $x$ space, they are called pre-images of support vectors.
+*** Support vector machine
+- Can do {{{hl(either)}}}
+  - Hard classification
+  - Soft classification
 ** Perceptron
 [[./img/spam.png]]
 - Needs to be linearly separable to work
