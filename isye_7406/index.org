@@ -1062,3 +1062,97 @@ $$
 **** MLEs
 - MLE of $\beta_0 = \ln(\frac{c}{d})$
 - MLE of $\beta_1 = \ln(\frac{ad}{bc})$
+* Week 5: Linear Classification Cont'd (Module 3)
+** Logistic Regression II
+Example dataset: Coronary Heart Disease (CHD)
+- Response: 0 or 1 (Disease)
+- Independent: X (Age)
+- Observations: 100, 43 = 1, 57 = 0
+Question: Is age associated with CHD? Can predict CHD from age?
+** Logistic regression model
+#+BEGIN_SRC r
+glm1 <- glm(CHD ~ Age, family=binomial(link="logit"),
+data=data0)
+#+END_SRC
+
+Coefficients:
+- Intercept: -5.31
+- Age: 0.11
+*** Log reg equation
+
+Hence, equation is
+
+$$
+\log \frac{P(Y=1)}{1-P(Y=1)} = -5.31 + 0.11 \text{Age} \\
+\text{logit}(\pi_i) = -5.31 + 0.11 \text{Age}_i
+$$
+
+#+BEGIN_SRC <language> <switches> <header arguments>
+plot(Age, CHD)
+lines(Age, fitted.values(glm1), col="red")
+#+END_SRC
+
+The above produces a sigmoid curve:
+[[./img/sigmoid1.png]]
+** CI of coefficients in Log Reg
+How to find the $1-\alpha$ CI on $\beta_0, \beta_1$ in R?
+#+BEGIN_SRC
+confint(glm1, level=0.95)
+#+END_SRC
+
+produces 2.5% and 97.5% values of Intercept and Age coefficients.
+** Simplest logistic regression model
+Define a new variable $\text{Flag} = I(Age\ge 50)$
+- Objective: will I(Age\ge 50) be risk factor of CHD?
+- Model: $\log\frac{\pi_i}{1-\pi_i} = \beta_0 + \beta_1 \text{Flag}_i$
+- Statistical question: hypothesis test:
+  1. $H_0: \beta_1 = 0$
+  2. $H_1: \beta_1 \ne 0$
+** Analysis in R
+#+BEGIN_SRC
+flag <- I(Age>=50)
+glm2 <- glm(CHD ~ flag, family = binomial(link="logit"), data=data0)
+#+END_SRC
+Coefficients:
+- Intercept: -1.04
+- flagTRUE: 2.10
+
+Std error:
+- Intercept: 0.28
+- flagTRUE: 0.48
+
+hence:
+$$
+\log\frac{P(Y=1)}{1-P(Y=1)} = -1.04 + 2.10 I(\text{Age}\ge 50)
+$$
+** Analysis by hand
+
+|                | CHD+ Y=1 | CHD- Y=0 | Sum |
+| Age \ge 50 X=1 | a=26     | b=9      |  35 |
+| Age \lt 50 X=0 | c=17     | d=48     |  65 |
+|                | 43       | 57       | 100 |
+
+When fitting $\log \frac{\pi_i}{1-\pi_i} = \beta_0 + \beta_1 \text{Flag}_i$ we have:
+
+- $\hat{\beta_0}$ :: $\log c/d = ln (17/48) = -1.04$
+- $\hat{\beta_1}$ :: $\log ad/bc = ln(26*48)/(9*17) = 2.10$
+- std error $\hat{\beta_0}$ :: $\sqrt{1/17 + 1/48}=0.28$
+- std error $\hat{\beta_1}$ :: $\sqrt{1/26 + 1/9 + 1/17 + 1/48} = 0.48$
+** Testing hypothesis
+Statistical question: hypothesis test:
+1. $H_0: \beta_1 = 0$
+2. $H_1: \beta_1 \ne 0$
+
+
+- Testing statistic is given by:
+   $$
+   Z_\text{obs} = \frac{\hat{\beta_1}-0}{se(\hat{\beta_1})} = \frac{2.09-0}{0.48} = 4.39
+   $$
+- p-value is:
+   $$
+   P(|Z| > |Z_\text{obs}|) \\
+   = 2P(N(0,1) > 4.38) = 1.17e-05
+   $$
+- in R:
+  ~2*(1-pnorm(4.38))~
+- We conclude that Age \ge 50 is a risk factor of CHD
