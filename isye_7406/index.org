@@ -1063,13 +1063,14 @@ $$
 - MLE of $\beta_0 = \ln(\frac{c}{d})$
 - MLE of $\beta_1 = \ln(\frac{ad}{bc})$
 * Week 5: Linear Classification Cont'd (Module 3)
-** Logistic Regression II
+Logistic Regression II
+** Example: CHD
 Example dataset: Coronary Heart Disease (CHD)
 - Response: 0 or 1 (Disease)
 - Independent: X (Age)
 - Observations: 100, 43 = 1, 57 = 0
 Question: Is age associated with CHD? Can predict CHD from age?
-** Logistic regression model
+**** Logistic regression model
 #+BEGIN_SRC r
 glm1 <- glm(CHD ~ Age, family=binomial(link="logit"),
 data=data0)
@@ -1078,7 +1079,7 @@ data=data0)
 Coefficients:
 - Intercept: -5.31
 - Age: 0.11
-*** Log reg equation
+**** Log reg equation
 
 Hence, equation is
 
@@ -1094,21 +1095,21 @@ lines(Age, fitted.values(glm1), col="red")
 
 The above produces a sigmoid curve:
 [[./img/sigmoid1.png]]
-** CI of coefficients in Log Reg
+*** CI of coefficients in Log Reg
 How to find the $1-\alpha$ CI on $\beta_0, \beta_1$ in R?
 #+BEGIN_SRC
 confint(glm1, level=0.95)
 #+END_SRC
 
 produces 2.5% and 97.5% values of Intercept and Age coefficients.
-** Simplest logistic regression model
+*** Simplest logistic regression model
 Define a new variable $\text{Flag} = I(Age\ge 50)$
 - Objective: will I(Age\ge 50) be risk factor of CHD?
 - Model: $\log\frac{\pi_i}{1-\pi_i} = \beta_0 + \beta_1 \text{Flag}_i$
 - Statistical question: hypothesis test:
   1. $H_0: \beta_1 = 0$
   2. $H_1: \beta_1 \ne 0$
-** Analysis in R
+*** Analysis in R
 #+BEGIN_SRC
 flag <- I(Age>=50)
 glm2 <- glm(CHD ~ flag, family = binomial(link="logit"), data=data0)
@@ -1125,7 +1126,7 @@ hence:
 $$
 \log\frac{P(Y=1)}{1-P(Y=1)} = -1.04 + 2.10 I(\text{Age}\ge 50)
 $$
-** Analysis by hand
+*** Analysis by hand
 
 |                | CHD+ Y=1 | CHD- Y=0 | Sum |
 | Age \ge 50 X=1 | a=26     | b=9      |  35 |
@@ -1138,7 +1139,7 @@ When fitting $\log \frac{\pi_i}{1-\pi_i} = \beta_0 + \beta_1 \text{Flag}_i$ we h
 - $\hat{\beta_1}$ :: $\log ad/bc = ln(26*48)/(9*17) = 2.10$
 - std error $\hat{\beta_0}$ :: $\sqrt{1/17 + 1/48}=0.28$
 - std error $\hat{\beta_1}$ :: $\sqrt{1/26 + 1/9 + 1/17 + 1/48} = 0.48$
-** Testing hypothesis
+*** Testing hypothesis
 Statistical question: hypothesis test:
 1. $H_0: \beta_1 = 0$
 2. $H_1: \beta_1 \ne 0$
@@ -1156,3 +1157,73 @@ Statistical question: hypothesis test:
 - in R:
   ~2*(1-pnorm(4.38))~
 - We conclude that Age \ge 50 is a risk factor of CHD
+** Prediction in Logistic Regression
+*** Logistic regression model
+- Data: $(Y_i, x_{i1}, ..., x_{i, p-1}),  i = 1, ..., n; Y_i \in \{0,1\}$
+- Model:
+  $$
+  P(Y_i = 1) = \pi_i; P(Y_i=0) = 1-\pi_i \\
+  \log \frac{\pi_i}{1-\pi_i} = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + ... + \beta_{p-1} x_{i, p-1}
+  $$
+- Computing MLE and its asymptotic $p \times p$ covariance matrix
+  $$
+  \hat{\beta} = (\hat{\beta_0}, ..., \hat{\beta_{p-1}}) \\
+  \hat{V} = \text{Var}(\hat{\beta})
+  $$
+- Question: how to predict future response for new variable **X**?
+  $$
+  x_{\text{new}} = (1, x_1, x_2, ..., x_{p-1})^T
+  $$
+*** Point estimation
+When $x_{\text{new}} = (1, x_1, x_2, ..., x_{p-1})^T$, for the MLE $\hat{\beta} = (\hat{\beta_0}, ..., \hat{\beta_{p-1}}) \\$,
+- the point estimate is $\hat{\beta}^T x$
+- since $\log \frac{\pi}{1-\pi} = \hat{\beta}^T x$, the point estimate of the probability $P(Y=1|x) = \pi(x)$ is
+  $$
+  \hat{\pi}(x) = \frac{\exp(\hat{\beta}^T x)}{1+\exp(\hat{\beta}^T x)}
+  $$
+*** Point estimation in R
+Given logistic regression object "glm.model", 2 kinds of R commands to get **different** point estimates:
+- ~predict(glm.model, newdata)~ :: provides the value $\hat{\beta}^T x$
+- ~predict(glm.model, newdata, type=response)~ :: provides the estimated probability $\hat{\pi}(x) = \frac{\exp(\hat{\beta}^T x)}{1+\exp(\hat{\beta}^T x)}$
+*** Confidence interval for logistic regression
+How to find CI for $\pi(x) = P(Y=1|x)?$
+
+Steps:
+1. Find a CI for $\beta^T x$.
+   $$
+   \text{Var}(\hat{\beta}^T x) = x^T \hat{V} x \\
+   Z = \frac{\hat{\beta}^T x - \beta^T x}{\sqrt{x^T \hat{V} x}} \sim N(0,1)
+   $$
+   With 95% CI, -1.96 \le Z \le 1.96, hence:
+   $$
+   L = \hat{\beta}^T x - 1.96\sqrt{x^T \hat{V} x} \le \beta^T x \le \hat{\beta}^T x + 1.96\sqrt{x^T \hat{V}x} = U
+   $$
+2. Transform CI of $\beta^T x$ to $\pi(x)$ by using $\log \frac{\pi(x)}{1-\pi(x)} = \beta^T x$
+
+   With 95% CI,
+   $$
+   L \le \beta^T x = \log \frac{\pi(x)}{1-\pi(x)} \le U
+   $$
+
+   Solve $\pi(x)$ to yield:
+
+   $$
+   \frac{e^L}{1+e^L} \le \pi(x) \le \frac{e^U}{1+e^U}
+   $$
+
+   which is the desired 95% CI for the true probability $\pi(x) = P(Y=1|x)$
+*** Prediction
+When $x_\text{new}=(1, x_1, ..., x_{p-1})^T=$ after computing the estimated probability
+$$
+\hat{\pi}(x) = P(Y=1|X) = \frac{\exp(\hat{\beta}^T x)}{1+\exp(\hat{\beta}^T x)}
+$$
+and its confidence interval, need to ask how to predict future response Y=1, Y=0
+- Intuitively, predict $\hat{Y}=1$ if $\hat{\pi}(x) \ge 0.5$ and $\hat{Y}=0$ if $\hat{\pi}(x) \lt 0.5$
+  - Might be reasonable in some applications with balanced training data, but not for others, e.g. when predict rare events or diseases
+*** Prediction rule
+- General prediction rule is to predict:
+  $$
+  \hat{Y} = 1 \text{ if } \hat{\pi} \ge c* \\
+  \hat{Y} = 0 \text{ if } \hat{\pi} \lt c*
+  $$
+** Model Selection in Logistic Regression
