@@ -1226,4 +1226,105 @@ and its confidence interval, need to ask how to predict future response Y=1, Y=0
   \hat{Y} = 1 \text{ if } \hat{\pi} \ge c* \\
   \hat{Y} = 0 \text{ if } \hat{\pi} \lt c*
   $$
+- Question: how to choose the threshold $c*$?
+*** Choice of cutoff value $c*$
+Possible approaches:
+- $c* = 0.5$
+- $c* = \% \text{ of Y=0 in training data}$
+- Choose based on validation data or cross-validation
+*** Choice of $c*$ from validation
+If there's new validation data:
+- $c*$ == optimal value that minimizes classification rate $P(\hat{Y} \ne Y)$, widely used in machine learning
+- $c*$ == optimal value that minimizes
+  $$
+  w_0 P(\hat{Y} \ne Y|Y=0) + w_1 P(\hat{Y} \ne Y | Y = 1)
+  $$
+  More useful in biostatistics when effect of misclassifying false positives is more severe
+- Both can be combined with cross-validation.
 ** Model Selection in Logistic Regression
+*** Logistic Regression review
+- Data: $(Y_i, x_{i1}, ..., x_{i, p-1}),  i = 1, ..., n; Y_i \in \{0,1\}$
+- Model:
+  $$
+  P(Y_i = 1) = \pi_i; P(Y_i=0) = 1-\pi_i \\
+  \log \frac{\pi_i}{1-\pi_i} = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + ... + \beta_{p-1} x_{i, p-1}
+  $$
+- Question: will all $X$ variables be useful in predicting outcome $Y$?
+  - **Model selection & variable selection**
+*** Model selection in Logistic Regression
+- Approaches:
+  - Information criteria, e.g. AIC, BIC+ greedy search
+  - Hypothesis testing, to test a specific hypothesis given a subset of coefficients are 0
+*** Information criterion
+- Definition of IC of a model with $k \beta$ as:
+  - AIC :: $-2 \times \log(\text{likelihood}) + 2k$
+  - BIC :: $-2 \times \log(\text{likelihood}) + \log(n) k$
+- Among all possible $2^{p-1}$ models find a model that *minimizes* information criteria e.g. AIC
+- In R, use: ~step()~
+*** Hypothesis testing
+When testing $H_0$ given some $\beta_j$ 's, say $k$ of them are 0
+- Log-likelihood (or deviance) test:
+  1. Fit model 1: Reduced model that omits the $k$ independent variables
+  2. Fit model 2: Full model that includes all variables
+  3. Log-likelihood statistic is
+     $$
+     LR_\text{obs} = -2 \log(\hat{L_\text{reduced}})- (-2\log(\hat{L}_\text{full}))
+     $$
+  4. p-value is $P(\chi^2_k \ge LR_\text{obs})$ where $\chi_k^2$ has df = $k$.
+  5. Accept $H_0$ if p-value is large, e.g. \ge 5%.
+*** Wald's test
+Besides the above, other methods such as Wald's test also exist.
+- Wald statistic is:
+  $$
+  w_\text{obs} = \hat{\beta}^T_k \hat{V}_k^{-1} \hat{\beta}_k
+  $$
+  where $\hat{V} k$ is the covariance matrix of the $k \beta_j$ 's
+- p-value is thus
+  $$
+  P(\chi^2_k \ge W_\text{obs})
+  $$
+- Accept $H_0$ if p-value is large, e.g. \ge 5%.
+*** Comparison of 2 models
+- Data: $(Y_i, x_{i1}, ..., x_{i, p-1}),  i = 1, ..., n; Y_i \in \{0,1\}$
+- Suppose we fit 2 logistic regression models with different $X$ variables
+  1. Model 1:
+     $$
+     \log \frac{P(Y_i=1)}{1-P(Y_i=1)} = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i5} + ... + \beta_m x_{i,m}
+     $$
+  2. Model 2:
+     $$
+     \log \frac{P(Y_i=1)}{1-P(Y_i=1)} = \beta_0' + \beta_1' x_{i2} + \beta_2' x_{i3} + ... + \beta_k' x_{i,k}
+     $$
+- Question: how to compare these 2 models on validation/training data? Since model performance will depend on the choice of cutoff value $c*$ for $\pi(x)$
+*** Assess performance
+How to evaluate performance of logistic regression model without worrying about choice of cutoff value $c*$ ?
+- Let $c*$ vary from 0 to 1 and consider its performance against validation/training data:
+  - Specificity: true negative rate :: 1 - P(Type I error)
+  - Sensitivity: true positive rate :: 1 - P(Type II error)
+*** Specificity vs Sensitivity
+For a given cutoff value $c*$, we compute:
+
+|                    | Truth Y=0 | Truth Y=1 |
+| Pred $\hat{Y}_i=0$ | a         | b         |
+| Pred $\hat{Y}_i=1$ | c         | d         |
+
+- Specificity :: $\frac{a}{a+b}$
+- 1-Specificity :: $\frac{b}{a+b}$
+- Sensitivity :: $\frac{d}{c+d}$
+
+#+BEGIN_QUOTE
+where 285 of these testing observations are from class 0 and the remaining 344 testing observations are from class 1.
+#+END_QUOTE
+
+means:
+- 285 are predicted class 0
+- 344 are predicted class 1
+
+*** ROC curve
+- Receiver operating characteristic curve :: curve of a given classification model or algorithm when cutoff value varies from 0 to 1
+- X-axis :: 1-Specificity (False Positive Rate)
+- Y-axis :: Sensitivity (True positive rate)
+
+[[./img/auc-roc.png]]
+
+Model with **larger** Area Under Curve of ROC is better!
