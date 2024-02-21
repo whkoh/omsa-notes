@@ -1328,3 +1328,143 @@ means:
 [[./img/auc-roc.png]]
 
 Model with **larger** Area Under Curve of ROC is better!
+
+** Case Study: Golf Putting I
+- 5.2.1
+- Gelman and Nolan, 07
+- Putting: less than 60% successful on 5-ft putts.
+
+*** Dataset
+1. Distance
+2. Tried
+3. Success
+4. % Made
+
+*** Scatter plot
+- Rate (100 \times Made) vs distance
+
+*** Question
+Based on training data, what's the predicted success rate from given distance $x$?
+
+*** Multiple linear regression models
+- Linear regression model:
+  $$
+  \text{Rate } = \beta_0 + \beta_1 \text{Distance} + \epsilon
+  $$
+
+- Quadratic regression model:
+  $$
+  \text{Rate } = \beta_0 + \beta_1 \text{Distance} + \beta_2 (\text{Distance})^2 + \epsilon
+  $$
+
+*** R code
+- Linear regression
+  ~lm1 <- lm(Rate ~ Distance)~
+- Quadratic regression
+  ~lm2 <- lm(Rate ~ Distance + l(Distance^2))~
+- Plotting
+  ~plot(Distance, Rate)~
+  ~abline(lm1)~
+  ~lines(Distance, fitted(lm2), col="red")~
+
+*** Larger distance?
+- Fit is good for small distance
+- But bad for large distance
+
+*** Problems with regression models
+- Linear regression:
+  - 2 to 3 ft change is different from 19 to 20 ft
+  - Probability $\notin(0, 1)$
+- Quadratic regression:
+  - Might have larger R^2, yet an increasing probability at larger distance is not likely
+  - Probability $\notin(0,1)$
+
+** Case Study: Golf Putting II
+Previously: Linear regression and quadratic regression.
+However, they yield undesired predictions.
+How about logistic regression?
+*** Logistic regression model
+- Data: $(\text{Success } Y_i, \text{Tried } n_i, \text{Distance } x_i = i \text{ for } i=2, 3, ..., 20)$
+- Logistic regression model:
+  $$
+  Y_i \sim \text{Binomial}(n_i, \pi_i) \\
+  P(Y_i = y) = {n_i \choose y} (\pi_i)^y (1- \pi_i)^{n_i - y} \\
+  \log \frac{\pi}{1-\pi_i} = \beta_0 + \beta_1 x_1
+  $$
+*** R code
+#+BEGIN_SRC
+Rate = 100 * Success / Tried
+# first way
+glm1 <- glm(cbind(Success, Tried-Success)~ Distance, family=binomial)
+summary(glm1)
+
+# second way
+glm1b <- glm(Success/Tried ~ Distance, weights=Tried, family=binomial)
+summary(glm1b)
+#+END_SRC
+Coefficients:
+- Intercept = 2.23
+- Distance = -0.26
+*** Fitted model:
+$$
+\log \frac{P(\text{success})}{1-P(\text{success})}
+= 2.23 - 0.26 \times \text{Distance}
+$$
+[[./img/lr.png]]
+
+#+BEGIN_SRC
+pred3 <- 100 * predict(glm1, xnew, type="response")
+#+END_SRC
+*** Advantages and disadvantages of logistic regression
+- Advantage:
+  - Fitted probability $\in(0,1)$
+  - Fitted probability \rightarrow 0 as distance \rightarrow \infty
+- Disadvantage
+  - As distance \rightarrow 0, fitted success probability \rightarrow $\frac{e^{\hat{\beta_0}}}{1+e^{\hat{\beta_0}}} = 0.903$ , seems low
+** Case Study: Golf Putting III
+Domain knowledge-based regression model.
+In logistic regression model, $\pi(x) = \frac{e^{\hat{\beta_0}}}{1+e^{\hat{\beta_0}}}$.
+- What's the scientific reason for this form of $\pi(x)$
+- Any more meaningful form of $\pi(x)$? -> Domain knowledge!
+*** New model
+[[./img/putting.png]]
+Let:
+- \theta = hitting angle
+- Ball enters only if $|\theta| \le \theta_0$
+- $\theta_0 = \arcsin [(R-r)/x]$
+- Model hitting angle $\theta \sim N(0, \sigma^2)$
+- Probability of successful put is:
+  $$
+  \pi(x) = P(-\theta_0 \le \theta \le \theta_0) \\
+  = P(-\frac{\theta_0}{\sigma} \le Z \le \frac{\theta_0}{\sigma}) \\
+  = 2\Phi (\frac{1}{\sigma}\theta_0)-1
+  $$
+- Threshold angle as given above, thus, substituting,
+  $$
+  P(\text{success}) = \pi(x)
+  = 2\Phi(\frac{1}{\sigma} \frac{4.25-1.68}{24x}) -1
+  $$
+  - where \sigma is tuning parameter
+  - How to estimate \sigma?
+*** Parameter estimation
+- Use Method of Least Squares: find the \sigma that minimizes residual sum of squares
+  $$
+  RSS = \sum^N_{i=1}(\text{Rate}_i - [2\Phi(\frac{1}{\sigma}\arcsin \frac{4.25-1.68}{24x} -1 )])^2
+  $$
+- This is nonlinear least squares in statistics.
+- Finding optimal \sigma in R:
+  #+BEGIN_SRC
+  nls1 <- nls(Rate ~ 100 *(2*pnorma((1/sigma0)*asin((4.25-1.68)/(24*Distance)/)*))-1, start=list(sigma0=5))
+  pred4 <- predict(nls1, xnew)
+  #+END_SRC
+*** Fitted model
+- By NLS, $\hat{\sigma} = 0.025$ i.e. 1.5 degress, thus new fitted model is
+  $$
+  P(\text{success}) = \pi(x)
+  = 2\Phi(\frac{1}{0.025}\arcsin \frac{4.25-1.68}{24x}) -1
+  $$
+*** Concerns
+- Model only accounts for angle at which ball is hit
+- Does not account for short puts, balls that cover the hole and go in
+- Does not account for terrain, playing conditions, ability
+- Need more complex model?
