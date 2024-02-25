@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-02-14 Wed 17:09 -->
+<!-- 2024-02-25 Sun 21:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>CSE 8803: Applied Natural Language Processing</title>
@@ -44,134 +44,147 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgcab3d8f">1. Week 1: Text data preprocessing + Course Intro</a>
+<li><a href="#orgb373f89">1. Week 1: Text data preprocessing + Course Intro</a>
 <ul>
-<li><a href="#orge3a34b3">1.1. Why ANLP?</a></li>
-<li><a href="#org890c38d">1.2. Lots of text and written information</a></li>
-<li><a href="#orgae85adb">1.3. Example applications of NLP</a></li>
-<li><a href="#orgd925176">1.4. Challenges of NLP</a></li>
-<li><a href="#org75473da">1.5. Class overview</a></li>
-<li><a href="#orgabdaeac">1.6. Deliverables</a>
+<li><a href="#orgd8d68e2">1.1. Why ANLP?</a></li>
+<li><a href="#orga8cfddb">1.2. Lots of text and written information</a></li>
+<li><a href="#orge014ad1">1.3. Example applications of NLP</a></li>
+<li><a href="#orgf7d73fa">1.4. Challenges of NLP</a></li>
+<li><a href="#org415c500">1.5. Class overview</a></li>
+<li><a href="#org7e12583">1.6. Deliverables</a>
 <ul>
-<li><a href="#org491eee9">1.6.1. Homework</a></li>
-<li><a href="#org64d1b9f">1.6.2. Quizzes (10)</a></li>
+<li><a href="#org2040024">1.6.1. Homework</a></li>
+<li><a href="#org57f8ca0">1.6.2. Quizzes (10)</a></li>
 </ul>
 </li>
-<li><a href="#org6201d76">1.7. Course goals</a></li>
-<li><a href="#org56d2cde">1.8. Text Preprocessing Techniques</a>
+<li><a href="#org057c275">1.7. Course goals</a></li>
+<li><a href="#org08319d7">1.8. Text Preprocessing Techniques</a>
 <ul>
-<li><a href="#org30129fc">1.8.1. Terminology</a></li>
-<li><a href="#org8ba26f4">1.8.2. Preprocessing text data</a></li>
-<li><a href="#org3d1ea17">1.8.3. Noise removal</a></li>
-<li><a href="#orgff0ceb2">1.8.4. Tokenization</a></li>
-<li><a href="#org31a606d">1.8.5. Text normalization</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#orgf61036d">2. Week 2: (Discrete) Text Representations</a>
-<ul>
-<li><a href="#org39bf596">2.1. Why?</a></li>
-<li><a href="#orgb385c57">2.2. Representing Words</a></li>
-<li><a href="#orgd33bc0b">2.3. Representing sentences/documents</a></li>
-<li><a href="#orge82660e">2.4. One Hot Encoding</a>
-<ul>
-<li><a href="#orgc188c31">2.4.1. Definitions</a></li>
-<li><a href="#org2628268">2.4.2. Advantages and disadvantages</a></li>
-</ul>
-</li>
-<li><a href="#org0b61707">2.5. Bag of Words (Frequency Counting)</a>
-<ul>
-<li><a href="#orgc57dc1e">2.5.1. Advantages and disadvantages</a></li>
-</ul>
-</li>
-<li><a href="#org59fd391">2.6. TF-IDF (Term Frequency-Inverse Document Frequency)</a>
-<ul>
-<li><a href="#org2bc411e">2.6.1. Why needed?</a></li>
-<li><a href="#orgaea166a">2.6.2. What is TF-IDF and when to use TF-IDF</a></li>
-<li><a href="#org9aef5fd">2.6.3. Advantages and disadvantages</a></li>
+<li><a href="#org657f09c">1.8.1. Terminology</a></li>
+<li><a href="#orga0f6095">1.8.2. Preprocessing text data</a></li>
+<li><a href="#orgda4459e">1.8.3. Noise removal</a></li>
+<li><a href="#org9bf5c4d">1.8.4. Tokenization</a></li>
+<li><a href="#org457c57a">1.8.5. Text normalization</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org49ab73d">3. Week 3: Linear Text Classification</a>
+<li><a href="#orgde10d41">2. Week 2: (Discrete) Text Representations</a>
 <ul>
-<li><a href="#org921d2bb">3.1. Classification introduction</a>
+<li><a href="#org2389441">2.1. Why?</a></li>
+<li><a href="#org121fb0e">2.2. Representing Words</a></li>
+<li><a href="#orge05928d">2.3. Representing sentences/documents</a></li>
+<li><a href="#orgff6d183">2.4. One Hot Encoding</a>
 <ul>
-<li><a href="#org821d5ec">3.1.1. Supervised learning: definitions</a></li>
-<li><a href="#org257a3e4">3.1.2. Categories of supervised learning</a></li>
-<li><a href="#org4d70d02">3.1.3. Regression</a></li>
-<li><a href="#org825dd5c">3.1.4. Classification</a></li>
+<li><a href="#org086e9d0">2.4.1. Definitions</a></li>
+<li><a href="#org1940aba">2.4.2. Advantages and disadvantages</a></li>
 </ul>
 </li>
-<li><a href="#org4f5a76a">3.2. Naive Bayes</a>
+<li><a href="#org58247cc">2.5. Bag of Words (Frequency Counting)</a>
 <ul>
-<li><a href="#orgc0927cc">3.2.1. Method / concepts</a></li>
-<li><a href="#org5c4d117">3.2.2. Bayes decision rule</a></li>
-<li><a href="#org4c14577">3.2.3. Generative vs discriminative models</a></li>
-<li><a href="#org21df69a">3.2.4. Details of Naive Bayes</a></li>
-<li><a href="#org24eea8e">3.2.5. Naive Conditional Independence Assumption</a></li>
-<li><a href="#orgde85470">3.2.6. Advantages and disadvantages</a></li>
+<li><a href="#org0d7f703">2.5.1. Advantages and disadvantages</a></li>
 </ul>
 </li>
-<li><a href="#org11d099a">3.3. Classification Model Evaluation</a>
+<li><a href="#orga4cce0c">2.6. TF-IDF (Term Frequency-Inverse Document Frequency)</a>
 <ul>
-<li><a href="#orgdc8fbe8">3.3.1. Common metrics</a></li>
-<li><a href="#orgd457bc8">3.3.2. Confusion matrix</a></li>
-<li><a href="#org3d62a98">3.3.3. Accuracy</a></li>
-<li><a href="#org4628831">3.3.4. RoC-AUC curve</a></li>
+<li><a href="#orgade8a86">2.6.1. Why needed?</a></li>
+<li><a href="#org19a48c0">2.6.2. What is TF-IDF and when to use TF-IDF</a></li>
+<li><a href="#orgcfb6fc7">2.6.3. Advantages and disadvantages</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org94021f3">4. Week 5: Log Regression, SVM and Perceptron (Module 4)</a>
+<li><a href="#org33ed677">3. Week 3: Linear Text Classification</a>
 <ul>
-<li><a href="#orge4fd3ae">4.1. Logistic Regression</a>
+<li><a href="#org9169095">3.1. Classification introduction</a>
 <ul>
-<li><a href="#orgae0fe03">4.1.1. Generative vs Discriminative Models (again)</a></li>
-<li><a href="#org5d36a19">4.1.2. Bayes equation again</a></li>
-<li><a href="#org0506170">4.1.3. Logistic Function for posterior probability</a></li>
-<li><a href="#org4bfae3d">4.1.4. Sigmoid is interpreted as probability</a></li>
-<li><a href="#org11e0453">4.1.5. Logistic regression model</a></li>
-<li><a href="#org42d5b49">4.1.6. The gradient of \(l(\theta)\)</a></li>
-<li><a href="#orgf9b4ece">4.1.7. Gradient descent</a></li>
-<li><a href="#orgecc6974">4.1.8. Gradient ascent (concave) / descent (convex) algorithm</a></li>
-<li><a href="#org553a38d">4.1.9. Advantages and disadvantages of logistic regression</a></li>
+<li><a href="#org6596988">3.1.1. Supervised learning: definitions</a></li>
+<li><a href="#org5a6c7c4">3.1.2. Categories of supervised learning</a></li>
+<li><a href="#org16a4380">3.1.3. Regression</a></li>
+<li><a href="#org707eb63">3.1.4. Classification</a></li>
 </ul>
 </li>
-<li><a href="#orgb87feec">4.2. Support vector machine</a>
+<li><a href="#org4a4f8e7">3.2. Naive Bayes</a>
 <ul>
-<li><a href="#orgcfe82aa">4.2.1. Linear separation</a></li>
-<li><a href="#org63ac5b6">4.2.2. Finding &theta; that maximizes margin</a></li>
-<li><a href="#org1957c1a">4.2.3. Length of margin</a></li>
-<li><a href="#org657f5ff">4.2.4. Maximizing margin</a></li>
-<li><a href="#orgbf5a44d">4.2.5. Geometric representation</a></li>
-<li><a href="#org9fddfe3">4.2.6. Lagrange formulation (not in detail)</a></li>
-<li><a href="#org31bb9bb">4.2.7. Usage</a></li>
-<li><a href="#orgb6e7f81">4.2.8. From \(x\) to \(z\) space</a></li>
-<li><a href="#org7a33b4c">4.2.9. Support vector machine</a></li>
+<li><a href="#org4a525a7">3.2.1. Method / concepts</a></li>
+<li><a href="#org13c1f18">3.2.2. Bayes decision rule</a></li>
+<li><a href="#orga072638">3.2.3. Generative vs discriminative models</a></li>
+<li><a href="#orgef8a76d">3.2.4. Details of Naive Bayes</a></li>
+<li><a href="#org7fe9226">3.2.5. Naive Conditional Independence Assumption</a></li>
+<li><a href="#org3abd8c8">3.2.6. Advantages and disadvantages</a></li>
 </ul>
 </li>
-<li><a href="#org911ca20">4.3. Perceptron</a>
+<li><a href="#org4972f92">3.3. Classification Model Evaluation</a>
 <ul>
-<li><a href="#org069e33d">4.3.1. Linearly separable</a></li>
-<li><a href="#org40f4d20">4.3.2. Linear classifier</a></li>
-<li><a href="#orgef15159">4.3.3. The Perceptron Classifier</a></li>
-<li><a href="#org7480666">4.3.4. Perceptron activation</a></li>
-<li><a href="#org6129f10">4.3.5. Advantages and disadvantages of Perceptron</a></li>
+<li><a href="#orge4bed09">3.3.1. Common metrics</a></li>
+<li><a href="#org6185a76">3.3.2. Confusion matrix</a></li>
+<li><a href="#orgde0bb6d">3.3.3. Accuracy</a></li>
+<li><a href="#orgc898b48">3.3.4. RoC-AUC curve</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li><a href="#orga0d8bec">4. Week 5: Log Regression, SVM and Perceptron (Module 4)</a>
+<ul>
+<li><a href="#orga469be7">4.1. Logistic Regression</a>
+<ul>
+<li><a href="#org7eaffc5">4.1.1. Generative vs Discriminative Models (again)</a></li>
+<li><a href="#orgb9e5bf7">4.1.2. Bayes equation again</a></li>
+<li><a href="#orgb9c148e">4.1.3. Logistic Function for posterior probability</a></li>
+<li><a href="#org4c38be5">4.1.4. Sigmoid is interpreted as probability</a></li>
+<li><a href="#orgdece091">4.1.5. Logistic regression model</a></li>
+<li><a href="#org0de8fb1">4.1.6. The gradient of \(l(\theta)\)</a></li>
+<li><a href="#orgfb00f89">4.1.7. Gradient descent</a></li>
+<li><a href="#orga6ac48b">4.1.8. Gradient ascent (concave) / descent (convex) algorithm</a></li>
+<li><a href="#org06d39a2">4.1.9. Advantages and disadvantages of logistic regression</a></li>
+</ul>
+</li>
+<li><a href="#orgb4ef167">4.2. Support vector machine</a>
+<ul>
+<li><a href="#org6925b0d">4.2.1. Linear separation</a></li>
+<li><a href="#org1d8aaf9">4.2.2. Finding &theta; that maximizes margin</a></li>
+<li><a href="#org8755701">4.2.3. Length of margin</a></li>
+<li><a href="#orgf7bbe70">4.2.4. Maximizing margin</a></li>
+<li><a href="#org7ebe2d9">4.2.5. Geometric representation</a></li>
+<li><a href="#org5844b4f">4.2.6. Lagrange formulation (not in detail)</a></li>
+<li><a href="#org797ecc2">4.2.7. Usage</a></li>
+<li><a href="#org7ba2ef4">4.2.8. From \(x\) to \(z\) space</a></li>
+<li><a href="#org0bd0b3c">4.2.9. Support vector machine</a></li>
+</ul>
+</li>
+<li><a href="#orgb061d46">4.3. Perceptron</a>
+<ul>
+<li><a href="#org0e574b9">4.3.1. Linearly separable</a></li>
+<li><a href="#orgd2cab88">4.3.2. Linear classifier</a></li>
+<li><a href="#org30f33a8">4.3.3. The Perceptron Classifier</a></li>
+<li><a href="#orgaa845de">4.3.4. Perceptron activation</a></li>
+<li><a href="#orgcf3bd3a">4.3.5. Advantages and disadvantages of Perceptron</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org5998cb0">5. Week 6: Embeddings/Dimensionality reduction</a>
+<ul>
+<li><a href="#org4129b82">5.1. Motivating example</a></li>
+<li><a href="#org3f1f91f">5.2. Bag of words representation</a></li>
+<li><a href="#org89944a2">5.3. What is dimensionality reduction?</a></li>
+<li><a href="#org956d61a">5.4. Intuition (of PCA)</a></li>
+<li><a href="#org83b0e62">5.5. Singular value decomposition</a></li>
+<li><a href="#org95fd720">5.6. Co-occurrence matrices</a></li>
+<li><a href="#orged691ef">5.7. SVD on co-occurrence matrices</a></li>
+<li><a href="#org0a9926b">5.8. Dense word embeddings</a></li>
+<li><a href="#org0f569f8">5.9. Advantages of dense word embeddings</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgcab3d8f" class="outline-2">
-<h2 id="orgcab3d8f"><span class="section-number-2">1.</span> Week 1: Text data preprocessing + Course Intro</h2>
+<div id="outline-container-orgb373f89" class="outline-2">
+<h2 id="orgb373f89"><span class="section-number-2">1.</span> Week 1: Text data preprocessing + Course Intro</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orge3a34b3" class="outline-3">
-<h3 id="orge3a34b3"><span class="section-number-3">1.1.</span> Why ANLP?</h3>
+<div id="outline-container-orgd8d68e2" class="outline-3">
+<h3 id="orgd8d68e2"><span class="section-number-3">1.1.</span> Why ANLP?</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li>Text and docs are everywhere</li>
@@ -182,8 +195,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org890c38d" class="outline-3">
-<h3 id="org890c38d"><span class="section-number-3">1.2.</span> Lots of text and written information</h3>
+<div id="outline-container-orga8cfddb" class="outline-3">
+<h3 id="orga8cfddb"><span class="section-number-3">1.2.</span> Lots of text and written information</h3>
 <div class="outline-text-3" id="text-1-2">
 <ul class="org-ul">
 <li>Internet</li>
@@ -198,8 +211,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgae85adb" class="outline-3">
-<h3 id="orgae85adb"><span class="section-number-3">1.3.</span> Example applications of NLP</h3>
+<div id="outline-container-orge014ad1" class="outline-3">
+<h3 id="orge014ad1"><span class="section-number-3">1.3.</span> Example applications of NLP</h3>
 <div class="outline-text-3" id="text-1-3">
 <ul class="org-ul">
 <li>Establish authenticity, detect plagiarism</li>
@@ -210,8 +223,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd925176" class="outline-3">
-<h3 id="orgd925176"><span class="section-number-3">1.4.</span> Challenges of NLP</h3>
+<div id="outline-container-orgf7d73fa" class="outline-3">
+<h3 id="orgf7d73fa"><span class="section-number-3">1.4.</span> Challenges of NLP</h3>
 <div class="outline-text-3" id="text-1-4">
 <ul class="org-ul">
 <li>Interdisciplinary field</li>
@@ -225,8 +238,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org75473da" class="outline-3">
-<h3 id="org75473da"><span class="section-number-3">1.5.</span> Class overview</h3>
+<div id="outline-container-org415c500" class="outline-3">
+<h3 id="org415c500"><span class="section-number-3">1.5.</span> Class overview</h3>
 <div class="outline-text-3" id="text-1-5">
 <ul class="org-ul">
 <li>Preprocessing:
@@ -275,12 +288,12 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgabdaeac" class="outline-3">
-<h3 id="orgabdaeac"><span class="section-number-3">1.6.</span> Deliverables</h3>
+<div id="outline-container-org7e12583" class="outline-3">
+<h3 id="org7e12583"><span class="section-number-3">1.6.</span> Deliverables</h3>
 <div class="outline-text-3" id="text-1-6">
 </div>
-<div id="outline-container-org491eee9" class="outline-4">
-<h4 id="org491eee9"><span class="section-number-4">1.6.1.</span> Homework</h4>
+<div id="outline-container-org2040024" class="outline-4">
+<h4 id="org2040024"><span class="section-number-4">1.6.1.</span> Homework</h4>
 <div class="outline-text-4" id="text-1-6-1">
 <ul class="org-ul">
 <li>HW1: Text preprocessing and classification intro</li>
@@ -290,8 +303,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org64d1b9f" class="outline-4">
-<h4 id="org64d1b9f"><span class="section-number-4">1.6.2.</span> Quizzes (10)</h4>
+<div id="outline-container-org57f8ca0" class="outline-4">
+<h4 id="org57f8ca0"><span class="section-number-4">1.6.2.</span> Quizzes (10)</h4>
 <div class="outline-text-4" id="text-1-6-2">
 <ul class="org-ul">
 <li>Measure understanding of topic</li>
@@ -303,8 +316,8 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org6201d76" class="outline-3">
-<h3 id="org6201d76"><span class="section-number-3">1.7.</span> Course goals</h3>
+<div id="outline-container-org057c275" class="outline-3">
+<h3 id="org057c275"><span class="section-number-3">1.7.</span> Course goals</h3>
 <div class="outline-text-3" id="text-1-7">
 <ul class="org-ul">
 <li>Demonstrate how to pre-process textual data</li>
@@ -314,12 +327,12 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org56d2cde" class="outline-3">
-<h3 id="org56d2cde"><span class="section-number-3">1.8.</span> Text Preprocessing Techniques</h3>
+<div id="outline-container-org08319d7" class="outline-3">
+<h3 id="org08319d7"><span class="section-number-3">1.8.</span> Text Preprocessing Techniques</h3>
 <div class="outline-text-3" id="text-1-8">
 </div>
-<div id="outline-container-org30129fc" class="outline-4">
-<h4 id="org30129fc"><span class="section-number-4">1.8.1.</span> Terminology</h4>
+<div id="outline-container-org657f09c" class="outline-4">
+<h4 id="org657f09c"><span class="section-number-4">1.8.1.</span> Terminology</h4>
 <div class="outline-text-4" id="text-1-8-1">
 <dl class="org-dl">
 <dt>Corpus</dt><dd>collection of text, e.g. Yelp reviews, Wikipedia articles</dd>
@@ -332,8 +345,8 @@
 </dl>
 </div>
 </div>
-<div id="outline-container-org8ba26f4" class="outline-4">
-<h4 id="org8ba26f4"><span class="section-number-4">1.8.2.</span> Preprocessing text data</h4>
+<div id="outline-container-orga0f6095" class="outline-4">
+<h4 id="orga0f6095"><span class="section-number-4">1.8.2.</span> Preprocessing text data</h4>
 <div class="outline-text-4" id="text-1-8-2">
 <ul class="org-ul">
 <li>Text is unstructured, so preprocessing is the first step to prepare and clean text data to perform a NLP task</li>
@@ -351,8 +364,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org3d1ea17" class="outline-4">
-<h4 id="org3d1ea17"><span class="section-number-4">1.8.3.</span> Noise removal</h4>
+<div id="outline-container-orgda4459e" class="outline-4">
+<h4 id="orgda4459e"><span class="section-number-4">1.8.3.</span> Noise removal</h4>
 <div class="outline-text-4" id="text-1-8-3">
 <p>
 Removal of unwanted text formatting information, e.g.:
@@ -371,8 +384,8 @@ Example: <code>This is a 'simple'' sentence !!! 1+ \n</code> -&gt; <code>This is
 </p>
 </div>
 </div>
-<div id="outline-container-orgff0ceb2" class="outline-4">
-<h4 id="orgff0ceb2"><span class="section-number-4">1.8.4.</span> Tokenization</h4>
+<div id="outline-container-org9bf5c4d" class="outline-4">
+<h4 id="org9bf5c4d"><span class="section-number-4">1.8.4.</span> Tokenization</h4>
 <div class="outline-text-4" id="text-1-8-4">
 <p>
 Example:
@@ -381,8 +394,8 @@ Example:
 </p>
 </div>
 </div>
-<div id="outline-container-org31a606d" class="outline-4">
-<h4 id="org31a606d"><span class="section-number-4">1.8.5.</span> Text normalization</h4>
+<div id="outline-container-org457c57a" class="outline-4">
+<h4 id="org457c57a"><span class="section-number-4">1.8.5.</span> Text normalization</h4>
 <div class="outline-text-4" id="text-1-8-5">
 <p>
 Removing variations in the text to bring it to a standard form.
@@ -408,12 +421,12 @@ Example: <code>There are several tytpes of stemming algorithms</code> -&gt; <cod
 </div>
 </div>
 
-<div id="outline-container-orgf61036d" class="outline-2">
-<h2 id="orgf61036d"><span class="section-number-2">2.</span> Week 2: (Discrete) Text Representations</h2>
+<div id="outline-container-orgde10d41" class="outline-2">
+<h2 id="orgde10d41"><span class="section-number-2">2.</span> Week 2: (Discrete) Text Representations</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org39bf596" class="outline-3">
-<h3 id="org39bf596"><span class="section-number-3">2.1.</span> Why?</h3>
+<div id="outline-container-org2389441" class="outline-3">
+<h3 id="org2389441"><span class="section-number-3">2.1.</span> Why?</h3>
 <div class="outline-text-3" id="text-2-1">
 <dl class="org-dl">
 <dt>NLP</dt><dd>design algorithms to allow computers to understand natural language, so as to perform some task</dd>
@@ -421,28 +434,28 @@ Example: <code>There are several tytpes of stemming algorithms</code> -&gt; <cod
 </dl>
 </div>
 </div>
-<div id="outline-container-orgb385c57" class="outline-3">
-<h3 id="orgb385c57"><span class="section-number-3">2.2.</span> Representing Words</h3>
+<div id="outline-container-org121fb0e" class="outline-3">
+<h3 id="org121fb0e"><span class="section-number-3">2.2.</span> Representing Words</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>Can be represented by vectors of 0 &amp; 1 where 1 indicates the position of the word, e.g. lorem = <code>[1, 0]</code>, ipsum = <code>[0, 1]</code>, etc.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd33bc0b" class="outline-3">
-<h3 id="orgd33bc0b"><span class="section-number-3">2.3.</span> Representing sentences/documents</h3>
+<div id="outline-container-orge05928d" class="outline-3">
+<h3 id="orge05928d"><span class="section-number-3">2.3.</span> Representing sentences/documents</h3>
 <div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li>Vectors of vectors eg <code>[[1,0], [0,1]]</code></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orge82660e" class="outline-3">
-<h3 id="orge82660e"><span class="section-number-3">2.4.</span> One Hot Encoding</h3>
+<div id="outline-container-orgff6d183" class="outline-3">
+<h3 id="orgff6d183"><span class="section-number-3">2.4.</span> One Hot Encoding</h3>
 <div class="outline-text-3" id="text-2-4">
 </div>
-<div id="outline-container-orgc188c31" class="outline-4">
-<h4 id="orgc188c31"><span class="section-number-4">2.4.1.</span> Definitions</h4>
+<div id="outline-container-org086e9d0" class="outline-4">
+<h4 id="org086e9d0"><span class="section-number-4">2.4.1.</span> Definitions</h4>
 <div class="outline-text-4" id="text-2-4-1">
 <dl class="org-dl">
 <dt>corpus</dt><dd>all texts</dd>
@@ -463,8 +476,8 @@ Example: <code>There are several tytpes of stemming algorithms</code> -&gt; <cod
 </dl>
 </div>
 </div>
-<div id="outline-container-org2628268" class="outline-4">
-<h4 id="org2628268"><span class="section-number-4">2.4.2.</span> Advantages and disadvantages</h4>
+<div id="outline-container-org1940aba" class="outline-4">
+<h4 id="org1940aba"><span class="section-number-4">2.4.2.</span> Advantages and disadvantages</h4>
 <div class="outline-text-4" id="text-2-4-2">
 <ul class="org-ul">
 <li>Advantages: easy to implement</li>
@@ -484,8 +497,8 @@ each word represented individually, hence <b>no notion of similarity or meaning<
 </div>
 </div>
 </div>
-<div id="outline-container-org0b61707" class="outline-3">
-<h3 id="org0b61707"><span class="section-number-3">2.5.</span> Bag of Words (Frequency Counting)</h3>
+<div id="outline-container-org58247cc" class="outline-3">
+<h3 id="org58247cc"><span class="section-number-3">2.5.</span> Bag of Words (Frequency Counting)</h3>
 <div class="outline-text-3" id="text-2-5">
 <dl class="org-dl">
 <dt>Summary</dt><dd>Represents each document as a bag of words. <b><b>Ignores</b></b> order of words.</dd>
@@ -500,8 +513,8 @@ each word represented individually, hence <b>no notion of similarity or meaning<
 Hence \(n\) documents can be represented by matrix of size \(n \times d\).
 </p>
 </div>
-<div id="outline-container-orgc57dc1e" class="outline-4">
-<h4 id="orgc57dc1e"><span class="section-number-4">2.5.1.</span> Advantages and disadvantages</h4>
+<div id="outline-container-org0d7f703" class="outline-4">
+<h4 id="org0d7f703"><span class="section-number-4">2.5.1.</span> Advantages and disadvantages</h4>
 <div class="outline-text-4" id="text-2-5-1">
 <ul class="org-ul">
 <li>Advantages: easy to implement</li>
@@ -515,12 +528,12 @@ Hence \(n\) documents can be represented by matrix of size \(n \times d\).
 </div>
 </div>
 </div>
-<div id="outline-container-org59fd391" class="outline-3">
-<h3 id="org59fd391"><span class="section-number-3">2.6.</span> TF-IDF (Term Frequency-Inverse Document Frequency)</h3>
+<div id="outline-container-orga4cce0c" class="outline-3">
+<h3 id="orga4cce0c"><span class="section-number-3">2.6.</span> TF-IDF (Term Frequency-Inverse Document Frequency)</h3>
 <div class="outline-text-3" id="text-2-6">
 </div>
-<div id="outline-container-org2bc411e" class="outline-4">
-<h4 id="org2bc411e"><span class="section-number-4">2.6.1.</span> Why needed?</h4>
+<div id="outline-container-orgade8a86" class="outline-4">
+<h4 id="orgade8a86"><span class="section-number-4">2.6.1.</span> Why needed?</h4>
 <div class="outline-text-4" id="text-2-6-1">
 <ul class="org-ul">
 <li>BoW does not provide logical importance
@@ -531,8 +544,8 @@ Hence \(n\) documents can be represented by matrix of size \(n \times d\).
 </ul>
 </div>
 </div>
-<div id="outline-container-orgaea166a" class="outline-4">
-<h4 id="orgaea166a"><span class="section-number-4">2.6.2.</span> What is TF-IDF and when to use TF-IDF</h4>
+<div id="outline-container-org19a48c0" class="outline-4">
+<h4 id="org19a48c0"><span class="section-number-4">2.6.2.</span> What is TF-IDF and when to use TF-IDF</h4>
 <div class="outline-text-4" id="text-2-6-2">
 <dl class="org-dl">
 <dt>Definition of TF-IDF</dt><dd>a word's <b><b>importance score</b></b> in a document among \(N\) documents</dd>
@@ -547,8 +560,8 @@ Higher score = more "characteristic"</dd>
 </dl>
 </div>
 </div>
-<div id="outline-container-org9aef5fd" class="outline-4">
-<h4 id="org9aef5fd"><span class="section-number-4">2.6.3.</span> Advantages and disadvantages</h4>
+<div id="outline-container-orgcfb6fc7" class="outline-4">
+<h4 id="orgcfb6fc7"><span class="section-number-4">2.6.3.</span> Advantages and disadvantages</h4>
 <div class="outline-text-4" id="text-2-6-3">
 <ul class="org-ul">
 <li>Advantages:
@@ -566,19 +579,19 @@ Higher score = more "characteristic"</dd>
 </div>
 </div>
 </div>
-<div id="outline-container-org49ab73d" class="outline-2">
-<h2 id="org49ab73d"><span class="section-number-2">3.</span> Week 3: Linear Text Classification</h2>
+<div id="outline-container-org33ed677" class="outline-2">
+<h2 id="org33ed677"><span class="section-number-2">3.</span> Week 3: Linear Text Classification</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org921d2bb" class="outline-3">
-<h3 id="org921d2bb"><span class="section-number-3">3.1.</span> Classification introduction</h3>
+<div id="outline-container-org9169095" class="outline-3">
+<h3 id="org9169095"><span class="section-number-3">3.1.</span> Classification introduction</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 Note: <b><b>classification</b></b>.
 </p>
 </div>
-<div id="outline-container-org821d5ec" class="outline-4">
-<h4 id="org821d5ec"><span class="section-number-4">3.1.1.</span> Supervised learning: definitions</h4>
+<div id="outline-container-org6596988" class="outline-4">
+<h4 id="org6596988"><span class="section-number-4">3.1.1.</span> Supervised learning: definitions</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <dl class="org-dl">
 <dt>Word count matrix / document term matrix</dt><dd>dataset generated from documents</dd>
@@ -600,8 +613,8 @@ Supervised learning thus takes <b><b>labelled</b></b> training data and <b><b>le
 </div>
 </div>
 
-<div id="outline-container-org257a3e4" class="outline-4">
-<h4 id="org257a3e4"><span class="section-number-4">3.1.2.</span> Categories of supervised learning</h4>
+<div id="outline-container-org5a6c7c4" class="outline-4">
+<h4 id="org5a6c7c4"><span class="section-number-4">3.1.2.</span> Categories of supervised learning</h4>
 <div class="outline-text-4" id="text-3-1-2">
 <dl class="org-dl">
 <dt>continuous \(y\)</dt><dd>regression i.e. curve fitting</dd>
@@ -610,8 +623,8 @@ Supervised learning thus takes <b><b>labelled</b></b> training data and <b><b>le
 </div>
 </div>
 
-<div id="outline-container-org4d70d02" class="outline-4">
-<h4 id="org4d70d02"><span class="section-number-4">3.1.3.</span> Regression</h4>
+<div id="outline-container-org16a4380" class="outline-4">
+<h4 id="org16a4380"><span class="section-number-4">3.1.3.</span> Regression</h4>
 <div class="outline-text-4" id="text-3-1-3">
 <ul class="org-ul">
 <li>Errors represent how much predictions deviate from actual values.</li>
@@ -621,8 +634,8 @@ Supervised learning thus takes <b><b>labelled</b></b> training data and <b><b>le
 </div>
 </div>
 
-<div id="outline-container-org825dd5c" class="outline-4">
-<h4 id="org825dd5c"><span class="section-number-4">3.1.4.</span> Classification</h4>
+<div id="outline-container-org707eb63" class="outline-4">
+<h4 id="org707eb63"><span class="section-number-4">3.1.4.</span> Classification</h4>
 <div class="outline-text-4" id="text-3-1-4">
 <ul class="org-ul">
 <li>Linear classification can be used for spam detection, sentiment analysis, handwriting digit recognition (0.4% error here), etc.</li>
@@ -633,12 +646,12 @@ Supervised learning thus takes <b><b>labelled</b></b> training data and <b><b>le
 </div>
 </div>
 
-<div id="outline-container-org4f5a76a" class="outline-3">
-<h3 id="org4f5a76a"><span class="section-number-3">3.2.</span> Naive Bayes</h3>
+<div id="outline-container-org4a4f8e7" class="outline-3">
+<h3 id="org4a4f8e7"><span class="section-number-3">3.2.</span> Naive Bayes</h3>
 <div class="outline-text-3" id="text-3-2">
 </div>
-<div id="outline-container-orgc0927cc" class="outline-4">
-<h4 id="orgc0927cc"><span class="section-number-4">3.2.1.</span> Method / concepts</h4>
+<div id="outline-container-org4a525a7" class="outline-4">
+<h4 id="org4a525a7"><span class="section-number-4">3.2.1.</span> Method / concepts</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <p>
 Bayes Decision Rule.
@@ -659,16 +672,16 @@ P(y|x) = \frac{P(x|y)P(y)}{P(x)} = \frac{P(x,y)}{\sum_y P(x,y)}
 </p>
 </div>
 </div>
-<div id="outline-container-org5c4d117" class="outline-4">
-<h4 id="org5c4d117"><span class="section-number-4">3.2.2.</span> Bayes decision rule</h4>
+<div id="outline-container-org13c1f18" class="outline-4">
+<h4 id="org13c1f18"><span class="section-number-4">3.2.2.</span> Bayes decision rule</h4>
 <div class="outline-text-4" id="text-3-2-2">
 <ul class="org-ul">
 <li><span style='background-color: #FFFF00;'>important</span>: normalization constant is the same for +ve and -ve labels, hence no need to calculate when predicting sentiment</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org4c14577" class="outline-4">
-<h4 id="org4c14577"><span class="section-number-4">3.2.3.</span> Generative vs discriminative models</h4>
+<div id="outline-container-orga072638" class="outline-4">
+<h4 id="orga072638"><span class="section-number-4">3.2.3.</span> Generative vs discriminative models</h4>
 <div class="outline-text-4" id="text-3-2-3">
 <p>
 Naive Bayes is a generative model
@@ -693,8 +706,8 @@ Naive Bayes is a generative model
 </ul>
 </div>
 </div>
-<div id="outline-container-org21df69a" class="outline-4">
-<h4 id="org21df69a"><span class="section-number-4">3.2.4.</span> Details of Naive Bayes</h4>
+<div id="outline-container-orgef8a76d" class="outline-4">
+<h4 id="orgef8a76d"><span class="section-number-4">3.2.4.</span> Details of Naive Bayes</h4>
 <div class="outline-text-4" id="text-3-2-4">
 <p>
 Bayes decision rule:
@@ -713,8 +726,8 @@ P(y|x) = \frac{P(x|y)P(y)}{P(x)}
 </ul>
 </div>
 </div>
-<div id="outline-container-org24eea8e" class="outline-4">
-<h4 id="org24eea8e"><span class="section-number-4">3.2.5.</span> Naive Conditional Independence Assumption</h4>
+<div id="outline-container-org7fe9226" class="outline-4">
+<h4 id="org7fe9226"><span class="section-number-4">3.2.5.</span> Naive Conditional Independence Assumption</h4>
 <div class="outline-text-4" id="text-3-2-5">
 <p>
 \[
@@ -747,7 +760,7 @@ similarly for negatives:
 </p>
 </div>
 <ol class="org-ol">
-<li><a id="org2321da7"></a>Representing the likelihood<br />
+<li><a id="org92d849d"></a>Representing the likelihood<br />
 <div class="outline-text-5" id="text-3-2-5-1">
 <p>
 Common distribution: <b><b>multinomial distribution</b></b>.
@@ -782,8 +795,8 @@ Repeat above for negatives.
 </li>
 </ol>
 </div>
-<div id="outline-container-orgde85470" class="outline-4">
-<h4 id="orgde85470"><span class="section-number-4">3.2.6.</span> Advantages and disadvantages</h4>
+<div id="outline-container-org3abd8c8" class="outline-4">
+<h4 id="org3abd8c8"><span class="section-number-4">3.2.6.</span> Advantages and disadvantages</h4>
 <div class="outline-text-4" id="text-3-2-6">
 <ul class="org-ul">
 <li>Advantages
@@ -802,12 +815,12 @@ Repeat above for negatives.
 </div>
 </div>
 
-<div id="outline-container-org11d099a" class="outline-3">
-<h3 id="org11d099a"><span class="section-number-3">3.3.</span> Classification Model Evaluation</h3>
+<div id="outline-container-org4972f92" class="outline-3">
+<h3 id="org4972f92"><span class="section-number-3">3.3.</span> Classification Model Evaluation</h3>
 <div class="outline-text-3" id="text-3-3">
 </div>
-<div id="outline-container-orgdc8fbe8" class="outline-4">
-<h4 id="orgdc8fbe8"><span class="section-number-4">3.3.1.</span> Common metrics</h4>
+<div id="outline-container-orge4bed09" class="outline-4">
+<h4 id="orge4bed09"><span class="section-number-4">3.3.1.</span> Common metrics</h4>
 <div class="outline-text-4" id="text-3-3-1">
 <ul class="org-ul">
 <li>Classification: accuracy, precision, recall, cross-entropy, perplexity, and F1 score</li>
@@ -815,8 +828,8 @@ Repeat above for negatives.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd457bc8" class="outline-4">
-<h4 id="orgd457bc8"><span class="section-number-4">3.3.2.</span> Confusion matrix</h4>
+<div id="outline-container-org6185a76" class="outline-4">
+<h4 id="org6185a76"><span class="section-number-4">3.3.2.</span> Confusion matrix</h4>
 <div class="outline-text-4" id="text-3-3-2">
 <ul class="org-ul">
 <li>e.g. for multi-label confusion matrix</li>
@@ -829,8 +842,8 @@ Repeat above for negatives.
 </ul>
 </div>
 </div>
-<div id="outline-container-org3d62a98" class="outline-4">
-<h4 id="org3d62a98"><span class="section-number-4">3.3.3.</span> Accuracy</h4>
+<div id="outline-container-orgde0bb6d" class="outline-4">
+<h4 id="orgde0bb6d"><span class="section-number-4">3.3.3.</span> Accuracy</h4>
 <div class="outline-text-4" id="text-3-3-3">
 <ul class="org-ul">
 <li>Accuracy = (True Positive + True Negative) / Total observations, i.e. sum of diagonals / count observations.</li>
@@ -840,8 +853,8 @@ Repeat above for negatives.
 </ul>
 </div>
 </div>
-<div id="outline-container-org4628831" class="outline-4">
-<h4 id="org4628831"><span class="section-number-4">3.3.4.</span> RoC-AUC curve</h4>
+<div id="outline-container-orgc898b48" class="outline-4">
+<h4 id="orgc898b48"><span class="section-number-4">3.3.4.</span> RoC-AUC curve</h4>
 <div class="outline-text-4" id="text-3-3-4">
 <ul class="org-ul">
 <li>ROC: Receiver Operating Characteristic</li>
@@ -857,12 +870,12 @@ Repeat above for negatives.
 </div>
 </div>
 </div>
-<div id="outline-container-org94021f3" class="outline-2">
-<h2 id="org94021f3"><span class="section-number-2">4.</span> Week 5: Log Regression, SVM and Perceptron (Module 4)</h2>
+<div id="outline-container-orga0d8bec" class="outline-2">
+<h2 id="orga0d8bec"><span class="section-number-2">4.</span> Week 5: Log Regression, SVM and Perceptron (Module 4)</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orge4fd3ae" class="outline-3">
-<h3 id="orge4fd3ae"><span class="section-number-3">4.1.</span> Logistic Regression</h3>
+<div id="outline-container-orga469be7" class="outline-3">
+<h3 id="orga469be7"><span class="section-number-3">4.1.</span> Logistic Regression</h3>
 <div class="outline-text-3" id="text-4-1">
 <ul class="org-ul">
 <li>Backbone of neural network model</li>
@@ -873,8 +886,8 @@ Repeat above for negatives.
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-orgae0fe03" class="outline-4">
-<h4 id="orgae0fe03"><span class="section-number-4">4.1.1.</span> Generative vs Discriminative Models (again)</h4>
+<div id="outline-container-org7eaffc5" class="outline-4">
+<h4 id="org7eaffc5"><span class="section-number-4">4.1.1.</span> Generative vs Discriminative Models (again)</h4>
 <div class="outline-text-4" id="text-4-1-1">
 <ul class="org-ul">
 <li>Generative model: able to generate synthetic data points
@@ -895,8 +908,8 @@ Repeat above for negatives.
 </ul>
 </div>
 </div>
-<div id="outline-container-org5d36a19" class="outline-4">
-<h4 id="org5d36a19"><span class="section-number-4">4.1.2.</span> Bayes equation again</h4>
+<div id="outline-container-orgb9e5bf7" class="outline-4">
+<h4 id="orgb9e5bf7"><span class="section-number-4">4.1.2.</span> Bayes equation again</h4>
 <div class="outline-text-4" id="text-4-1-2">
 <p>
 \[
@@ -909,8 +922,8 @@ P(y|x) = \frac{P(x|y)P(y)}{P(x)} = \frac{P(x,y)}{\sum_y P(x,y)}
 </dl>
 </div>
 </div>
-<div id="outline-container-org0506170" class="outline-4">
-<h4 id="org0506170"><span class="section-number-4">4.1.3.</span> Logistic Function for posterior probability</h4>
+<div id="outline-container-orgb9c148e" class="outline-4">
+<h4 id="orgb9c148e"><span class="section-number-4">4.1.3.</span> Logistic Function for posterior probability</h4>
 <div class="outline-text-4" id="text-4-1-3">
 <p>
 i.e. the following function
@@ -934,7 +947,7 @@ P(y|x) = g(s) = \frac{e^s}{1+e^s} = \frac{1}{1+e^{-s}}
 </ul>
 
 
-<div id="orgfc5ca65" class="figure">
+<div id="org1988a83" class="figure">
 <p><img src="./img/sigmoid.png" alt="sigmoid.png" />
 </p>
 </div>
@@ -947,8 +960,8 @@ P(y|x) = g(s) = \frac{e^s}{1+e^s} = \frac{1}{1+e^{-s}}
 </ul>
 </div>
 </div>
-<div id="outline-container-org4bfae3d" class="outline-4">
-<h4 id="org4bfae3d"><span class="section-number-4">4.1.4.</span> Sigmoid is interpreted as probability</h4>
+<div id="outline-container-org4c38be5" class="outline-4">
+<h4 id="org4c38be5"><span class="section-number-4">4.1.4.</span> Sigmoid is interpreted as probability</h4>
 <div class="outline-text-4" id="text-4-1-4">
 <ul class="org-ul">
 <li><p>
@@ -971,8 +984,8 @@ g(s) & y=1 \\
 </ul>
 </div>
 </div>
-<div id="outline-container-org11e0453" class="outline-4">
-<h4 id="org11e0453"><span class="section-number-4">4.1.5.</span> Logistic regression model</h4>
+<div id="outline-container-orgdece091" class="outline-4">
+<h4 id="orgdece091"><span class="section-number-4">4.1.5.</span> Logistic regression model</h4>
 <div class="outline-text-4" id="text-4-1-5">
 <ul class="org-ul">
 <li>Expanding equation and replacing \(g(s)\) with linear combination of features</li>
@@ -992,8 +1005,8 @@ P(y|x) =
 </ul>
 </div>
 </div>
-<div id="outline-container-org42d5b49" class="outline-4">
-<h4 id="org42d5b49"><span class="section-number-4">4.1.6.</span> The gradient of \(l(\theta)\)</h4>
+<div id="outline-container-org0de8fb1" class="outline-4">
+<h4 id="org0de8fb1"><span class="section-number-4">4.1.6.</span> The gradient of \(l(\theta)\)</h4>
 <div class="outline-text-4" id="text-4-1-6">
 <p>
 \[
@@ -1017,8 +1030,8 @@ l(\theta) := \log \prod^n_{i=1} p(y_i, |x_i, \theta) \\
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf9b4ece" class="outline-4">
-<h4 id="orgf9b4ece"><span class="section-number-4">4.1.7.</span> Gradient descent</h4>
+<div id="outline-container-orgfb00f89" class="outline-4">
+<h4 id="orgfb00f89"><span class="section-number-4">4.1.7.</span> Gradient descent</h4>
 <div class="outline-text-4" id="text-4-1-7">
 <ul class="org-ul">
 <li>One way to solve unconstrained optimization problem is gradient descent</li>
@@ -1033,8 +1046,8 @@ l(\theta) := \log \prod^n_{i=1} p(y_i, |x_i, \theta) \\
 </ul>
 </div>
 </div>
-<div id="outline-container-orgecc6974" class="outline-4">
-<h4 id="orgecc6974"><span class="section-number-4">4.1.8.</span> Gradient ascent (concave) / descent (convex) algorithm</h4>
+<div id="outline-container-orga6ac48b" class="outline-4">
+<h4 id="orga6ac48b"><span class="section-number-4">4.1.8.</span> Gradient ascent (concave) / descent (convex) algorithm</h4>
 <div class="outline-text-4" id="text-4-1-8">
 <ul class="org-ul">
 <li>Initialize parameter \(\theta_0\)</li>
@@ -1055,8 +1068,8 @@ l(\theta) := \log \prod^n_{i=1} p(y_i, |x_i, \theta) \\
 </ul>
 </div>
 </div>
-<div id="outline-container-org553a38d" class="outline-4">
-<h4 id="org553a38d"><span class="section-number-4">4.1.9.</span> Advantages and disadvantages of logistic regression</h4>
+<div id="outline-container-org06d39a2" class="outline-4">
+<h4 id="org06d39a2"><span class="section-number-4">4.1.9.</span> Advantages and disadvantages of logistic regression</h4>
 <div class="outline-text-4" id="text-4-1-9">
 <ul class="org-ul">
 <li>Advantages:
@@ -1079,15 +1092,15 @@ l(\theta) := \log \prod^n_{i=1} p(y_i, |x_i, \theta) \\
 </div>
 </div>
 </div>
-<div id="outline-container-orgb87feec" class="outline-3">
-<h3 id="orgb87feec"><span class="section-number-3">4.2.</span> Support vector machine</h3>
+<div id="outline-container-orgb4ef167" class="outline-3">
+<h3 id="orgb4ef167"><span class="section-number-3">4.2.</span> Support vector machine</h3>
 <div class="outline-text-3" id="text-4-2">
 <ul class="org-ul">
 <li>SVM is a large margin classifier</li>
 </ul>
 </div>
-<div id="outline-container-orgcfe82aa" class="outline-4">
-<h4 id="orgcfe82aa"><span class="section-number-4">4.2.1.</span> Linear separation</h4>
+<div id="outline-container-org6925b0d" class="outline-4">
+<h4 id="org6925b0d"><span class="section-number-4">4.2.1.</span> Linear separation</h4>
 <div class="outline-text-4" id="text-4-2-1">
 <ul class="org-ul">
 <li>Can have different separating lines, so which line is the best?
@@ -1097,7 +1110,7 @@ l(\theta) := \log \prod^n_{i=1} p(y_i, |x_i, \theta) \\
 </ul></li>
 </ul>
 
-<div id="orgd6c6ab9" class="figure">
+<div id="org34607ee" class="figure">
 <p><img src="./img/lin-sep.png" alt="lin-sep.png" />
 </p>
 </div>
@@ -1108,8 +1121,8 @@ l(\theta) := \log \prod^n_{i=1} p(y_i, |x_i, \theta) \\
 </ul>
 </div>
 </div>
-<div id="outline-container-org63ac5b6" class="outline-4">
-<h4 id="org63ac5b6"><span class="section-number-4">4.2.2.</span> Finding &theta; that maximizes margin</h4>
+<div id="outline-container-org1d8aaf9" class="outline-4">
+<h4 id="org1d8aaf9"><span class="section-number-4">4.2.2.</span> Finding &theta; that maximizes margin</h4>
 <div class="outline-text-4" id="text-4-2-2">
 <ul class="org-ul">
 <li>Objective function created by constructing linear combination of features.
@@ -1129,8 +1142,8 @@ l(\theta) := \log \prod^n_{i=1} p(y_i, |x_i, \theta) \\
 </ul>
 </div>
 </div>
-<div id="outline-container-org1957c1a" class="outline-4">
-<h4 id="org1957c1a"><span class="section-number-4">4.2.3.</span> Length of margin</h4>
+<div id="outline-container-org8755701" class="outline-4">
+<h4 id="org8755701"><span class="section-number-4">4.2.3.</span> Length of margin</h4>
 <div class="outline-text-4" id="text-4-2-3">
 <p>
 \[
@@ -1149,7 +1162,7 @@ Therefore total margin is: \(\frac{2}{\parallel \theta \parallel}\) (since there
 </p>
 
 
-<div id="org7ae72d8" class="figure">
+<div id="orgadeca5f" class="figure">
 <p><img src="./img/large-margin.png" alt="large-margin.png" />
 </p>
 </div>
@@ -1159,8 +1172,8 @@ Therefore total margin is: \(\frac{2}{\parallel \theta \parallel}\) (since there
 </ul>
 </div>
 </div>
-<div id="outline-container-org657f5ff" class="outline-4">
-<h4 id="org657f5ff"><span class="section-number-4">4.2.4.</span> Maximizing margin</h4>
+<div id="outline-container-orgf7bbe70" class="outline-4">
+<h4 id="orgf7bbe70"><span class="section-number-4">4.2.4.</span> Maximizing margin</h4>
 <div class="outline-text-4" id="text-4-2-4">
 <ul class="org-ul">
 <li>Maximize \(\frac{2}{\parallel \theta \parallel}\) in the objective function</li>
@@ -1180,11 +1193,11 @@ Therefore total margin is: \(\frac{2}{\parallel \theta \parallel}\) (since there
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbf5a44d" class="outline-4">
-<h4 id="orgbf5a44d"><span class="section-number-4">4.2.5.</span> Geometric representation</h4>
+<div id="outline-container-org7ebe2d9" class="outline-4">
+<h4 id="org7ebe2d9"><span class="section-number-4">4.2.5.</span> Geometric representation</h4>
 <div class="outline-text-4" id="text-4-2-5">
 
-<div id="org9f2ab9f" class="figure">
+<div id="org05c03dd" class="figure">
 <p><img src="./img/geom-rep.png" alt="geom-rep.png" />
 </p>
 </div>
@@ -1195,7 +1208,7 @@ Therefore total margin is: \(\frac{2}{\parallel \theta \parallel}\) (since there
 </dl>
 </div>
 <ol class="org-ol">
-<li><a id="org4968176"></a>Converting problem<br />
+<li><a id="orge6f4f94"></a>Converting problem<br />
 <div class="outline-text-5" id="text-4-2-5-1">
 <ul class="org-ul">
 <li>Many ML libraries can solve minimization problems instead of maximization</li>
@@ -1214,8 +1227,8 @@ Therefore total margin is: \(\frac{2}{\parallel \theta \parallel}\) (since there
 </li>
 </ol>
 </div>
-<div id="outline-container-org9fddfe3" class="outline-4">
-<h4 id="org9fddfe3"><span class="section-number-4">4.2.6.</span> Lagrange formulation (not in detail)</h4>
+<div id="outline-container-org5844b4f" class="outline-4">
+<h4 id="org5844b4f"><span class="section-number-4">4.2.6.</span> Lagrange formulation (not in detail)</h4>
 <div class="outline-text-4" id="text-4-2-6">
 <p>
 \[
@@ -1253,8 +1266,8 @@ L(\theta, b, \alpha) = \sum^N_{i=1} \alpha_i - \frac{1}{2} \sum^N_{i=1} \sum^N_{
 </p>
 </div>
 </div>
-<div id="outline-container-org31bb9bb" class="outline-4">
-<h4 id="org31bb9bb"><span class="section-number-4">4.2.7.</span> Usage</h4>
+<div id="outline-container-org797ecc2" class="outline-4">
+<h4 id="org797ecc2"><span class="section-number-4">4.2.7.</span> Usage</h4>
 <div class="outline-text-4" id="text-4-2-7">
 <ul class="org-ul">
 <li>Dual form good for binary classification, e.g. spam or not spam.</li>
@@ -1280,8 +1293,8 @@ L(\theta, b, \alpha) = \sum^N_{i=1} \alpha_i - \frac{1}{2} \sum^N_{i=1} \sum^N_{
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb6e7f81" class="outline-4">
-<h4 id="orgb6e7f81"><span class="section-number-4">4.2.8.</span> From \(x\) to \(z\) space</h4>
+<div id="outline-container-org7ba2ef4" class="outline-4">
+<h4 id="org7ba2ef4"><span class="section-number-4">4.2.8.</span> From \(x\) to \(z\) space</h4>
 <div class="outline-text-4" id="text-4-2-8">
 <ul class="org-ul">
 <li>SVM can only be used when a linear decision line can be used</li>
@@ -1291,7 +1304,7 @@ L(\theta, b, \alpha) = \sum^N_{i=1} \alpha_i - \frac{1}{2} \sum^N_{i=1} \sum^N_{
 </ul>
 </div>
 <ol class="org-ol">
-<li><a id="orgb7785b3"></a>Kernel trick<br />
+<li><a id="orgbf712f1"></a>Kernel trick<br />
 <div class="outline-text-5" id="text-4-2-8-1">
 <p>
 Main premise is to take data from original space to newer space with higher dimensions, which make it more likely to have linear separation in the newer space.
@@ -1304,8 +1317,8 @@ In \(x\) space, they are called pre-images of support vectors.
 </li>
 </ol>
 </div>
-<div id="outline-container-org7a33b4c" class="outline-4">
-<h4 id="org7a33b4c"><span class="section-number-4">4.2.9.</span> Support vector machine</h4>
+<div id="outline-container-org0bd0b3c" class="outline-4">
+<h4 id="org0bd0b3c"><span class="section-number-4">4.2.9.</span> Support vector machine</h4>
 <div class="outline-text-4" id="text-4-2-9">
 <ul class="org-ul">
 <li>Can do <span style='background-color: #FFFF00;'>either</span>
@@ -1317,11 +1330,11 @@ In \(x\) space, they are called pre-images of support vectors.
 </div>
 </div>
 </div>
-<div id="outline-container-org911ca20" class="outline-3">
-<h3 id="org911ca20"><span class="section-number-3">4.3.</span> Perceptron</h3>
+<div id="outline-container-orgb061d46" class="outline-3">
+<h3 id="orgb061d46"><span class="section-number-3">4.3.</span> Perceptron</h3>
 <div class="outline-text-3" id="text-4-3">
 
-<div id="org081a2c2" class="figure">
+<div id="org1f43906" class="figure">
 <p><img src="./img/spam.png" alt="spam.png" />
 </p>
 </div>
@@ -1341,11 +1354,11 @@ f(x_i)
 <li>i.e. \(y_i f(x_i) \gt 0\) for a correct classification</li>
 </ul>
 </div>
-<div id="outline-container-org069e33d" class="outline-4">
-<h4 id="org069e33d"><span class="section-number-4">4.3.1.</span> Linearly separable</h4>
+<div id="outline-container-org0e574b9" class="outline-4">
+<h4 id="org0e574b9"><span class="section-number-4">4.3.1.</span> Linearly separable</h4>
 <div class="outline-text-4" id="text-4-3-1">
 
-<div id="orgc40d158" class="figure">
+<div id="org9da7cf2" class="figure">
 <p><img src="./img/linear-sep.png" alt="linear-sep.png" />
 </p>
 </div>
@@ -1355,8 +1368,8 @@ f(x_i)
 </ul>
 </div>
 </div>
-<div id="outline-container-org40f4d20" class="outline-4">
-<h4 id="org40f4d20"><span class="section-number-4">4.3.2.</span> Linear classifier</h4>
+<div id="outline-container-orgd2cab88" class="outline-4">
+<h4 id="orgd2cab88"><span class="section-number-4">4.3.2.</span> Linear classifier</h4>
 <div class="outline-text-4" id="text-4-3-2">
 <p>
 <img src="./img/lin-class.png" alt="lin-class.png" />
@@ -1374,7 +1387,7 @@ f(x) = x\theta + \theta_0
 </ul>
 </div>
 <ol class="org-ol">
-<li><a id="orgba1bc00"></a>Linear classifier for higher dimensions<br />
+<li><a id="orgf8e87a2"></a>Linear classifier for higher dimensions<br />
 <div class="outline-text-5" id="text-4-3-2-1">
 <ul class="org-ul">
 <li>In 3D, the discriminant is a plane</li>
@@ -1384,8 +1397,8 @@ f(x) = x\theta + \theta_0
 </li>
 </ol>
 </div>
-<div id="outline-container-orgef15159" class="outline-4">
-<h4 id="orgef15159"><span class="section-number-4">4.3.3.</span> The Perceptron Classifier</h4>
+<div id="outline-container-org30f33a8" class="outline-4">
+<h4 id="org30f33a8"><span class="section-number-4">4.3.3.</span> The Perceptron Classifier</h4>
 <div class="outline-text-4" id="text-4-3-3">
 <ul class="org-ul">
 <li><span style='background-color: #FFFF00;'>hard classifier</span></li>
@@ -1400,10 +1413,10 @@ f(x) = x\theta + \theta_0
 </ul>
 </div>
 <ol class="org-ol">
-<li><a id="orgc1ab6e7"></a>Algorithm<br />
+<li><a id="org2b7d997"></a>Algorithm<br />
 <div class="outline-text-5" id="text-4-3-3-1">
 
-<div id="org30d259d" class="figure">
+<div id="orgcb7066a" class="figure">
 <p><img src="./img/perceptron.png" alt="perceptron.png" />
 </p>
 </div>
@@ -1419,11 +1432,11 @@ f(x) = x\theta + \theta_0
 </li>
 </ol>
 </div>
-<div id="outline-container-org7480666" class="outline-4">
-<h4 id="org7480666"><span class="section-number-4">4.3.4.</span> Perceptron activation</h4>
+<div id="outline-container-orgaa845de" class="outline-4">
+<h4 id="orgaa845de"><span class="section-number-4">4.3.4.</span> Perceptron activation</h4>
 <div class="outline-text-4" id="text-4-3-4">
 
-<div id="org143ceac" class="figure">
+<div id="org5df763f" class="figure">
 <p><img src="./img/perceptron-activation.png" alt="perceptron-activation.png" />
 </p>
 </div>
@@ -1434,8 +1447,8 @@ f(x) = x\theta + \theta_0
 </ul>
 </div>
 </div>
-<div id="outline-container-org6129f10" class="outline-4">
-<h4 id="org6129f10"><span class="section-number-4">4.3.5.</span> Advantages and disadvantages of Perceptron</h4>
+<div id="outline-container-orgcf3bd3a" class="outline-4">
+<h4 id="orgcf3bd3a"><span class="section-number-4">4.3.5.</span> Advantages and disadvantages of Perceptron</h4>
 <div class="outline-text-4" id="text-4-3-5">
 <ul class="org-ul">
 <li>Advantages
@@ -1454,10 +1467,184 @@ f(x) = x\theta + \theta_0
 </div>
 </div>
 </div>
+<div id="outline-container-org5998cb0" class="outline-2">
+<h2 id="org5998cb0"><span class="section-number-2">5.</span> Week 6: Embeddings/Dimensionality reduction</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Singular Value Decomposition (SVD)
+</p>
+</div>
+<div id="outline-container-org4129b82" class="outline-3">
+<h3 id="org4129b82"><span class="section-number-3">5.1.</span> Motivating example</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+Dimensionality reduction for text is to understand how they behave in 2D or 3D space.
+</p>
+<ul class="org-ul">
+<li>This helps to get better perspective of the data.</li>
+<li>High dimensionality data points happens on text and data problems due to many unique words.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3f1f91f" class="outline-3">
+<h3 id="org3f1f91f"><span class="section-number-3">5.2.</span> Bag of words representation</h3>
+<div class="outline-text-3" id="text-5-2">
+<ul class="org-ul">
+<li>Has many unique words (dimensions) that leads to:
+<ul class="org-ul">
+<li><b><b>overfitting</b></b></li>
+<li>more resources &amp; time needed</li>
+</ul></li>
+<li>BoW generates a term-document matrix with many many features that's sparse</li>
+<li>Possible solution: <b><b>dimension reduction</b></b></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org89944a2" class="outline-3">
+<h3 id="org89944a2"><span class="section-number-3">5.3.</span> What is dimensionality reduction?</h3>
+<div class="outline-text-3" id="text-5-3">
+
+<div id="org7601766" class="figure">
+<p><img src="./img/dim-reduct.png" alt="dim-reduct.png" />
+</p>
+</div>
+<ul class="org-ul">
+<li>Dimensionality reduction is the process of reducing <b><b>random variables</b></b> under consideration</li>
+<li>Possible approaches:
+<ul class="org-ul">
+<li>Combine, transform or select variables</li>
+<li>With linear or non-linear operations</li>
+</ul></li>
+<li>New space has lower dimensions than previous space</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org956d61a" class="outline-3">
+<h3 id="org956d61a"><span class="section-number-3">5.4.</span> Intuition (of PCA)</h3>
+<div class="outline-text-3" id="text-5-4">
+<ul class="org-ul">
+<li>Approximate a \(D\) -dimensional dataset using fewer dimensions</li>
+<li>By rotating the axes into a new space</li>
+<li>Highest order dimension captures the most variance in the original dataset</li>
+<li>Next dimension captures the next most variance, etc.</li>
+<li>PCA uses eigendecomposition of covariance of dataset to maximize variance
+<ul class="org-ul">
+<li>Eigenvector corresponding to the highest eigenvalue is the new dimension that maximises the variance the most</li>
+<li>Hope of PCA is that a dimension that explains variance the most would explain data better and it's easier to separate and distinguish labels when data points are spread out because of high variance</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org83b0e62" class="outline-3">
+<h3 id="org83b0e62"><span class="section-number-3">5.5.</span> Singular value decomposition</h3>
+<div class="outline-text-3" id="text-5-5">
+<p>
+For a matrix \(X_{n \times d}\) where:
+</p>
+<dl class="org-dl">
+<dt>n</dt><dd>number of instances</dd>
+<dt>d</dt><dd>dimension</dd>
+</dl>
+
+<p>
+\[
+X = U \Sigma V^T
+\]
+</p>
+
+<dl class="org-dl">
+<dt>U, &Sigma;, V</dt><dd>all unitary matrices</dd>
+<dt>m columns</dt><dd>represent a dimension in a new latent space s.t. \(m\) column vectors are orthogonal to each other, and ordered by the amount of variance in the dataset in each dimension. \(m\) has <b><b>maximum</b></b> of \(d\) dimensions</dd>
+<dt>\(U_{n \times m}\)</dt><dd>unitary matrix &rarr; \(UU^T = I\)</dd>
+<dt>\(\Sigma_{m \times m}\)</dt><dd>diagonal matrix of singular values of \(X\)</dd>
+<dt>\(V_{m \times d}\)</dt><dd>unitary matrix \(\rightarrow VV^T = I\)</dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-org95fd720" class="outline-3">
+<h3 id="org95fd720"><span class="section-number-3">5.6.</span> Co-occurrence matrices</h3>
+<div class="outline-text-3" id="text-5-6">
+<div class="BLOCKQUOTE" id="org750e4b8">
+<p>
+Instead of matrix.
+</p>
+
+</div>
+<p>
+Each matrix for one value of context length.
+</p>
+
+<ul class="org-ul">
+<li>Meaning of a word is defined by the words in its surroundings</li>
+<li>Define a context window as the number of words appearing around a centre word</li>
+<li>Create a co-occurrence matrix:
+<ol class="org-ol">
+<li>Go through each central word-context pair in corpus (context window length is commonly in \([1,5]\))</li>
+<li>In each iteration, update the row of the count matrix (of central word) by adding +1 in the columns for the context words</li>
+<li>Repeat last step many times</li>
+</ol></li>
+</ul>
+
+<div id="org5858cdf" class="figure">
+<p><img src="./img/co-matrix.png " alt="co-matrix.png " />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orged691ef" class="outline-3">
+<h3 id="orged691ef"><span class="section-number-3">5.7.</span> SVD on co-occurrence matrices</h3>
+<div class="outline-text-3" id="text-5-7">
+<ul class="org-ul">
+<li>For corpus with vocabulary \(V\) of size \(d\), co-occurrence matrix has size \(d \times d\)</li>
+<li>Size of co-occurrence matrix increases with vocabulary</li>
+<li>Instead of keeping all dimensions, can instead use truncated SVD to keep only to \(k\) singular values
+<ul class="org-ul">
+<li>e.g. \(k=300\)</li>
+</ul></li>
+<li>Result is a least-square approximation to the original co-occurrence matrix \(X\)
+<img src="./img/svd-co-occur.png" alt="svd-co-occur.png" /></li>
+<li>Single value is directly related to the new dimension that maximizes co-variance</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0a9926b" class="outline-3">
+<h3 id="org0a9926b"><span class="section-number-3">5.8.</span> Dense word embeddings</h3>
+<div class="outline-text-3" id="text-5-8">
+
+<div id="orgc5aabda" class="figure">
+<p><img src="./img/dense.png" alt="dense.png" />
+</p>
+</div>
+<ul class="org-ul">
+<li>Each row of \(U\) is a \(k\) -dimensional representation of each word \(w\) in the corpus that best preserves variance</li>
+<li>Generally, keep top \(k \in [50, 500]\) dimensions.</li>
+<li>Produces dense vectors for word representations, while also considering the word contexts that carry meaning</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0f569f8" class="outline-3">
+<h3 id="org0f569f8"><span class="section-number-3">5.9.</span> Advantages of dense word embeddings</h3>
+<div class="outline-text-3" id="text-5-9">
+<ul class="org-ul">
+<li>Denoising: low-order dimensions may represent unimportant information; higher-order dimensions keep only important information</li>
+<li>Truncation may help models generalize better to unseen data</li>
+<li>Having smaller number of dimensions may make it easier for classifiers to properly weigh the dimensions</li>
+<li>Dense models may do better at capturing higher-order co-occurrence</li>
+<li>Dense vectors work better in word similarity</li>
+<li>Example of word-similarity method is cosine similarity between two word-embeddings \(w, v\):
+\[
+  \text{cosine} (\vec{v}, \vec{w}) =
+  \frac{\vec{v}\cdot \vec{w}}{|\vec{v}| |\vec{w}|}
+  = \frac{\sum^N_{i=1}v_i w_i}{\sqrt{\sum^N_{i=1} v_i^2} \sqrt{\sum^N_{i=1} w_i^2}}
+  \]</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: W</p>
-<p class="date">Created: 2024-02-14 Wed 17:09</p>
+<p class="date">Created: 2024-02-25 Sun 21:57</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
