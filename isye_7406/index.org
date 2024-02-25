@@ -1468,3 +1468,325 @@ Let:
 - Does not account for short puts, balls that cover the hole and go in
 - Does not account for terrain, playing conditions, ability
 - Need more complex model?
+* Week 6: Local Smoothers and Additive Models
+** Overview
+6.1.1
+*** Regression in general
+- Data: $(Y_i, X_{i1}, ..., X_{ip})$ for $i=1, 2,..., n$
+- OLS:
+  $$
+  Y = \beta_0 + \beta_1 X_1 + ... + \beta_p X_p + \epsilon
+  $$
+
+  (which might be too restrictive)
+- A more general model is:
+  $$
+  Y = f(X_1, X_2, ..., X_p) + \epsilon
+  $$
+  for a broad class of "smooth" function $f$.
+*** Special case: $p=1$
+- Objective, predict Y at given X=x.
+- Model: $Y_i = f(x_i) + \epsilon_i$ for some nonlinear function $f(\cdot)$.
+- How to estimate $f$?
+*** Method of least squares
+By this method, we want to find function $f$ to minimize the residual sum of squares
+$$
+\text{RSS } = \sum^n_{i=1} \epsilon_i^2
+= \sum^n_{i=1}(Y_i-f(x_i))^2
+$$
+- Find a function $f$ that passes through all the points?
+- **Interpolation**
+*** Interpolation
+Three popular methods:
+- Piecewise constant (discontinuous)
+- Piecewise linear interpolation
+- Polynomial interpolation (very smooth)
+*** Polynomial interpolation
+- Theorem: there exists a unique polynomial of degree at most $n-1$ that interpolate the data $(Y_i, x_i), i = 1, 2, ..., n$.
+- Solution:
+  $$
+  \hat{f}(x) = \sum^n_{i=1} Y_i h_i (x)
+  \text{ where }
+  h_i (x) = \prod_{k \ne i} \frac{x-x_k}{x_i-x_k}
+  $$
+[[./img/poly-inter.png]]
+*** Weakness of interpolation
+- Interpolation curves are easy to understand, provide good picture,
+- But generally inadequate for predict or estimation, as it's difficult to control model complexity
+- Local vs global approximation
+  - Piecewise constant or linear interpolation is too local; only use information from one or two data points
+  - Polynomial interpolation uses all information from all data points, but unfortunately does not work well when sample size $n$ is large
+*** Transition to local smoothers
+- Data: $(Y_i, x_i), i = 1, 2, ..., n$
+- Model: $Y_i = f(x_i) + \epsilon_i$ for some nonlinear function $f(\cdot)$
+- Interpolation: assume that all error terms $\epsilon_i \equiv 0$
+- Local smoother:
+  - Allows that error term $\epsilon_i$ is non-zero (but ideally, small)
+  - Assumes that $f(\cdot)$ is locally smooth
+*** Three popular local smoothers
+- LOESS/LOWESS :: locally estimated/weighted scatter plot smoothing: combine weighted least squares with k-nearest neighbourhood
+- Kernel smoothing ::
+- Spline smoothing ::
+
+** LOESS
+6.1.2
+*** Problem formulation
+- Data: $(Y_i, x_i), i = 1, 2, ..., n$
+- Model: $Y_i = f(x_i) + \epsilon_i$ for some nonlinear function $f(\cdot)$
+- Question: can we find an estimate of $f(x)$ at given $x$?
+*** LOESS algorithm
+Locally estimated/weighted scatterplot smoothing (LOESS) algorithm:
+- k-nearest neighbour: for given $x$, find the $k$ training data points that are closest to $x$
+- weighted linear regression: use these $k$ data points to fit a low-degree polynomial, often of degree 1 to 3, by locally weighted least squares.
+  - Closer an $x_i$ is to $x$, the more weight it gets
+- $\hat{Y} = \hat{f}(x)$ is the predicted value of this local polynomial at $x$.
+*** Weights
+In the LOESS algorithm, at a given $x$, it defines the tri-cube weight
+
+\begin{equation}
+w_i =
+\begin{cases}
+(1-|\frac{x_i - x}{d_k}|^3)^3 & \text{if }|x_i - x| \le d_k \\
+0 & \text{otherwise}
+\end{cases}
+\end{equation}
+
+for each training data $i=1, ..., n$ where $d_k$ = the k-th smallest distance from any $x_i$ to $x$.
+*** Weighted least squares
+In LOESS:
+- Fits the weighted least squares algorithm
+  $$
+  \hat{\beta} = \text{argmin}. \sum^n_{i=1} w_i (Y_i - (\beta_0 + \beta_1 x_i + \beta_2 x_i^2 + \beta_3 x_i^3))^2
+  $$
+  if $x_i$ not among $k$ closest points to $x$, then $w_i=0$
+- Predicts:
+  $$
+  \hat{f}(x) = (\hat{\beta_0} + \hat{\beta_1} x_i + \hat{\beta_2} x_i^2 + \hat{\beta_3} x_i^3
+  $$
+*** LOESS smoothing example
+Wang, Mei, Holte (2008)
+[[./img/loess.png]]
+*** Advantages and disadvantages of LOESS
+- Advantages
+  - Non parametric, does not fit a closed-form function
+  - Works best on large, densely sampled, low-dimensional data set
+- Disadvantages
+  - Computationally expensive
+  - Needs a lot of data to get good fit
+  - Does not provide convenient closed form function
+    - Difficult to communicate results
+  - Not intended for high-dimensional data
+
+** Kernel 1
+6.1.3
+*** Local Smoothers
+- Data: $(Y_i, x_i)$ for $i=1, 2,..., n$, assume $x \in [a, b]$
+- Model: $Y_i = f(x_i) + \epsilon_i; \textbf{E} (\epsilon_i) = 0$ for function $f$
+- Goal: recover the function $f(x) = \textbf{E}(Y|X=x); a \le x \le b$
+- Statistical issue: how to assess the quality of $\hat{f}$ (or sometimes denoted $\hat{f_n}$ to emphasize the sample size $n$)
+*** Convergence
+- Pointwise convergence :: sequence $f_n$ converges pointwise to $f$ if
+  $\lim_{n \rightarrow \infty} f_n(x) = f(x)$ for each $a \le x \le b$
+- Uniform convergence :: the sequence $f_n$ converges uniformly to $f$ if
+  $\lim_{n \rightarrow \infty} \text{sup}_{a \le x \le b} |f_n (x) - f(x)| = 0$
+- Theorem :: Let $f_n$ be a sequence of continuous functions defined on closed interval $[a,b]$. If $f_n$ converges uniformly to $f$ on $[a,b]$ then
+  $\lim_{n \rightarrow \infty} \int^b_a f_n (x) dx = \int^b_a f(x) dx$
+
+  By dominated convergence theorem or monotone convergence theorem, **pointwise** convergence almost gives convergence of integrals.
+*** Statistical properties
+Suppose we want to approximate or estimate the function $E(Y)= f(x)$ based on training data $(Y_i, x_i)$ for $i=1, 2, ..., n$
+- Inspired by pointwise convergence, first fix a value $x$ and investigate the statistical properties $\hat{f} (x)$
+- In regression, for an estimate function $\hat{f} = \hat{f} (x) = \hat{f} (x, \text{training data})$ then mean squared data **MSE** of $\hat{f}$ at a given $x$ is
+  $$
+  \text{MSE}[\hat{f}(x)] = \textbf{E} (\hat{f}-f)^2 = \textbf{E}(\hat{f}(x) - f(x))^2
+  $$
+*** Bias-variance decomposition
+$$
+\textbf{E}(W-c)^2 = (\textbf{E}(W)-c)^2 + \text{Var}(W) \text{ for random variable } W \text{ and constant } c,\\
+\text{where } \text{Var}(W) = \textbf{E}(W-\textbf{E}(W))^2
+$$
+- Bias of $\hat{f}$ at $x$ :: $$
+  \text{Bias}(\hat{f}) = \textbf{E}(\hat{f}(x)) - f(x)
+  $$
+- Variance of $\hat{f}$ :: $$
+  \text{Var}(\hat{f}) = \textbf{E}(\hat{f} (x)- \textbf{E}(\hat{f}(x)))^2
+  $$
+- MSE of $\hat{f}$ at $x$ :: can be decomposed as $$
+  \text{MSE}[\hat{f}(x)] = [\text{Bias}(\hat{f})]^2 + \text{Var}(\hat{f})
+  $$
+*** Kernel smoothing
+- Question: how to estimate the unknown function $f$ in the model $Y= f(x) + \epsilon$ and $\textbf{E}(\epsilon)=0$ based on training data?
+- There are many methods or algorithms available and one of them is **kernel smoothing**.
+  - Enjoys nice statistical properties (bias, variance, MSE)
+- Central quantity in kernel smoothing is the **kernel**
+*** Definition of kernel
+- Definition of kernel (1 dimension) :: a kernel $K$ is bounded, continuous $(-\infty, \infty)$ satisfying (1) $K(u) \ge 0$ (2) $\int^{\infty}_{-\infty} K(u) du =1$
+
+In many applications, the kernel $K$ is chosen to satisfy the additional conditions so as to simplify the theoretical analysis and computational complexity:
+
+(3) $\int^{\infty}_{-\infty} u K(u) du = 0$ or $(K(-u) = K(u))$
+
+(4) $\int^{\infty}_{-\infty} u^2 K(u) du = \mu_2 (K) < \infty$
+*** Rescaled kernel
+$$
+K_h (u) = \frac{1}{h} K (\frac{u}{h})
+$$
+where $h>0$ is called the bandwidth or smoothing parameter
+- If the support of K is $\text{supp}(K) = [-1,1]$, then $\text{supp}(K_h) = [-h, h]$
+- It is clear that $\int^{\infty}_{-\infty} K_h (u) du =1$ for each $h$
+- Example: $K= \frac{1}{\sqrt{2\pi}} \exp (-\frac{u^2}{2})$ = pdf of $N(0,1)$ and $K_h$ = pdf of $N(0, h^2)$
+*** Kernel functions
+- Triangle ::
+  \begin{equation}
+  K(u) =
+  \begin{cases}(1-|u|) & |u|<1 \\
+  0 & \text{otherwise}
+  \end{cases}
+  \end{equation}
+- Epanechnikov ::
+  \begin{equation}
+  K(u) =
+  \begin{cases} \frac{3}{4}(1-u^2) & |u|<1 \\
+  0 & \text{otherwise}
+  \end{cases}
+  \end{equation}
+
+- Biweight ::
+  \begin{equation}
+  K(u) =
+  \begin{cases} \frac{15}{16} (1-u^2)^2 & |u|<1 \\
+  0 & \text{otherwise}
+  \end{cases}
+  \end{equation}
+
+
+- Gaussian :: $K(u) = \phi(u) = \frac{1}{\sqrt{2 \pi}} \exp (-\frac{u^2}{2})$
+*** Idea in kernel smoothing
+- Data: $(Y_i, x_i), i=1, ..., n$
+- Model: $Y_i = f(x_i) + \epsilon_i, i=1, ...,n$
+- High level, kernel smoothing is **linear** in the sense that
+  $$
+  \hat{f}(x) = \sum^n{i=1} W_i (x) Y_i
+  $$
+  where weights $W_i(x)$ are constructed from kernel $K_h (u)$ to describe the distance between $x_i$ and $x$
+  - Shape of weights come from shape of kernel $K(u)$
+  - Size of weights determined by bandwidth $h$
+
+** Kernels: Smoothing for deterministic design
+6.2.1
+*** Deterministic design
+- Data: $(Y_i, x_i), i=1, 2, ..., n$. Assume design points are equidistant in $[0,1]$ i.e. $x_i = \frac{i-1}{n-1}$ for $i=1,2,...,n$
+- Model: $Y_i = f(x_i) + \epsilon_i, i=1, 2, ..., n$ where $\epsilon_i \sim N(0, \sigma^2)$
+- Question: estimate the underlying function $f: [0,1] \rightarrow R$
+*** Choose a fixed kernel
+- Definition of a kernel: a kernel $K$ is a bounded, continuous function on $(-\infty, \infty)$ satisfying $K(u) \ge 0$ and $\int^{\infty}{-\infty} K(u) du = 1$
+- Choose a fixed kernel that is also symmetric about 0, i.e. $K(-u) = K(u)$ and $\int^{\infty}{-\infty} u^2 K(u) du = \mu^2(K) < \infty$
+- Rescaled kernel: $K_h(u) = \frac{1}{h} K (\frac{u}{h})$ where $h>0$ is the bandwidth or smoothing parameter
+*** Priestley-Chao Kernel Estimate
+- Data:
+  $$
+  (Y_i, x_i = \frac{i-1}{n-1}), i=1,2,...,n
+  $$
+- Model:
+  $$
+  Y_i = f(x_i) + \epsilon_i \\
+  i=1, 2, ..., n \text{ where }\epsilon_i \sim N(0, \sigma^2)
+  $$
+- Priestley-Chao kernel estimate of $f$ for a deterministic design:
+  $$
+  \hat{f}(x) = \frac{1}{n} \sum^n_{i=1} K_h (x-x_i) Y_i = \frac{1}{nh} \sum^n{i=1} K (\frac{x-x_i}{h})Y_i
+  $$
+  Often, $h=h_n$, depends on the sample size $n$
+  - {{{hl(General form for an interval)}}} $[a, b]$: $$
+    \frac{b-a}{nh} \sum^n_i K(\frac{x-x_i}{h}) Y_i
+    $$
+    where: $a, b, x, h, n$ are provided and $K(\cdot)$ is the kernel function. Note: $(Y_i, x_i)$ where $Y$ is provided first.
+*** Performance evaluation
+- Will Priestley-Chao kernel estimate $\hat{f}(x)$ be good approximation of the true function $f(x)$?
+- Statistical performance:
+  - Mean square error (MSE): bias variance decomposition :: $$
+    \text{MSE}(\hat{f}) = \textbf{E}(\hat{f} - f)^2 = [\text{Bias}(\hat{f})]^2 + \text{Var}(\hat{f}); \text{ Bias } = \textbf{E}(\hat{f})-f
+    $$
+  - Asymptotic mean square error, AMSE(\hat{f}) :: $a^2_n \textbf{E}(U^2)$ if $\frac{\hat{f}-f}{a_n}$ converges to finite random variable $U$ as sample size $n \rightarrow \infty$. Often (but not always) true that AMSE is the limit of $\text{MSE}(\hat{f}_n)$
+*** Statistical properties
+- Theorem: suppose kernel K has compact support and is twice continuously differentiable. For Priestley-Chao (PC) kernel estimate
+  $$
+  \hat{f}(x) = \frac{1}{n} \sum^n_{i=1} K_h (x-x_i) Y_i = \frac{1}{nh} \sum^n_{i=1} K (\frac{x-x_i}{h})Y_i
+  $$
+  the AMSE at $x \in [0,1]$ is
+  $$
+  \text{AMSE} (\hat{f}) = \textbf{E}(\hat{f}-f)^2 = \frac{(\mu_2(K) f'' (x))^2}{4} h^4 + \frac{1}{nh} \sigma^2 S(K)
+  $$
+  where $\mu_2(K) = \int u^2 K(u) du, S(K) = \int K^2 (u) du$
+*** Main ideas:
+1. Bias-variance decomposition for MSE:
+   $$
+    \text{MSE}(\hat{f}) = \textbf{E}(\hat{f} - f)^2 = [\text{Bias}(\hat{f})]^2 + \text{Var}(\hat{f}); \text{ Bias } = \textbf{E}(\hat{f})-f
+   $$
+2. Relationship between integral and summation. For discrete design $x_i = \frac{i-1}{n-1}$ with $i=1, 2, ..., n$ and any continuous function $g$, we have
+   $$
+   \int^1_0 = g(t) dt = \frac{1}{n} \sum^n_{i=1} g(x_i) + o(\frac{1}{n})
+   $$
+3. Taylor series expansions:
+   $$
+   g(x-hu) \approx g(x) - g'(x) hu + \frac{1}{2} g''(x) h^2 u^2
+   $$
+*** Proof: bias of $\hat{f}$
+$$
+\hat{f} = \frac{1}{nh} \sum^n_{i=1} K (\frac{x-x_i}{h})Y_i \text{ with } \textbf{E}(Y_i) = f(x_i), \text{Var}(Y_i) = \sigma^2
+$$
+
+Bias is :
+
+$$
+\text{Bias}(\hat{f}) = \textbf{E}(\hat{f}) -f =
+\frac{1}{nh} \sum^n_{i=1} K (\frac{x-x_u}{h})f(x_i)- f(x) \\
+= \frac{1}{h} \int^1_0 K (\frac{x-t}{h}) f(t) dt + O(\frac{1}{n}) - f(x) \\
+(\text{let }g(t) = K(\frac{x-t}{h})f(t)) \\
+= \int^{x/h}_{(x-1)/h} K(u) f(x-hu) du - f(x) + O(\frac{1}{n}) \\
+(\text{let }u=\frac{x-t}{h})
+$$
+
+Next, by Taylor's expansion to $f(x-hu)$ at $x$:
+$$
+f(x-hu) = f(x) - huf'(x) + \frac{1}{2} h^2 u^2 f'' (x) + o(h^2)
+$$
+
+and the compact support of K eg $[-1,1]$, we have:
+$$
+\text{Bias}(\hat{f}) = \int^{x/h}{(x-h)/h} K(u) f(x-hu)du - f(x) + O(1/n) \\
+\approx f(x) \int^1_{-1} K(u) du - f'(x) h \int^1_{-1} uK(u) du + \frac{1}{2} h^2 f'' (x) \int^{1}_{-1} u^2 K(u) du - f(x)
+= \frac{1}{2} h^2 f'' (x) \mu_2 (K)
+$$
+
+Proof of variance is similar:
+$$
+\text{Var}(\hat{f}) = \frac{1}{n^2 h^2} \sum^n_{i=1} K^2 (\frac{x-x_u}{h}) \text{Var} (Y_i) \\
+= \frac{\sigma^2}{n^2 h^2} \sum^n_{i=1}K^2 (\frac{x-x_u}{h}) \\
+\approx \frac{\sigma^2}{nh} \int K^2 (u) du = \frac{\sigma^2}{nh} S(K)
+$$
+
+Theorem follows from bias-variance decomposition:
+$$
+\text{MSE} (\hat{f}) = \textbf{E}(\hat{f} - f)^2 = [\text{Bias}(\hat{f})]^2 + \text{Var}(\hat{f})
+$$
+*** Optimal choice of $h$
+What is the optimal choice of bandwidth or smoothing parameter $h$?
+- Recall: MSE(\hat{f}) is of the form Ah^4 + \frac{1}{nh} B
+- Taking derivative wrt h and setting to 0:
+  $$
+  0 = \frac{\partial \text{MSE}(\hat{f})}{\partial h} = 4h^3 A - \frac{B}{nh^2}
+  $$
+- Solving h:
+  $$
+  h^5 = \frac{B}{4An}
+  $$
+- Thus:
+  $h_{\text{opt}} = O(n^{-1/5})$
+  and
+  $\text{MSE}_{\text{opt}} \sim O(n^{-4/5})$
+
+** Kernel 3
+6.2.2
+** Kernel 4
+6.2.3
