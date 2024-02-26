@@ -629,24 +629,25 @@ $$
   - Does not provide unique decision boundary
 * Week 6: Embeddings/Dimensionality reduction
 Singular Value Decomposition (SVD)
-** Motivating example
+** SVD and Co-occurrence Embeddings
+*** Motivating example
 Dimensionality reduction for text is to understand how they behave in 2D or 3D space.
 - This helps to get better perspective of the data.
 - High dimensionality data points happens on text and data problems due to many unique words.
-** Bag of words representation
+*** Bag of words representation
 - Has many unique words (dimensions) that leads to:
   - **overfitting**
   - more resources & time needed
 - BoW generates a term-document matrix with many many features that's sparse
 - Possible solution: **dimension reduction**
-** What is dimensionality reduction?
+*** What is dimensionality reduction?
 [[./img/dim-reduct.png]]
 - Dimensionality reduction is the process of reducing **random variables** under consideration
 - Possible approaches:
   - Combine, transform or select variables
   - With linear or non-linear operations
 - New space has lower dimensions than previous space
-** Intuition (of PCA)
+*** Intuition (of PCA)
 - Approximate a $D$ -dimensional dataset using fewer dimensions
 - By rotating the axes into a new space
 - Highest order dimension captures the most variance in the original dataset
@@ -654,7 +655,7 @@ Dimensionality reduction for text is to understand how they behave in 2D or 3D s
 - PCA uses eigendecomposition of covariance of dataset to maximize variance
   - Eigenvector corresponding to the highest eigenvalue is the new dimension that maximises the variance the most
   - Hope of PCA is that a dimension that explains variance the most would explain data better and it's easier to separate and distinguish labels when data points are spread out because of high variance
-** Singular value decomposition
+*** Singular value decomposition
 For a matrix $X_{n \times d}$ where:
 - n :: number of instances
 - d :: dimension
@@ -668,7 +669,7 @@ $$
 - $U_{n \times m}$ :: unitary matrix \rightarrow $UU^T = I$
 - $\Sigma_{m \times m}$ :: diagonal matrix of singular values of $X$
 - $V_{m \times d}$ :: unitary matrix $\rightarrow VV^T = I$
-** Co-occurrence matrices
+*** Co-occurrence matrices
 #+BEGIN_BLOCKQUOTE
 Instead of matrix.
 #+END_BLOCKQUOTE
@@ -682,7 +683,7 @@ Each matrix for one value of context length.
   3. Repeat last step many times
 [[./img/co-matrix.png
 ]]
-** SVD on co-occurrence matrices
+*** SVD on co-occurrence matrices
 - For corpus with vocabulary $V$ of size $d$, co-occurrence matrix has size $d \times d$
 - Size of co-occurrence matrix increases with vocabulary
 - Instead of keeping all dimensions, can instead use truncated SVD to keep only to $k$ singular values
@@ -690,12 +691,12 @@ Each matrix for one value of context length.
 - Result is a least-square approximation to the original co-occurrence matrix $X$
   [[./img/svd-co-occur.png]]
 - Single value is directly related to the new dimension that maximizes co-variance
-** Dense word embeddings
+*** Dense word embeddings
 [[./img/dense.png]]
 - Each row of $U$ is a $k$ -dimensional representation of each word $w$ in the corpus that best preserves variance
 - Generally, keep top $k \in [50, 500]$ dimensions.
 - Produces dense vectors for word representations, while also considering the word contexts that carry meaning
-** Advantages of dense word embeddings
+*** Advantages of dense word embeddings
 - Denoising: low-order dimensions may represent unimportant information; higher-order dimensions keep only important information
 - Truncation may help models generalize better to unseen data
 - Having smaller number of dimensions may make it easier for classifiers to properly weigh the dimensions
@@ -706,4 +707,67 @@ Each matrix for one value of context length.
   \text{cosine} (\vec{v}, \vec{w}) =
   \frac{\vec{v}\cdot \vec{w}}{|\vec{v}| |\vec{w}|}
   = \frac{\sum^N_{i=1}v_i w_i}{\sqrt{\sum^N_{i=1} v_i^2} \sqrt{\sum^N_{i=1} w_i^2}}
+  $$
+** GloVe
+Global Vectors.
+*** Definitions
+- Global :: global statistics of corpus
+- Vectors :: representation of words
+*** GloVe model
+- Glove uses statistics of word occurrences in a corpus as the primary source of information.
+- Combines 2 widely adopted approaches for training word vectors:
+  1. Global matrix factorization
+  2. Window-based methods
+- Uses Co-occurrence matrix as a starting point
+*** Extending the co-occurrence matrix
+- Definition :: For corpus of vocabulary $V$ of size $d$, the co-occurrence matrix is a symmetrical matrix of size $d\times d$
+- $X_{ij}$ :: number of times word $j$ occurs in the context of word $i$ after defining window size
+- $X_i = \sum_k X_{ik}$ :: summation over all the words which occur in the context of word $i$
+- $P_{ij} = \frac{X_{ij}}{X_i}$ :: the co-occurrence probability where $_{ij}$ is the probability of word $j$ occurring in the context of word $i$
+*** Example
+#+BEGIN_BLOCKQUOTE
+It was the best of times, it was the worst of times.
+(Context window=2)
+#+END_BLOCKQUOTE
+i = "it", j = "was"
+- $X_{i=0, j=1} = 2$
+- $X_{i=0} = 6$
+- $P{i=0, j=1} = 2/6 = 0.33$
+*** GloVe cost function
+- GloVe suggests finding the relationship between 2 words in terms of probability, rather than occurrence counts
+- GloVe looks to find vectors $w_i$ and $w_j$ such that
+  $$
+  w_i^T w_j = \log(P_{ij}) = \log(\frac{X_{ij}}{X_i})
+  $$
+- $\log(X_i)$ is independent of word $j$ and can be represented as a bias $b_i$
+- Adding a bias term to restore the symmetry for vector $w_j$ we get:
+  $$
+  w_i^T w_j + b_i + b_j = \log(X_{ij})
+  $$
+- A weighted least squares is used as a cost function for the GloVe model:
+  $$
+  J = \sum_{ij} f(X_{ij})(w_i^T w_j + b_i + b_j - log(X_{ij}))^2
+  $$
+  with:
+
+  \begin{equation}
+  f(x) =
+  \begin{cases}
+  (\frac{x}{x_{\text{max}}})^4 & \text{ if }x < x_{\text{max}} \\
+  1 & \text{otherwise}
+  \end{cases}
+  \end{equation}
+ - In original paper, $\alpha = \frac{3}{4}$ gave the best performance
+*** GloVe word vectors
+- Trained in batches of the training sample with optimizer to **minimize** the cost function and hence generate word and context vectors for each word
+- Each word in the corpus is represented bya dense vector of fixed size length
+- Word vectors obtained by GloVe showcase the meaning that was captured in these vector representations through similarity and linear structure
+- Using Euclidean distance or cosine similarity between word vectors represents **linguistic** or **semantic** similarity of the corresponding words.
+- E.g. "summer" is most similar to "winter", "spring", "autumn"
+*** GloVe conserves linear relationships
+- Word vectors by GloVe conserve linear substructures
+- Vector differences capture as much as possible the meaning specified by two words
+- E.g.: the underlying concept that differentiates man and woman, i.e. gender, may be equivalently specified by other word pairs such as king and queen:
+  $$
+  w_{\text{man}} - w_{\text{woman}} = w_{\text{king}} - w_{\text{queen}}
   $$
