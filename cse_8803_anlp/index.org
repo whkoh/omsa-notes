@@ -840,3 +840,74 @@ $$
 - Types of approaches
   - Stochastic gradient descent or iteration :: 1 document at a time. Process one document at a time, need 1000 iterations to go through all data points. Each time going through all documents = 1 epoch. {{{hl(Memory friendly)}}} but computationally slow as we are updating parameters for each document one at a time.
   - Batch gradient descent :: Pass a sub-portion of documents each time. E.g. if 50 documents / iteration, will reduce the number of iterations from 1000 to 20. Also possible to pass **all** data points at once, but usually can't fit in memory.
+** Word2Vec, CBOW and Skipgram
+M6L2
+*** Review of One-Hot Encoding
+- Simplest word embedding.
+- Example 1 document: "Apple and orange are fruit". Vectors:
+  - Apple :: ~[1, 0, 0, 0]~
+  - Orange :: ~[0, 1, 0, 0]~
+  - Are :: ~[0, 0, 1, 0]~
+  - Fruit :: ~[0, 0, 0, 1]~
+- Common words are removed first. They don't
+  provide distinguishing features for the words in the corpus.
+*** Issues with One-Hot Embedding
+- The size of each word vector = vocabulary size in the corpus. Creates a huge vector if we have millions of words in the vocabulary.
+- Very long OHE vector wastes storage and computation
+- Curse of dimensionality can emerge for very large vectors
+- With a new corpus, the size of each word vector will be different and the model previously trained will be useless (can't transfer learning).
+*** Contextual meaning of the words
+- Word2Vec and GLoVE are context-independent.
+  - They output just one vector embedding for each word, combining all different senses of the word into 1 vector.
+- E.g. for the example above, do "apple" and "fruit" share some common features since they're all fruit?
+  - No, because OHE is just 0 and 1 embedding and does not consider the contextual meaning of words.
+    - {{{hl(There is no correlation)}}} between words that have similar meanings or usage.
+*** What do we want to achieve from word embeddings?
+- Can we come up with a word embedding that can capture a numerical similarity value? e.g.
+  - Similarity value of (apple, orange) == similarity value of (orange, apple)
+  - Similarity value of (apple, orange) > similarity value of (apple, are)
+*** Algorithm 1:: Continuous Bag of Words (CBOW)
+- Use neural networks to learn the underlying representation of words
+- {{{hl(Caveat:)}}} neural network model is a supervised algorithm. Needs labels. Must find a way to synthesize the labels from the corpus.
+**** Neighboring words for CBOW (label creation)
+- i.e., Given the neighbors of a word, can we predict the center word?
+- Given the context or neighbours of a word, can I predict the blank by a window size?
+- Simplicity: keep window size of 1, and remove the common words.
+- Here, we want to find $P(\text{orange}|\text{context})$, and need to maximize this probability.
+**** Embedding every single word in the corpus using its context
+- Find the embedding representation of the word "orange".
+- First, all words in the vocabulary need to be encoded using OHE. Each word will have $d$ dimensions (i.e., the size of the vocabulary).
+**** Using a window size of 1
+[Apple, ___, Are]
+[[./img/window-size-1.png]]
+- Uses a single hidden layer, which allows the embedding of a word.
+- Input vectors have the size of context,
+- {{{hl(In CHOW)}}} the dimensions of the hidden layer and the output layer are always the same.
+- First weight $d \times E$:
+  - d :: dimension of one-hot encoded word
+  - E :: embedding size
+- What's the desirable size to vectorize each word of the corpus?
+- Size of $E$ is also a hyperparameter. It's much smaller than $d$.
+- Use weight matrix to embed word after it's trained by neural network.
+  - Multiply word by word matrix W, results gives us the embedded word.
+- Hidden layer will be calculated from average element wise-multiplication of each input vector for weights parameter $w$.
+- Need to maximize a lot of likelihood by optimizing the parameters via backpropagation
+- Typically minimize negative log-likelihood instead of maximizing the original likelihood
+*** Algorithm 2: Skip-Gram model
+- Given a center word, what could be the context (neighbours) of the center word?
+- Opposite of CBOW.
+- Example: ~orange ___ fruit~
+- Can I predict the blanks by a window size?
+  - Window size is the hyperparameter
+- To find and {{{hl(maximize)}}}: $P(\text{context | orange})$.
+- Skipgram
+  - Input layer: center word, i.e. "orange"
+  - Output layer: the probability vector that is the prediction of all context words for each output context word.
+- Calculate softmax probability
+- Next, in loss function, {{{hl(minimize)}}} the negative log likelihood over all softmax context words.
+- Use a {{{hl(cross-entropy loss)}}} as we treat this problem as a **classification** problem.
+*** Main differences between CBOW and Skip-gram
+- CBOW learns better syntactic relationships between words; Skipgram captures better semantic relationships.
+  - CBOW would provide cats and cants as similar, while skipgram will provide cats and dogs as similar.
+  - CNOW is trained to predict (i.e., maximize the probaility) of a single word from a fixed window size of context words, while Skip-gram does the opposite and strives to predict several context words from a single input word.
+  - {{{hl(CBOW is faster to train)}}} vs. Skip-gram.
