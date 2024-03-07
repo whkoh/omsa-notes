@@ -771,3 +771,72 @@ i = "it", j = "was"
   $$
   w_{\text{man}} - w_{\text{woman}} = w_{\text{king}} - w_{\text{queen}}
   $$
+* Week 8: Neural Networks and Word2Vec
+** Neural Networks
+M6T1
+*** Inspiration from biological neurons
+Neurons: core components of the brain and nervous system.
+Consists of:
+- Dendrites :: collect information from other neurons
+- Axon :: generates outgoing spikes
+*** Logistic regression block review
+[[./img/neuron-block.png]]
+- **Summation** part is a linear combination of features or dimensions - i.e. unique words in the document term matrix
+  - Receives a data point as an input, which can be multi-dimensional
+  - Linearly combines them using model parameters, shown as \theta .
+  - Linear combination of features, the output of the output of summation function, captures the linear relationship between input and output
+  - Linear function may not be sufficient to capture the non-linear and complex relationship between input data points and their output.
+- Hence, **activation** function is needed, which is fed by output of summation term.
+  - Typically chosen to be a non-linear function, which helps the network understand and learn the complex relationship between input and output.
+  - Well-known activation functions:
+    - Linear unit :: does not change the output of the summation function. $z$
+    - Threshold/Sign :: used for hard classification algorithm. Positive or negative output for binary classification. Decision line is zero. $\text{sgn}(z)$
+    - Sigmoid :: used to scale output between $[0,1]$. Commonly used for classification problems. If used with 1 learning block, it's a logistic regression algorithm with soft classification. $\frac{1}{1+\exp(-z)}$
+    - ReLu :: Rectified linear unit. Commonly used in deep learning methods because of friendly optimization, back propagation and fast training of predictive model. $\max(0,z)$
+    - Tangent hyperbolic (Tanh) unit :: Scales a real value from -1 to +1. Captures negative values (vs. sigmoid unit), which just scales between $[0,1]$. $\tanh(z)$
+*** Connecting blocks to create neural networks
+Recap:
+- a block received a data point or document having features, and linearly combines them in a summation function, that is then fed to activation function $h(x)$.
+- New neuron or feature would help network and original features learn more complex relationship between inputs and outputs.
+- Artificial neural network can solve both regression and classification problems.
+- Fully connected network: each neuron needs to be connected to all the learning blocks.
+  [[./img/fc-neurons.png]]
+  - 1 :: Bias value
+  - $x_i$ :: Feature
+  - $\theta$ :: Weights or parameters
+  - $\mu_{21}$ :: summation output for layer 2, depth 1
+
+- {{{hl(last activation function)}}} defines what model / problem we're trying to solve (regression or classification)
+- Layers not connected to the last learning block are {{{hl(hidden layers)}}}
+- ANN can have many hidden layers, e.g. $\theta_0$ till $\theta_6$
+- Changing the "first neuron" (last neuron) to sigmoid changes this to solve a **classification** problem
+*** Increasing the depth of each layer
+i.e. same number of layers, but more neurons
+- Can be doen by increasing the num,ber of learning blocks
+- This generates more O's, increasing the number of parameters
+*** Increasing layers
+- Add more hidden layers
+- There can be as many hidden layers as needed
+- These are hyperparameters
+  - Number of neurons
+  - Number of hidden layers
+- These hyperparameters need to be tuned for the complexity between inputs and outputs
+- Need to {{{hl(prevent overfitting)}}} especially if there's insufficient training or testing data
+*** Forward pass
+
+$$
+u_{11} = \sum^d_{i=0} x_i \theta_i = \theta_0 + \theta_1 x_1 + ... + \theta_d x_d \\
+O_{11} = \frac{1}{1+e^{-u_{11}}}
+$$
+- In the forward pass, calculate all $u_{ij}$ and $o_{ij}$ values from {{{hl(left to the right)}}} of the network
+*** Backpropagation
+- Update all $\theta_i$ parameters from the right to the left of the network
+- Optimization can be done using iterative techniques such as gradient descent
+- Updating parameters depends on the types of loss functions:
+  - Regression: RMSE
+  - Classification: Cross-entropy
+- Minimize the loss function by taking partial derivatives w.r.t. the model parameters
+- Last parameters are updated first, and use chaining rule to update the other parameters
+- Types of approaches
+  - Stochastic gradient descent or iteration :: 1 document at a time. Process one document at a time, need 1000 iterations to go through all data points. Each time going through all documents = 1 epoch. {{{hl(Memory friendly)}}} but computationally slow as we are updating parameters for each document one at a time.
+  - Batch gradient descent :: Pass a sub-portion of documents each time. E.g. if 50 documents / iteration, will reduce the number of iterations from 1000 to 20. Also possible to pass **all** data points at once, but usually can't fit in memory.
