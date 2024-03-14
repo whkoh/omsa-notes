@@ -911,3 +911,202 @@ M6L2
   - CBOW would provide cats and cants as similar, while skipgram will provide cats and dogs as similar.
   - CNOW is trained to predict (i.e., maximize the probaility) of a single word from a fixed window size of context words, while Skip-gram does the opposite and strives to predict several context words from a single input word.
   - {{{hl(CBOW is faster to train)}}} vs. Skip-gram.
+* Week 9: Convolutional Neural Networks and Recurrent Neural Networks
+Module 7
+** CNN and Deep Learning I
+- Deep learning is a network that contains several hidden layers
+- Without convolution, input data (e.g. images) are fed into network in raw format.
+- If we use fully connected (FC) layers to created hidden layers, it will create a very large number of parameters.
+  - Model is thus complex and not generalizable.  \rightarrow Over-fitted.
+  - [[./img/3-layer.png]] - There are 3 hidden layers
+    - First hidden layer created on the linear combination of input neurons that pass into an activation function.
+    - Typically, **initial layers** identify light vs dark pixels, edges, and simple shapes.
+    - Second layer is constructed on linear combinations of the first hidden layer (i.e. linear combination of the input neurons), which helps model to learn a more complex structure.
+    - **Middle layers** generally responsible for more complex shapes and objects.
+    - **Final layers** responsible for detecting main objective, or goal of the network. In the pictured example \rightarrow  human face.
+- Question:
+  - can we reduce number of parameters?
+  - can some parameters be shared between different features or routes?
+*** Example: learning an image
+- Some patterns are much smaller than the whole image.
+- Main goal is to construct network that can learn an bird's beaks.
+- Model: a type of beak detector in a converged (i.e. in a fully connected layer, the convulational layer).
+  - Consider each pixel a neuron. Remove the regional and local dependency among the features
+  - In the big detector network, need to be aware of the surrounding features of pixels to accurately determine if an image has a beak or not.
+  - Looking at one pixel at a time requires network to have many parameters to initially find the local relationship between pixels to figure out whether there's a beak.
+  - Can we help the network by providing the local relationship in advance?
+  - {{{hl(Simple = using fewer parameters to come up with a beak detector)}}}
+*** Why does CNN work well for images
+- Introducing small regions to a network instead of pixel by pixel, how is network going to learn?
+  - Small region (or bigger detectors) are commonly known as {{{hl(kernels)}}}. These are filters.
+  - There will be various filters that detect different shapes or types of bird beaks.
+  - Logically, one filter can't tag all types of bird beaks. E.g. sparrows and doves both have beaks but they are different types of shapes.
+  - Therefore, need to introduce several filters that detect different types, or shapes, of bird beaks.
+  - These filters or kernels will be model parameters that need to be learned.
+  - Can we use CNN for documents too?
+    - Yes.
+    - However, need to prepare data and create a matrix that's compatible with CNN model.
+  - E.g. if we have 3 sample data points:
+    1. ~Wafa and Mahdi teach NLP class~
+    2. ~NLP is neat~
+    3. ~CNN is a good model~
+  - Vocabulary vector has 12 unique words
+  - Longest document has 6 words; CNN needs all datapoints (documents) to have the same size.
+    - Use zero-padding to make them the same size.
+    - Use encoding technique to convert every word to vector, e.g. One-Hot Encoding or Word2Vec.
+    - Next, convert the document or sentence to a matrix.
+    - Create matrix with the size of 6 x 12
+  - Rows are the number of words
+  - Columns are created based on vector encoding technique.
+** CNN and Deep Learning II
+Module 7 L1 T2
+- Going over convolutional part and prediction part of the deep learning model
+- All documents have the same size and are converted to the matrix form
+- Can start feeding them into CNN model
+- CNN is a neural network with:
+  - Some convolutional layers
+  - And some other layers
+*** Convolution vs Fully connected
+- A convolutional layer has several filters that do the convolutional operation.
+- This means that filters need to slide over the input matrix and do a {{{hl(dot product)}}} operation
+- E.g. if input data is 6x6:
+  - Using ANN approach with fully connected layers, we need to consider each element as a feature or neuron.
+    [[./img/fully-conn.png]]
+    - Each element of the matrix is a feature or neuron. First hidden layer has the same number of neurons as inputs. Edges between input layer and 1st hidden layer will create 36x36 parameters.
+    - {{{hl(Increases chance of overfitting)}}} as model is more complex.
+  - To use CNN, we simplify it to 18 parameters.
+    [[./img/conv-vs-fc.png]]
+  - Typically, 3x3 or 5x5 filters are used.
+  - The number of filters is a hyperparameter
+  - Field values are randomly initialized at first, then optimized via backpropagation, similar to ANN.
+  - Each iteration of the filter is a sum-product such as:
+    [[./img/sumproduct.png]]
+    Where it starts from the top left and the result is a scalar number.
+    - Each neuron is thus connected to 9, instead of 36 neurons.
+  - {{{hl(Parameter sharing)}}} since the filter (e.g. Filter 1) is shared among all the strides and different 9 squares in the input document
+  - {{{hl(Max pooling)}}}: new matrices are generated from the original one, e.g.:
+    [[./img/max-pooling.png]]
+    Commonly, 2x2 is used for max pooling
+  - 6x6 matrix \rightarrow convolution \rightarrow max pooling \rightarrow  new, smaller document is thus generated, a 2x2 document with 2 channels. Each channel is a filter.
+**** Summary
+CNN compresses a fully connected network in 3 ways:
+1. Reduce the number of connections by using filters
+2. Sharing weights on the edges
+3. Max pooling further reduces complexity
+*** The whole CNN
+- After initial input, convolution and max pooling, a new smaller image is generated, with the number of channels being the number of filters.
+- This new image can thus be used again in the next step of the CNN process, and this can be repeated many times.
+- Convolution is "feature engineering" of CNN process. New smaller image generated creates a richer input that contains more information.
+- Next step is to flatten the matrix and proceed to the last layer of the neural network which defines the objective of the network.
+  - Each 2x2 matrix of 2 channels is then made into a single-column vector and fed into the a {{{hl(fully connected feedforward network)}}}
+  - This can be sentiment analysis, for example.
+  - Backpropagation is also used here.
+*** CNN in Keras
+All these tasks can be done in packages like Keras or Pytorch.
+[[./img/cnn-keras.png]]
+** Recurrent neural networks Part I
+M7 T2 L1
+- RNN has concept of sequence, unlike CNN which does not.
+- CNN only considers the local region of input data, but does not have concept of 'time'.
+- RNN was created as there were issues in feedforward NN, such as CNN, which cannot handle memorize previous inputs, only considers the current inputs.
+- Solution is RNN, which can memorize previous input data due to their internal memory.
+*** Name Entity Recognition
+- For document: ~Mahdi and Wafa teach NLP~
+- NER model will detect whether each word is a person or not. Model needs to take each word into consideration.
+- First, encode each word into a vector, using methods such as:
+  - GloVe
+  - One Hot Encoding
+  - Word2Vec
+- Very important to pay attention to the size of vectors and matrices. Definitions:
+  - x :: word. vector of length d.
+  - word :: d-dimensional vector ($x \in R^d$)
+*** Recap of feed-forward networks
+Such as ANN, CNN.
+- Each word has d elements, input has d neurlas.
+  - Add a neuron to handle bias term
+  - Do linear combination in hidden layers with activation function.
+*** Simplifying this for RNN
+[[./img/rnn1.png]]
+- Need NER for every single word.
+- Output prediction for each word is
+  $\hat{y_t}$
+** Recurrent neural networks Part II
+M7 T2 L2
+- Previously: created a feed-forward network and represented with compact visualization. Example problem is NER task for a sentence ~Mahdi and Wafa teach NLP~.
+*** RNN
+- As there are 5 words, we need to construct 5 similar feedforward network for each word.
+- Compact visualization was previously shown in a horizontal view.
+- Turning it to a vertical view, we can visualize it for all feed-forward units
+- $m$ is the number of hidden neurons, a hyperparameter that needs to be optimized.
+- 2 different sets of parameters:
+  1. Input to hidden layers $\theta^1_{d\times m}$
+  2. Hidden layers to output $\theta^2_{m \times y}$
+- All feedforward networks are isolated and not connected to each other. How to connect them sequentially?
+  - Use a hidden neuron, e.g. $h_0$. this also needs $\theta^3_{m\times m}$
+  - We introduced a new set of parameters $\theta^3_{m\times m}$ which generates a new vector of hidden neurons $h_t$ with size $m$.
+  - thetas with 1, 2, 3 are shared among all networks.
+  - {{{hl(The total number of parameters learned does not depend on the total number of words)}}}. Instead,  it is:
+    $$
+    d \times m + d \times y + m \times m
+    $$
+- As each document may contain a different number of works, it will be inefficient to create a RNN for each document.
+  - In practice, zero-padding is used to construct 1 RNN for all input documents with different sizes.
+  - If the difference between max, min length document, we instead use bucketing to make this more efficient, and create RNN for each bucket.
+- in Keras, call ~SimpleRNN~
+*** Forward pass: how to calculate past memory (h) in RNN
+- $\theta^1$ :: weight (parameter) matrix associated with input data
+- $\theta^2$ :: weight (parameter) matrix associated with output data
+- $\theta^3$ :: weight (parameter) matrix associated with hidden state
+
+$$
+h_t = f(x_t, h_{t-1}, \theta)
+$$
+
+- $h_t$ :: activation function such as tanh
+- $x_t$ :: input
+- $h_{t-1}$ :: past memory (previous step)
+- $\theta$ :: model parameters (weight)
+
+e.g.:
+
+$$
+h_t = \tanh (x_t\theta^1 + h_{t-1}\theta^3 + b)
+$$
+
+- $x_t \theta^1$ :: output is vector of size $m$
+- $h_{t-1} \theta^3$ :: output is vector of size $m$
+- $b$ :: bias, also vector of size $m$
+*** Forward pass: how to calculate output of each step in RNN
+Output of each step is $\hat{y}$
+$$
+\hat{y_t} = \text{softmax}(h_t \theta^2)
+$$
+where:
+- softmax :: scales the output between 0 and 1
+- $h_t \theta^2$ :: output will be scalar for the NER problem
+*** Backpropagation through time (BPTT)
+- 5 words means 5 loss functions for each RNN unit.
+- Total loss comes from both forward pass and backpropagation from each unit locally.
+- Summation of loss functions = total loss.
+- Backpropagation: move backwards from each local part to optimize parameters.
+- When backpropgation paths of 2 local loss functions intersect, they need to be summed up
+*** Different RNN models
+- One-to-many :: used for text generation, image captions
+- Many-to-one :: used for sentiment analysis
+- Many-to-many :: used for speech tagging, NER, translation, forecasting
+**** NER
+- Many-to-many is used for NER because need to know the output of whether a word refers to a person or not
+**** Sentiment analysis
+- Document with multiple words as input, need to detect whether a document as a whole is a positive or negative sentiment
+*** Problems with RNN
+Forward pass, backpropagation and repeated gradient computation can lead to 2 issues.
+**** Exploding gradient
+High gradient values lead to very different weights in each optimization iteration.
+
+Solution: use gradient clipping, where a gradient is clipped when it goes higher than a threshold.
+**** Vanishing gradient
+Lower gradient values that stall a model from optimizing parameters.
+
+May suffer from short-term memory for a long sentence where words of interest may be placed far apart from each other in a sentence.
+
+Solution: ReLu activation function, LSTM, GRU (different architectures), better weight initialization.
