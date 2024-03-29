@@ -1110,3 +1110,129 @@ Lower gradient values that stall a model from optimizing parameters.
 May suffer from short-term memory for a long sentence where words of interest may be placed far apart from each other in a sentence.
 
 Solution: ReLu activation function, LSTM, GRU (different architectures), better weight initialization.
+* Week 10: Long-Short Term Memory and Gated Recurrent Units
+Module 8
+** LSTM Part I
+*** Why?
+- NLP is sequential
+- RNN suffers from short term memory
+  - Due to vanishing gradient
+  - Can't keep track of earlier phrases
+*** Gated cell: LSTM
+- Main concept:
+  - Add a gate to RNN unit to control the information that's passed through the network
+  - LSTM augments RNN unit by creating gates
+    - that allow some information to be passed through
+    - and some other information to be forgotten
+- LSTM is the leading algorithm used in sequential modelling
+*** Different representation of RNN
+[[./img/hidden-state-lstm.png]]
+- $h_t$: hidden state or past memory
+- Lines are merging into each other
+  - i.e. concatenated
+- Lines are splitting
+  - i.e. copied over
+*** Simple representation of LSTM
+- Each line carries a vector from output of one node to input of another
+- Example of vector:
+  - Word
+  - Hidden state
+*** The cell state in LSTM
+- $c_t$ :: cell state vector (from old time stamp to new time stamp). LSTM structure beneath cell state can remove or add information to the cell state.
+*** How LSTM controls information removal and additional for a cell state
+- Gate here is the sigmoid operator (pointwise operation)
+- Sigmoid layer scales numbers in $[0,1]$.
+  - 0: nothing is let through
+  - 1: all information is let through (i.e. **addition**)
+** LSTM Part II
+*** Forget gate
+- Determines the information to remove or throw away from the cell state.
+  [[./img/input-gate-layer.png]]
+**** Input gate layer
+  - Once $i_t$ and $\hat{C_t}$ are calculated, multiply them together in a pointwise operation.
+  - The input gate's activation vector ($i_t$) decides which information is important to keep from the cell input activation factor ($\hat{C_t}$).
+**** Updating old cell state
+  - Calculated $f_t$ in forget gate layer stack
+    - This is how much info is kept or thrown away
+  - Update cell state based on input vector ($i_t * \hat{C_t}$) pointwise
+**** Calculate output of current stack ($h_t$) based on new $C_t$
+  - Pass previous hidden state and current input into sigmoid function (sigmoid is $O_t$)
+  - Pass updated state to hyperbolic tangent function (pointwise multiplication of tanh and sigmoid output)
+  - Output is new hidden state
+  - New cell state and new hidden are carried to new time step
+*** Gated Recurrent Units
+- GRU
+- Update to LSTM
+**** GRU update and reset gates
+- Update gate
+  - Acts similar to forget and input gate of LSTM
+  - Decides what information to throw away and what information to add
+- Reset gate
+  - Another gate used to decide how much past information to forget
+- GRU vs. LSTM
+  - GRU has fewer tensor operations; faster to train than LSTM
+** Attention-based LSTM
+and Encoder-Decoder architecture
+*** Common uses of encoder-decoder architecture
+- Language translation, e.g. from English to Polish
+  - e.g. Sequence to sequence models in NLP
+*** RNN and LSTM units
+- LSTM augments RNN units
+  - By creating gates that allow some information to be passed on, and some to be forgotten
+*** In language translation
+[[./img/translation1.png]]
+[[./img/translation2.png]]
+- Inputs are provided first, then outputs can be generated
+- Encoder is single-layer LSTM; has input sequence "how", "are", "you"
+- Definitions:
+  - $C_i$ :: encoder state
+  - $C$ :: final encoder state that is sent to decoder
+  - $S_i$ :: decoder state
+  - $y_i$ :: network outputs
+- Decoder is also single-layer LSTM
+- Does $C$ have access to all information in encoder for all inputs?
+  - We need to make sure decoder has all the information that's sent to encoder
+  - Maybe not! Encoding step needs to represent entire input sequence
+  - All information must be compressed to $C$
+  - Very complex to ask model to get all information from this single vector $C$ (which has cell state information passed)
+    - Must use very deep LSTM units (many cell state parameters -- high computation time --  or use new structure for such models)
+*** Attention mechanism
+[[./img/attention.png]]
+- In simple encoder-decoder architecture (not attention-based)
+  - Decoder makes prediction by looking only at the final output of the encoder step, which has condensed information denoted $R_c$, or context vector
+- Attention-based architecture:
+  - Attends every hidden state from each encoder node at every time and step
+  - Then makes predictions after deciding which one is more informative
+*** Need to know weights associated with each attention
+[[./img/attention2.png]]
+- Terminology
+  - $h$ math notation :: output of each LSTM unit
+  - $T$ :: number of words in sequence
+  - $t$ :: current word that we're translating ($x_t$)
+  - $C_t$ :: current word context vector
+  - $\alpha$ :: weight vector
+  - $h_t$ :: encoder hidden state
+  - $S_{t-1}$ :: previous decoder output or hidden state
+- Recall: simple encoder-decoder: the **last** state of the encoder is used for the context vector
+- In attention-based architecture:
+  - Embeddings of all the words in the inputs are used instead.
+  - These are represented by hidden states
+  - But, do not want to equally contribute all the hidden states to generate context vector
+  - As some words may be more related to final translation
+  - Hence, calculate $\alpha$ as weight vector to consider each hidden state's contribution to the current word context vector
+- Screenshot shows calculation of only 1 set of state at timestamp $t$.
+  - Need to do the same process for all other timestamps to calculate their cell states, e.g. $c_{t-1}$, $c_{t+1}$, etc.
+- Raw alignment score ($e$) is calculated using feedforward neural network with a single hidden layer
+  - Inputs are $h_t$ and $S_{t-1}$
+  - General practice: add or concatenate 2 hidden states, then feed into neural network
+  - Single hidden layer uses $\tanh$ activation function to produce hidden layer neurons
+  - Finally, a linear layer with 1 neuron (or a linear combination transformation) is used to prduce raw alignment score
+  - Process produces a raw score ($\alpha_{t,t}$) for just the current timestamp and the chosen encoder hidden state ($h_t$).
+  - Repeat for  all other hidden input states,  to calculate raw score using the same neural network
+- Next, all raw scores passed through softmax to produce normalized scores (or $\alpha$s).
+- Weighted sum of all hidden state using their $\alpha$ values will produce the current context vector ($C_t$)
+- Now, with the same context vector, we can calculate the output of the encoder-decoder unit (similar to LSTM)
+- Again, this is only for the current context vector ($c_t$). Need to repeat for context vectors for different timestamps e.g. $c_t$, $c_{t+1}$ and so on.
+- This is {{{hl(additive attention)}}}, and is commonly used in sequence to sequence models like LSTM
+**** Other types of models
+- E.g. scaled dot product attention, self-attention (core of transformers, to be discussed later)

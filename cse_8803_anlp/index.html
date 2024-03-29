@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-03-15 Fri 07:44 -->
+<!-- 2024-03-29 Fri 12:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>CSE 8803: Applied Natural Language Processing</title>
@@ -44,209 +44,238 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org2c21604">1. Week 1: Text data preprocessing + Course Intro</a>
+<li><a href="#orgd6b78bc">1. Week 1: Text data preprocessing + Course Intro</a>
 <ul>
-<li><a href="#org09765b3">1.1. Why ANLP?</a></li>
-<li><a href="#org59b5211">1.2. Lots of text and written information</a></li>
-<li><a href="#org5586eeb">1.3. Example applications of NLP</a></li>
-<li><a href="#orgf96e453">1.4. Challenges of NLP</a></li>
-<li><a href="#org9f0edbd">1.5. Class overview</a></li>
-<li><a href="#orgdad8fb1">1.6. Deliverables</a>
+<li><a href="#org1a9b265">1.1. Why ANLP?</a></li>
+<li><a href="#org5130325">1.2. Lots of text and written information</a></li>
+<li><a href="#org15abe50">1.3. Example applications of NLP</a></li>
+<li><a href="#orgc302dd7">1.4. Challenges of NLP</a></li>
+<li><a href="#org7b4975e">1.5. Class overview</a></li>
+<li><a href="#org14e6d49">1.6. Deliverables</a>
 <ul>
-<li><a href="#org47b6eac">1.6.1. Homework</a></li>
-<li><a href="#org2b28f94">1.6.2. Quizzes (10)</a></li>
+<li><a href="#orga5ca363">1.6.1. Homework</a></li>
+<li><a href="#org525429b">1.6.2. Quizzes (10)</a></li>
 </ul>
 </li>
-<li><a href="#org7a2eb42">1.7. Course goals</a></li>
-<li><a href="#org59959fa">1.8. Text Preprocessing Techniques</a>
+<li><a href="#org1619c78">1.7. Course goals</a></li>
+<li><a href="#org4f264af">1.8. Text Preprocessing Techniques</a>
 <ul>
-<li><a href="#org7270bf0">1.8.1. Terminology</a></li>
-<li><a href="#orga34578f">1.8.2. Preprocessing text data</a></li>
-<li><a href="#orgb3d02c6">1.8.3. Noise removal</a></li>
-<li><a href="#org08a5ecd">1.8.4. Tokenization</a></li>
-<li><a href="#org2726b4e">1.8.5. Text normalization</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#org5317d9f">2. Week 2: (Discrete) Text Representations</a>
-<ul>
-<li><a href="#org8c010a6">2.1. Why?</a></li>
-<li><a href="#orgdb4040c">2.2. Representing Words</a></li>
-<li><a href="#orge35820f">2.3. Representing sentences/documents</a></li>
-<li><a href="#org11431cb">2.4. One Hot Encoding</a>
-<ul>
-<li><a href="#org76d0cf6">2.4.1. Definitions</a></li>
-<li><a href="#orgc49d921">2.4.2. Advantages and disadvantages</a></li>
-</ul>
-</li>
-<li><a href="#orgcc430c7">2.5. Bag of Words (Frequency Counting)</a>
-<ul>
-<li><a href="#orgf7eca9e">2.5.1. Advantages and disadvantages</a></li>
-</ul>
-</li>
-<li><a href="#org14ee0f6">2.6. TF-IDF (Term Frequency-Inverse Document Frequency)</a>
-<ul>
-<li><a href="#orgdd4e306">2.6.1. Why needed?</a></li>
-<li><a href="#orge66d4a8">2.6.2. What is TF-IDF and when to use TF-IDF</a></li>
-<li><a href="#orgf11021a">2.6.3. Advantages and disadvantages</a></li>
+<li><a href="#org05ef105">1.8.1. Terminology</a></li>
+<li><a href="#org8797321">1.8.2. Preprocessing text data</a></li>
+<li><a href="#org0738e12">1.8.3. Noise removal</a></li>
+<li><a href="#orgcb2cc45">1.8.4. Tokenization</a></li>
+<li><a href="#orga97cccd">1.8.5. Text normalization</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orga858b80">3. Week 3: Linear Text Classification</a>
+<li><a href="#orgf905f71">2. Week 2: (Discrete) Text Representations</a>
 <ul>
-<li><a href="#org9e44990">3.1. Classification introduction</a>
+<li><a href="#org930ceb9">2.1. Why?</a></li>
+<li><a href="#orgb35f874">2.2. Representing Words</a></li>
+<li><a href="#org45220db">2.3. Representing sentences/documents</a></li>
+<li><a href="#org3cb80c7">2.4. One Hot Encoding</a>
 <ul>
-<li><a href="#orgc4365d4">3.1.1. Supervised learning: definitions</a></li>
-<li><a href="#org69cdfae">3.1.2. Categories of supervised learning</a></li>
-<li><a href="#orgbf34f90">3.1.3. Regression</a></li>
-<li><a href="#org2e8194c">3.1.4. Classification</a></li>
+<li><a href="#orgad0dafc">2.4.1. Definitions</a></li>
+<li><a href="#org0ed9764">2.4.2. Advantages and disadvantages</a></li>
 </ul>
 </li>
-<li><a href="#org671658c">3.2. Naive Bayes</a>
+<li><a href="#org06c5ae4">2.5. Bag of Words (Frequency Counting)</a>
 <ul>
-<li><a href="#org6fb26ea">3.2.1. Method / concepts</a></li>
-<li><a href="#orgc734eee">3.2.2. Bayes decision rule</a></li>
-<li><a href="#org0486403">3.2.3. Generative vs discriminative models</a></li>
-<li><a href="#org79d1991">3.2.4. Details of Naive Bayes</a></li>
-<li><a href="#org4e210a7">3.2.5. Naive Conditional Independence Assumption</a></li>
-<li><a href="#org132536f">3.2.6. Advantages and disadvantages</a></li>
+<li><a href="#orgdaee8cb">2.5.1. Advantages and disadvantages</a></li>
 </ul>
 </li>
-<li><a href="#orgfb61860">3.3. Classification Model Evaluation</a>
+<li><a href="#org5df4e13">2.6. TF-IDF (Term Frequency-Inverse Document Frequency)</a>
 <ul>
-<li><a href="#org60c8831">3.3.1. Common metrics</a></li>
-<li><a href="#org5aea0cd">3.3.2. Confusion matrix</a></li>
-<li><a href="#orgfcb4263">3.3.3. Accuracy</a></li>
-<li><a href="#orgb0b2a7f">3.3.4. RoC-AUC curve</a></li>
+<li><a href="#orgd238479">2.6.1. Why needed?</a></li>
+<li><a href="#org4c5a376">2.6.2. What is TF-IDF and when to use TF-IDF</a></li>
+<li><a href="#org5ee7ec9">2.6.3. Advantages and disadvantages</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgce3e52f">4. Week 5: Log Regression, SVM and Perceptron (Module 4)</a>
+<li><a href="#org6e35b9e">3. Week 3: Linear Text Classification</a>
 <ul>
-<li><a href="#org32bb53e">4.1. Logistic Regression</a>
+<li><a href="#org8e7a21d">3.1. Classification introduction</a>
 <ul>
-<li><a href="#org736bbaf">4.1.1. Generative vs Discriminative Models (again)</a></li>
-<li><a href="#org65e896e">4.1.2. Bayes equation again</a></li>
-<li><a href="#org85cfb07">4.1.3. Logistic Function for posterior probability</a></li>
-<li><a href="#orgee90d50">4.1.4. Sigmoid is interpreted as probability</a></li>
-<li><a href="#orgfc184a0">4.1.5. Logistic regression model</a></li>
-<li><a href="#orgae1f424">4.1.6. The gradient of \(l(\theta)\)</a></li>
-<li><a href="#orgfc60a17">4.1.7. Gradient descent</a></li>
-<li><a href="#org263d152">4.1.8. Gradient ascent (concave) / descent (convex) algorithm</a></li>
-<li><a href="#org79e55e3">4.1.9. Advantages and disadvantages of logistic regression</a></li>
+<li><a href="#orgba1ae14">3.1.1. Supervised learning: definitions</a></li>
+<li><a href="#orgfba8787">3.1.2. Categories of supervised learning</a></li>
+<li><a href="#org7f6d801">3.1.3. Regression</a></li>
+<li><a href="#org3e45cb2">3.1.4. Classification</a></li>
 </ul>
 </li>
-<li><a href="#orgd0aeb1d">4.2. Support vector machine</a>
+<li><a href="#org93f5311">3.2. Naive Bayes</a>
 <ul>
-<li><a href="#org96a59fd">4.2.1. Linear separation</a></li>
-<li><a href="#org3105b5a">4.2.2. Finding &theta; that maximizes margin</a></li>
-<li><a href="#org6b20349">4.2.3. Length of margin</a></li>
-<li><a href="#org1172c4a">4.2.4. Maximizing margin</a></li>
-<li><a href="#org3ad4424">4.2.5. Geometric representation</a></li>
-<li><a href="#org74f9e5a">4.2.6. Lagrange formulation (not in detail)</a></li>
-<li><a href="#orgabb2b89">4.2.7. Usage</a></li>
-<li><a href="#org3bf6541">4.2.8. From \(x\) to \(z\) space</a></li>
-<li><a href="#orgc4a5627">4.2.9. Support vector machine</a></li>
+<li><a href="#orgb24fc6b">3.2.1. Method / concepts</a></li>
+<li><a href="#org78c105a">3.2.2. Bayes decision rule</a></li>
+<li><a href="#orgd8979c1">3.2.3. Generative vs discriminative models</a></li>
+<li><a href="#orga919507">3.2.4. Details of Naive Bayes</a></li>
+<li><a href="#org29c7729">3.2.5. Naive Conditional Independence Assumption</a></li>
+<li><a href="#org60d8d51">3.2.6. Advantages and disadvantages</a></li>
 </ul>
 </li>
-<li><a href="#org128ace5">4.3. Perceptron</a>
+<li><a href="#orgc1a5942">3.3. Classification Model Evaluation</a>
 <ul>
-<li><a href="#org975c674">4.3.1. Linearly separable</a></li>
-<li><a href="#org55fb463">4.3.2. Linear classifier</a></li>
-<li><a href="#org6c7535f">4.3.3. The Perceptron Classifier</a></li>
-<li><a href="#org6866854">4.3.4. Perceptron activation</a></li>
-<li><a href="#orgf4839b6">4.3.5. Advantages and disadvantages of Perceptron</a></li>
+<li><a href="#org857ac4d">3.3.1. Common metrics</a></li>
+<li><a href="#org0d07d0d">3.3.2. Confusion matrix</a></li>
+<li><a href="#org7c59c48">3.3.3. Accuracy</a></li>
+<li><a href="#orgd46e740">3.3.4. RoC-AUC curve</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org290729a">5. Week 6: Embeddings/Dimensionality reduction</a>
+<li><a href="#orgf067e1a">4. Week 5: Log Regression, SVM and Perceptron (Module 4)</a>
 <ul>
-<li><a href="#org704f0ab">5.1. SVD and Co-occurrence Embeddings</a>
+<li><a href="#org0a93338">4.1. Logistic Regression</a>
 <ul>
-<li><a href="#orgd7401fe">5.1.1. Motivating example</a></li>
-<li><a href="#org4f487c0">5.1.2. Bag of words representation</a></li>
-<li><a href="#orgdd0e634">5.1.3. What is dimensionality reduction?</a></li>
-<li><a href="#orgfe36109">5.1.4. Intuition (of PCA)</a></li>
-<li><a href="#orgb1944d9">5.1.5. Singular value decomposition</a></li>
-<li><a href="#orgc8681cd">5.1.6. Co-occurrence matrices</a></li>
-<li><a href="#org2bcf1e1">5.1.7. SVD on co-occurrence matrices</a></li>
-<li><a href="#org2a8e20d">5.1.8. Dense word embeddings</a></li>
-<li><a href="#org3bf806b">5.1.9. Advantages of dense word embeddings</a></li>
+<li><a href="#org8dc3577">4.1.1. Generative vs Discriminative Models (again)</a></li>
+<li><a href="#orgd8c9212">4.1.2. Bayes equation again</a></li>
+<li><a href="#orgc98d322">4.1.3. Logistic Function for posterior probability</a></li>
+<li><a href="#org6eaf224">4.1.4. Sigmoid is interpreted as probability</a></li>
+<li><a href="#org286902b">4.1.5. Logistic regression model</a></li>
+<li><a href="#org916e295">4.1.6. The gradient of \(l(\theta)\)</a></li>
+<li><a href="#org7ec8b5a">4.1.7. Gradient descent</a></li>
+<li><a href="#orgd7e64a5">4.1.8. Gradient ascent (concave) / descent (convex) algorithm</a></li>
+<li><a href="#org87aaea4">4.1.9. Advantages and disadvantages of logistic regression</a></li>
 </ul>
 </li>
-<li><a href="#orge523b2e">5.2. GloVe</a>
+<li><a href="#org9f2c9b6">4.2. Support vector machine</a>
 <ul>
-<li><a href="#orgedf7b6e">5.2.1. Definitions</a></li>
-<li><a href="#org18e0a21">5.2.2. GloVe model</a></li>
-<li><a href="#org89d60bc">5.2.3. Extending the co-occurrence matrix</a></li>
-<li><a href="#orgd45326e">5.2.4. Example</a></li>
-<li><a href="#orgb055621">5.2.5. GloVe cost function</a></li>
-<li><a href="#org4268667">5.2.6. GloVe word vectors</a></li>
-<li><a href="#org22a6ae7">5.2.7. GloVe conserves linear relationships</a></li>
+<li><a href="#org70f4686">4.2.1. Linear separation</a></li>
+<li><a href="#org0a48f45">4.2.2. Finding &theta; that maximizes margin</a></li>
+<li><a href="#orgb5368b0">4.2.3. Length of margin</a></li>
+<li><a href="#org44140f9">4.2.4. Maximizing margin</a></li>
+<li><a href="#org9319b7c">4.2.5. Geometric representation</a></li>
+<li><a href="#org150c8e7">4.2.6. Lagrange formulation (not in detail)</a></li>
+<li><a href="#orge6f6782">4.2.7. Usage</a></li>
+<li><a href="#orgb3009da">4.2.8. From \(x\) to \(z\) space</a></li>
+<li><a href="#orgfeaabe7">4.2.9. Support vector machine</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><a href="#orgcec4e3a">6. Week 8: Neural Networks and Word2Vec</a>
+<li><a href="#orgf89305a">4.3. Perceptron</a>
 <ul>
-<li><a href="#orgd0bc86c">6.1. Neural Networks</a>
-<ul>
-<li><a href="#org20f7502">6.1.1. Inspiration from biological neurons</a></li>
-<li><a href="#orge53e74a">6.1.2. Logistic regression block review</a></li>
-<li><a href="#orgbbd2761">6.1.3. Connecting blocks to create neural networks</a></li>
-<li><a href="#orgcd548ba">6.1.4. Increasing the depth of each layer</a></li>
-<li><a href="#orgefadee2">6.1.5. Increasing layers</a></li>
-<li><a href="#org56aeb19">6.1.6. Forward pass</a></li>
-<li><a href="#org772f210">6.1.7. Backpropagation</a></li>
-</ul>
-</li>
-<li><a href="#orgdec7de1">6.2. Word2Vec, CBOW and Skipgram</a>
-<ul>
-<li><a href="#org0ccbaef">6.2.1. Review of One-Hot Encoding</a></li>
-<li><a href="#org7b65d0a">6.2.2. Issues with One-Hot Embedding</a></li>
-<li><a href="#org8a4c72a">6.2.3. Contextual meaning of the words</a></li>
-<li><a href="#org2d5eb47">6.2.4. What do we want to achieve from word embeddings?</a></li>
-<li><a href="#org9642699">6.2.5. Algorithm 1:: Continuous Bag of Words (CBOW)</a></li>
-<li><a href="#orgc2b2dd1">6.2.6. Algorithm 2: Skip-Gram model</a></li>
-<li><a href="#org12cd22c">6.2.7. Main differences between CBOW and Skip-gram</a></li>
+<li><a href="#orgdcf4911">4.3.1. Linearly separable</a></li>
+<li><a href="#orgba3fc19">4.3.2. Linear classifier</a></li>
+<li><a href="#orgaf3d7ba">4.3.3. The Perceptron Classifier</a></li>
+<li><a href="#org480e244">4.3.4. Perceptron activation</a></li>
+<li><a href="#orgbf74f04">4.3.5. Advantages and disadvantages of Perceptron</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org74329f9">7. Week 9: Convolutional Neural Networks and Recurrent Neural Networks</a>
+<li><a href="#org5841658">5. Week 6: Embeddings/Dimensionality reduction</a>
 <ul>
-<li><a href="#org50c38a3">7.1. CNN and Deep Learning I</a>
+<li><a href="#orge7fb227">5.1. SVD and Co-occurrence Embeddings</a>
 <ul>
-<li><a href="#org0fdfa95">7.1.1. Example: learning an image</a></li>
-<li><a href="#org191a19f">7.1.2. Why does CNN work well for images</a></li>
+<li><a href="#org78c45ac">5.1.1. Motivating example</a></li>
+<li><a href="#orgf7e8d46">5.1.2. Bag of words representation</a></li>
+<li><a href="#org95ce0af">5.1.3. What is dimensionality reduction?</a></li>
+<li><a href="#org426959f">5.1.4. Intuition (of PCA)</a></li>
+<li><a href="#org3b7400c">5.1.5. Singular value decomposition</a></li>
+<li><a href="#org719c80a">5.1.6. Co-occurrence matrices</a></li>
+<li><a href="#org7b5d8cb">5.1.7. SVD on co-occurrence matrices</a></li>
+<li><a href="#org6ca5b96">5.1.8. Dense word embeddings</a></li>
+<li><a href="#org463a4a2">5.1.9. Advantages of dense word embeddings</a></li>
 </ul>
 </li>
-<li><a href="#org46e013d">7.2. CNN and Deep Learning II</a>
+<li><a href="#org16697f2">5.2. GloVe</a>
 <ul>
-<li><a href="#org7ef2e74">7.2.1. Convolution vs Fully connected</a></li>
-<li><a href="#org9881e52">7.2.2. The whole CNN</a></li>
-<li><a href="#org21f2250">7.2.3. CNN in Keras</a></li>
+<li><a href="#org657753a">5.2.1. Definitions</a></li>
+<li><a href="#org623048c">5.2.2. GloVe model</a></li>
+<li><a href="#org09b6776">5.2.3. Extending the co-occurrence matrix</a></li>
+<li><a href="#orge9f6f29">5.2.4. Example</a></li>
+<li><a href="#orga21b173">5.2.5. GloVe cost function</a></li>
+<li><a href="#orgaa06d23">5.2.6. GloVe word vectors</a></li>
+<li><a href="#orga2a2d43">5.2.7. GloVe conserves linear relationships</a></li>
 </ul>
 </li>
-<li><a href="#org122e1d8">7.3. Recurrent neural networks Part I</a>
-<ul>
-<li><a href="#orgf3ef359">7.3.1. Name Entity Recognition</a></li>
-<li><a href="#org8b94b61">7.3.2. Recap of feed-forward networks</a></li>
-<li><a href="#orga8ac8c8">7.3.3. Simplifying this for RNN</a></li>
 </ul>
 </li>
-<li><a href="#orgd74f95f">7.4. Recurrent neural networks Part II</a>
+<li><a href="#orga8c0a99">6. Week 8: Neural Networks and Word2Vec</a>
 <ul>
-<li><a href="#org2d689a8">7.4.1. RNN</a></li>
-<li><a href="#org5b62469">7.4.2. Forward pass: how to calculate past memory (h) in RNN</a></li>
-<li><a href="#org3e0e43f">7.4.3. Forward pass: how to calculate output of each step in RNN</a></li>
-<li><a href="#org578feec">7.4.4. Backpropagation through time (BPTT)</a></li>
-<li><a href="#org584bd44">7.4.5. Different RNN models</a></li>
-<li><a href="#org8696c65">7.4.6. Problems with RNN</a></li>
+<li><a href="#orge4f5863">6.1. Neural Networks</a>
+<ul>
+<li><a href="#orgf1bc967">6.1.1. Inspiration from biological neurons</a></li>
+<li><a href="#org9012322">6.1.2. Logistic regression block review</a></li>
+<li><a href="#orgcb60de5">6.1.3. Connecting blocks to create neural networks</a></li>
+<li><a href="#org5a944f0">6.1.4. Increasing the depth of each layer</a></li>
+<li><a href="#orgd78ea28">6.1.5. Increasing layers</a></li>
+<li><a href="#org211f8e6">6.1.6. Forward pass</a></li>
+<li><a href="#orge8beb29">6.1.7. Backpropagation</a></li>
+</ul>
+</li>
+<li><a href="#org5e371b6">6.2. Word2Vec, CBOW and Skipgram</a>
+<ul>
+<li><a href="#org39981f1">6.2.1. Review of One-Hot Encoding</a></li>
+<li><a href="#org159708d">6.2.2. Issues with One-Hot Embedding</a></li>
+<li><a href="#org7f6dbc6">6.2.3. Contextual meaning of the words</a></li>
+<li><a href="#org399659d">6.2.4. What do we want to achieve from word embeddings?</a></li>
+<li><a href="#orgd437951">6.2.5. Algorithm 1:: Continuous Bag of Words (CBOW)</a></li>
+<li><a href="#org787923f">6.2.6. Algorithm 2: Skip-Gram model</a></li>
+<li><a href="#org9371a2f">6.2.7. Main differences between CBOW and Skip-gram</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orga145a85">7. Week 9: Convolutional Neural Networks and Recurrent Neural Networks</a>
+<ul>
+<li><a href="#org2536fa5">7.1. CNN and Deep Learning I</a>
+<ul>
+<li><a href="#org85c66f5">7.1.1. Example: learning an image</a></li>
+<li><a href="#orga9d0162">7.1.2. Why does CNN work well for images</a></li>
+</ul>
+</li>
+<li><a href="#org6d92484">7.2. CNN and Deep Learning II</a>
+<ul>
+<li><a href="#orge9bbf44">7.2.1. Convolution vs Fully connected</a></li>
+<li><a href="#orgf2b1ab7">7.2.2. The whole CNN</a></li>
+<li><a href="#org9ba1c99">7.2.3. CNN in Keras</a></li>
+</ul>
+</li>
+<li><a href="#org1943918">7.3. Recurrent neural networks Part I</a>
+<ul>
+<li><a href="#org9b6e5ee">7.3.1. Name Entity Recognition</a></li>
+<li><a href="#org533decc">7.3.2. Recap of feed-forward networks</a></li>
+<li><a href="#org95aa412">7.3.3. Simplifying this for RNN</a></li>
+</ul>
+</li>
+<li><a href="#org7c184cb">7.4. Recurrent neural networks Part II</a>
+<ul>
+<li><a href="#orga61f30b">7.4.1. RNN</a></li>
+<li><a href="#org53c8c04">7.4.2. Forward pass: how to calculate past memory (h) in RNN</a></li>
+<li><a href="#orge063e1d">7.4.3. Forward pass: how to calculate output of each step in RNN</a></li>
+<li><a href="#org3dfd7b9">7.4.4. Backpropagation through time (BPTT)</a></li>
+<li><a href="#orgd1b2062">7.4.5. Different RNN models</a></li>
+<li><a href="#org98ff65b">7.4.6. Problems with RNN</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgca93d2c">8. Week 10: Long-Short Term Memory and Gated Recurrent Units</a>
+<ul>
+<li><a href="#org98736ee">8.1. LSTM Part I</a>
+<ul>
+<li><a href="#org988975b">8.1.1. Why?</a></li>
+<li><a href="#org5213781">8.1.2. Gated cell: LSTM</a></li>
+<li><a href="#org4617ffa">8.1.3. Different representation of RNN</a></li>
+<li><a href="#org32c3326">8.1.4. Simple representation of LSTM</a></li>
+<li><a href="#org52cb0f2">8.1.5. The cell state in LSTM</a></li>
+<li><a href="#orga56c0db">8.1.6. How LSTM controls information removal and additional for a cell state</a></li>
+</ul>
+</li>
+<li><a href="#org94be7f4">8.2. LSTM Part II</a>
+<ul>
+<li><a href="#org51b1ea0">8.2.1. Forget gate</a></li>
+<li><a href="#orgdc3db54">8.2.2. Gated Recurrent Units</a></li>
+</ul>
+</li>
+<li><a href="#org948264f">8.3. Attention-based LSTM</a>
+<ul>
+<li><a href="#org6aa772d">8.3.1. Common uses of encoder-decoder architecture</a></li>
+<li><a href="#org2f566f6">8.3.2. RNN and LSTM units</a></li>
+<li><a href="#orgd972010">8.3.3. In language translation</a></li>
+<li><a href="#org56dd024">8.3.4. Attention mechanism</a></li>
+<li><a href="#orgbec419a">8.3.5. Need to know weights associated with each attention</a></li>
 </ul>
 </li>
 </ul>
@@ -254,12 +283,12 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org2c21604" class="outline-2">
-<h2 id="org2c21604"><span class="section-number-2">1.</span> Week 1: Text data preprocessing + Course Intro</h2>
+<div id="outline-container-orgd6b78bc" class="outline-2">
+<h2 id="orgd6b78bc"><span class="section-number-2">1.</span> Week 1: Text data preprocessing + Course Intro</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org09765b3" class="outline-3">
-<h3 id="org09765b3"><span class="section-number-3">1.1.</span> Why ANLP?</h3>
+<div id="outline-container-org1a9b265" class="outline-3">
+<h3 id="org1a9b265"><span class="section-number-3">1.1.</span> Why ANLP?</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li>Text and docs are everywhere</li>
@@ -270,8 +299,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org59b5211" class="outline-3">
-<h3 id="org59b5211"><span class="section-number-3">1.2.</span> Lots of text and written information</h3>
+<div id="outline-container-org5130325" class="outline-3">
+<h3 id="org5130325"><span class="section-number-3">1.2.</span> Lots of text and written information</h3>
 <div class="outline-text-3" id="text-1-2">
 <ul class="org-ul">
 <li>Internet</li>
@@ -286,8 +315,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org5586eeb" class="outline-3">
-<h3 id="org5586eeb"><span class="section-number-3">1.3.</span> Example applications of NLP</h3>
+<div id="outline-container-org15abe50" class="outline-3">
+<h3 id="org15abe50"><span class="section-number-3">1.3.</span> Example applications of NLP</h3>
 <div class="outline-text-3" id="text-1-3">
 <ul class="org-ul">
 <li>Establish authenticity, detect plagiarism</li>
@@ -298,8 +327,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf96e453" class="outline-3">
-<h3 id="orgf96e453"><span class="section-number-3">1.4.</span> Challenges of NLP</h3>
+<div id="outline-container-orgc302dd7" class="outline-3">
+<h3 id="orgc302dd7"><span class="section-number-3">1.4.</span> Challenges of NLP</h3>
 <div class="outline-text-3" id="text-1-4">
 <ul class="org-ul">
 <li>Interdisciplinary field</li>
@@ -313,8 +342,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org9f0edbd" class="outline-3">
-<h3 id="org9f0edbd"><span class="section-number-3">1.5.</span> Class overview</h3>
+<div id="outline-container-org7b4975e" class="outline-3">
+<h3 id="org7b4975e"><span class="section-number-3">1.5.</span> Class overview</h3>
 <div class="outline-text-3" id="text-1-5">
 <ul class="org-ul">
 <li>Preprocessing:
@@ -363,12 +392,12 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgdad8fb1" class="outline-3">
-<h3 id="orgdad8fb1"><span class="section-number-3">1.6.</span> Deliverables</h3>
+<div id="outline-container-org14e6d49" class="outline-3">
+<h3 id="org14e6d49"><span class="section-number-3">1.6.</span> Deliverables</h3>
 <div class="outline-text-3" id="text-1-6">
 </div>
-<div id="outline-container-org47b6eac" class="outline-4">
-<h4 id="org47b6eac"><span class="section-number-4">1.6.1.</span> Homework</h4>
+<div id="outline-container-orga5ca363" class="outline-4">
+<h4 id="orga5ca363"><span class="section-number-4">1.6.1.</span> Homework</h4>
 <div class="outline-text-4" id="text-1-6-1">
 <ul class="org-ul">
 <li>HW1: Text preprocessing and classification intro</li>
@@ -378,8 +407,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org2b28f94" class="outline-4">
-<h4 id="org2b28f94"><span class="section-number-4">1.6.2.</span> Quizzes (10)</h4>
+<div id="outline-container-org525429b" class="outline-4">
+<h4 id="org525429b"><span class="section-number-4">1.6.2.</span> Quizzes (10)</h4>
 <div class="outline-text-4" id="text-1-6-2">
 <ul class="org-ul">
 <li>Measure understanding of topic</li>
@@ -391,8 +420,8 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org7a2eb42" class="outline-3">
-<h3 id="org7a2eb42"><span class="section-number-3">1.7.</span> Course goals</h3>
+<div id="outline-container-org1619c78" class="outline-3">
+<h3 id="org1619c78"><span class="section-number-3">1.7.</span> Course goals</h3>
 <div class="outline-text-3" id="text-1-7">
 <ul class="org-ul">
 <li>Demonstrate how to pre-process textual data</li>
@@ -402,12 +431,12 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org59959fa" class="outline-3">
-<h3 id="org59959fa"><span class="section-number-3">1.8.</span> Text Preprocessing Techniques</h3>
+<div id="outline-container-org4f264af" class="outline-3">
+<h3 id="org4f264af"><span class="section-number-3">1.8.</span> Text Preprocessing Techniques</h3>
 <div class="outline-text-3" id="text-1-8">
 </div>
-<div id="outline-container-org7270bf0" class="outline-4">
-<h4 id="org7270bf0"><span class="section-number-4">1.8.1.</span> Terminology</h4>
+<div id="outline-container-org05ef105" class="outline-4">
+<h4 id="org05ef105"><span class="section-number-4">1.8.1.</span> Terminology</h4>
 <div class="outline-text-4" id="text-1-8-1">
 <dl class="org-dl">
 <dt>Corpus</dt><dd>collection of text, e.g. Yelp reviews, Wikipedia articles</dd>
@@ -420,8 +449,8 @@
 </dl>
 </div>
 </div>
-<div id="outline-container-orga34578f" class="outline-4">
-<h4 id="orga34578f"><span class="section-number-4">1.8.2.</span> Preprocessing text data</h4>
+<div id="outline-container-org8797321" class="outline-4">
+<h4 id="org8797321"><span class="section-number-4">1.8.2.</span> Preprocessing text data</h4>
 <div class="outline-text-4" id="text-1-8-2">
 <ul class="org-ul">
 <li>Text is unstructured, so preprocessing is the first step to prepare and clean text data to perform a NLP task</li>
@@ -439,8 +468,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb3d02c6" class="outline-4">
-<h4 id="orgb3d02c6"><span class="section-number-4">1.8.3.</span> Noise removal</h4>
+<div id="outline-container-org0738e12" class="outline-4">
+<h4 id="org0738e12"><span class="section-number-4">1.8.3.</span> Noise removal</h4>
 <div class="outline-text-4" id="text-1-8-3">
 <p>
 Removal of unwanted text formatting information, e.g.:
@@ -459,8 +488,8 @@ Example: <code>This is a 'simple'' sentence !!! 1+ \n</code> -&gt; <code>This is
 </p>
 </div>
 </div>
-<div id="outline-container-org08a5ecd" class="outline-4">
-<h4 id="org08a5ecd"><span class="section-number-4">1.8.4.</span> Tokenization</h4>
+<div id="outline-container-orgcb2cc45" class="outline-4">
+<h4 id="orgcb2cc45"><span class="section-number-4">1.8.4.</span> Tokenization</h4>
 <div class="outline-text-4" id="text-1-8-4">
 <p>
 Example:
@@ -469,8 +498,8 @@ Example:
 </p>
 </div>
 </div>
-<div id="outline-container-org2726b4e" class="outline-4">
-<h4 id="org2726b4e"><span class="section-number-4">1.8.5.</span> Text normalization</h4>
+<div id="outline-container-orga97cccd" class="outline-4">
+<h4 id="orga97cccd"><span class="section-number-4">1.8.5.</span> Text normalization</h4>
 <div class="outline-text-4" id="text-1-8-5">
 <p>
 Removing variations in the text to bring it to a standard form.
@@ -496,12 +525,12 @@ Example: <code>There are several tytpes of stemming algorithms</code> -&gt; <cod
 </div>
 </div>
 
-<div id="outline-container-org5317d9f" class="outline-2">
-<h2 id="org5317d9f"><span class="section-number-2">2.</span> Week 2: (Discrete) Text Representations</h2>
+<div id="outline-container-orgf905f71" class="outline-2">
+<h2 id="orgf905f71"><span class="section-number-2">2.</span> Week 2: (Discrete) Text Representations</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org8c010a6" class="outline-3">
-<h3 id="org8c010a6"><span class="section-number-3">2.1.</span> Why?</h3>
+<div id="outline-container-org930ceb9" class="outline-3">
+<h3 id="org930ceb9"><span class="section-number-3">2.1.</span> Why?</h3>
 <div class="outline-text-3" id="text-2-1">
 <dl class="org-dl">
 <dt>NLP</dt><dd>design algorithms to allow computers to understand natural language, so as to perform some task</dd>
@@ -509,28 +538,28 @@ Example: <code>There are several tytpes of stemming algorithms</code> -&gt; <cod
 </dl>
 </div>
 </div>
-<div id="outline-container-orgdb4040c" class="outline-3">
-<h3 id="orgdb4040c"><span class="section-number-3">2.2.</span> Representing Words</h3>
+<div id="outline-container-orgb35f874" class="outline-3">
+<h3 id="orgb35f874"><span class="section-number-3">2.2.</span> Representing Words</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>Can be represented by vectors of 0 &amp; 1 where 1 indicates the position of the word, e.g. lorem = <code>[1, 0]</code>, ipsum = <code>[0, 1]</code>, etc.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orge35820f" class="outline-3">
-<h3 id="orge35820f"><span class="section-number-3">2.3.</span> Representing sentences/documents</h3>
+<div id="outline-container-org45220db" class="outline-3">
+<h3 id="org45220db"><span class="section-number-3">2.3.</span> Representing sentences/documents</h3>
 <div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li>Vectors of vectors eg <code>[[1,0], [0,1]]</code></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org11431cb" class="outline-3">
-<h3 id="org11431cb"><span class="section-number-3">2.4.</span> One Hot Encoding</h3>
+<div id="outline-container-org3cb80c7" class="outline-3">
+<h3 id="org3cb80c7"><span class="section-number-3">2.4.</span> One Hot Encoding</h3>
 <div class="outline-text-3" id="text-2-4">
 </div>
-<div id="outline-container-org76d0cf6" class="outline-4">
-<h4 id="org76d0cf6"><span class="section-number-4">2.4.1.</span> Definitions</h4>
+<div id="outline-container-orgad0dafc" class="outline-4">
+<h4 id="orgad0dafc"><span class="section-number-4">2.4.1.</span> Definitions</h4>
 <div class="outline-text-4" id="text-2-4-1">
 <dl class="org-dl">
 <dt>corpus</dt><dd>all texts</dd>
@@ -551,8 +580,8 @@ Example: <code>There are several tytpes of stemming algorithms</code> -&gt; <cod
 </dl>
 </div>
 </div>
-<div id="outline-container-orgc49d921" class="outline-4">
-<h4 id="orgc49d921"><span class="section-number-4">2.4.2.</span> Advantages and disadvantages</h4>
+<div id="outline-container-org0ed9764" class="outline-4">
+<h4 id="org0ed9764"><span class="section-number-4">2.4.2.</span> Advantages and disadvantages</h4>
 <div class="outline-text-4" id="text-2-4-2">
 <ul class="org-ul">
 <li>Advantages: easy to implement</li>
@@ -572,8 +601,8 @@ each word represented individually, hence <b>no notion of similarity or meaning<
 </div>
 </div>
 </div>
-<div id="outline-container-orgcc430c7" class="outline-3">
-<h3 id="orgcc430c7"><span class="section-number-3">2.5.</span> Bag of Words (Frequency Counting)</h3>
+<div id="outline-container-org06c5ae4" class="outline-3">
+<h3 id="org06c5ae4"><span class="section-number-3">2.5.</span> Bag of Words (Frequency Counting)</h3>
 <div class="outline-text-3" id="text-2-5">
 <dl class="org-dl">
 <dt>Summary</dt><dd>Represents each document as a bag of words. <b><b>Ignores</b></b> order of words.</dd>
@@ -588,8 +617,8 @@ each word represented individually, hence <b>no notion of similarity or meaning<
 Hence \(n\) documents can be represented by matrix of size \(n \times d\).
 </p>
 </div>
-<div id="outline-container-orgf7eca9e" class="outline-4">
-<h4 id="orgf7eca9e"><span class="section-number-4">2.5.1.</span> Advantages and disadvantages</h4>
+<div id="outline-container-orgdaee8cb" class="outline-4">
+<h4 id="orgdaee8cb"><span class="section-number-4">2.5.1.</span> Advantages and disadvantages</h4>
 <div class="outline-text-4" id="text-2-5-1">
 <ul class="org-ul">
 <li>Advantages: easy to implement</li>
@@ -603,12 +632,12 @@ Hence \(n\) documents can be represented by matrix of size \(n \times d\).
 </div>
 </div>
 </div>
-<div id="outline-container-org14ee0f6" class="outline-3">
-<h3 id="org14ee0f6"><span class="section-number-3">2.6.</span> TF-IDF (Term Frequency-Inverse Document Frequency)</h3>
+<div id="outline-container-org5df4e13" class="outline-3">
+<h3 id="org5df4e13"><span class="section-number-3">2.6.</span> TF-IDF (Term Frequency-Inverse Document Frequency)</h3>
 <div class="outline-text-3" id="text-2-6">
 </div>
-<div id="outline-container-orgdd4e306" class="outline-4">
-<h4 id="orgdd4e306"><span class="section-number-4">2.6.1.</span> Why needed?</h4>
+<div id="outline-container-orgd238479" class="outline-4">
+<h4 id="orgd238479"><span class="section-number-4">2.6.1.</span> Why needed?</h4>
 <div class="outline-text-4" id="text-2-6-1">
 <ul class="org-ul">
 <li>BoW does not provide logical importance
@@ -619,8 +648,8 @@ Hence \(n\) documents can be represented by matrix of size \(n \times d\).
 </ul>
 </div>
 </div>
-<div id="outline-container-orge66d4a8" class="outline-4">
-<h4 id="orge66d4a8"><span class="section-number-4">2.6.2.</span> What is TF-IDF and when to use TF-IDF</h4>
+<div id="outline-container-org4c5a376" class="outline-4">
+<h4 id="org4c5a376"><span class="section-number-4">2.6.2.</span> What is TF-IDF and when to use TF-IDF</h4>
 <div class="outline-text-4" id="text-2-6-2">
 <dl class="org-dl">
 <dt>Definition of TF-IDF</dt><dd>a word's <b><b>importance score</b></b> in a document among \(N\) documents</dd>
@@ -635,8 +664,8 @@ Higher score = more "characteristic"</dd>
 </dl>
 </div>
 </div>
-<div id="outline-container-orgf11021a" class="outline-4">
-<h4 id="orgf11021a"><span class="section-number-4">2.6.3.</span> Advantages and disadvantages</h4>
+<div id="outline-container-org5ee7ec9" class="outline-4">
+<h4 id="org5ee7ec9"><span class="section-number-4">2.6.3.</span> Advantages and disadvantages</h4>
 <div class="outline-text-4" id="text-2-6-3">
 <ul class="org-ul">
 <li>Advantages:
@@ -654,19 +683,19 @@ Higher score = more "characteristic"</dd>
 </div>
 </div>
 </div>
-<div id="outline-container-orga858b80" class="outline-2">
-<h2 id="orga858b80"><span class="section-number-2">3.</span> Week 3: Linear Text Classification</h2>
+<div id="outline-container-org6e35b9e" class="outline-2">
+<h2 id="org6e35b9e"><span class="section-number-2">3.</span> Week 3: Linear Text Classification</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org9e44990" class="outline-3">
-<h3 id="org9e44990"><span class="section-number-3">3.1.</span> Classification introduction</h3>
+<div id="outline-container-org8e7a21d" class="outline-3">
+<h3 id="org8e7a21d"><span class="section-number-3">3.1.</span> Classification introduction</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 Note: <b><b>classification</b></b>.
 </p>
 </div>
-<div id="outline-container-orgc4365d4" class="outline-4">
-<h4 id="orgc4365d4"><span class="section-number-4">3.1.1.</span> Supervised learning: definitions</h4>
+<div id="outline-container-orgba1ae14" class="outline-4">
+<h4 id="orgba1ae14"><span class="section-number-4">3.1.1.</span> Supervised learning: definitions</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <dl class="org-dl">
 <dt>Word count matrix / document term matrix</dt><dd>dataset generated from documents</dd>
@@ -688,8 +717,8 @@ Supervised learning thus takes <b><b>labelled</b></b> training data and <b><b>le
 </div>
 </div>
 
-<div id="outline-container-org69cdfae" class="outline-4">
-<h4 id="org69cdfae"><span class="section-number-4">3.1.2.</span> Categories of supervised learning</h4>
+<div id="outline-container-orgfba8787" class="outline-4">
+<h4 id="orgfba8787"><span class="section-number-4">3.1.2.</span> Categories of supervised learning</h4>
 <div class="outline-text-4" id="text-3-1-2">
 <dl class="org-dl">
 <dt>continuous \(y\)</dt><dd>regression i.e. curve fitting</dd>
@@ -698,8 +727,8 @@ Supervised learning thus takes <b><b>labelled</b></b> training data and <b><b>le
 </div>
 </div>
 
-<div id="outline-container-orgbf34f90" class="outline-4">
-<h4 id="orgbf34f90"><span class="section-number-4">3.1.3.</span> Regression</h4>
+<div id="outline-container-org7f6d801" class="outline-4">
+<h4 id="org7f6d801"><span class="section-number-4">3.1.3.</span> Regression</h4>
 <div class="outline-text-4" id="text-3-1-3">
 <ul class="org-ul">
 <li>Errors represent how much predictions deviate from actual values.</li>
@@ -709,8 +738,8 @@ Supervised learning thus takes <b><b>labelled</b></b> training data and <b><b>le
 </div>
 </div>
 
-<div id="outline-container-org2e8194c" class="outline-4">
-<h4 id="org2e8194c"><span class="section-number-4">3.1.4.</span> Classification</h4>
+<div id="outline-container-org3e45cb2" class="outline-4">
+<h4 id="org3e45cb2"><span class="section-number-4">3.1.4.</span> Classification</h4>
 <div class="outline-text-4" id="text-3-1-4">
 <ul class="org-ul">
 <li>Linear classification can be used for spam detection, sentiment analysis, handwriting digit recognition (0.4% error here), etc.</li>
@@ -721,12 +750,12 @@ Supervised learning thus takes <b><b>labelled</b></b> training data and <b><b>le
 </div>
 </div>
 
-<div id="outline-container-org671658c" class="outline-3">
-<h3 id="org671658c"><span class="section-number-3">3.2.</span> Naive Bayes</h3>
+<div id="outline-container-org93f5311" class="outline-3">
+<h3 id="org93f5311"><span class="section-number-3">3.2.</span> Naive Bayes</h3>
 <div class="outline-text-3" id="text-3-2">
 </div>
-<div id="outline-container-org6fb26ea" class="outline-4">
-<h4 id="org6fb26ea"><span class="section-number-4">3.2.1.</span> Method / concepts</h4>
+<div id="outline-container-orgb24fc6b" class="outline-4">
+<h4 id="orgb24fc6b"><span class="section-number-4">3.2.1.</span> Method / concepts</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <p>
 Bayes Decision Rule.
@@ -747,16 +776,16 @@ P(y|x) = \frac{P(x|y)P(y)}{P(x)} = \frac{P(x,y)}{\sum_y P(x,y)}
 </p>
 </div>
 </div>
-<div id="outline-container-orgc734eee" class="outline-4">
-<h4 id="orgc734eee"><span class="section-number-4">3.2.2.</span> Bayes decision rule</h4>
+<div id="outline-container-org78c105a" class="outline-4">
+<h4 id="org78c105a"><span class="section-number-4">3.2.2.</span> Bayes decision rule</h4>
 <div class="outline-text-4" id="text-3-2-2">
 <ul class="org-ul">
 <li><span style='background-color: #FFFF00;'>important</span>: normalization constant is the same for +ve and -ve labels, hence no need to calculate when predicting sentiment</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org0486403" class="outline-4">
-<h4 id="org0486403"><span class="section-number-4">3.2.3.</span> Generative vs discriminative models</h4>
+<div id="outline-container-orgd8979c1" class="outline-4">
+<h4 id="orgd8979c1"><span class="section-number-4">3.2.3.</span> Generative vs discriminative models</h4>
 <div class="outline-text-4" id="text-3-2-3">
 <p>
 Naive Bayes is a generative model
@@ -781,8 +810,8 @@ Naive Bayes is a generative model
 </ul>
 </div>
 </div>
-<div id="outline-container-org79d1991" class="outline-4">
-<h4 id="org79d1991"><span class="section-number-4">3.2.4.</span> Details of Naive Bayes</h4>
+<div id="outline-container-orga919507" class="outline-4">
+<h4 id="orga919507"><span class="section-number-4">3.2.4.</span> Details of Naive Bayes</h4>
 <div class="outline-text-4" id="text-3-2-4">
 <p>
 Bayes decision rule:
@@ -801,8 +830,8 @@ P(y|x) = \frac{P(x|y)P(y)}{P(x)}
 </ul>
 </div>
 </div>
-<div id="outline-container-org4e210a7" class="outline-4">
-<h4 id="org4e210a7"><span class="section-number-4">3.2.5.</span> Naive Conditional Independence Assumption</h4>
+<div id="outline-container-org29c7729" class="outline-4">
+<h4 id="org29c7729"><span class="section-number-4">3.2.5.</span> Naive Conditional Independence Assumption</h4>
 <div class="outline-text-4" id="text-3-2-5">
 <p>
 \[
@@ -835,7 +864,7 @@ similarly for negatives:
 </p>
 </div>
 <ol class="org-ol">
-<li><a id="org857f572"></a>Representing the likelihood<br />
+<li><a id="orgdd31de0"></a>Representing the likelihood<br />
 <div class="outline-text-5" id="text-3-2-5-1">
 <p>
 Common distribution: <b><b>multinomial distribution</b></b>.
@@ -870,8 +899,8 @@ Repeat above for negatives.
 </li>
 </ol>
 </div>
-<div id="outline-container-org132536f" class="outline-4">
-<h4 id="org132536f"><span class="section-number-4">3.2.6.</span> Advantages and disadvantages</h4>
+<div id="outline-container-org60d8d51" class="outline-4">
+<h4 id="org60d8d51"><span class="section-number-4">3.2.6.</span> Advantages and disadvantages</h4>
 <div class="outline-text-4" id="text-3-2-6">
 <ul class="org-ul">
 <li>Advantages
@@ -890,12 +919,12 @@ Repeat above for negatives.
 </div>
 </div>
 
-<div id="outline-container-orgfb61860" class="outline-3">
-<h3 id="orgfb61860"><span class="section-number-3">3.3.</span> Classification Model Evaluation</h3>
+<div id="outline-container-orgc1a5942" class="outline-3">
+<h3 id="orgc1a5942"><span class="section-number-3">3.3.</span> Classification Model Evaluation</h3>
 <div class="outline-text-3" id="text-3-3">
 </div>
-<div id="outline-container-org60c8831" class="outline-4">
-<h4 id="org60c8831"><span class="section-number-4">3.3.1.</span> Common metrics</h4>
+<div id="outline-container-org857ac4d" class="outline-4">
+<h4 id="org857ac4d"><span class="section-number-4">3.3.1.</span> Common metrics</h4>
 <div class="outline-text-4" id="text-3-3-1">
 <ul class="org-ul">
 <li>Classification: accuracy, precision, recall, cross-entropy, perplexity, and F1 score</li>
@@ -903,8 +932,8 @@ Repeat above for negatives.
 </ul>
 </div>
 </div>
-<div id="outline-container-org5aea0cd" class="outline-4">
-<h4 id="org5aea0cd"><span class="section-number-4">3.3.2.</span> Confusion matrix</h4>
+<div id="outline-container-org0d07d0d" class="outline-4">
+<h4 id="org0d07d0d"><span class="section-number-4">3.3.2.</span> Confusion matrix</h4>
 <div class="outline-text-4" id="text-3-3-2">
 <ul class="org-ul">
 <li>e.g. for multi-label confusion matrix</li>
@@ -917,8 +946,8 @@ Repeat above for negatives.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgfcb4263" class="outline-4">
-<h4 id="orgfcb4263"><span class="section-number-4">3.3.3.</span> Accuracy</h4>
+<div id="outline-container-org7c59c48" class="outline-4">
+<h4 id="org7c59c48"><span class="section-number-4">3.3.3.</span> Accuracy</h4>
 <div class="outline-text-4" id="text-3-3-3">
 <ul class="org-ul">
 <li>Accuracy = (True Positive + True Negative) / Total observations, i.e. sum of diagonals / count observations.</li>
@@ -928,8 +957,8 @@ Repeat above for negatives.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb0b2a7f" class="outline-4">
-<h4 id="orgb0b2a7f"><span class="section-number-4">3.3.4.</span> RoC-AUC curve</h4>
+<div id="outline-container-orgd46e740" class="outline-4">
+<h4 id="orgd46e740"><span class="section-number-4">3.3.4.</span> RoC-AUC curve</h4>
 <div class="outline-text-4" id="text-3-3-4">
 <ul class="org-ul">
 <li>ROC: Receiver Operating Characteristic</li>
@@ -945,12 +974,12 @@ Repeat above for negatives.
 </div>
 </div>
 </div>
-<div id="outline-container-orgce3e52f" class="outline-2">
-<h2 id="orgce3e52f"><span class="section-number-2">4.</span> Week 5: Log Regression, SVM and Perceptron (Module 4)</h2>
+<div id="outline-container-orgf067e1a" class="outline-2">
+<h2 id="orgf067e1a"><span class="section-number-2">4.</span> Week 5: Log Regression, SVM and Perceptron (Module 4)</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org32bb53e" class="outline-3">
-<h3 id="org32bb53e"><span class="section-number-3">4.1.</span> Logistic Regression</h3>
+<div id="outline-container-org0a93338" class="outline-3">
+<h3 id="org0a93338"><span class="section-number-3">4.1.</span> Logistic Regression</h3>
 <div class="outline-text-3" id="text-4-1">
 <ul class="org-ul">
 <li>Backbone of neural network model</li>
@@ -961,8 +990,8 @@ Repeat above for negatives.
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org736bbaf" class="outline-4">
-<h4 id="org736bbaf"><span class="section-number-4">4.1.1.</span> Generative vs Discriminative Models (again)</h4>
+<div id="outline-container-org8dc3577" class="outline-4">
+<h4 id="org8dc3577"><span class="section-number-4">4.1.1.</span> Generative vs Discriminative Models (again)</h4>
 <div class="outline-text-4" id="text-4-1-1">
 <ul class="org-ul">
 <li>Generative model: able to generate synthetic data points
@@ -983,8 +1012,8 @@ Repeat above for negatives.
 </ul>
 </div>
 </div>
-<div id="outline-container-org65e896e" class="outline-4">
-<h4 id="org65e896e"><span class="section-number-4">4.1.2.</span> Bayes equation again</h4>
+<div id="outline-container-orgd8c9212" class="outline-4">
+<h4 id="orgd8c9212"><span class="section-number-4">4.1.2.</span> Bayes equation again</h4>
 <div class="outline-text-4" id="text-4-1-2">
 <p>
 \[
@@ -997,8 +1026,8 @@ P(y|x) = \frac{P(x|y)P(y)}{P(x)} = \frac{P(x,y)}{\sum_y P(x,y)}
 </dl>
 </div>
 </div>
-<div id="outline-container-org85cfb07" class="outline-4">
-<h4 id="org85cfb07"><span class="section-number-4">4.1.3.</span> Logistic Function for posterior probability</h4>
+<div id="outline-container-orgc98d322" class="outline-4">
+<h4 id="orgc98d322"><span class="section-number-4">4.1.3.</span> Logistic Function for posterior probability</h4>
 <div class="outline-text-4" id="text-4-1-3">
 <p>
 i.e. the following function
@@ -1022,7 +1051,7 @@ P(y|x) = g(s) = \frac{e^s}{1+e^s} = \frac{1}{1+e^{-s}}
 </ul>
 
 
-<div id="org17a0216" class="figure">
+<div id="orgf2cf9d2" class="figure">
 <p><img src="./img/sigmoid.png" alt="sigmoid.png" />
 </p>
 </div>
@@ -1035,8 +1064,8 @@ P(y|x) = g(s) = \frac{e^s}{1+e^s} = \frac{1}{1+e^{-s}}
 </ul>
 </div>
 </div>
-<div id="outline-container-orgee90d50" class="outline-4">
-<h4 id="orgee90d50"><span class="section-number-4">4.1.4.</span> Sigmoid is interpreted as probability</h4>
+<div id="outline-container-org6eaf224" class="outline-4">
+<h4 id="org6eaf224"><span class="section-number-4">4.1.4.</span> Sigmoid is interpreted as probability</h4>
 <div class="outline-text-4" id="text-4-1-4">
 <ul class="org-ul">
 <li><p>
@@ -1059,8 +1088,8 @@ g(s) & y=1 \\
 </ul>
 </div>
 </div>
-<div id="outline-container-orgfc184a0" class="outline-4">
-<h4 id="orgfc184a0"><span class="section-number-4">4.1.5.</span> Logistic regression model</h4>
+<div id="outline-container-org286902b" class="outline-4">
+<h4 id="org286902b"><span class="section-number-4">4.1.5.</span> Logistic regression model</h4>
 <div class="outline-text-4" id="text-4-1-5">
 <ul class="org-ul">
 <li>Expanding equation and replacing \(g(s)\) with linear combination of features</li>
@@ -1080,8 +1109,8 @@ P(y|x) =
 </ul>
 </div>
 </div>
-<div id="outline-container-orgae1f424" class="outline-4">
-<h4 id="orgae1f424"><span class="section-number-4">4.1.6.</span> The gradient of \(l(\theta)\)</h4>
+<div id="outline-container-org916e295" class="outline-4">
+<h4 id="org916e295"><span class="section-number-4">4.1.6.</span> The gradient of \(l(\theta)\)</h4>
 <div class="outline-text-4" id="text-4-1-6">
 <p>
 \[
@@ -1105,8 +1134,8 @@ l(\theta) := \log \prod^n_{i=1} p(y_i, |x_i, \theta) \\
 </ul>
 </div>
 </div>
-<div id="outline-container-orgfc60a17" class="outline-4">
-<h4 id="orgfc60a17"><span class="section-number-4">4.1.7.</span> Gradient descent</h4>
+<div id="outline-container-org7ec8b5a" class="outline-4">
+<h4 id="org7ec8b5a"><span class="section-number-4">4.1.7.</span> Gradient descent</h4>
 <div class="outline-text-4" id="text-4-1-7">
 <ul class="org-ul">
 <li>One way to solve unconstrained optimization problem is gradient descent</li>
@@ -1121,8 +1150,8 @@ l(\theta) := \log \prod^n_{i=1} p(y_i, |x_i, \theta) \\
 </ul>
 </div>
 </div>
-<div id="outline-container-org263d152" class="outline-4">
-<h4 id="org263d152"><span class="section-number-4">4.1.8.</span> Gradient ascent (concave) / descent (convex) algorithm</h4>
+<div id="outline-container-orgd7e64a5" class="outline-4">
+<h4 id="orgd7e64a5"><span class="section-number-4">4.1.8.</span> Gradient ascent (concave) / descent (convex) algorithm</h4>
 <div class="outline-text-4" id="text-4-1-8">
 <ul class="org-ul">
 <li>Initialize parameter \(\theta_0\)</li>
@@ -1143,8 +1172,8 @@ l(\theta) := \log \prod^n_{i=1} p(y_i, |x_i, \theta) \\
 </ul>
 </div>
 </div>
-<div id="outline-container-org79e55e3" class="outline-4">
-<h4 id="org79e55e3"><span class="section-number-4">4.1.9.</span> Advantages and disadvantages of logistic regression</h4>
+<div id="outline-container-org87aaea4" class="outline-4">
+<h4 id="org87aaea4"><span class="section-number-4">4.1.9.</span> Advantages and disadvantages of logistic regression</h4>
 <div class="outline-text-4" id="text-4-1-9">
 <ul class="org-ul">
 <li>Advantages:
@@ -1167,15 +1196,15 @@ l(\theta) := \log \prod^n_{i=1} p(y_i, |x_i, \theta) \\
 </div>
 </div>
 </div>
-<div id="outline-container-orgd0aeb1d" class="outline-3">
-<h3 id="orgd0aeb1d"><span class="section-number-3">4.2.</span> Support vector machine</h3>
+<div id="outline-container-org9f2c9b6" class="outline-3">
+<h3 id="org9f2c9b6"><span class="section-number-3">4.2.</span> Support vector machine</h3>
 <div class="outline-text-3" id="text-4-2">
 <ul class="org-ul">
 <li>SVM is a large margin classifier</li>
 </ul>
 </div>
-<div id="outline-container-org96a59fd" class="outline-4">
-<h4 id="org96a59fd"><span class="section-number-4">4.2.1.</span> Linear separation</h4>
+<div id="outline-container-org70f4686" class="outline-4">
+<h4 id="org70f4686"><span class="section-number-4">4.2.1.</span> Linear separation</h4>
 <div class="outline-text-4" id="text-4-2-1">
 <ul class="org-ul">
 <li>Can have different separating lines, so which line is the best?
@@ -1185,7 +1214,7 @@ l(\theta) := \log \prod^n_{i=1} p(y_i, |x_i, \theta) \\
 </ul></li>
 </ul>
 
-<div id="org9bb6d4d" class="figure">
+<div id="org8353662" class="figure">
 <p><img src="./img/lin-sep.png" alt="lin-sep.png" />
 </p>
 </div>
@@ -1196,8 +1225,8 @@ l(\theta) := \log \prod^n_{i=1} p(y_i, |x_i, \theta) \\
 </ul>
 </div>
 </div>
-<div id="outline-container-org3105b5a" class="outline-4">
-<h4 id="org3105b5a"><span class="section-number-4">4.2.2.</span> Finding &theta; that maximizes margin</h4>
+<div id="outline-container-org0a48f45" class="outline-4">
+<h4 id="org0a48f45"><span class="section-number-4">4.2.2.</span> Finding &theta; that maximizes margin</h4>
 <div class="outline-text-4" id="text-4-2-2">
 <ul class="org-ul">
 <li>Objective function created by constructing linear combination of features.
@@ -1217,8 +1246,8 @@ l(\theta) := \log \prod^n_{i=1} p(y_i, |x_i, \theta) \\
 </ul>
 </div>
 </div>
-<div id="outline-container-org6b20349" class="outline-4">
-<h4 id="org6b20349"><span class="section-number-4">4.2.3.</span> Length of margin</h4>
+<div id="outline-container-orgb5368b0" class="outline-4">
+<h4 id="orgb5368b0"><span class="section-number-4">4.2.3.</span> Length of margin</h4>
 <div class="outline-text-4" id="text-4-2-3">
 <p>
 \[
@@ -1237,7 +1266,7 @@ Therefore total margin is: \(\frac{2}{\parallel \theta \parallel}\) (since there
 </p>
 
 
-<div id="org8189193" class="figure">
+<div id="orgffa83a1" class="figure">
 <p><img src="./img/large-margin.png" alt="large-margin.png" />
 </p>
 </div>
@@ -1247,8 +1276,8 @@ Therefore total margin is: \(\frac{2}{\parallel \theta \parallel}\) (since there
 </ul>
 </div>
 </div>
-<div id="outline-container-org1172c4a" class="outline-4">
-<h4 id="org1172c4a"><span class="section-number-4">4.2.4.</span> Maximizing margin</h4>
+<div id="outline-container-org44140f9" class="outline-4">
+<h4 id="org44140f9"><span class="section-number-4">4.2.4.</span> Maximizing margin</h4>
 <div class="outline-text-4" id="text-4-2-4">
 <ul class="org-ul">
 <li>Maximize \(\frac{2}{\parallel \theta \parallel}\) in the objective function</li>
@@ -1268,11 +1297,11 @@ Therefore total margin is: \(\frac{2}{\parallel \theta \parallel}\) (since there
 </ul>
 </div>
 </div>
-<div id="outline-container-org3ad4424" class="outline-4">
-<h4 id="org3ad4424"><span class="section-number-4">4.2.5.</span> Geometric representation</h4>
+<div id="outline-container-org9319b7c" class="outline-4">
+<h4 id="org9319b7c"><span class="section-number-4">4.2.5.</span> Geometric representation</h4>
 <div class="outline-text-4" id="text-4-2-5">
 
-<div id="org036c2af" class="figure">
+<div id="org0721a23" class="figure">
 <p><img src="./img/geom-rep.png" alt="geom-rep.png" />
 </p>
 </div>
@@ -1283,7 +1312,7 @@ Therefore total margin is: \(\frac{2}{\parallel \theta \parallel}\) (since there
 </dl>
 </div>
 <ol class="org-ol">
-<li><a id="org304e959"></a>Converting problem<br />
+<li><a id="orge6e3ce4"></a>Converting problem<br />
 <div class="outline-text-5" id="text-4-2-5-1">
 <ul class="org-ul">
 <li>Many ML libraries can solve minimization problems instead of maximization</li>
@@ -1302,8 +1331,8 @@ Therefore total margin is: \(\frac{2}{\parallel \theta \parallel}\) (since there
 </li>
 </ol>
 </div>
-<div id="outline-container-org74f9e5a" class="outline-4">
-<h4 id="org74f9e5a"><span class="section-number-4">4.2.6.</span> Lagrange formulation (not in detail)</h4>
+<div id="outline-container-org150c8e7" class="outline-4">
+<h4 id="org150c8e7"><span class="section-number-4">4.2.6.</span> Lagrange formulation (not in detail)</h4>
 <div class="outline-text-4" id="text-4-2-6">
 <p>
 \[
@@ -1341,8 +1370,8 @@ L(\theta, b, \alpha) = \sum^N_{i=1} \alpha_i - \frac{1}{2} \sum^N_{i=1} \sum^N_{
 </p>
 </div>
 </div>
-<div id="outline-container-orgabb2b89" class="outline-4">
-<h4 id="orgabb2b89"><span class="section-number-4">4.2.7.</span> Usage</h4>
+<div id="outline-container-orge6f6782" class="outline-4">
+<h4 id="orge6f6782"><span class="section-number-4">4.2.7.</span> Usage</h4>
 <div class="outline-text-4" id="text-4-2-7">
 <ul class="org-ul">
 <li>Dual form good for binary classification, e.g. spam or not spam.</li>
@@ -1368,8 +1397,8 @@ L(\theta, b, \alpha) = \sum^N_{i=1} \alpha_i - \frac{1}{2} \sum^N_{i=1} \sum^N_{
 </ul>
 </div>
 </div>
-<div id="outline-container-org3bf6541" class="outline-4">
-<h4 id="org3bf6541"><span class="section-number-4">4.2.8.</span> From \(x\) to \(z\) space</h4>
+<div id="outline-container-orgb3009da" class="outline-4">
+<h4 id="orgb3009da"><span class="section-number-4">4.2.8.</span> From \(x\) to \(z\) space</h4>
 <div class="outline-text-4" id="text-4-2-8">
 <ul class="org-ul">
 <li>SVM can only be used when a linear decision line can be used</li>
@@ -1379,7 +1408,7 @@ L(\theta, b, \alpha) = \sum^N_{i=1} \alpha_i - \frac{1}{2} \sum^N_{i=1} \sum^N_{
 </ul>
 </div>
 <ol class="org-ol">
-<li><a id="orgd42dc83"></a>Kernel trick<br />
+<li><a id="org8aa6caf"></a>Kernel trick<br />
 <div class="outline-text-5" id="text-4-2-8-1">
 <p>
 Main premise is to take data from original space to newer space with higher dimensions, which make it more likely to have linear separation in the newer space.
@@ -1392,8 +1421,8 @@ In \(x\) space, they are called pre-images of support vectors.
 </li>
 </ol>
 </div>
-<div id="outline-container-orgc4a5627" class="outline-4">
-<h4 id="orgc4a5627"><span class="section-number-4">4.2.9.</span> Support vector machine</h4>
+<div id="outline-container-orgfeaabe7" class="outline-4">
+<h4 id="orgfeaabe7"><span class="section-number-4">4.2.9.</span> Support vector machine</h4>
 <div class="outline-text-4" id="text-4-2-9">
 <ul class="org-ul">
 <li>Can do <span style='background-color: #FFFF00;'>either</span>
@@ -1405,11 +1434,11 @@ In \(x\) space, they are called pre-images of support vectors.
 </div>
 </div>
 </div>
-<div id="outline-container-org128ace5" class="outline-3">
-<h3 id="org128ace5"><span class="section-number-3">4.3.</span> Perceptron</h3>
+<div id="outline-container-orgf89305a" class="outline-3">
+<h3 id="orgf89305a"><span class="section-number-3">4.3.</span> Perceptron</h3>
 <div class="outline-text-3" id="text-4-3">
 
-<div id="org4286c43" class="figure">
+<div id="org6556518" class="figure">
 <p><img src="./img/spam.png" alt="spam.png" />
 </p>
 </div>
@@ -1429,11 +1458,11 @@ f(x_i)
 <li>i.e. \(y_i f(x_i) \gt 0\) for a correct classification</li>
 </ul>
 </div>
-<div id="outline-container-org975c674" class="outline-4">
-<h4 id="org975c674"><span class="section-number-4">4.3.1.</span> Linearly separable</h4>
+<div id="outline-container-orgdcf4911" class="outline-4">
+<h4 id="orgdcf4911"><span class="section-number-4">4.3.1.</span> Linearly separable</h4>
 <div class="outline-text-4" id="text-4-3-1">
 
-<div id="org46de7ce" class="figure">
+<div id="org15da70c" class="figure">
 <p><img src="./img/linear-sep.png" alt="linear-sep.png" />
 </p>
 </div>
@@ -1443,8 +1472,8 @@ f(x_i)
 </ul>
 </div>
 </div>
-<div id="outline-container-org55fb463" class="outline-4">
-<h4 id="org55fb463"><span class="section-number-4">4.3.2.</span> Linear classifier</h4>
+<div id="outline-container-orgba3fc19" class="outline-4">
+<h4 id="orgba3fc19"><span class="section-number-4">4.3.2.</span> Linear classifier</h4>
 <div class="outline-text-4" id="text-4-3-2">
 <p>
 <img src="./img/lin-class.png" alt="lin-class.png" />
@@ -1462,7 +1491,7 @@ f(x) = x\theta + \theta_0
 </ul>
 </div>
 <ol class="org-ol">
-<li><a id="org9e27a96"></a>Linear classifier for higher dimensions<br />
+<li><a id="org064b151"></a>Linear classifier for higher dimensions<br />
 <div class="outline-text-5" id="text-4-3-2-1">
 <ul class="org-ul">
 <li>In 3D, the discriminant is a plane</li>
@@ -1472,8 +1501,8 @@ f(x) = x\theta + \theta_0
 </li>
 </ol>
 </div>
-<div id="outline-container-org6c7535f" class="outline-4">
-<h4 id="org6c7535f"><span class="section-number-4">4.3.3.</span> The Perceptron Classifier</h4>
+<div id="outline-container-orgaf3d7ba" class="outline-4">
+<h4 id="orgaf3d7ba"><span class="section-number-4">4.3.3.</span> The Perceptron Classifier</h4>
 <div class="outline-text-4" id="text-4-3-3">
 <ul class="org-ul">
 <li><span style='background-color: #FFFF00;'>hard classifier</span></li>
@@ -1488,10 +1517,10 @@ f(x) = x\theta + \theta_0
 </ul>
 </div>
 <ol class="org-ol">
-<li><a id="orgfd39236"></a>Algorithm<br />
+<li><a id="orga9e9ca3"></a>Algorithm<br />
 <div class="outline-text-5" id="text-4-3-3-1">
 
-<div id="org60afefd" class="figure">
+<div id="org0e3e966" class="figure">
 <p><img src="./img/perceptron.png" alt="perceptron.png" />
 </p>
 </div>
@@ -1507,11 +1536,11 @@ f(x) = x\theta + \theta_0
 </li>
 </ol>
 </div>
-<div id="outline-container-org6866854" class="outline-4">
-<h4 id="org6866854"><span class="section-number-4">4.3.4.</span> Perceptron activation</h4>
+<div id="outline-container-org480e244" class="outline-4">
+<h4 id="org480e244"><span class="section-number-4">4.3.4.</span> Perceptron activation</h4>
 <div class="outline-text-4" id="text-4-3-4">
 
-<div id="org2967df5" class="figure">
+<div id="org46e4e8b" class="figure">
 <p><img src="./img/perceptron-activation.png" alt="perceptron-activation.png" />
 </p>
 </div>
@@ -1522,8 +1551,8 @@ f(x) = x\theta + \theta_0
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf4839b6" class="outline-4">
-<h4 id="orgf4839b6"><span class="section-number-4">4.3.5.</span> Advantages and disadvantages of Perceptron</h4>
+<div id="outline-container-orgbf74f04" class="outline-4">
+<h4 id="orgbf74f04"><span class="section-number-4">4.3.5.</span> Advantages and disadvantages of Perceptron</h4>
 <div class="outline-text-4" id="text-4-3-5">
 <ul class="org-ul">
 <li>Advantages
@@ -1542,19 +1571,19 @@ f(x) = x\theta + \theta_0
 </div>
 </div>
 </div>
-<div id="outline-container-org290729a" class="outline-2">
-<h2 id="org290729a"><span class="section-number-2">5.</span> Week 6: Embeddings/Dimensionality reduction</h2>
+<div id="outline-container-org5841658" class="outline-2">
+<h2 id="org5841658"><span class="section-number-2">5.</span> Week 6: Embeddings/Dimensionality reduction</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Singular Value Decomposition (SVD)
 </p>
 </div>
-<div id="outline-container-org704f0ab" class="outline-3">
-<h3 id="org704f0ab"><span class="section-number-3">5.1.</span> SVD and Co-occurrence Embeddings</h3>
+<div id="outline-container-orge7fb227" class="outline-3">
+<h3 id="orge7fb227"><span class="section-number-3">5.1.</span> SVD and Co-occurrence Embeddings</h3>
 <div class="outline-text-3" id="text-5-1">
 </div>
-<div id="outline-container-orgd7401fe" class="outline-4">
-<h4 id="orgd7401fe"><span class="section-number-4">5.1.1.</span> Motivating example</h4>
+<div id="outline-container-org78c45ac" class="outline-4">
+<h4 id="org78c45ac"><span class="section-number-4">5.1.1.</span> Motivating example</h4>
 <div class="outline-text-4" id="text-5-1-1">
 <p>
 Dimensionality reduction for text is to understand how they behave in 2D or 3D space.
@@ -1565,8 +1594,8 @@ Dimensionality reduction for text is to understand how they behave in 2D or 3D s
 </ul>
 </div>
 </div>
-<div id="outline-container-org4f487c0" class="outline-4">
-<h4 id="org4f487c0"><span class="section-number-4">5.1.2.</span> Bag of words representation</h4>
+<div id="outline-container-orgf7e8d46" class="outline-4">
+<h4 id="orgf7e8d46"><span class="section-number-4">5.1.2.</span> Bag of words representation</h4>
 <div class="outline-text-4" id="text-5-1-2">
 <ul class="org-ul">
 <li>Has many unique words (dimensions) that leads to:
@@ -1579,11 +1608,11 @@ Dimensionality reduction for text is to understand how they behave in 2D or 3D s
 </ul>
 </div>
 </div>
-<div id="outline-container-orgdd0e634" class="outline-4">
-<h4 id="orgdd0e634"><span class="section-number-4">5.1.3.</span> What is dimensionality reduction?</h4>
+<div id="outline-container-org95ce0af" class="outline-4">
+<h4 id="org95ce0af"><span class="section-number-4">5.1.3.</span> What is dimensionality reduction?</h4>
 <div class="outline-text-4" id="text-5-1-3">
 
-<div id="org5d2ec19" class="figure">
+<div id="orgcd88bee" class="figure">
 <p><img src="./img/dim-reduct.png" alt="dim-reduct.png" />
 </p>
 </div>
@@ -1598,8 +1627,8 @@ Dimensionality reduction for text is to understand how they behave in 2D or 3D s
 </ul>
 </div>
 </div>
-<div id="outline-container-orgfe36109" class="outline-4">
-<h4 id="orgfe36109"><span class="section-number-4">5.1.4.</span> Intuition (of PCA)</h4>
+<div id="outline-container-org426959f" class="outline-4">
+<h4 id="org426959f"><span class="section-number-4">5.1.4.</span> Intuition (of PCA)</h4>
 <div class="outline-text-4" id="text-5-1-4">
 <ul class="org-ul">
 <li>Approximate a \(D\) -dimensional dataset using fewer dimensions</li>
@@ -1614,8 +1643,8 @@ Dimensionality reduction for text is to understand how they behave in 2D or 3D s
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb1944d9" class="outline-4">
-<h4 id="orgb1944d9"><span class="section-number-4">5.1.5.</span> Singular value decomposition</h4>
+<div id="outline-container-org3b7400c" class="outline-4">
+<h4 id="org3b7400c"><span class="section-number-4">5.1.5.</span> Singular value decomposition</h4>
 <div class="outline-text-4" id="text-5-1-5">
 <p>
 For a matrix \(X_{n \times d}\) where:
@@ -1640,10 +1669,10 @@ X = U \Sigma V^T
 </dl>
 </div>
 </div>
-<div id="outline-container-orgc8681cd" class="outline-4">
-<h4 id="orgc8681cd"><span class="section-number-4">5.1.6.</span> Co-occurrence matrices</h4>
+<div id="outline-container-org719c80a" class="outline-4">
+<h4 id="org719c80a"><span class="section-number-4">5.1.6.</span> Co-occurrence matrices</h4>
 <div class="outline-text-4" id="text-5-1-6">
-<div class="BLOCKQUOTE" id="org6ce2d2d">
+<div class="BLOCKQUOTE" id="orgb051f75">
 <p>
 Instead of matrix.
 </p>
@@ -1664,14 +1693,14 @@ Each matrix for one value of context length.
 </ol></li>
 </ul>
 
-<div id="org550bec7" class="figure">
+<div id="orgcb7198c" class="figure">
 <p><img src="./img/co-matrix.png " alt="co-matrix.png " />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org2bcf1e1" class="outline-4">
-<h4 id="org2bcf1e1"><span class="section-number-4">5.1.7.</span> SVD on co-occurrence matrices</h4>
+<div id="outline-container-org7b5d8cb" class="outline-4">
+<h4 id="org7b5d8cb"><span class="section-number-4">5.1.7.</span> SVD on co-occurrence matrices</h4>
 <div class="outline-text-4" id="text-5-1-7">
 <ul class="org-ul">
 <li>For corpus with vocabulary \(V\) of size \(d\), co-occurrence matrix has size \(d \times d\)</li>
@@ -1686,11 +1715,11 @@ Each matrix for one value of context length.
 </ul>
 </div>
 </div>
-<div id="outline-container-org2a8e20d" class="outline-4">
-<h4 id="org2a8e20d"><span class="section-number-4">5.1.8.</span> Dense word embeddings</h4>
+<div id="outline-container-org6ca5b96" class="outline-4">
+<h4 id="org6ca5b96"><span class="section-number-4">5.1.8.</span> Dense word embeddings</h4>
 <div class="outline-text-4" id="text-5-1-8">
 
-<div id="orga8d6ad8" class="figure">
+<div id="org9165de1" class="figure">
 <p><img src="./img/dense.png" alt="dense.png" />
 </p>
 </div>
@@ -1701,8 +1730,8 @@ Each matrix for one value of context length.
 </ul>
 </div>
 </div>
-<div id="outline-container-org3bf806b" class="outline-4">
-<h4 id="org3bf806b"><span class="section-number-4">5.1.9.</span> Advantages of dense word embeddings</h4>
+<div id="outline-container-org463a4a2" class="outline-4">
+<h4 id="org463a4a2"><span class="section-number-4">5.1.9.</span> Advantages of dense word embeddings</h4>
 <div class="outline-text-4" id="text-5-1-9">
 <ul class="org-ul">
 <li>Denoising: low-order dimensions may represent unimportant information; higher-order dimensions keep only important information</li>
@@ -1720,15 +1749,15 @@ Each matrix for one value of context length.
 </div>
 </div>
 </div>
-<div id="outline-container-orge523b2e" class="outline-3">
-<h3 id="orge523b2e"><span class="section-number-3">5.2.</span> GloVe</h3>
+<div id="outline-container-org16697f2" class="outline-3">
+<h3 id="org16697f2"><span class="section-number-3">5.2.</span> GloVe</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 Global Vectors.
 </p>
 </div>
-<div id="outline-container-orgedf7b6e" class="outline-4">
-<h4 id="orgedf7b6e"><span class="section-number-4">5.2.1.</span> Definitions</h4>
+<div id="outline-container-org657753a" class="outline-4">
+<h4 id="org657753a"><span class="section-number-4">5.2.1.</span> Definitions</h4>
 <div class="outline-text-4" id="text-5-2-1">
 <dl class="org-dl">
 <dt>Global</dt><dd>global statistics of corpus</dd>
@@ -1736,8 +1765,8 @@ Global Vectors.
 </dl>
 </div>
 </div>
-<div id="outline-container-org18e0a21" class="outline-4">
-<h4 id="org18e0a21"><span class="section-number-4">5.2.2.</span> GloVe model</h4>
+<div id="outline-container-org623048c" class="outline-4">
+<h4 id="org623048c"><span class="section-number-4">5.2.2.</span> GloVe model</h4>
 <div class="outline-text-4" id="text-5-2-2">
 <ul class="org-ul">
 <li>Glove uses statistics of word occurrences in a corpus as the primary source of information.</li>
@@ -1750,8 +1779,8 @@ Global Vectors.
 </ul>
 </div>
 </div>
-<div id="outline-container-org89d60bc" class="outline-4">
-<h4 id="org89d60bc"><span class="section-number-4">5.2.3.</span> Extending the co-occurrence matrix</h4>
+<div id="outline-container-org09b6776" class="outline-4">
+<h4 id="org09b6776"><span class="section-number-4">5.2.3.</span> Extending the co-occurrence matrix</h4>
 <div class="outline-text-4" id="text-5-2-3">
 <dl class="org-dl">
 <dt>Definition</dt><dd>For corpus of vocabulary \(V\) of size \(d\), the co-occurrence matrix is a symmetrical matrix of size \(d\times d\)</dd>
@@ -1761,10 +1790,10 @@ Global Vectors.
 </dl>
 </div>
 </div>
-<div id="outline-container-orgd45326e" class="outline-4">
-<h4 id="orgd45326e"><span class="section-number-4">5.2.4.</span> Example</h4>
+<div id="outline-container-orge9f6f29" class="outline-4">
+<h4 id="orge9f6f29"><span class="section-number-4">5.2.4.</span> Example</h4>
 <div class="outline-text-4" id="text-5-2-4">
-<div class="BLOCKQUOTE" id="org6f8338e">
+<div class="BLOCKQUOTE" id="org0b73724">
 <p>
 It was the best of times, it was the worst of times.
 (Context window=2)
@@ -1781,8 +1810,8 @@ i = "it", j = "was"
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb055621" class="outline-4">
-<h4 id="orgb055621"><span class="section-number-4">5.2.5.</span> GloVe cost function</h4>
+<div id="outline-container-orga21b173" class="outline-4">
+<h4 id="orga21b173"><span class="section-number-4">5.2.5.</span> GloVe cost function</h4>
 <div class="outline-text-4" id="text-5-2-5">
 <ul class="org-ul">
 <li>GloVe suggests finding the relationship between 2 words in terms of probability, rather than occurrence counts</li>
@@ -1816,8 +1845,8 @@ f(x) =
 </ul>
 </div>
 </div>
-<div id="outline-container-org4268667" class="outline-4">
-<h4 id="org4268667"><span class="section-number-4">5.2.6.</span> GloVe word vectors</h4>
+<div id="outline-container-orgaa06d23" class="outline-4">
+<h4 id="orgaa06d23"><span class="section-number-4">5.2.6.</span> GloVe word vectors</h4>
 <div class="outline-text-4" id="text-5-2-6">
 <ul class="org-ul">
 <li>Trained in batches of the training sample with optimizer to <b><b>minimize</b></b> the cost function and hence generate word and context vectors for each word</li>
@@ -1828,8 +1857,8 @@ f(x) =
 </ul>
 </div>
 </div>
-<div id="outline-container-org22a6ae7" class="outline-4">
-<h4 id="org22a6ae7"><span class="section-number-4">5.2.7.</span> GloVe conserves linear relationships</h4>
+<div id="outline-container-orga2a2d43" class="outline-4">
+<h4 id="orga2a2d43"><span class="section-number-4">5.2.7.</span> GloVe conserves linear relationships</h4>
 <div class="outline-text-4" id="text-5-2-7">
 <ul class="org-ul">
 <li>Word vectors by GloVe conserve linear substructures</li>
@@ -1843,19 +1872,19 @@ f(x) =
 </div>
 </div>
 </div>
-<div id="outline-container-orgcec4e3a" class="outline-2">
-<h2 id="orgcec4e3a"><span class="section-number-2">6.</span> Week 8: Neural Networks and Word2Vec</h2>
+<div id="outline-container-orga8c0a99" class="outline-2">
+<h2 id="orga8c0a99"><span class="section-number-2">6.</span> Week 8: Neural Networks and Word2Vec</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-orgd0bc86c" class="outline-3">
-<h3 id="orgd0bc86c"><span class="section-number-3">6.1.</span> Neural Networks</h3>
+<div id="outline-container-orge4f5863" class="outline-3">
+<h3 id="orge4f5863"><span class="section-number-3">6.1.</span> Neural Networks</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 M6T1
 </p>
 </div>
-<div id="outline-container-org20f7502" class="outline-4">
-<h4 id="org20f7502"><span class="section-number-4">6.1.1.</span> Inspiration from biological neurons</h4>
+<div id="outline-container-orgf1bc967" class="outline-4">
+<h4 id="orgf1bc967"><span class="section-number-4">6.1.1.</span> Inspiration from biological neurons</h4>
 <div class="outline-text-4" id="text-6-1-1">
 <p>
 Neurons: core components of the brain and nervous system.
@@ -1867,11 +1896,11 @@ Consists of:
 </dl>
 </div>
 </div>
-<div id="outline-container-orge53e74a" class="outline-4">
-<h4 id="orge53e74a"><span class="section-number-4">6.1.2.</span> Logistic regression block review</h4>
+<div id="outline-container-org9012322" class="outline-4">
+<h4 id="org9012322"><span class="section-number-4">6.1.2.</span> Logistic regression block review</h4>
 <div class="outline-text-4" id="text-6-1-2">
 
-<div id="org7a4a44a" class="figure">
+<div id="orgfa6b018" class="figure">
 <p><img src="./img/neuron-block.png" alt="neuron-block.png" />
 </p>
 </div>
@@ -1898,8 +1927,8 @@ Consists of:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbbd2761" class="outline-4">
-<h4 id="orgbbd2761"><span class="section-number-4">6.1.3.</span> Connecting blocks to create neural networks</h4>
+<div id="outline-container-orgcb60de5" class="outline-4">
+<h4 id="orgcb60de5"><span class="section-number-4">6.1.3.</span> Connecting blocks to create neural networks</h4>
 <div class="outline-text-4" id="text-6-1-3">
 <p>
 Recap:
@@ -1924,8 +1953,8 @@ Recap:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgcd548ba" class="outline-4">
-<h4 id="orgcd548ba"><span class="section-number-4">6.1.4.</span> Increasing the depth of each layer</h4>
+<div id="outline-container-org5a944f0" class="outline-4">
+<h4 id="org5a944f0"><span class="section-number-4">6.1.4.</span> Increasing the depth of each layer</h4>
 <div class="outline-text-4" id="text-6-1-4">
 <p>
 i.e. same number of layers, but more neurons
@@ -1936,8 +1965,8 @@ i.e. same number of layers, but more neurons
 </ul>
 </div>
 </div>
-<div id="outline-container-orgefadee2" class="outline-4">
-<h4 id="orgefadee2"><span class="section-number-4">6.1.5.</span> Increasing layers</h4>
+<div id="outline-container-orgd78ea28" class="outline-4">
+<h4 id="orgd78ea28"><span class="section-number-4">6.1.5.</span> Increasing layers</h4>
 <div class="outline-text-4" id="text-6-1-5">
 <ul class="org-ul">
 <li>Add more hidden layers</li>
@@ -1952,8 +1981,8 @@ i.e. same number of layers, but more neurons
 </ul>
 </div>
 </div>
-<div id="outline-container-org56aeb19" class="outline-4">
-<h4 id="org56aeb19"><span class="section-number-4">6.1.6.</span> Forward pass</h4>
+<div id="outline-container-org211f8e6" class="outline-4">
+<h4 id="org211f8e6"><span class="section-number-4">6.1.6.</span> Forward pass</h4>
 <div class="outline-text-4" id="text-6-1-6">
 <p>
 \[
@@ -1966,8 +1995,8 @@ O_{11} = \frac{1}{1+e^{-u_{11}}}
 </ul>
 </div>
 </div>
-<div id="outline-container-org772f210" class="outline-4">
-<h4 id="org772f210"><span class="section-number-4">6.1.7.</span> Backpropagation</h4>
+<div id="outline-container-orge8beb29" class="outline-4">
+<h4 id="orge8beb29"><span class="section-number-4">6.1.7.</span> Backpropagation</h4>
 <div class="outline-text-4" id="text-6-1-7">
 <ul class="org-ul">
 <li>Update all \(\theta_i\) parameters from the right to the left of the network</li>
@@ -1988,15 +2017,15 @@ O_{11} = \frac{1}{1+e^{-u_{11}}}
 </div>
 </div>
 </div>
-<div id="outline-container-orgdec7de1" class="outline-3">
-<h3 id="orgdec7de1"><span class="section-number-3">6.2.</span> Word2Vec, CBOW and Skipgram</h3>
+<div id="outline-container-org5e371b6" class="outline-3">
+<h3 id="org5e371b6"><span class="section-number-3">6.2.</span> Word2Vec, CBOW and Skipgram</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 M6L2
 </p>
 </div>
-<div id="outline-container-org0ccbaef" class="outline-4">
-<h4 id="org0ccbaef"><span class="section-number-4">6.2.1.</span> Review of One-Hot Encoding</h4>
+<div id="outline-container-org39981f1" class="outline-4">
+<h4 id="org39981f1"><span class="section-number-4">6.2.1.</span> Review of One-Hot Encoding</h4>
 <div class="outline-text-4" id="text-6-2-1">
 <ul class="org-ul">
 <li>Simplest word embedding.</li>
@@ -2012,8 +2041,8 @@ provide distinguishing features for the words in the corpus.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org7b65d0a" class="outline-4">
-<h4 id="org7b65d0a"><span class="section-number-4">6.2.2.</span> Issues with One-Hot Embedding</h4>
+<div id="outline-container-org159708d" class="outline-4">
+<h4 id="org159708d"><span class="section-number-4">6.2.2.</span> Issues with One-Hot Embedding</h4>
 <div class="outline-text-4" id="text-6-2-2">
 <ul class="org-ul">
 <li>The size of each word vector = vocabulary size in the corpus. Creates a huge vector if we have millions of words in the vocabulary.</li>
@@ -2023,8 +2052,8 @@ provide distinguishing features for the words in the corpus.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org8a4c72a" class="outline-4">
-<h4 id="org8a4c72a"><span class="section-number-4">6.2.3.</span> Contextual meaning of the words</h4>
+<div id="outline-container-org7f6dbc6" class="outline-4">
+<h4 id="org7f6dbc6"><span class="section-number-4">6.2.3.</span> Contextual meaning of the words</h4>
 <div class="outline-text-4" id="text-6-2-3">
 <ul class="org-ul">
 <li>Word2Vec and GLoVE are context-independent.
@@ -2041,8 +2070,8 @@ provide distinguishing features for the words in the corpus.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org2d5eb47" class="outline-4">
-<h4 id="org2d5eb47"><span class="section-number-4">6.2.4.</span> What do we want to achieve from word embeddings?</h4>
+<div id="outline-container-org399659d" class="outline-4">
+<h4 id="org399659d"><span class="section-number-4">6.2.4.</span> What do we want to achieve from word embeddings?</h4>
 <div class="outline-text-4" id="text-6-2-4">
 <ul class="org-ul">
 <li>Can we come up with a word embedding that can capture a numerical similarity value? e.g.
@@ -2053,8 +2082,8 @@ provide distinguishing features for the words in the corpus.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org9642699" class="outline-4">
-<h4 id="org9642699"><span class="section-number-4">6.2.5.</span> Algorithm 1:: Continuous Bag of Words (CBOW)</h4>
+<div id="outline-container-orgd437951" class="outline-4">
+<h4 id="orgd437951"><span class="section-number-4">6.2.5.</span> Algorithm 1:: Continuous Bag of Words (CBOW)</h4>
 <div class="outline-text-4" id="text-6-2-5">
 <ul class="org-ul">
 <li>Use neural networks to learn the underlying representation of words</li>
@@ -2062,7 +2091,7 @@ provide distinguishing features for the words in the corpus.</li>
 </ul>
 </div>
 <ol class="org-ol">
-<li><a id="orgc671cb2"></a>Neighboring words for CBOW (label creation)<br />
+<li><a id="orgf0db44a"></a>Neighboring words for CBOW (label creation)<br />
 <div class="outline-text-5" id="text-6-2-5-1">
 <ul class="org-ul">
 <li>i.e., Given the neighbors of a word, can we predict the center word?</li>
@@ -2072,7 +2101,7 @@ provide distinguishing features for the words in the corpus.</li>
 </ul>
 </div>
 </li>
-<li><a id="org760aead"></a>Embedding every single word in the corpus using its context<br />
+<li><a id="orgcd7184d"></a>Embedding every single word in the corpus using its context<br />
 <div class="outline-text-5" id="text-6-2-5-2">
 <ul class="org-ul">
 <li>Find the embedding representation of the word "orange".</li>
@@ -2080,7 +2109,7 @@ provide distinguishing features for the words in the corpus.</li>
 </ul>
 </div>
 </li>
-<li><a id="orgd8e8963"></a>Using a window size of 1<br />
+<li><a id="org64d9c5b"></a>Using a window size of 1<br />
 <div class="outline-text-5" id="text-6-2-5-3">
 <p>
 [Apple, <span class="underline">_</span>, Are]
@@ -2109,8 +2138,8 @@ provide distinguishing features for the words in the corpus.</li>
 </li>
 </ol>
 </div>
-<div id="outline-container-orgc2b2dd1" class="outline-4">
-<h4 id="orgc2b2dd1"><span class="section-number-4">6.2.6.</span> Algorithm 2: Skip-Gram model</h4>
+<div id="outline-container-org787923f" class="outline-4">
+<h4 id="org787923f"><span class="section-number-4">6.2.6.</span> Algorithm 2: Skip-Gram model</h4>
 <div class="outline-text-4" id="text-6-2-6">
 <ul class="org-ul">
 <li>Given a center word, what could be the context (neighbours) of the center word?</li>
@@ -2132,8 +2161,8 @@ provide distinguishing features for the words in the corpus.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org12cd22c" class="outline-4">
-<h4 id="org12cd22c"><span class="section-number-4">6.2.7.</span> Main differences between CBOW and Skip-gram</h4>
+<div id="outline-container-org9371a2f" class="outline-4">
+<h4 id="org9371a2f"><span class="section-number-4">6.2.7.</span> Main differences between CBOW and Skip-gram</h4>
 <div class="outline-text-4" id="text-6-2-7">
 <ul class="org-ul">
 <li>CBOW learns better syntactic relationships between words; Skipgram captures better semantic relationships.
@@ -2147,15 +2176,15 @@ provide distinguishing features for the words in the corpus.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-org74329f9" class="outline-2">
-<h2 id="org74329f9"><span class="section-number-2">7.</span> Week 9: Convolutional Neural Networks and Recurrent Neural Networks</h2>
+<div id="outline-container-orga145a85" class="outline-2">
+<h2 id="orga145a85"><span class="section-number-2">7.</span> Week 9: Convolutional Neural Networks and Recurrent Neural Networks</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 Module 7
 </p>
 </div>
-<div id="outline-container-org50c38a3" class="outline-3">
-<h3 id="org50c38a3"><span class="section-number-3">7.1.</span> CNN and Deep Learning I</h3>
+<div id="outline-container-org2536fa5" class="outline-3">
+<h3 id="org2536fa5"><span class="section-number-3">7.1.</span> CNN and Deep Learning I</h3>
 <div class="outline-text-3" id="text-7-1">
 <ul class="org-ul">
 <li>Deep learning is a network that contains several hidden layers</li>
@@ -2179,8 +2208,8 @@ Module 7
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org0fdfa95" class="outline-4">
-<h4 id="org0fdfa95"><span class="section-number-4">7.1.1.</span> Example: learning an image</h4>
+<div id="outline-container-org85c66f5" class="outline-4">
+<h4 id="org85c66f5"><span class="section-number-4">7.1.1.</span> Example: learning an image</h4>
 <div class="outline-text-4" id="text-7-1-1">
 <ul class="org-ul">
 <li>Some patterns are much smaller than the whole image.</li>
@@ -2196,8 +2225,8 @@ Module 7
 </ul>
 </div>
 </div>
-<div id="outline-container-org191a19f" class="outline-4">
-<h4 id="org191a19f"><span class="section-number-4">7.1.2.</span> Why does CNN work well for images</h4>
+<div id="outline-container-orga9d0162" class="outline-4">
+<h4 id="orga9d0162"><span class="section-number-4">7.1.2.</span> Why does CNN work well for images</h4>
 <div class="outline-text-4" id="text-7-1-2">
 <ul class="org-ul">
 <li>Introducing small regions to a network instead of pixel by pixel, how is network going to learn?
@@ -2233,8 +2262,8 @@ Module 7
 </div>
 </div>
 </div>
-<div id="outline-container-org46e013d" class="outline-3">
-<h3 id="org46e013d"><span class="section-number-3">7.2.</span> CNN and Deep Learning II</h3>
+<div id="outline-container-org6d92484" class="outline-3">
+<h3 id="org6d92484"><span class="section-number-3">7.2.</span> CNN and Deep Learning II</h3>
 <div class="outline-text-3" id="text-7-2">
 <p>
 Module 7 L1 T2
@@ -2250,8 +2279,8 @@ Module 7 L1 T2
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org7ef2e74" class="outline-4">
-<h4 id="org7ef2e74"><span class="section-number-4">7.2.1.</span> Convolution vs Fully connected</h4>
+<div id="outline-container-orge9bbf44" class="outline-4">
+<h4 id="orge9bbf44"><span class="section-number-4">7.2.1.</span> Convolution vs Fully connected</h4>
 <div class="outline-text-4" id="text-7-2-1">
 <ul class="org-ul">
 <li>A convolutional layer has several filters that do the convolutional operation.</li>
@@ -2284,7 +2313,7 @@ Commonly, 2x2 is used for max pooling</li>
 </ul>
 </div>
 <ol class="org-ol">
-<li><a id="orgd103a21"></a>Summary<br />
+<li><a id="org5cbf882"></a>Summary<br />
 <div class="outline-text-5" id="text-7-2-1-1">
 <p>
 CNN compresses a fully connected network in 3 ways:
@@ -2298,8 +2327,8 @@ CNN compresses a fully connected network in 3 ways:
 </li>
 </ol>
 </div>
-<div id="outline-container-org9881e52" class="outline-4">
-<h4 id="org9881e52"><span class="section-number-4">7.2.2.</span> The whole CNN</h4>
+<div id="outline-container-orgf2b1ab7" class="outline-4">
+<h4 id="orgf2b1ab7"><span class="section-number-4">7.2.2.</span> The whole CNN</h4>
 <div class="outline-text-4" id="text-7-2-2">
 <ul class="org-ul">
 <li>After initial input, convolution and max pooling, a new smaller image is generated, with the number of channels being the number of filters.</li>
@@ -2314,8 +2343,8 @@ CNN compresses a fully connected network in 3 ways:
 </ul>
 </div>
 </div>
-<div id="outline-container-org21f2250" class="outline-4">
-<h4 id="org21f2250"><span class="section-number-4">7.2.3.</span> CNN in Keras</h4>
+<div id="outline-container-org9ba1c99" class="outline-4">
+<h4 id="org9ba1c99"><span class="section-number-4">7.2.3.</span> CNN in Keras</h4>
 <div class="outline-text-4" id="text-7-2-3">
 <p>
 All these tasks can be done in packages like Keras or Pytorch.
@@ -2324,8 +2353,8 @@ All these tasks can be done in packages like Keras or Pytorch.
 </div>
 </div>
 </div>
-<div id="outline-container-org122e1d8" class="outline-3">
-<h3 id="org122e1d8"><span class="section-number-3">7.3.</span> Recurrent neural networks Part I</h3>
+<div id="outline-container-org1943918" class="outline-3">
+<h3 id="org1943918"><span class="section-number-3">7.3.</span> Recurrent neural networks Part I</h3>
 <div class="outline-text-3" id="text-7-3">
 <p>
 M7 T2 L1
@@ -2337,8 +2366,8 @@ M7 T2 L1
 <li>Solution is RNN, which can memorize previous input data due to their internal memory.</li>
 </ul>
 </div>
-<div id="outline-container-orgf3ef359" class="outline-4">
-<h4 id="orgf3ef359"><span class="section-number-4">7.3.1.</span> Name Entity Recognition</h4>
+<div id="outline-container-org9b6e5ee" class="outline-4">
+<h4 id="org9b6e5ee"><span class="section-number-4">7.3.1.</span> Name Entity Recognition</h4>
 <div class="outline-text-4" id="text-7-3-1">
 <ul class="org-ul">
 <li>For document: <code>Mahdi and Wafa teach NLP</code></li>
@@ -2357,8 +2386,8 @@ M7 T2 L1
 </ul>
 </div>
 </div>
-<div id="outline-container-org8b94b61" class="outline-4">
-<h4 id="org8b94b61"><span class="section-number-4">7.3.2.</span> Recap of feed-forward networks</h4>
+<div id="outline-container-org533decc" class="outline-4">
+<h4 id="org533decc"><span class="section-number-4">7.3.2.</span> Recap of feed-forward networks</h4>
 <div class="outline-text-4" id="text-7-3-2">
 <p>
 Such as ANN, CNN.
@@ -2372,11 +2401,11 @@ Such as ANN, CNN.
 </ul>
 </div>
 </div>
-<div id="outline-container-orga8ac8c8" class="outline-4">
-<h4 id="orga8ac8c8"><span class="section-number-4">7.3.3.</span> Simplifying this for RNN</h4>
+<div id="outline-container-org95aa412" class="outline-4">
+<h4 id="org95aa412"><span class="section-number-4">7.3.3.</span> Simplifying this for RNN</h4>
 <div class="outline-text-4" id="text-7-3-3">
 
-<div id="orgcbe8eea" class="figure">
+<div id="org3b4a498" class="figure">
 <p><img src="./img/rnn1.png" alt="rnn1.png" />
 </p>
 </div>
@@ -2388,8 +2417,8 @@ Such as ANN, CNN.
 </div>
 </div>
 </div>
-<div id="outline-container-orgd74f95f" class="outline-3">
-<h3 id="orgd74f95f"><span class="section-number-3">7.4.</span> Recurrent neural networks Part II</h3>
+<div id="outline-container-org7c184cb" class="outline-3">
+<h3 id="org7c184cb"><span class="section-number-3">7.4.</span> Recurrent neural networks Part II</h3>
 <div class="outline-text-3" id="text-7-4">
 <p>
 M7 T2 L2
@@ -2398,8 +2427,8 @@ M7 T2 L2
 <li>Previously: created a feed-forward network and represented with compact visualization. Example problem is NER task for a sentence <code>Mahdi and Wafa teach NLP</code>.</li>
 </ul>
 </div>
-<div id="outline-container-org2d689a8" class="outline-4">
-<h4 id="org2d689a8"><span class="section-number-4">7.4.1.</span> RNN</h4>
+<div id="outline-container-orga61f30b" class="outline-4">
+<h4 id="orga61f30b"><span class="section-number-4">7.4.1.</span> RNN</h4>
 <div class="outline-text-4" id="text-7-4-1">
 <ul class="org-ul">
 <li>As there are 5 words, we need to construct 5 similar feedforward network for each word.</li>
@@ -2430,8 +2459,8 @@ M7 T2 L2
 </ul>
 </div>
 </div>
-<div id="outline-container-org5b62469" class="outline-4">
-<h4 id="org5b62469"><span class="section-number-4">7.4.2.</span> Forward pass: how to calculate past memory (h) in RNN</h4>
+<div id="outline-container-org53c8c04" class="outline-4">
+<h4 id="org53c8c04"><span class="section-number-4">7.4.2.</span> Forward pass: how to calculate past memory (h) in RNN</h4>
 <div class="outline-text-4" id="text-7-4-2">
 <dl class="org-dl">
 <dt>\(\theta^1\)</dt><dd>weight (parameter) matrix associated with input data</dd>
@@ -2469,8 +2498,8 @@ h_t = \tanh (x_t\theta^1 + h_{t-1}\theta^3 + b)
 </dl>
 </div>
 </div>
-<div id="outline-container-org3e0e43f" class="outline-4">
-<h4 id="org3e0e43f"><span class="section-number-4">7.4.3.</span> Forward pass: how to calculate output of each step in RNN</h4>
+<div id="outline-container-orge063e1d" class="outline-4">
+<h4 id="orge063e1d"><span class="section-number-4">7.4.3.</span> Forward pass: how to calculate output of each step in RNN</h4>
 <div class="outline-text-4" id="text-7-4-3">
 <p>
 Output of each step is \(\hat{y}\)
@@ -2485,8 +2514,8 @@ where:
 </dl>
 </div>
 </div>
-<div id="outline-container-org578feec" class="outline-4">
-<h4 id="org578feec"><span class="section-number-4">7.4.4.</span> Backpropagation through time (BPTT)</h4>
+<div id="outline-container-org3dfd7b9" class="outline-4">
+<h4 id="org3dfd7b9"><span class="section-number-4">7.4.4.</span> Backpropagation through time (BPTT)</h4>
 <div class="outline-text-4" id="text-7-4-4">
 <ul class="org-ul">
 <li>5 words means 5 loss functions for each RNN unit.</li>
@@ -2497,8 +2526,8 @@ where:
 </ul>
 </div>
 </div>
-<div id="outline-container-org584bd44" class="outline-4">
-<h4 id="org584bd44"><span class="section-number-4">7.4.5.</span> Different RNN models</h4>
+<div id="outline-container-orgd1b2062" class="outline-4">
+<h4 id="orgd1b2062"><span class="section-number-4">7.4.5.</span> Different RNN models</h4>
 <div class="outline-text-4" id="text-7-4-5">
 <dl class="org-dl">
 <dt>One-to-many</dt><dd>used for text generation, image captions</dd>
@@ -2507,14 +2536,14 @@ where:
 </dl>
 </div>
 <ol class="org-ol">
-<li><a id="org3308ed7"></a>NER<br />
+<li><a id="org50d260c"></a>NER<br />
 <div class="outline-text-5" id="text-7-4-5-1">
 <ul class="org-ul">
 <li>Many-to-many is used for NER because need to know the output of whether a word refers to a person or not</li>
 </ul>
 </div>
 </li>
-<li><a id="org98337c2"></a>Sentiment analysis<br />
+<li><a id="org92f578c"></a>Sentiment analysis<br />
 <div class="outline-text-5" id="text-7-4-5-2">
 <ul class="org-ul">
 <li>Document with multiple words as input, need to detect whether a document as a whole is a positive or negative sentiment</li>
@@ -2523,15 +2552,15 @@ where:
 </li>
 </ol>
 </div>
-<div id="outline-container-org8696c65" class="outline-4">
-<h4 id="org8696c65"><span class="section-number-4">7.4.6.</span> Problems with RNN</h4>
+<div id="outline-container-org98ff65b" class="outline-4">
+<h4 id="org98ff65b"><span class="section-number-4">7.4.6.</span> Problems with RNN</h4>
 <div class="outline-text-4" id="text-7-4-6">
 <p>
 Forward pass, backpropagation and repeated gradient computation can lead to 2 issues.
 </p>
 </div>
 <ol class="org-ol">
-<li><a id="orgcc24186"></a>Exploding gradient<br />
+<li><a id="orgad768fe"></a>Exploding gradient<br />
 <div class="outline-text-5" id="text-7-4-6-1">
 <p>
 High gradient values lead to very different weights in each optimization iteration.
@@ -2542,7 +2571,7 @@ Solution: use gradient clipping, where a gradient is clipped when it goes higher
 </p>
 </div>
 </li>
-<li><a id="org8936c86"></a>Vanishing gradient<br />
+<li><a id="org3fffb30"></a>Vanishing gradient<br />
 <div class="outline-text-5" id="text-7-4-6-2">
 <p>
 Lower gradient values that stall a model from optimizing parameters.
@@ -2561,10 +2590,323 @@ Solution: ReLu activation function, LSTM, GRU (different architectures), better 
 </div>
 </div>
 </div>
+<div id="outline-container-orgca93d2c" class="outline-2">
+<h2 id="orgca93d2c"><span class="section-number-2">8.</span> Week 10: Long-Short Term Memory and Gated Recurrent Units</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+Module 8
+</p>
+</div>
+<div id="outline-container-org98736ee" class="outline-3">
+<h3 id="org98736ee"><span class="section-number-3">8.1.</span> LSTM Part I</h3>
+<div class="outline-text-3" id="text-8-1">
+</div>
+<div id="outline-container-org988975b" class="outline-4">
+<h4 id="org988975b"><span class="section-number-4">8.1.1.</span> Why?</h4>
+<div class="outline-text-4" id="text-8-1-1">
+<ul class="org-ul">
+<li>NLP is sequential</li>
+<li>RNN suffers from short term memory
+<ul class="org-ul">
+<li>Due to vanishing gradient</li>
+<li>Can't keep track of earlier phrases</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5213781" class="outline-4">
+<h4 id="org5213781"><span class="section-number-4">8.1.2.</span> Gated cell: LSTM</h4>
+<div class="outline-text-4" id="text-8-1-2">
+<ul class="org-ul">
+<li>Main concept:
+<ul class="org-ul">
+<li>Add a gate to RNN unit to control the information that's passed through the network</li>
+<li>LSTM augments RNN unit by creating gates
+<ul class="org-ul">
+<li>that allow some information to be passed through</li>
+<li>and some other information to be forgotten</li>
+</ul></li>
+</ul></li>
+<li>LSTM is the leading algorithm used in sequential modelling</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4617ffa" class="outline-4">
+<h4 id="org4617ffa"><span class="section-number-4">8.1.3.</span> Different representation of RNN</h4>
+<div class="outline-text-4" id="text-8-1-3">
+
+<div id="orgb7751eb" class="figure">
+<p><img src="./img/hidden-state-lstm.png" alt="hidden-state-lstm.png" />
+</p>
+</div>
+<ul class="org-ul">
+<li>\(h_t\): hidden state or past memory</li>
+<li>Lines are merging into each other
+<ul class="org-ul">
+<li>i.e. concatenated</li>
+</ul></li>
+<li>Lines are splitting
+<ul class="org-ul">
+<li>i.e. copied over</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org32c3326" class="outline-4">
+<h4 id="org32c3326"><span class="section-number-4">8.1.4.</span> Simple representation of LSTM</h4>
+<div class="outline-text-4" id="text-8-1-4">
+<ul class="org-ul">
+<li>Each line carries a vector from output of one node to input of another</li>
+<li>Example of vector:
+<ul class="org-ul">
+<li>Word</li>
+<li>Hidden state</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org52cb0f2" class="outline-4">
+<h4 id="org52cb0f2"><span class="section-number-4">8.1.5.</span> The cell state in LSTM</h4>
+<div class="outline-text-4" id="text-8-1-5">
+<dl class="org-dl">
+<dt>\(c_t\)</dt><dd>cell state vector (from old time stamp to new time stamp). LSTM structure beneath cell state can remove or add information to the cell state.</dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-orga56c0db" class="outline-4">
+<h4 id="orga56c0db"><span class="section-number-4">8.1.6.</span> How LSTM controls information removal and additional for a cell state</h4>
+<div class="outline-text-4" id="text-8-1-6">
+<ul class="org-ul">
+<li>Gate here is the sigmoid operator (pointwise operation)</li>
+<li>Sigmoid layer scales numbers in \([0,1]\).
+<ul class="org-ul">
+<li>0: nothing is let through</li>
+<li>1: all information is let through (i.e. <b><b>addition</b></b>)</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org94be7f4" class="outline-3">
+<h3 id="org94be7f4"><span class="section-number-3">8.2.</span> LSTM Part II</h3>
+<div class="outline-text-3" id="text-8-2">
+</div>
+<div id="outline-container-org51b1ea0" class="outline-4">
+<h4 id="org51b1ea0"><span class="section-number-4">8.2.1.</span> Forget gate</h4>
+<div class="outline-text-4" id="text-8-2-1">
+<ul class="org-ul">
+<li>Determines the information to remove or throw away from the cell state.
+<img src="./img/input-gate-layer.png" alt="input-gate-layer.png" /></li>
+</ul>
+</div>
+<ol class="org-ol">
+<li><a id="org03ca908"></a>Input gate layer<br />
+<div class="outline-text-5" id="text-8-2-1-1">
+<ul class="org-ul">
+<li>Once \(i_t\) and \(\hat{C_t}\) are calculated, multiply them together in a pointwise operation.</li>
+<li>The input gate's activation vector (\(i_t\)) decides which information is important to keep from the cell input activation factor (\(\hat{C_t}\)).</li>
+</ul>
+</div>
+</li>
+<li><a id="org00ced36"></a>Updating old cell state<br />
+<div class="outline-text-5" id="text-8-2-1-2">
+<ul class="org-ul">
+<li>Calculated \(f_t\) in forget gate layer stack
+<ul class="org-ul">
+<li>This is how much info is kept or thrown away</li>
+</ul></li>
+<li>Update cell state based on input vector (\(i_t * \hat{C_t}\)) pointwise</li>
+</ul>
+</div>
+</li>
+<li><a id="orgf2006d0"></a>Calculate output of current stack (\(h_t\)) based on new \(C_t\)<br />
+<div class="outline-text-5" id="text-8-2-1-3">
+<ul class="org-ul">
+<li>Pass previous hidden state and current input into sigmoid function (sigmoid is \(O_t\))</li>
+<li>Pass updated state to hyperbolic tangent function (pointwise multiplication of tanh and sigmoid output)</li>
+<li>Output is new hidden state</li>
+<li>New cell state and new hidden are carried to new time step</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-orgdc3db54" class="outline-4">
+<h4 id="orgdc3db54"><span class="section-number-4">8.2.2.</span> Gated Recurrent Units</h4>
+<div class="outline-text-4" id="text-8-2-2">
+<ul class="org-ul">
+<li>GRU</li>
+<li>Update to LSTM</li>
+</ul>
+</div>
+<ol class="org-ol">
+<li><a id="orgc1858a7"></a>GRU update and reset gates<br />
+<div class="outline-text-5" id="text-8-2-2-1">
+<ul class="org-ul">
+<li>Update gate
+<ul class="org-ul">
+<li>Acts similar to forget and input gate of LSTM</li>
+<li>Decides what information to throw away and what information to add</li>
+</ul></li>
+<li>Reset gate
+<ul class="org-ul">
+<li>Another gate used to decide how much past information to forget</li>
+</ul></li>
+<li>GRU vs. LSTM
+<ul class="org-ul">
+<li>GRU has fewer tensor operations; faster to train than LSTM</li>
+</ul></li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org948264f" class="outline-3">
+<h3 id="org948264f"><span class="section-number-3">8.3.</span> Attention-based LSTM</h3>
+<div class="outline-text-3" id="text-8-3">
+<p>
+and Encoder-Decoder architecture
+</p>
+</div>
+<div id="outline-container-org6aa772d" class="outline-4">
+<h4 id="org6aa772d"><span class="section-number-4">8.3.1.</span> Common uses of encoder-decoder architecture</h4>
+<div class="outline-text-4" id="text-8-3-1">
+<ul class="org-ul">
+<li>Language translation, e.g. from English to Polish
+<ul class="org-ul">
+<li>e.g. Sequence to sequence models in NLP</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2f566f6" class="outline-4">
+<h4 id="org2f566f6"><span class="section-number-4">8.3.2.</span> RNN and LSTM units</h4>
+<div class="outline-text-4" id="text-8-3-2">
+<ul class="org-ul">
+<li>LSTM augments RNN units
+<ul class="org-ul">
+<li>By creating gates that allow some information to be passed on, and some to be forgotten</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd972010" class="outline-4">
+<h4 id="orgd972010"><span class="section-number-4">8.3.3.</span> In language translation</h4>
+<div class="outline-text-4" id="text-8-3-3">
+<p>
+<img src="./img/translation1.png" alt="translation1.png" />
+<img src="./img/translation2.png" alt="translation2.png" />
+</p>
+<ul class="org-ul">
+<li>Inputs are provided first, then outputs can be generated</li>
+<li>Encoder is single-layer LSTM; has input sequence "how", "are", "you"</li>
+<li>Definitions:
+<dl class="org-dl">
+<dt>\(C_i\)</dt><dd>encoder state</dd>
+<dt>\(C\)</dt><dd>final encoder state that is sent to decoder</dd>
+<dt>\(S_i\)</dt><dd>decoder state</dd>
+<dt>\(y_i\)</dt><dd>network outputs</dd>
+</dl></li>
+<li>Decoder is also single-layer LSTM</li>
+<li>Does \(C\) have access to all information in encoder for all inputs?
+<ul class="org-ul">
+<li>We need to make sure decoder has all the information that's sent to encoder</li>
+<li>Maybe not! Encoding step needs to represent entire input sequence</li>
+<li>All information must be compressed to \(C\)</li>
+<li>Very complex to ask model to get all information from this single vector \(C\) (which has cell state information passed)
+<ul class="org-ul">
+<li>Must use very deep LSTM units (many cell state parameters &#x2013; high computation time &#x2013;  or use new structure for such models)</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org56dd024" class="outline-4">
+<h4 id="org56dd024"><span class="section-number-4">8.3.4.</span> Attention mechanism</h4>
+<div class="outline-text-4" id="text-8-3-4">
+
+<div id="orgbac2916" class="figure">
+<p><img src="./img/attention.png" alt="attention.png" />
+</p>
+</div>
+<ul class="org-ul">
+<li>In simple encoder-decoder architecture (not attention-based)
+<ul class="org-ul">
+<li>Decoder makes prediction by looking only at the final output of the encoder step, which has condensed information denoted \(R_c\), or context vector</li>
+</ul></li>
+<li>Attention-based architecture:
+<ul class="org-ul">
+<li>Attends every hidden state from each encoder node at every time and step</li>
+<li>Then makes predictions after deciding which one is more informative</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgbec419a" class="outline-4">
+<h4 id="orgbec419a"><span class="section-number-4">8.3.5.</span> Need to know weights associated with each attention</h4>
+<div class="outline-text-4" id="text-8-3-5">
+
+<div id="orgac34b81" class="figure">
+<p><img src="./img/attention2.png" alt="attention2.png" />
+</p>
+</div>
+<ul class="org-ul">
+<li>Terminology
+<dl class="org-dl">
+<dt>\(h\) math notation</dt><dd>output of each LSTM unit</dd>
+<dt>\(T\)</dt><dd>number of words in sequence</dd>
+<dt>\(t\)</dt><dd>current word that we're translating (\(x_t\))</dd>
+<dt>\(C_t\)</dt><dd>current word context vector</dd>
+<dt>\(\alpha\)</dt><dd>weight vector</dd>
+<dt>\(h_t\)</dt><dd>encoder hidden state</dd>
+<dt>\(S_{t-1}\)</dt><dd>previous decoder output or hidden state</dd>
+</dl></li>
+<li>Recall: simple encoder-decoder: the <b><b>last</b></b> state of the encoder is used for the context vector</li>
+<li>In attention-based architecture:
+<ul class="org-ul">
+<li>Embeddings of all the words in the inputs are used instead.</li>
+<li>These are represented by hidden states</li>
+<li>But, do not want to equally contribute all the hidden states to generate context vector</li>
+<li>As some words may be more related to final translation</li>
+<li>Hence, calculate \(\alpha\) as weight vector to consider each hidden state's contribution to the current word context vector</li>
+</ul></li>
+<li>Screenshot shows calculation of only 1 set of state at timestamp \(t\).
+<ul class="org-ul">
+<li>Need to do the same process for all other timestamps to calculate their cell states, e.g. \(c_{t-1}\), \(c_{t+1}\), etc.</li>
+</ul></li>
+<li>Raw alignment score (\(e\)) is calculated using feedforward neural network with a single hidden layer
+<ul class="org-ul">
+<li>Inputs are \(h_t\) and \(S_{t-1}\)</li>
+<li>General practice: add or concatenate 2 hidden states, then feed into neural network</li>
+<li>Single hidden layer uses \(\tanh\) activation function to produce hidden layer neurons</li>
+<li>Finally, a linear layer with 1 neuron (or a linear combination transformation) is used to prduce raw alignment score</li>
+<li>Process produces a raw score (\(\alpha_{t,t}\)) for just the current timestamp and the chosen encoder hidden state (\(h_t\)).</li>
+<li>Repeat for  all other hidden input states,  to calculate raw score using the same neural network</li>
+</ul></li>
+<li>Next, all raw scores passed through softmax to produce normalized scores (or $&alpha;$s).</li>
+<li>Weighted sum of all hidden state using their \(\alpha\) values will produce the current context vector (\(C_t\))</li>
+<li>Now, with the same context vector, we can calculate the output of the encoder-decoder unit (similar to LSTM)</li>
+<li>Again, this is only for the current context vector (\(c_t\)). Need to repeat for context vectors for different timestamps e.g. \(c_t\), \(c_{t+1}\) and so on.</li>
+<li>This is <span style='background-color: #FFFF00;'>additive attention</span>, and is commonly used in sequence to sequence models like LSTM</li>
+</ul>
+</div>
+<ol class="org-ol">
+<li><a id="org08efb7d"></a>Other types of models<br />
+<div class="outline-text-5" id="text-8-3-5-1">
+<ul class="org-ul">
+<li>E.g. scaled dot product attention, self-attention (core of transformers, to be discussed later)</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: W</p>
-<p class="date">Created: 2024-03-15 Fri 07:44</p>
+<p class="date">Created: 2024-03-29 Fri 12:33</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
