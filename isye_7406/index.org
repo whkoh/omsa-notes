@@ -1996,3 +1996,360 @@ or:
 - In most applications, the bandwidth $h$ contributes much more error than the choice of the kernel
 - While we have shown that $h_{\text{opt}} = O(n^{-1/5})$, unfortunately the exact value of $h_\text{opt}$ needs information of the unknown function $f$ and is thus impractical in real usage
 - The bandwidth $h$ is often chosen by **cross-validation** in practice.
+* Week 7: Local Smoothers and Additive Models (Cont'd)
+Spline Smoothing and Additive Models
+** Spline Interpolation
+*** Recap: Local Smoothing
+- Data: $(Y_i, x_i)$, i = 1, 2, ..., n, where $a=x_1 < x_2 < ... < x_n = b$
+- Model: $Y_i = f(x_i) + \epsilon_i$
+- How to estimate function $f(x)$ at given $x \in [a,b]$?
+- Methods:
+  - LOESS/LOWESS
+  - Kernel smoothing
+  - Splines: Interpolating and Smoothing
+*** Interpolating Splines
+- Definition:
+  - A spline is a {{{hl(piecewise polynomial)}}} function
+  - Interpolating spline is a spline $s(x)$ satisfying $s(x_i) = Y_i, i=1, ..., n$
+- Formally:
+  - Let $a=x_1 < x_2 < ... < x_n = b$ be ordered design points, a spline of order $d$ is of the form and where each $s_i(x)$ is a polynomial of degree $d$.
+    \begin{equation}
+    s(x) =
+    \begin{cases}
+    s_1(x) & \text{if }x_1 \le x \le x_2 \\
+    s_2(x) & \text{if }x_2 \le x \le x_3 \\
+    ... & \\
+    s_{n-1}(x) & \text{if }x_{n-1} \le x \le x_n
+    \end{cases}
+    \end{equation}
+*** Zero-order spline
+- Data: $(Y_i, x_i)$, $i=1,2,...,n$ where $x_1 < x_2< ... < x_n$
+- Simplest interpolating spline is of zero order (d=0) and corresponds to a piecewise constant function defined by
+  $$
+  s_i(x) = Y_i \text{  if } x_i \le x \le x_{i+1}
+  $$
+  for $i=1, 2, ..., n$ where $x_{n+1} = \infty$
+- Remark: zero-order splines are step functions and not continuous
+*** First-order spline
+- Data: $(Y_i, x_i)$, $i=1,2,...,n$ where $x_1 < x_2< ... < x_n$
+- First order spline ($d=1$) is a piecewise linear function defined by:
+  $$
+  s_i(x) = Y_i + \frac{Y_{i+1} - Y_i}{x_{i+1}-x_i}(x-x_i)  \text{  if }x_i \le x \lt x_{i+1}
+  $$
+- i.e., data points are connected by straight lines
+- Remarks:
+  - Since $s_i(x_i) = Y$ and  d  $s_{i-1}(x_i) = Y_{i-1} + \frac{Y_i - Y_{i-1}}{x_i-x_{i-1}}(x_i - x_{i-1}) = Y_i$, we have $s_{i-1}(x_i) = s_i(x_i)$, this {{{hl(first-order splines are continuous)}}}
+*** $d$-order splines
+- Linear splines (d=1) can be quite good, but the derivative of linear splines is **not** continuous
+- If we want spline to be differentiable, should look at the next level, which is quadratic (d=2).
+- In practice, cubic splines (d=3) are widely used due to nice statistical properties for function estimation:
+  - Cubic spline s(x) is twice continuously differentiable!
+*** Cubic spline interpolation
+Satisfies the following properties:
+- $s$ matches the training data i.e. $s(x_i) = Y_i$ for $i=1,...,n$
+- $s$ is continuous i.e. $s_{i-1}(x_i) = s_i (x_i)$ for $i=2,...,n-1$
+- $s$ is twice continuously differentiable. In particular:
+  - First derivative continuity: $s'_{i-1}(x_i) = s'_i (x_i)$ for $i=2, ..., n-1$
+  - Second derivative continuity: $s''_{i-1}(x_i) = s''_i (x_i)$ for $i=2,...,n-1$
+- Each piece $s_i(x)$ is a cubic polynomial in each interval $[x_i, x_{i+1})$ i.e.
+  $$
+  s_i(x) = \beta_{0i} + \beta_{1i} (x-x_i) + \beta_{2i}(x-x_i)^2 + \beta_{3i}(x-x_i)^3 \text{  for }x \in [x_i, x_{i+1})
+  $$
+*** Parameters in cubic splines
+- Dimension of spaces of interpolating cubic splines:
+- Data: $(Y_i, x_i)$, $i=1,2,...,n$ where $x_1 < x_2< ... < x_n$
+- There are $4(n-1)\beta$ parameters in the cubic spline:
+  - Each piece $s_i(x)$ involves 4 \beta parameters to characterise a polynomial of degree 3
+  - There are $n-1$ sub intervals
+*** Constraints in cubic splines
+- For interpolating cubic splines, there are
+  $$
+  n+3\times (n-2) = 4n-6 = 4(n-1) - 2
+  $$
+  constraint equations due to
+  - interpolation conditions i.e. $s(x_i) = Y_i$ for $i=1,...,n$
+  - The continuity of the 0th, 1st, 2nd derivatives at the $x_i$ 's for $i=2, 3, ..., n-1$
+  - Recall that there are $4(n-1)$ parameters in cubic splines
+  - Thus {{{hl(need 2 more constraints to uniqlely define)}}} an interpolating cubic spline
+*** Natural cubic splines
+- Since the behaviour of the spline function at its endpoints is relatively free, pinning down the behaviour of $s''$ at $x_i$ and $x_n$ finishes the specification of cubic splines.
+- Two more constraints for natural cubic splines at the endpoints:
+  $s''(x_i) = s''(x_n) = 0$
+- The natural cubic spline is uniquely defined
+*** Simulation study
+- Consider $Y= f(x) + \epsilon$ where
+  $$
+  f(x) = \frac{\sin(x)}{x}, x\in [-10, 10], \epsilon \sim N(0, 0.2^2)
+  $$
+- Assume $x_i$ are from fixed design with equally spaced design points ($n=201$)
+- How is interpolating cubic spline?
+*** Spline interpolation in R
+#+BEGIN_SRC
+x <- seq(-10,10,0.1);
+ytrue <- sin(x)/x; ytrue[101]=1; set.seed(123);
+y <- ytrue+ 0.2*rnorm(length(x)); plot(x, y, ylim=c(min(y), max(y))) lines(x, ytrue, lwd=3);
+## Interpolating Cubic Spline
+lines(spline(x, y, method = "natural"), col = "red")
+#+END_SRC
+*** Summary
+- d-order splines:
+  - d=0 :: piecewise constant
+  - d=1 :: piecewise linear
+  - d=2 :: cubic spline
+- 2 kinds of cubic splines:
+  1. Interpolating
+  2. Smoothing
+** Cubic spline smoothing
+7.1.2
+*** Local smoothing
+- Data: $(Y_i, x_i)$, $i=1,2,...,n$ where $x_1 < x_2< ... < x_n = b$
+- Model: $Y_i = f(x_i) + \epsilon_i$
+- Question: how to estimate the function $f(x)$ at a given $x \in [a,b]$
+- Cubic spline:
+  - Interpolating splines i.e. $Y_i = \hat{f} (x_i)$ or $\epsilon_i = 0$
+  - Smoothing splines: extension to the local smoothing context
+*** Interpolation overfits
+- Data: $(Y_i, x_i)$, $i=1,2,...,n$ where $x_1 < x_2< ... < x_n = b$
+- Model: $Y_i = f(x_i) + \epsilon_i$
+- Interpolating cubic splines yield unacceptably high variability and overfitting
+- Approaches to overcome overfitting:
+  - Restrict the class of functions in parametric models
+  - Impose smoothness constraints in non-parametric models
+*** Roughness constraint
+Criterion to evaluate the smoothness/roughness of a function:
+- Suppose a function is twice continuously differentiable on the interval $[a,b]$.
+- Denote by $H^2[a,b]$ the space of all such functions
+- A roughness criterion of function $f$ can be defined by the total curvature penalty of the function $f$, given by:
+  $$
+  J(f) = \int^b_a (f''(x))^2 dx
+  $$
+- Many other roughness criteria are also available
+*** Cubic spline smoother
+- Implicitly defined as
+  $$
+  \hat{f} = \argmin_{f\in H^2[a,b]} \left[ 1/n \sum^n_{i=1}(Y_i - f(X_i))^2 + \lambda \int^b_a (f''(t))^2 dt \right]
+  $$
+- For a given smoothing parameter $\lambda>0$, the optimizer is a cubic spline with coefficients that best fit the data
+- This is a special case of regularized or penalized risk minimization, which also includes ridge regression, LASSO, SVN, etc.
+*** Impact of \lambda parameter
+- The choice of $\lambda$ is crucial in optimization problem above.
+- For smaller $\lambda$:
+  - Less smoothing
+  - Fitter $\hat{f}$ is rougher
+- Too much smoothing (very large $\lambda$) will make the fitted curve $\hat{f}$ too close to a straight line
+- Cross-validation can find the optimal $\lambda$
+*** Optimal \lambda
+- Given $\lambda$, define the residual sum squares of leave-one-out CV:
+  $$
+  CV(\lambda) = 1/n \sum^n_i (Y_i - \hat{f}_{\lambda}^{(-1)}(X_i))^2
+  $$
+- Where $\hat{f}_{\lambda}^{(-1)}(X_i)$ is the spline smoothing estimate at $X_i$ for the given $\lambda$ without using observation $i$
+- It turns out that the cubic spline smoother can be written as the form $\hat{Y} = \hat{f}_{\lambda} = W^{(\lambda)}X$ and we define the generalized CV as
+  $$
+  GCV(\lambda) = \left[ \frac{n}{trace(I-W^{\lambda})} \right]^2 \left[ 1/n \sum^n_i (Y-i-\hat{f}_{\lambda}(X_i))^2 \right]
+  $$
+- In practice, we choose $\lambda$ to minimize $GCV(\lambda)$
+
+** Optimality and algorithms in splines
+7.1.3
+*** Cubic splines
+- Data: $(Y_i, x_i)$, $i=1,2,...,n$ where $x_1 < x_2< ... < x_n = b$
+- Model: $Y_i = f(x_i) + \epsilon_i$
+- Question: how to estimate the function $f(x)$ at given $x \in [a,b]$?
+- Cubic splines:
+  - Interpolating, i.e. $Y_i = f(X_i)$ for $i=1,...,n$
+  - Smoothing, see [[Cubic spline smoother]]
+*** Relation of cubic splines
+Theorem: the cubic spline smoother in [[Cubic spline smoother]] is a cubic spline interpolation for $(X_i, Y*_i)$ for some well-defined $Y*_i$ for $i=1, 2, ..., n$. Here,
+$$
+Y*_{n\times 1} = (I_{n\times n} + \lambda K_{n \times n})^{-1} Y_{n \times 1}
+$$ for some symmetric matrix $K$
+*** Optimality properties
+- Natural cubic spline in the interpolating context:
+  - Exists, and can be uniquely characterised
+  - Optimal in the sense of minimizing a roughness criterion among all interpolating, twice-differentiable functions
+- Theorem: suppose $n \ge 2, a = x_1 < x_2 < ... < x_n = b$. For any set of response $(Y_1, Y_2,..., Y_n)$ if $s(x)$ is an interpolating natural cubic spline, then
+  $$
+  \int^b_a (s''(t))^2 dt \le \int^b_a (z'' (t))^2 dt
+  $$
+*** Proof
+See 7.1.3_Optimality.Algorithm.Splines_FWv2.pdf
+*** Algorithms for cubic splines
+- Develop efficient algorithms to solve penalized optimization problem in [[Cubic spline smoother]]
+- Main idea: B-spline basis decomposition:
+  $$
+  \hat{f} (x) = \sum^{n-d}_{i=1} \beta_i \beta_{i,d}(x)
+  $$
+  where ${B_{i,d}, i = 1, ..., n-d}$ is a B-spline basis of order $d$ that can be defined recursively as
+  $B_{i,0} (x) = I(x_i \le x < x_{i+1})$ and
+  $$
+  B_{i,d}(x) = \frac{x-x_i}{x_{i+d} - x_i} B_{i, d-1} (x) + \frac{x_{i+d+1}-x}{x_{i+d+1}-x_{i+1}} B_{i+1, d-1}(x)
+  $$
+*** Two useful facts
+Basis decomposition: $\hat{f}(x) = \sum^{n-d}{i=1} \beta_i B_i(x)$ and $\beta = (\beta_1, ..., \beta_{n-d})$
+1. Define the matrix $U$ with the elements $u_{ji} = B_i(x_j)$ then
+  $$
+  \hat{f} = (\hat{f}(x_1), ..., \hat{f}(x_n))^T = U \beta
+  $$
+2. Define the matrix $V$ with the elements $V_{ij} = \int^b_a B''_i(x) B''_j (x) dx$, we have
+   $$
+   \int^b_a(f''(t))^2 dt = \int^b_a (f''(x))^2 dx = \int^b_a(\sum^{n-d}_{i=1} \beta_i B''_i (x))(\sum^{n-d}{j=1}\beta_j B''_j(x))dx
+   \\ = \sum_i \sum_j \beta_i V_{ij} \beta_j = \beta^T V \beta
+   $$
+*** Ridge regression approach
+- When $\hat{f} (x) = \sum^{n-d}_{i=1} \beta_i B_i(x)$ the original optimization [[Cubic spline smoother]]
+  can be reformulated as a ridge regression problem:
+  $$
+  \hat{\beta} = \text{argmin}_{\beta} [|Y-U\beta|^2 + \lambda* \beta^T V \beta] \text{  with }\lambda* = n\lambda
+  $$
+- Taking derivative wrt \beta and setting to 0 yields:
+  $-2U^T(Y-U\beta) + 2\lambda* V \beta = 0$
+- Thus, the optimal solution is
+  $$
+  \hat{\beta} = (U^T U + \lambda* V)^{-1} U^T Y
+  $$
+** Additive models
+7.2.1
+*** Additive models detail
+- Data: $(Y_i, x_{i,1}, x_{i,2}, ..., x_{i,p}), i=1,2,...,n$
+- Recall for linear regression model, we assume
+  $$
+  Y_i = \beta_0 + \beta_1 x_{i,1} + ... + \beta_p x_{i,p} + \epsilon_i, i=1,2,...,n
+  $$
+- In additive models, we assume
+  $$
+  Y_i = \beta_0 + f_1 (x_{i,1}) + ... + f_p (x_{i,p}) + \epsilon_i, i = 1, 2, ..., n
+  $$
+  where f_i can be arbitrary functions of interest
+- How to estimate the functions $f_1, ..., f_p$ ?
+*** Fitting additive model
+- One approach is to find the functions $(f_1, ..., f_p)$ that minimizes the penalized residual sum of squares (PRSS):
+  $$
+  PRSS = \sum^n_{i=1} (Y_i - \beta_0 - \sum^p_{j=1}f_j(x_{i,j}))^2 + \sum^p_{j=1}\lambda_j \int (f''_j(t))^2 dt
+  $$
+- The minimizer is an additive cubic spline model in the sense that each $\hat{f}_j$ is a cubic spline on the j-th independent variable
+*** Estimation issues
+- In the additive model ([[Additive models detail]])
+- The constant $\beta_0$ is not identifiable, since we can add or subtract any constant to any function $f_j$. The standard convention is to assume:
+  $$
+  \sum^n_{i=1} f_j (x_{i,j}) = 0, \hat{\beta}_0. = 1/n \sum^n_{i=1}Y_i
+  $$
+- When $p=1$, this is local smoothing, e.g. cubic spline, kernel smoothing
+- How to extend from 1-dimensional to p-dimensional to estimate $f_1, ..., f_p$ simultaneously?
+*** Key idea
+- For the $p$ dimensional additive model, we can write it as a 1-dimensional model for local smoothing:
+  $$
+  Y_i - \beta_0 - \sum_{k \ne j} f_k (x_{i,k}) = f_j (x_{i,j}) + \epsilon_i
+  $$
+- If we knew $f_k$ for all $k \ne j$ then we can use local smoothing methods to estimate $f_j$ e.g. LOESS, Kernel, Spline
+- If we don't know $f_k$, we can recursively estimate them one at a time \rightarrow backfitting algorithm
+*** Backfitting algorithm
+1. Initialize $\hat{\beta}_0 = 1/n \sum^n_{i=1} Y_i$ and $\hat{f}_j = 0$ for all $j=1, 2, ..., p$
+2. Cycle for $j=1, 2, ..., p, 1, 2, ...p, ...$
+   $$
+   \hat{f}_j \leftarrow L_j (x_{i,j}, Y_i - \hat{\beta_0}-\sum_{k \ne j}\hat{f}_k (x_{i,k})) \\
+   \hat{f}_j \leftarrow \hat{f}_j - 1/n \sum^n_{i=1} \hat{f}_j (x_{ij})
+   $$
+   where $L_j$ denotes a local smoother (e.g. kernel, spline).
+   Iterate until the functions $\hat{f}_j$ change less than a pre-specified threshold.
+*** Example for backfitting
+Consider the following:
+$$
+2x_1 + x_2 = 1 \\
+x_1 + 2x_2 = 2
+$$
+- Linear algebra solution: x_1 = 0, x_2 = 1
+- How to solve via backfitting?
+  $$
+  x_1 = \frac{1-x_2}{2}, x_2 = \frac{2-x_1}{2}
+  $$
+*** Illustrative example
+Applying backfitting algorithm
+**** Initialization
+$x_1 = 0, x_2=0$
+**** Round 1
+$$
+x_1 = \frac{1-0}{2} = 0.5, x_2 = \frac{2-0}{2}=1=
+$$
+**** Round 2
+$$
+x_1 = \frac{1-1}{2} = 0, x_2 = \frac{2-0.5}{2} = 0.75
+$$
+*** R code for backfitting
+*** R output
+** Generalized additive models
+7.2.2
+*** Additive models cont'd
+- Data: $(Y_i, x_{i,1}, x_{i,2}, ..., x_{i,p}), i=1,2,...,n$
+- In additive models, we assume
+  $$
+  Y_i = \beta_0 + f_1 (x_{i,1}) + ... + f_p (x_{i,p}) + \epsilon_i, i = 1, 2, ..., n
+  $$
+- What if the response $Y_i$ is class label, or count data?
+- Use generalized additive models:
+- Two stages:
+  1. Specify a distribution for response $Y_i$, say, with mean $\mu_i$
+  2. Specify a link function between $\mu_i$ and predictor variables
+     $$
+     g(\mu_i) = \beta_0 + f_1(x_{i,1}) + ... + f_p (x_{i,p}) \text{ for } i=1, 2, ..., n
+     $$
+*** Link functions in GAM
+- Example of link functions:
+  - $\mu_i = E(Y_i | X_i)$
+  - $g(\mu_i) = \beta_0 + f_1(x_{i,1}) + ... + f_p (x_{i,p}) \text{ for } i=1, 2, ..., n$
+Link functions:
+- identity link :: $g(\mu) = \mu$ for normal distribution
+- logit link :: $g(\mu) = \log(\frac{\mu}{1-\mu})$ for Bernoulli distribution \rightarrow additive logistic model
+- log link :: $g(\mu) = \log(\mu)$ for poission distribution \rightarrow additive poission model.
+*** Additive logistic models
+- Data: $(Y_i, x_{i,1}, x_{i,2}, ..., x_{i,p}), i=1,2,...,n$ where $Y_i \in {0,1}$
+- Additive logistic model: 2 stages:
+  1. The distribution of $Y_i$ is Bernoulli(\pi_i), i.e.
+     $P(Y_i = 1) = \pi_i$ and $P(Y_i=0)=1-\pi_i$
+  2. Link function:
+     $$
+     \log\frac{\pi_i}{1-\pi_i} = \beta_0 + f_1(x_{i,1}) + ... + f_p(x_{i,p}) \text{ for } i=1,..., n
+     $$
+- How to estimate functions?
+*** Recall logistic regression
+- Data: $(Y_i, x_{i,1}, x_{i,2}, ..., x_{i,p}), i=1,2,...,n$ where $Y_i \in {0,1}$ is the class label
+- Logistic regression model:
+  - $P(Y_i=1) = \pi_i$ and $P(Y_i=0) = 1-\pi_i$
+  - $\log \frac{\pi_i}{1-\pi_i} = \beta_0 + \beta_1 x_{i1} + .. + \beta_{p-1}x_{i,p-1}$
+- Newton-Raphson method to estimate MLE of $\beta_i$ in the model
+  $\beta_{\text{new}} = \beta_{\text{old}} - [\frac{\partial^2}{\partial^2 \beta} \log L (\beta_{\text{old}})]^{-1} \frac{\partial}{\partial \beta} \log L (\beta_{\text{old}})$
+*** Review of Newton-Raphson Algorithm
+See 7.2.2_Generalized_Addtive_Models_FWv2.pdf
+*** Estimation in additive logistic
+- Additive logistic model:
+  $P(Y_i =1) = \pi_i$ and $P(Y_i=0) = 1-\pi_i$
+  $\log \frac{\pi_i}{1-\pi_i} = \beta_0 + f_1 (x_{i,1})+ ... + f_p(x_{i,p})$ for $i=1,2,...,n$
+- Hastie & Tibshirani proposed local scoring algorithm to estimate $f_j$ by combining
+  - Newton-Raphson Method in the logistic regression model
+  - Backfitting method in the additive model
+*** Local scoring algorithm
+- The local scoring method to estiamte $f_j$ in the additive logistic model:
+  $\log \frac{\pi_i}{1-\pi_i} = \beta_0 + f_1 (x_{i,1})+ ... + f_p(x_{i,p})$ for $i=1,2,...,n$
+  - In each iteration, by Newton-Raphson method in logistic regression,
+    $$
+    \hat{\eta_i} = \hat{\beta_0} + \hat{f_1} (x_{i,1}) + ... + \hat{f_p}(x_{i,p}) \\
+    \hat{\pi_i} = \frac{e^{\hat{\eta_i}}}{1+e^{\hat{\eta_i}}} \\
+    w_i = \hat{\pi_i}(1-\hat{\pi_i}) \\
+    Z_i = \hat{\eta_i} + \frac{Y_i - \pi_i}{\hat{\pi_i}(1-\hat{\pi_i})}
+    $$
+  - Update the function $f_j$ by the backfitting method in additive model
+    $$
+    Z_i \sim \beta_0 + f_1 (x_{i,1}) + ... + f_p(x_{i,p})
+    $$
+    with weights $w_i = \hat{\pi_i}(x-\hat{\pi_i})$. Repeat until convergence.
+** Splines applied to Spam dataset
+See 7.2.3_Spam_data_example_FWv2
+* Week 8: Tree-Based and Ensemble Methods
+Tree-Based Methods
+* Week 9: Tree-Based and Ensemble Methods (Cont'd)
+Ensemble Methods
+* Week 10: Tree-Based and Ensemble Methods (Cont'd)
+Ensemble Methods (Cont'd)
+* Week 12: Advanced Supervised Learning
+Support Vector Machine in Linear Scenario.
+(Week 11 is Spring Break)
