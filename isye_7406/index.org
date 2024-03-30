@@ -2509,7 +2509,7 @@ $$
 *** Classification tree
 It can be constructed in the same way as regression tree, with RSS being replaced by a classification criterion:
 1. Growing tree: a greedy algorithm to minimize an impurity measure (either Gini or cross-entropy)
-2. Pruning tree: the weakest link cut algorithm to minimize the cross-complexity criterion, which can be misclassifcation rate (typically) or cross-entropy/deviance
+2. Pruning tree: the weakest link cut algorithm to minimize the cross-complexity criterion, which can be misclassifcation rate (typically), Gini index, or cross-entropy/deviance
 ** Practical issues in tree-based methods
 8.2.1
 *** Prediction problems
@@ -2546,8 +2546,180 @@ First 3 are applicable to any other method:
   - Price to pay for estimating a simple tree-based structure from training data
   - Main idea to improve trees is to reduce variance, say by combining many trees to make global decision.
   - Ensemble methods: bagging, random forest, boosting, etc.
+*** Trees in R and Spam example
+See:
+- 8.2.2_Tree.in.R_FW.pdf
+- 8.2.3_R_example.Tree_FW.pdf
+***
 * Week 9: Tree-Based and Ensemble Methods (Cont'd)
 Ensemble Methods
+** Introduction to Ensemble Methods
+9.1.1
+*** Supervised learning
+Supervised learning framework:
+- Observed data (i.e. training dataset): $(Y_i, x_{i1}, ..., x_{ip})$ for $i=1,2,...,n$
+- Objective: find a function $h(x_{\text{new}})=h(x_1, ..., x_p)$ that can predict $Y$ well for any given input $x_{\text{new}} = (x_1, ... x_p)$ in the testing dataset
+- Focus on predictive performance without worrying about explaining or interpreting models
+*** ML and data mining methods
+- Different kinds of ML or data mining methods / algorithms for prediction e.g.:
+  - KNN
+  - linear regression (variable selection, ridge, lasso, PCA, PLS)
+  - linear methods for classification (LDA, QDA, Naive Bayes, Logistic)
+  - Local smoothing (LOESS, Kernel, Spline)
+  - Generalized additive models (Backfitting)
+  - Tree, etc
+Often we want to choose a specific method that works best for given application or dataset.
+*** Ensemble methods
+- Ensemble method is to:
+  - Back off from choosing specific method and
+  - Be content with averaging prediction from several or many models
+- Ensemble method can improve predictive performance
+*** Central premise
+- Pooling methods represent a richer model class than choosing any one of them. The weighted sum of predictions from a collection of models may give better performance
+- Evaluation of performance is predictive rather than model-based
+*** Models in ensemble method
+- An ensemble method combines predictions from several methods to obtain one overall prediction.
+  - Not that same as combing several methods to get one model that is interpretable
+- Ensemble methods can improve overall predictive performance when the models in the ensemble give different predictions
+- Some ensemble methods combine same objects (e.g. tree with other trees \rightarrow Random Forest, or neural net with other neural nets
+- Other ensemble methods, e.g. stacking, combine very different models
+*** Main techniques
+- Bayesian model averaging
+- Stacking
+- Bagging
+- Random Forest
+- Boosting
+** Bayesian model averaging and stacking
+9.1.2
+*** Bayesian statistics
+- Key feature of Bayesian statistics is the treatment of the estimand as a random variable with some distributions (prior and posterior distributions)
+- Bayesian statistics has been successfully applied to ML and data mining:
+  - Bayesian non-parametrics: Dirichlet Process Priors, Mixture Models, Bayesian Neural Networks, Gaussian Process
+  - Bayesian ensemble method: Bayesian Model Averaging
+*** Bayesian model averaging (BMA)
+- BMA is a Bayesian ensemble method that
+  - Assigns a discrete prior on models in the ensemble
+  - Assigns priors on many parameters within each model
+  - Predicts by posterior mean over all models
+- BMA is Bayes risk optimal over the squared error loss
+- BMA inspires one to develop frequentist approaches on putting different weights on different models in the ensemble
+*** Frequentist viewpoint
+- BMA from a frequentist viewpoint:
+  - Given predictions ${\hat{h}_1 (x), ..., \hat{h}_M (x)}$ under the squared error loss in the regression context,
+    $$
+    h_\text{BMA} (x) = \sum^M_{m=1} \hat{h}_m (x)
+    $$
+    where the weights $w_m$ are related to posterior model probabilities
+  - Can we estimate the weights $w_m$ directly from training data?
+*** Stacking
+Stacking (or stacked generalization) is a way to estimate the weights $\hat{w}_m$ directly from the training data, then form the stacking prediction
+$$
+h_\text{stack} (x) = \sum^M_{m=1} \hat{h}_m (x)
+$$
+- Invented by Wolpert (1992) and studied by Breimen (1996)
+- Weights $\hat{w}_m$ are estimated from cross-validation, and the final prediction mimics Bayesian Model Averaging
+*** Stacking weights
+The stacking weights $\hat{w}__m$ are obtained as follows:
+1. Leave one out cross validation (LOOCV): let $\hat{h}^{(-i)}_m (x)$ be the prediction at $x$ using the $m$ th model in the ensemble, as estimated from the training data with the $i$ th observation removed.
+2. Linear regression: the estimated weights solve a linear regression problem
+   $$
+   ( \widehat{w}_{1}, \cdots, \widehat{w}_{M} )=\underset{( w_{1}, \cdots, w_{M} )} {\mathrm{a r g m i n}} \sum_{i=1}^{n} \left[ Y_{i}-\sum_{m=1}^{M} w_{m} \widehat{h}_{m}^{(-i )} ( x_{i} ) \right]^{2}
+   $$
+Remark: this puts {{{hl(low weights)}}} on models that have poor LOOCV accuracy in the training data
+*** Aspects of stacking
+Discussion of stacking algorithm: it's flexible and {{{hl(easy to apply)}}}
+- Optimization over $(w_1, ..., w_M)$ is essentially the methods of least squares in linear regression, and we can impose additional constraints that the weights are positive and sum to 1
+- LOOCV can be replaced by other cross-validation methods such as 5-fold, 10-fold CV, or Monte Carlo CV
+- Stacking is closely related to BMA, and can be thought of as an approximation of BMA without any priors
+** Bootstrapping algorithm
+9.1.3
+*** Motivating example
+- Data: $z = (z_1, ..., z_n)$ where $z_i = (Y_i, x_{i1}, ..., x_{ip}), i=1,...,n$
+- Parameter estimation: we derived real-valued summary statistics
+   $S(z) = S(z_1, ..., z_n)$ which is en estimator of population parameter $\theta$ (e.g. mean, median, correlation coefficient, regression coefficient, etc.)
+- Objective: derive a **robust** estimator of the confidence interval of $\theta$ or the standard error of $S(z)$
+- Challenges: we don't know the distribution of data, and are unable to obtain additional training datasets
+*** Idea in Bootstrapping algorithm
+- Intuitive idea:
+  - Estimate the standard error of $S(z) = S(z_1, ..., z_n)$ based on the sample standard deviation if we have many values of $S(z)$ or many independent copies of training data
+  - {{{hl(Resample with replacement)}}} from the original training dataset ($z= z_1, z_2, ..., z_n$) to generate many copies of "new" training dataset. This allows us to compute many values of $S(z)$
+*** Resample with replacement
+[[./img/bootstrap-resample.png]]
+- High level:
+  - Input Data: $z = (z_1, ..., z_n)$ where $z_i = (Y_i, x_{i1}, ..., x_{ip}), i=1,...,n$ and estimator of $S(z)$ for $\theta$
+  - For $b=1,...,B$
+    - **Sample with replacement** to get bootstrap sample $z^{*b} = (z_1^{*b}, ..., z_n^{*b})$
+    - Compute the value $S(z^{*b}) = S(z_1^{*b}, ..., z_n^{*b})$ for this bootstrap sample
+  - Once the $B$ values of $S(z^{*b})$ have been computed,
+    - The quantiles of $S(z^{*b})$'s provide an empirical distribution of $S(z)$
+    - They can be used to provide confidence intervals of $\theta$
+*** New use of bootstrapping
+- Bootstrapping was originally developed by Efron (1979) to estimate the variance in the classical statistics context
+- Breiman (1996) found a surprising used of bootstrapping to improve the predictive performance of tree-based method and model:
+  - Bagging (bootstrap aggregating)
+  - Random forest
+- Since then, bootstrapping algorithm has been used to combine other algorithms in machine learning and data mining
+*** Bootstrapping in R
+- Given vector $Z$, how to write your own functions to generate the bootstrap sample in R?
+- Naively:
+  1. Extract sample size of ~Z~ with ~length()~ and store it in ~n~
+  2. Copy ~Z~ to ~sample~
+  3. Draw randomly an integer between 1 and n with ~ceiling(runif())~
+  4. Corresponding value of ~Z~ is extracted and stored in ~sample~ which is finally returned
+*** More efficient implementation
+- Avoid loops to generate data index simultaneously
+** Bagging algorithm
+9.2.1
+*** Improve tree methods
+- Observed (training) dataset: $(Y_i, x_{i1}, ..., x_{ip})$ for $i=1,...,n$
+- Objective: find an function $h(x_{\text{new}}) = h(x_1, ..., x_p)$ that can predict $Y$ well for any given input $x_{\text{new}} = (x_1, ..., x_p)$ in the testing dataset
+- Tree-based method is easy to interpret but might have poor predictive performance due to {{{hl(high variance)}}}
+- Can we improve the tree-based model and methods?
+*** Variance reduction
+- In statistics, sample mean can reduce the variance:
+  if $U_1, ..., U_m$ are i.i.d. with variance $\sigma^2$ then the sample mean $\bar{U} = \frac{U_1+...+U_m}{m}$ has the variance $\frac{\sigma^2}{m}$
+- Thus we can reduce the variance of the tree-based method if we can use the average of predictions from several independent trees
+- This would require us to have **several independent** datasets, but in most applications, we only have 1 training dataset
+*** Ideas in bagging
+Bagging (bootstrap aggregating) was proposed by Breiman (1994), and is a popular ensemble method.
+
+Key ideas:
+- Use the training dataset to generate many bootstrapping samples
+- Use each bootstrap sample to build a distinct tree
+- Our final prediction is the {{{hl(average)}}} of predictions from these bootstrapping trees, which will have smaller variance and thus lead to better predictive performance
+*** Bagging algorithm
+- Given training dataset, fit a base model (e.g. Tree) that predicts the response as $\hat{h}(x)$ at the new datapoint $x$.
+- For $b=1,...,B$:
+  1. Draw a bootstrap sample from the training dataset
+  2. Fit a model $\hat{h}^{*b} (x)$ to each bootstrap sample
+  3. Then the bagging prediction at the new datapoint $x$ for regression:
+     $$
+     \widehat{\boldsymbol{h}}_{bag} ( \boldsymbol{x} )=\frac{1} {B} \sum_{b=1}^{B} \widehat{\boldsymbol{h}}^{* b} ( \boldsymbol{x} )
+     $$
+     - for classification: majority vote
+*** Remarks on bagging
+- Bagging can improve a good, but unstable procedure (e.g. Tree, neural networks, best subset selections in linear regression, etc.)
+- Bagging generally reduces higher-order variation: if one uses a decomposition into linear and higher-order terms, bagging affects the variability of higher-order terms
+- Bagging {{{hl(re-used the data)}}} to get more information in them but at the same time introduces a new variability, that of the model. Strangely, more variability can be an improvement at times.
+*** Theoretical issues
+- Given a training dataset of $n$ distinct observations, and suppose we generate a bootstrap sample,
+  - What is the chance of a given observation not being selected in the bootstrap sample?
+$$
+p_{1}=\frac{( n-1 )^{n}} {n^{n}}=\left( 1-\frac{1} {n} \right)^{n} \ \ \to\ \frac{1} {e}=3 6. 8 9 / \ \ a s \, n \to\infty
+$$
+
+- Given a training dataset of $n$ distinct observations, suppose there are $B=100$ bootstrap samples
+  - Let $W$ be the number of bootstrap samples that do not include the given observation. What is the distribution of $W$?
+  $$
+  \text{Binomial}(B=100, p=p1 \approx \frac{1}{e})
+  $$
+- On average, there are $E(W) = B \times p_1 \approx 36.8$ bootstrap samples that do not include this given observation.
+  - In other words, roughly 1/3 of the bootstrap samples will provide the cross-validation or out-of-bag estimate of predictive performance.
+** Random Forest
+9.2.2
+***
+
+
 * Week 10: Tree-Based and Ensemble Methods (Cont'd)
 Ensemble Methods (Cont'd)
 * Week 12: Advanced Supervised Learning
