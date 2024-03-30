@@ -2346,6 +2346,172 @@ See 7.2.2_Generalized_Addtive_Models_FWv2.pdf
 See 7.2.3_Spam_data_example_FWv2
 * Week 8: Tree-Based and Ensemble Methods
 Tree-Based Methods
+** Introduction to Trees
+8.1.1
+*** Tree method
+[[./img/tree.png]]
+1. Splits data into 2 or more subsets based on the value of variables
+2. Continuously split each subset into finer subsets
+3. Stop growing trees, or start pruning trees
+*** Motivating example
+Deciding to play sports based on weather variables.
+[[./img/tree-weather-table.png]]
+Example tree
+[[./img/tree-weather-tree.png]]
+*** Basic ideas
+- Partition the feature space into set of triangles (i.e. recursive binary partition)
+- Fit a simple model (e.g. constant) in each region
+*** Illustrative example
+[[./img/tree-illustrative.png]]
+- Here, we split the R^2 feature space into 5 disjoint regions,
+- Then, model the response as a constant $c_m$ in each region $R_m$ for $m=1,...,5$
+*** Tree-based model
+- Data: $(Y_i, x_i)$ with $x_i = (x_{i1}, ..., x_{ip})$ for $i=1,..,n$
+- Tree-based model:
+  - Suppose we have a partition of feature space into M regions
+  - We model the response Y as a constant $c_m$ in each region $R_m$
+  - The tree-based model can then be thought of as a special case of the **additive** model
+    $$
+    \hat{f}(x) = \sum^M_{m=1} c_m I(x \in R_m)
+    $$
+*** 2 types of trees
+- Regression tree :: response $Y$ is continuous
+- Classification tree :: response $Y$ is class label
+*** 3 fundamental issues in tree-based models
+1. How to estimate the response $c_m$ in each region $R_m$
+   - Easy: if we know the region $R_m$ we can simply use the average of training data in other regions to estimate $c_m$
+2. How to best partition the feature space into disjoint regions $R_m$
+3. How to suitably choose the number $M$ of disjoint regions?
+For 2. and 3. use algorithm approach to answer the questions with training data
+** Tree growing and tree pruning
+8.1.2
+*** Tree-based model
+- Data: $(Y_i, x_i)$ with $x_i = (x_{i1}, ..., x_{ip})$ for $i=1,..,n$
+- For regression tree and classification tree:
+  $$
+  \hat{f}(x) = \sum^M_{m=1} c_m I(x \in R_m)
+  $$
+- Questions: what are good choices for the following when $m=1,...,M$
+  1. $M$
+  2. $(R_m, c_m)$
+- Related to tree pruning
+*** RSS criterion for regression tree
+- Regression tree:
+  $$
+  \hat{f}(x) = \sum^M_{m=1} c_m I(x \in R_m)
+  $$
+- Criterion: minimize the residual sum of squares over training data
+  $RSS = \sum^n_{i=1} (Y_i - f(x_i))^2$
+- Under RSS criterion, for given $M$ and given regions $R_m$, the  optimal
+  $$
+  \hat{c}_m = \text{average} (Y_i | x_i \in R_m)
+  $$
+*** Choices of regions R_m
+- It's computationally infeasible to search all possible disjoint regions over feature space
+- A greedy algorithm can be used instead with 3 steps:
+  1. Each time we split the region into 2 sub-regions depending on whether $x_j \le s$ or $x_j \gt s$. There are at most $np$ possibilities in the search of $(j,s)$
+  2. Find the optimal $(j,s)$ with maximum homogeneity (i.e. minimum RSS) within each subregion. In other words, we find a certain split $(j,s)$ so that you will filter the training dataset well
+  3. Finally, repeat the process on each subregion until we have a larger (or large enough) split grown in the tree
+*** Greedy algorithm
+- Start with **all** training data. Consider a splitting independent variable $X_j$ and split value $s$ and define 2 subregions:
+  1. $R_1 (j,s) = {x_i : x_{ij} \le s}$ and
+  2. $R_2 (j,s) = {x_i: x_{ij} \gt s}$
+- Then seek the pair $(j,s)$ that minimizes RSS e.g.
+  $$
+  \min_{j,s} \left[ \min_{c_1} \sum_{x_i \in R_i (j,s)} (Y_i - c_1)^2 + \min_{c_2} \sum_{x_i \in R_2 (j,s)} (Y_i - c_2)^2\right]
+  $$
+- Partition the data into resulting 2 subregions
+- Repeat the above process on each of the 2 subregions
+*** When to stop growing tree?
+- Key issue is when to stop growing tree? or equivalently, how large should we grow the tree, or how large the number $M$ of subregions should be
+  - Large tree can overfit leading to poor predictive performance. Largest tree can theoretically be large enough s.t. each end node has only 1 data point, equal to Kn algorithm with K=1
+  - Small tree can be biased and thus not capture important structure, e.g. splits only once or no split at all.
+- Simple stopping rule:
+  - Use a threshold and declare a node terminal if decrease in RSS due to split is smaller than threshold
+  - But this tends to underfit as it does not look far enough forward
+- Better approach is to grow a large tree $T_0$ and then prune it back
+*** Tree pruning
+- Subtree: given a large tree $T_0$, define a subtree $T$ to be any tree that can be obtained by pruning $T_0$ i.e. collapsing any number of its internal (non-terminal) nodes
+- Key idea:
+  - Theory: want to find a subtree that minimizes certain pruning criteria (training error vs tree complexity)
+  - Algorithm: create a nested sequence of subtrees of an initial large tree $T_0$ by the weakest link cut algorithm
+*** Cost-complexity criterion for pruning
+- The cost-complexity measure of a subtree $T$ is defined as $C_{\alpha} (T) = RSS_T + \alpha |T|$
+  - $|T|$: the number of terminal nodes of a tree $T$
+  - $\alpha$: relative importance of fit vs model complexity
+    - When $\alpha \rightarrow \infty$ then optimal tree would be single-node tree
+*** Weakest link cutting algorithm
+  - Main theory: given larger tree $T_0$ the optimal subtrees are nested
+    - If $\alpha_1 > \alpha_2$ then the optimal tree $T_{\alpha_1}$  is a subtree of the optimal tree $T_{\alpha_2}$
+  - Algorithm is to:
+    - Successively collapse the internal node that produces the smallest per-node increase in RSS
+    - Continue until we produce the single node (root) tree
+  - This yields an infinite sequence of subtrees! But one of them will be optimal
+    $$
+    T_{\alpha} = \text{argmin}_{T \subset T_0} C_\alpha (T)
+    $$
+*** How to choose \alpha
+- For any $\alpha \in [0,\infty)$ the optimal subtree $T_{\alpha} = \text{argmin}_{T \subset T_0} C_\alpha (T)$ is among the finite sequence of subtrees
+- How to choose $\alpha$ or optimal subtree? **Cross-validation**
+  - We choose the value $\alpha$ and corresponding optimal subtree that minimizes the cross-validated residual sum of squares (RSS)
+** Classification trees
+8.1.3
+*** Classification problem
+- Data: $(Y_i, x_i)$ with $x_i = (x_{i1}, ..., x_{ip})$ for $i=1,..,n$. Assume that the response are class labels $Y_i \in {1,2,...,K}$
+- Tree-based models: how to adapt from the regression context to classification?
+  $$
+  \hat{f}(x) = \sum^M_{m=1} c_m I(x \in R_m)
+  $$
+- In classification, the constant $c_m$ identifies the class
+- How to estimate $c_m$?
+*** Majority vote in classification
+- In the classification tree, we estimate $c_m$ by the majority vote of training data at each given region $R_m$. At each given $m=1,...,M$:
+  1. We compute the percentage of training data for each class
+     $$
+     N_m = \sum_{x_i \in R_m} 1 \\
+     \hat{p}_{m,k} = \frac{1}{N_m} \sum_{x_i \in R_m} I(Y_i = k), \text{for }k=1,...,K
+     $$
+  2. Then we estimate $c_m$ or classify this region as the most common class
+     $$
+     \hat{k}_m = \text{argmax}_{k\in{1,2,...,K}} \hat{p}_{m,k}
+     $$
+*** Classification criterion
+- In regression, we assess performance under RSS criterion
+- In classification, what is a suitable criterion?
+  - Naturally, use misclassification error rate, i.e. proportion of the training observations that do not belong to the most common class
+    $$
+    \frac{1}{N_m} \sum_{x_i \in R_m} I(Y_i \ne \hat{k}_m) = 1- \hat{p}_{m, \hat{k}_m}
+    $$
+*** Drawback of natural criterion
+- It is not sensitive to tree growing:
+  - In 2 class problem of 400 obs per class, consider splits:
+    1. A=300, B=100 vs A=100, B=300
+    2. A=200, B=0 vs A=200, B=400
+  - Remarks: these 2 splits have same misclassification rate, but 2 is probably better as it's a pure node
+  - In practice, 2 alternative criteria are more popular
+*** Alternative 1: Gini index
+$$
+G=\sum_{k \neq k^{\prime}} \hat{p}_{m, k} \, \hat{p}_{m, k^{\prime}}=\sum_{k=1}^{K} \hat{p}_{m, k} \big( 1-\hat{p}_{m, k} \big)=1-\sum_{k=1}^{K} \hat{p}_{m, k}^{2}
+$$
+- Interpretation: the Gini index is:
+  1. The training error of a random rule that classifies an observation to class $k$ with probability $\hat{p}_{m,k}$ and
+  2. a measure of total variances of all $K$ classes
+  3. small if one of $\hat{p}_{m,k}$ is close to 1, whereas all other  $\hat{p}_{m,k}$ are close to 0.
+- Often called impurity measure for classification tree
+*** Alternative 2: Cross-entropy
+- Cross-entropy or deviance is another measure of impurity
+  $$
+  D=-\sum_{k=1}^{K} \hat{p}_{m, k} \operatorname{log} \hat{p}_{m, k}
+  $$
+- Interpretation: Cross-entropy is from information theory in engineering:
+  1. Gives an interpretation in terms of information gain
+  2. Often gives numerical results similar to Gini index
+*** Classification tree
+It can be constructed in the same way as regression tree, with RSS being replaced by a classification criterion:
+1. Growing tree: a greedy algorithm to minimize an impurity measure (either Gini or cross-entropy)
+2. Pruning tree: the weakest link cut algorithm to minimize the cross-complexity criterion, which can be misclassifcation rate (typically) or cross-entropy/deviance
+
+
 * Week 9: Tree-Based and Ensemble Methods (Cont'd)
 Ensemble Methods
 * Week 10: Tree-Based and Ensemble Methods (Cont'd)

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-03-29 Fri 22:53 -->
+<!-- 2024-03-30 Sat 11:51 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ISYE 7406: Data Mining and Statistical Learning</title>
@@ -44,377 +44,416 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org2269659">1. Week 3: Linear Regression (II)</a>
+<li><a href="#org48d2776">1. Week 3: Linear Regression (II)</a>
 <ul>
-<li><a href="#org1f71137">1.1. James-Stein Estimator</a>
+<li><a href="#org2f82e52">1.1. James-Stein Estimator</a>
 <ul>
-<li><a href="#org4d5046b">1.1.1. It's a special case of linear regression</a></li>
-<li><a href="#orga12acea">1.1.2. Simultaneous estimation</a></li>
-<li><a href="#org784ea34">1.1.3. JS estimator</a></li>
-<li><a href="#org3565238">1.1.4. Baseball example</a></li>
-<li><a href="#org3bbee46">1.1.5. Comparing MLE and JS</a></li>
+<li><a href="#orgbb9861e">1.1.1. It's a special case of linear regression</a></li>
+<li><a href="#org4583c18">1.1.2. Simultaneous estimation</a></li>
+<li><a href="#orga674192">1.1.3. JS estimator</a></li>
+<li><a href="#org51be4ab">1.1.4. Baseball example</a></li>
+<li><a href="#org8708a12">1.1.5. Comparing MLE and JS</a></li>
 </ul>
 </li>
-<li><a href="#org50cd3fa">1.2. Shrinkage Methods</a>
+<li><a href="#orge25f95a">1.2. Shrinkage Methods</a>
 <ul>
-<li><a href="#org2dc5ed0">1.2.1. Setting up shrinkage method</a></li>
-<li><a href="#orgd3696d3">1.2.2. Alternative formulation</a></li>
-<li><a href="#org7d1f881">1.2.3. Bayesian interpretation</a></li>
-<li><a href="#org52f1157">1.2.4. Choices of priors</a></li>
-<li><a href="#org0e43d9b">1.2.5. Ridge regression</a></li>
-<li><a href="#orga665d35">1.2.6. LASSO estimator</a></li>
+<li><a href="#org8d1fb12">1.2.1. Setting up shrinkage method</a></li>
+<li><a href="#org0d6900c">1.2.2. Alternative formulation</a></li>
+<li><a href="#org0c650f8">1.2.3. Bayesian interpretation</a></li>
+<li><a href="#org6267a01">1.2.4. Choices of priors</a></li>
+<li><a href="#org02545d0">1.2.5. Ridge regression</a></li>
+<li><a href="#org976de89">1.2.6. LASSO estimator</a></li>
 </ul>
 </li>
-<li><a href="#org3f53ae2">1.3. Ridge Regression</a>
+<li><a href="#org7a3eb57">1.3. Ridge Regression</a>
 <ul>
-<li><a href="#orgebe8803">1.3.1. Ridge Regression Estimator</a></li>
-<li><a href="#org4b0c8a4">1.3.2. Mathematical solution</a></li>
-<li><a href="#orgca5f4c8">1.3.3. Properties of Ridge Regression</a></li>
-<li><a href="#orgf63d8cb">1.3.4. Computational issues</a></li>
-<li><a href="#org465e47f">1.3.5. Example of SVD</a></li>
-<li><a href="#org3e424e1">1.3.6. SVD Example (I): \(XX^T\)</a></li>
-<li><a href="#org2c215da">1.3.7. SVD Example (II): \(X^T X\)</a></li>
-<li><a href="#orgdf27ae6">1.3.8. SVD verification</a></li>
+<li><a href="#orgaa18864">1.3.1. Ridge Regression Estimator</a></li>
+<li><a href="#org9b6c2cf">1.3.2. Mathematical solution</a></li>
+<li><a href="#orgc51eb81">1.3.3. Properties of Ridge Regression</a></li>
+<li><a href="#orga8de59b">1.3.4. Computational issues</a></li>
+<li><a href="#org2cb8bdd">1.3.5. Example of SVD</a></li>
+<li><a href="#org16e28fc">1.3.6. SVD Example (I): \(XX^T\)</a></li>
+<li><a href="#org7969610">1.3.7. SVD Example (II): \(X^T X\)</a></li>
+<li><a href="#org4291700">1.3.8. SVD verification</a></li>
 </ul>
 </li>
-<li><a href="#org1740c7d">1.4. LASSO (3.2.1)</a>
+<li><a href="#orgd3259ae">1.4. LASSO (3.2.1)</a>
 <ul>
-<li><a href="#orgbd88fcb">1.4.1. LASSO estimator</a></li>
-<li><a href="#orgc17e14f">1.4.2. L2-norm vs L1-norm</a></li>
-<li><a href="#orgf298aaa">1.4.3. Mathematical solution for LASSO estimator</a></li>
-<li><a href="#org1754f98">1.4.4. Properties of LASSO</a></li>
-<li><a href="#org012eb4a">1.4.5. LASSO weaknesses</a></li>
-<li><a href="#org10817c8">1.4.6. Computation issues of LASSO</a></li>
-<li><a href="#org205492e">1.4.7. LASSO is piecewise linear</a></li>
-<li><a href="#orge50be84">1.4.8. Standard error of LASSO</a></li>
-<li><a href="#orgc8c8f77">1.4.9. Variants of L1-norm</a></li>
+<li><a href="#org8339f86">1.4.1. LASSO estimator</a></li>
+<li><a href="#org632320a">1.4.2. L2-norm vs L1-norm</a></li>
+<li><a href="#org02c2765">1.4.3. Mathematical solution for LASSO estimator</a></li>
+<li><a href="#org7d18162">1.4.4. Properties of LASSO</a></li>
+<li><a href="#orge3d3328">1.4.5. LASSO weaknesses</a></li>
+<li><a href="#orgc9a266d">1.4.6. Computation issues of LASSO</a></li>
+<li><a href="#org99b33fa">1.4.7. LASSO is piecewise linear</a></li>
+<li><a href="#orged6fe96">1.4.8. Standard error of LASSO</a></li>
+<li><a href="#org4dbe449">1.4.9. Variants of L1-norm</a></li>
 </ul>
 </li>
-<li><a href="#orge3d3344">1.5. Principal Components (3.2.2)</a>
+<li><a href="#orgaa41266">1.5. Principal Components (3.2.2)</a>
 <ul>
-<li><a href="#org6111eea">1.5.1. Dimension reduction</a></li>
-<li><a href="#org3e5738f">1.5.2. Motivation of PCA</a></li>
-<li><a href="#org2b770c8">1.5.3. Find the PC's:  Population version</a></li>
-<li><a href="#org71a1286">1.5.4. Eigenvectors lead to PC's</a></li>
-<li><a href="#orgc93d286">1.5.5. Proof by Lagrange Multipliers</a></li>
-<li><a href="#org76b8dc6">1.5.6. PCs in Empirical Version</a></li>
-<li><a href="#org676bef3">1.5.7. Principal component regression</a></li>
+<li><a href="#orgf0ba232">1.5.1. Dimension reduction</a></li>
+<li><a href="#org45f455a">1.5.2. Motivation of PCA</a></li>
+<li><a href="#org21a60dc">1.5.3. Find the PC's:  Population version</a></li>
+<li><a href="#orge2db443">1.5.4. Eigenvectors lead to PC's</a></li>
+<li><a href="#orgd66cef8">1.5.5. Proof by Lagrange Multipliers</a></li>
+<li><a href="#org36b3ddd">1.5.6. PCs in Empirical Version</a></li>
+<li><a href="#orge8c2e87">1.5.7. Principal component regression</a></li>
 </ul>
 </li>
-<li><a href="#org2726c0c">1.6. Partial least squares (3.2.3)</a>
+<li><a href="#org4560935">1.6. Partial least squares (3.2.3)</a>
 <ul>
-<li><a href="#orgb78c6dd">1.6.1. Dimension reduction</a></li>
-<li><a href="#orga03cbaa">1.6.2. Partial least squares</a></li>
-<li><a href="#orgebfcfa3">1.6.3. 2 versions of PLS</a></li>
-<li><a href="#org9c807ed">1.6.4. Simple PLS algorithm</a></li>
-<li><a href="#orgc60b096">1.6.5. The PLS model</a></li>
-<li><a href="#org34e91ed">1.6.6. Key idea in The PLS Model</a></li>
-<li><a href="#org44a6be7">1.6.7. PLS for linear regression</a></li>
-<li><a href="#org12a57d7">1.6.8. Canonical correlation analysis (CCA)</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#org8e02755">2. Week 4: Linear Classification</a>
-<ul>
-<li><a href="#org52e45de">2.1. Overview of Linear Discriminant Analysis (4.1.1)</a>
-<ul>
-<li><a href="#orgb26ba9d">2.1.1. Classification problem</a></li>
-<li><a href="#orgce24ecc">2.1.2. Popular classification methods and R packages</a></li>
-<li><a href="#org54a2297">2.1.3. Discriminant analysis</a></li>
-<li><a href="#org080fec3">2.1.4. Example for 3-class problem</a></li>
-<li><a href="#org380810b">2.1.5. Discriminant functions</a></li>
-<li><a href="#org0e9c055">2.1.6. Multi-class vs. Binary</a></li>
-</ul>
-</li>
-<li><a href="#org24eeeba">2.2. Linear discrimination analysis continued (4.1.2)</a>
-<ul>
-<li><a href="#orgd41b75a">2.2.1. Bayes classifier</a></li>
-<li><a href="#orgf21ccb1">2.2.2. Normality asumption</a></li>
-<li><a href="#org0551088">2.2.3. Bayes classifier for normal distribution</a></li>
-<li><a href="#org4626607">2.2.4. LDA in practice</a></li>
-<li><a href="#org1afa679">2.2.5. LDA for K=2 classes</a></li>
-<li><a href="#org614278e">2.2.6. Fisher's distance-based approach</a></li>
-</ul>
-</li>
-<li><a href="#org0ff0c43">2.3. Quadratic Discrimination Analysis classifier (4.1.3)</a>
-<ul>
-<li><a href="#org7cb799a">2.3.1. Bayes classifier</a></li>
-<li><a href="#org85e2aed">2.3.2. Normal distribution</a></li>
-<li><a href="#org919decd">2.3.3. Normal model for \(f_k\)</a></li>
-<li><a href="#orga131e24">2.3.4. Three approaches to estimate</a></li>
-<li><a href="#org1d2c8f1">2.3.5. QDA classifier</a></li>
-<li><a href="#org3aa65c9">2.3.6. Naive Bayes classifier</a></li>
-<li><a href="#org307839f">2.3.7. General Naive Bayes classifier</a></li>
-</ul>
-</li>
-<li><a href="#org5b9f78b">2.4. Logistic Regression: Estimation (4.2.1)</a>
-<ul>
-<li><a href="#orga7be6f8">2.4.1. Classification methods</a></li>
-<li><a href="#org6887771">2.4.2. Binary logistic regression</a></li>
-<li><a href="#org072aa42">2.4.3. Conditional probability</a></li>
-<li><a href="#orgddecccd">2.4.4. Statistical inference</a></li>
-<li><a href="#org86303fd">2.4.5. Maximum likelihood estimation</a></li>
-<li><a href="#org4dd4197">2.4.6. Asymptotic properties of MLE</a></li>
-<li><a href="#orge41d65c">2.4.7. Other link function</a></li>
-<li><a href="#orgb88ae46">2.4.8. Logistic or LDA?</a></li>
-</ul>
-</li>
-<li><a href="#org4ab101b">2.5. Optimizations in Logistic Regression (4.2.2)</a>
-<ul>
-<li><a href="#orge3b8e8a">2.5.1. Logistic regression recap</a></li>
-<li><a href="#org1eab55e">2.5.2. MLE in logistic regression</a></li>
-<li><a href="#orgc33f1b6">2.5.3. Optimization problem</a></li>
-<li><a href="#org697ab31">2.5.4. Optimization algorithms</a></li>
-<li><a href="#org41a84ce">2.5.5. Newton-Raphson Method</a></li>
-<li><a href="#org32d3a6c">2.5.6. Taylor Expansion consideration</a></li>
-<li><a href="#org796ee46">2.5.7. Newton-Raphson Method in Statistics</a></li>
-<li><a href="#org99ec33d">2.5.8. MLE of logistic regression</a></li>
-<li><a href="#orgfb736ac">2.5.9. Algorithm for MLE in logistic regression</a></li>
-</ul>
-</li>
-<li><a href="#orga565dbf">2.6. Simplest logistic regression (4.2.3)</a>
-<ul>
-<li><a href="#org516fe9c">2.6.1. Data in Simplest Logistic Regression</a></li>
-<li><a href="#org286bccd">2.6.2. Is X and Y associated?</a></li>
-<li><a href="#org2793031">2.6.3. The likelihood function</a></li>
-<li><a href="#org4428d35">2.6.4. The MLE estimator of \(\beta_i\) 's</a></li>
-<li><a href="#org1f84314">2.6.5. Fisher Information Matrix</a></li>
-<li><a href="#orgd50bbe3">2.6.6. Variance of MLE</a></li>
-<li><a href="#orgf144ce6">2.6.7. Are X and Y associated?</a></li>
+<li><a href="#org4dcdf89">1.6.1. Dimension reduction</a></li>
+<li><a href="#org7f7bec6">1.6.2. Partial least squares</a></li>
+<li><a href="#org76bc448">1.6.3. 2 versions of PLS</a></li>
+<li><a href="#org70dad73">1.6.4. Simple PLS algorithm</a></li>
+<li><a href="#orgb752f39">1.6.5. The PLS model</a></li>
+<li><a href="#org980b22b">1.6.6. Key idea in The PLS Model</a></li>
+<li><a href="#org16c55f8">1.6.7. PLS for linear regression</a></li>
+<li><a href="#org789b73f">1.6.8. Canonical correlation analysis (CCA)</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org7181002">3. Week 5: Linear Classification Cont'd (Module 3)</a>
+<li><a href="#org64282d2">2. Week 4: Linear Classification</a>
 <ul>
-<li><a href="#org634e2b6">3.1. Example: CHD</a>
+<li><a href="#org776358b">2.1. Overview of Linear Discriminant Analysis (4.1.1)</a>
 <ul>
-<li><a href="#org9e150a4">3.1.1. CI of coefficients in Log Reg</a></li>
-<li><a href="#org6970f20">3.1.2. Simplest logistic regression model</a></li>
-<li><a href="#org0c52d19">3.1.3. Analysis in R</a></li>
-<li><a href="#org610b082">3.1.4. Analysis by hand</a></li>
-<li><a href="#orgae2e259">3.1.5. Testing hypothesis</a></li>
+<li><a href="#org522764a">2.1.1. Classification problem</a></li>
+<li><a href="#org1a41fb4">2.1.2. Popular classification methods and R packages</a></li>
+<li><a href="#org831ee22">2.1.3. Discriminant analysis</a></li>
+<li><a href="#orga5db3d8">2.1.4. Example for 3-class problem</a></li>
+<li><a href="#orga99d059">2.1.5. Discriminant functions</a></li>
+<li><a href="#org4df464b">2.1.6. Multi-class vs. Binary</a></li>
 </ul>
 </li>
-<li><a href="#orge258050">3.2. Prediction in Logistic Regression</a>
+<li><a href="#org93d6b06">2.2. Linear discrimination analysis continued (4.1.2)</a>
 <ul>
-<li><a href="#orgfd69741">3.2.1. Logistic regression model</a></li>
-<li><a href="#org054280d">3.2.2. Point estimation</a></li>
-<li><a href="#org87bd43d">3.2.3. Point estimation in R</a></li>
-<li><a href="#org5f182f3">3.2.4. Confidence interval for logistic regression</a></li>
-<li><a href="#org6f19a94">3.2.5. Prediction</a></li>
-<li><a href="#orgcc9632e">3.2.6. Prediction rule</a></li>
-<li><a href="#orgc2ea695">3.2.7. Choice of cutoff value \(c*\)</a></li>
-<li><a href="#org6f9433a">3.2.8. Choice of \(c*\) from validation</a></li>
+<li><a href="#org95eb057">2.2.1. Bayes classifier</a></li>
+<li><a href="#org38c5e84">2.2.2. Normality asumption</a></li>
+<li><a href="#orge534891">2.2.3. Bayes classifier for normal distribution</a></li>
+<li><a href="#orgcaa62c6">2.2.4. LDA in practice</a></li>
+<li><a href="#orgb7bdca7">2.2.5. LDA for K=2 classes</a></li>
+<li><a href="#org6a19538">2.2.6. Fisher's distance-based approach</a></li>
 </ul>
 </li>
-<li><a href="#org41bfc43">3.3. Model Selection in Logistic Regression</a>
+<li><a href="#org756f138">2.3. Quadratic Discrimination Analysis classifier (4.1.3)</a>
 <ul>
-<li><a href="#org13d354c">3.3.1. Logistic Regression review</a></li>
-<li><a href="#org866258c">3.3.2. Model selection in Logistic Regression</a></li>
-<li><a href="#orgd3b7d74">3.3.3. Information criterion</a></li>
-<li><a href="#orgf96030d">3.3.4. Hypothesis testing</a></li>
-<li><a href="#org42d9f0a">3.3.5. Wald's test</a></li>
-<li><a href="#org5b988a6">3.3.6. Comparison of 2 models</a></li>
-<li><a href="#orgd5e9b29">3.3.7. Assess performance</a></li>
-<li><a href="#org470cd14">3.3.8. Specificity vs Sensitivity</a></li>
-<li><a href="#orgf5e6541">3.3.9. ROC curve</a></li>
+<li><a href="#org030d7bd">2.3.1. Bayes classifier</a></li>
+<li><a href="#org7b06129">2.3.2. Normal distribution</a></li>
+<li><a href="#orge146795">2.3.3. Normal model for \(f_k\)</a></li>
+<li><a href="#org1d2f04a">2.3.4. Three approaches to estimate</a></li>
+<li><a href="#org133db37">2.3.5. QDA classifier</a></li>
+<li><a href="#orgc37474c">2.3.6. Naive Bayes classifier</a></li>
+<li><a href="#org2bd2e6f">2.3.7. General Naive Bayes classifier</a></li>
 </ul>
 </li>
-<li><a href="#orge6465a1">3.4. Case Study: Golf Putting I</a>
+<li><a href="#org4d2d16a">2.4. Logistic Regression: Estimation (4.2.1)</a>
 <ul>
-<li><a href="#org8970ba5">3.4.1. Dataset</a></li>
-<li><a href="#orgc5b2257">3.4.2. Scatter plot</a></li>
-<li><a href="#org45be9e4">3.4.3. Question</a></li>
-<li><a href="#org358fa55">3.4.4. Multiple linear regression models</a></li>
-<li><a href="#orgb34bfc6">3.4.5. R code</a></li>
-<li><a href="#orgaaf0920">3.4.6. Larger distance?</a></li>
-<li><a href="#org10f1e84">3.4.7. Problems with regression models</a></li>
+<li><a href="#org97cc91d">2.4.1. Classification methods</a></li>
+<li><a href="#orgadd0130">2.4.2. Binary logistic regression</a></li>
+<li><a href="#org0ccdb73">2.4.3. Conditional probability</a></li>
+<li><a href="#org3cf75ef">2.4.4. Statistical inference</a></li>
+<li><a href="#org4cb2215">2.4.5. Maximum likelihood estimation</a></li>
+<li><a href="#org915e007">2.4.6. Asymptotic properties of MLE</a></li>
+<li><a href="#orga11f39f">2.4.7. Other link function</a></li>
+<li><a href="#orgdf05750">2.4.8. Logistic or LDA?</a></li>
 </ul>
 </li>
-<li><a href="#org58ec158">3.5. Case Study: Golf Putting II</a>
+<li><a href="#org1f450e9">2.5. Optimizations in Logistic Regression (4.2.2)</a>
 <ul>
-<li><a href="#org788004b">3.5.1. Logistic regression model</a></li>
-<li><a href="#orgc07cbae">3.5.2. R code</a></li>
-<li><a href="#org454683d">3.5.3. Fitted model:</a></li>
-<li><a href="#orgbe187d9">3.5.4. Advantages and disadvantages of logistic regression</a></li>
+<li><a href="#org5d08e44">2.5.1. Logistic regression recap</a></li>
+<li><a href="#org35303db">2.5.2. MLE in logistic regression</a></li>
+<li><a href="#org0c85036">2.5.3. Optimization problem</a></li>
+<li><a href="#orgfd754e0">2.5.4. Optimization algorithms</a></li>
+<li><a href="#orgb60e836">2.5.5. Newton-Raphson Method</a></li>
+<li><a href="#org74717ea">2.5.6. Taylor Expansion consideration</a></li>
+<li><a href="#orgddb2a4a">2.5.7. Newton-Raphson Method in Statistics</a></li>
+<li><a href="#org30d8ad1">2.5.8. MLE of logistic regression</a></li>
+<li><a href="#orga19c5a3">2.5.9. Algorithm for MLE in logistic regression</a></li>
 </ul>
 </li>
-<li><a href="#orgcfc0486">3.6. Case Study: Golf Putting III</a>
+<li><a href="#orgfd3ae40">2.6. Simplest logistic regression (4.2.3)</a>
 <ul>
-<li><a href="#org4b4aa55">3.6.1. New model</a></li>
-<li><a href="#org1fcb551">3.6.2. Parameter estimation</a></li>
-<li><a href="#orgb9d3142">3.6.3. Fitted model</a></li>
-<li><a href="#org0f522cd">3.6.4. Concerns</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#org65f20ad">4. Week 6: Local Smoothers and Additive Models</a>
-<ul>
-<li><a href="#org0829783">4.1. Overview</a>
-<ul>
-<li><a href="#orgdc63153">4.1.1. Regression in general</a></li>
-<li><a href="#org2f3a560">4.1.2. Special case: \(p=1\)</a></li>
-<li><a href="#org75d2932">4.1.3. Method of least squares</a></li>
-<li><a href="#org973355e">4.1.4. Interpolation</a></li>
-<li><a href="#orgd251336">4.1.5. Polynomial interpolation</a></li>
-<li><a href="#orgf567d1a">4.1.6. Weakness of interpolation</a></li>
-<li><a href="#orgf91b365">4.1.7. Transition to local smoothers</a></li>
-<li><a href="#org95d0887">4.1.8. Three popular local smoothers</a></li>
-</ul>
-</li>
-<li><a href="#org2e62e62">4.2. LOESS</a>
-<ul>
-<li><a href="#org89a10f1">4.2.1. Problem formulation</a></li>
-<li><a href="#org58fa1e6">4.2.2. LOESS algorithm</a></li>
-<li><a href="#org94cdedf">4.2.3. Weights</a></li>
-<li><a href="#org179d161">4.2.4. Weighted least squares</a></li>
-<li><a href="#orge3805cc">4.2.5. LOESS smoothing example</a></li>
-<li><a href="#org6d58d9d">4.2.6. Advantages and disadvantages of LOESS</a></li>
-</ul>
-</li>
-<li><a href="#org92294e6">4.3. Kernel 1</a>
-<ul>
-<li><a href="#orgf213d4a">4.3.1. Local Smoothers</a></li>
-<li><a href="#org73dd3c6">4.3.2. Convergence</a></li>
-<li><a href="#orge60783d">4.3.3. Statistical properties</a></li>
-<li><a href="#org595571a">4.3.4. Bias-variance decomposition</a></li>
-<li><a href="#org44af71a">4.3.5. Kernel smoothing</a></li>
-<li><a href="#org02a46e1">4.3.6. Definition of kernel</a></li>
-<li><a href="#org8c5e5f6">4.3.7. Rescaled kernel</a></li>
-<li><a href="#org0f04814">4.3.8. Kernel functions</a></li>
-<li><a href="#orga44ca5a">4.3.9. Idea in kernel smoothing</a></li>
-</ul>
-</li>
-<li><a href="#org0d8918d">4.4. Kernels: Smoothing for deterministic design</a>
-<ul>
-<li><a href="#org65b28b9">4.4.1. Deterministic design</a></li>
-<li><a href="#org3e19a2b">4.4.2. Choose a fixed kernel</a></li>
-<li><a href="#org6070fd1">4.4.3. Priestley-Chao Kernel Estimate</a></li>
-<li><a href="#org3b5f62c">4.4.4. Performance evaluation</a></li>
-<li><a href="#org074957d">4.4.5. Statistical properties</a></li>
-<li><a href="#orgcaf99e4">4.4.6. Main ideas:</a></li>
-<li><a href="#org156bcb3">4.4.7. Proof: bias of \(\hat{f}\)</a></li>
-<li><a href="#org76db075">4.4.8. Optimal choice of \(h\)</a></li>
-</ul>
-</li>
-<li><a href="#org8dc6cba">4.5. Kernel Smoothing in Stochastic Design</a>
-<ul>
-<li><a href="#org6ab5ac8">4.5.1. Stochastic design</a></li>
-<li><a href="#org5099129">4.5.2. Challenges</a></li>
-<li><a href="#orgcec36dd">4.5.3. Nadaraya-Watson Estimator</a></li>
-<li><a href="#org309a99b">4.5.4. Alternative form</a></li>
-<li><a href="#orgf30d9f3">4.5.5. Consistency properties of NW</a></li>
-<li><a href="#orgd66b652">4.5.6. Density estimation</a></li>
-<li><a href="#orgc0f9c64">4.5.7. Asymptotic properties</a></li>
-<li><a href="#org87a9430">4.5.8. Other key ideas</a></li>
-<li><a href="#orge0949a0">4.5.9. Asymptotic normality</a></li>
-</ul>
-</li>
-<li><a href="#org90d091c">4.6. Advanced topics in kernel smoothing</a>
-<ul>
-<li><a href="#orge5c0138">4.6.1. Estimate derivatives</a></li>
-<li><a href="#org35eef5d">4.6.2. Deterministic design</a></li>
-<li><a href="#org0fbe0ec">4.6.3. Estimate derivatives</a></li>
-<li><a href="#org47926f6">4.6.4. Parameter selection</a></li>
-<li><a href="#orgf4b9606">4.6.5. Statistical properties</a></li>
-<li><a href="#org3e0d713">4.6.6. Mean squared error</a></li>
-<li><a href="#org9655af6">4.6.7. Optimal MSE</a></li>
-<li><a href="#orgdb628fb">4.6.8. Optimizing over \(K\)</a></li>
-<li><a href="#org43c1abd">4.6.9. Lagrange Multipliers</a></li>
-<li><a href="#org64d64b1">4.6.10. Optimal kernel</a></li>
-<li><a href="#orgbe11322">4.6.11. Remarks</a></li>
+<li><a href="#org4080509">2.6.1. Data in Simplest Logistic Regression</a></li>
+<li><a href="#org440e893">2.6.2. Is X and Y associated?</a></li>
+<li><a href="#orgead190b">2.6.3. The likelihood function</a></li>
+<li><a href="#org705ae0b">2.6.4. The MLE estimator of \(\beta_i\) 's</a></li>
+<li><a href="#org095c617">2.6.5. Fisher Information Matrix</a></li>
+<li><a href="#org1864bc2">2.6.6. Variance of MLE</a></li>
+<li><a href="#orgc8a9ef1">2.6.7. Are X and Y associated?</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgaaa3057">5. Week 7: Local Smoothers and Additive Models (Cont'd)</a>
+<li><a href="#org5425c65">3. Week 5: Linear Classification Cont'd (Module 3)</a>
 <ul>
-<li><a href="#org71ac64c">5.1. Spline Interpolation</a>
+<li><a href="#org9828b50">3.1. Example: CHD</a>
 <ul>
-<li><a href="#org01f8042">5.1.1. Recap: Local Smoothing</a></li>
-<li><a href="#orgfeb249a">5.1.2. Interpolating Splines</a></li>
-<li><a href="#org687cac3">5.1.3. Zero-order spline</a></li>
-<li><a href="#org110ac1a">5.1.4. First-order spline</a></li>
-<li><a href="#orge9dcc26">5.1.5. $d$-order splines</a></li>
-<li><a href="#org4eca83d">5.1.6. Cubic spline interpolation</a></li>
-<li><a href="#org6691dd5">5.1.7. Parameters in cubic splines</a></li>
-<li><a href="#orgf7e207d">5.1.8. Constraints in cubic splines</a></li>
-<li><a href="#orgcd03621">5.1.9. Natural cubic splines</a></li>
-<li><a href="#org4123ed3">5.1.10. Simulation study</a></li>
-<li><a href="#org1680f4b">5.1.11. Spline interpolation in R</a></li>
-<li><a href="#orge8fae34">5.1.12. Summary</a></li>
+<li><a href="#org59d5216">3.1.1. CI of coefficients in Log Reg</a></li>
+<li><a href="#org193f3e6">3.1.2. Simplest logistic regression model</a></li>
+<li><a href="#org8fcb56c">3.1.3. Analysis in R</a></li>
+<li><a href="#orgc6601ee">3.1.4. Analysis by hand</a></li>
+<li><a href="#orgced702f">3.1.5. Testing hypothesis</a></li>
 </ul>
 </li>
-<li><a href="#org36fec26">5.2. Cubic spline smoothing</a>
+<li><a href="#orga3e9f44">3.2. Prediction in Logistic Regression</a>
 <ul>
-<li><a href="#orgf71a813">5.2.1. Local smoothing</a></li>
-<li><a href="#org8dc44b6">5.2.2. Interpolation overfits</a></li>
-<li><a href="#orgb2eb85f">5.2.3. Roughness constraint</a></li>
-<li><a href="#org37e9023">5.2.4. Cubic spline smoother</a></li>
-<li><a href="#org171f0a1">5.2.5. Impact of &lambda; parameter</a></li>
-<li><a href="#orgb15b057">5.2.6. Optimal &lambda;</a></li>
+<li><a href="#orgf6c8324">3.2.1. Logistic regression model</a></li>
+<li><a href="#org26b5547">3.2.2. Point estimation</a></li>
+<li><a href="#org3fba606">3.2.3. Point estimation in R</a></li>
+<li><a href="#org7759106">3.2.4. Confidence interval for logistic regression</a></li>
+<li><a href="#org20e6e2f">3.2.5. Prediction</a></li>
+<li><a href="#orgcd08243">3.2.6. Prediction rule</a></li>
+<li><a href="#org8787883">3.2.7. Choice of cutoff value \(c*\)</a></li>
+<li><a href="#orgfc9e6f5">3.2.8. Choice of \(c*\) from validation</a></li>
 </ul>
 </li>
-<li><a href="#org43f10b3">5.3. Optimality and algorithms in splines</a>
+<li><a href="#org3e66258">3.3. Model Selection in Logistic Regression</a>
 <ul>
-<li><a href="#org6bf38e2">5.3.1. Cubic splines</a></li>
-<li><a href="#orge055adb">5.3.2. Relation of cubic splines</a></li>
-<li><a href="#org5c07e0d">5.3.3. Optimality properties</a></li>
-<li><a href="#org7d7d68b">5.3.4. Proof</a></li>
-<li><a href="#org8dc40d5">5.3.5. Algorithms for cubic splines</a></li>
-<li><a href="#org012ba11">5.3.6. Two useful facts</a></li>
-<li><a href="#org16fc9ab">5.3.7. Ridge regression approach</a></li>
+<li><a href="#orgaa6ebb3">3.3.1. Logistic Regression review</a></li>
+<li><a href="#orgf79540c">3.3.2. Model selection in Logistic Regression</a></li>
+<li><a href="#orgb1dab72">3.3.3. Information criterion</a></li>
+<li><a href="#orgb598436">3.3.4. Hypothesis testing</a></li>
+<li><a href="#org02feedc">3.3.5. Wald's test</a></li>
+<li><a href="#orge83c7ae">3.3.6. Comparison of 2 models</a></li>
+<li><a href="#org32cf763">3.3.7. Assess performance</a></li>
+<li><a href="#org81a73dd">3.3.8. Specificity vs Sensitivity</a></li>
+<li><a href="#org67ccee0">3.3.9. ROC curve</a></li>
 </ul>
 </li>
-<li><a href="#org6a89dd8">5.4. Additive models</a>
+<li><a href="#org6e51c4d">3.4. Case Study: Golf Putting I</a>
 <ul>
-<li><a href="#org24e1348">5.4.1. Additive models detail</a></li>
-<li><a href="#orge2c4ff6">5.4.2. Fitting additive model</a></li>
-<li><a href="#orgc910008">5.4.3. Estimation issues</a></li>
-<li><a href="#org2a61d74">5.4.4. Key idea</a></li>
-<li><a href="#org7799bcf">5.4.5. Backfitting algorithm</a></li>
-<li><a href="#org53c3fba">5.4.6. Example for backfitting</a></li>
-<li><a href="#orgd102c04">5.4.7. Illustrative example</a></li>
-<li><a href="#org27c763f">5.4.8. R code for backfitting</a></li>
-<li><a href="#orgd23ad76">5.4.9. R output</a></li>
+<li><a href="#org21ce783">3.4.1. Dataset</a></li>
+<li><a href="#orgf33bcff">3.4.2. Scatter plot</a></li>
+<li><a href="#org60aeb19">3.4.3. Question</a></li>
+<li><a href="#org0cd33c8">3.4.4. Multiple linear regression models</a></li>
+<li><a href="#orgf0b1b7f">3.4.5. R code</a></li>
+<li><a href="#org4947d8c">3.4.6. Larger distance?</a></li>
+<li><a href="#org3af7fd0">3.4.7. Problems with regression models</a></li>
 </ul>
 </li>
-<li><a href="#org953267d">5.5. Generalized additive models</a>
+<li><a href="#org7a52948">3.5. Case Study: Golf Putting II</a>
 <ul>
-<li><a href="#org19c97f7">5.5.1. Additive models cont'd</a></li>
-<li><a href="#org98eeffc">5.5.2. Link functions in GAM</a></li>
-<li><a href="#orgf49a56b">5.5.3. Additive logistic models</a></li>
-<li><a href="#orge2a3423">5.5.4. Recall logistic regression</a></li>
-<li><a href="#orgd6d81b4">5.5.5. Review of Newton-Raphson Algorithm</a></li>
-<li><a href="#org996b79f">5.5.6. Estimation in additive logistic</a></li>
-<li><a href="#orga65845e">5.5.7. Local scoring algorithm</a></li>
+<li><a href="#orgdac8085">3.5.1. Logistic regression model</a></li>
+<li><a href="#org377dcc8">3.5.2. R code</a></li>
+<li><a href="#org1164827">3.5.3. Fitted model:</a></li>
+<li><a href="#org4798394">3.5.4. Advantages and disadvantages of logistic regression</a></li>
+</ul>
+</li>
+<li><a href="#orgc2a16b4">3.6. Case Study: Golf Putting III</a>
+<ul>
+<li><a href="#org2938af7">3.6.1. New model</a></li>
+<li><a href="#org8e77f3a">3.6.2. Parameter estimation</a></li>
+<li><a href="#orgbeef7a5">3.6.3. Fitted model</a></li>
+<li><a href="#org45d7fbd">3.6.4. Concerns</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgd19eb0b">6. Week 8: Tree-Based and Ensemble Methods</a></li>
-<li><a href="#orgf9fa631">7. Week 9: Tree-Based and Ensemble Methods (Cont'd)</a></li>
-<li><a href="#org15c613f">8. Week 10: Tree-Based and Ensemble Methods (Cont'd)</a></li>
-<li><a href="#org2b45f96">9. Week 12: Advanced Supervised Learning</a></li>
+<li><a href="#org4032d35">4. Week 6: Local Smoothers and Additive Models</a>
+<ul>
+<li><a href="#org3e88988">4.1. Overview</a>
+<ul>
+<li><a href="#orgfc7745f">4.1.1. Regression in general</a></li>
+<li><a href="#org5366a97">4.1.2. Special case: \(p=1\)</a></li>
+<li><a href="#org3f882ea">4.1.3. Method of least squares</a></li>
+<li><a href="#orgc68dd83">4.1.4. Interpolation</a></li>
+<li><a href="#org8bc28da">4.1.5. Polynomial interpolation</a></li>
+<li><a href="#org7e7881e">4.1.6. Weakness of interpolation</a></li>
+<li><a href="#orgfbf584d">4.1.7. Transition to local smoothers</a></li>
+<li><a href="#org2eade98">4.1.8. Three popular local smoothers</a></li>
+</ul>
+</li>
+<li><a href="#orgacf00e7">4.2. LOESS</a>
+<ul>
+<li><a href="#org777d3c9">4.2.1. Problem formulation</a></li>
+<li><a href="#org5e09ade">4.2.2. LOESS algorithm</a></li>
+<li><a href="#orgce8ced4">4.2.3. Weights</a></li>
+<li><a href="#org9358040">4.2.4. Weighted least squares</a></li>
+<li><a href="#orge033a03">4.2.5. LOESS smoothing example</a></li>
+<li><a href="#org4584874">4.2.6. Advantages and disadvantages of LOESS</a></li>
+</ul>
+</li>
+<li><a href="#org24b31ee">4.3. Kernel 1</a>
+<ul>
+<li><a href="#orga1caf63">4.3.1. Local Smoothers</a></li>
+<li><a href="#orgb3ee7d8">4.3.2. Convergence</a></li>
+<li><a href="#orga3d1b99">4.3.3. Statistical properties</a></li>
+<li><a href="#orgc6869a1">4.3.4. Bias-variance decomposition</a></li>
+<li><a href="#org13932ec">4.3.5. Kernel smoothing</a></li>
+<li><a href="#orge537022">4.3.6. Definition of kernel</a></li>
+<li><a href="#orgd2d5d31">4.3.7. Rescaled kernel</a></li>
+<li><a href="#orgd9a9ef2">4.3.8. Kernel functions</a></li>
+<li><a href="#orgb931d49">4.3.9. Idea in kernel smoothing</a></li>
+</ul>
+</li>
+<li><a href="#org2c1ceac">4.4. Kernels: Smoothing for deterministic design</a>
+<ul>
+<li><a href="#org6d91943">4.4.1. Deterministic design</a></li>
+<li><a href="#orge210ce7">4.4.2. Choose a fixed kernel</a></li>
+<li><a href="#org71394f3">4.4.3. Priestley-Chao Kernel Estimate</a></li>
+<li><a href="#orgcc44fae">4.4.4. Performance evaluation</a></li>
+<li><a href="#org0679550">4.4.5. Statistical properties</a></li>
+<li><a href="#org497c533">4.4.6. Main ideas:</a></li>
+<li><a href="#org47eca8b">4.4.7. Proof: bias of \(\hat{f}\)</a></li>
+<li><a href="#org1a21310">4.4.8. Optimal choice of \(h\)</a></li>
+</ul>
+</li>
+<li><a href="#org02f64eb">4.5. Kernel Smoothing in Stochastic Design</a>
+<ul>
+<li><a href="#org030c165">4.5.1. Stochastic design</a></li>
+<li><a href="#orgd8c5464">4.5.2. Challenges</a></li>
+<li><a href="#org0282711">4.5.3. Nadaraya-Watson Estimator</a></li>
+<li><a href="#orge68e751">4.5.4. Alternative form</a></li>
+<li><a href="#org7fa5b85">4.5.5. Consistency properties of NW</a></li>
+<li><a href="#org8855cdc">4.5.6. Density estimation</a></li>
+<li><a href="#orge522d28">4.5.7. Asymptotic properties</a></li>
+<li><a href="#orgfd56c64">4.5.8. Other key ideas</a></li>
+<li><a href="#orgc02b5b4">4.5.9. Asymptotic normality</a></li>
+</ul>
+</li>
+<li><a href="#orgb7b0127">4.6. Advanced topics in kernel smoothing</a>
+<ul>
+<li><a href="#org44ec523">4.6.1. Estimate derivatives</a></li>
+<li><a href="#org540e757">4.6.2. Deterministic design</a></li>
+<li><a href="#orga5e63be">4.6.3. Estimate derivatives</a></li>
+<li><a href="#org6606763">4.6.4. Parameter selection</a></li>
+<li><a href="#org2aa91d9">4.6.5. Statistical properties</a></li>
+<li><a href="#org4aef269">4.6.6. Mean squared error</a></li>
+<li><a href="#orga0b981b">4.6.7. Optimal MSE</a></li>
+<li><a href="#org8bb0132">4.6.8. Optimizing over \(K\)</a></li>
+<li><a href="#org4f1c102">4.6.9. Lagrange Multipliers</a></li>
+<li><a href="#orgbd6b4cd">4.6.10. Optimal kernel</a></li>
+<li><a href="#org3ac62d8">4.6.11. Remarks</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orge9543fe">5. Week 7: Local Smoothers and Additive Models (Cont'd)</a>
+<ul>
+<li><a href="#org48b7e39">5.1. Spline Interpolation</a>
+<ul>
+<li><a href="#org8bf2fd6">5.1.1. Recap: Local Smoothing</a></li>
+<li><a href="#orgdb4c74b">5.1.2. Interpolating Splines</a></li>
+<li><a href="#org8dc5113">5.1.3. Zero-order spline</a></li>
+<li><a href="#org8a8165c">5.1.4. First-order spline</a></li>
+<li><a href="#org9bf05a6">5.1.5. $d$-order splines</a></li>
+<li><a href="#org762cd6f">5.1.6. Cubic spline interpolation</a></li>
+<li><a href="#org7ba40f7">5.1.7. Parameters in cubic splines</a></li>
+<li><a href="#org494fbdb">5.1.8. Constraints in cubic splines</a></li>
+<li><a href="#org20277f5">5.1.9. Natural cubic splines</a></li>
+<li><a href="#orgab0a860">5.1.10. Simulation study</a></li>
+<li><a href="#org8854aac">5.1.11. Spline interpolation in R</a></li>
+<li><a href="#orgb0432ca">5.1.12. Summary</a></li>
+</ul>
+</li>
+<li><a href="#orgfaac4c8">5.2. Cubic spline smoothing</a>
+<ul>
+<li><a href="#orgca669c6">5.2.1. Local smoothing</a></li>
+<li><a href="#org401d050">5.2.2. Interpolation overfits</a></li>
+<li><a href="#org3aa9049">5.2.3. Roughness constraint</a></li>
+<li><a href="#org0ae4cf0">5.2.4. Cubic spline smoother</a></li>
+<li><a href="#orgd4896cf">5.2.5. Impact of &lambda; parameter</a></li>
+<li><a href="#org60ee96b">5.2.6. Optimal &lambda;</a></li>
+</ul>
+</li>
+<li><a href="#org824b113">5.3. Optimality and algorithms in splines</a>
+<ul>
+<li><a href="#org163f210">5.3.1. Cubic splines</a></li>
+<li><a href="#org2f08242">5.3.2. Relation of cubic splines</a></li>
+<li><a href="#orgdc5cfb6">5.3.3. Optimality properties</a></li>
+<li><a href="#orge9fbcf5">5.3.4. Proof</a></li>
+<li><a href="#org7b079fd">5.3.5. Algorithms for cubic splines</a></li>
+<li><a href="#org2aea96e">5.3.6. Two useful facts</a></li>
+<li><a href="#org2dcac70">5.3.7. Ridge regression approach</a></li>
+</ul>
+</li>
+<li><a href="#orgb0a27ea">5.4. Additive models</a>
+<ul>
+<li><a href="#org6562cf8">5.4.1. Additive models detail</a></li>
+<li><a href="#org225f125">5.4.2. Fitting additive model</a></li>
+<li><a href="#org56b22ed">5.4.3. Estimation issues</a></li>
+<li><a href="#org29b9276">5.4.4. Key idea</a></li>
+<li><a href="#org419fbe8">5.4.5. Backfitting algorithm</a></li>
+<li><a href="#org6ed5819">5.4.6. Example for backfitting</a></li>
+<li><a href="#orgbb7056c">5.4.7. Illustrative example</a></li>
+<li><a href="#orgf538641">5.4.8. R code for backfitting</a></li>
+<li><a href="#org0ff92be">5.4.9. R output</a></li>
+</ul>
+</li>
+<li><a href="#org6e64ae4">5.5. Generalized additive models</a>
+<ul>
+<li><a href="#orgdb30910">5.5.1. Additive models cont'd</a></li>
+<li><a href="#org8a3772a">5.5.2. Link functions in GAM</a></li>
+<li><a href="#org03abcd2">5.5.3. Additive logistic models</a></li>
+<li><a href="#org73c942b">5.5.4. Recall logistic regression</a></li>
+<li><a href="#orgbcb98dd">5.5.5. Review of Newton-Raphson Algorithm</a></li>
+<li><a href="#org5195af2">5.5.6. Estimation in additive logistic</a></li>
+<li><a href="#orgd44f3f5">5.5.7. Local scoring algorithm</a></li>
+</ul>
+</li>
+<li><a href="#orgb73793d">5.6. Splines applied to Spam dataset</a></li>
+</ul>
+</li>
+<li><a href="#orgf77fbe0">6. Week 8: Tree-Based and Ensemble Methods</a>
+<ul>
+<li><a href="#org0030b84">6.1. Introduction to Trees</a>
+<ul>
+<li><a href="#org57ca9b1">6.1.1. Tree method</a></li>
+<li><a href="#org15384c4">6.1.2. Motivating example</a></li>
+<li><a href="#orgbbad7dc">6.1.3. Basic ideas</a></li>
+<li><a href="#org1ec178e">6.1.4. Illustrative example</a></li>
+<li><a href="#org64b7342">6.1.5. Tree-based model</a></li>
+<li><a href="#org836597e">6.1.6. 2 types of trees</a></li>
+<li><a href="#org0e5a461">6.1.7. 3 fundamental issues in tree-based models</a></li>
+</ul>
+</li>
+<li><a href="#org682b1ec">6.2. Tree growing and tree pruning</a>
+<ul>
+<li><a href="#orgbd2f23d">6.2.1. Tree-based model</a></li>
+<li><a href="#org0490a29">6.2.2. RSS criterion for regression tree</a></li>
+<li><a href="#orge781a88">6.2.3. Choices of regions R<sub>m</sub></a></li>
+<li><a href="#orgfe3b2c6">6.2.4. Greedy algorithm</a></li>
+<li><a href="#orga151829">6.2.5. When to stop growing tree?</a></li>
+<li><a href="#org78406ca">6.2.6. Tree pruning</a></li>
+<li><a href="#orgc741a49">6.2.7. Cost-complexity criterion for pruning</a></li>
+<li><a href="#orga8632cc">6.2.8. Weakest link cutting algorithm</a></li>
+<li><a href="#org41e6d23">6.2.9. How to choose &alpha;</a></li>
+</ul>
+</li>
+<li><a href="#org271e4ad">6.3. Classification trees</a>
+<ul>
+<li><a href="#orgd888495">6.3.1. Classification problem</a></li>
+<li><a href="#orgfee6901">6.3.2. Majority vote in classification</a></li>
+<li><a href="#orgb5f0287">6.3.3. Classification criterion</a></li>
+<li><a href="#org1100eeb">6.3.4. Drawback of natural criterion</a></li>
+<li><a href="#org83aeada">6.3.5. Alternative 1: Gini index</a></li>
+<li><a href="#org2ddb28c">6.3.6. Alternative 2: Cross-entropy</a></li>
+<li><a href="#orgc1528f0">6.3.7. Classification tree</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org2745cdc">7. Week 9: Tree-Based and Ensemble Methods (Cont'd)</a></li>
+<li><a href="#orgb829f12">8. Week 10: Tree-Based and Ensemble Methods (Cont'd)</a></li>
+<li><a href="#org0ff5093">9. Week 12: Advanced Supervised Learning</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org2269659" class="outline-2">
-<h2 id="org2269659"><span class="section-number-2">1.</span> Week 3: Linear Regression (II)</h2>
+<div id="outline-container-org48d2776" class="outline-2">
+<h2 id="org48d2776"><span class="section-number-2">1.</span> Week 3: Linear Regression (II)</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 M2T2
 </p>
 </div>
-<div id="outline-container-org1f71137" class="outline-3">
-<h3 id="org1f71137"><span class="section-number-3">1.1.</span> James-Stein Estimator</h3>
+<div id="outline-container-org2f82e52" class="outline-3">
+<h3 id="org2f82e52"><span class="section-number-3">1.1.</span> James-Stein Estimator</h3>
 <div class="outline-text-3" id="text-1-1">
 </div>
-<div id="outline-container-org4d5046b" class="outline-4">
-<h4 id="org4d5046b"><span class="section-number-4">1.1.1.</span> It's a special case of linear regression</h4>
+<div id="outline-container-orgbb9861e" class="outline-4">
+<h4 id="orgbb9861e"><span class="section-number-4">1.1.1.</span> It's a special case of linear regression</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <p>
 in LR model with
@@ -449,8 +488,8 @@ When \(\bf{p\ge 3}\), is it possible to do better than OLS?
 </p>
 </div>
 </div>
-<div id="outline-container-orga12acea" class="outline-4">
-<h4 id="orga12acea"><span class="section-number-4">1.1.2.</span> Simultaneous estimation</h4>
+<div id="outline-container-org4583c18" class="outline-4">
+<h4 id="org4583c18"><span class="section-number-4">1.1.2.</span> Simultaneous estimation</h4>
 <div class="outline-text-4" id="text-1-1-2">
 <ul class="org-ul">
 <li><p>
@@ -478,8 +517,8 @@ Is it possible to do better here?
 </ul>
 </div>
 </div>
-<div id="outline-container-org784ea34" class="outline-4">
-<h4 id="org784ea34"><span class="section-number-4">1.1.3.</span> JS estimator</h4>
+<div id="outline-container-orga674192" class="outline-4">
+<h4 id="orga674192"><span class="section-number-4">1.1.3.</span> JS estimator</h4>
 <div class="outline-text-4" id="text-1-1-3">
 <ul class="org-ul">
 <li><p>
@@ -506,8 +545,8 @@ Showed MLS/MLE estimator inadmissible for \(p\ge 3\); dominated by JS estimator.
 </ul>
 </div>
 </div>
-<div id="outline-container-org3565238" class="outline-4">
-<h4 id="org3565238"><span class="section-number-4">1.1.4.</span> Baseball example</h4>
+<div id="outline-container-org51be4ab" class="outline-4">
+<h4 id="org51be4ab"><span class="section-number-4">1.1.4.</span> Baseball example</h4>
 <div class="outline-text-4" id="text-1-1-4">
 <ul class="org-ul">
 <li>Observe \(Y_1, Y_2, ... Y_p\) batting averages (where \(Y_i\) is the batting average for p=18 players), 45 AB</li>
@@ -517,8 +556,8 @@ Showed MLS/MLE estimator inadmissible for \(p\ge 3\); dominated by JS estimator.
 </ul>
 </div>
 </div>
-<div id="outline-container-org3bbee46" class="outline-4">
-<h4 id="org3bbee46"><span class="section-number-4">1.1.5.</span> Comparing MLE and JS</h4>
+<div id="outline-container-org8708a12" class="outline-4">
+<h4 id="org8708a12"><span class="section-number-4">1.1.5.</span> Comparing MLE and JS</h4>
 <div class="outline-text-4" id="text-1-1-5">
 <ul class="org-ul">
 <li>JS has lower predictive squared error than MLS (by 50%)</li>
@@ -536,11 +575,11 @@ Showed MLS/MLE estimator inadmissible for \(p\ge 3\); dominated by JS estimator.
 </div>
 </div>
 </div>
-<div id="outline-container-org50cd3fa" class="outline-3">
-<h3 id="org50cd3fa"><span class="section-number-3">1.2.</span> Shrinkage Methods</h3>
+<div id="outline-container-orge25f95a" class="outline-3">
+<h3 id="orge25f95a"><span class="section-number-3">1.2.</span> Shrinkage Methods</h3>
 <div class="outline-text-3" id="text-1-2">
 <ul class="org-ul">
-<li>Estimation in linear regression: JS works in only specific cases (<a href="#org4d5046b">1.1.1</a>) when \(p\ge 3\)</li>
+<li>Estimation in linear regression: JS works in only specific cases (<a href="#orgbb9861e">1.1.1</a>) when \(p\ge 3\)</li>
 <li>How to do better <i>generally</i>?</li>
 <li>Shrinkage methods (penalized, regularized)
 <ul class="org-ul">
@@ -552,8 +591,8 @@ Showed MLS/MLE estimator inadmissible for \(p\ge 3\); dominated by JS estimator.
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org2dc5ed0" class="outline-4">
-<h4 id="org2dc5ed0"><span class="section-number-4">1.2.1.</span> Setting up shrinkage method</h4>
+<div id="outline-container-org8d1fb12" class="outline-4">
+<h4 id="org8d1fb12"><span class="section-number-4">1.2.1.</span> Setting up shrinkage method</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <ul class="org-ul">
 <li>Needs: \(Y_1, x_{11}, x_{12}, ..., x_{1,p}, \text{such that } i = 1,2,...,n\)</li>
@@ -597,8 +636,8 @@ If not standardized, do linear transformations:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd3696d3" class="outline-4">
-<h4 id="orgd3696d3"><span class="section-number-4">1.2.2.</span> Alternative formulation</h4>
+<div id="outline-container-org0d6900c" class="outline-4">
+<h4 id="org0d6900c"><span class="section-number-4">1.2.2.</span> Alternative formulation</h4>
 <div class="outline-text-4" id="text-1-2-2">
 <ul class="org-ul">
 <li>Shrinkage method solves the <b>unconstrained</b> optimization problem
@@ -625,11 +664,11 @@ Alternative formulation solves a <b>constrained</b> optimization problem
 </ul>
 </div>
 </div>
-<div id="outline-container-org7d1f881" class="outline-4">
-<h4 id="org7d1f881"><span class="section-number-4">1.2.3.</span> Bayesian interpretation</h4>
+<div id="outline-container-org0c650f8" class="outline-4">
+<h4 id="org0c650f8"><span class="section-number-4">1.2.3.</span> Bayesian interpretation</h4>
 <div class="outline-text-4" id="text-1-2-3">
 <ul class="org-ul">
-<li>For LR model (<a href="#org4d5046b">1.1.1</a>):
+<li>For LR model (<a href="#orgbb9861e">1.1.1</a>):
 <dl class="org-dl">
 <dt>prior on &beta;</dt><dd>\(\pi(\beta)\)</dd>
 <dt>independent prior on \(\sigma^2\)</dt><dd>\(\pi(\sigma^2)\)</dd>
@@ -650,8 +689,8 @@ Alternative formulation solves a <b>constrained</b> optimization problem
 </ul>
 </div>
 </div>
-<div id="outline-container-org52f1157" class="outline-4">
-<h4 id="org52f1157"><span class="section-number-4">1.2.4.</span> Choices of priors</h4>
+<div id="outline-container-org6267a01" class="outline-4">
+<h4 id="org6267a01"><span class="section-number-4">1.2.4.</span> Choices of priors</h4>
 <div class="outline-text-4" id="text-1-2-4">
 <p>
 i.e. choice of prior \(\pi(\beta)\)
@@ -662,8 +701,8 @@ i.e. choice of prior \(\pi(\beta)\)
 </dl>
 </div>
 </div>
-<div id="outline-container-org0e43d9b" class="outline-4">
-<h4 id="org0e43d9b"><span class="section-number-4">1.2.5.</span> Ridge regression</h4>
+<div id="outline-container-org02545d0" class="outline-4">
+<h4 id="org02545d0"><span class="section-number-4">1.2.5.</span> Ridge regression</h4>
 <div class="outline-text-4" id="text-1-2-5">
 <p>
 <b>Normal prior</b> assumes \(\beta_1 ... \beta_p\) are i.i.d. \(N(0, \tau^2)\) with prior density
@@ -684,8 +723,8 @@ Yields <b>ridge regression</b> estimator, which minimizes
 </p>
 </div>
 </div>
-<div id="outline-container-orga665d35" class="outline-4">
-<h4 id="orga665d35"><span class="section-number-4">1.2.6.</span> LASSO estimator</h4>
+<div id="outline-container-org976de89" class="outline-4">
+<h4 id="org976de89"><span class="section-number-4">1.2.6.</span> LASSO estimator</h4>
 <div class="outline-text-4" id="text-1-2-6">
 <ul class="org-ul">
 <li><b>Laplace Prior</b>, assume  \(\beta_1 ... \beta_p\) are i.i.d. double-exponential (Laplace) \(\sim \text{Lapalce} (,\tau)\) with prior density
@@ -705,12 +744,12 @@ Yields <b>LASSO</b> estimator that minimizes
 </div>
 </div>
 </div>
-<div id="outline-container-org3f53ae2" class="outline-3">
-<h3 id="org3f53ae2"><span class="section-number-3">1.3.</span> Ridge Regression</h3>
+<div id="outline-container-org7a3eb57" class="outline-3">
+<h3 id="org7a3eb57"><span class="section-number-3">1.3.</span> Ridge Regression</h3>
 <div class="outline-text-3" id="text-1-3">
 </div>
-<div id="outline-container-orgebe8803" class="outline-4">
-<h4 id="orgebe8803"><span class="section-number-4">1.3.1.</span> Ridge Regression Estimator</h4>
+<div id="outline-container-orgaa18864" class="outline-4">
+<h4 id="orgaa18864"><span class="section-number-4">1.3.1.</span> Ridge Regression Estimator</h4>
 <div class="outline-text-4" id="text-1-3-1">
 <p>
 Assume these are observed: \(Y_i, x_{i1}, ..., x_{ip}\), and all are standardized:
@@ -722,7 +761,7 @@ Assume these are observed: \(Y_i, x_{i1}, ..., x_{ip}\), and all are standardize
 </p>
 
 <p>
-In linear regression model without intercepts (<a href="#org4d5046b">1.1.1</a>)
+In linear regression model without intercepts (<a href="#orgbb9861e">1.1.1</a>)
 </p>
 
 <p>
@@ -737,8 +776,8 @@ The ridge regression estimator is defined as:
 </p>
 </div>
 </div>
-<div id="outline-container-org4b0c8a4" class="outline-4">
-<h4 id="org4b0c8a4"><span class="section-number-4">1.3.2.</span> Mathematical solution</h4>
+<div id="outline-container-org9b6c2cf" class="outline-4">
+<h4 id="org9b6c2cf"><span class="section-number-4">1.3.2.</span> Mathematical solution</h4>
 <div class="outline-text-4" id="text-1-3-2">
 <ul class="org-ul">
 <li>Explicit expression is thus
@@ -753,8 +792,8 @@ The ridge regression estimator is defined as:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgca5f4c8" class="outline-4">
-<h4 id="orgca5f4c8"><span class="section-number-4">1.3.3.</span> Properties of Ridge Regression</h4>
+<div id="outline-container-orgc51eb81" class="outline-4">
+<h4 id="orgc51eb81"><span class="section-number-4">1.3.3.</span> Properties of Ridge Regression</h4>
 <div class="outline-text-4" id="text-1-3-3">
 <ul class="org-ul">
 <li>Ridge regression <b>most useful</b> when \(X_{n\times p}\) is <b>non-singular</b>, but has <b>high collinearity</b>
@@ -770,8 +809,8 @@ The ridge regression estimator is defined as:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf63d8cb" class="outline-4">
-<h4 id="orgf63d8cb"><span class="section-number-4">1.3.4.</span> Computational issues</h4>
+<div id="outline-container-orga8de59b" class="outline-4">
+<h4 id="orga8de59b"><span class="section-number-4">1.3.4.</span> Computational issues</h4>
 <div class="outline-text-4" id="text-1-3-4">
 <ul class="org-ul">
 <li>How to compute ridge regression efficiently for any \(\lambda\)?
@@ -794,8 +833,8 @@ where: \(U\) and $V are orthogonal; D = diag(\(d_1, ..., d_p\)) is diagonal.</li
 </ul>
 </div>
 </div>
-<div id="outline-container-org465e47f" class="outline-4">
-<h4 id="org465e47f"><span class="section-number-4">1.3.5.</span> Example of SVD</h4>
+<div id="outline-container-org2cb8bdd" class="outline-4">
+<h4 id="org2cb8bdd"><span class="section-number-4">1.3.5.</span> Example of SVD</h4>
 <div class="outline-text-4" id="text-1-3-5">
 <ul class="org-ul">
 <li>Find SVD of matrix
@@ -817,11 +856,11 @@ where: \(U\) and $V are orthogonal; D = diag(\(d_1, ..., d_p\)) is diagonal.</li
 </ul>
 </div>
 </div>
-<div id="outline-container-org3e424e1" class="outline-4">
-<h4 id="org3e424e1"><span class="section-number-4">1.3.6.</span> SVD Example (I): \(XX^T\)</h4>
+<div id="outline-container-org16e28fc" class="outline-4">
+<h4 id="org16e28fc"><span class="section-number-4">1.3.6.</span> SVD Example (I): \(XX^T\)</h4>
 <div class="outline-text-4" id="text-1-3-6">
 <p>
-For matrix <a href="#org465e47f">1.3.5</a>:
+For matrix <a href="#org2cb8bdd">1.3.5</a>:
 we have
 \[
 XX^T = \begin{pmatrix}
@@ -861,11 +900,11 @@ XX^T = \begin{pmatrix}
 </div>
 </div>
 
-<div id="outline-container-org2c215da" class="outline-4">
-<h4 id="org2c215da"><span class="section-number-4">1.3.7.</span> SVD Example (II): \(X^T X\)</h4>
+<div id="outline-container-org7969610" class="outline-4">
+<h4 id="org7969610"><span class="section-number-4">1.3.7.</span> SVD Example (II): \(X^T X\)</h4>
 <div class="outline-text-4" id="text-1-3-7">
 <p>
-For matrix <a href="#org465e47f">1.3.5</a>:
+For matrix <a href="#org2cb8bdd">1.3.5</a>:
 \[
 X^T X
 = \begin{pmatrix}
@@ -899,8 +938,8 @@ X^T X
 </ul>
 </div>
 </div>
-<div id="outline-container-orgdf27ae6" class="outline-4">
-<h4 id="orgdf27ae6"><span class="section-number-4">1.3.8.</span> SVD verification</h4>
+<div id="outline-container-org4291700" class="outline-4">
+<h4 id="org4291700"><span class="section-number-4">1.3.8.</span> SVD verification</h4>
 <div class="outline-text-4" id="text-1-3-8">
 <p>
 Might need to multiply some eigenvectors by -1.
@@ -942,12 +981,12 @@ X_{n\times p}
 </div>
 </div>
 </div>
-<div id="outline-container-org1740c7d" class="outline-3">
-<h3 id="org1740c7d"><span class="section-number-3">1.4.</span> LASSO (3.2.1)</h3>
+<div id="outline-container-orgd3259ae" class="outline-3">
+<h3 id="orgd3259ae"><span class="section-number-3">1.4.</span> LASSO (3.2.1)</h3>
 <div class="outline-text-3" id="text-1-4">
 </div>
-<div id="outline-container-orgbd88fcb" class="outline-4">
-<h4 id="orgbd88fcb"><span class="section-number-4">1.4.1.</span> LASSO estimator</h4>
+<div id="outline-container-org8339f86" class="outline-4">
+<h4 id="org8339f86"><span class="section-number-4">1.4.1.</span> LASSO estimator</h4>
 <div class="outline-text-4" id="text-1-4-1">
 <ul class="org-ul">
 <li>Assume these are observed: \(Y_i, x_{i1}, ..., x_{ip}\), and all are standardized:</li>
@@ -961,7 +1000,7 @@ X_{n\times p}
 </p>
 
 <p>
-In linear regression model without intercepts (<a href="#org4d5046b">1.1.1</a>)
+In linear regression model without intercepts (<a href="#orgbb9861e">1.1.1</a>)
 </p>
 
 <dl class="org-dl">
@@ -974,11 +1013,11 @@ In linear regression model without intercepts (<a href="#org4d5046b">1.1.1</a>)
 </dl>
 </div>
 </div>
-<div id="outline-container-orgc17e14f" class="outline-4">
-<h4 id="orgc17e14f"><span class="section-number-4">1.4.2.</span> L2-norm vs L1-norm</h4>
+<div id="outline-container-org632320a" class="outline-4">
+<h4 id="org632320a"><span class="section-number-4">1.4.2.</span> L2-norm vs L1-norm</h4>
 <div class="outline-text-4" id="text-1-4-2">
 
-<div id="org3c27fcb" class="figure">
+<div id="org0325313" class="figure">
 <p><img src="./img/l2-l1-norm.png" alt="l2-l1-norm.png" />
 </p>
 </div>
@@ -987,8 +1026,8 @@ In linear regression model without intercepts (<a href="#org4d5046b">1.1.1</a>)
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf298aaa" class="outline-4">
-<h4 id="orgf298aaa"><span class="section-number-4">1.4.3.</span> Mathematical solution for LASSO estimator</h4>
+<div id="outline-container-org02c2765" class="outline-4">
+<h4 id="org02c2765"><span class="section-number-4">1.4.3.</span> Mathematical solution for LASSO estimator</h4>
 <div class="outline-text-4" id="text-1-4-3">
 <ul class="org-ul">
 <li>In the LASSO optimization, there is <b>no explicit</b> mathematical solution to \(\hat{\beta}^{\text{lasso}}\)</li>
@@ -1030,8 +1069,8 @@ since:
 </p>
 </div>
 </div>
-<div id="outline-container-org1754f98" class="outline-4">
-<h4 id="org1754f98"><span class="section-number-4">1.4.4.</span> Properties of LASSO</h4>
+<div id="outline-container-org7d18162" class="outline-4">
+<h4 id="org7d18162"><span class="section-number-4">1.4.4.</span> Properties of LASSO</h4>
 <div class="outline-text-4" id="text-1-4-4">
 <ul class="org-ul">
 <li><b>Good empirical performance when true model is sparse</b>
@@ -1047,8 +1086,8 @@ since:
 </ul>
 </div>
 </div>
-<div id="outline-container-org012eb4a" class="outline-4">
-<h4 id="org012eb4a"><span class="section-number-4">1.4.5.</span> LASSO weaknesses</h4>
+<div id="outline-container-orge3d3328" class="outline-4">
+<h4 id="orge3d3328"><span class="section-number-4">1.4.5.</span> LASSO weaknesses</h4>
 <div class="outline-text-4" id="text-1-4-5">
 <ul class="org-ul">
 <li>Not always consistent</li>
@@ -1063,8 +1102,8 @@ since:
 </ul>
 </div>
 </div>
-<div id="outline-container-org10817c8" class="outline-4">
-<h4 id="org10817c8"><span class="section-number-4">1.4.6.</span> Computation issues of LASSO</h4>
+<div id="outline-container-orgc9a266d" class="outline-4">
+<h4 id="orgc9a266d"><span class="section-number-4">1.4.6.</span> Computation issues of LASSO</h4>
 <div class="outline-text-4" id="text-1-4-6">
 <ul class="org-ul">
 <li>Computation algorithms include:
@@ -1077,8 +1116,8 @@ since:
 </ul>
 </div>
 </div>
-<div id="outline-container-org205492e" class="outline-4">
-<h4 id="org205492e"><span class="section-number-4">1.4.7.</span> LASSO is piecewise linear</h4>
+<div id="outline-container-org99b33fa" class="outline-4">
+<h4 id="org99b33fa"><span class="section-number-4">1.4.7.</span> LASSO is piecewise linear</h4>
 <div class="outline-text-4" id="text-1-4-7">
 <ul class="org-ul">
 <li>The number of linear pieces in LASSO path is approximately \(p\),</li>
@@ -1089,8 +1128,8 @@ since:
 </ul>
 </div>
 </div>
-<div id="outline-container-orge50be84" class="outline-4">
-<h4 id="orge50be84"><span class="section-number-4">1.4.8.</span> Standard error of LASSO</h4>
+<div id="outline-container-orged6fe96" class="outline-4">
+<h4 id="orged6fe96"><span class="section-number-4">1.4.8.</span> Standard error of LASSO</h4>
 <div class="outline-text-4" id="text-1-4-8">
 <ul class="org-ul">
 <li>How to estimate standard error of LASSO estimator i.e.
@@ -1107,8 +1146,8 @@ since:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc8c8f77" class="outline-4">
-<h4 id="orgc8c8f77"><span class="section-number-4">1.4.9.</span> Variants of L1-norm</h4>
+<div id="outline-container-org4dbe449" class="outline-4">
+<h4 id="org4dbe449"><span class="section-number-4">1.4.9.</span> Variants of L1-norm</h4>
 <div class="outline-text-4" id="text-1-4-9">
 <ul class="org-ul">
 <li>Elastic net
@@ -1119,8 +1158,8 @@ since:
 </div>
 </div>
 </div>
-<div id="outline-container-orge3d3344" class="outline-3">
-<h3 id="orge3d3344"><span class="section-number-3">1.5.</span> Principal Components (3.2.2)</h3>
+<div id="outline-container-orgaa41266" class="outline-3">
+<h3 id="orgaa41266"><span class="section-number-3">1.5.</span> Principal Components (3.2.2)</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 Assume these are observed: \(Y_i, x_{i1}, ..., x_{ip}\) for \(i=1,2,...,n\)
@@ -1134,8 +1173,8 @@ Classical datasets: mostly small values of \(p\); modern datasets: large \(p\).
 Essential to conduct <b>dimension reduction</b> to reduce the number of variables.
 </p>
 </div>
-<div id="outline-container-org6111eea" class="outline-4">
-<h4 id="org6111eea"><span class="section-number-4">1.5.1.</span> Dimension reduction</h4>
+<div id="outline-container-orgf0ba232" class="outline-4">
+<h4 id="orgf0ba232"><span class="section-number-4">1.5.1.</span> Dimension reduction</h4>
 <div class="outline-text-4" id="text-1-5-1">
 <ul class="org-ul">
 <li>2 approaches:
@@ -1150,8 +1189,8 @@ Essential to conduct <b>dimension reduction</b> to reduce the number of variable
 </ul>
 </div>
 </div>
-<div id="outline-container-org3e5738f" class="outline-4">
-<h4 id="org3e5738f"><span class="section-number-4">1.5.2.</span> Motivation of PCA</h4>
+<div id="outline-container-org45f455a" class="outline-4">
+<h4 id="org45f455a"><span class="section-number-4">1.5.2.</span> Motivation of PCA</h4>
 <div class="outline-text-4" id="text-1-5-2">
 <p>
 "Obtain more variance by transforming axes"
@@ -1166,8 +1205,8 @@ Essential to conduct <b>dimension reduction</b> to reduce the number of variable
 </ul>
 </div>
 </div>
-<div id="outline-container-org2b770c8" class="outline-4">
-<h4 id="org2b770c8"><span class="section-number-4">1.5.3.</span> Find the PC's:  Population version</h4>
+<div id="outline-container-org21a60dc" class="outline-4">
+<h4 id="org21a60dc"><span class="section-number-4">1.5.3.</span> Find the PC's:  Population version</h4>
 <div class="outline-text-4" id="text-1-5-3">
 <ul class="org-ul">
 <li><b>Optimization problem for PC's</b>: Given a \(p\) -dim random vector
@@ -1190,8 +1229,8 @@ subject to:
 </ul>
 </div>
 </div>
-<div id="outline-container-org71a1286" class="outline-4">
-<h4 id="org71a1286"><span class="section-number-4">1.5.4.</span> Eigenvectors lead to PC's</h4>
+<div id="outline-container-orge2db443" class="outline-4">
+<h4 id="orge2db443"><span class="section-number-4">1.5.4.</span> Eigenvectors lead to PC's</h4>
 <div class="outline-text-4" id="text-1-5-4">
 <ul class="org-ul">
 <li>Theorem: Let covariance matrix \(\bf{\Sigma} = \text{Cov}(\bf{X})\) have eignvectors \(e_1, ..., e_p\) with corresponding eigenvalues \(\lambda_1 \ge ... \ge \lambda_p \ge 0\). For \(j=1,2,...,p\),
@@ -1208,8 +1247,8 @@ subject to:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc93d286" class="outline-4">
-<h4 id="orgc93d286"><span class="section-number-4">1.5.5.</span> Proof by Lagrange Multipliers</h4>
+<div id="outline-container-orgd66cef8" class="outline-4">
+<h4 id="orgd66cef8"><span class="section-number-4">1.5.5.</span> Proof by Lagrange Multipliers</h4>
 <div class="outline-text-4" id="text-1-5-5">
 <ul class="org-ul">
 <li>The Lagrange multiplier is to maximize
@@ -1228,8 +1267,8 @@ subject to:
 </ul>
 </div>
 </div>
-<div id="outline-container-org76b8dc6" class="outline-4">
-<h4 id="org76b8dc6"><span class="section-number-4">1.5.6.</span> PCs in Empirical Version</h4>
+<div id="outline-container-org36b3ddd" class="outline-4">
+<h4 id="org36b3ddd"><span class="section-number-4">1.5.6.</span> PCs in Empirical Version</h4>
 <div class="outline-text-4" id="text-1-5-6">
 <p>
 In many real world applications, only given dataset
@@ -1249,8 +1288,8 @@ How to find PC's?
 </ul>
 </div>
 </div>
-<div id="outline-container-org676bef3" class="outline-4">
-<h4 id="org676bef3"><span class="section-number-4">1.5.7.</span> Principal component regression</h4>
+<div id="outline-container-orge8c2e87" class="outline-4">
+<h4 id="orge8c2e87"><span class="section-number-4">1.5.7.</span> Principal component regression</h4>
 <div class="outline-text-4" id="text-1-5-7">
 <ul class="org-ul">
 <li>Original data: \(Y_i, x_{i1}, ..., x_{ip}\) for \(i=1,2,...,n\)</li>
@@ -1265,12 +1304,12 @@ How to find PC's?
 </div>
 </div>
 </div>
-<div id="outline-container-org2726c0c" class="outline-3">
-<h3 id="org2726c0c"><span class="section-number-3">1.6.</span> Partial least squares (3.2.3)</h3>
+<div id="outline-container-org4560935" class="outline-3">
+<h3 id="org4560935"><span class="section-number-3">1.6.</span> Partial least squares (3.2.3)</h3>
 <div class="outline-text-3" id="text-1-6">
 </div>
-<div id="outline-container-orgb78c6dd" class="outline-4">
-<h4 id="orgb78c6dd"><span class="section-number-4">1.6.1.</span> Dimension reduction</h4>
+<div id="outline-container-org4dcdf89" class="outline-4">
+<h4 id="org4dcdf89"><span class="section-number-4">1.6.1.</span> Dimension reduction</h4>
 <div class="outline-text-4" id="text-1-6-1">
 <p>
 There are 2 kinds of dimension reduction algorithms:
@@ -1285,8 +1324,8 @@ There are 2 kinds of dimension reduction algorithms:
 </ol>
 </div>
 </div>
-<div id="outline-container-orga03cbaa" class="outline-4">
-<h4 id="orga03cbaa"><span class="section-number-4">1.6.2.</span> Partial least squares</h4>
+<div id="outline-container-org7f7bec6" class="outline-4">
+<h4 id="org7f7bec6"><span class="section-number-4">1.6.2.</span> Partial least squares</h4>
 <div class="outline-text-4" id="text-1-6-2">
 <p>
 Collection of techniques with 2 common properties:
@@ -1297,8 +1336,8 @@ Collection of techniques with 2 common properties:
 </ol>
 </div>
 </div>
-<div id="outline-container-orgebfcfa3" class="outline-4">
-<h4 id="orgebfcfa3"><span class="section-number-4">1.6.3.</span> 2 versions of PLS</h4>
+<div id="outline-container-org76bc448" class="outline-4">
+<h4 id="org76bc448"><span class="section-number-4">1.6.3.</span> 2 versions of PLS</h4>
 <div class="outline-text-4" id="text-1-6-3">
 <ol class="org-ol">
 <li>Simple PLS algorithm: variant of PC's but using <b>correlation</b> instead of variance</li>
@@ -1306,8 +1345,8 @@ Collection of techniques with 2 common properties:
 </ol>
 </div>
 </div>
-<div id="outline-container-org9c807ed" class="outline-4">
-<h4 id="org9c807ed"><span class="section-number-4">1.6.4.</span> Simple PLS algorithm</h4>
+<div id="outline-container-org70dad73" class="outline-4">
+<h4 id="org70dad73"><span class="section-number-4">1.6.4.</span> Simple PLS algorithm</h4>
 <div class="outline-text-4" id="text-1-6-4">
 <ul class="org-ul">
 <li>Given \(Y_i, x_{i1}, ..., x_{ip}\) for \(i=1,2,...,n\)</li>
@@ -1323,8 +1362,8 @@ when
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc60b096" class="outline-4">
-<h4 id="orgc60b096"><span class="section-number-4">1.6.5.</span> The PLS model</h4>
+<div id="outline-container-orgb752f39" class="outline-4">
+<h4 id="orgb752f39"><span class="section-number-4">1.6.5.</span> The PLS model</h4>
 <div class="outline-text-4" id="text-1-6-5">
 <ul class="org-ul">
 <li>Data: \(Y_i, x_{i1}, ..., x_{ip}\) for \(i=1,2,...,n\)</li>
@@ -1349,8 +1388,8 @@ where:
 </ul>
 </div>
 </div>
-<div id="outline-container-org34e91ed" class="outline-4">
-<h4 id="org34e91ed"><span class="section-number-4">1.6.6.</span> Key idea in The PLS Model</h4>
+<div id="outline-container-org980b22b" class="outline-4">
+<h4 id="org980b22b"><span class="section-number-4">1.6.6.</span> Key idea in The PLS Model</h4>
 <div class="outline-text-4" id="text-1-6-6">
 <ul class="org-ul">
 <li>How to estimate the &ell; factors, or the \(T_{n \times \ell}\) and \(U_{n \times \ell}\) matrices?</li>
@@ -1362,8 +1401,8 @@ where:
 </ul>
 </div>
 </div>
-<div id="outline-container-org44a6be7" class="outline-4">
-<h4 id="org44a6be7"><span class="section-number-4">1.6.7.</span> PLS for linear regression</h4>
+<div id="outline-container-org16c55f8" class="outline-4">
+<h4 id="org16c55f8"><span class="section-number-4">1.6.7.</span> PLS for linear regression</h4>
 <div class="outline-text-4" id="text-1-6-7">
 <ul class="org-ul">
 <li>Original data: \(Y_i, x_{i1}, ..., x_{ip}\) for \(i=1,2,...,n\)</li>
@@ -1376,8 +1415,8 @@ where:
 </ul>
 </div>
 </div>
-<div id="outline-container-org12a57d7" class="outline-4">
-<h4 id="org12a57d7"><span class="section-number-4">1.6.8.</span> Canonical correlation analysis (CCA)</h4>
+<div id="outline-container-org789b73f" class="outline-4">
+<h4 id="org789b73f"><span class="section-number-4">1.6.8.</span> Canonical correlation analysis (CCA)</h4>
 <div class="outline-text-4" id="text-1-6-8">
 <ul class="org-ul">
 <li>CCA: find the unit vectors \((r, s)\) that maximizes the <b>correlation coefficient</b>
@@ -1399,12 +1438,12 @@ Solution: in the population(?) version with \((X_1, ..., X_p)\) and \((Y_1, ...,
 </div>
 </div>
 </div>
-<div id="outline-container-org8e02755" class="outline-2">
-<h2 id="org8e02755"><span class="section-number-2">2.</span> Week 4: Linear Classification</h2>
+<div id="outline-container-org64282d2" class="outline-2">
+<h2 id="org64282d2"><span class="section-number-2">2.</span> Week 4: Linear Classification</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org52e45de" class="outline-3">
-<h3 id="org52e45de"><span class="section-number-3">2.1.</span> Overview of Linear Discriminant Analysis (4.1.1)</h3>
+<div id="outline-container-org776358b" class="outline-3">
+<h3 id="org776358b"><span class="section-number-3">2.1.</span> Overview of Linear Discriminant Analysis (4.1.1)</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Supervised learning recap
@@ -1419,8 +1458,8 @@ Supervised learning recap
 </ol></li>
 </ul>
 </div>
-<div id="outline-container-orgb26ba9d" class="outline-4">
-<h4 id="orgb26ba9d"><span class="section-number-4">2.1.1.</span> Classification problem</h4>
+<div id="outline-container-org522764a" class="outline-4">
+<h4 id="org522764a"><span class="section-number-4">2.1.1.</span> Classification problem</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <ul class="org-ul">
 <li>For \(Y_i, x_{i1}, ..., x_{ip}\) for \(i=1,2,...,n\) where \(Y_i \in {1, 2, ...K}\) is the class label</li>
@@ -1436,8 +1475,8 @@ Supervised learning recap
 </ul>
 </div>
 </div>
-<div id="outline-container-orgce24ecc" class="outline-4">
-<h4 id="orgce24ecc"><span class="section-number-4">2.1.2.</span> Popular classification methods and R packages</h4>
+<div id="outline-container-org1a41fb4" class="outline-4">
+<h4 id="org1a41fb4"><span class="section-number-4">2.1.2.</span> Popular classification methods and R packages</h4>
 <div class="outline-text-4" id="text-2-1-2">
 <dl class="org-dl">
 <dt>Discriminant analysis</dt><dd>?</dd>
@@ -1453,8 +1492,8 @@ a- Tree-based classifiers :: <code>rpart</code>
 </dl>
 </div>
 </div>
-<div id="outline-container-org54a2297" class="outline-4">
-<h4 id="org54a2297"><span class="section-number-4">2.1.3.</span> Discriminant analysis</h4>
+<div id="outline-container-org831ee22" class="outline-4">
+<h4 id="org831ee22"><span class="section-number-4">2.1.3.</span> Discriminant analysis</h4>
 <div class="outline-text-4" id="text-2-1-3">
 <ul class="org-ul">
 <li>A multi-classifier is associated with a \(K\) - dim vector
@@ -1475,8 +1514,8 @@ For given new input \(x_{\text{new}}\), predict the class label
 </ul>
 </div>
 </div>
-<div id="outline-container-org080fec3" class="outline-4">
-<h4 id="org080fec3"><span class="section-number-4">2.1.4.</span> Example for 3-class problem</h4>
+<div id="outline-container-orga5db3d8" class="outline-4">
+<h4 id="orga5db3d8"><span class="section-number-4">2.1.4.</span> Example for 3-class problem</h4>
 <div class="outline-text-4" id="text-2-1-4">
 <p>
 <img src="./img/3-class.png" alt="3-class.png" />
@@ -1495,8 +1534,8 @@ In this example, boundaries \({(x_1, x_2): d_i (x_1, x_2) = d_j(x_1, x_2)}\) are
 </ul>
 </div>
 </div>
-<div id="outline-container-org380810b" class="outline-4">
-<h4 id="org380810b"><span class="section-number-4">2.1.5.</span> Discriminant functions</h4>
+<div id="outline-container-orga99d059" class="outline-4">
+<h4 id="orga99d059"><span class="section-number-4">2.1.5.</span> Discriminant functions</h4>
 <div class="outline-text-4" id="text-2-1-5">
 <p>
 How to construct discriminant functions \(d_k (x)\) 's?
@@ -1509,8 +1548,8 @@ How to construct discriminant functions \(d_k (x)\) 's?
 </ol>
 </div>
 </div>
-<div id="outline-container-org0e9c055" class="outline-4">
-<h4 id="org0e9c055"><span class="section-number-4">2.1.6.</span> Multi-class vs. Binary</h4>
+<div id="outline-container-org4df464b" class="outline-4">
+<h4 id="org4df464b"><span class="section-number-4">2.1.6.</span> Multi-class vs. Binary</h4>
 <div class="outline-text-4" id="text-2-1-6">
 <p>
 If the number \(K\) of classes is not too large, can simplify the multi-class problems into <b>series of</b> binary problems via two approaches:
@@ -1522,19 +1561,19 @@ If the number \(K\) of classes is not too large, can simplify the multi-class pr
 </div>
 </div>
 </div>
-<div id="outline-container-org24eeeba" class="outline-3">
-<h3 id="org24eeeba"><span class="section-number-3">2.2.</span> Linear discrimination analysis continued (4.1.2)</h3>
+<div id="outline-container-org93d6b06" class="outline-3">
+<h3 id="org93d6b06"><span class="section-number-3">2.2.</span> Linear discrimination analysis continued (4.1.2)</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
-See: <a href="#org54a2297">2.1.3</a>.
+See: <a href="#org831ee22">2.1.3</a>.
 </p>
 
 <p>
 LDA was first developed as distance-based classification (Fisher, 1936). Alternate interpretation: Bayes.
 </p>
 </div>
-<div id="outline-container-orgd41b75a" class="outline-4">
-<h4 id="orgd41b75a"><span class="section-number-4">2.2.1.</span> Bayes classifier</h4>
+<div id="outline-container-org95eb057" class="outline-4">
+<h4 id="org95eb057"><span class="section-number-4">2.2.1.</span> Bayes classifier</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <ul class="org-ul">
 <li>Under \(0-1\) loss, Bayes classifier is
@@ -1551,8 +1590,8 @@ where:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf21ccb1" class="outline-4">
-<h4 id="orgf21ccb1"><span class="section-number-4">2.2.2.</span> Normality asumption</h4>
+<div id="outline-container-org38c5e84" class="outline-4">
+<h4 id="org38c5e84"><span class="section-number-4">2.2.2.</span> Normality asumption</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <p>
 LDA is the Bayes Rule under assumption that <b>densities</b> \(f_k\) are <b>multivariate normal</b> with the <b>common covariance</b>, i.e. \(N(\mu_k, \Sigma)\).
@@ -1567,8 +1606,8 @@ for \(k=1,2,...,K\)
 </p>
 </div>
 </div>
-<div id="outline-container-org0551088" class="outline-4">
-<h4 id="org0551088"><span class="section-number-4">2.2.3.</span> Bayes classifier for normal distribution</h4>
+<div id="outline-container-orge534891" class="outline-4">
+<h4 id="orge534891"><span class="section-number-4">2.2.3.</span> Bayes classifier for normal distribution</h4>
 <div class="outline-text-4" id="text-2-2-3">
 <ul class="org-ul">
 <li><p>
@@ -1599,8 +1638,8 @@ since the common variance term drops out.
 </ul>
 </div>
 </div>
-<div id="outline-container-org4626607" class="outline-4">
-<h4 id="org4626607"><span class="section-number-4">2.2.4.</span> LDA in practice</h4>
+<div id="outline-container-orgcaa62c6" class="outline-4">
+<h4 id="orgcaa62c6"><span class="section-number-4">2.2.4.</span> LDA in practice</h4>
 <div class="outline-text-4" id="text-2-2-4">
 <ul class="org-ul">
 <li>Data: for \(Y_i, x_{i1}, ..., x_{ip}\) for \(i=1,2,...,n\) where \(Y_i \in {1, 2, ...K}\) is the class label</li>
@@ -1617,8 +1656,8 @@ since the common variance term drops out.
 </ul>
 </div>
 </div>
-<div id="outline-container-org1afa679" class="outline-4">
-<h4 id="org1afa679"><span class="section-number-4">2.2.5.</span> LDA for K=2 classes</h4>
+<div id="outline-container-orgb7bdca7" class="outline-4">
+<h4 id="orgb7bdca7"><span class="section-number-4">2.2.5.</span> LDA for K=2 classes</h4>
 <div class="outline-text-4" id="text-2-2-5">
 <ul class="org-ul">
 <li><p>
@@ -1643,8 +1682,8 @@ or
 </ul>
 </div>
 </div>
-<div id="outline-container-org614278e" class="outline-4">
-<h4 id="org614278e"><span class="section-number-4">2.2.6.</span> Fisher's distance-based approach</h4>
+<div id="outline-container-org6a19538" class="outline-4">
+<h4 id="org6a19538"><span class="section-number-4">2.2.6.</span> Fisher's distance-based approach</h4>
 <div class="outline-text-4" id="text-2-2-6">
 <ul class="org-ul">
 <li>for \(k=2\) classes:
@@ -1673,16 +1712,16 @@ which is the same as Bayes-based LDA when the classes have equal numbers of obse
 </div>
 </div>
 </div>
-<div id="outline-container-org0ff0c43" class="outline-3">
-<h3 id="org0ff0c43"><span class="section-number-3">2.3.</span> Quadratic Discrimination Analysis classifier (4.1.3)</h3>
+<div id="outline-container-org756f138" class="outline-3">
+<h3 id="org756f138"><span class="section-number-3">2.3.</span> Quadratic Discrimination Analysis classifier (4.1.3)</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
-See <a href="#org54a2297">2.1.3</a>.
+See <a href="#org831ee22">2.1.3</a>.
 How to choose suitable discriminant functions \(d_k(x)\)?
 </p>
 </div>
-<div id="outline-container-org7cb799a" class="outline-4">
-<h4 id="org7cb799a"><span class="section-number-4">2.3.1.</span> Bayes classifier</h4>
+<div id="outline-container-org030d7bd" class="outline-4">
+<h4 id="org030d7bd"><span class="section-number-4">2.3.1.</span> Bayes classifier</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <ul class="org-ul">
 <li>The discriminant functions \(d_k(x)\) are based on <b>posterior</b> distributions</li>
@@ -1707,8 +1746,8 @@ Question: how to model the density functions \(f_k\)? <b>Normal distribution!</b
 </ul>
 </div>
 </div>
-<div id="outline-container-org85e2aed" class="outline-4">
-<h4 id="org85e2aed"><span class="section-number-4">2.3.2.</span> Normal distribution</h4>
+<div id="outline-container-org7b06129" class="outline-4">
+<h4 id="org7b06129"><span class="section-number-4">2.3.2.</span> Normal distribution</h4>
 <div class="outline-text-4" id="text-2-3-2">
 <p>
 Univariate normal distribution \(N(\mu, \sigma^2)\)
@@ -1727,11 +1766,11 @@ Univariate normal distribution \(N(\mu, \sigma^2)\)
 </ul>
 </div>
 </div>
-<div id="outline-container-org919decd" class="outline-4">
-<h4 id="org919decd"><span class="section-number-4">2.3.3.</span> Normal model for \(f_k\)</h4>
+<div id="outline-container-orge146795" class="outline-4">
+<h4 id="orge146795"><span class="section-number-4">2.3.3.</span> Normal model for \(f_k\)</h4>
 <div class="outline-text-4" id="text-2-3-3">
 <ul class="org-ul">
-<li>See <a href="#org54a2297">2.1.3</a></li>
+<li>See <a href="#org831ee22">2.1.3</a></li>
 <li>Bayes classifier:
 \(\text{argmax}_k (\log \pi_k + \log f_k (x))\) where \(\pi_k\) is a prior and \(f_k\) is the pdf of the \(k\) th class.</li>
 <li>Model: assume pdfs \(f_k(x) = f_k(x_1, ..., x_p) \sim N(\mu_k, \Sigma_k)\)</li>
@@ -1739,8 +1778,8 @@ Univariate normal distribution \(N(\mu, \sigma^2)\)
 </ul>
 </div>
 </div>
-<div id="outline-container-orga131e24" class="outline-4">
-<h4 id="orga131e24"><span class="section-number-4">2.3.4.</span> Three approaches to estimate</h4>
+<div id="outline-container-org1d2f04a" class="outline-4">
+<h4 id="org1d2f04a"><span class="section-number-4">2.3.4.</span> Three approaches to estimate</h4>
 <div class="outline-text-4" id="text-2-3-4">
 <p>
 Different assumptions:
@@ -1752,8 +1791,8 @@ Different assumptions:
 </dl>
 </div>
 </div>
-<div id="outline-container-org1d2c8f1" class="outline-4">
-<h4 id="org1d2c8f1"><span class="section-number-4">2.3.5.</span> QDA classifier</h4>
+<div id="outline-container-org133db37" class="outline-4">
+<h4 id="org133db37"><span class="section-number-4">2.3.5.</span> QDA classifier</h4>
 <div class="outline-text-4" id="text-2-3-5">
 <ul class="org-ul">
 <li>Assumes that \(f_k\) are normal \(N(\mu_k, \Sigma_k)\)</li>
@@ -1773,8 +1812,8 @@ Different assumptions:
 </ul>
 </div>
 </div>
-<div id="outline-container-org3aa65c9" class="outline-4">
-<h4 id="org3aa65c9"><span class="section-number-4">2.3.6.</span> Naive Bayes classifier</h4>
+<div id="outline-container-orgc37474c" class="outline-4">
+<h4 id="orgc37474c"><span class="section-number-4">2.3.6.</span> Naive Bayes classifier</h4>
 <div class="outline-text-4" id="text-2-3-6">
 <ul class="org-ul">
 <li>Assumes that \(\Sigma_k \equiv \Sigma = \text{diag}(\sigma^2_{k1}, ..., \sigma^2_{kp})\), or equivalently:
@@ -1792,8 +1831,8 @@ Different assumptions:
 </ul>
 </div>
 </div>
-<div id="outline-container-org307839f" class="outline-4">
-<h4 id="org307839f"><span class="section-number-4">2.3.7.</span> General Naive Bayes classifier</h4>
+<div id="outline-container-org2bd2e6f" class="outline-4">
+<h4 id="org2bd2e6f"><span class="section-number-4">2.3.7.</span> General Naive Bayes classifier</h4>
 <div class="outline-text-4" id="text-2-3-7">
 <ul class="org-ul">
 <li><b>Ignore</b> any dependence between explanatory variables and assume that \(X_j\)'s are independent.</li>
@@ -1812,12 +1851,12 @@ Different assumptions:
 </div>
 </div>
 </div>
-<div id="outline-container-org5b9f78b" class="outline-3">
-<h3 id="org5b9f78b"><span class="section-number-3">2.4.</span> Logistic Regression: Estimation (4.2.1)</h3>
+<div id="outline-container-org4d2d16a" class="outline-3">
+<h3 id="org4d2d16a"><span class="section-number-3">2.4.</span> Logistic Regression: Estimation (4.2.1)</h3>
 <div class="outline-text-3" id="text-2-4">
 </div>
-<div id="outline-container-orga7be6f8" class="outline-4">
-<h4 id="orga7be6f8"><span class="section-number-4">2.4.1.</span> Classification methods</h4>
+<div id="outline-container-org97cc91d" class="outline-4">
+<h4 id="org97cc91d"><span class="section-number-4">2.4.1.</span> Classification methods</h4>
 <div class="outline-text-4" id="text-2-4-1">
 <ul class="org-ul">
 <li>With data \((Y_i, X_i)\) for \(i=1,...,n\), where \(Y_i\) is the class label</li>
@@ -1835,8 +1874,8 @@ Different assumptions:
 </ul>
 </div>
 </div>
-<div id="outline-container-org6887771" class="outline-4">
-<h4 id="org6887771"><span class="section-number-4">2.4.2.</span> Binary logistic regression</h4>
+<div id="outline-container-orgadd0130" class="outline-4">
+<h4 id="orgadd0130"><span class="section-number-4">2.4.2.</span> Binary logistic regression</h4>
 <div class="outline-text-4" id="text-2-4-2">
 <ul class="org-ul">
 <li>With data: \((Y_i, x_{i1}, ..., x_{i,p-1})\) for \(i=1,...,n\), where \(Y_i \in {0,1}\) is the class label</li>
@@ -1855,8 +1894,8 @@ with \(p\) = number of \(\beta\) coefficients</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org072aa42" class="outline-4">
-<h4 id="org072aa42"><span class="section-number-4">2.4.3.</span> Conditional probability</h4>
+<div id="outline-container-org0ccdb73" class="outline-4">
+<h4 id="org0ccdb73"><span class="section-number-4">2.4.3.</span> Conditional probability</h4>
 <div class="outline-text-4" id="text-2-4-3">
 <ul class="org-ul">
 <li>Under logistic regression, at given \(X=(x_1, ..., x_{p-1})\), the conditional probabilities are
@@ -1867,8 +1906,8 @@ with \(p\) = number of \(\beta\) coefficients</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgddecccd" class="outline-4">
-<h4 id="orgddecccd"><span class="section-number-4">2.4.4.</span> Statistical inference</h4>
+<div id="outline-container-org3cf75ef" class="outline-4">
+<h4 id="org3cf75ef"><span class="section-number-4">2.4.4.</span> Statistical inference</h4>
 <div class="outline-text-4" id="text-2-4-4">
 <p>
 Statistical questions in logistic regression:
@@ -1880,8 +1919,8 @@ Statistical questions in logistic regression:
 </ul>
 </div>
 </div>
-<div id="outline-container-org86303fd" class="outline-4">
-<h4 id="org86303fd"><span class="section-number-4">2.4.5.</span> Maximum likelihood estimation</h4>
+<div id="outline-container-org4cb2215" class="outline-4">
+<h4 id="org4cb2215"><span class="section-number-4">2.4.5.</span> Maximum likelihood estimation</h4>
 <div class="outline-text-4" id="text-2-4-5">
 <ul class="org-ul">
 <li>The likelihood function of the logistic regression model is
@@ -1894,8 +1933,8 @@ Statistical questions in logistic regression:
 </ul>
 </div>
 </div>
-<div id="outline-container-org4dd4197" class="outline-4">
-<h4 id="org4dd4197"><span class="section-number-4">2.4.6.</span> Asymptotic properties of MLE</h4>
+<div id="outline-container-org915e007" class="outline-4">
+<h4 id="org915e007"><span class="section-number-4">2.4.6.</span> Asymptotic properties of MLE</h4>
 <div class="outline-text-4" id="text-2-4-6">
 <ul class="org-ul">
 <li><p>
@@ -1914,8 +1953,8 @@ where \(I_{p\times p}\) is the observed Fisher Information Matrix defined by the
 </ul>
 </div>
 </div>
-<div id="outline-container-orge41d65c" class="outline-4">
-<h4 id="orge41d65c"><span class="section-number-4">2.4.7.</span> Other link function</h4>
+<div id="outline-container-orga11f39f" class="outline-4">
+<h4 id="orga11f39f"><span class="section-number-4">2.4.7.</span> Other link function</h4>
 <div class="outline-text-4" id="text-2-4-7">
 <ul class="org-ul">
 <li>With data: \((Y_i, x_{i1}, ..., x_{i,p-1})\) for \(i=1,...,n\), where \(Y_i \in {0,1}\) is the class label</li>
@@ -1936,8 +1975,8 @@ where \(g(\cdot): (0,1) \rightarrow (-\infty, infty)\) is called a <b>link funct
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb88ae46" class="outline-4">
-<h4 id="orgb88ae46"><span class="section-number-4">2.4.8.</span> Logistic or LDA?</h4>
+<div id="outline-container-orgdf05750" class="outline-4">
+<h4 id="orgdf05750"><span class="section-number-4">2.4.8.</span> Logistic or LDA?</h4>
 <div class="outline-text-4" id="text-2-4-8">
 <p>
 Comparison:
@@ -1957,12 +1996,12 @@ Comparison:
 </div>
 </div>
 </div>
-<div id="outline-container-org4ab101b" class="outline-3">
-<h3 id="org4ab101b"><span class="section-number-3">2.5.</span> Optimizations in Logistic Regression (4.2.2)</h3>
+<div id="outline-container-org1f450e9" class="outline-3">
+<h3 id="org1f450e9"><span class="section-number-3">2.5.</span> Optimizations in Logistic Regression (4.2.2)</h3>
 <div class="outline-text-3" id="text-2-5">
 </div>
-<div id="outline-container-orge3b8e8a" class="outline-4">
-<h4 id="orge3b8e8a"><span class="section-number-4">2.5.1.</span> Logistic regression recap</h4>
+<div id="outline-container-org5d08e44" class="outline-4">
+<h4 id="org5d08e44"><span class="section-number-4">2.5.1.</span> Logistic regression recap</h4>
 <div class="outline-text-4" id="text-2-5-1">
 <ul class="org-ul">
 <li>With data: \((Y_i, x_{i1}, ..., x_{i,p-1})\) for \(i=1,...,n\), where \(Y_i \in {0,1}\) is the class label</li>
@@ -1976,8 +2015,8 @@ Comparison:
 </ul>
 </div>
 </div>
-<div id="outline-container-org1eab55e" class="outline-4">
-<h4 id="org1eab55e"><span class="section-number-4">2.5.2.</span> MLE in logistic regression</h4>
+<div id="outline-container-org35303db" class="outline-4">
+<h4 id="org35303db"><span class="section-number-4">2.5.2.</span> MLE in logistic regression</h4>
 <div class="outline-text-4" id="text-2-5-2">
 <p>
 As seen previously, MLE can be found by maximizing likelihood function:
@@ -1995,8 +2034,8 @@ L(\beta) =
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc33f1b6" class="outline-4">
-<h4 id="orgc33f1b6"><span class="section-number-4">2.5.3.</span> Optimization problem</h4>
+<div id="outline-container-org0c85036" class="outline-4">
+<h4 id="org0c85036"><span class="section-number-4">2.5.3.</span> Optimization problem</h4>
 <div class="outline-text-4" id="text-2-5-3">
 <p>
 In statistics and machine learning, we often face optimization problem, e.g.:
@@ -2015,8 +2054,8 @@ Often \(h(\theta)\) is smooth and we want to solve the first derivative \(h'(\th
 </ul>
 </div>
 </div>
-<div id="outline-container-org697ab31" class="outline-4">
-<h4 id="org697ab31"><span class="section-number-4">2.5.4.</span> Optimization algorithms</h4>
+<div id="outline-container-orgfd754e0" class="outline-4">
+<h4 id="orgfd754e0"><span class="section-number-4">2.5.4.</span> Optimization algorithms</h4>
 <div class="outline-text-4" id="text-2-5-4">
 <p>
 Two basic iterative algorithms to solve \(\hat{\theta} = \text{argmin}_\theta h(\theta)\):
@@ -2034,8 +2073,8 @@ where \(\lambda\) is the learning rate</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-org41a84ce" class="outline-4">
-<h4 id="org41a84ce"><span class="section-number-4">2.5.5.</span> Newton-Raphson Method</h4>
+<div id="outline-container-orgb60e836" class="outline-4">
+<h4 id="orgb60e836"><span class="section-number-4">2.5.5.</span> Newton-Raphson Method</h4>
 <div class="outline-text-4" id="text-2-5-5">
 <p>
 <img src="./img/n-r-method.png" alt="n-r-method.png" />
@@ -2047,8 +2086,8 @@ Mathematically:
 </ol>
 </div>
 </div>
-<div id="outline-container-org32d3a6c" class="outline-4">
-<h4 id="org32d3a6c"><span class="section-number-4">2.5.6.</span> Taylor Expansion consideration</h4>
+<div id="outline-container-org74717ea" class="outline-4">
+<h4 id="org74717ea"><span class="section-number-4">2.5.6.</span> Taylor Expansion consideration</h4>
 <div class="outline-text-4" id="text-2-5-6">
 <ul class="org-ul">
 <li>When \(\theta\) is 1-dim, by <b>Taylor series expansion</b>,
@@ -2067,8 +2106,8 @@ where updates are done till \(\theta\) converges.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org796ee46" class="outline-4">
-<h4 id="org796ee46"><span class="section-number-4">2.5.7.</span> Newton-Raphson Method in Statistics</h4>
+<div id="outline-container-orgddb2a4a" class="outline-4">
+<h4 id="orgddb2a4a"><span class="section-number-4">2.5.7.</span> Newton-Raphson Method in Statistics</h4>
 <div class="outline-text-4" id="text-2-5-7">
 <p>
 Why is this method popular in statistics?
@@ -2086,8 +2125,8 @@ Why is this method popular in statistics?
 </ul>
 </div>
 </div>
-<div id="outline-container-org99ec33d" class="outline-4">
-<h4 id="org99ec33d"><span class="section-number-4">2.5.8.</span> MLE of logistic regression</h4>
+<div id="outline-container-org30d8ad1" class="outline-4">
+<h4 id="org30d8ad1"><span class="section-number-4">2.5.8.</span> MLE of logistic regression</h4>
 <div class="outline-text-4" id="text-2-5-8">
 <ul class="org-ul">
 <li>In logistic regression, the log-likelihood function (in vector notation) is:
@@ -2136,8 +2175,8 @@ where \(Z = X\beta_{\text{old}} + W^{-1}(Y-\pi)\)</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgfb736ac" class="outline-4">
-<h4 id="orgfb736ac"><span class="section-number-4">2.5.9.</span> Algorithm for MLE in logistic regression</h4>
+<div id="outline-container-orga19c5a3" class="outline-4">
+<h4 id="orga19c5a3"><span class="section-number-4">2.5.9.</span> Algorithm for MLE in logistic regression</h4>
 <div class="outline-text-4" id="text-2-5-9">
 <ul class="org-ul">
 <li>Initialize \(\beta_{\text{init}}=0\)</li>
@@ -2159,8 +2198,8 @@ where \(Z = X\beta_{\text{old}} + W^{-1}(Y-\pi)\)</li>
 </div>
 </div>
 </div>
-<div id="outline-container-orga565dbf" class="outline-3">
-<h3 id="orga565dbf"><span class="section-number-3">2.6.</span> Simplest logistic regression (4.2.3)</h3>
+<div id="outline-container-orgfd3ae40" class="outline-3">
+<h3 id="orgfd3ae40"><span class="section-number-3">2.6.</span> Simplest logistic regression (4.2.3)</h3>
 <div class="outline-text-3" id="text-2-6">
 <ul class="org-ul">
 <li>With data: \((Y_i, x_{i1}, ..., x_{i,p-1})\) for \(i=1,...,n\), where \(Y_i \in {0,1}\) is the class label</li>
@@ -2177,8 +2216,8 @@ where \(Z = X\beta_{\text{old}} + W^{-1}(Y-\pi)\)</li>
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org516fe9c" class="outline-4">
-<h4 id="org516fe9c"><span class="section-number-4">2.6.1.</span> Data in Simplest Logistic Regression</h4>
+<div id="outline-container-org4080509" class="outline-4">
+<h4 id="org4080509"><span class="section-number-4">2.6.1.</span> Data in Simplest Logistic Regression</h4>
 <div class="outline-text-4" id="text-2-6-1">
 <p>
 <img src="./img/data-slr.png" alt="data-slr.png" />
@@ -2226,8 +2265,8 @@ Can also be summarised as 2x2 table, typical in biostatistics, i.e.:
 </table>
 </div>
 </div>
-<div id="outline-container-org286bccd" class="outline-4">
-<h4 id="org286bccd"><span class="section-number-4">2.6.2.</span> Is X and Y associated?</h4>
+<div id="outline-container-org440e893" class="outline-4">
+<h4 id="org440e893"><span class="section-number-4">2.6.2.</span> Is X and Y associated?</h4>
 <div class="outline-text-4" id="text-2-6-2">
 <ul class="org-ul">
 <li>Example context:
@@ -2248,8 +2287,8 @@ Can also be summarised as 2x2 table, typical in biostatistics, i.e.:
 </ul>
 </div>
 </div>
-<div id="outline-container-org2793031" class="outline-4">
-<h4 id="org2793031"><span class="section-number-4">2.6.3.</span> The likelihood function</h4>
+<div id="outline-container-orgead190b" class="outline-4">
+<h4 id="orgead190b"><span class="section-number-4">2.6.3.</span> The likelihood function</h4>
 <div class="outline-text-4" id="text-2-6-3">
 <p>
 is:
@@ -2260,8 +2299,8 @@ L(\beta) = \prod^n_{i=1} \frac{e^{Y_i}(\beta_0+\beta_1 x_i)}{1+e^{\beta_0 + \bet
 </p>
 </div>
 </div>
-<div id="outline-container-org4428d35" class="outline-4">
-<h4 id="org4428d35"><span class="section-number-4">2.6.4.</span> The MLE estimator of \(\beta_i\) 's</h4>
+<div id="outline-container-org705ae0b" class="outline-4">
+<h4 id="org705ae0b"><span class="section-number-4">2.6.4.</span> The MLE estimator of \(\beta_i\) 's</h4>
 <div class="outline-text-4" id="text-2-6-4">
 <ul class="org-ul">
 <li>The log-likelihood function
@@ -2283,8 +2322,8 @@ L(\beta) = \prod^n_{i=1} \frac{e^{Y_i}(\beta_0+\beta_1 x_i)}{1+e^{\beta_0 + \bet
 </ul>
 </div>
 </div>
-<div id="outline-container-org1f84314" class="outline-4">
-<h4 id="org1f84314"><span class="section-number-4">2.6.5.</span> Fisher Information Matrix</h4>
+<div id="outline-container-org095c617" class="outline-4">
+<h4 id="org095c617"><span class="section-number-4">2.6.5.</span> Fisher Information Matrix</h4>
 <div class="outline-text-4" id="text-2-6-5">
 <ul class="org-ul">
 <li><p>
@@ -2309,8 +2348,8 @@ I(\hat{\theta}) = -\frac{\partial^2\log L(\theta)}{\partial\theta\partial\theta^
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd50bbe3" class="outline-4">
-<h4 id="orgd50bbe3"><span class="section-number-4">2.6.6.</span> Variance of MLE</h4>
+<div id="outline-container-org1864bc2" class="outline-4">
+<h4 id="org1864bc2"><span class="section-number-4">2.6.6.</span> Variance of MLE</h4>
 <div class="outline-text-4" id="text-2-6-6">
 <ul class="org-ul">
 <li><p>
@@ -2340,8 +2379,8 @@ Use the fact of the inverse 2&times; 2 matrix:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf144ce6" class="outline-4">
-<h4 id="orgf144ce6"><span class="section-number-4">2.6.7.</span> Are X and Y associated?</h4>
+<div id="outline-container-orgc8a9ef1" class="outline-4">
+<h4 id="orgc8a9ef1"><span class="section-number-4">2.6.7.</span> Are X and Y associated?</h4>
 <div class="outline-text-4" id="text-2-6-7">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -2389,7 +2428,7 @@ Use the fact of the inverse 2&times; 2 matrix:
 </ul>
 </div>
 <ol class="org-ol">
-<li><a id="org028a1d9"></a>MLEs<br />
+<li><a id="orgbeabc59"></a>MLEs<br />
 <div class="outline-text-5" id="text-2-6-7-1">
 <ul class="org-ul">
 <li>MLE of \(\beta_0 = \ln(\frac{c}{d})\)</li>
@@ -2401,15 +2440,15 @@ Use the fact of the inverse 2&times; 2 matrix:
 </div>
 </div>
 </div>
-<div id="outline-container-org7181002" class="outline-2">
-<h2 id="org7181002"><span class="section-number-2">3.</span> Week 5: Linear Classification Cont'd (Module 3)</h2>
+<div id="outline-container-org5425c65" class="outline-2">
+<h2 id="org5425c65"><span class="section-number-2">3.</span> Week 5: Linear Classification Cont'd (Module 3)</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Logistic Regression II
 </p>
 </div>
-<div id="outline-container-org634e2b6" class="outline-3">
-<h3 id="org634e2b6"><span class="section-number-3">3.1.</span> Example: CHD</h3>
+<div id="outline-container-org9828b50" class="outline-3">
+<h3 id="org9828b50"><span class="section-number-3">3.1.</span> Example: CHD</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 Example dataset: Coronary Heart Disease (CHD)
@@ -2424,7 +2463,7 @@ Question: Is age associated with CHD? Can predict CHD from age?
 </p>
 </div>
 <ol class="org-ol">
-<li><a id="orgfe83ad7"></a>Logistic regression model<br />
+<li><a id="org2715d4a"></a>Logistic regression model<br />
 <div class="outline-text-5" id="text-3-1-0-1">
 <div class="org-src-container">
 <pre class="src src-r">glm1 &lt;- glm(CHD ~ Age, family=binomial(link="logit"),
@@ -2441,7 +2480,7 @@ Coefficients:
 </ul>
 </div>
 </li>
-<li><a id="org79ef3a3"></a>Log reg equation<br />
+<li><a id="org96ace94"></a>Log reg equation<br />
 <div class="outline-text-5" id="text-3-1-0-2">
 <p>
 Hence, equation is
@@ -2467,8 +2506,8 @@ The above produces a sigmoid curve:
 </div>
 </li>
 </ol>
-<div id="outline-container-org9e150a4" class="outline-4">
-<h4 id="org9e150a4"><span class="section-number-4">3.1.1.</span> CI of coefficients in Log Reg</h4>
+<div id="outline-container-org59d5216" class="outline-4">
+<h4 id="org59d5216"><span class="section-number-4">3.1.1.</span> CI of coefficients in Log Reg</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <p>
 How to find the \(1-\alpha\) CI on \(\beta_0, \beta_1\) in R?
@@ -2482,8 +2521,8 @@ produces 2.5% and 97.5% values of Intercept and Age coefficients.
 </p>
 </div>
 </div>
-<div id="outline-container-org6970f20" class="outline-4">
-<h4 id="org6970f20"><span class="section-number-4">3.1.2.</span> Simplest logistic regression model</h4>
+<div id="outline-container-org193f3e6" class="outline-4">
+<h4 id="org193f3e6"><span class="section-number-4">3.1.2.</span> Simplest logistic regression model</h4>
 <div class="outline-text-4" id="text-3-1-2">
 <p>
 Define a new variable \(\text{Flag} = I(Age\ge 50)\)
@@ -2499,8 +2538,8 @@ Define a new variable \(\text{Flag} = I(Age\ge 50)\)
 </ul>
 </div>
 </div>
-<div id="outline-container-org0c52d19" class="outline-4">
-<h4 id="org0c52d19"><span class="section-number-4">3.1.3.</span> Analysis in R</h4>
+<div id="outline-container-org8fcb56c" class="outline-4">
+<h4 id="org8fcb56c"><span class="section-number-4">3.1.3.</span> Analysis in R</h4>
 <div class="outline-text-4" id="text-3-1-3">
 <pre class="example">
 flag &lt;- I(Age&gt;=50)
@@ -2530,8 +2569,8 @@ hence:
 </p>
 </div>
 </div>
-<div id="outline-container-org610b082" class="outline-4">
-<h4 id="org610b082"><span class="section-number-4">3.1.4.</span> Analysis by hand</h4>
+<div id="outline-container-orgc6601ee" class="outline-4">
+<h4 id="orgc6601ee"><span class="section-number-4">3.1.4.</span> Analysis by hand</h4>
 <div class="outline-text-4" id="text-3-1-4">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -2588,8 +2627,8 @@ When fitting \(\log \frac{\pi_i}{1-\pi_i} = \beta_0 + \beta_1 \text{Flag}_i\) we
 </dl>
 </div>
 </div>
-<div id="outline-container-orgae2e259" class="outline-4">
-<h4 id="orgae2e259"><span class="section-number-4">3.1.5.</span> Testing hypothesis</h4>
+<div id="outline-container-orgced702f" class="outline-4">
+<h4 id="orgced702f"><span class="section-number-4">3.1.5.</span> Testing hypothesis</h4>
 <div class="outline-text-4" id="text-3-1-5">
 <p>
 Statistical question: hypothesis test:
@@ -2617,12 +2656,12 @@ Statistical question: hypothesis test:
 </div>
 </div>
 </div>
-<div id="outline-container-orge258050" class="outline-3">
-<h3 id="orge258050"><span class="section-number-3">3.2.</span> Prediction in Logistic Regression</h3>
+<div id="outline-container-orga3e9f44" class="outline-3">
+<h3 id="orga3e9f44"><span class="section-number-3">3.2.</span> Prediction in Logistic Regression</h3>
 <div class="outline-text-3" id="text-3-2">
 </div>
-<div id="outline-container-orgfd69741" class="outline-4">
-<h4 id="orgfd69741"><span class="section-number-4">3.2.1.</span> Logistic regression model</h4>
+<div id="outline-container-orgf6c8324" class="outline-4">
+<h4 id="orgf6c8324"><span class="section-number-4">3.2.1.</span> Logistic regression model</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <ul class="org-ul">
 <li>Data: \((Y_i, x_{i1}, ..., x_{i, p-1}),  i = 1, ..., n; Y_i \in \{0,1\}\)</li>
@@ -2643,8 +2682,8 @@ Statistical question: hypothesis test:
 </ul>
 </div>
 </div>
-<div id="outline-container-org054280d" class="outline-4">
-<h4 id="org054280d"><span class="section-number-4">3.2.2.</span> Point estimation</h4>
+<div id="outline-container-org26b5547" class="outline-4">
+<h4 id="org26b5547"><span class="section-number-4">3.2.2.</span> Point estimation</h4>
 <div class="outline-text-4" id="text-3-2-2">
 <p>
 When \(x_{\text{new}} = (1, x_1, x_2, ..., x_{p-1})^T\), for the MLE \(\hat{\beta} = (\hat{\beta_0}, ..., \hat{\beta_{p-1}}) \\\),
@@ -2658,8 +2697,8 @@ When \(x_{\text{new}} = (1, x_1, x_2, ..., x_{p-1})^T\), for the MLE \(\hat{\bet
 </ul>
 </div>
 </div>
-<div id="outline-container-org87bd43d" class="outline-4">
-<h4 id="org87bd43d"><span class="section-number-4">3.2.3.</span> Point estimation in R</h4>
+<div id="outline-container-org3fba606" class="outline-4">
+<h4 id="org3fba606"><span class="section-number-4">3.2.3.</span> Point estimation in R</h4>
 <div class="outline-text-4" id="text-3-2-3">
 <p>
 Given logistic regression object "glm.model", 2 kinds of R commands to get <b><b>different</b></b> point estimates:
@@ -2670,8 +2709,8 @@ Given logistic regression object "glm.model", 2 kinds of R commands to get <b><b
 </dl>
 </div>
 </div>
-<div id="outline-container-org5f182f3" class="outline-4">
-<h4 id="org5f182f3"><span class="section-number-4">3.2.4.</span> Confidence interval for logistic regression</h4>
+<div id="outline-container-org7759106" class="outline-4">
+<h4 id="org7759106"><span class="section-number-4">3.2.4.</span> Confidence interval for logistic regression</h4>
 <div class="outline-text-4" id="text-3-2-4">
 <p>
 How to find CI for \(\pi(x) = P(Y=1|x)?\)
@@ -2717,8 +2756,8 @@ which is the desired 95% CI for the true probability \(\pi(x) = P(Y=1|x)\)
 </ol>
 </div>
 </div>
-<div id="outline-container-org6f19a94" class="outline-4">
-<h4 id="org6f19a94"><span class="section-number-4">3.2.5.</span> Prediction</h4>
+<div id="outline-container-org20e6e2f" class="outline-4">
+<h4 id="org20e6e2f"><span class="section-number-4">3.2.5.</span> Prediction</h4>
 <div class="outline-text-4" id="text-3-2-5">
 <p>
 When \(x_\text{new}=(1, x_1, ..., x_{p-1})^T=\) after computing the estimated probability
@@ -2735,8 +2774,8 @@ and its confidence interval, need to ask how to predict future response Y=1, Y=0
 </ul>
 </div>
 </div>
-<div id="outline-container-orgcc9632e" class="outline-4">
-<h4 id="orgcc9632e"><span class="section-number-4">3.2.6.</span> Prediction rule</h4>
+<div id="outline-container-orgcd08243" class="outline-4">
+<h4 id="orgcd08243"><span class="section-number-4">3.2.6.</span> Prediction rule</h4>
 <div class="outline-text-4" id="text-3-2-6">
 <ul class="org-ul">
 <li>General prediction rule is to predict:
@@ -2748,8 +2787,8 @@ and its confidence interval, need to ask how to predict future response Y=1, Y=0
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc2ea695" class="outline-4">
-<h4 id="orgc2ea695"><span class="section-number-4">3.2.7.</span> Choice of cutoff value \(c*\)</h4>
+<div id="outline-container-org8787883" class="outline-4">
+<h4 id="org8787883"><span class="section-number-4">3.2.7.</span> Choice of cutoff value \(c*\)</h4>
 <div class="outline-text-4" id="text-3-2-7">
 <p>
 Possible approaches:
@@ -2761,8 +2800,8 @@ Possible approaches:
 </ul>
 </div>
 </div>
-<div id="outline-container-org6f9433a" class="outline-4">
-<h4 id="org6f9433a"><span class="section-number-4">3.2.8.</span> Choice of \(c*\) from validation</h4>
+<div id="outline-container-orgfc9e6f5" class="outline-4">
+<h4 id="orgfc9e6f5"><span class="section-number-4">3.2.8.</span> Choice of \(c*\) from validation</h4>
 <div class="outline-text-4" id="text-3-2-8">
 <p>
 If there's new validation data:
@@ -2779,12 +2818,12 @@ More useful in biostatistics when effect of misclassifying false positives is mo
 </div>
 </div>
 </div>
-<div id="outline-container-org41bfc43" class="outline-3">
-<h3 id="org41bfc43"><span class="section-number-3">3.3.</span> Model Selection in Logistic Regression</h3>
+<div id="outline-container-org3e66258" class="outline-3">
+<h3 id="org3e66258"><span class="section-number-3">3.3.</span> Model Selection in Logistic Regression</h3>
 <div class="outline-text-3" id="text-3-3">
 </div>
-<div id="outline-container-org13d354c" class="outline-4">
-<h4 id="org13d354c"><span class="section-number-4">3.3.1.</span> Logistic Regression review</h4>
+<div id="outline-container-orgaa6ebb3" class="outline-4">
+<h4 id="orgaa6ebb3"><span class="section-number-4">3.3.1.</span> Logistic Regression review</h4>
 <div class="outline-text-4" id="text-3-3-1">
 <ul class="org-ul">
 <li>Data: \((Y_i, x_{i1}, ..., x_{i, p-1}),  i = 1, ..., n; Y_i \in \{0,1\}\)</li>
@@ -2800,8 +2839,8 @@ More useful in biostatistics when effect of misclassifying false positives is mo
 </ul>
 </div>
 </div>
-<div id="outline-container-org866258c" class="outline-4">
-<h4 id="org866258c"><span class="section-number-4">3.3.2.</span> Model selection in Logistic Regression</h4>
+<div id="outline-container-orgf79540c" class="outline-4">
+<h4 id="orgf79540c"><span class="section-number-4">3.3.2.</span> Model selection in Logistic Regression</h4>
 <div class="outline-text-4" id="text-3-3-2">
 <ul class="org-ul">
 <li>Approaches:
@@ -2812,8 +2851,8 @@ More useful in biostatistics when effect of misclassifying false positives is mo
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd3b7d74" class="outline-4">
-<h4 id="orgd3b7d74"><span class="section-number-4">3.3.3.</span> Information criterion</h4>
+<div id="outline-container-orgb1dab72" class="outline-4">
+<h4 id="orgb1dab72"><span class="section-number-4">3.3.3.</span> Information criterion</h4>
 <div class="outline-text-4" id="text-3-3-3">
 <ul class="org-ul">
 <li>Definition of IC of a model with \(k \beta\) as:
@@ -2826,8 +2865,8 @@ More useful in biostatistics when effect of misclassifying false positives is mo
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf96030d" class="outline-4">
-<h4 id="orgf96030d"><span class="section-number-4">3.3.4.</span> Hypothesis testing</h4>
+<div id="outline-container-orgb598436" class="outline-4">
+<h4 id="orgb598436"><span class="section-number-4">3.3.4.</span> Hypothesis testing</h4>
 <div class="outline-text-4" id="text-3-3-4">
 <p>
 When testing \(H_0\) given some \(\beta_j\) 's, say \(k\) of them are 0
@@ -2847,8 +2886,8 @@ When testing \(H_0\) given some \(\beta_j\) 's, say \(k\) of them are 0
 </ul>
 </div>
 </div>
-<div id="outline-container-org42d9f0a" class="outline-4">
-<h4 id="org42d9f0a"><span class="section-number-4">3.3.5.</span> Wald's test</h4>
+<div id="outline-container-org02feedc" class="outline-4">
+<h4 id="org02feedc"><span class="section-number-4">3.3.5.</span> Wald's test</h4>
 <div class="outline-text-4" id="text-3-3-5">
 <p>
 Besides the above, other methods such as Wald's test also exist.
@@ -2867,8 +2906,8 @@ where \(\hat{V} k\) is the covariance matrix of the \(k \beta_j\) 's</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org5b988a6" class="outline-4">
-<h4 id="org5b988a6"><span class="section-number-4">3.3.6.</span> Comparison of 2 models</h4>
+<div id="outline-container-orge83c7ae" class="outline-4">
+<h4 id="orge83c7ae"><span class="section-number-4">3.3.6.</span> Comparison of 2 models</h4>
 <div class="outline-text-4" id="text-3-3-6">
 <ul class="org-ul">
 <li>Data: \((Y_i, x_{i1}, ..., x_{i, p-1}),  i = 1, ..., n; Y_i \in \{0,1\}\)</li>
@@ -2887,8 +2926,8 @@ where \(\hat{V} k\) is the covariance matrix of the \(k \beta_j\) 's</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd5e9b29" class="outline-4">
-<h4 id="orgd5e9b29"><span class="section-number-4">3.3.7.</span> Assess performance</h4>
+<div id="outline-container-org32cf763" class="outline-4">
+<h4 id="org32cf763"><span class="section-number-4">3.3.7.</span> Assess performance</h4>
 <div class="outline-text-4" id="text-3-3-7">
 <p>
 How to evaluate performance of logistic regression model without worrying about choice of cutoff value \(c*\) ?
@@ -2902,8 +2941,8 @@ How to evaluate performance of logistic regression model without worrying about 
 </ul>
 </div>
 </div>
-<div id="outline-container-org470cd14" class="outline-4">
-<h4 id="org470cd14"><span class="section-number-4">3.3.8.</span> Specificity vs Sensitivity</h4>
+<div id="outline-container-org81a73dd" class="outline-4">
+<h4 id="org81a73dd"><span class="section-number-4">3.3.8.</span> Specificity vs Sensitivity</h4>
 <div class="outline-text-4" id="text-3-3-8">
 <p>
 For a given cutoff value \(c*\), we compute:
@@ -2962,8 +3001,8 @@ means:
 </div>
 </div>
 
-<div id="outline-container-orgf5e6541" class="outline-4">
-<h4 id="orgf5e6541"><span class="section-number-4">3.3.9.</span> ROC curve</h4>
+<div id="outline-container-org67ccee0" class="outline-4">
+<h4 id="org67ccee0"><span class="section-number-4">3.3.9.</span> ROC curve</h4>
 <div class="outline-text-4" id="text-3-3-9">
 <dl class="org-dl">
 <dt>Receiver operating characteristic curve</dt><dd>curve of a given classification model or algorithm when cutoff value varies from 0 to 1</dd>
@@ -2972,7 +3011,7 @@ means:
 </dl>
 
 
-<div id="orgb94d524" class="figure">
+<div id="orgcfc0a72" class="figure">
 <p><img src="./img/auc-roc.png" alt="auc-roc.png" />
 </p>
 </div>
@@ -2984,8 +3023,8 @@ Model with <b><b>larger</b></b> Area Under Curve of ROC is better!
 </div>
 </div>
 
-<div id="outline-container-orge6465a1" class="outline-3">
-<h3 id="orge6465a1"><span class="section-number-3">3.4.</span> Case Study: Golf Putting I</h3>
+<div id="outline-container-org6e51c4d" class="outline-3">
+<h3 id="org6e51c4d"><span class="section-number-3">3.4.</span> Case Study: Golf Putting I</h3>
 <div class="outline-text-3" id="text-3-4">
 <ul class="org-ul">
 <li>5.2.1</li>
@@ -2994,8 +3033,8 @@ Model with <b><b>larger</b></b> Area Under Curve of ROC is better!
 </ul>
 </div>
 
-<div id="outline-container-org8970ba5" class="outline-4">
-<h4 id="org8970ba5"><span class="section-number-4">3.4.1.</span> Dataset</h4>
+<div id="outline-container-org21ce783" class="outline-4">
+<h4 id="org21ce783"><span class="section-number-4">3.4.1.</span> Dataset</h4>
 <div class="outline-text-4" id="text-3-4-1">
 <ol class="org-ol">
 <li>Distance</li>
@@ -3006,8 +3045,8 @@ Model with <b><b>larger</b></b> Area Under Curve of ROC is better!
 </div>
 </div>
 
-<div id="outline-container-orgc5b2257" class="outline-4">
-<h4 id="orgc5b2257"><span class="section-number-4">3.4.2.</span> Scatter plot</h4>
+<div id="outline-container-orgf33bcff" class="outline-4">
+<h4 id="orgf33bcff"><span class="section-number-4">3.4.2.</span> Scatter plot</h4>
 <div class="outline-text-4" id="text-3-4-2">
 <ul class="org-ul">
 <li>Rate (100 &times; Made) vs distance</li>
@@ -3015,8 +3054,8 @@ Model with <b><b>larger</b></b> Area Under Curve of ROC is better!
 </div>
 </div>
 
-<div id="outline-container-org45be9e4" class="outline-4">
-<h4 id="org45be9e4"><span class="section-number-4">3.4.3.</span> Question</h4>
+<div id="outline-container-org60aeb19" class="outline-4">
+<h4 id="org60aeb19"><span class="section-number-4">3.4.3.</span> Question</h4>
 <div class="outline-text-4" id="text-3-4-3">
 <p>
 Based on training data, what's the predicted success rate from given distance \(x\)?
@@ -3024,8 +3063,8 @@ Based on training data, what's the predicted success rate from given distance \(
 </div>
 </div>
 
-<div id="outline-container-org358fa55" class="outline-4">
-<h4 id="org358fa55"><span class="section-number-4">3.4.4.</span> Multiple linear regression models</h4>
+<div id="outline-container-org0cd33c8" class="outline-4">
+<h4 id="org0cd33c8"><span class="section-number-4">3.4.4.</span> Multiple linear regression models</h4>
 <div class="outline-text-4" id="text-3-4-4">
 <ul class="org-ul">
 <li>Linear regression model:
@@ -3041,8 +3080,8 @@ Based on training data, what's the predicted success rate from given distance \(
 </div>
 </div>
 
-<div id="outline-container-orgb34bfc6" class="outline-4">
-<h4 id="orgb34bfc6"><span class="section-number-4">3.4.5.</span> R code</h4>
+<div id="outline-container-orgf0b1b7f" class="outline-4">
+<h4 id="orgf0b1b7f"><span class="section-number-4">3.4.5.</span> R code</h4>
 <div class="outline-text-4" id="text-3-4-5">
 <ul class="org-ul">
 <li>Linear regression
@@ -3057,8 +3096,8 @@ Based on training data, what's the predicted success rate from given distance \(
 </div>
 </div>
 
-<div id="outline-container-orgaaf0920" class="outline-4">
-<h4 id="orgaaf0920"><span class="section-number-4">3.4.6.</span> Larger distance?</h4>
+<div id="outline-container-org4947d8c" class="outline-4">
+<h4 id="org4947d8c"><span class="section-number-4">3.4.6.</span> Larger distance?</h4>
 <div class="outline-text-4" id="text-3-4-6">
 <ul class="org-ul">
 <li>Fit is good for small distance</li>
@@ -3067,8 +3106,8 @@ Based on training data, what's the predicted success rate from given distance \(
 </div>
 </div>
 
-<div id="outline-container-org10f1e84" class="outline-4">
-<h4 id="org10f1e84"><span class="section-number-4">3.4.7.</span> Problems with regression models</h4>
+<div id="outline-container-org3af7fd0" class="outline-4">
+<h4 id="org3af7fd0"><span class="section-number-4">3.4.7.</span> Problems with regression models</h4>
 <div class="outline-text-4" id="text-3-4-7">
 <ul class="org-ul">
 <li>Linear regression:
@@ -3086,8 +3125,8 @@ Based on training data, what's the predicted success rate from given distance \(
 </div>
 </div>
 
-<div id="outline-container-org58ec158" class="outline-3">
-<h3 id="org58ec158"><span class="section-number-3">3.5.</span> Case Study: Golf Putting II</h3>
+<div id="outline-container-org7a52948" class="outline-3">
+<h3 id="org7a52948"><span class="section-number-3">3.5.</span> Case Study: Golf Putting II</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 Previously: Linear regression and quadratic regression.
@@ -3095,8 +3134,8 @@ However, they yield undesired predictions.
 How about logistic regression?
 </p>
 </div>
-<div id="outline-container-org788004b" class="outline-4">
-<h4 id="org788004b"><span class="section-number-4">3.5.1.</span> Logistic regression model</h4>
+<div id="outline-container-orgdac8085" class="outline-4">
+<h4 id="orgdac8085"><span class="section-number-4">3.5.1.</span> Logistic regression model</h4>
 <div class="outline-text-4" id="text-3-5-1">
 <ul class="org-ul">
 <li>Data: \((\text{Success } Y_i, \text{Tried } n_i, \text{Distance } x_i = i \text{ for } i=2, 3, ..., 20)\)</li>
@@ -3109,8 +3148,8 @@ How about logistic regression?
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc07cbae" class="outline-4">
-<h4 id="orgc07cbae"><span class="section-number-4">3.5.2.</span> R code</h4>
+<div id="outline-container-org377dcc8" class="outline-4">
+<h4 id="org377dcc8"><span class="section-number-4">3.5.2.</span> R code</h4>
 <div class="outline-text-4" id="text-3-5-2">
 <pre class="example">
 Rate = 100 * Success / Tried
@@ -3131,8 +3170,8 @@ Coefficients:
 </ul>
 </div>
 </div>
-<div id="outline-container-org454683d" class="outline-4">
-<h4 id="org454683d"><span class="section-number-4">3.5.3.</span> Fitted model:</h4>
+<div id="outline-container-org1164827" class="outline-4">
+<h4 id="org1164827"><span class="section-number-4">3.5.3.</span> Fitted model:</h4>
 <div class="outline-text-4" id="text-3-5-3">
 <p>
 \[
@@ -3147,8 +3186,8 @@ pred3 &lt;- 100 * predict(glm1, xnew, type="response")
 </pre>
 </div>
 </div>
-<div id="outline-container-orgbe187d9" class="outline-4">
-<h4 id="orgbe187d9"><span class="section-number-4">3.5.4.</span> Advantages and disadvantages of logistic regression</h4>
+<div id="outline-container-org4798394" class="outline-4">
+<h4 id="org4798394"><span class="section-number-4">3.5.4.</span> Advantages and disadvantages of logistic regression</h4>
 <div class="outline-text-4" id="text-3-5-4">
 <ul class="org-ul">
 <li>Advantage:
@@ -3164,8 +3203,8 @@ pred3 &lt;- 100 * predict(glm1, xnew, type="response")
 </div>
 </div>
 </div>
-<div id="outline-container-orgcfc0486" class="outline-3">
-<h3 id="orgcfc0486"><span class="section-number-3">3.6.</span> Case Study: Golf Putting III</h3>
+<div id="outline-container-orgc2a16b4" class="outline-3">
+<h3 id="orgc2a16b4"><span class="section-number-3">3.6.</span> Case Study: Golf Putting III</h3>
 <div class="outline-text-3" id="text-3-6">
 <p>
 Domain knowledge-based regression model.
@@ -3176,8 +3215,8 @@ In logistic regression model, \(\pi(x) = \frac{e^{\hat{\beta_0}}}{1+e^{\hat{\bet
 <li>Any more meaningful form of \(\pi(x)\)? -&gt; Domain knowledge!</li>
 </ul>
 </div>
-<div id="outline-container-org4b4aa55" class="outline-4">
-<h4 id="org4b4aa55"><span class="section-number-4">3.6.1.</span> New model</h4>
+<div id="outline-container-org2938af7" class="outline-4">
+<h4 id="org2938af7"><span class="section-number-4">3.6.1.</span> New model</h4>
 <div class="outline-text-4" id="text-3-6-1">
 <p>
 <img src="./img/putting.png" alt="putting.png" />
@@ -3206,8 +3245,8 @@ Let:
 </ul>
 </div>
 </div>
-<div id="outline-container-org1fcb551" class="outline-4">
-<h4 id="org1fcb551"><span class="section-number-4">3.6.2.</span> Parameter estimation</h4>
+<div id="outline-container-org8e77f3a" class="outline-4">
+<h4 id="org8e77f3a"><span class="section-number-4">3.6.2.</span> Parameter estimation</h4>
 <div class="outline-text-4" id="text-3-6-2">
 <ul class="org-ul">
 <li>Use Method of Least Squares: find the &sigma; that minimizes residual sum of squares
@@ -3225,8 +3264,8 @@ pred4 &lt;- predict(nls1, xnew)
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb9d3142" class="outline-4">
-<h4 id="orgb9d3142"><span class="section-number-4">3.6.3.</span> Fitted model</h4>
+<div id="outline-container-orgbeef7a5" class="outline-4">
+<h4 id="orgbeef7a5"><span class="section-number-4">3.6.3.</span> Fitted model</h4>
 <div class="outline-text-4" id="text-3-6-3">
 <ul class="org-ul">
 <li>By NLS, \(\hat{\sigma} = 0.025\) i.e. 1.5 degress, thus new fitted model is
@@ -3237,8 +3276,8 @@ pred4 &lt;- predict(nls1, xnew)
 </ul>
 </div>
 </div>
-<div id="outline-container-org0f522cd" class="outline-4">
-<h4 id="org0f522cd"><span class="section-number-4">3.6.4.</span> Concerns</h4>
+<div id="outline-container-org45d7fbd" class="outline-4">
+<h4 id="org45d7fbd"><span class="section-number-4">3.6.4.</span> Concerns</h4>
 <div class="outline-text-4" id="text-3-6-4">
 <ul class="org-ul">
 <li>Model only accounts for angle at which ball is hit</li>
@@ -3250,19 +3289,19 @@ pred4 &lt;- predict(nls1, xnew)
 </div>
 </div>
 </div>
-<div id="outline-container-org65f20ad" class="outline-2">
-<h2 id="org65f20ad"><span class="section-number-2">4.</span> Week 6: Local Smoothers and Additive Models</h2>
+<div id="outline-container-org4032d35" class="outline-2">
+<h2 id="org4032d35"><span class="section-number-2">4.</span> Week 6: Local Smoothers and Additive Models</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org0829783" class="outline-3">
-<h3 id="org0829783"><span class="section-number-3">4.1.</span> Overview</h3>
+<div id="outline-container-org3e88988" class="outline-3">
+<h3 id="org3e88988"><span class="section-number-3">4.1.</span> Overview</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 6.1.1
 </p>
 </div>
-<div id="outline-container-orgdc63153" class="outline-4">
-<h4 id="orgdc63153"><span class="section-number-4">4.1.1.</span> Regression in general</h4>
+<div id="outline-container-orgfc7745f" class="outline-4">
+<h4 id="orgfc7745f"><span class="section-number-4">4.1.1.</span> Regression in general</h4>
 <div class="outline-text-4" id="text-4-1-1">
 <ul class="org-ul">
 <li>Data: \((Y_i, X_{i1}, ..., X_{ip})\) for \(i=1, 2,..., n\)</li>
@@ -3284,8 +3323,8 @@ for a broad class of "smooth" function \(f\).</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org2f3a560" class="outline-4">
-<h4 id="org2f3a560"><span class="section-number-4">4.1.2.</span> Special case: \(p=1\)</h4>
+<div id="outline-container-org5366a97" class="outline-4">
+<h4 id="org5366a97"><span class="section-number-4">4.1.2.</span> Special case: \(p=1\)</h4>
 <div class="outline-text-4" id="text-4-1-2">
 <ul class="org-ul">
 <li>Objective, predict Y at given X=x.</li>
@@ -3294,8 +3333,8 @@ for a broad class of "smooth" function \(f\).</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org75d2932" class="outline-4">
-<h4 id="org75d2932"><span class="section-number-4">4.1.3.</span> Method of least squares</h4>
+<div id="outline-container-org3f882ea" class="outline-4">
+<h4 id="org3f882ea"><span class="section-number-4">4.1.3.</span> Method of least squares</h4>
 <div class="outline-text-4" id="text-4-1-3">
 <p>
 By this method, we want to find function \(f\) to minimize the residual sum of squares
@@ -3310,8 +3349,8 @@ By this method, we want to find function \(f\) to minimize the residual sum of s
 </ul>
 </div>
 </div>
-<div id="outline-container-org973355e" class="outline-4">
-<h4 id="org973355e"><span class="section-number-4">4.1.4.</span> Interpolation</h4>
+<div id="outline-container-orgc68dd83" class="outline-4">
+<h4 id="orgc68dd83"><span class="section-number-4">4.1.4.</span> Interpolation</h4>
 <div class="outline-text-4" id="text-4-1-4">
 <p>
 Three popular methods:
@@ -3323,8 +3362,8 @@ Three popular methods:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd251336" class="outline-4">
-<h4 id="orgd251336"><span class="section-number-4">4.1.5.</span> Polynomial interpolation</h4>
+<div id="outline-container-org8bc28da" class="outline-4">
+<h4 id="org8bc28da"><span class="section-number-4">4.1.5.</span> Polynomial interpolation</h4>
 <div class="outline-text-4" id="text-4-1-5">
 <ul class="org-ul">
 <li>Theorem: there exists a unique polynomial of degree at most \(n-1\) that interpolate the data \((Y_i, x_i), i = 1, 2, ..., n\).</li>
@@ -3336,14 +3375,14 @@ Three popular methods:
   \]</li>
 </ul>
 
-<div id="orgaf487e7" class="figure">
+<div id="orgcfbc42b" class="figure">
 <p><img src="./img/poly-inter.png" alt="poly-inter.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgf567d1a" class="outline-4">
-<h4 id="orgf567d1a"><span class="section-number-4">4.1.6.</span> Weakness of interpolation</h4>
+<div id="outline-container-org7e7881e" class="outline-4">
+<h4 id="org7e7881e"><span class="section-number-4">4.1.6.</span> Weakness of interpolation</h4>
 <div class="outline-text-4" id="text-4-1-6">
 <ul class="org-ul">
 <li>Interpolation curves are easy to understand, provide good picture,</li>
@@ -3356,8 +3395,8 @@ Three popular methods:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf91b365" class="outline-4">
-<h4 id="orgf91b365"><span class="section-number-4">4.1.7.</span> Transition to local smoothers</h4>
+<div id="outline-container-orgfbf584d" class="outline-4">
+<h4 id="orgfbf584d"><span class="section-number-4">4.1.7.</span> Transition to local smoothers</h4>
 <div class="outline-text-4" id="text-4-1-7">
 <ul class="org-ul">
 <li>Data: \((Y_i, x_i), i = 1, 2, ..., n\)</li>
@@ -3371,8 +3410,8 @@ Three popular methods:
 </ul>
 </div>
 </div>
-<div id="outline-container-org95d0887" class="outline-4">
-<h4 id="org95d0887"><span class="section-number-4">4.1.8.</span> Three popular local smoothers</h4>
+<div id="outline-container-org2eade98" class="outline-4">
+<h4 id="org2eade98"><span class="section-number-4">4.1.8.</span> Three popular local smoothers</h4>
 <div class="outline-text-4" id="text-4-1-8">
 <dl class="org-dl">
 <dt>LOESS/LOWESS</dt><dd>locally estimated/weighted scatter plot smoothing: combine weighted least squares with k-nearest neighbourhood</dd>
@@ -3384,15 +3423,15 @@ Three popular methods:
 </div>
 </div>
 
-<div id="outline-container-org2e62e62" class="outline-3">
-<h3 id="org2e62e62"><span class="section-number-3">4.2.</span> LOESS</h3>
+<div id="outline-container-orgacf00e7" class="outline-3">
+<h3 id="orgacf00e7"><span class="section-number-3">4.2.</span> LOESS</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 6.1.2
 </p>
 </div>
-<div id="outline-container-org89a10f1" class="outline-4">
-<h4 id="org89a10f1"><span class="section-number-4">4.2.1.</span> Problem formulation</h4>
+<div id="outline-container-org777d3c9" class="outline-4">
+<h4 id="org777d3c9"><span class="section-number-4">4.2.1.</span> Problem formulation</h4>
 <div class="outline-text-4" id="text-4-2-1">
 <ul class="org-ul">
 <li>Data: \((Y_i, x_i), i = 1, 2, ..., n\)</li>
@@ -3401,8 +3440,8 @@ Three popular methods:
 </ul>
 </div>
 </div>
-<div id="outline-container-org58fa1e6" class="outline-4">
-<h4 id="org58fa1e6"><span class="section-number-4">4.2.2.</span> LOESS algorithm</h4>
+<div id="outline-container-org5e09ade" class="outline-4">
+<h4 id="org5e09ade"><span class="section-number-4">4.2.2.</span> LOESS algorithm</h4>
 <div class="outline-text-4" id="text-4-2-2">
 <p>
 Locally estimated/weighted scatterplot smoothing (LOESS) algorithm:
@@ -3417,8 +3456,8 @@ Locally estimated/weighted scatterplot smoothing (LOESS) algorithm:
 </ul>
 </div>
 </div>
-<div id="outline-container-org94cdedf" class="outline-4">
-<h4 id="org94cdedf"><span class="section-number-4">4.2.3.</span> Weights</h4>
+<div id="outline-container-orgce8ced4" class="outline-4">
+<h4 id="orgce8ced4"><span class="section-number-4">4.2.3.</span> Weights</h4>
 <div class="outline-text-4" id="text-4-2-3">
 <p>
 In the LOESS algorithm, at a given \(x\), it defines the tri-cube weight
@@ -3437,8 +3476,8 @@ for each training data \(i=1, ..., n\) where \(d_k\) = the k-th smallest distanc
 </p>
 </div>
 </div>
-<div id="outline-container-org179d161" class="outline-4">
-<h4 id="org179d161"><span class="section-number-4">4.2.4.</span> Weighted least squares</h4>
+<div id="outline-container-org9358040" class="outline-4">
+<h4 id="org9358040"><span class="section-number-4">4.2.4.</span> Weighted least squares</h4>
 <div class="outline-text-4" id="text-4-2-4">
 <p>
 In LOESS:
@@ -3456,8 +3495,8 @@ if \(x_i\) not among \(k\) closest points to \(x\), then \(w_i=0\)</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orge3805cc" class="outline-4">
-<h4 id="orge3805cc"><span class="section-number-4">4.2.5.</span> LOESS smoothing example</h4>
+<div id="outline-container-orge033a03" class="outline-4">
+<h4 id="orge033a03"><span class="section-number-4">4.2.5.</span> LOESS smoothing example</h4>
 <div class="outline-text-4" id="text-4-2-5">
 <p>
 Wang, Mei, Holte (2008)
@@ -3465,8 +3504,8 @@ Wang, Mei, Holte (2008)
 </p>
 </div>
 </div>
-<div id="outline-container-org6d58d9d" class="outline-4">
-<h4 id="org6d58d9d"><span class="section-number-4">4.2.6.</span> Advantages and disadvantages of LOESS</h4>
+<div id="outline-container-org4584874" class="outline-4">
+<h4 id="org4584874"><span class="section-number-4">4.2.6.</span> Advantages and disadvantages of LOESS</h4>
 <div class="outline-text-4" id="text-4-2-6">
 <ul class="org-ul">
 <li>Advantages
@@ -3489,15 +3528,15 @@ Wang, Mei, Holte (2008)
 </div>
 </div>
 
-<div id="outline-container-org92294e6" class="outline-3">
-<h3 id="org92294e6"><span class="section-number-3">4.3.</span> Kernel 1</h3>
+<div id="outline-container-org24b31ee" class="outline-3">
+<h3 id="org24b31ee"><span class="section-number-3">4.3.</span> Kernel 1</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 6.1.3
 </p>
 </div>
-<div id="outline-container-orgf213d4a" class="outline-4">
-<h4 id="orgf213d4a"><span class="section-number-4">4.3.1.</span> Local Smoothers</h4>
+<div id="outline-container-orga1caf63" class="outline-4">
+<h4 id="orga1caf63"><span class="section-number-4">4.3.1.</span> Local Smoothers</h4>
 <div class="outline-text-4" id="text-4-3-1">
 <ul class="org-ul">
 <li>Data: \((Y_i, x_i)\) for \(i=1, 2,..., n\), assume \(x \in [a, b]\)</li>
@@ -3507,8 +3546,8 @@ Wang, Mei, Holte (2008)
 </ul>
 </div>
 </div>
-<div id="outline-container-org73dd3c6" class="outline-4">
-<h4 id="org73dd3c6"><span class="section-number-4">4.3.2.</span> Convergence</h4>
+<div id="outline-container-orgb3ee7d8" class="outline-4">
+<h4 id="orgb3ee7d8"><span class="section-number-4">4.3.2.</span> Convergence</h4>
 <div class="outline-text-4" id="text-4-3-2">
 <dl class="org-dl">
 <dt>Pointwise convergence</dt><dd>sequence \(f_n\) converges pointwise to \(f\) if
@@ -3526,8 +3565,8 @@ By dominated convergence theorem or monotone convergence theorem, <b><b>pointwis
 </dl>
 </div>
 </div>
-<div id="outline-container-orge60783d" class="outline-4">
-<h4 id="orge60783d"><span class="section-number-4">4.3.3.</span> Statistical properties</h4>
+<div id="outline-container-orga3d1b99" class="outline-4">
+<h4 id="orga3d1b99"><span class="section-number-4">4.3.3.</span> Statistical properties</h4>
 <div class="outline-text-4" id="text-4-3-3">
 <p>
 Suppose we want to approximate or estimate the function \(E(Y)= f(x)\) based on training data \((Y_i, x_i)\) for \(i=1, 2, ..., n\)
@@ -3541,8 +3580,8 @@ Suppose we want to approximate or estimate the function \(E(Y)= f(x)\) based on 
 </ul>
 </div>
 </div>
-<div id="outline-container-org595571a" class="outline-4">
-<h4 id="org595571a"><span class="section-number-4">4.3.4.</span> Bias-variance decomposition</h4>
+<div id="outline-container-orgc6869a1" class="outline-4">
+<h4 id="orgc6869a1"><span class="section-number-4">4.3.4.</span> Bias-variance decomposition</h4>
 <div class="outline-text-4" id="text-4-3-4">
 <p>
 \[
@@ -3563,8 +3602,8 @@ Suppose we want to approximate or estimate the function \(E(Y)= f(x)\) based on 
 </dl>
 </div>
 </div>
-<div id="outline-container-org44af71a" class="outline-4">
-<h4 id="org44af71a"><span class="section-number-4">4.3.5.</span> Kernel smoothing</h4>
+<div id="outline-container-org13932ec" class="outline-4">
+<h4 id="org13932ec"><span class="section-number-4">4.3.5.</span> Kernel smoothing</h4>
 <div class="outline-text-4" id="text-4-3-5">
 <ul class="org-ul">
 <li>Question: how to estimate the unknown function \(f\) in the model \(Y= f(x) + \epsilon\) and \(\textbf{E}(\epsilon)=0\) based on training data?</li>
@@ -3576,8 +3615,8 @@ Suppose we want to approximate or estimate the function \(E(Y)= f(x)\) based on 
 </ul>
 </div>
 </div>
-<div id="outline-container-org02a46e1" class="outline-4">
-<h4 id="org02a46e1"><span class="section-number-4">4.3.6.</span> Definition of kernel</h4>
+<div id="outline-container-orge537022" class="outline-4">
+<h4 id="orge537022"><span class="section-number-4">4.3.6.</span> Definition of kernel</h4>
 <div class="outline-text-4" id="text-4-3-6">
 <dl class="org-dl">
 <dt>Definition of kernel (1 dimension)</dt><dd>a kernel \(K\) is bounded, continuous \((-\infty, \infty)\) satisfying (1) \(K(u) \ge 0\) (2) \(\int^{\infty}_{-\infty} K(u) du =1\)</dd>
@@ -3596,8 +3635,8 @@ In many applications, the kernel \(K\) is chosen to satisfy the additional condi
 </p>
 </div>
 </div>
-<div id="outline-container-org8c5e5f6" class="outline-4">
-<h4 id="org8c5e5f6"><span class="section-number-4">4.3.7.</span> Rescaled kernel</h4>
+<div id="outline-container-orgd2d5d31" class="outline-4">
+<h4 id="orgd2d5d31"><span class="section-number-4">4.3.7.</span> Rescaled kernel</h4>
 <div class="outline-text-4" id="text-4-3-7">
 <p>
 \[
@@ -3612,8 +3651,8 @@ where \(h>0\) is called the bandwidth or smoothing parameter
 </ul>
 </div>
 </div>
-<div id="outline-container-org0f04814" class="outline-4">
-<h4 id="org0f04814"><span class="section-number-4">4.3.8.</span> Kernel functions</h4>
+<div id="outline-container-orgd9a9ef2" class="outline-4">
+<h4 id="orgd9a9ef2"><span class="section-number-4">4.3.8.</span> Kernel functions</h4>
 <div class="outline-text-4" id="text-4-3-8">
 <dl class="org-dl">
 <dt>Triangle</dt><dd>\begin{equation}
@@ -3643,8 +3682,8 @@ K(u) =
 </dl>
 </div>
 </div>
-<div id="outline-container-orga44ca5a" class="outline-4">
-<h4 id="orga44ca5a"><span class="section-number-4">4.3.9.</span> Idea in kernel smoothing</h4>
+<div id="outline-container-orgb931d49" class="outline-4">
+<h4 id="orgb931d49"><span class="section-number-4">4.3.9.</span> Idea in kernel smoothing</h4>
 <div class="outline-text-4" id="text-4-3-9">
 <ul class="org-ul">
 <li>Data: \((Y_i, x_i), i=1, ..., n\)</li>
@@ -3663,15 +3702,15 @@ where weights \(W_i(x)\) are constructed from kernel \(K_h (u)\) to describe the
 </div>
 </div>
 
-<div id="outline-container-org0d8918d" class="outline-3">
-<h3 id="org0d8918d"><span class="section-number-3">4.4.</span> Kernels: Smoothing for deterministic design</h3>
+<div id="outline-container-org2c1ceac" class="outline-3">
+<h3 id="org2c1ceac"><span class="section-number-3">4.4.</span> Kernels: Smoothing for deterministic design</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 6.2.1
 </p>
 </div>
-<div id="outline-container-org65b28b9" class="outline-4">
-<h4 id="org65b28b9"><span class="section-number-4">4.4.1.</span> Deterministic design</h4>
+<div id="outline-container-org6d91943" class="outline-4">
+<h4 id="org6d91943"><span class="section-number-4">4.4.1.</span> Deterministic design</h4>
 <div class="outline-text-4" id="text-4-4-1">
 <ul class="org-ul">
 <li>Data: \((Y_i, x_i), i=1, 2, ..., n\). Assume design points are equidistant in \([0,1]\) i.e. \(x_i = \frac{i-1}{n-1}\) for \(i=1,2,...,n\)</li>
@@ -3680,8 +3719,8 @@ where weights \(W_i(x)\) are constructed from kernel \(K_h (u)\) to describe the
 </ul>
 </div>
 </div>
-<div id="outline-container-org3e19a2b" class="outline-4">
-<h4 id="org3e19a2b"><span class="section-number-4">4.4.2.</span> Choose a fixed kernel</h4>
+<div id="outline-container-orge210ce7" class="outline-4">
+<h4 id="orge210ce7"><span class="section-number-4">4.4.2.</span> Choose a fixed kernel</h4>
 <div class="outline-text-4" id="text-4-4-2">
 <ul class="org-ul">
 <li>Definition of a kernel: a kernel \(K\) is a bounded, continuous function on \((-\infty, \infty)\) satisfying \(K(u) \ge 0\) and \(\int^{\infty}{-\infty} K(u) du = 1\)</li>
@@ -3690,8 +3729,8 @@ where weights \(W_i(x)\) are constructed from kernel \(K_h (u)\) to describe the
 </ul>
 </div>
 </div>
-<div id="outline-container-org6070fd1" class="outline-4">
-<h4 id="org6070fd1"><span class="section-number-4">4.4.3.</span> Priestley-Chao Kernel Estimate</h4>
+<div id="outline-container-org71394f3" class="outline-4">
+<h4 id="org71394f3"><span class="section-number-4">4.4.3.</span> Priestley-Chao Kernel Estimate</h4>
 <div class="outline-text-4" id="text-4-4-3">
 <ul class="org-ul">
 <li>Data:
@@ -3717,8 +3756,8 @@ where: \(a, b, x, h, n\) are provided and \(K(\cdot)\) is the kernel function. N
 </ul>
 </div>
 </div>
-<div id="outline-container-org3b5f62c" class="outline-4">
-<h4 id="org3b5f62c"><span class="section-number-4">4.4.4.</span> Performance evaluation</h4>
+<div id="outline-container-orgcc44fae" class="outline-4">
+<h4 id="orgcc44fae"><span class="section-number-4">4.4.4.</span> Performance evaluation</h4>
 <div class="outline-text-4" id="text-4-4-4">
 <ul class="org-ul">
 <li>Will Priestley-Chao kernel estimate \(\hat{f}(x)\) be good approximation of the true function \(f(x)\)?</li>
@@ -3732,8 +3771,8 @@ where: \(a, b, x, h, n\) are provided and \(K(\cdot)\) is the kernel function. N
 </ul>
 </div>
 </div>
-<div id="outline-container-org074957d" class="outline-4">
-<h4 id="org074957d"><span class="section-number-4">4.4.5.</span> Statistical properties</h4>
+<div id="outline-container-org0679550" class="outline-4">
+<h4 id="org0679550"><span class="section-number-4">4.4.5.</span> Statistical properties</h4>
 <div class="outline-text-4" id="text-4-4-5">
 <ul class="org-ul">
 <li>Theorem: suppose kernel K has compact support and is twice continuously differentiable. For Priestley-Chao (PC) kernel estimate
@@ -3748,8 +3787,8 @@ where \(\mu_2(K) = \int u^2 K(u) du, S(K) = \int K^2 (u) du\)</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgcaf99e4" class="outline-4">
-<h4 id="orgcaf99e4"><span class="section-number-4">4.4.6.</span> Main ideas:</h4>
+<div id="outline-container-org497c533" class="outline-4">
+<h4 id="org497c533"><span class="section-number-4">4.4.6.</span> Main ideas:</h4>
 <div class="outline-text-4" id="text-4-4-6">
 <ol class="org-ol">
 <li>Bias-variance decomposition for MSE:
@@ -3767,8 +3806,8 @@ where \(\mu_2(K) = \int u^2 K(u) du, S(K) = \int K^2 (u) du\)</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-org156bcb3" class="outline-4">
-<h4 id="org156bcb3"><span class="section-number-4">4.4.7.</span> Proof: bias of \(\hat{f}\)</h4>
+<div id="outline-container-org47eca8b" class="outline-4">
+<h4 id="org47eca8b"><span class="section-number-4">4.4.7.</span> Proof: bias of \(\hat{f}\)</h4>
 <div class="outline-text-4" id="text-4-4-7">
 <p>
 \[
@@ -3824,8 +3863,8 @@ Theorem follows from bias-variance decomposition:
 </p>
 </div>
 </div>
-<div id="outline-container-org76db075" class="outline-4">
-<h4 id="org76db075"><span class="section-number-4">4.4.8.</span> Optimal choice of \(h\)</h4>
+<div id="outline-container-org1a21310" class="outline-4">
+<h4 id="org1a21310"><span class="section-number-4">4.4.8.</span> Optimal choice of \(h\)</h4>
 <div class="outline-text-4" id="text-4-4-8">
 <p>
 What is the optimal choice of bandwidth or smoothing parameter \(h\)?
@@ -3849,15 +3888,15 @@ and
 </div>
 </div>
 
-<div id="outline-container-org8dc6cba" class="outline-3">
-<h3 id="org8dc6cba"><span class="section-number-3">4.5.</span> Kernel Smoothing in Stochastic Design</h3>
+<div id="outline-container-org02f64eb" class="outline-3">
+<h3 id="org02f64eb"><span class="section-number-3">4.5.</span> Kernel Smoothing in Stochastic Design</h3>
 <div class="outline-text-3" id="text-4-5">
 <p>
 6.2.2
 </p>
 </div>
-<div id="outline-container-org6ab5ac8" class="outline-4">
-<h4 id="org6ab5ac8"><span class="section-number-4">4.5.1.</span> Stochastic design</h4>
+<div id="outline-container-org030c165" class="outline-4">
+<h4 id="org030c165"><span class="section-number-4">4.5.1.</span> Stochastic design</h4>
 <div class="outline-text-4" id="text-4-5-1">
 <ul class="org-ul">
 <li>Data: \((Y_i, X_i) \text{ for } i=1, 2, ..., n\)</li>
@@ -3866,8 +3905,8 @@ and
 </ul>
 </div>
 </div>
-<div id="outline-container-org5099129" class="outline-4">
-<h4 id="org5099129"><span class="section-number-4">4.5.2.</span> Challenges</h4>
+<div id="outline-container-orgd8c5464" class="outline-4">
+<h4 id="orgd8c5464"><span class="section-number-4">4.5.2.</span> Challenges</h4>
 <div class="outline-text-4" id="text-4-5-2">
 <p>
 In stochastic design, the \(X_i\) values are not fixed; intuitively:
@@ -3878,8 +3917,8 @@ In stochastic design, the \(X_i\) values are not fixed; intuitively:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgcec36dd" class="outline-4">
-<h4 id="orgcec36dd"><span class="section-number-4">4.5.3.</span> Nadaraya-Watson Estimator</h4>
+<div id="outline-container-org0282711" class="outline-4">
+<h4 id="org0282711"><span class="section-number-4">4.5.3.</span> Nadaraya-Watson Estimator</h4>
 <div class="outline-text-4" id="text-4-5-3">
 <p>
 The NW kernel estimate of \(f(x)\) is given by:
@@ -3897,8 +3936,8 @@ then estimate the numerator and denominator respectively</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org309a99b" class="outline-4">
-<h4 id="org309a99b"><span class="section-number-4">4.5.4.</span> Alternative form</h4>
+<div id="outline-container-orge68e751" class="outline-4">
+<h4 id="orge68e751"><span class="section-number-4">4.5.4.</span> Alternative form</h4>
 <div class="outline-text-4" id="text-4-5-4">
 <p>
 NW kernel estimate can <b><b>also</b></b> be written as:
@@ -3913,8 +3952,8 @@ where:
 </p>
 </div>
 </div>
-<div id="outline-container-orgf30d9f3" class="outline-4">
-<h4 id="orgf30d9f3"><span class="section-number-4">4.5.5.</span> Consistency properties of NW</h4>
+<div id="outline-container-org7fa5b85" class="outline-4">
+<h4 id="org7fa5b85"><span class="section-number-4">4.5.5.</span> Consistency properties of NW</h4>
 <div class="outline-text-4" id="text-4-5-5">
 <p>
 Theorem 1: let K be kernel satisfying \(\lim_{|u| \rightarrow \infty} uK(u) = 0\). For any \(x\) at which \(p(x)\) and \(f(x)\) are continuous, if \(h \rightarrow 0\) and \(nh \rightarrow \infty\), then:
@@ -3935,8 +3974,8 @@ Thus:
 </p>
 </div>
 </div>
-<div id="outline-container-orgd66b652" class="outline-4">
-<h4 id="orgd66b652"><span class="section-number-4">4.5.6.</span> Density estimation</h4>
+<div id="outline-container-org8855cdc" class="outline-4">
+<h4 id="org8855cdc"><span class="section-number-4">4.5.6.</span> Density estimation</h4>
 <div class="outline-text-4" id="text-4-5-6">
 <ul class="org-ul">
 <li>Key step in stochastic design is to investigate density estimate of the \(X\) variable:
@@ -3953,8 +3992,8 @@ which converges to \(p(x)\) if \(h=h_n \rightarrow 0\)</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc0f9c64" class="outline-4">
-<h4 id="orgc0f9c64"><span class="section-number-4">4.5.7.</span> Asymptotic properties</h4>
+<div id="outline-container-orge522d28" class="outline-4">
+<h4 id="orge522d28"><span class="section-number-4">4.5.7.</span> Asymptotic properties</h4>
 <div class="outline-text-4" id="text-4-5-7">
 <p>
 As h &rarr; 0 and nh &rarr; &infin;, for the density estimate
@@ -3972,8 +4011,8 @@ where \(S(K) = \int K^2 (u) du\) and \(\mu_2(K) = \int u^2 K(u) du\)</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org87a9430" class="outline-4">
-<h4 id="org87a9430"><span class="section-number-4">4.5.8.</span> Other key ideas</h4>
+<div id="outline-container-orgfd56c64" class="outline-4">
+<h4 id="orgfd56c64"><span class="section-number-4">4.5.8.</span> Other key ideas</h4>
 <div class="outline-text-4" id="text-4-5-8">
 <p>
 Two other ideas in deriving statistical properties of \(\hat{f}(x) = \frac{\hat{q}(x)}{\hat{p}(x)}\):
@@ -3995,8 +4034,8 @@ Here \(q(x) = f(x)p(x)\) and \(q''(x) = f''(x)p(x) + 2f'(x)p'(x) + f(x) p''(x)\)
 </ol>
 </div>
 </div>
-<div id="outline-container-orge0949a0" class="outline-4">
-<h4 id="orge0949a0"><span class="section-number-4">4.5.9.</span> Asymptotic normality</h4>
+<div id="outline-container-orgc02b5b4" class="outline-4">
+<h4 id="orgc02b5b4"><span class="section-number-4">4.5.9.</span> Asymptotic normality</h4>
 <div class="outline-text-4" id="text-4-5-9">
 <p>
 Theorem 2: For the NW estimator
@@ -4015,15 +4054,15 @@ B(x) = \frac{1}{2} \mu_2 (K) (f''(x) + 2f'(x) \frac{p'(x)}{p(x)}) \text{ and } V
 </div>
 </div>
 </div>
-<div id="outline-container-org90d091c" class="outline-3">
-<h3 id="org90d091c"><span class="section-number-3">4.6.</span> Advanced topics in kernel smoothing</h3>
+<div id="outline-container-orgb7b0127" class="outline-3">
+<h3 id="orgb7b0127"><span class="section-number-3">4.6.</span> Advanced topics in kernel smoothing</h3>
 <div class="outline-text-3" id="text-4-6">
 <p>
 6.2.3
 </p>
 </div>
-<div id="outline-container-orge5c0138" class="outline-4">
-<h4 id="orge5c0138"><span class="section-number-4">4.6.1.</span> Estimate derivatives</h4>
+<div id="outline-container-org44ec523" class="outline-4">
+<h4 id="org44ec523"><span class="section-number-4">4.6.1.</span> Estimate derivatives</h4>
 <div class="outline-text-4" id="text-4-6-1">
 <ul class="org-ul">
 <li>Data = \((Y_i, x_i), i=1,2,...,n\)</li>
@@ -4032,8 +4071,8 @@ B(x) = \frac{1}{2} \mu_2 (K) (f''(x) + 2f'(x) \frac{p'(x)}{p(x)}) \text{ and } V
 </ul>
 </div>
 </div>
-<div id="outline-container-org35eef5d" class="outline-4">
-<h4 id="org35eef5d"><span class="section-number-4">4.6.2.</span> Deterministic design</h4>
+<div id="outline-container-org540e757" class="outline-4">
+<h4 id="org540e757"><span class="section-number-4">4.6.2.</span> Deterministic design</h4>
 <div class="outline-text-4" id="text-4-6-2">
 <p>
 Consider the deterministic design, the Priestley-Chao kernel estimator of \(f(x)\) is
@@ -4050,8 +4089,8 @@ Taking derivative w.r.t. \(x\):
 </p>
 </div>
 </div>
-<div id="outline-container-org0fbe0ec" class="outline-4">
-<h4 id="org0fbe0ec"><span class="section-number-4">4.6.3.</span> Estimate derivatives</h4>
+<div id="outline-container-orga5e63be" class="outline-4">
+<h4 id="orga5e63be"><span class="section-number-4">4.6.3.</span> Estimate derivatives</h4>
 <div class="outline-text-4" id="text-4-6-3">
 <p>
 In general, the \(j\) -th derivatives of the Priestley-Chao kernel estimator is
@@ -4070,8 +4109,8 @@ We can also investigate the bias, variance and MSE of \(\hat{f}^{(j)}(x)\)
 </p>
 </div>
 </div>
-<div id="outline-container-org47926f6" class="outline-4">
-<h4 id="org47926f6"><span class="section-number-4">4.6.4.</span> Parameter selection</h4>
+<div id="outline-container-org6606763" class="outline-4">
+<h4 id="org6606763"><span class="section-number-4">4.6.4.</span> Parameter selection</h4>
 <div class="outline-text-4" id="text-4-6-4">
 <p>
 Kernel smoothing estimators often involve scaled-kernel \(K_h(u) = \frac{1}{h} K(\frac{u}{h})\)
@@ -4090,8 +4129,8 @@ We have shown that \(h_\text{opt} = O(n^{-1/5})\). How to choose \(K(u)\) optima
 </p>
 </div>
 </div>
-<div id="outline-container-orgf4b9606" class="outline-4">
-<h4 id="orgf4b9606"><span class="section-number-4">4.6.5.</span> Statistical properties</h4>
+<div id="outline-container-org2aa91d9" class="outline-4">
+<h4 id="org2aa91d9"><span class="section-number-4">4.6.5.</span> Statistical properties</h4>
 <div class="outline-text-4" id="text-4-6-5">
 <p>
 For the kernel estimator \(\hat{f}\) we have shown that
@@ -4108,8 +4147,8 @@ where V(K) is proportional to S(K) = \(\int K^2 (u)du\)</dd>
 </dl>
 </div>
 </div>
-<div id="outline-container-org3e0d713" class="outline-4">
-<h4 id="org3e0d713"><span class="section-number-4">4.6.6.</span> Mean squared error</h4>
+<div id="outline-container-org4aef269" class="outline-4">
+<h4 id="org4aef269"><span class="section-number-4">4.6.6.</span> Mean squared error</h4>
 <div class="outline-text-4" id="text-4-6-6">
 <ul class="org-ul">
 <li>The MSE is:
@@ -4128,8 +4167,8 @@ where V(K) is proportional to S(K) = \(\int K^2 (u)du\)</dd>
 </ul>
 </div>
 </div>
-<div id="outline-container-org9655af6" class="outline-4">
-<h4 id="org9655af6"><span class="section-number-4">4.6.7.</span> Optimal MSE</h4>
+<div id="outline-container-orga0b981b" class="outline-4">
+<h4 id="orga0b981b"><span class="section-number-4">4.6.7.</span> Optimal MSE</h4>
 <div class="outline-text-4" id="text-4-6-7">
 <ul class="org-ul">
 <li>Hence,
@@ -4148,8 +4187,8 @@ where \(C\) is a constant that does not depend on the kernel \(K\)</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgdb628fb" class="outline-4">
-<h4 id="orgdb628fb"><span class="section-number-4">4.6.8.</span> Optimizing over \(K\)</h4>
+<div id="outline-container-org8bb0132" class="outline-4">
+<h4 id="org8bb0132"><span class="section-number-4">4.6.8.</span> Optimizing over \(K\)</h4>
 <div class="outline-text-4" id="text-4-6-8">
 <ul class="org-ul">
 <li>In order to minimize the MSE, it is necessary to choose a kernel \(K(u)\) that minimizes
@@ -4169,8 +4208,8 @@ subject to
 </ul>
 </div>
 </div>
-<div id="outline-container-org43c1abd" class="outline-4">
-<h4 id="org43c1abd"><span class="section-number-4">4.6.9.</span> Lagrange Multipliers</h4>
+<div id="outline-container-org4f1c102" class="outline-4">
+<h4 id="org4f1c102"><span class="section-number-4">4.6.9.</span> Lagrange Multipliers</h4>
 <div class="outline-text-4" id="text-4-6-9">
 <ul class="org-ul">
 <li>By Lagrange multipliers on the constraints, it's sufficient to minimize:
@@ -4193,8 +4232,8 @@ or:
 </ul>
 </div>
 </div>
-<div id="outline-container-org64d64b1" class="outline-4">
-<h4 id="org64d64b1"><span class="section-number-4">4.6.10.</span> Optimal kernel</h4>
+<div id="outline-container-orgbd6b4cd" class="outline-4">
+<h4 id="orgbd6b4cd"><span class="section-number-4">4.6.10.</span> Optimal kernel</h4>
 <div class="outline-text-4" id="text-4-6-10">
 <ul class="org-ul">
 <li>This leads to:
@@ -4212,8 +4251,8 @@ satisfies the condition and constraints above, and it thus optimal</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbe11322" class="outline-4">
-<h4 id="orgbe11322"><span class="section-number-4">4.6.11.</span> Remarks</h4>
+<div id="outline-container-org3ac62d8" class="outline-4">
+<h4 id="org3ac62d8"><span class="section-number-4">4.6.11.</span> Remarks</h4>
 <div class="outline-text-4" id="text-4-6-11">
 <ul class="org-ul">
 <li>In most applications, the bandwidth \(h\) contributes much more error than the choice of the kernel</li>
@@ -4224,19 +4263,19 @@ satisfies the condition and constraints above, and it thus optimal</li>
 </div>
 </div>
 </div>
-<div id="outline-container-orgaaa3057" class="outline-2">
-<h2 id="orgaaa3057"><span class="section-number-2">5.</span> Week 7: Local Smoothers and Additive Models (Cont'd)</h2>
+<div id="outline-container-orge9543fe" class="outline-2">
+<h2 id="orge9543fe"><span class="section-number-2">5.</span> Week 7: Local Smoothers and Additive Models (Cont'd)</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Spline Smoothing and Additive Models
 </p>
 </div>
-<div id="outline-container-org71ac64c" class="outline-3">
-<h3 id="org71ac64c"><span class="section-number-3">5.1.</span> Spline Interpolation</h3>
+<div id="outline-container-org48b7e39" class="outline-3">
+<h3 id="org48b7e39"><span class="section-number-3">5.1.</span> Spline Interpolation</h3>
 <div class="outline-text-3" id="text-5-1">
 </div>
-<div id="outline-container-org01f8042" class="outline-4">
-<h4 id="org01f8042"><span class="section-number-4">5.1.1.</span> Recap: Local Smoothing</h4>
+<div id="outline-container-org8bf2fd6" class="outline-4">
+<h4 id="org8bf2fd6"><span class="section-number-4">5.1.1.</span> Recap: Local Smoothing</h4>
 <div class="outline-text-4" id="text-5-1-1">
 <ul class="org-ul">
 <li>Data: \((Y_i, x_i)\), i = 1, 2, &#x2026;, n, where \(a=x_1 < x_2 < ... < x_n = b\)</li>
@@ -4251,8 +4290,8 @@ Spline Smoothing and Additive Models
 </ul>
 </div>
 </div>
-<div id="outline-container-orgfeb249a" class="outline-4">
-<h4 id="orgfeb249a"><span class="section-number-4">5.1.2.</span> Interpolating Splines</h4>
+<div id="outline-container-orgdb4c74b" class="outline-4">
+<h4 id="orgdb4c74b"><span class="section-number-4">5.1.2.</span> Interpolating Splines</h4>
 <div class="outline-text-4" id="text-5-1-2">
 <ul class="org-ul">
 <li>Definition:
@@ -4278,8 +4317,8 @@ s_{n-1}(x) & \text{if }x_{n-1} \le x \le x_n
 </ul>
 </div>
 </div>
-<div id="outline-container-org687cac3" class="outline-4">
-<h4 id="org687cac3"><span class="section-number-4">5.1.3.</span> Zero-order spline</h4>
+<div id="outline-container-org8dc5113" class="outline-4">
+<h4 id="org8dc5113"><span class="section-number-4">5.1.3.</span> Zero-order spline</h4>
 <div class="outline-text-4" id="text-5-1-3">
 <ul class="org-ul">
 <li>Data: \((Y_i, x_i)\), \(i=1,2,...,n\) where \(x_1 < x_2< ... < x_n\)</li>
@@ -4292,8 +4331,8 @@ for \(i=1, 2, ..., n\) where \(x_{n+1} = \infty\)</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org110ac1a" class="outline-4">
-<h4 id="org110ac1a"><span class="section-number-4">5.1.4.</span> First-order spline</h4>
+<div id="outline-container-org8a8165c" class="outline-4">
+<h4 id="org8a8165c"><span class="section-number-4">5.1.4.</span> First-order spline</h4>
 <div class="outline-text-4" id="text-5-1-4">
 <ul class="org-ul">
 <li>Data: \((Y_i, x_i)\), \(i=1,2,...,n\) where \(x_1 < x_2< ... < x_n\)</li>
@@ -4309,8 +4348,8 @@ for \(i=1, 2, ..., n\) where \(x_{n+1} = \infty\)</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orge9dcc26" class="outline-4">
-<h4 id="orge9dcc26"><span class="section-number-4">5.1.5.</span> $d$-order splines</h4>
+<div id="outline-container-org9bf05a6" class="outline-4">
+<h4 id="org9bf05a6"><span class="section-number-4">5.1.5.</span> $d$-order splines</h4>
 <div class="outline-text-4" id="text-5-1-5">
 <ul class="org-ul">
 <li>Linear splines (d=1) can be quite good, but the derivative of linear splines is <b><b>not</b></b> continuous</li>
@@ -4322,8 +4361,8 @@ for \(i=1, 2, ..., n\) where \(x_{n+1} = \infty\)</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org4eca83d" class="outline-4">
-<h4 id="org4eca83d"><span class="section-number-4">5.1.6.</span> Cubic spline interpolation</h4>
+<div id="outline-container-org762cd6f" class="outline-4">
+<h4 id="org762cd6f"><span class="section-number-4">5.1.6.</span> Cubic spline interpolation</h4>
 <div class="outline-text-4" id="text-5-1-6">
 <p>
 Satisfies the following properties:
@@ -4343,8 +4382,8 @@ Satisfies the following properties:
 </ul>
 </div>
 </div>
-<div id="outline-container-org6691dd5" class="outline-4">
-<h4 id="org6691dd5"><span class="section-number-4">5.1.7.</span> Parameters in cubic splines</h4>
+<div id="outline-container-org7ba40f7" class="outline-4">
+<h4 id="org7ba40f7"><span class="section-number-4">5.1.7.</span> Parameters in cubic splines</h4>
 <div class="outline-text-4" id="text-5-1-7">
 <ul class="org-ul">
 <li>Dimension of spaces of interpolating cubic splines:</li>
@@ -4357,8 +4396,8 @@ Satisfies the following properties:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf7e207d" class="outline-4">
-<h4 id="orgf7e207d"><span class="section-number-4">5.1.8.</span> Constraints in cubic splines</h4>
+<div id="outline-container-org494fbdb" class="outline-4">
+<h4 id="org494fbdb"><span class="section-number-4">5.1.8.</span> Constraints in cubic splines</h4>
 <div class="outline-text-4" id="text-5-1-8">
 <ul class="org-ul">
 <li>For interpolating cubic splines, there are
@@ -4375,8 +4414,8 @@ constraint equations due to
 </ul>
 </div>
 </div>
-<div id="outline-container-orgcd03621" class="outline-4">
-<h4 id="orgcd03621"><span class="section-number-4">5.1.9.</span> Natural cubic splines</h4>
+<div id="outline-container-org20277f5" class="outline-4">
+<h4 id="org20277f5"><span class="section-number-4">5.1.9.</span> Natural cubic splines</h4>
 <div class="outline-text-4" id="text-5-1-9">
 <ul class="org-ul">
 <li>Since the behaviour of the spline function at its endpoints is relatively free, pinning down the behaviour of \(s''\) at \(x_i\) and \(x_n\) finishes the specification of cubic splines.</li>
@@ -4386,8 +4425,8 @@ constraint equations due to
 </ul>
 </div>
 </div>
-<div id="outline-container-org4123ed3" class="outline-4">
-<h4 id="org4123ed3"><span class="section-number-4">5.1.10.</span> Simulation study</h4>
+<div id="outline-container-orgab0a860" class="outline-4">
+<h4 id="orgab0a860"><span class="section-number-4">5.1.10.</span> Simulation study</h4>
 <div class="outline-text-4" id="text-5-1-10">
 <ul class="org-ul">
 <li>Consider \(Y= f(x) + \epsilon\) where
@@ -4399,8 +4438,8 @@ constraint equations due to
 </ul>
 </div>
 </div>
-<div id="outline-container-org1680f4b" class="outline-4">
-<h4 id="org1680f4b"><span class="section-number-4">5.1.11.</span> Spline interpolation in R</h4>
+<div id="outline-container-org8854aac" class="outline-4">
+<h4 id="org8854aac"><span class="section-number-4">5.1.11.</span> Spline interpolation in R</h4>
 <div class="outline-text-4" id="text-5-1-11">
 <pre class="example">
 x &lt;- seq(-10,10,0.1);
@@ -4411,8 +4450,8 @@ lines(spline(x, y, method = "natural"), col = "red")
 </pre>
 </div>
 </div>
-<div id="outline-container-orge8fae34" class="outline-4">
-<h4 id="orge8fae34"><span class="section-number-4">5.1.12.</span> Summary</h4>
+<div id="outline-container-orgb0432ca" class="outline-4">
+<h4 id="orgb0432ca"><span class="section-number-4">5.1.12.</span> Summary</h4>
 <div class="outline-text-4" id="text-5-1-12">
 <ul class="org-ul">
 <li>d-order splines:
@@ -4430,15 +4469,15 @@ lines(spline(x, y, method = "natural"), col = "red")
 </div>
 </div>
 </div>
-<div id="outline-container-org36fec26" class="outline-3">
-<h3 id="org36fec26"><span class="section-number-3">5.2.</span> Cubic spline smoothing</h3>
+<div id="outline-container-orgfaac4c8" class="outline-3">
+<h3 id="orgfaac4c8"><span class="section-number-3">5.2.</span> Cubic spline smoothing</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 7.1.2
 </p>
 </div>
-<div id="outline-container-orgf71a813" class="outline-4">
-<h4 id="orgf71a813"><span class="section-number-4">5.2.1.</span> Local smoothing</h4>
+<div id="outline-container-orgca669c6" class="outline-4">
+<h4 id="orgca669c6"><span class="section-number-4">5.2.1.</span> Local smoothing</h4>
 <div class="outline-text-4" id="text-5-2-1">
 <ul class="org-ul">
 <li>Data: \((Y_i, x_i)\), \(i=1,2,...,n\) where \(x_1 < x_2< ... < x_n = b\)</li>
@@ -4452,8 +4491,8 @@ lines(spline(x, y, method = "natural"), col = "red")
 </ul>
 </div>
 </div>
-<div id="outline-container-org8dc44b6" class="outline-4">
-<h4 id="org8dc44b6"><span class="section-number-4">5.2.2.</span> Interpolation overfits</h4>
+<div id="outline-container-org401d050" class="outline-4">
+<h4 id="org401d050"><span class="section-number-4">5.2.2.</span> Interpolation overfits</h4>
 <div class="outline-text-4" id="text-5-2-2">
 <ul class="org-ul">
 <li>Data: \((Y_i, x_i)\), \(i=1,2,...,n\) where \(x_1 < x_2< ... < x_n = b\)</li>
@@ -4467,8 +4506,8 @@ lines(spline(x, y, method = "natural"), col = "red")
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb2eb85f" class="outline-4">
-<h4 id="orgb2eb85f"><span class="section-number-4">5.2.3.</span> Roughness constraint</h4>
+<div id="outline-container-org3aa9049" class="outline-4">
+<h4 id="org3aa9049"><span class="section-number-4">5.2.3.</span> Roughness constraint</h4>
 <div class="outline-text-4" id="text-5-2-3">
 <p>
 Criterion to evaluate the smoothness/roughness of a function:
@@ -4484,8 +4523,8 @@ Criterion to evaluate the smoothness/roughness of a function:
 </ul>
 </div>
 </div>
-<div id="outline-container-org37e9023" class="outline-4">
-<h4 id="org37e9023"><span class="section-number-4">5.2.4.</span> Cubic spline smoother</h4>
+<div id="outline-container-org0ae4cf0" class="outline-4">
+<h4 id="org0ae4cf0"><span class="section-number-4">5.2.4.</span> Cubic spline smoother</h4>
 <div class="outline-text-4" id="text-5-2-4">
 <ul class="org-ul">
 <li>Implicitly defined as
@@ -4497,8 +4536,8 @@ Criterion to evaluate the smoothness/roughness of a function:
 </ul>
 </div>
 </div>
-<div id="outline-container-org171f0a1" class="outline-4">
-<h4 id="org171f0a1"><span class="section-number-4">5.2.5.</span> Impact of &lambda; parameter</h4>
+<div id="outline-container-orgd4896cf" class="outline-4">
+<h4 id="orgd4896cf"><span class="section-number-4">5.2.5.</span> Impact of &lambda; parameter</h4>
 <div class="outline-text-4" id="text-5-2-5">
 <ul class="org-ul">
 <li>The choice of \(\lambda\) is crucial in optimization problem above.</li>
@@ -4512,8 +4551,8 @@ Criterion to evaluate the smoothness/roughness of a function:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb15b057" class="outline-4">
-<h4 id="orgb15b057"><span class="section-number-4">5.2.6.</span> Optimal &lambda;</h4>
+<div id="outline-container-org60ee96b" class="outline-4">
+<h4 id="org60ee96b"><span class="section-number-4">5.2.6.</span> Optimal &lambda;</h4>
 <div class="outline-text-4" id="text-5-2-6">
 <ul class="org-ul">
 <li>Given \(\lambda\), define the residual sum squares of leave-one-out CV:
@@ -4531,15 +4570,15 @@ Criterion to evaluate the smoothness/roughness of a function:
 </div>
 </div>
 
-<div id="outline-container-org43f10b3" class="outline-3">
-<h3 id="org43f10b3"><span class="section-number-3">5.3.</span> Optimality and algorithms in splines</h3>
+<div id="outline-container-org824b113" class="outline-3">
+<h3 id="org824b113"><span class="section-number-3">5.3.</span> Optimality and algorithms in splines</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 7.1.3
 </p>
 </div>
-<div id="outline-container-org6bf38e2" class="outline-4">
-<h4 id="org6bf38e2"><span class="section-number-4">5.3.1.</span> Cubic splines</h4>
+<div id="outline-container-org163f210" class="outline-4">
+<h4 id="org163f210"><span class="section-number-4">5.3.1.</span> Cubic splines</h4>
 <div class="outline-text-4" id="text-5-3-1">
 <ul class="org-ul">
 <li>Data: \((Y_i, x_i)\), \(i=1,2,...,n\) where \(x_1 < x_2< ... < x_n = b\)</li>
@@ -4548,24 +4587,24 @@ Criterion to evaluate the smoothness/roughness of a function:
 <li>Cubic splines:
 <ul class="org-ul">
 <li>Interpolating, i.e. \(Y_i = f(X_i)\) for \(i=1,...,n\)</li>
-<li>Smoothing, see <a href="#org37e9023">5.2.4</a></li>
+<li>Smoothing, see <a href="#org0ae4cf0">5.2.4</a></li>
 </ul></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orge055adb" class="outline-4">
-<h4 id="orge055adb"><span class="section-number-4">5.3.2.</span> Relation of cubic splines</h4>
+<div id="outline-container-org2f08242" class="outline-4">
+<h4 id="org2f08242"><span class="section-number-4">5.3.2.</span> Relation of cubic splines</h4>
 <div class="outline-text-4" id="text-5-3-2">
 <p>
-Theorem: the cubic spline smoother in <a href="#org37e9023">5.2.4</a> is a cubic spline interpolation for \((X_i, Y*_i)\) for some well-defined \(Y*_i\) for \(i=1, 2, ..., n\). Here,
+Theorem: the cubic spline smoother in <a href="#org0ae4cf0">5.2.4</a> is a cubic spline interpolation for \((X_i, Y*_i)\) for some well-defined \(Y*_i\) for \(i=1, 2, ..., n\). Here,
 \[
 Y*_{n\times 1} = (I_{n\times n} + \lambda K_{n \times n})^{-1} Y_{n \times 1}
 \] for some symmetric matrix \(K\)
 </p>
 </div>
 </div>
-<div id="outline-container-org5c07e0d" class="outline-4">
-<h4 id="org5c07e0d"><span class="section-number-4">5.3.3.</span> Optimality properties</h4>
+<div id="outline-container-orgdc5cfb6" class="outline-4">
+<h4 id="orgdc5cfb6"><span class="section-number-4">5.3.3.</span> Optimality properties</h4>
 <div class="outline-text-4" id="text-5-3-3">
 <ul class="org-ul">
 <li>Natural cubic spline in the interpolating context:
@@ -4580,19 +4619,19 @@ Y*_{n\times 1} = (I_{n\times n} + \lambda K_{n \times n})^{-1} Y_{n \times 1}
 </ul>
 </div>
 </div>
-<div id="outline-container-org7d7d68b" class="outline-4">
-<h4 id="org7d7d68b"><span class="section-number-4">5.3.4.</span> Proof</h4>
+<div id="outline-container-orge9fbcf5" class="outline-4">
+<h4 id="orge9fbcf5"><span class="section-number-4">5.3.4.</span> Proof</h4>
 <div class="outline-text-4" id="text-5-3-4">
 <p>
 See 7.1.3<sub>Optimality.Algorithm.Splines</sub><sub>FWv2.pdf</sub>
 </p>
 </div>
 </div>
-<div id="outline-container-org8dc40d5" class="outline-4">
-<h4 id="org8dc40d5"><span class="section-number-4">5.3.5.</span> Algorithms for cubic splines</h4>
+<div id="outline-container-org7b079fd" class="outline-4">
+<h4 id="org7b079fd"><span class="section-number-4">5.3.5.</span> Algorithms for cubic splines</h4>
 <div class="outline-text-4" id="text-5-3-5">
 <ul class="org-ul">
-<li>Develop efficient algorithms to solve penalized optimization problem in <a href="#org37e9023">5.2.4</a></li>
+<li>Develop efficient algorithms to solve penalized optimization problem in <a href="#org0ae4cf0">5.2.4</a></li>
 <li>Main idea: B-spline basis decomposition:
 \[
   \hat{f} (x) = \sum^{n-d}_{i=1} \beta_i \beta_{i,d}(x)
@@ -4605,8 +4644,8 @@ where \({B_{i,d}, i = 1, ..., n-d}\) is a B-spline basis of order \(d\) that can
 </ul>
 </div>
 </div>
-<div id="outline-container-org012ba11" class="outline-4">
-<h4 id="org012ba11"><span class="section-number-4">5.3.6.</span> Two useful facts</h4>
+<div id="outline-container-org2aea96e" class="outline-4">
+<h4 id="org2aea96e"><span class="section-number-4">5.3.6.</span> Two useful facts</h4>
 <div class="outline-text-4" id="text-5-3-6">
 <p>
 Basis decomposition: \(\hat{f}(x) = \sum^{n-d}{i=1} \beta_i B_i(x)\) and \(\beta = (\beta_1, ..., \beta_{n-d})\)
@@ -4624,11 +4663,11 @@ Basis decomposition: \(\hat{f}(x) = \sum^{n-d}{i=1} \beta_i B_i(x)\) and \(\beta
 </ol>
 </div>
 </div>
-<div id="outline-container-org16fc9ab" class="outline-4">
-<h4 id="org16fc9ab"><span class="section-number-4">5.3.7.</span> Ridge regression approach</h4>
+<div id="outline-container-org2dcac70" class="outline-4">
+<h4 id="org2dcac70"><span class="section-number-4">5.3.7.</span> Ridge regression approach</h4>
 <div class="outline-text-4" id="text-5-3-7">
 <ul class="org-ul">
-<li>When \(\hat{f} (x) = \sum^{n-d}_{i=1} \beta_i B_i(x)\) the original optimization <a href="#org37e9023">5.2.4</a>
+<li>When \(\hat{f} (x) = \sum^{n-d}_{i=1} \beta_i B_i(x)\) the original optimization <a href="#org0ae4cf0">5.2.4</a>
 can be reformulated as a ridge regression problem:
 \[
   \hat{\beta} = \text{argmin}_{\beta} [|Y-U\beta|^2 + \lambda* \beta^T V \beta] \text{  with }\lambda* = n\lambda
@@ -4643,15 +4682,15 @@ can be reformulated as a ridge regression problem:
 </div>
 </div>
 </div>
-<div id="outline-container-org6a89dd8" class="outline-3">
-<h3 id="org6a89dd8"><span class="section-number-3">5.4.</span> Additive models</h3>
+<div id="outline-container-orgb0a27ea" class="outline-3">
+<h3 id="orgb0a27ea"><span class="section-number-3">5.4.</span> Additive models</h3>
 <div class="outline-text-3" id="text-5-4">
 <p>
 7.2.1
 </p>
 </div>
-<div id="outline-container-org24e1348" class="outline-4">
-<h4 id="org24e1348"><span class="section-number-4">5.4.1.</span> Additive models detail</h4>
+<div id="outline-container-org6562cf8" class="outline-4">
+<h4 id="org6562cf8"><span class="section-number-4">5.4.1.</span> Additive models detail</h4>
 <div class="outline-text-4" id="text-5-4-1">
 <ul class="org-ul">
 <li>Data: \((Y_i, x_{i,1}, x_{i,2}, ..., x_{i,p}), i=1,2,...,n\)</li>
@@ -4668,8 +4707,8 @@ where f<sub>i</sub> can be arbitrary functions of interest</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orge2c4ff6" class="outline-4">
-<h4 id="orge2c4ff6"><span class="section-number-4">5.4.2.</span> Fitting additive model</h4>
+<div id="outline-container-org225f125" class="outline-4">
+<h4 id="org225f125"><span class="section-number-4">5.4.2.</span> Fitting additive model</h4>
 <div class="outline-text-4" id="text-5-4-2">
 <ul class="org-ul">
 <li>One approach is to find the functions \((f_1, ..., f_p)\) that minimizes the penalized residual sum of squares (PRSS):
@@ -4680,11 +4719,11 @@ where f<sub>i</sub> can be arbitrary functions of interest</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc910008" class="outline-4">
-<h4 id="orgc910008"><span class="section-number-4">5.4.3.</span> Estimation issues</h4>
+<div id="outline-container-org56b22ed" class="outline-4">
+<h4 id="org56b22ed"><span class="section-number-4">5.4.3.</span> Estimation issues</h4>
 <div class="outline-text-4" id="text-5-4-3">
 <ul class="org-ul">
-<li>In the additive model (<a href="#org24e1348">5.4.1</a>)</li>
+<li>In the additive model (<a href="#org6562cf8">5.4.1</a>)</li>
 <li>The constant \(\beta_0\) is not identifiable, since we can add or subtract any constant to any function \(f_j\). The standard convention is to assume:
 \[
   \sum^n_{i=1} f_j (x_{i,j}) = 0, \hat{\beta}_0. = 1/n \sum^n_{i=1}Y_i
@@ -4694,8 +4733,8 @@ where f<sub>i</sub> can be arbitrary functions of interest</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org2a61d74" class="outline-4">
-<h4 id="org2a61d74"><span class="section-number-4">5.4.4.</span> Key idea</h4>
+<div id="outline-container-org29b9276" class="outline-4">
+<h4 id="org29b9276"><span class="section-number-4">5.4.4.</span> Key idea</h4>
 <div class="outline-text-4" id="text-5-4-4">
 <ul class="org-ul">
 <li>For the \(p\) dimensional additive model, we can write it as a 1-dimensional model for local smoothing:
@@ -4707,8 +4746,8 @@ where f<sub>i</sub> can be arbitrary functions of interest</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org7799bcf" class="outline-4">
-<h4 id="org7799bcf"><span class="section-number-4">5.4.5.</span> Backfitting algorithm</h4>
+<div id="outline-container-org419fbe8" class="outline-4">
+<h4 id="org419fbe8"><span class="section-number-4">5.4.5.</span> Backfitting algorithm</h4>
 <div class="outline-text-4" id="text-5-4-5">
 <ol class="org-ol">
 <li>Initialize \(\hat{\beta}_0 = 1/n \sum^n_{i=1} Y_i\) and \(\hat{f}_j = 0\) for all \(j=1, 2, ..., p\)</li>
@@ -4722,8 +4761,8 @@ Iterate until the functions \(\hat{f}_j\) change less than a pre-specified thres
 </ol>
 </div>
 </div>
-<div id="outline-container-org53c3fba" class="outline-4">
-<h4 id="org53c3fba"><span class="section-number-4">5.4.6.</span> Example for backfitting</h4>
+<div id="outline-container-org6ed5819" class="outline-4">
+<h4 id="org6ed5819"><span class="section-number-4">5.4.6.</span> Example for backfitting</h4>
 <div class="outline-text-4" id="text-5-4-6">
 <p>
 Consider the following:
@@ -4741,22 +4780,22 @@ x_1 + 2x_2 = 2
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd102c04" class="outline-4">
-<h4 id="orgd102c04"><span class="section-number-4">5.4.7.</span> Illustrative example</h4>
+<div id="outline-container-orgbb7056c" class="outline-4">
+<h4 id="orgbb7056c"><span class="section-number-4">5.4.7.</span> Illustrative example</h4>
 <div class="outline-text-4" id="text-5-4-7">
 <p>
 Applying backfitting algorithm
 </p>
 </div>
 <ol class="org-ol">
-<li><a id="org17d6814"></a>Initialization<br />
+<li><a id="org080a309"></a>Initialization<br />
 <div class="outline-text-5" id="text-5-4-7-1">
 <p>
 \(x_1 = 0, x_2=0\)
 </p>
 </div>
 </li>
-<li><a id="org9b46379"></a>Round 1<br />
+<li><a id="org9e67f04"></a>Round 1<br />
 <div class="outline-text-5" id="text-5-4-7-2">
 <p>
 \[
@@ -4765,7 +4804,7 @@ x_1 = \frac{1-0}{2} = 0.5, x_2 = \frac{2-0}{2}=1=
 </p>
 </div>
 </li>
-<li><a id="org4d6f9c2"></a>Round 2<br />
+<li><a id="orgcb005a6"></a>Round 2<br />
 <div class="outline-text-5" id="text-5-4-7-3">
 <p>
 \[
@@ -4776,22 +4815,22 @@ x_1 = \frac{1-1}{2} = 0, x_2 = \frac{2-0.5}{2} = 0.75
 </li>
 </ol>
 </div>
-<div id="outline-container-org27c763f" class="outline-4">
-<h4 id="org27c763f"><span class="section-number-4">5.4.8.</span> R code for backfitting</h4>
+<div id="outline-container-orgf538641" class="outline-4">
+<h4 id="orgf538641"><span class="section-number-4">5.4.8.</span> R code for backfitting</h4>
 </div>
-<div id="outline-container-orgd23ad76" class="outline-4">
-<h4 id="orgd23ad76"><span class="section-number-4">5.4.9.</span> R output</h4>
+<div id="outline-container-org0ff92be" class="outline-4">
+<h4 id="org0ff92be"><span class="section-number-4">5.4.9.</span> R output</h4>
 </div>
 </div>
-<div id="outline-container-org953267d" class="outline-3">
-<h3 id="org953267d"><span class="section-number-3">5.5.</span> Generalized additive models</h3>
+<div id="outline-container-org6e64ae4" class="outline-3">
+<h3 id="org6e64ae4"><span class="section-number-3">5.5.</span> Generalized additive models</h3>
 <div class="outline-text-3" id="text-5-5">
 <p>
 7.2.2
 </p>
 </div>
-<div id="outline-container-org19c97f7" class="outline-4">
-<h4 id="org19c97f7"><span class="section-number-4">5.5.1.</span> Additive models cont'd</h4>
+<div id="outline-container-orgdb30910" class="outline-4">
+<h4 id="orgdb30910"><span class="section-number-4">5.5.1.</span> Additive models cont'd</h4>
 <div class="outline-text-4" id="text-5-5-1">
 <ul class="org-ul">
 <li>Data: \((Y_i, x_{i,1}, x_{i,2}, ..., x_{i,p}), i=1,2,...,n\)</li>
@@ -4812,8 +4851,8 @@ x_1 = \frac{1-1}{2} = 0, x_2 = \frac{2-0.5}{2} = 0.75
 </ul>
 </div>
 </div>
-<div id="outline-container-org98eeffc" class="outline-4">
-<h4 id="org98eeffc"><span class="section-number-4">5.5.2.</span> Link functions in GAM</h4>
+<div id="outline-container-org8a3772a" class="outline-4">
+<h4 id="org8a3772a"><span class="section-number-4">5.5.2.</span> Link functions in GAM</h4>
 <div class="outline-text-4" id="text-5-5-2">
 <ul class="org-ul">
 <li>Example of link functions:
@@ -4832,8 +4871,8 @@ Link functions:
 </dl>
 </div>
 </div>
-<div id="outline-container-orgf49a56b" class="outline-4">
-<h4 id="orgf49a56b"><span class="section-number-4">5.5.3.</span> Additive logistic models</h4>
+<div id="outline-container-org03abcd2" class="outline-4">
+<h4 id="org03abcd2"><span class="section-number-4">5.5.3.</span> Additive logistic models</h4>
 <div class="outline-text-4" id="text-5-5-3">
 <ul class="org-ul">
 <li>Data: \((Y_i, x_{i,1}, x_{i,2}, ..., x_{i,p}), i=1,2,...,n\) where \(Y_i \in {0,1}\)</li>
@@ -4850,8 +4889,8 @@ Link functions:
 </ul>
 </div>
 </div>
-<div id="outline-container-orge2a3423" class="outline-4">
-<h4 id="orge2a3423"><span class="section-number-4">5.5.4.</span> Recall logistic regression</h4>
+<div id="outline-container-org73c942b" class="outline-4">
+<h4 id="org73c942b"><span class="section-number-4">5.5.4.</span> Recall logistic regression</h4>
 <div class="outline-text-4" id="text-5-5-4">
 <ul class="org-ul">
 <li>Data: \((Y_i, x_{i,1}, x_{i,2}, ..., x_{i,p}), i=1,2,...,n\) where \(Y_i \in {0,1}\) is the class label</li>
@@ -4865,16 +4904,16 @@ Link functions:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd6d81b4" class="outline-4">
-<h4 id="orgd6d81b4"><span class="section-number-4">5.5.5.</span> Review of Newton-Raphson Algorithm</h4>
+<div id="outline-container-orgbcb98dd" class="outline-4">
+<h4 id="orgbcb98dd"><span class="section-number-4">5.5.5.</span> Review of Newton-Raphson Algorithm</h4>
 <div class="outline-text-4" id="text-5-5-5">
 <p>
 See 7.2.2<sub>Generalized</sub><sub>Addtive</sub><sub>Models</sub><sub>FWv2.pdf</sub>
 </p>
 </div>
 </div>
-<div id="outline-container-org996b79f" class="outline-4">
-<h4 id="org996b79f"><span class="section-number-4">5.5.6.</span> Estimation in additive logistic</h4>
+<div id="outline-container-org5195af2" class="outline-4">
+<h4 id="org5195af2"><span class="section-number-4">5.5.6.</span> Estimation in additive logistic</h4>
 <div class="outline-text-4" id="text-5-5-6">
 <ul class="org-ul">
 <li>Additive logistic model:
@@ -4888,8 +4927,8 @@ See 7.2.2<sub>Generalized</sub><sub>Addtive</sub><sub>Models</sub><sub>FWv2.pdf<
 </ul>
 </div>
 </div>
-<div id="outline-container-orga65845e" class="outline-4">
-<h4 id="orga65845e"><span class="section-number-4">5.5.7.</span> Local scoring algorithm</h4>
+<div id="outline-container-orgd44f3f5" class="outline-4">
+<h4 id="orgd44f3f5"><span class="section-number-4">5.5.7.</span> Local scoring algorithm</h4>
 <div class="outline-text-4" id="text-5-5-7">
 <ul class="org-ul">
 <li>The local scoring method to estiamte \(f_j\) in the additive logistic model:
@@ -4912,33 +4951,415 @@ with weights \(w_i = \hat{\pi_i}(x-\hat{\pi_i})\). Repeat until convergence.</li
 </div>
 </div>
 </div>
+<div id="outline-container-orgb73793d" class="outline-3">
+<h3 id="orgb73793d"><span class="section-number-3">5.6.</span> Splines applied to Spam dataset</h3>
+<div class="outline-text-3" id="text-5-6">
+<p>
+See 7.2.3<sub>Spam</sub><sub>data</sub><sub>example</sub><sub>FWv2</sub>
+</p>
 </div>
-<div id="outline-container-orgd19eb0b" class="outline-2">
-<h2 id="orgd19eb0b"><span class="section-number-2">6.</span> Week 8: Tree-Based and Ensemble Methods</h2>
+</div>
+</div>
+<div id="outline-container-orgf77fbe0" class="outline-2">
+<h2 id="orgf77fbe0"><span class="section-number-2">6.</span> Week 8: Tree-Based and Ensemble Methods</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 Tree-Based Methods
 </p>
 </div>
+<div id="outline-container-org0030b84" class="outline-3">
+<h3 id="org0030b84"><span class="section-number-3">6.1.</span> Introduction to Trees</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+8.1.1
+</p>
 </div>
-<div id="outline-container-orgf9fa631" class="outline-2">
-<h2 id="orgf9fa631"><span class="section-number-2">7.</span> Week 9: Tree-Based and Ensemble Methods (Cont'd)</h2>
+<div id="outline-container-org57ca9b1" class="outline-4">
+<h4 id="org57ca9b1"><span class="section-number-4">6.1.1.</span> Tree method</h4>
+<div class="outline-text-4" id="text-6-1-1">
+
+<div id="orgd0d0f81" class="figure">
+<p><img src="./img/tree.png" alt="tree.png" />
+</p>
+</div>
+<ol class="org-ol">
+<li>Splits data into 2 or more subsets based on the value of variables</li>
+<li>Continuously split each subset into finer subsets</li>
+<li>Stop growing trees, or start pruning trees</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org15384c4" class="outline-4">
+<h4 id="org15384c4"><span class="section-number-4">6.1.2.</span> Motivating example</h4>
+<div class="outline-text-4" id="text-6-1-2">
+<p>
+Deciding to play sports based on weather variables.
+<img src="./img/tree-weather-table.png" alt="tree-weather-table.png" />
+Example tree
+<img src="./img/tree-weather-tree.png" alt="tree-weather-tree.png" />
+</p>
+</div>
+</div>
+<div id="outline-container-orgbbad7dc" class="outline-4">
+<h4 id="orgbbad7dc"><span class="section-number-4">6.1.3.</span> Basic ideas</h4>
+<div class="outline-text-4" id="text-6-1-3">
+<ul class="org-ul">
+<li>Partition the feature space into set of triangles (i.e. recursive binary partition)</li>
+<li>Fit a simple model (e.g. constant) in each region</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org1ec178e" class="outline-4">
+<h4 id="org1ec178e"><span class="section-number-4">6.1.4.</span> Illustrative example</h4>
+<div class="outline-text-4" id="text-6-1-4">
+
+<div id="orgf119c89" class="figure">
+<p><img src="./img/tree-illustrative.png" alt="tree-illustrative.png" />
+</p>
+</div>
+<ul class="org-ul">
+<li>Here, we split the R<sup>2</sup> feature space into 5 disjoint regions,</li>
+<li>Then, model the response as a constant \(c_m\) in each region \(R_m\) for \(m=1,...,5\)</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org64b7342" class="outline-4">
+<h4 id="org64b7342"><span class="section-number-4">6.1.5.</span> Tree-based model</h4>
+<div class="outline-text-4" id="text-6-1-5">
+<ul class="org-ul">
+<li>Data: \((Y_i, x_i)\) with \(x_i = (x_{i1}, ..., x_{ip})\) for \(i=1,..,n\)</li>
+<li>Tree-based model:
+<ul class="org-ul">
+<li>Suppose we have a partition of feature space into M regions</li>
+<li>We model the response Y as a constant \(c_m\) in each region \(R_m\)</li>
+<li>The tree-based model can then be thought of as a special case of the <b><b>additive</b></b> model
+\[
+    \hat{f}(x) = \sum^M_{m=1} c_m I(x \in R_m)
+    \]</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org836597e" class="outline-4">
+<h4 id="org836597e"><span class="section-number-4">6.1.6.</span> 2 types of trees</h4>
+<div class="outline-text-4" id="text-6-1-6">
+<dl class="org-dl">
+<dt>Regression tree</dt><dd>response \(Y\) is continuous</dd>
+<dt>Classification tree</dt><dd>response \(Y\) is class label</dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-org0e5a461" class="outline-4">
+<h4 id="org0e5a461"><span class="section-number-4">6.1.7.</span> 3 fundamental issues in tree-based models</h4>
+<div class="outline-text-4" id="text-6-1-7">
+<ol class="org-ol">
+<li>How to estimate the response \(c_m\) in each region \(R_m\)
+<ul class="org-ul">
+<li>Easy: if we know the region \(R_m\) we can simply use the average of training data in other regions to estimate \(c_m\)</li>
+</ul></li>
+<li>How to best partition the feature space into disjoint regions \(R_m\)</li>
+<li>How to suitably choose the number \(M\) of disjoint regions?</li>
+</ol>
+<p>
+For 2. and 3. use algorithm approach to answer the questions with training data
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org682b1ec" class="outline-3">
+<h3 id="org682b1ec"><span class="section-number-3">6.2.</span> Tree growing and tree pruning</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+8.1.2
+</p>
+</div>
+<div id="outline-container-orgbd2f23d" class="outline-4">
+<h4 id="orgbd2f23d"><span class="section-number-4">6.2.1.</span> Tree-based model</h4>
+<div class="outline-text-4" id="text-6-2-1">
+<ul class="org-ul">
+<li>Data: \((Y_i, x_i)\) with \(x_i = (x_{i1}, ..., x_{ip})\) for \(i=1,..,n\)</li>
+<li>For regression tree and classification tree:
+\[
+  \hat{f}(x) = \sum^M_{m=1} c_m I(x \in R_m)
+  \]</li>
+<li>Questions: what are good choices for the following when \(m=1,...,M\)
+<ol class="org-ol">
+<li>\(M\)</li>
+<li>\((R_m, c_m)\)</li>
+</ol></li>
+<li>Related to tree pruning</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0490a29" class="outline-4">
+<h4 id="org0490a29"><span class="section-number-4">6.2.2.</span> RSS criterion for regression tree</h4>
+<div class="outline-text-4" id="text-6-2-2">
+<ul class="org-ul">
+<li>Regression tree:
+\[
+  \hat{f}(x) = \sum^M_{m=1} c_m I(x \in R_m)
+  \]</li>
+<li>Criterion: minimize the residual sum of squares over training data
+\(RSS = \sum^n_{i=1} (Y_i - f(x_i))^2\)</li>
+<li>Under RSS criterion, for given \(M\) and given regions \(R_m\), the  optimal
+\[
+  \hat{c}_m = \text{average} (Y_i | x_i \in R_m)
+  \]</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orge781a88" class="outline-4">
+<h4 id="orge781a88"><span class="section-number-4">6.2.3.</span> Choices of regions R<sub>m</sub></h4>
+<div class="outline-text-4" id="text-6-2-3">
+<ul class="org-ul">
+<li>It's computationally infeasible to search all possible disjoint regions over feature space</li>
+<li>A greedy algorithm can be used instead with 3 steps:
+<ol class="org-ol">
+<li>Each time we split the region into 2 sub-regions depending on whether \(x_j \le s\) or \(x_j \gt s\). There are at most \(np\) possibilities in the search of \((j,s)\)</li>
+<li>Find the optimal \((j,s)\) with maximum homogeneity (i.e. minimum RSS) within each subregion. In other words, we find a certain split \((j,s)\) so that you will filter the training dataset well</li>
+<li>Finally, repeat the process on each subregion until we have a larger (or large enough) split grown in the tree</li>
+</ol></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgfe3b2c6" class="outline-4">
+<h4 id="orgfe3b2c6"><span class="section-number-4">6.2.4.</span> Greedy algorithm</h4>
+<div class="outline-text-4" id="text-6-2-4">
+<ul class="org-ul">
+<li>Start with <b><b>all</b></b> training data. Consider a splitting independent variable \(X_j\) and split value \(s\) and define 2 subregions:
+<ol class="org-ol">
+<li>\(R_1 (j,s) = {x_i : x_{ij} \le s}\) and</li>
+<li>\(R_2 (j,s) = {x_i: x_{ij} \gt s}\)</li>
+</ol></li>
+<li>Then seek the pair \((j,s)\) that minimizes RSS e.g.
+\[
+  \min_{j,s} \left[ \min_{c_1} \sum_{x_i \in R_i (j,s)} (Y_i - c_1)^2 + \min_{c_2} \sum_{x_i \in R_2 (j,s)} (Y_i - c_2)^2\right]
+  \]</li>
+<li>Partition the data into resulting 2 subregions</li>
+<li>Repeat the above process on each of the 2 subregions</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga151829" class="outline-4">
+<h4 id="orga151829"><span class="section-number-4">6.2.5.</span> When to stop growing tree?</h4>
+<div class="outline-text-4" id="text-6-2-5">
+<ul class="org-ul">
+<li>Key issue is when to stop growing tree? or equivalently, how large should we grow the tree, or how large the number \(M\) of subregions should be
+<ul class="org-ul">
+<li>Large tree can overfit leading to poor predictive performance. Largest tree can theoretically be large enough s.t. each end node has only 1 data point, equal to Kn algorithm with K=1</li>
+<li>Small tree can be biased and thus not capture important structure, e.g. splits only once or no split at all.</li>
+</ul></li>
+<li>Simple stopping rule:
+<ul class="org-ul">
+<li>Use a threshold and declare a node terminal if decrease in RSS due to split is smaller than threshold</li>
+<li>But this tends to underfit as it does not look far enough forward</li>
+</ul></li>
+<li>Better approach is to grow a large tree \(T_0\) and then prune it back</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org78406ca" class="outline-4">
+<h4 id="org78406ca"><span class="section-number-4">6.2.6.</span> Tree pruning</h4>
+<div class="outline-text-4" id="text-6-2-6">
+<ul class="org-ul">
+<li>Subtree: given a large tree \(T_0\), define a subtree \(T\) to be any tree that can be obtained by pruning \(T_0\) i.e. collapsing any number of its internal (non-terminal) nodes</li>
+<li>Key idea:
+<ul class="org-ul">
+<li>Theory: want to find a subtree that minimizes certain pruning criteria (training error vs tree complexity)</li>
+<li>Algorithm: create a nested sequence of subtrees of an initial large tree \(T_0\) by the weakest link cut algorithm</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc741a49" class="outline-4">
+<h4 id="orgc741a49"><span class="section-number-4">6.2.7.</span> Cost-complexity criterion for pruning</h4>
+<div class="outline-text-4" id="text-6-2-7">
+<ul class="org-ul">
+<li>The cost-complexity measure of a subtree \(T\) is defined as \(C_{\alpha} (T) = RSS_T + \alpha |T|\)
+<ul class="org-ul">
+<li>\(|T|\): the number of terminal nodes of a tree \(T\)</li>
+<li>\(\alpha\): relative importance of fit vs model complexity
+<ul class="org-ul">
+<li>When \(\alpha \rightarrow \infty\) then optimal tree would be single-node tree</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga8632cc" class="outline-4">
+<h4 id="orga8632cc"><span class="section-number-4">6.2.8.</span> Weakest link cutting algorithm</h4>
+<div class="outline-text-4" id="text-6-2-8">
+<ul class="org-ul">
+<li>Main theory: given larger tree \(T_0\) the optimal subtrees are nested
+<ul class="org-ul">
+<li>If \(\alpha_1 > \alpha_2\) then the optimal tree \(T_{\alpha_1}\)  is a subtree of the optimal tree \(T_{\alpha_2}\)</li>
+</ul></li>
+<li>Algorithm is to:
+<ul class="org-ul">
+<li>Successively collapse the internal node that produces the smallest per-node increase in RSS</li>
+<li>Continue until we produce the single node (root) tree</li>
+</ul></li>
+<li>This yields an infinite sequence of subtrees! But one of them will be optimal
+\[
+    T_{\alpha} = \text{argmin}_{T \subset T_0} C_\alpha (T)
+    \]</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org41e6d23" class="outline-4">
+<h4 id="org41e6d23"><span class="section-number-4">6.2.9.</span> How to choose &alpha;</h4>
+<div class="outline-text-4" id="text-6-2-9">
+<ul class="org-ul">
+<li>For any \(\alpha \in [0,\infty)\) the optimal subtree \(T_{\alpha} = \text{argmin}_{T \subset T_0} C_\alpha (T)\) is among the finite sequence of subtrees</li>
+<li>How to choose \(\alpha\) or optimal subtree? <b><b>Cross-validation</b></b>
+<ul class="org-ul">
+<li>We choose the value \(\alpha\) and corresponding optimal subtree that minimizes the cross-validated residual sum of squares (RSS)</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org271e4ad" class="outline-3">
+<h3 id="org271e4ad"><span class="section-number-3">6.3.</span> Classification trees</h3>
+<div class="outline-text-3" id="text-6-3">
+<p>
+8.1.3
+</p>
+</div>
+<div id="outline-container-orgd888495" class="outline-4">
+<h4 id="orgd888495"><span class="section-number-4">6.3.1.</span> Classification problem</h4>
+<div class="outline-text-4" id="text-6-3-1">
+<ul class="org-ul">
+<li>Data: \((Y_i, x_i)\) with \(x_i = (x_{i1}, ..., x_{ip})\) for \(i=1,..,n\). Assume that the response are class labels \(Y_i \in {1,2,...,K}\)</li>
+<li>Tree-based models: how to adapt from the regression context to classification?
+\[
+  \hat{f}(x) = \sum^M_{m=1} c_m I(x \in R_m)
+  \]</li>
+<li>In classification, the constant \(c_m\) identifies the class</li>
+<li>How to estimate \(c_m\)?</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgfee6901" class="outline-4">
+<h4 id="orgfee6901"><span class="section-number-4">6.3.2.</span> Majority vote in classification</h4>
+<div class="outline-text-4" id="text-6-3-2">
+<ul class="org-ul">
+<li>In the classification tree, we estimate \(c_m\) by the majority vote of training data at each given region \(R_m\). At each given \(m=1,...,M\):
+<ol class="org-ol">
+<li>We compute the percentage of training data for each class
+\[
+     N_m = \sum_{x_i \in R_m} 1 \\
+     \hat{p}_{m,k} = \frac{1}{N_m} \sum_{x_i \in R_m} I(Y_i = k), \text{for }k=1,...,K
+     \]</li>
+<li>Then we estimate \(c_m\) or classify this region as the most common class
+\[
+     \hat{k}_m = \text{argmax}_{k\in{1,2,...,K}} \hat{p}_{m,k}
+     \]</li>
+</ol></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb5f0287" class="outline-4">
+<h4 id="orgb5f0287"><span class="section-number-4">6.3.3.</span> Classification criterion</h4>
+<div class="outline-text-4" id="text-6-3-3">
+<ul class="org-ul">
+<li>In regression, we assess performance under RSS criterion</li>
+<li>In classification, what is a suitable criterion?
+<ul class="org-ul">
+<li>Naturally, use misclassification error rate, i.e. proportion of the training observations that do not belong to the most common class
+\[
+    \frac{1}{N_m} \sum_{x_i \in R_m} I(Y_i \ne \hat{k}_m) = 1- \hat{p}_{m, \hat{k}_m}
+    \]</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org1100eeb" class="outline-4">
+<h4 id="org1100eeb"><span class="section-number-4">6.3.4.</span> Drawback of natural criterion</h4>
+<div class="outline-text-4" id="text-6-3-4">
+<ul class="org-ul">
+<li>It is not sensitive to tree growing:
+<ul class="org-ul">
+<li>In 2 class problem of 400 obs per class, consider splits:
+<ol class="org-ol">
+<li>A=300, B=100 vs A=100, B=300</li>
+<li>A=200, B=0 vs A=200, B=400</li>
+</ol></li>
+<li>Remarks: these 2 splits have same misclassification rate, but 2 is probably better as it's a pure node</li>
+<li>In practice, 2 alternative criteria are more popular</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org83aeada" class="outline-4">
+<h4 id="org83aeada"><span class="section-number-4">6.3.5.</span> Alternative 1: Gini index</h4>
+<div class="outline-text-4" id="text-6-3-5">
+<p>
+\[
+G=\sum_{k \neq k^{\prime}} \hat{p}_{m, k} \, \hat{p}_{m, k^{\prime}}=\sum_{k=1}^{K} \hat{p}_{m, k} \big( 1-\hat{p}_{m, k} \big)=1-\sum_{k=1}^{K} \hat{p}_{m, k}^{2}
+\]
+</p>
+<ul class="org-ul">
+<li>Interpretation: the Gini index is:
+<ol class="org-ol">
+<li>The training error of a random rule that classifies an observation to class \(k\) with probability \(\hat{p}_{m,k}\) and</li>
+<li>a measure of total variances of all \(K\) classes</li>
+<li>small if one of \(\hat{p}_{m,k}\) is close to 1, whereas all other  \(\hat{p}_{m,k}\) are close to 0.</li>
+</ol></li>
+<li>Often called impurity measure for classification tree</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2ddb28c" class="outline-4">
+<h4 id="org2ddb28c"><span class="section-number-4">6.3.6.</span> Alternative 2: Cross-entropy</h4>
+<div class="outline-text-4" id="text-6-3-6">
+<ul class="org-ul">
+<li>Cross-entropy or deviance is another measure of impurity
+\[
+  D=-\sum_{k=1}^{K} \hat{p}_{m, k} \operatorname{log} \hat{p}_{m, k}
+  \]</li>
+<li>Interpretation: Cross-entropy is from information theory in engineering:
+<ol class="org-ol">
+<li>Gives an interpretation in terms of information gain</li>
+<li>Often gives numerical results similar to Gini index</li>
+</ol></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc1528f0" class="outline-4">
+<h4 id="orgc1528f0"><span class="section-number-4">6.3.7.</span> Classification tree</h4>
+<div class="outline-text-4" id="text-6-3-7">
+<p>
+It can be constructed in the same way as regression tree, with RSS being replaced by a classification criterion:
+</p>
+<ol class="org-ol">
+<li>Growing tree: a greedy algorithm to minimize an impurity measure (either Gini or cross-entropy)</li>
+<li>Pruning tree: the weakest link cut algorithm to minimize the cross-complexity criterion, which can be misclassifcation rate (typically) or cross-entropy/deviance</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org2745cdc" class="outline-2">
+<h2 id="org2745cdc"><span class="section-number-2">7.</span> Week 9: Tree-Based and Ensemble Methods (Cont'd)</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 Ensemble Methods
 </p>
 </div>
 </div>
-<div id="outline-container-org15c613f" class="outline-2">
-<h2 id="org15c613f"><span class="section-number-2">8.</span> Week 10: Tree-Based and Ensemble Methods (Cont'd)</h2>
+<div id="outline-container-orgb829f12" class="outline-2">
+<h2 id="orgb829f12"><span class="section-number-2">8.</span> Week 10: Tree-Based and Ensemble Methods (Cont'd)</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 Ensemble Methods (Cont'd)
 </p>
 </div>
 </div>
-<div id="outline-container-org2b45f96" class="outline-2">
-<h2 id="org2b45f96"><span class="section-number-2">9.</span> Week 12: Advanced Supervised Learning</h2>
+<div id="outline-container-org0ff5093" class="outline-2">
+<h2 id="org0ff5093"><span class="section-number-2">9.</span> Week 12: Advanced Supervised Learning</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 Support Vector Machine in Linear Scenario.
@@ -4949,7 +5370,7 @@ Support Vector Machine in Linear Scenario.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: W</p>
-<p class="date">Created: 2024-03-29 Fri 22:53</p>
+<p class="date">Created: 2024-03-30 Sat 11:51</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
