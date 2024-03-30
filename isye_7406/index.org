@@ -2510,8 +2510,42 @@ $$
 It can be constructed in the same way as regression tree, with RSS being replaced by a classification criterion:
 1. Growing tree: a greedy algorithm to minimize an impurity measure (either Gini or cross-entropy)
 2. Pruning tree: the weakest link cut algorithm to minimize the cross-complexity criterion, which can be misclassifcation rate (typically) or cross-entropy/deviance
+** Practical issues in tree-based methods
+8.2.1
+*** Prediction problems
+- Data: $(Y_i, x_i)$ with $x_i = (x_{i1}, ..., x_{ip})$ for $i=1,..,n$
+- Tree-based model: with new input $x$, predict Y by:
+  $$
+  \hat{f}(x) = \sum^M_{m=1} c_m I(x \in R_m)
+  $$
+- Tree-based methods: use tree growing and tree pruning techniques to estimate the (1+2M) parameters ${M, (R_m, c_m)^M_{m=1}}$
+  - Regression tree
+  - Classification tree
+*** Advantage of tree methods
+- Simple to interpret and easy to represent virtually
+- Can be used for both numerical or categorical data
+- Does not require variable transformation for a single predictor, but may need to create new predictors e.g. $x_1 x_2, x^3_1 x_3 x_4$
+- Can handle missing data
+*** Missing values
+4 ways to handle missing predictor values.
 
-
+First 3 are applicable to any other method:
+1. Delete or discard rows with missing values
+2. Fill in or impute missing values with the mean of the predictor over valid observations
+3. Create a new category for missing if **predictor is categorical**
+4. Surrogate split based on the predictors that are not missing:
+   - If the best splitting predictor is missing, then use the 2nd best to split points,
+   - If best and 2nd best are missing, use 3rd best and so on
+*** Disadvantage of tree methods
+- Lack of smoothness as the regions are disjoint and thus predicted values are not smooth
+  - Might be ok for classification with 0/1 loss, but
+  - Degrades performance in regression where we generally expect underlying function to be smooth
+- Instability of trees:
+  - A small change in the training data can result in very different series of splits
+  - Tree-based methods often have {{{hl(high variance)}}} which leads to poor predictive performance
+  - Price to pay for estimating a simple tree-based structure from training data
+  - Main idea to improve trees is to reduce variance, say by combining many trees to make global decision.
+  - Ensemble methods: bagging, random forest, boosting, etc.
 * Week 9: Tree-Based and Ensemble Methods (Cont'd)
 Ensemble Methods
 * Week 10: Tree-Based and Ensemble Methods (Cont'd)
