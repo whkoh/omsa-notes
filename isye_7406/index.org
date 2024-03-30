@@ -2548,9 +2548,8 @@ First 3 are applicable to any other method:
   - Ensemble methods: bagging, random forest, boosting, etc.
 *** Trees in R and Spam example
 See:
-- 8.2.2_Tree.in.R_FW.pdf
-- 8.2.3_R_example.Tree_FW.pdf
-***
+- ~8.2.2_Tree.in.R_FW.pdf~
+- ~8.2.3_R_example.Tree_FW.pdf~
 * Week 9: Tree-Based and Ensemble Methods (Cont'd)
 Ensemble Methods
 ** Introduction to Ensemble Methods
@@ -2619,7 +2618,7 @@ $$
 - Invented by Wolpert (1992) and studied by Breimen (1996)
 - Weights $\hat{w}_m$ are estimated from cross-validation, and the final prediction mimics Bayesian Model Averaging
 *** Stacking weights
-The stacking weights $\hat{w}__m$ are obtained as follows:
+The stacking weights $\hat{w}_m$ are obtained as follows:
 1. Leave one out cross validation (LOOCV): let $\hat{h}^{(-i)}_m (x)$ be the prediction at $x$ using the $m$ th model in the ensemble, as estimated from the training data with the $i$ th observation removed.
 2. Linear regression: the estimated weights solve a linear regression problem
    $$
@@ -2717,8 +2716,50 @@ $$
   - In other words, roughly 1/3 of the bootstrap samples will provide the cross-validation or out-of-bag estimate of predictive performance.
 ** Random Forest
 9.2.2
-***
+*** Improve tree methods
+- Observed data (training dataset): $(Y_i, X_{i1}, ..., X_{ip})$ for $i=1,...,n$
+- Objective: find a function $h(x_{\text{new}}) = h(x_1, ..., x_p)$ that can predict $Y$ well for any given input $x_{\text{new}} = (x_1, ..., x_p)$ in the testing dataset.
+- Tree-based method is easy to interpret but might have poor predictive performance due to {{{hl(high variance)}}}
+- Ensemble methods to improve tree: bagging, random forest.
+*** Recall bagging algorithm
+Given a training dataset and fit a base model (e.g. Tree) that can predict the response as $\hat{h}(x)$ at the new data point $x$
+- Bagging algorithm: For $b=1,...,B$
+  - Draw a bootstrap sample from the training dataset
+  - Fit a model $\hat{h}^{*b}(x)$ to each bootstrap sample
+- Then the bagging prediction at the new data point $x$ is
 
+$$
+\widehat{\boldsymbol{h}}_{bag} ( \boldsymbol{x} )=\frac{1} {B} \sum_{b=1}^{B} \widehat{\boldsymbol{h}}^{* b} ( \boldsymbol{x} )
+$$
+*** Ideas in random forest
+- Random forest was invented by Breiman (2000) and later developed by Breiman and Cutler (2004), mainly to improve **classification tree**
+- Main idea is to combine **bagging algorithm** with another clever trick of **random feature selection**:
+  - The bootstrapping trees in **bagging** might be similar, since we exam all the same $p$ variables in all bootstrapping samples to determine the best split when growing bootstrapping trees
+  - Random forest usually pick $\sqrt{p}$ out of the $p$ variables **at random** for **each bootstrap sample** and considers the best splits among them
+*** Random forest
+Random forest algorithm:
+- For $b=1,...,B$
+  - Draw a bootstrap sample from the training dataset
+  - For each bootstrap sample, randomly pack $\sqrt{p}$ out of the $p$ input variables and take the best splits among them when **growing** a tree. **No pruning** is needed in random forest
+- For regression: use the average of all $B$ trees for prediction
+- For classification: use all $B$ trees on a majority vote
+*** Random Feature Selection
+What are the advantages of randomly picking $\sqrt{p}$ out of the $p$ input variables at each bootstrap sample?
+- It makes the different trees in the random forest **less similar**
+- It allows **highly correlated** variables to play **nearly equivalent** roles (otherwise those that are slightly more predictive will always be chosen)
+- It **decorrelates** the trees and lowers predictive error
+*** Out-of-bag estimate
+- Recall that for each observation, approximately 1/3 (i.e. $1/e$) of the bootstrap samples will not contain it
+- Thus, approximately 1/3 of the trees in the random forest can be used to provide out-of-bag error estimate of the given observation
+- In other words, random forest automatically provide cross-validation-like "out of bag" estimate of misclassification rate
+*** Relative importance
+Random forest can be used to estimate the **relative importance** of the $j$ th explanatory variable
+- Run each observation through all the trees for which the observation is out-of-bag and count the number of votes for the correct class each observation gets
+- This vote can be compared to the corresponding vote count after randomly permuting the values of variable $j$ among the observations
+- The difference in the number of correct votes under the two procedures is the **raw importance** for variable $j$
+- Usually this is standardized to **relative importance** when the scores sum to 1
+** Random Forest R Lab
+See ~9.2.3_R.Lab.RandomForest_FW.pdf~
 
 * Week 10: Tree-Based and Ensemble Methods (Cont'd)
 Ensemble Methods (Cont'd)
