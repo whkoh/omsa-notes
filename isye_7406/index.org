@@ -3006,6 +3006,79 @@ Given the current $H(x)$, by Taylor Series expansion, when adding $ch(x)$,
     $$
   - The sign function is the same if
     $H(x) \leftarrow H(x) + \log \frac{1-\text{err}}{\text{err}} h(x)$
+- These are of an identical form to those in AdaBoost.
+** General boosting algorithm
+10.2.1
+*** Problem setup
+- Data: $(Y_i, x_{i,1}, x_{i,2}, ..., x_{i,p}), i=1,2,...,n$
+- Objective: find a function $h(x_{\text{new}}) = h(x_1, ..., x_p)$ that can predict $Y$ well for any given input $x_{\text{new}} = (x_1, ..., x_p)$ in the testing dataset.
+- Base learners: a set of predictions, e.g. trees
+  $$
+  {h_m(x) = b(x, \gamma_m)}
+  $$
+- AdaBoost: combines the base learners to construct a better procedure for {{{hl(binary classification)}}}.
+- Can we extend the idea to other contexts?
+*** Recall regression models
+The models for regression and classification are closely related:
+1. Linear regression model e.g. variable selection
+	$$
+	Y=\beta_{0}+\beta_{1} x_{1}+\cdots+\beta_{p} x_{p}+\epsilon
+	$$
+2. Generalized linear model e.g. logistic regression
+   $$
+   \mathrm{g} \big( \mathrm{E} ( Y | \boldsymbol{x} ) \big)=\beta_{0}+\beta_{1} x_{1}+\cdots+\beta_{p} x_{p}
+   $$
+3. Additive model: local smoothing and backfitting algorithm
+	 $$
+	 Y=\beta_{0}+\beta_{1} f_{1} ( x_{1} )+\cdots+\beta_{p} f_{p} ( x_{p} )+\epsilon
+	 $$
+Can we extend the bases of $x_i$ of $f_i(x_i)$ to a broad family, e.g. $b(x, \gamma_m)$?
+*** Extended additive model
+Suppose we have a family of base learners $  {h_m(x) = b(x, \gamma_m)}$ e.g., the base learner $b(x, \gamma_m)$ can be a tree with vector parameter $\gamma_m$
+- Treat the base learners as new independent variables or features
+- Extended additive model is based on the new variables:
+  - Regression :: $\mathbf{Y}=\beta_{0}+\beta_{1} b ( x, \gamma_{1} )+\cdots+\beta_{M} b ( x, \gamma_{M} )+\epsilon$
+  - Classification :: $\mathbf{g} \big( \mathbf{E} ( \mathbf{Y} | \mathbf{x} ) \big)=\boldsymbol{\beta}_{0}+\boldsymbol{\beta}_{1} b ( x, \gamma_{1} )+\cdots+\boldsymbol{\beta}_{M} b ( x, \gamma_{M} )$
+*** Forward stagewise additive model
+The forward stagewise additive model is to sequentially fit the extended additive model
+$$
+\widehat{\mathrm{Y}}=H_{M} ( \boldsymbol{x} )=\beta_{0}+\beta_{1} b ( \boldsymbol{x}, \gamma_{1} )+\cdots+\beta_{M} b ( \boldsymbol{x}, \gamma_{M} )
+$$
+1. Initialize $H_0 (x) = 0$ for all $x$
+2. For $m=1$ to $M$:
+   1. Optimize the empirical training risk
+			$$
+			( \beta_{m}, \gamma_{m} )=\text{argmin}_{\beta, \gamma} \sum_{i=1}^{n} L \big( Y_{i}, H_{m-1} ( x_{i} )+\beta b ( x_{i}, \gamma) \big).
+			$$
+      Here, $L \big( Y, h ( x ) \big)=\exp \big(-Y h ( x ) \big) ; \ \big( Y-h ( x ) \big)^{2}$
+   2. Update the output
+      $H_{m} ( \boldsymbol{x} )=H_{m-1} ( \boldsymbol{x} )+\beta_{m} b ( \boldsymbol{x}, \gamma_{m} )$
+*** Shrinkage parameter
+- With the optimized $(\beta_m, \gamma_m)$ at each round, is it near-sighted to update the output $H_m(x) = H_{m-1}(x) + \beta_m b(x, \gamma_m)$ ?
+- One idea is to update the output function {{{hl(slowly)}}} by adding a shrinkage parameter $\lambda \in (0,1]$:
+  $$
+  H_m(x) = H_{m-1} (x) + \lambda \beta_m b(x, \gamma_m)
+  $$
+- The shrinkage parameter $\lambda$ controls the rate at which the model learns
+*** General boosting algorithm
+- In the regression context, the General Boosting Algorithm is to sequentially fir the Extended Additive Model through base learners such as trees:
+  $$
+  \hat{Y} = H_M(x) = \beta_0 + \beta_1 b(x, \gamma_1) + ... + \beta_M b(x, \gamma_M)
+  $$
+  1. Initialize $H_0(x) =0 $ for all $x$ and setn $r_i = Y_i$ for all $i in the training data
+  2. For $m=1$ to $M$:
+     1. Fit a tree $b(x, \gamma_m)$ to the training data $(x_i, r_i)^n_{i=1}$
+     2. Update the prediction by adding a shunken version of the tree
+        $\hat{H} \leftarrow \hat{H} + \lambda b (x, \gamma_m)$
+     3. Update the residuals $r_i \leftarrow r_i - \lambda b(x, \gamma_m)$
+  3. Output the final boosting model $\hat{H} = \sum^M_{m=1} \lambda b(x, \gamma_m)$
+*** Parameter tuning
+How to tune the parameters in the general boosting algorithm:
+- M :: the number of iterations or the number of base trees
+- $b(x, \gamma)$ :: the form of trees, e.g. interaction variables for splitting
+- $\lambda$ :: the shrinkage parameter
+
+Cross-validation!
 
 * Week 12: Advanced Supervised Learning
 Support Vector Machine in Linear Scenario.
