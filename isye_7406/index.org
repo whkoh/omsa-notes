@@ -3079,7 +3079,10 @@ How to tune the parameters in the general boosting algorithm:
 - $\lambda$ :: the shrinkage parameter
 
 Cross-validation!
-
+** Boosting in R
+See:
+- ~10.2.2_Boosting.R_FW.pdf~
+- ~10.2.3_R_example.Boosting_FW.pdf~
 * Week 12: Advanced Supervised Learning
 Support Vector Machine in Linear Scenario.
 (Week 11 is Spring Break)
