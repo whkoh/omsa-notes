@@ -2932,6 +2932,81 @@ $$
 \left\{\begin{matrix} {{{1}}} & {{{i f x <-0. 5}}} \\ {{{-1}}} & {{{i f-0. 5 \leq x < 0. 5}}} \\ {{{1}}} & {{{i f x \geq0. 5}}} \\ \end{matrix} \right.
 $$
 correctly classifies all 3 training data points.
+** Statistical view of AdaBoost
+10.1.3
+*** Problem setup
+- Data: $(Y_i, x_{i,1}, x_{i,2}, ..., x_{i,p}), i=1,2,...,n$ with $Y_i \in {-1,1}$
+- Objective: find a function $h(x_{\text{new}}) = h(x_1, ..., x_p)$ that can predict $Y$ well for any given input $x_{\text{new}} = (x_1, ..., x_p)$ in the testing dataset.
+- Trees: we have many tree classifiers ${h_m (x)}$ available to predict the response $Y$ but each tree is only slightly better than random guessing
+- AdaBoost uses those weak learners to construct a very good classifier
+*** AdaBoost algorithm
+- Final classifier: $h(x) = \text{sign}(H_M (x))$ where
+
+$$
+H_{M} ( x )=\sum_{m=1}^{M} c_{m} h_{m} ( x )=H_{M-1} ( x )+c_{m} h_{m} ( x )
+$$
+- At the m-th round, the function $h_m(x)$ is chosen to minimize the error rate $\text{err} = E_w I(Y\ne h(x))$
+  - And the coefficient $c_m$ is chosen as $c_m = \log(\frac{1- \text{err}_m}{\text{err}_m})$
+- What is the statistical interpretation of the choice of $(h_m (x), c_m)$?
+*** Statistical properties of AdaBoost
+- Theorem: AdaBoost builds an additive logistic regression model via gradient descent when minimizing the exponential loss function
+  - Additive logistic regression model ::
+		$$
+		\log\frac{P ( Y=1 )} {1-P ( Y=1 )}=H ( \boldsymbol{x} )=\sum_{m=1}^{M} c_{m} h_{m} ( \boldsymbol{x} )
+		$$
+  - Exponential loss function ::
+		$$
+		L ( Y, H )=e^{-Y H ( x )}
+		$$
+*** Exponential loss function
+- When predicting $Y\in{-1,1}$ by the $\hat{Y} = \text{sign}(H(x))$ the standard 0-1 loss for classification is
+  \begin{equation}
+  L^{*}(Y,H) = I(Y\neq\hat{Y})
+  = \begin{cases}
+  0 & \text{if }YH(x) \ge 0 \\
+  1 & \text{if }YH(x) \lt 0
+  \end{cases}
+  \end{equation}
+- In AdaBoost, we consider the exponential loss, which is a surrogate function
+  $$
+  L ( Y, H )=e^{-Y H ( x )}
+  $$
+[[./img/ada-loss.png]]
+*** Optimization problem
+Given the current $H(x)$ we want to add $ch(x)$ that minimizes the exponential loss function
+$$
+E \left( e^{-Y \left( H ( x )+c h ( x ) \right)} \right)
+$$
+- What is the optimal function $h(x)$ :: gradient descent
+- Given $H(x) \text{and } h(x)$, what is the optimal value for $c$? :: Direct optimization over the re-weighted data
+*** Optimization in function
+Given the current $H(x)$, by Taylor Series expansion, when adding $ch(x)$,
+\begin{aligned} {{{\mathbf{E} \left( e^{-Y \left( H ( x )+c h ( x ) \right)} \right)}}} & {{} {{} {\approx \mathbf{E} \left( e^{-Y H ( x )} \left( 1-c Y h ( x )+{\frac{c^{2} Y^{2} h ( x )^{2}} {2}} \right) \right)}}} \\ {{{}}} & {{} {{} {{}=\mathbf{E} \left( e^{-Y H ( x )} \left( 1-c Y h ( x )+{\frac{c^{2}} {2}} \right) \right) \quad\mathbf{s i n c e} \ Y h ( x )=\pm1}}} \\ {{{}}} & {{} {{} {{}=\mathbf{E}_{\mathbf{w}} \left( 1-c Y h ( x )+{\frac{c^{2}} {2}} \right)}}} \\ \end{aligned}
+- Gradient descent finds $h(x) \in \pm 1$ that minimizes
+  $$
+  \frac{1} {2} \mathbf{E}_{\mathbf{w}} \big( 1-Y h ( x ) \big)=\mathbf{P}_{\mathbf{w}} ( Y h ( x )=-1 )=\mathbf{P}_{\mathbf{w}} \big( Y \neq h ( x ) \big)= \text{err}
+  $$
+*** Optimization in coefficient
+- Given the $H(x) \text{ and } h(x)$, we can directly find the coefficient $c$ that minimizes the risk
+  \begin{array} {c} {{{\mathbf{E} \bigl( e^{-Y \bigl( H ( \boldsymbol{x} )+c h ( \boldsymbol{x} ) \bigr)} \bigr)=\mathbf{E}_{\mathbf{w}} ( e^{-c Y h ( \boldsymbol{x} )} )}}} \\ {{{=e^{c} \, \mathbf{P}_{\mathbf{w}} ( Y h ( \boldsymbol{x} )=-1 )+e^{-c} \mathbf{P}_{\mathbf{w}} ( Y h ( \boldsymbol{x} )=1 )}}} \\ {{{=e^{c} \, * \, \text{err}+e^{-c} \, * \, ( 1-\text{err} )}}} \\ \end{array}
+- Taking derivative with respect to $c$ and setting to $0$, the risk is minimized at
+  $$
+  c = \frac{1}{2}\log\frac{1-\text{err}}{\text{err}}
+  $$
+- This value is similar to $c_m$ in AdaBoost, with the exception of adding factor $\frac{1}{2}$
+*** Implementation update
+- By gradient descent, the optimal update should be
+	$$
+	H ( x ) \gets H ( x )+{\frac{1} {2}} \text{log} {\frac{1-\text{err}} {\text{err}}} \, h ( x ) \,, \qquad\quad w \gets w e^{-c Y h ( x )}
+	$$
+- A simpler implementation:
+  - Since $-Yh(x) = 2I(Y\ne h(x))-1$, the update is equivalent to
+    $$
+    w \leftarrow w \exp[\log\frac{1-\text{err}}{\text{err}} I(Y\ne h(x))]
+    $$
+  - The sign function is the same if
+    $H(x) \leftarrow H(x) + \log \frac{1-\text{err}}{\text{err}} h(x)$
+
 * Week 12: Advanced Supervised Learning
 Support Vector Machine in Linear Scenario.
 (Week 11 is Spring Break)
