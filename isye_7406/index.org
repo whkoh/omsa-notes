@@ -2900,7 +2900,7 @@ $m=3$
   $$
 	h_{3} ( x )=\left\{\begin{matrix} {{-1 ~ ~ ~ ~ i f ~ ~ x \geq-0. 5}} \\ {{1 ~ ~ i f ~ ~ x <- 0. 5}} \\ \end{matrix} \right.
 	$$
-- Compute constants: $\text{err}$ and $c=\log((1-\text{err})/\text{err})
+- Compute constants: $\text{err}$ and $c=\log((1-\text{err})/\text{err})$
   $$
   \text{err} = w_3 = \frac{1}{6} \\
   c = \log(\frac{1-1/6}{1/6}) = \log(5)
@@ -3086,3 +3086,35 @@ See:
 * Week 12: Advanced Supervised Learning
 Support Vector Machine in Linear Scenario.
 (Week 11 is Spring Break)
+** Introduction to Support Vector Machines
+*** Binary classification problem
+- Data: $(Y_i, x_{i,1}, x_{i,2}, ..., x_{i,p}), i=1,2,...,n$ where $Y_i$ is **binary**
+- Linear classifier: classify binary response $Y$ depending on whether $h(x) = \beta_0 + \beta_1 x_1 + ... + \beta_p x_p = \beta_0 + \beta^T x$ is large or not
+- Question: how to estimate $(\beta_0, \beta_1, ..., \beta_p)$ from the training data?
+  - Linear discriminant analysis :: **testing hypothesis** after modelling $x_{i1}, x_{i2}, ..., x_{ip}$ as multivariate normal distribution $\text{MVN}(\mu_i, \Sigma)$
+  - Logistic regression :: **maximum likelihood estimator** after modelling the relationship between $P(Y_i=1)$ and the function $h(x)$
+  - Support vector machine :: **optimization-based**, with $Y_i \in {-1,1}$
+*** Toy motivating example
+- Data: $(Y_i, X_{i1}, X_{i2})$ for $i=1, ..., n=60$. Here, $Y_i \in {-1,1}$ are class labels
+- True generative model:
+  \begin{equation}
+  X_{i2} =
+  \begin{cases}
+  2X_{i1} + 1 + \epsilon_i & \text{ if } Y_i=1 \\
+  2X_{i1} - 1 + \epsilon_i & \text{ if } Y_i=-1 \\
+  \end{cases}
+  \text{where }\epsilon_i \text{ are iid N}(0, 0.3^2)
+  \end{equation}
+- Objective: Suppose we don't know the true generative model, how do we use the training data to predict the class?
+*** Good separate line?
+[[./img/good-sep.png]]
+- If we want to separate two classes along the line $X_2 + 2X_1 + c$, this yields the classifier of form $\text{sign}(X_2 - 2X_1 - c)$
+  - The two boundary lines are:
+    $$
+    X_2 = 2X_1 + 0.607 \\
+    X_2 = 2X_1 - 0.590
+    $$
+  - The distance between the two boundary lines is
+    $$
+    (0.607 + 0.590) / \sqrt{2^2+1} = 0.535
+    $$
