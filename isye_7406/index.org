@@ -3118,3 +3118,239 @@ Support Vector Machine in Linear Scenario.
     $$
     (0.607 + 0.590) / \sqrt{2^2+1} = 0.535
     $$
+*** Poor separation
+What if we change the line direction; and instead, consider classifier of the form:
+$$
+\text{sign}(X_2 - X_1 -c)
+$$
+- The two boundary lines are thus:
+  $$
+  X_2 = X_1 + 0.725 \\
+  X_2 = X_1 + 0.198
+  $$
+- The **distance** between these 2 boundary lines is thus
+  $$
+  (0.725-0.198) / \sqrt {1^2+1} = 0.373
+  $$
+- The separation is thus **smaller** and likely leads to **larger misclassification error** on testing data
+*** Margin maximization
+- Support vector machine: main idea is to find a line direction that **maximizes the margin** of the training data
+- Margin: the distance between the two boundary lines of two classes
+*** Distance in 2 dimensions
+[[./img/distance-in-2d.png]]
+- In the 2-dimensional plane, the distance from a point $(x_{1, \text{new}}, x_{2,\text{new}})$ is:
+  $$
+  d = \frac{|\beta_0 - \beta_0^{*}|}{\sqrt{\beta_1^2 + \beta^2_2}}
+  $$
+*** Distance from point to hyperplane
+In the $R^{\mathbb{p}}$ space, the **distance** from a point
+$$
+x_\text{new} = (x_{1, \text{new}}, x_{2, \text{new}}, ..., x_{\text{p, new}})^T
+$$
+to thy hyperplane
+$$
+\beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_p x_p = 0 ~ ~ ~ \text{i.e.: }\beta_0 + \beta^T x = 0
+$$
+is:
+$$
+d = \frac{|\beta_0 + \beta_1 x_{1, \text{new}} + \beta_2 x_{2,\text{new}} + ... + \beta_p x_{p, \text{new}}|}{\sqrt{\beta^2_1 + \beta^2_2 + ... + \beta^2_p}} \\
+= \frac{|\beta_0 + \beta^T x_{\text{new}}}{|\beta|}
+$$
+*** Distance between hyperplanes
+- In the $R^{\mathbb{p}}$ space, the distance between two hyperplanes
+  $$
+  \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_p x_p = c_1 ~ ~ ~ \text{i.e.: }\beta_0 - c_1 + \beta^T x = 0 \\
+  \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_p x_p = c_2 ~ ~ ~ \text{i.e.: }\beta_0 - c_2 + \beta^T x = 0
+  $$
+  is
+  $$
+  d = \frac{|c_1 - c_2|}{\sqrt{\beta^2_1 + \beta^2_2 + ... + \beta^2_p}} = \frac{|c_1 - c_2|}{|\beta|}
+  $$
+- In the special case of $c_1 = -1$ and $c_2 = 1$, the margin or distance of the two hyperplanes is
+  $$
+  d = \frac{|-1-1}{\sqrt{\beta^2_1 + \beta^2_2 + ... + \beta^2_p}} = \frac{2}{|\beta|}
+  $$
+** Maximum Margin Optimization for SVM
+11.1.2
+*** Linear classification
+- Training dataset: - Data: $(Y_i, x_{i,1}, x_{i,2}, ..., x_{i,p}), i=1,2,...,n$ with $Y_i \in {-1,1}$
+- Linear classification: find the linear function
+  $$
+  h(x) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_p x_p = \beta_0 + \beta^T x
+  $$
+  and predict the binary response of any new data by:
+  $$
+	\text{sign} \big( h ( x ) \big) = \text{sign} \big( \beta_{0}+\beta^{T} x \big)=\left\{\begin{matrix} {{{-1}}} & {{{i f \beta_{0}+\beta^{T} x \leq0}}} \\ {{{1}}} & {{{i f \beta_{0}+\beta^{T} x > 0}}} \\ \end{matrix} \right.
+	$$
+- Different methods to estimate $\beta_0$ and $\beta$ from training data:
+  - Linear discriminant analysis
+  - Logistic regression
+  - Support vector machine (when {{{hl(linearly separable)}}})
+*** Linear SVM
+[[./img/svm-2-lines.png]]
+- Linear SVM in the {{{hl(linearly separable scenario)}}}
+- Given the direction $\beta = (\beta_1, \beta_2, ..., \beta_p)$, there are 3 lines / hyperplanes of the form
+  $$
+  \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_p x_p = 0
+  $$
+  Not unique, e.g. multiplying 3 both sides
+- For uniqueness, we assume **two boundary lines** of two classes are defined by
+  $$
+  \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_p x_p = - 1 \\
+  \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_p x_p = 1
+  $$
+*** Margin computation
+[[./img/svm-margin-compute.png]]
+Margin =
+$$
+\frac{2}{\parallel\beta\parallel} =
+\frac{2}{\sqrt{\beta^2_1 + ... + \beta^2_p}}
+$$
+*** Maximum margin optimization
+Consider the scenario when the training data are linearly separable.
+- Linear SVM classifier:
+  $$
+  \hat{Y}   = \text{sign}(\beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_p x_p)
+  $$
+- Objective: maximize the margin
+  $$
+  \frac{2}{\parallel\beta\parallel} =
+  \frac{2}{\sqrt{\beta^2_1 + ... + \beta^2_p}}
+  $$
+- This translates to {{{hl(low prediction error)}}} on new data in test data
+*** Constraints for SVM
+- Linear SVM classifier:
+  - Constraints: classify all training data correctly in the scenario when the training data is linearly separable:
+    - When $Y_i = -1 \rightarrow \beta_0 + \beta^T x_i \le -1$
+    - When $Y_I = 1 \rightarrow \beta_0 + \beta^T x_i \ge 1$
+  - The constraints can be written simply as:
+    $$
+    Y_i(\beta_0 + \beta^T x_i) \ge 1 \text{ for all }i=1,2,...,n
+    $$
+*** Mathematical formulation
+Formula of SVM in the scenario when training data are linearly separable:
+- Problem 0: find the linear function, or hyperplane below
+  $$
+  h(x) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_p x_p = \beta_0 + \beta^T x
+  $$
+  that {{{hl(maximizes)}}} margin:
+  $$
+  \max_{\beta, \beta_0} \frac{2}{\parallel \beta \parallel}
+  $$
+  subject to the constraint on classifying training data well:
+  $$
+  Y_i(\beta_0 + \beta^T x_i) \ge 1 \text{ for all} i=1,2,...,n
+  $$
+*** A simplified formulation
+In the scenario when training data are linearly separable:
+- Problem 1 (Primal form): Find the linear function, or hyperplane, that {{{hl(minimizes the quadratic objective function)}}}
+  $$
+  \min_{\beta, \beta_0} (\frac{1}{2} \parallel \beta \parallel^2)
+  $$
+  subject to the linear constraints
+  $$
+  Y_i(\beta_0 + \beta^T x_i) \ge 1 \text{ for all} i=1,2,...,n
+  $$
+*** Constrained optimization
+By {{{hl(Lagrange multipliers)}}}, we reformulate the constrained primal problem into (unconstrained) dual space.
+- Problem 2: find $(\beta_0, \beta)$ that minimizes the objective function
+  $$
+  g = \frac{1}{2} \parallel \beta \parallel^2 - \sum^n_{i=1} \lambda_i [Y_i (\beta_0 + \beta^T x_i) -1]
+  $$
+  where $\lambda_i \ge 0$  are the lagrange multipliers
+- This is a quadratic optimizaton problem which can be solved conveniently. This gives the SVM in the linearly separable scenario.
+** SVM for Linearly Separable
+11.1.3
+*** Linear SVM
+- Data: $(Y_i, x_{i,1}, x_{i,2}, ..., x_{i,p}), i=1,2,...,n$ with $Y_i \in {-1,1}$
+- Support vector machine: predict $\hat{Y}
+  = \text{sign}(\beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_p x_p)$
+- In the linearly separable scenario, we assume two boundary hyperplanes are
+  $$
+  \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_p x_p = - 1 \\
+  \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_p x_p = 1
+  $$
+*** Maximum margin optimization
+Maximum margin optimization formulation of SVM when the training data are linearly separable.
+- Problem 1 (Primal form): Find the linear function (or hyperplane) that achieves
+  $$
+  \max{{\beta_0, \beta}} \frac{2}{\parallel \beta \parallel}
+  $$
+  i.e.
+  $$
+  \min_{\beta_0, \beta} (\frac{1}{2} \parallel \beta \parallel^2)
+  $$
+  subject to the constraints on classifying the training data well:
+  $$
+  Y_i (\beta_0 + \beta^T x_i) \ge 1 \text{ for all }i=1,2,...,n
+  $$
+*** Unconstrained optimization
+By Lagrange multipliers, we reformulate the constrained primal problem into unconstrained dual space.
+- Problem 2: find $\beta_0, \beta$ that minimizes the objective function
+  $$
+  g = \frac{1}{2} \parallel \beta \parallel^2 - \sum^n_{i=1} \lambda_i [Y_i (\beta_0 + \beta^T x_i) -1]
+  $$
+  where $\alpha_i \ge 0$ are the Lagrange multipliers
+- Let us present some technical details on this unconstrained quadratic optimization problem
+*** Local minimum
+- Taking derivatives of
+  $$
+  g = \frac{1}{2} \parallel \beta \parallel^2 - \sum^n_{i=1} \lambda_i [Y_i (\beta_0 + \beta^T x_i) -1]
+  $$
+  yields
+  $$
+  \frac{\partial g}{\partial \beta_0} = -\sum^n_{i=1} \alpha_i Y_i \\
+  \frac{\partial g}{\partial \beta} = \beta - \sum^n_{i=1} \alpha_i Y_i x_i
+  $$
+- Thus a local minimum must satisfy
+  $$
+  \sum^n_{i=1} \alpha_i Y_i = 0 \text{ and } \beta = \sum^n_{i=1} \alpha_i Y_i x_i
+  $$
+*** KKT necessary condition
+- Karush-Kuhn-Tucker (or KKT) necessary condition for local minima: tat the point of the solutions the product between dual variables and constraints has to vanish
+- For our objective function
+  $$
+  g = \frac{1}{2} \parallel \beta \parallel^2 - \sum^n_{i=1} \lambda_i [Y_i (\beta_0 + \beta^T x_i) -1]
+  $$
+  by KKT, there exists $(\alpha_1_{*} ..., \alpha_n^{*})$, called KKT multiplier, such that:
+  - $\alpha_i^{*} = 0$ whenever $Y_i(\beta_0 + \beta^T x_i) \gt 1$
+  - $\alpha_i^{*} \gt 0$ only if $Y_i (\beta_0 + \beta^T x_i) = 1$ i.e. $\beta_0 + \beta^T x_i = Y_i \in \pm 1$
+  - The vectors $x_i$ for which $\alpha_i^{*} > 0$ are called support vectors as they belong to the boundary hyperplanes
+*** Objective function in dual space
+- Plugging $\sum^n{i=1} \alpha_i Y_i = 0$ and $\beta = \sum^n_{i=1} \alpha_i Y_i x_i$ into the objective function
+  $$
+  g_{\text{dual}} = \frac{1}{2} \parallel \beta \parallel^2 - \sum^n_{i=1} \lambda_i [Y_i (\beta_0 + \beta^T x_i) -1]
+  $$
+
+	$$
+	= {\frac{1} {2}} \sum_{i=1}^{n} \sum_{j=1}^{n} \alpha_{i} \alpha_{j} Y_{i} Y_{j} x_{i}^{T} x_{j}-\beta_{0} \sum_{i=1}^{n} \alpha_{i} Y_{i}-\sum_{i=1}^{n} \sum_{j=1}^{n} \alpha_{i} \alpha_{j} Y_{i} Y_{j} x_{i}^{T} x_{j}+\sum_{i=1}^{n} \alpha_{i}
+	$$
+
+	$$
+	= \sum_{i=1}^{n} \alpha_{i}-\frac{1} {2} \sum_{i=1}^{n} \sum_{j=1}^{n} \alpha_{i} \alpha_{j} Y_{i} Y_{j} x_{i}^{T} x_{j}
+	$$
+*** Dual space formulation of SVM
+- Problem 3: Find the $\alpha_i$ that minimizes
+	$$
+	g=\frac{1} {2} \sum_{i=1}^{n} \sum_{j=1}^{n} \alpha_{i} \alpha_{j} Y_{i} Y_{j} x_{i}^{T} x_{j}-\sum_{i=1}^{n} \alpha_{i}
+	$$
+  subject to these 2 families of constraints
+	$$
+	\sum_{i=1}^{n} \alpha_{i} Y_{i}=0 \quad\text{~ and ~} \quad\alpha_{i} \geq0, \forall i=1, \cdots, n
+	$$
+  - Standard quadratic programming algorithms can solve the $\alpha_i$ 's
+*** The SVM classifier
+Once we determine the $\alpha_i$, we have
+- $\widehat{\beta} = \sum^n_{i=1} \alpha_i Y_i x_i$ which is a p-dimensional vector
+- By KKT, for $\alpha_i \ne 0$, we have $Y_i (\beta_0 + \beta^T x_i)=1$. Multiplying both sides by $Y_i \in {-1,1}$ we have $\widehat{\beta_0} = Y_i - \beta^T x_i$
+- Since most $\alpha_i$ are 0, the SVM classifier can be rewritten as
+
+	$$
+	h(x)=\text{sign}\big( \widehat{\beta}_{0}+\widehat{\beta}^{T} \boldsymbol{x} \big)=\text{sign} \left( \widehat{\beta}_{0}+\sum_{i=1}^{n} \alpha_{i} Y_{i} x_{i}^{T} \boldsymbol{x} \right)
+	$$
+
+	$$
+	\widehat{\beta}_{0}+\sum_{j=1}^{| s |} \alpha_{s_{j}} Y_{s_{j}} x_{s_{j}}^{T} x
+	$$
+
+  if we eliminate the non-zero terms

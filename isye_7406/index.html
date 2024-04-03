@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-04-01 Mon 21:52 -->
+<!-- 2024-04-03 Wed 20:49 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ISYE 7406: Data Mining and Statistical Learning</title>
@@ -44,101 +44,413 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org1b951aa">1. Week 12: Advanced Supervised Learning</a>
-<ul>
-<li><a href="#orged3c14a">1.1. Introduction to Support Vector Machines</a>
-<ul>
-<li><a href="#org9edc9ab">1.1.1. Binary classification problem</a></li>
-<li><a href="#org461a32b">1.1.2. Toy motivating example</a></li>
-<li><a href="#orgb95e81a">1.1.3. Good separate line?</a></li>
-<li><a href="#org24eae46">1.1.4. </a></li>
+<li><a href="#org550be0c">0.1. Distance from point to hyperplane</a></li>
+<li><a href="#orgd5ea1cf">0.2. Distance between hyperplanes</a></li>
 </ul>
 </li>
+<li><a href="#org55d0577">1. Maximum Margin Optimization for SVM</a>
+<ul>
+<li><a href="#org5fb1f43">1.1. Linear classification</a></li>
+<li><a href="#orgd203750">1.2. Linear SVM</a></li>
+<li><a href="#org71cc78e">1.3. Margin computation</a></li>
+<li><a href="#org46c3e9c">1.4. Maximum margin optimization</a></li>
+<li><a href="#org8dce881">1.5. Constraints for SVM</a></li>
+<li><a href="#orgea47718">1.6. Mathematical formulation</a></li>
+<li><a href="#org0e69b01">1.7. A simplified formulation</a></li>
+<li><a href="#org4735e48">1.8. Constrained optimization</a></li>
 </ul>
 </li>
+<li><a href="#org421e8fa">2. SVM for Linearly Separable</a>
+<ul>
+<li><a href="#orgc9c44a0">2.1. Linear SVM</a></li>
+<li><a href="#orge6108f0">2.2. Maximum margin optimization</a></li>
+<li><a href="#orga869eed">2.3. Unconstrained optimization</a></li>
+<li><a href="#org188c23d">2.4. Local minimum</a></li>
+<li><a href="#org0be3174">2.5. KKT necessary condition</a></li>
+<li><a href="#org8e748b4">2.6. Objective function in dual space</a></li>
+<li><a href="#org8c8ebf1">2.7. Dual space formulation of SVM</a></li>
+<li><a href="#orgb47b06a">2.8. The SVM classifier</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org1b951aa" class="outline-2">
-<h2 id="org1b951aa"><span class="section-number-2">1.</span> Week 12: Advanced Supervised Learning</h2>
+<div id="outline-container-org550be0c" class="outline-3">
+<h3 id="org550be0c"><span class="section-number-3">0.1.</span> Distance from point to hyperplane</h3>
+<div class="outline-text-3" id="text-0-1">
+<p>
+In the \(R^{\mathbb{p}}\) space, the <b><b>distance</b></b> from a point
+\[
+x_\text{new} = (x_{1, \text{new}}, x_{2, \text{new}}, ..., x_{\text{p, new}})^T
+\]
+to thy hyperplane
+\[
+\beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_p x_p = 0 ~ ~ ~ \text{i.e.: }\beta_0 + \beta^T x = 0
+\]
+is:
+\[
+d = \frac{|\beta_0 + \beta_1 x_{1, \text{new}} + \beta_2 x_{2,\text{new}} + ... + \beta_p x_{p, \text{new}}|}{\sqrt{\beta^2_1 + \beta^2_2 + ... + \beta^2_p}} \\
+= \frac{|\beta_0 + \beta^T x_{\text{new}}}{|\beta|}
+\]
+</p>
+</div>
+</div>
+<div id="outline-container-orgd5ea1cf" class="outline-3">
+<h3 id="orgd5ea1cf"><span class="section-number-3">0.2.</span> Distance between hyperplanes</h3>
+<div class="outline-text-3" id="text-0-2">
+<ul class="org-ul">
+<li>In the \(R^{\mathbb{p}}\) space, the distance between two hyperplanes
+\[
+  \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_p x_p = c_1 ~ ~ ~ \text{i.e.: }\beta_0 - c_1 + \beta^T x = 0 \\
+  \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_p x_p = c_2 ~ ~ ~ \text{i.e.: }\beta_0 - c_2 + \beta^T x = 0
+  \]
+is
+\[
+  d = \frac{|c_1 - c_2|}{\sqrt{\beta^2_1 + \beta^2_2 + ... + \beta^2_p}} = \frac{|c_1 - c_2|}{|\beta|}
+  \]</li>
+<li>In the special case of \(c_1 = -1\) and \(c_2 = 1\), the margin or distance of the two hyperplanes is
+\[
+  d = \frac{|-1-1}{\sqrt{\beta^2_1 + \beta^2_2 + ... + \beta^2_p}} = \frac{2}{|\beta|}
+  \]</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org55d0577" class="outline-2">
+<h2 id="org55d0577"><span class="section-number-2">1.</span> Maximum Margin Optimization for SVM</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-Support Vector Machine in Linear Scenario.
-(Week 11 is Spring Break)
+11.1.2
 </p>
 </div>
-<div id="outline-container-orged3c14a" class="outline-3">
-<h3 id="orged3c14a"><span class="section-number-3">1.1.</span> Introduction to Support Vector Machines</h3>
+<div id="outline-container-org5fb1f43" class="outline-3">
+<h3 id="org5fb1f43"><span class="section-number-3">1.1.</span> Linear classification</h3>
 <div class="outline-text-3" id="text-1-1">
-</div>
-<div id="outline-container-org9edc9ab" class="outline-4">
-<h4 id="org9edc9ab"><span class="section-number-4">1.1.1.</span> Binary classification problem</h4>
-<div class="outline-text-4" id="text-1-1-1">
 <ul class="org-ul">
-<li>Data: \((Y_i, x_{i,1}, x_{i,2}, ..., x_{i,p}), i=1,2,...,n\) where \(Y_i\) is <b><b>binary</b></b></li>
-<li>Linear classifier: classify binary response \(Y\) depending on whether \(h(x) = \beta_0 + \beta_1 x_1 + ... + \beta_p x_p = \beta_0 + \beta^T x\) is large or not</li>
-<li>Question: how to estimate \((\beta_0, \beta_1, ..., \beta_p)\) from the training data?
-<dl class="org-dl">
-<dt>Linear discriminant analysis</dt><dd><b><b>testing hypothesis</b></b> after modelling \(x_{i1}, x_{i2}, ..., x_{ip}\) as multivariate normal distribution \(\text{MVN}(\mu_i, \Sigma)\)</dd>
-<dt>Logistic regression</dt><dd><b><b>maximum likelihood estimator</b></b> after modelling the relationship between \(P(Y_i=1)\) and the function \(h(x)\)</dd>
-<dt>Support vector machine</dt><dd><b><b>optimization-based</b></b>, with \(Y_i \in {-1,1}\)</dd>
-</dl></li>
+<li>Training dataset: - Data: \((Y_i, x_{i,1}, x_{i,2}, ..., x_{i,p}), i=1,2,...,n\) with \(Y_i \in {-1,1}\)</li>
+<li>Linear classification: find the linear function
+\[
+  h(x) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_p x_p = \beta_0 + \beta^T x
+  \]
+and predict the binary response of any new data by:
+\[
+	\text{sign} \big( h ( x ) \big) = \text{sign} \big( \beta_{0}+\beta^{T} x \big)=\left\{\begin{matrix} {{{-1}}} & {{{i f \beta_{0}+\beta^{T} x \leq0}}} \\ {{{1}}} & {{{i f \beta_{0}+\beta^{T} x > 0}}} \\ \end{matrix} \right.
+	\]</li>
+<li>Different methods to estimate \(\beta_0\) and \(\beta\) from training data:
+<ul class="org-ul">
+<li>Linear discriminant analysis</li>
+<li>Logistic regression</li>
+<li>Support vector machine (when <span style='background-color: #FFFF00;'>linearly separable</span>)</li>
+</ul></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org461a32b" class="outline-4">
-<h4 id="org461a32b"><span class="section-number-4">1.1.2.</span> Toy motivating example</h4>
-<div class="outline-text-4" id="text-1-1-2">
-<ul class="org-ul">
-<li>Data: \((Y_i, X_{i1}, X_{i2})\) for \(i=1, ..., n=60\). Here, \(Y_i \in {-1,1}\) are class labels</li>
-<li><p>
-True generative model:
-</p>
-\begin{equation}
-X_{i2} =
-\begin{cases}
-2X_{i1} + 1 + \epsilon_i & \text{ if } Y_i=1 \\
-2X_{i1} - 1 + \epsilon_i & \text{ if } Y_i=-1 \\
-\end{cases}
-\text{where }\epsilon_i \text{ are iid N}(0, 0.3^2)
-\end{equation}</li>
-<li>Objective: Suppose we don't know the true generative model, how do we use the training data to predict the class?</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-orgb95e81a" class="outline-4">
-<h4 id="orgb95e81a"><span class="section-number-4">1.1.3.</span> Good separate line?</h4>
-<div class="outline-text-4" id="text-1-1-3">
+<div id="outline-container-orgd203750" class="outline-3">
+<h3 id="orgd203750"><span class="section-number-3">1.2.</span> Linear SVM</h3>
+<div class="outline-text-3" id="text-1-2">
 
-<div id="orgc6d33df" class="figure">
-<p><img src="./img/good-sep.png" alt="good-sep.png" />
+<div id="org44cd7e5" class="figure">
+<p><img src="./img/svm-2-lines.png" alt="svm-2-lines.png" />
 </p>
 </div>
 <ul class="org-ul">
-<li>If we want to separate two classes along the line \(X_2 + 2X_1 + c\), this yields the classifier of form \(\text{sign}(X_2 - 2X_1 - c)\)
+<li>Linear SVM in the <span style='background-color: #FFFF00;'>linearly separable scenario</span></li>
+<li>Given the direction \(\beta = (\beta_1, \beta_2, ..., \beta_p)\), there are 3 lines / hyperplanes of the form
+\[
+  \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_p x_p = 0
+  \]
+Not unique, e.g. multiplying 3 both sides</li>
+<li>For uniqueness, we assume <b><b>two boundary lines</b></b> of two classes are defined by
+\[
+  \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_p x_p = - 1 \\
+  \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_p x_p = 1
+  \]</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org71cc78e" class="outline-3">
+<h3 id="org71cc78e"><span class="section-number-3">1.3.</span> Margin computation</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+<img src="./img/svm-margin-compute.png" alt="svm-margin-compute.png" />
+Margin =
+\[
+\frac{2}{\parallel\beta\parallel} =
+\frac{2}{\sqrt{\beta^2_1 + ... + \beta^2_p}}
+\]
+</p>
+</div>
+</div>
+<div id="outline-container-org46c3e9c" class="outline-3">
+<h3 id="org46c3e9c"><span class="section-number-3">1.4.</span> Maximum margin optimization</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+Consider the scenario when the training data are linearly separable.
+</p>
 <ul class="org-ul">
-<li>The two boundary lines are:
+<li>Linear SVM classifier:
 \[
-    X_2 = 2X_1 + 0.607 \\
-    X_2 = 2X_1 - 0.590
-    \]</li>
-<li>The distance between the two boundary lines is
+  \hat{Y}   = \text{sign}(\beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_p x_p)
+  \]</li>
+<li>Objective: maximize the margin
 \[
-    (0.607 + 0.590) / \sqrt{2^2+1} = 0.535
+  \frac{2}{\parallel\beta\parallel} =
+  \frac{2}{\sqrt{\beta^2_1 + ... + \beta^2_p}}
+  \]</li>
+<li>This translates to <span style='background-color: #FFFF00;'>low prediction error</span> on new data in test data</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8dce881" class="outline-3">
+<h3 id="org8dce881"><span class="section-number-3">1.5.</span> Constraints for SVM</h3>
+<div class="outline-text-3" id="text-1-5">
+<ul class="org-ul">
+<li>Linear SVM classifier:
+<ul class="org-ul">
+<li>Constraints: classify all training data correctly in the scenario when the training data is linearly separable:
+<ul class="org-ul">
+<li>When \(Y_i = -1 \rightarrow \beta_0 + \beta^T x_i \le -1\)</li>
+<li>When \(Y_I = 1 \rightarrow \beta_0 + \beta^T x_i \ge 1\)</li>
+</ul></li>
+<li>The constraints can be written simply as:
+\[
+    Y_i(\beta_0 + \beta^T x_i) \ge 1 \text{ for all }i=1,2,...,n
     \]</li>
 </ul></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org24eae46" class="outline-4">
-<h4 id="org24eae46"><span class="section-number-4">1.1.4.</span> </h4>
+<div id="outline-container-orgea47718" class="outline-3">
+<h3 id="orgea47718"><span class="section-number-3">1.6.</span> Mathematical formulation</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+Formula of SVM in the scenario when training data are linearly separable:
+</p>
+<ul class="org-ul">
+<li>Problem 0: find the linear function, or hyperplane below
+\[
+  h(x) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_p x_p = \beta_0 + \beta^T x
+  \]
+that <span style='background-color: #FFFF00;'>maximizes</span> margin:
+\[
+  \max_{\beta, \beta_0} \frac{2}{\parallel \beta \parallel}
+  \]
+subject to the constraint on classifying training data well:
+\[
+  Y_i(\beta_0 + \beta^T x_i) \ge 1 \text{ for all} i=1,2,...,n
+  \]</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0e69b01" class="outline-3">
+<h3 id="org0e69b01"><span class="section-number-3">1.7.</span> A simplified formulation</h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+In the scenario when training data are linearly separable:
+</p>
+<ul class="org-ul">
+<li>Problem 1 (Primal form): Find the linear function, or hyperplane, that <span style='background-color: #FFFF00;'>minimizes the quadratic objective function</span>
+\[
+  \min_{\beta, \beta_0} (\frac{1}{2} \parallel \beta \parallel^2)
+  \]
+subject to the linear constraints
+\[
+  Y_i(\beta_0 + \beta^T x_i) \ge 1 \text{ for all} i=1,2,...,n
+  \]</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4735e48" class="outline-3">
+<h3 id="org4735e48"><span class="section-number-3">1.8.</span> Constrained optimization</h3>
+<div class="outline-text-3" id="text-1-8">
+<p>
+By <span style='background-color: #FFFF00;'>Lagrange multipliers</span>, we reformulate the constrained primal problem into (unconstrained) dual space.
+</p>
+<ul class="org-ul">
+<li>Problem 2: find \((\beta_0, \beta)\) that minimizes the objective function
+\[
+  g = \frac{1}{2} \parallel \beta \parallel^2 - \sum^n_{i=1} \lambda_i [Y_i (\beta_0 + \beta^T x_i) -1]
+  \]
+where \(\lambda_i \ge 0\)  are the lagrange multipliers</li>
+<li>This is a quadratic optimizaton problem which can be solved conveniently. This gives the SVM in the linearly separable scenario.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org421e8fa" class="outline-2">
+<h2 id="org421e8fa"><span class="section-number-2">2.</span> SVM for Linearly Separable</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+11.1.3
+</p>
+</div>
+<div id="outline-container-orgc9c44a0" class="outline-3">
+<h3 id="orgc9c44a0"><span class="section-number-3">2.1.</span> Linear SVM</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li>Data: \((Y_i, x_{i,1}, x_{i,2}, ..., x_{i,p}), i=1,2,...,n\) with \(Y_i \in {-1,1}\)</li>
+<li>Support vector machine: predict \(\hat{Y}
+  = \text{sign}(\beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_p x_p)\)</li>
+<li>In the linearly separable scenario, we assume two boundary hyperplanes are
+\[
+  \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_p x_p = - 1 \\
+  \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_p x_p = 1
+  \]</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orge6108f0" class="outline-3">
+<h3 id="orge6108f0"><span class="section-number-3">2.2.</span> Maximum margin optimization</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Maximum margin optimization formulation of SVM when the training data are linearly separable.
+</p>
+<ul class="org-ul">
+<li>Problem 1 (Primal form): Find the linear function (or hyperplane) that achieves
+\[
+  \max{{\beta_0, \beta}} \frac{2}{\parallel \beta \parallel}
+  \]
+i.e.
+\[
+  \min_{\beta_0, \beta} (\frac{1}{2} \parallel \beta \parallel^2)
+  \]
+subject to the constraints on classifying the training data well:
+\[
+  Y_i (\beta_0 + \beta^T x_i) \ge 1 \text{ for all }i=1,2,...,n
+  \]</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga869eed" class="outline-3">
+<h3 id="orga869eed"><span class="section-number-3">2.3.</span> Unconstrained optimization</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+By Lagrange multipliers, we reformulate the constrained primal problem into unconstrained dual space.
+</p>
+<ul class="org-ul">
+<li>Problem 2: find \(\beta_0, \beta\) that minimizes the objective function
+\[
+  g = \frac{1}{2} \parallel \beta \parallel^2 - \sum^n_{i=1} \lambda_i [Y_i (\beta_0 + \beta^T x_i) -1]
+  \]
+where \(\alpha_i \ge 0\) are the Lagrange multipliers</li>
+<li>Let us present some technical details on this unconstrained quadratic optimization problem</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org188c23d" class="outline-3">
+<h3 id="org188c23d"><span class="section-number-3">2.4.</span> Local minimum</h3>
+<div class="outline-text-3" id="text-2-4">
+<ul class="org-ul">
+<li>Taking derivatives of
+\[
+  g = \frac{1}{2} \parallel \beta \parallel^2 - \sum^n_{i=1} \lambda_i [Y_i (\beta_0 + \beta^T x_i) -1]
+  \]
+yields
+\[
+  \frac{\partial g}{\partial \beta_0} = -\sum^n_{i=1} \alpha_i Y_i \\
+  \frac{\partial g}{\partial \beta} = \beta - \sum^n_{i=1} \alpha_i Y_i x_i
+  \]</li>
+<li>Thus a local minimum must satisfy
+\[
+  \sum^n_{i=1} \alpha_i Y_i = 0 \text{ and } \beta = \sum^n_{i=1} \alpha_i Y_i x_i
+  \]</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0be3174" class="outline-3">
+<h3 id="org0be3174"><span class="section-number-3">2.5.</span> KKT necessary condition</h3>
+<div class="outline-text-3" id="text-2-5">
+<ul class="org-ul">
+<li>Karush-Kuhn-Tucker (or KKT) necessary condition for local minima: tat the point of the solutions the product between dual variables and constraints has to vanish</li>
+<li>For our objective function
+\[
+  g = \frac{1}{2} \parallel \beta \parallel^2 - \sum^n_{i=1} \lambda_i [Y_i (\beta_0 + \beta^T x_i) -1]
+  \]
+by KKT, there exists \((\alpha_1_{*} ..., \alpha_n^{*})\), called KKT multiplier, such that:
+<ul class="org-ul">
+<li>\(\alpha_i^{*} = 0\) whenever \(Y_i(\beta_0 + \beta^T x_i) \gt 1\)</li>
+<li>\(\alpha_i^{*} \gt 0\) only if \(Y_i (\beta_0 + \beta^T x_i) = 1\) i.e. \(\beta_0 + \beta^T x_i = Y_i \in \pm 1\)</li>
+<li>The vectors \(x_i\) for which \(\alpha_i^{*} > 0\) are called support vectors as they belong to the boundary hyperplanes</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8e748b4" class="outline-3">
+<h3 id="org8e748b4"><span class="section-number-3">2.6.</span> Objective function in dual space</h3>
+<div class="outline-text-3" id="text-2-6">
+<ul class="org-ul">
+<li><p>
+Plugging \(\sum^n{i=1} \alpha_i Y_i = 0\) and \(\beta = \sum^n_{i=1} \alpha_i Y_i x_i\) into the objective function
+\[
+  g_{\text{dual}} = \frac{1}{2} \parallel \beta \parallel^2 - \sum^n_{i=1} \lambda_i [Y_i (\beta_0 + \beta^T x_i) -1]
+  \]
+</p>
+
+<p>
+\[
+	= {\frac{1} {2}} \sum_{i=1}^{n} \sum_{j=1}^{n} \alpha_{i} \alpha_{j} Y_{i} Y_{j} x_{i}^{T} x_{j}-\beta_{0} \sum_{i=1}^{n} \alpha_{i} Y_{i}-\sum_{i=1}^{n} \sum_{j=1}^{n} \alpha_{i} \alpha_{j} Y_{i} Y_{j} x_{i}^{T} x_{j}+\sum_{i=1}^{n} \alpha_{i}
+	\]
+</p>
+
+<p>
+\[
+	= \sum_{i=1}^{n} \alpha_{i}-\frac{1} {2} \sum_{i=1}^{n} \sum_{j=1}^{n} \alpha_{i} \alpha_{j} Y_{i} Y_{j} x_{i}^{T} x_{j}
+	\]
+</p></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8c8ebf1" class="outline-3">
+<h3 id="org8c8ebf1"><span class="section-number-3">2.7.</span> Dual space formulation of SVM</h3>
+<div class="outline-text-3" id="text-2-7">
+<ul class="org-ul">
+<li>Problem 3: Find the \(\alpha_i\) that minimizes
+\[
+	g=\frac{1} {2} \sum_{i=1}^{n} \sum_{j=1}^{n} \alpha_{i} \alpha_{j} Y_{i} Y_{j} x_{i}^{T} x_{j}-\sum_{i=1}^{n} \alpha_{i}
+	\]
+subject to these 2 families of constraints
+\[
+	\sum_{i=1}^{n} \alpha_{i} Y_{i}=0 \quad\text{~ and ~} \quad\alpha_{i} \geq0, \forall i=1, \cdots, n
+	\]
+<ul class="org-ul">
+<li>Standard quadratic programming algorithms can solve the \(\alpha_i\) 's</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb47b06a" class="outline-3">
+<h3 id="orgb47b06a"><span class="section-number-3">2.8.</span> The SVM classifier</h3>
+<div class="outline-text-3" id="text-2-8">
+<p>
+Once we determine the \(\alpha_i\), we have
+</p>
+<ul class="org-ul">
+<li>\(\widehat{\beta} = \sum^n_{i=1} \alpha_i Y_i x_i\) which is a p-dimensional vector</li>
+<li>By KKT, for \(\alpha_i \ne 0\), we have \(Y_i (\beta_0 + \beta^T x_i)=1\). Multiplying both sides by \(Y_i \in {-1,1}\) we have \(\widehat{\beta_0} = Y_i - \beta^T x_i\)</li>
+<li><p>
+Since most \(\alpha_i\) are 0, the SVM classifier can be rewritten as
+</p>
+
+<p>
+\[
+	h(x)=\text{sign}\big( \widehat{\beta}_{0}+\widehat{\beta}^{T} \boldsymbol{x} \big)=\text{sign} \left( \widehat{\beta}_{0}+\sum_{i=1}^{n} \alpha_{i} Y_{i} x_{i}^{T} \boldsymbol{x} \right)
+	\]
+</p>
+
+<p>
+\[
+	\widehat{\beta}_{0}+\sum_{j=1}^{| s |} \alpha_{s_{j}} Y_{s_{j}} x_{s_{j}}^{T} x
+	\]
+</p>
+
+<p>
+if we eliminate the non-zero terms
+</p></li>
+</ul>
 </div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: W</p>
-<p class="date">Created: 2024-04-01 Mon 21:52</p>
+<p class="date">Created: 2024-04-03 Wed 20:49</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
