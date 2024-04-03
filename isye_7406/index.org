@@ -3336,7 +3336,7 @@ By Lagrange multipliers, we reformulate the constrained primal problem into unco
 	$$
   subject to these 2 families of constraints
 	$$
-	\sum_{i=1}^{n} \alpha_{i} Y_{i}=0 \quad\text{~ and ~} \quad\alpha_{i} \geq0, \forall i=1, \cdots, n
+	\sum_{i=1}^{n} \alpha_{i} Y_{i}=0 \quad \text{and} \quad\alpha_{i} \geq0, \forall i=1, \cdots, n
 	$$
   - Standard quadratic programming algorithms can solve the $\alpha_i$ 's
 *** The SVM classifier
