@@ -3179,9 +3179,12 @@ $$
   h(x) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_p x_p = \beta_0 + \beta^T x
   $$
   and predict the binary response of any new data by:
-  $$
-	\text{sign} \big( h ( x ) \big) = \text{sign} \big( \beta_{0}+\beta^{T} x \big)=\left\{\begin{matrix} {{{-1}}} & {{{i f \beta_{0}+\beta^{T} x \leq0}}} \\ {{{1}}} & {{{i f \beta_{0}+\beta^{T} x > 0}}} \\ \end{matrix} \right.
-	$$
+  \begin{equation}
+	\text{sign} \big( h ( x ) \big) = \text{sign} \big( \beta_{0}+\beta^{T} x \big)=
+  \begin{cases} -1 & \text{ if } \beta_0+\beta^{T} x \leq 0 \\
+  1 & \text{ if } \beta_0+\beta^{T} x > 0
+  \end{cases}
+	\end{equation}
 - Different methods to estimate $\beta_0$ and $\beta$ from training data:
   - Linear discriminant analysis
   - Logistic regression
@@ -3312,7 +3315,7 @@ By Lagrange multipliers, we reformulate the constrained primal problem into unco
   $$
   g = \frac{1}{2} \parallel \beta \parallel^2 - \sum^n_{i=1} \lambda_i [Y_i (\beta_0 + \beta^T x_i) -1]
   $$
-  by KKT, there exists $(\alpha_1_{*} ..., \alpha_n^{*})$, called KKT multiplier, such that:
+  by KKT, there exists $(\alpha_1^* ..., \alpha_n^*)$, called KKT multiplier, such that:
   - $\alpha_i^{*} = 0$ whenever $Y_i(\beta_0 + \beta^T x_i) \gt 1$
   - $\alpha_i^{*} \gt 0$ only if $Y_i (\beta_0 + \beta^T x_i) = 1$ i.e. $\beta_0 + \beta^T x_i = Y_i \in \pm 1$
   - The vectors $x_i$ for which $\alpha_i^{*} > 0$ are called support vectors as they belong to the boundary hyperplanes
