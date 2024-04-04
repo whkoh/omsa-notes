@@ -3357,3 +3357,43 @@ Once we determine the $\alpha_i$, we have
 	$$
 
   if we eliminate the non-zero terms
+** Slack variables for linearly non-separable
+11.2.1
+*** Linear classification
+- Data: $(Y_i, x_{i,1}, x_{i,2}, ..., x_{i,p}), i=1,2,...,n$ with $Y_i \in {-1,1}$
+- Linear classification: find the linear function
+  $$
+  h(x) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_p x_p = \beta_0 + \beta^T x
+  $$
+  where we classify new data based on
+  \begin{equation}
+	\text{sign} \big( h ( x ) \big) = \text{sign} \big( \beta_{0}+\beta^{T} x \big)=
+  \begin{cases} -1 & \text{ if } \beta_0+\beta^{T} x \leq 0 \\
+  1 & \text{ if } \beta_0+\beta^{T} x > 0
+  \end{cases}
+	\end{equation}
+- It's desirable to find a classifier that {{{hl(maximizes margin)}}}, which translates to a {{{hl(lower prediction error)}}} on new test data
+*** Linearly separable scenario
+See [[Margin computation]]
+*** Linearly non-separable scenario
+[[./img/non-sep.png]]
+What if we cannot perfectly classify training data?
+*** Slack variable
+- When the data are linearly non-separable, we can **soften** the margins by introducing {{{hl(slack)}}} variables in constraints
+- To be more specific, when the hard constraints
+  $$
+  Y_i (\beta_0 + \beta^T x_i) \ge 1
+  $$
+  cannot be satisfied for all $i$, we replace them by the soft constraint
+  $$
+  Y_i (\beta_0 + \beta^T x_i) - + \xi_i \ge 0, ~ ~ \xi_i \ge 0
+  $$
+  where the new $\xi_i$ are the {{{hl(slack variables)}}}
+*** Implication of slack variables
+Let the slack variable $\xi_i \ge 0$  be the {{{hl(smallest value)}}} satisfying the constraints
+$$
+Y_i (\beta_0 + \beta^T x_i) - + \xi_i \ge 0
+$$
+There are two scenarios:
+- Inequality scenario :: $Y_i (\beta_0 + \beta^T x_i) -1 + \xi_i \gt 0$ for {{{hl(all)}}} $\xi_i \ge 0$. The smallest slack variable $\xi_i =0$ and $Y_i(\beta_0 + \beta^T x_i)>1$
+- Equality scenario :: $Y_i(\beta_0 + \beta^T x_i) -1 + \xi_i = 0$ for {{{hl(some)}}} $\xi_i \ge 0$. Then, $Y_i(\beta_0+\beta^T x_i)=1-\xi_i$
