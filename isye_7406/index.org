@@ -3416,3 +3416,52 @@ Comparison of SVM classifier between linearly separable and linearly non-separab
 - Perfect classification for training data is replaced by {{{hl(misclassification error)}}} for training data $\sum^n_{i=1}(\xi_i > 1)$
 - Mathematical formulation for SVM classifier in the {{{hl(linearly non-separable)}}} scenario needs to adjust the training error
 - Optimization algorithms are similar.
+** Optimization problem for linearly non-separable
+11.2.2
+*** Three criteria in SVM
+There are three criteria when evaluating linear SVM based on the linear function/hyperplane $h(x)=\beta_0+\beta_1x_1+...+\beta_px_p = \beta_0+\beta^Tx$
+- Margin maximization ::
+  $$
+  \max_{\beta,\beta_0}\frac{2}{\parallel\beta\parallel} ~ \text{ i.e. }\min_{\beta,\beta_0}(\frac{1}{2}\parallel\beta\parallel^2)
+  $$
+- Soft constraints on training data ::
+  $$
+  Y_i(\beta_0+\beta^Tx_i)-1+\xi_i\ge0, ~ , \xi_i \ge 0, ~ \forall i=1,2,...,n
+  $$
+- Misclassification error on training data ::
+  $$
+  \sum^n_{i=1}I(\xi_i>1)
+  $$
+*** Possible formulation?
+(P1): find the linear function or hyperplane
+$$
+h(x) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_p x_p = \beta_0 + \beta^T x
+$$
+that minimizes an objective function to account for training error
+$$
+\frac{1}{2} \parallel\beta\parallel^2 + C\sum^n_{i=1}I(\xi_i\gt 1)
+$$
+for some $C>0$ subject to the soft constraints on the training data
+$$
+Y_i(\beta_0+\beta^Tx_i)-1+\xi_i\ge0, ~ , \xi_i \ge 0, ~ \forall i=1,2,...,n
+$$
+- Unfortunately, this is difficult to optimize as it is {{{hl(non-convex)}}}
+- We can motivate another useful formulation
+*** Key idea of new formulation
+New formulation of SVM for linearly non-separable:
+- (P2): find the linear function $h(x)=\beta_0+\beta^Tx$ and $(\xi_1,...,\xi_n)$ that minimizes the objective function
+  $$
+  \frac{1}{2} \parallel\beta\parallel^2 + C\sum^n_{i=1}\xi_i
+  $$
+  for some $C>0$, subject to the soft constraints on training data
+  $$
+  Y_i(\beta_0+\beta^Tx_i)-1+\xi_i\ge0, ~ , \xi_i \ge 0, ~ \forall i=1,2,...,n
+  $$
+  This is a constrained quadratic optimization data that is solvable
+*** Constrained optimization
+- By {{{hl(Lagrange multipliers)}}}, we reformulate the constrained primal problem into the unconstrained dual space with the objective function
+	$$
+	g=\frac{1} {2} \| \beta\|^{2}+C \sum_{i=1}^{n} \xi_{i}-\sum_{i=1}^{n} \alpha_{i} \big[ Y_{i} \big( \beta_{0}+\beta^{T} x_{i} \big)-1+\xi_{i} \big]-\sum_{i=1}^{n} \delta_{i} \xi_{i}
+	$$
+  where $\alpha_i \ge 0, \delta_i \ge 0$ are the **Lagrange multipliers**
+- The optimal solution gives the SVM classifier in the linearly non-separable scenario
