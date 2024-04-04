@@ -3465,3 +3465,85 @@ New formulation of SVM for linearly non-separable:
 	$$
   where $\alpha_i \ge 0, \delta_i \ge 0$ are the **Lagrange multipliers**
 - The optimal solution gives the SVM classifier in the linearly non-separable scenario
+** SVM for linearly non-separable
+11.2.3
+*** Linear SVM classification
+Question: how does SVM classifier estimate the coefficients $(\beta_0,\beta)$ when the training data are **linearly non-separable**?
+*** Optimization problem
+In the linearly non-separable problem, the SVM classifier solves the following optimization problem:
+Problem (P2): find the linear function $h(x) = \beta_0 + \beta^Tx$ and the slack variables $(\xi_1, ..., \xi_n)$ that minimizes the objective function
+$$
+\frac{1}{2}\parallel\beta\parallel^2 + C\sum^n_{i=1}\xi_i
+$$
+for some $C>0$ subject to the soft constraints
+$$
+Y_i(\beta_0+\beta^Tx_i)-1+\xi_i\ge0, ~ , \xi_i \ge 0, ~ \forall i=1,2,...,n
+$$
+How to solve this optimization problem?
+*** Constrained optimization
+- By {{{hl(Lagrange multipliers)}}}, we reformulate the constrained primal problem into unconstrained dual space with the objective function
+	$$
+	g=\frac{1} {2} \| \beta\|^{2}+C \sum_{i=1}^{n} \xi_{i}-\sum_{i=1}^{n} \alpha_{i} \big[ Y_{i} \big( \beta_{0}+\beta^{T} x_{i} \big)-1+\xi_{i} \big]-\sum_{i=1}^{n} \delta_{i} \xi_{i}
+	$$
+  where $\alpha_i\ge0, \delta_i\ge0$ are the Lagrange multipliers
+*** Derivatives on $(\beta_0,\beta)$
+$$
+g=\frac{1} {2} \| \beta\|^{2}+C \sum_{i=1}^{n} \xi_{i}-\sum_{i=1}^{n} \alpha_{i} \big[ Y_{i} \big( \beta_{0}+\beta^{T} x_{i} \big)-1+\xi_{i} \big]-\sum_{i=1}^{n} \delta_{i} \xi_{i}
+$$
+- Taking derivatives w.r.t. $(\beta_0,\beta)$ yields
+	$$
+	\frac{\partial g} {\partial\beta_{0}}=-\sum_{i=1}^{n} \alpha_{i} Y_{i} \,, \qquad\frac{\partial g} {\partial\beta}=\beta-\sum_{i=1}^{n} \alpha_{i} Y_{i} x_{i}
+	$$
+- Thus a local minimum must satisfy
+	$$
+	\sum_{i=1}^{n} \alpha_{i} Y_{i}=0 \quad{\text{and}} \ \ \beta=\sum_{i=1}^{n} \alpha_{i} Y_{i} x_{i}
+	$$
+  This is the same as those in the linearly separable scenario!
+*** Derivatives on $\xi_i$
+$$
+g=\frac{1} {2} \| \beta\|^{2}+C \sum_{i=1}^{n} \xi_{i}-\sum_{i=1}^{n} \alpha_{i} \big[ Y_{i} \big( \beta_{0}+\beta^{T} x_{i} \big)-1+\xi_{i} \big]-\sum_{i=1}^{n} \delta_{i} \xi_{i}
+$$
+- Taking derivatives w.r.t. $\xi_i$ yields
+  $$
+  \frac{\partial g}{\partial\xi_i} = C-\alpha_i-\delta_i
+  $$
+- Thus a local optimum satisfies $\alpha_i + \delta_i = C \forall i=1,2,...,n$
+- This leads to a crucial new constraint on $\alpha_i$ in the linearly non-separable scenario:
+  $$
+  0 \le \alpha_i \le C, ~ \forall i = 1, ..., n
+  $$
+*** New objective function?
+$$
+g=\frac{1} {2} \| \beta\|^{2}+C \sum_{i=1}^{n} \xi_{i}-\sum_{i=1}^{n} \alpha_{i} \big[ Y_{i} \big( \beta_{0}+\beta^{T} x_{i} \big)-1+\xi_{i} \big]-\sum_{i=1}^{n} \delta_{i} \xi_{i}
+$$
+- Putting the relation $\delta_i = C-\alpha_i \forall i=1,...,n$, the objective function is reduced to the form:
+	$$
+	g=\frac{1} {2} \| \beta\|^{2}-\sum_{i=1}^{n} \alpha_{i} \big[ Y_{i} \big( \beta_{0}+\beta^{T} x_{i} \big)-1 \big]
+	$$
+  which is the same as before in the linearly separable scenario
+- Plugging the fact $\beta=\sum^n_{o=1} \alpha_i Y_i x_i$ yields the dual space formulation
+*** Dual space formulation of SVM
+The dual space formulation of SVM in the linearly non-separable scenario:
+Problem (P3): Find the $\alpha_i$ that minimizes
+$$
+g=\frac{1} {2} \sum_{i=1}^{n} \sum_{j=1}^{n} \alpha_{i} \alpha_{j} Y_{i} Y_{j} x_{i}^{T} x_{j}-\sum_{i=1}^{n} \alpha_{i}
+$$
+subject to the two families of constraints
+$$
+\sum^n_{i=1} \alpha_i Y_i = 0 ~ \text{and} ~ 0 \le \alpha_i \le C, ~ \forall i=1,...,n
+$$
+- This is the same as those of of the linearly separable scenario, except that there is an upper bound $C$ on the $\alpha_i$
+- Quadratic programming algorithms can be used to solve the $\alpha_i$
+*** The SVM Classifier
+Once we determined the $\alpha_i$ for the linearly non-separable, we have
+- $\widehat{\beta} = \sum^n_{i=1} \alpha_i Y_i x_i$ and compute $\widehat{\beta_0} = Y_i - \widehat{\beta}^T x_i$ from margin support
+- Since most $\alpha_i$ are 0, the SVM classifier can be rewritten as
+  $$
+  \hat{Y} = \text{sign}(\hat{\beta_0}+\hat{\beta}^T x) = \text{sign}(\hat{\beta_0}+\sum^n_{i=1}\alpha_iY_ix_i^Tx) \\
+  = \text{sign}(\hat{\beta_0} + \sum^{|s|}_{j=1} \alpha_{s_j} Y_{s_j} x_{s_j}^T x) $$
+  if we eliminate non-zero terms
+- Only training data with $\alpha_i\ne0$ plays a role in the SVM classifier with either linearly separable or linearly non-separable scenarios
+*** Optional
+- KKT necessary condition
+- Three cases
+  [[./img/three-cases-final.png]]
