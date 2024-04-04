@@ -3397,3 +3397,22 @@ $$
 There are two scenarios:
 - Inequality scenario :: $Y_i (\beta_0 + \beta^T x_i) -1 + \xi_i \gt 0$ for {{{hl(all)}}} $\xi_i \ge 0$. The smallest slack variable $\xi_i =0$ and $Y_i(\beta_0 + \beta^T x_i)>1$
 - Equality scenario :: $Y_i(\beta_0 + \beta^T x_i) -1 + \xi_i = 0$ for {{{hl(some)}}} $\xi_i \ge 0$. Then, $Y_i(\beta_0+\beta^T x_i)=1-\xi_i$
+*** Equality scenario
+There are 3 subcases for equality scenario
+$$
+Y_i(\beta_0 + \beta^T x_i) -1 + \xi_i = 0
+$$
+depending on the values of slack variables $\xi_i \ge 0$:
+- Margin support vectors ($\xi_i=0$) :: we have $Y_i(\beta_0+\beta^T x_i) =1 ~ \text{i.e. } \beta_0+\beta^Tx_i=Y_i\in\pm1$
+- Non-margin support vectors ($0<\xi_i\le1$) :: we have $Y_i(\beta_0+\beta^Tx_i)=1-\xi_i\ge0 ~ \text{i.e. }Y_i=\text{sign }(\beta_0+\beta^Tx_i)$
+- Misclassification errors ($\xi_i\gt1$) :: since
+  $Y_i(\beta_0+\beta^T x_i)=1-\xi_i <0 ~ \text{i.e. } Y_i\ne \text{sign}(\beta_0+\beta^Tx_i)$
+*** Linearly non-separable scenarios
+[[./img/non-sep-types.png]]
+$Y_i(\beta_0+\beta^Tx_i)-1+\xi_i\ge0$
+*** Comparison of two scenarios
+Comparison of SVM classifier between linearly separable and linearly non-separable scenarios:
+- Hard constraint $Y_i(\beta_0+\beta^Tx_i)\ge 1$ is replaced by soft constraint $Y(\beta_0+\beta^Tx_i)-1+\xi_i\ge 0$ and $\xi_i\ge 0$
+- Perfect classification for training data is replaced by {{{hl(misclassification error)}}} for training data $\sum^n_{i=1}(\xi_i > 1)$
+- Mathematical formulation for SVM classifier in the {{{hl(linearly non-separable)}}} scenario needs to adjust the training error
+- Optimization algorithms are similar.
