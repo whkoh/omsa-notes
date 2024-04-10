@@ -11,6 +11,10 @@
 1. ISYE 6644: Simulation and Modeling for Engineering and Science
 * Fall 2023
 1. CSE 6242: Data & Visual Analytics
+* Spring 2024
+1. [[./cse_8803_anlp/index.html][CSE 8833: Applied NLP]]
+2. [[./isye_7406/index.html][ISYE 7406: Data Mining and Statistical Learning]]
 
-** Prep
+* Prep
 1. [[./no_bs/index.html][No BS Guide to Linear Algebra]]
+*
