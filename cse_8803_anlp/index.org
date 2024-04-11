@@ -1236,3 +1236,84 @@ and Encoder-Decoder architecture
 - This is {{{hl(additive attention)}}}, and is commonly used in sequence to sequence models like LSTM
 **** Other types of models
 - E.g. scaled dot product attention, self-attention (core of transformers, to be discussed later)
+* Week 12: Sequence Labelling: POS Tagging and Named Entity Recognition
+** POS Tagging
+Part of Speech Tagging
+- Assigning part of speech to a word in sentence.
+- Words can have more than 1 POS, e.g.
+  - Sitting: ADJ
+  - Sitting: VRB
+- Essential in NLP:
+  - Machine translation: need to reorder words in a phrase
+  - Text to speech: recognize the verb tense
+  - Automatic Speech Recognition: calculate the performance of transcription algorithm
+- ~nltk~ uses average perceptron tagger as of 2022, works very well
+  - Must calculate tokens / embeddings first, using OHE, word2vec, or other algorithm
+  - Initialize random weights for each category, e.g. Noun, Verb, etc.
+  - For each word, dot product is done against provided grammatical category vector in the problem
+  - G.C. vector has the **same size** as the word vector
+    - Highest score is thus predicted grammatical category
+  - If wrong when compared \rightarrow weights updated
+*** POS Tagging: Bert Model
+- Bert is encoder-based transformer model
+- Using Bert finetuned for POS task
+- Last names might not work well for pre-trained model, as the model has not encountered it during training
+- Might need to fine-tune for domain-specific task
+- Can also use encoder-decoder model
+  - Encoder-decoder models typically used for tasks where input and output models have {{{hl(different lengths)}}}, e.g. machine translation
+- In POS, input and output typically have the same length, so an encoder-decoder might be overcomputing.
+** Named Entity Recognition (NER)
+- Algorithms:
+  1. NER chunker, using maximum entropy model
+  2. BERT, language model based on encoder architecture
+- Sequence labelling task
+- Purpose of NER:
+*** Definition
+- Named entity: an abstract or physical real world object that can be given a proper name
+  - e.g. Georgia Tech, France, United Airlines
+  - often multi-word phrase
+- Named entity recognition: finding the part of a text containing NE, and attributing a tag to it.
+- Common tags:
+  - PER :: person
+  - LOC :: location
+  - ORG :: organization
+  - GPE :: geo-political entity
+  - non-entities :: dates, times, prices
+- Algorithms for NER:
+  - Sequence models e.g. RNN, Transformer
+  - Large Language models: BERT (fine-tuned)
+  - NE Chunker classifier: uses Maximum Entropy classifier
+*** NER challenges:
+- Segmentation: NER requires finding entities that are often multi-word phrases
+- Text ambiguity: meaning of a word/phrase can vary in different contexts
+  - E.g. Franklin can be a name of a city or a person
+*** IOB
+Possible tags:
+- B :: Beginning of NE
+- I :: Inside the NE
+- O :: Outside any NE
+Example: Mahdi B-PER Rooz I-PER visited O Florida B-LOC last O month O
+*** NER in NLTK
+- Use ~ne_chunk~
+  - If binary = true, entities are tagged as NE or O, otherwise it will show the category labels, e.g. PERSON
+*** NER with Transformer models
+- Both encoder and decoder.
+- E.g. finetuning a transformer architecture with attention
+- Can create a fine-tuned transformer with Keras to get better performance for our example
+- can choose datasets to train on according to testing sample
+- Steps for building and training transformer model
+  1. Preparing dataset by creating tags, e.g.
+     - iob_labels: B, I
+     - ner_labels: PER, ORG, MISC
+     - example tagging: [('Alex', 'B-PER')]
+  2. Create transformer architecture for NER and train on dataset: create the transformer block, token and position embeddings
+  3. Tokenizing text and converting it to Ids for the model
+  4. Compile and fit the model on training data
+  5. Testing results on example text
+- Might not perform well unless fine-tuned on dataset with similar words
+- Tricky to get models to recognize names every time
+- Encoder models are preferred, e.g. BERT. Uses masking in pretraining. Output can be combined with another classification layer for token classification
+- In encoder-decoder structure, we cannot tweak individual outputs easily, hence training encoder-decoders can be {{{hl(computationally expensive)}}}
+*** HuggingFace pre-trained BERT model
+- Specialized pre-training may still be necessary for this task
+- POS tagging is typically used in NER problem to improve its performance
