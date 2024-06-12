@@ -56,11 +56,11 @@ If the lines $l_1$ and $l_2$ are parallel and overlapping.
 The solution set can be a point, the empty set or a line.
 * Chapter 2: Intro to Linear Algebra
 Definitions and basic operations:
-- Set of n-dimensional vectors with real coefficients :: $\textbf{R}^n$
-- Vector $\vec{v} \in \textbf{R}^n$ :: n-tuple of real numbers
+- Set of n-dimensional vectors with real coefficients :: $\mathbb{R}^n$
+- Vector $\vec{v} \in \mathbb{R}^n$ :: n-tuple of real numbers
   - example: $\vec{v} \rightarrow^{def} (v_1, v_2, v_3)$
 - Components :: same as coordinates
-- Matrix, A :: $A \in \textbf{R}^{m\times n}$ is a rectangular array of real numbers with $m$ rows and $n$ columns
+- Matrix, A :: $A \in \mathbb{R}^{m\times n}$ is a rectangular array of real numbers with $m$ rows and $n$ columns
 ** Vector operations
 1. Addition $+$
 2. Subtraction $-$
@@ -120,17 +120,62 @@ Cumulative effect of applying $A^{-1}$ after $A$ is the identity matrix $\mathbb
 
 ** Overview of linear algebra
 - Functions :: transformations from an input space (i.e. domain) to an output space (i.e. image)
-- Linear transformation, T :: $T: \textbf{R}^n \rightarrow \textbf{R}^m$ is a function that takes $n$ -vectors as inputs and produces $m$ -vectors as outputs
-- Linear function T :: output $\vec{y} = T(\vec{x})$ (i.e. T applied to $\vec{x}$ can be computed as the matrix-vector product $A_T \vec{x}$ for some matrix $A_T \in \textbf{R}^{m\times n}$)
+- Linear transformation, T :: $T: \mathbb{R}^n \rightarrow \mathbb{R}^m$ is a function that takes $n$ -vectors as inputs and produces $m$ -vectors as outputs
+- Linear function T :: output $\vec{y} = T(\vec{x})$ (i.e. T applied to $\vec{x}$ can be computed as the matrix-vector product $A_T \vec{x}$ for some matrix $A_T \in \mathbb{R}^{m\times n}$)
   - T is represented by matrix $A_T$
-  - Equivalently: every matrix $A \in \textbf{R}^{m\times n}$ corresponds to linear transformation $T_A : \textbf{R}^n \rightarrow \textbf{R}^m$
+  - Equivalently: every matrix $A \in \mathbb{R}^{m\times n}$ corresponds to linear transformation $T_A : \mathbb{R}^n \rightarrow \mathbb{R}^m$
   - Hence, linear algebra is about vectors and linear transformations
 
 *** Correspondence between functions and linear transformations
-- function $f: \textbf{R} \rightarrow  \textbf{R}$ :: linear transformation $T_A: \textbf{R}^n \rightarrow \textbf{R}^m$ represented by matrix $A \in \textbf{R}^{m\times n}$
-- Input $x \in \textbf{R}$ :: input $\vec{x} \in \textbf{R}^n$
-- Output $f(x) \in \textbf{R}$ :: output $T_A(\vec{x}) = A \vec{x} \in \textbf{R}^m$
+- function $f: \mathbb{R} \rightarrow  \mathbb{R}$ :: linear transformation $T_A: \mathbb{R}^n \rightarrow \mathbb{R}^m$ represented by matrix $A \in \mathbb{R}^{m\times n}$
+- Input $x \in \mathbb{R}$ :: input $\vec{x} \in \mathbb{R}^n$
+- Output $f(x) \in \mathbb{R}$ :: output $T_A(\vec{x}) = A \vec{x} \in \mathbb{R}^m$
 - $g \circ f(x) = g(f(x))$ :: $T_B(T_A(\vec{x})) = BA\vec{x}$
 - Function inverse $f^{-1}$ :: matrix inverse $A^{-1}$
 - Roots of $f$ :: kernel of $T_A$ = null space of $A$ = $\mathcal{N}(A)$
 - Image of $f$ :: image of $T_A$ = column space of A = $\mathcal{C}(A)$
+
+** Vector operations again
+- Addition $\vec{u} + \vec{v}$ :: $(u_1 + v_1, u_2 + v_2, u_3 + v_3)$
+- Subtraction $\vec{u} - \vec{v}$ :: $(u_1 - v_1, u_2 - v_2, u_3 - v_3)b$
+- Scaling $\alpha \vec{u}$ :: $(\alpha u_1, \alpha u_2, \alpha u_3)$
+- Dot product $\vec{u} \cdot \vec{v}$ :: $u_1 v_1 + u_2 v_2 + u_3 v_3$
+- Cross product $\vec{u} \times \vec{v}$ :: $\left( u_2 v_3 - u_3 v_2, \; u_3 v_1 - u_1 v_3, \; u_1 v_2 - u_2 v_1 \right)$
+- Length $\| \vec{u} \|$ :: $\sqrt{u_1^2 + u_2^2 + u_3^2}$
+
+** Notation
+Set of real numbers is denoted $\mathbb{R}$.
+$n$ -dimensional real vector has $n$ real numbers in a bracket.
+$\mathbb{R}^3 == (\mathbb{R}, \mathbb{R}, \mathbb{R})$.
+Similarly, $\mathbb{R}^n$ denotes the set of $n$ -dimensional real vectors.
+
+Should keep track of *type signature* of operations i.e. the types of inputs and types of outputs.
+
+** Addition and subtraction
+
+\begin{equation}
++ : \mathbb{R}^n \times \mathbb{R}^n \rightarrow \mathbb{R}^n \\
+- : \mathbb{R}^n \times \mathbb{R}^n \rightarrow \mathbb{R}^n
+\\
+\vec{w} = \vec{u} \pm \vec{v} \iff w_i = u_i \pm v_i, \; \forall i \in [1, \ldots, n]
+\end{equation}
+
+** Scaling by a constant
+
+$$
+\text{scalar-mult} : \mathbb{R} \times \mathbb{R}^n \rightarrow \mathbb{R}^n
+\\
+\vec{w} = \alpha \vec{u} \iff w_i = \alpha u_i
+$$
+
+** Vector products
+i.e.: dot product and cross product
+
+*** Dot product
+For example:
+\begin{equation}
+\cdot : \mathbb{R}^3 \times \mathbb{R}^3 \rightarrow \mathbb{R} \\
+\vec{v} \cdot \vec{w} = v_x w_x + v_y w_y + v_z w_z \\
+\vec{v} \cdot \vec{w} = \| \vec{v} \| \| \vec{w} \| \cos(\varphi)
+
+\end{equation}
