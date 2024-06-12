@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-05-25 Sat 16:38 -->
+<!-- 2024-06-12 Wed 20:59 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>No BS Guide to Linear Algebra</title>
@@ -44,28 +44,35 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org74e56c4">1. Chapter 1: Math Fundamentals</a>
+<li><a href="#org54a7456">1. Chapter 1: Math Fundamentals</a>
 <ul>
-<li><a href="#org3ebd25f">1.1. Completing the square</a></li>
-<li><a href="#org5cea595">1.2. Quadratic formula</a></li>
-<li><a href="#orgd5f96fc">1.3. Golden ratio</a></li>
-<li><a href="#org5287edf">1.4. Solving systems of linear equations</a>
+<li><a href="#orged4a19c">1.1. Completing the square</a></li>
+<li><a href="#org01392d2">1.2. Quadratic formula</a></li>
+<li><a href="#org690c216">1.3. Golden ratio</a></li>
+<li><a href="#orgf213029">1.4. Solving systems of linear equations</a>
 <ul>
-<li><a href="#orgd1a7ca2">1.4.1. Geometric solution</a></li>
-<li><a href="#org661289a">1.4.2. Set notation</a></li>
-<li><a href="#org2d8973f">1.4.3. Conclusion</a></li>
+<li><a href="#org350c571">1.4.1. Geometric solution</a></li>
+<li><a href="#org46b3b56">1.4.2. Set notation</a></li>
+<li><a href="#org4e1dd64">1.4.3. Conclusion</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org4a0e84c">2. Chapter 2: Intro to Linear Algebra</a>
+<li><a href="#orgcc26c88">2. Chapter 2: Intro to Linear Algebra</a>
 <ul>
-<li><a href="#org58d4cdd">2.1. Vector operations</a></li>
-<li><a href="#orgaec20da">2.2. Matrix operations</a></li>
-<li><a href="#orgd7a41dc">2.3. Matrix-vector product</a>
+<li><a href="#org13df166">2.1. Vector operations</a></li>
+<li><a href="#org3e92a35">2.2. Matrix operations</a></li>
+<li><a href="#org295b21c">2.3. Matrix-vector product</a>
 <ul>
-<li><a href="#org98816b8">2.3.1. Dual interpretation of matrix-vector product</a></li>
-<li><a href="#orgc0758e9">2.3.2. Linear combinations as matrix products</a></li>
+<li><a href="#org657f010">2.3.1. Dual interpretation of matrix-vector product</a></li>
+<li><a href="#orge3dc6b1">2.3.2. Linear combinations as matrix products</a></li>
+<li><a href="#orgc495452">2.3.3. Linear transformations</a></li>
+<li><a href="#orge0057d1">2.3.4. Inverse</a></li>
+</ul>
+</li>
+<li><a href="#orgbdadd46">2.4. Overview of linear algebra</a>
+<ul>
+<li><a href="#org9f289ff">2.4.1. Correspondence between functions and linear transformations</a></li>
 </ul>
 </li>
 </ul>
@@ -73,12 +80,12 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org74e56c4" class="outline-2">
-<h2 id="org74e56c4"><span class="section-number-2">1.</span> Chapter 1: Math Fundamentals</h2>
+<div id="outline-container-org54a7456" class="outline-2">
+<h2 id="org54a7456"><span class="section-number-2">1.</span> Chapter 1: Math Fundamentals</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org3ebd25f" class="outline-3">
-<h3 id="org3ebd25f"><span class="section-number-3">1.1.</span> Completing the square</h3>
+<div id="outline-container-orged4a19c" class="outline-3">
+<h3 id="orged4a19c"><span class="section-number-3">1.1.</span> Completing the square</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li>Rewrite any quadratic expression \(x^2 + BX + C\) as perfect square + some correction factor, i.e. \((x+p)^2 + k\).</li>
@@ -86,8 +93,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org5cea595" class="outline-3">
-<h3 id="org5cea595"><span class="section-number-3">1.2.</span> Quadratic formula</h3>
+<div id="outline-container-org01392d2" class="outline-3">
+<h3 id="org01392d2"><span class="section-number-3">1.2.</span> Quadratic formula</h3>
 <div class="outline-text-3" id="text-1-2">
 <ul class="org-ul">
 <li>\(x = \frac{-b\pm \sqrt{b^2-4ac}}{2a}\)</li>
@@ -95,8 +102,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd5f96fc" class="outline-3">
-<h3 id="orgd5f96fc"><span class="section-number-3">1.3.</span> Golden ratio</h3>
+<div id="outline-container-org690c216" class="outline-3">
+<h3 id="org690c216"><span class="section-number-3">1.3.</span> Golden ratio</h3>
 <div class="outline-text-3" id="text-1-3">
 <ul class="org-ul">
 <li>\(x^2-x-1=0\)</li>
@@ -105,8 +112,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org5287edf" class="outline-3">
-<h3 id="org5287edf"><span class="section-number-3">1.4.</span> Solving systems of linear equations</h3>
+<div id="outline-container-orgf213029" class="outline-3">
+<h3 id="orgf213029"><span class="section-number-3">1.4.</span> Solving systems of linear equations</h3>
 <div class="outline-text-3" id="text-1-4">
 <ul class="org-ul">
 <li>Examples
@@ -126,8 +133,8 @@
 More advanced techniques will be covered in chapter 3.
 </p>
 </div>
-<div id="outline-container-orgd1a7ca2" class="outline-4">
-<h4 id="orgd1a7ca2"><span class="section-number-4">1.4.1.</span> Geometric solution</h4>
+<div id="outline-container-org350c571" class="outline-4">
+<h4 id="org350c571"><span class="section-number-4">1.4.1.</span> Geometric solution</h4>
 <div class="outline-text-4" id="text-1-4-1">
 <p>
 Solving system of 2 linear equations in 2 unknowns is equivalent geometrically to finding the point of intersection between 2 lines in the Cartesian plane.
@@ -156,15 +163,15 @@ Hence, the geometric approach is to:
 </ol>
 </div>
 </div>
-<div id="outline-container-org661289a" class="outline-4">
-<h4 id="org661289a"><span class="section-number-4">1.4.2.</span> Set notation</h4>
+<div id="outline-container-org46b3b56" class="outline-4">
+<h4 id="org46b3b56"><span class="section-number-4">1.4.2.</span> Set notation</h4>
 <div class="outline-text-4" id="text-1-4-2">
 <p>
 And its use in defining possible cases when solving system of 2 linear equations in 2 unknowns
 </p>
 </div>
 <ol class="org-ol">
-<li><a id="orgf466c88"></a>One solution<br />
+<li><a id="orgc15853a"></a>One solution<br />
 <div class="outline-text-5" id="text-1-4-2-1">
 <p>
 Lines \(l_1\) and \(l_2\) are non-parallel and intersect at a point.
@@ -174,7 +181,7 @@ Lines \(l_1\) and \(l_2\) are non-parallel and intersect at a point.
 </p>
 </div>
 </li>
-<li><a id="orgbca9ce7"></a>No solution<br />
+<li><a id="orgdc30029"></a>No solution<br />
 <div class="outline-text-5" id="text-1-4-2-2">
 <p>
 Lines \(l_1\) and \(l_2\) are parallel and never intersect.
@@ -184,7 +191,7 @@ Lines \(l_1\) and \(l_2\) are parallel and never intersect.
 </p>
 </div>
 </li>
-<li><a id="orgc44c5ee"></a>Infinitely many solutions<br />
+<li><a id="org05f1d43"></a>Infinitely many solutions<br />
 <div class="outline-text-5" id="text-1-4-2-3">
 <p>
 If the lines \(l_1\) and \(l_2\) are parallel and overlapping.
@@ -193,8 +200,8 @@ If the lines \(l_1\) and \(l_2\) are parallel and overlapping.
 </li>
 </ol>
 </div>
-<div id="outline-container-org2d8973f" class="outline-4">
-<h4 id="org2d8973f"><span class="section-number-4">1.4.3.</span> Conclusion</h4>
+<div id="outline-container-org4e1dd64" class="outline-4">
+<h4 id="org4e1dd64"><span class="section-number-4">1.4.3.</span> Conclusion</h4>
 <div class="outline-text-4" id="text-1-4-3">
 <p>
 The solution set can be a point, the empty set or a line.
@@ -203,15 +210,24 @@ The solution set can be a point, the empty set or a line.
 </div>
 </div>
 </div>
-<div id="outline-container-org4a0e84c" class="outline-2">
-<h2 id="org4a0e84c"><span class="section-number-2">2.</span> Chapter 2: Intro to Linear Algebra</h2>
+<div id="outline-container-orgcc26c88" class="outline-2">
+<h2 id="orgcc26c88"><span class="section-number-2">2.</span> Chapter 2: Intro to Linear Algebra</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-Definitions and basic operations
+Definitions and basic operations:
 </p>
+<dl class="org-dl">
+<dt>Set of n-dimensional vectors with real coefficients</dt><dd>\(\textbf{R}^n\)</dd>
+<dt>Vector \(\vec{v} \in \textbf{R}^n\)</dt><dd>n-tuple of real numbers
+<ul class="org-ul">
+<li>example: \(\vec{v} \rightarrow^{def} (v_1, v_2, v_3)\)</li>
+</ul></dd>
+<dt>Components</dt><dd>same as coordinates</dd>
+<dt>Matrix, A</dt><dd>\(A \in \textbf{R}^{m\times n}\) is a rectangular array of real numbers with \(m\) rows and \(n\) columns</dd>
+</dl>
 </div>
-<div id="outline-container-org58d4cdd" class="outline-3">
-<h3 id="org58d4cdd"><span class="section-number-3">2.1.</span> Vector operations</h3>
+<div id="outline-container-org13df166" class="outline-3">
+<h3 id="org13df166"><span class="section-number-3">2.1.</span> Vector operations</h3>
 <div class="outline-text-3" id="text-2-1">
 <ol class="org-ol">
 <li>Addition \(+\)</li>
@@ -222,8 +238,8 @@ Definitions and basic operations
 </ol>
 </div>
 </div>
-<div id="outline-container-orgaec20da" class="outline-3">
-<h3 id="orgaec20da"><span class="section-number-3">2.2.</span> Matrix operations</h3>
+<div id="outline-container-org3e92a35" class="outline-3">
+<h3 id="org3e92a35"><span class="section-number-3">2.2.</span> Matrix operations</h3>
 <div class="outline-text-3" id="text-2-2">
 <ol class="org-ol">
 <li>Addition (\(A + B\))</li>
@@ -237,8 +253,8 @@ Definitions and basic operations
 </ol>
 </div>
 </div>
-<div id="outline-container-orgd7a41dc" class="outline-3">
-<h3 id="orgd7a41dc"><span class="section-number-3">2.3.</span> Matrix-vector product</h3>
+<div id="outline-container-org295b21c" class="outline-3">
+<h3 id="org295b21c"><span class="section-number-3">2.3.</span> Matrix-vector product</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 For matrix \(A \in \mathbb{R}^{m\times n}\) and the vector \(\vec{v}\in \mathbb{R}^n\).
@@ -253,8 +269,8 @@ E.g.: \(\vec{y} = A \vec{x}\)
 </p>
 </div>
 
-<div id="outline-container-org98816b8" class="outline-4">
-<h4 id="org98816b8"><span class="section-number-4">2.3.1.</span> Dual interpretation of matrix-vector product</h4>
+<div id="outline-container-org657f010" class="outline-4">
+<h4 id="org657f010"><span class="section-number-4">2.3.1.</span> Dual interpretation of matrix-vector product</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <ul class="org-ul">
 <li>Row picture: single vector with all operations in them. Compute the dot product of the vector with each of the rows of matrix \(A\)</li>
@@ -263,15 +279,106 @@ E.g.: \(\vec{y} = A \vec{x}\)
 </div>
 </div>
 
-<div id="outline-container-orgc0758e9" class="outline-4">
-<h4 id="orgc0758e9"><span class="section-number-4">2.3.2.</span> Linear combinations as matrix products</h4>
+<div id="outline-container-orge3dc6b1" class="outline-4">
+<h4 id="orge3dc6b1"><span class="section-number-4">2.3.2.</span> Linear combinations as matrix products</h4>
+<div class="outline-text-4" id="text-2-3-2">
+<p>
+For a set of vectors \(\{\vec{e_1}, \vec{e_2}\}\), and a third vector \(\vec{y}\) that is a <b><b>linear combination</b></b> of the vectors \(\vec{e_1}\) and \(\vec{e_2}\):
+</p>
+
+<p>
+\[
+\vec{y} = \alpha \vec{e_1} + \beta \vec{e_2}
+\]
+</p>
+
+<p>
+The numbers \(\alpha, \beta \in \mathbb{R}\) are the coefficients in this linear combination.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc495452" class="outline-4">
+<h4 id="orgc495452"><span class="section-number-4">2.3.3.</span> Linear transformations</h4>
+<div class="outline-text-4" id="text-2-3-3">
+<p>
+Matrix-vector product corresponds to the idea of a <b><b>linear transformation</b></b>.
+</p>
+
+<p>
+Multiplication by a matrix \(A \in \mathbb{R}^{m\times n}\) is the same as computing a linear transformation \(T_A\) that takes \(n\) -vectors as inputs and produces \(m\) -vectors as outputs:
+</p>
+
+<p>
+\[
+T_A : \mathbb{R}^n \rightarrow \mathbb{R}^m
+\]
+</p>
+
+<p>
+Instead of writing \(\vec{y} = T_A (\vec{x})\) we can just write \(\vec{y} = A \vec{x}\). The result of matrix vector product is an \(m\) -vector (as \(A\) matrix has \(m\) rows).
+</p>
+
+<p>
+\(T_A\) is represented by the matrix \(A\).
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge0057d1" class="outline-4">
+<h4 id="orge0057d1"><span class="section-number-4">2.3.4.</span> Inverse</h4>
+<div class="outline-text-4" id="text-2-3-4">
+<p>
+For a square and invertible matrix \(A\), there exists an inverse matrix \(A^{-1}\) that <b>undoes</b> the effect of \(A\) to restore the original input vector.
+</p>
+
+<p>
+\[
+A^{-1} (A\vec{x}) = A^{-1} A\vec{x} = \vec{x}
+\]
+</p>
+
+<p>
+Cumulative effect of applying \(A^{-1}\) after \(A\) is the identity matrix \(\mathbb{I}\), where \(\mathbb{I} \vec{x} = \vec{x}\) for any vector \(\vec{x}\).
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbdadd46" class="outline-3">
+<h3 id="orgbdadd46"><span class="section-number-3">2.4.</span> Overview of linear algebra</h3>
+<div class="outline-text-3" id="text-2-4">
+<dl class="org-dl">
+<dt>Functions</dt><dd>transformations from an input space (i.e. domain) to an output space (i.e. image)</dd>
+<dt>Linear transformation, T</dt><dd>\(T: \textbf{R}^n \rightarrow \textbf{R}^m\) is a function that takes \(n\) -vectors as inputs and produces \(m\) -vectors as outputs</dd>
+<dt>Linear function T</dt><dd>output \(\vec{y} = T(\vec{x})\) (i.e. T applied to \(\vec{x}\) can be computed as the matrix-vector product \(A_T \vec{x}\) for some matrix \(A_T \in \textbf{R}^{m\times n}\))
+<ul class="org-ul">
+<li>T is represented by matrix \(A_T\)</li>
+<li>Equivalently: every matrix \(A \in \textbf{R}^{m\times n}\) corresponds to linear transformation \(T_A : \textbf{R}^n \rightarrow \textbf{R}^m\)</li>
+<li>Hence, linear algebra is about vectors and linear transformations</li>
+</ul></dd>
+</dl>
+</div>
+
+<div id="outline-container-org9f289ff" class="outline-4">
+<h4 id="org9f289ff"><span class="section-number-4">2.4.1.</span> Correspondence between functions and linear transformations</h4>
+<div class="outline-text-4" id="text-2-4-1">
+<dl class="org-dl">
+<dt>function \(f: \textbf{R} \rightarrow  \textbf{R}\)</dt><dd>linear transformation \(T_A: \textbf{R}^n \rightarrow \textbf{R}^m\) represented by matrix \(A \in \textbf{R}^{m\times n}\)</dd>
+<dt>Input \(x \in \textbf{R}\)</dt><dd>input \(\vec{x} \in \textbf{R}^n\)</dd>
+<dt>Output \(f(x) \in \textbf{R}\)</dt><dd>output \(T_A(\vec{x}) = A \vec{x} \in \textbf{R}^m\)</dd>
+<dt>\(g \circ f(x) = g(f(x))\)</dt><dd>\(T_B(T_A(\vec{x})) = BA\vec{x}\)</dd>
+<dt>Function inverse \(f^{-1}\)</dt><dd>matrix inverse \(A^{-1}\)</dd>
+<dt>Roots of \(f\)</dt><dd>kernel of \(T_A\) = null space of \(A\) = \(\mathcal{N}(A)\)</dd>
+</dl>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: W</p>
-<p class="date">Created: 2024-05-25 Sat 16:38</p>
+<p class="date">Created: 2024-06-12 Wed 20:59</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -55,7 +55,12 @@ If the lines $l_1$ and $l_2$ are parallel and overlapping.
 *** Conclusion
 The solution set can be a point, the empty set or a line.
 * Chapter 2: Intro to Linear Algebra
-Definitions and basic operations
+Definitions and basic operations:
+- Set of n-dimensional vectors with real coefficients :: $\textbf{R}^n$
+- Vector $\vec{v} \in \textbf{R}^n$ :: n-tuple of real numbers
+  - example: $\vec{v} \rightarrow^{def} (v_1, v_2, v_3)$
+- Components :: same as coordinates
+- Matrix, A :: $A \in \textbf{R}^{m\times n}$ is a rectangular array of real numbers with $m$ rows and $n$ columns
 ** Vector operations
 1. Addition $+$
 2. Subtraction $-$
@@ -83,3 +88,49 @@ E.g.: $\vec{y} = A \vec{x}$
 - Column picture: multiply each cell of the vector with each column of the matrix. _i.e._, $\vec{y}$ is a linear combination of the columns of $A$.
 
 *** Linear combinations as matrix products
+For a set of vectors $\{\vec{e_1}, \vec{e_2}\}$, and a third vector $\vec{y}$ that is a **linear combination** of the vectors $\vec{e_1}$ and $\vec{e_2}$:
+
+$$
+\vec{y} = \alpha \vec{e_1} + \beta \vec{e_2}
+$$
+
+The numbers $\alpha, \beta \in \mathbb{R}$ are the coefficients in this linear combination.
+
+*** Linear transformations
+Matrix-vector product corresponds to the idea of a **linear transformation**.
+
+Multiplication by a matrix $A \in \mathbb{R}^{m\times n}$ is the same as computing a linear transformation $T_A$ that takes $n$ -vectors as inputs and produces $m$ -vectors as outputs:
+
+$$
+T_A : \mathbb{R}^n \rightarrow \mathbb{R}^m
+$$
+
+Instead of writing $\vec{y} = T_A (\vec{x})$ we can just write $\vec{y} = A \vec{x}$. The result of matrix vector product is an $m$ -vector (as $A$ matrix has $m$ rows).
+
+$T_A$ is represented by the matrix $A$.
+
+*** Inverse
+For a square and invertible matrix $A$, there exists an inverse matrix $A^{-1}$ that *undoes* the effect of $A$ to restore the original input vector.
+
+$$
+A^{-1} (A\vec{x}) = A^{-1} A\vec{x} = \vec{x}
+$$
+
+Cumulative effect of applying $A^{-1}$ after $A$ is the identity matrix $\mathbb{I}$, where $\mathbb{I} \vec{x} = \vec{x}$ for any vector $\vec{x}$.
+
+** Overview of linear algebra
+- Functions :: transformations from an input space (i.e. domain) to an output space (i.e. image)
+- Linear transformation, T :: $T: \textbf{R}^n \rightarrow \textbf{R}^m$ is a function that takes $n$ -vectors as inputs and produces $m$ -vectors as outputs
+- Linear function T :: output $\vec{y} = T(\vec{x})$ (i.e. T applied to $\vec{x}$ can be computed as the matrix-vector product $A_T \vec{x}$ for some matrix $A_T \in \textbf{R}^{m\times n}$)
+  - T is represented by matrix $A_T$
+  - Equivalently: every matrix $A \in \textbf{R}^{m\times n}$ corresponds to linear transformation $T_A : \textbf{R}^n \rightarrow \textbf{R}^m$
+  - Hence, linear algebra is about vectors and linear transformations
+
+*** Correspondence between functions and linear transformations
+- function $f: \textbf{R} \rightarrow  \textbf{R}$ :: linear transformation $T_A: \textbf{R}^n \rightarrow \textbf{R}^m$ represented by matrix $A \in \textbf{R}^{m\times n}$
+- Input $x \in \textbf{R}$ :: input $\vec{x} \in \textbf{R}^n$
+- Output $f(x) \in \textbf{R}$ :: output $T_A(\vec{x}) = A \vec{x} \in \textbf{R}^m$
+- $g \circ f(x) = g(f(x))$ :: $T_B(T_A(\vec{x})) = BA\vec{x}$
+- Function inverse $f^{-1}$ :: matrix inverse $A^{-1}$
+- Roots of $f$ :: kernel of $T_A$ = null space of $A$ = $\mathcal{N}(A)$
+- Image of $f$ :: image of $T_A$ = column space of A = $\mathcal{C}(A)$
