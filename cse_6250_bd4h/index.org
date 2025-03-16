@@ -1,0 +1,270 @@
+#+AUTHOR: W
+#+SETUPFILE:/Users/whkoh/git-repos/org-html-themes/org/theme-readtheorg-local-parent.setup
+#+TITLE: BD4H
+* Introduction to Big Data
+** Introduction
+   - Course: Big Data Analytics for Healthcare (BDAH)
+   - Instructor: Jimeng Sun, associate professor at Georgia Tech
+   - Background: Expertise in healthcare analytics and data mining, previous work at IBM TJ Watson Research Center
+   - Course focus: What students will learn and why it matters
+
+** About BDAH
+   - Intersection of healthcare and big data
+   - Covers healthcare applications, data, analytics, and big data processing
+   - Focus on how data science is applied to healthcare
+
+** Learning Goals
+   - Understand healthcare data
+   - Learn analytics algorithms
+   - Work with big data systems
+   - Application: Build models for disease risk prediction, treatment recommendation, patient clustering, and similarity analysis
+   - Assessments: Homework using big data tools, project with system building, report writing, and presentations
+
+** Current Problems in Healthcare
+   - High costs: $3.8 trillion/year in the U.S.
+   - Massive waste: $765 billion/year
+   - Poor quality: 200,000-400,000 preventable deaths annually
+   - Preventable deaths ranked as the third leading cause of death
+   - Hope: Big data can improve care and reduce costs
+
+** The Four Vs
+   - Volume: Large healthcare data amounts
+   - Variety: Different types of healthcare data sources
+   - Velocity: Real-time data processing needs
+   - Veracity: Issues with data quality (noise, missing data, errors)
+
+** More About The Four Vs
+   - Examples of data volume:
+     - Genomic data: 200 GB per genome
+     - fMRI scan: ~300 GB per scan
+     - US medical imaging data per year: ~100 petabytes
+   - Data variety:
+     - Clinical (demographics, diagnosis, procedures, etc.)
+     - Patient-generated (wearables, sensors)
+     - Real-time (ICU monitoring data)
+   - Focus on managing diverse data types in the course
+
+** Data Science is Sexy
+   - Data science is a critical field
+   - Harvard Business Review: "Data Scientist, The Sexiest Job in the 21st Century"
+   - Data scientists:
+     - Capitalize on big data
+     - Overcome technical limitations
+     - Develop key tools like Hadoop and Spark
+
+** BDAH Quiz 1 Question
+   - True/False: A graduate-level degree is necessary to become a data scientist.
+
+** BDAH Quiz 1 Solution
+   - Answer: True
+
+** BDAH Quiz 2 Question
+   - Question: What is the average salary of a data scientist?
+
+** BDAH Quiz 2 Solution
+   - Answer: $120,000 per year (experienced data scientists earn over $150,000)
+
+** BDAH Quiz 3 Question
+   - Question: What skills do data scientists need?
+
+** BDAH Quiz 3 Solution
+   - Answer:
+     - Math and statistics
+     - Domain knowledge
+     - Programming and databases
+     - Communication and visualization
+
+* Big Data Course Overview
+** Introduction to Course Overview
+   - Overview of big data analytics for healthcare.
+   - Topics covered:
+     - Healthcare applications of big data.
+     - Algorithms used in applications.
+     - Software systems for implementation.
+   - Course structure alternates among these topics.
+
+** Big Data Big Picture
+   - Course focuses on three key areas:
+     - Big data systems.
+     - Scalable machine learning algorithms.
+     - Healthcare applications.
+   - Integration of these elements to solve healthcare problems.
+
+** Healthcare Applications
+   - Three types of healthcare applications:
+     1. **Predictive Modeling**: Uses historical data to predict future outcomes.
+     2. **Computational Phenotyping**: Converts electronic health records (EHRs) into meaningful clinical concepts.
+     3. **Patient Similarity**: Identifies groups of patients with similar characteristics.
+   - Starts with predictive modeling.
+
+** Predictive Modeling Quiz Question
+   - Predictive modeling example: predicting treatment effectiveness for epilepsy patients.
+   - Quiz: Estimate percentage of patients responding to different treatments.
+
+** Predictive Modeling Quiz Solution
+   - Solution breakdown:
+     - **Group A** (responded within 2 years): 32%.
+     - **Group B** (responded between 2-5 years): 24%.
+     - **Group C** (did not respond after 5 years): 44%.
+   - Goal of predictive modeling:
+     - Improve early response rates.
+     - Identify non-responders for alternative treatments.
+
+** Predictive Modeling Challenges
+   - Challenges in predictive modeling:
+     - Handling large patient datasets with various types of data.
+     - Managing multiple models in a complex computational pipeline.
+     - Evaluating and comparing multiple predictive pipelines.
+
+** Computational Phenotyping
+   - Converts raw patient data (e.g., demographics, diagnoses, medications, procedures, lab tests, clinical notes) into clinical concepts or phenotypes.
+
+** Computational Phenotyping Quiz Question
+   - Identifying data issues in phenotyping.
+   - Quiz: List potential "waste products" in raw data.
+
+** Computational Phenotyping Quiz Solution
+   - Common data issues:
+     - **Missing values**: Some important data may be absent.
+     - **Duplicates**: Patient records may appear multiple times.
+     - **Irrelevant data**: Not all raw information is useful.
+     - **Redundant information**: Different records may indicate the same condition (e.g., diagnosis and medication for diabetes).
+
+** Phenotyping Algorithm
+   - Example: Identifying Type 2 Diabetes from EHR data.
+   - Decision process:
+     - Check for Type 1 Diabetes diagnosis.
+     - Check for Type 2 Diabetes diagnosis.
+     - Verify medication records and abnormal lab results.
+   - Importance:
+     - EHR data is often unreliable.
+     - Multiple data sources improve diagnostic accuracy.
+
+** Patient Similarity Quiz Question
+   - Different types of reasoning doctors use:
+     - Flowchart-based reasoning (like phenotyping algorithms).
+     - Instinct and intuition.
+     - Case-based reasoning (comparing patients to past cases).
+
+** Patient Similarity Quiz Solution
+   - Correct answer: **Case-based reasoning**.
+   - Doctors often compare current patients to previous similar cases.
+
+** Patient Similarity
+   - Simulating case-based reasoning using algorithms.
+   - Process:
+     - Search for similar patients in a database.
+     - Identify treatment outcomes for similar cases.
+     - Recommend best treatment based on historical data.
+   - Objective: Utilize full database knowledge instead of relying on a single doctor's experience.
+
+** Algorithms
+   - Introduction to machine learning algorithms in healthcare.
+   - Covered topics:
+     1. **Classification**: Mapping patient data to target variables (e.g., predicting heart attack risk).
+     2. **Clustering**: Grouping similar patients based on health conditions.
+     3. **Dimensionality Reduction**: Reducing large patient datasets to essential features.
+     4. **Graph Analysis**: Analyzing relationships between patients and diseases.
+
+** Systems
+   - Introduction to big data systems for healthcare applications.
+   - Covered systems:
+     - **Hadoop**: Disk-based distributed system.
+     - **Spark**: In-memory distributed system (faster than Hadoop).
+   - Topics include:
+     - Hadoop infrastructure (MapReduce, HDFS, Pig, Hive, HBase).
+     - Spark infrastructure (Spark SQL, Spark Streaming, MLlib, GraphX).
+
+** Summary
+   - Recap of three key areas:
+     - Healthcare applications.
+     - Machine learning algorithms.
+     - Big data systems.
+   - Course integrates these areas:
+     - Example: Using logistic regression on Hadoop to predict heart failure.
+   - Next step: Begin applying concepts.
+
+
+* Predictive Modeling
+* MapReduce
+* Classification Model Metrics
+** Predictive Model review
+- Predictive model :: mapping function between model inputs and outputs (pred's)
+- Model metrics :: needed to know how well they're performing
+** Confusion matrix
+- True positive/negative also known as "Condition" positive/negative
+- Predicted positive/negative also known as "Prediction Outcome" positive/negative
+** Accuracy metrics
+All divided by ground truth values.
+- Accuracy :: (TP+TN)/TP. Not most useful for imbalanced class
+- True positive rate :: TP/CP (Sensitivity, Recall)
+- False positive rate :: FP/CN
+- False negative :: FN/CP
+- True negative rate :: TN/CN (Specificity)
+*** Other notes
+- FP is a type I error.
+- FN is a type II error.
+- Hard to perform well on all metrics
+- Important to choose the right metrics
+** Predictive metrics
+All divided by prediction outcomes.
+- Prevalence :: CP/Total population. How likely disease occurs in population
+- Positive predictive value (Precision) :: TP/Pred outcome positive.
+- False discovery rate :: FP/Pred outcome positive
+- Negative predictive value :: TN/Pred outcome negative
+- False omission rate :: FN/Pred outcome negative
+** F1 score
+Harmonic mean of PPV and TPR
+$$
+F_1 = 2 \times \frac{PPV \times TPR}{PPV + TPR}
+$$
+** Classifier quiz
+Which is the best classifier?
+- Highest F1, PPV and Accuracy is the best classifier
+** Reversing predictions
+It's always possible to reverse the predictions so 0.21 might perform better than 0.69/0.50.
+** Receiver operating characteristic
+- Predictive models generally output continuous score.
+- Threshold is needed as precision bound to force to a certain category
+- ROC provides a way to compare performance of classifiers as the decision boundary is varied
+- ROC curve is the plot of TP rate vs FP rate at various threshold values
+  - We sort by prediction score (highest first)
+  - Use prediction score as threshold values
+  - Plot on the chart and see how many are misclassified (needs True value to be known)
+- AUROC does not depend on the choice of threshold.
+- AUROC is the most popular metric for classification
+** "Best classifier threshold" quiz
+- There isn't a standard answer, it depends on whether TP, TN or other metric is prioritized
+** Regression metrics
+- MAE :: average of absolute errors, harder to work with since the absolute value is not differentiable
+- MSE :: average of squared errors, easier to work with as the derivative of squared term is linear. Increases a lot faster than MAE
+- $R^2$ :: bounded by $(-\infty,1)$. AKA coefficient of determination.
+*** $R^2$
+$$
+R^2 = 1-\frac{\sum_i (y_i - \hat{y}_i)^2}{\sum_i(y_i - \bar{y})^2}
+$$
+i.e. 1-MSE/Variance
+
+Negative $R^2$ values means they perform worse than a simple average of raw data.
+As noise increases, $R^2$ decreases.
+* Ensemble methods
+** Introduction to ensemble methods
+- Algorithms used in Big Data, e.g. SGD
+- Ensemble methods
+- Bias, variance, tradeoff
+- Bagging
+- Boosting
+** Gradient descent for classification
+- Basic optimization method
+- Procedure for gradient descent
+  1. Training dataset $D$ has $n$ pairs of $(x,y)$ data points
+  2. Outputs are some parameters
+  3. Find joint probability / likelihood $P(D|\theta)$
+  4. Find gradient g = $dp(D|\theta)\over d\theta$
+  5. Update gradient
+
+Notes:
+- Other methods can be used as long as gradient can be calculated.
+- These can even be put in as "black box" inputs (by just plugging in the gradient computation as the function)
+** GDM for linear regression
+-
