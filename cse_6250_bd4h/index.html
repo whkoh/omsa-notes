@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-03-16 Sun 22:57 -->
+<!-- 2025-03-16 Sun 23:09 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>BD4H</title>
@@ -44,83 +44,105 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org3775ad6">1. Introduction to Big Data</a>
+<li><a href="#org761b3f6">1. Introduction to Big Data</a>
 <ul>
-<li><a href="#orgaa1a2d2">1.1. Introduction</a></li>
-<li><a href="#orge9396cc">1.2. About BDAH</a></li>
-<li><a href="#orgc0ec6c8">1.3. Learning Goals</a></li>
-<li><a href="#org3a57816">1.4. Current Problems in Healthcare</a></li>
-<li><a href="#org208b393">1.5. The Four Vs</a></li>
-<li><a href="#org56b618d">1.6. More About The Four Vs</a></li>
-<li><a href="#org92c8dc9">1.7. Data Science is Sexy</a></li>
-<li><a href="#org9ae3290">1.8. BDAH Quiz 1 Question</a></li>
-<li><a href="#orgc658a5a">1.9. BDAH Quiz 1 Solution</a></li>
-<li><a href="#org28984bc">1.10. BDAH Quiz 2 Question</a></li>
-<li><a href="#org090591b">1.11. BDAH Quiz 2 Solution</a></li>
-<li><a href="#orgb2d8d04">1.12. BDAH Quiz 3 Question</a></li>
-<li><a href="#orgdfffadd">1.13. BDAH Quiz 3 Solution</a></li>
+<li><a href="#org40afbef">1.1. Introduction</a></li>
+<li><a href="#org6315357">1.2. About BDAH</a></li>
+<li><a href="#org9f98691">1.3. Learning Goals</a></li>
+<li><a href="#org4afac30">1.4. Current Problems in Healthcare</a></li>
+<li><a href="#org12573ed">1.5. The Four Vs</a></li>
+<li><a href="#org77c1c69">1.6. More About The Four Vs</a></li>
+<li><a href="#org18081b2">1.7. Data Science is Sexy</a></li>
+<li><a href="#org8fd58f7">1.8. BDAH Quiz 1 Question</a></li>
+<li><a href="#orgc97a6e5">1.9. BDAH Quiz 1 Solution</a></li>
+<li><a href="#org12d3da9">1.10. BDAH Quiz 2 Question</a></li>
+<li><a href="#org9e429c6">1.11. BDAH Quiz 2 Solution</a></li>
+<li><a href="#org3027864">1.12. BDAH Quiz 3 Question</a></li>
+<li><a href="#org306fc31">1.13. BDAH Quiz 3 Solution</a></li>
 </ul>
 </li>
-<li><a href="#org8cd24be">2. Big Data Course Overview</a>
+<li><a href="#org26136d6">2. Big Data Course Overview</a>
 <ul>
-<li><a href="#orgf73043f">2.1. Introduction to Course Overview</a></li>
-<li><a href="#org4f7fc9c">2.2. Big Data Big Picture</a></li>
-<li><a href="#org2e9608b">2.3. Healthcare Applications</a></li>
-<li><a href="#org9acc207">2.4. Predictive Modeling Quiz Question</a></li>
-<li><a href="#org31f54f3">2.5. Predictive Modeling Quiz Solution</a></li>
-<li><a href="#org87b8278">2.6. Predictive Modeling Challenges</a></li>
-<li><a href="#orgcfb7b58">2.7. Computational Phenotyping</a></li>
-<li><a href="#org693916e">2.8. Computational Phenotyping Quiz Question</a></li>
-<li><a href="#org2934d0b">2.9. Computational Phenotyping Quiz Solution</a></li>
-<li><a href="#orgb7eb73c">2.10. Phenotyping Algorithm</a></li>
-<li><a href="#orgf9e56ac">2.11. Patient Similarity Quiz Question</a></li>
-<li><a href="#org65b41b4">2.12. Patient Similarity Quiz Solution</a></li>
-<li><a href="#org9717ee6">2.13. Patient Similarity</a></li>
-<li><a href="#org1bfe185">2.14. Algorithms</a></li>
-<li><a href="#org038c960">2.15. Systems</a></li>
-<li><a href="#org59dd060">2.16. Summary</a></li>
+<li><a href="#org9dc74d1">2.1. Introduction to Course Overview</a></li>
+<li><a href="#orgabb519f">2.2. Big Data Big Picture</a></li>
+<li><a href="#org384415b">2.3. Healthcare Applications</a></li>
+<li><a href="#org2944118">2.4. Predictive Modeling Quiz Question</a></li>
+<li><a href="#org2dec440">2.5. Predictive Modeling Quiz Solution</a></li>
+<li><a href="#orgd064801">2.6. Predictive Modeling Challenges</a></li>
+<li><a href="#org7929fd0">2.7. Computational Phenotyping</a></li>
+<li><a href="#org462ebdc">2.8. Computational Phenotyping Quiz Question</a></li>
+<li><a href="#org7db6083">2.9. Computational Phenotyping Quiz Solution</a></li>
+<li><a href="#org4f0dbba">2.10. Phenotyping Algorithm</a></li>
+<li><a href="#orgb59e847">2.11. Patient Similarity Quiz Question</a></li>
+<li><a href="#org091e359">2.12. Patient Similarity Quiz Solution</a></li>
+<li><a href="#org249f5ad">2.13. Patient Similarity</a></li>
+<li><a href="#orgd84f825">2.14. Algorithms</a></li>
+<li><a href="#orgb605548">2.15. Systems</a></li>
+<li><a href="#org21ef241">2.16. Summary</a></li>
 </ul>
 </li>
-<li><a href="#orgcddd2be">3. Predictive Modeling</a></li>
-<li><a href="#orge41bacf">4. MapReduce</a></li>
-<li><a href="#org54b4eb0">5. Classification Model Metrics</a>
+<li><a href="#orgecc6a57">3. Predictive Modeling</a>
 <ul>
-<li><a href="#org28126d9">5.1. Predictive Model review</a></li>
-<li><a href="#org7fa4bca">5.2. Confusion matrix</a></li>
-<li><a href="#org371c95c">5.3. Accuracy metrics</a>
-<ul>
-<li><a href="#org3dda37b">5.3.1. Other notes</a></li>
+<li><a href="#org3a3c376">3.1. Introduction to Predictive Modeling</a></li>
+<li><a href="#orgf23a07b">3.2. Predictive Modeling vs EHR</a></li>
+<li><a href="#orgee17f7f">3.3. Predictive Modeling Pipeline</a></li>
+<li><a href="#orge2aa091">3.4. Prediction Target</a></li>
+<li><a href="#orgf885e12">3.5. Heart Failure Quiz</a></li>
+<li><a href="#org290be63">3.6. Motivations for Early Detection</a></li>
+<li><a href="#org08e5ee6">3.7. Cohort Construction</a></li>
+<li><a href="#orgfff602a">3.8. Prospective vs. Retrospective Studies</a></li>
+<li><a href="#orgbd0af5f">3.9. Prospective vs. Retrospective Quiz</a></li>
+<li><a href="#org89a25c9">3.10. Cohort Study</a></li>
+<li><a href="#orgb10487a">3.11. Case-Control Study</a></li>
+<li><a href="#orgf305c5f">3.12. Feature Construction</a></li>
+<li><a href="#org40db70e">3.13. Feature Construction Quizzes</a></li>
+<li><a href="#org94a8ecb">3.14. Prediction Performance on Windows</a></li>
+<li><a href="#org0548219">3.15. Feature Selection</a></li>
+<li><a href="#org98c9913">3.16. Predictive Model</a></li>
+<li><a href="#orga81b1f9">3.17. Performance Evaluation</a></li>
+<li><a href="#orgaf55c45">3.18. Cross-Validation</a></li>
+<li><a href="#org9101707">3.19. Conclusion</a></li>
 </ul>
 </li>
-<li><a href="#org633cb11">5.4. Predictive metrics</a></li>
-<li><a href="#org7a39332">5.5. F1 score</a></li>
-<li><a href="#orga31b702">5.6. Classifier quiz</a></li>
-<li><a href="#org2f3229b">5.7. Reversing predictions</a></li>
-<li><a href="#org956f2c3">5.8. Receiver operating characteristic</a></li>
-<li><a href="#org56675b6">5.9. "Best classifier threshold" quiz</a></li>
-<li><a href="#org95e4d94">5.10. Regression metrics</a>
+<li><a href="#orgafb0117">4. MapReduce</a></li>
+<li><a href="#orgb50bbbd">5. Classification Model Metrics</a>
 <ul>
-<li><a href="#orgd96815a">5.10.1. \(R^2\)</a></li>
+<li><a href="#org8c2eaeb">5.1. Predictive Model review</a></li>
+<li><a href="#orgeec7614">5.2. Confusion matrix</a></li>
+<li><a href="#org7abb233">5.3. Accuracy metrics</a>
+<ul>
+<li><a href="#org6f0d730">5.3.1. Other notes</a></li>
+</ul>
+</li>
+<li><a href="#org79ccbe1">5.4. Predictive metrics</a></li>
+<li><a href="#orgfdd7d59">5.5. F1 score</a></li>
+<li><a href="#orgf47daf8">5.6. Classifier quiz</a></li>
+<li><a href="#orgd6c0e14">5.7. Reversing predictions</a></li>
+<li><a href="#org090eb15">5.8. Receiver operating characteristic</a></li>
+<li><a href="#org5de8f39">5.9. "Best classifier threshold" quiz</a></li>
+<li><a href="#org9be5b37">5.10. Regression metrics</a>
+<ul>
+<li><a href="#orgeb94cdd">5.10.1. \(R^2\)</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org3fda55f">6. Ensemble methods</a>
+<li><a href="#org26f12a9">6. Ensemble methods</a>
 <ul>
-<li><a href="#org82d7764">6.1. Introduction to ensemble methods</a></li>
-<li><a href="#orgfcd6fe0">6.2. Gradient descent for classification</a></li>
-<li><a href="#org2d92441">6.3. GDM for linear regression</a></li>
+<li><a href="#org7f966d7">6.1. Introduction to ensemble methods</a></li>
+<li><a href="#org7d26b2b">6.2. Gradient descent for classification</a></li>
+<li><a href="#org858db8a">6.3. GDM for linear regression</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org3775ad6" class="outline-2">
-<h2 id="org3775ad6"><span class="section-number-2">1.</span> Introduction to Big Data</h2>
+<div id="outline-container-org761b3f6" class="outline-2">
+<h2 id="org761b3f6"><span class="section-number-2">1.</span> Introduction to Big Data</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgaa1a2d2" class="outline-3">
-<h3 id="orgaa1a2d2"><span class="section-number-3">1.1.</span> Introduction</h3>
+<div id="outline-container-org40afbef" class="outline-3">
+<h3 id="org40afbef"><span class="section-number-3">1.1.</span> Introduction</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li>Course: Big Data Analytics for Healthcare (BDAH)</li>
@@ -131,8 +153,8 @@
 </div>
 </div>
 
-<div id="outline-container-orge9396cc" class="outline-3">
-<h3 id="orge9396cc"><span class="section-number-3">1.2.</span> About BDAH</h3>
+<div id="outline-container-org6315357" class="outline-3">
+<h3 id="org6315357"><span class="section-number-3">1.2.</span> About BDAH</h3>
 <div class="outline-text-3" id="text-1-2">
 <ul class="org-ul">
 <li>Intersection of healthcare and big data</li>
@@ -142,8 +164,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgc0ec6c8" class="outline-3">
-<h3 id="orgc0ec6c8"><span class="section-number-3">1.3.</span> Learning Goals</h3>
+<div id="outline-container-org9f98691" class="outline-3">
+<h3 id="org9f98691"><span class="section-number-3">1.3.</span> Learning Goals</h3>
 <div class="outline-text-3" id="text-1-3">
 <ul class="org-ul">
 <li>Understand healthcare data</li>
@@ -155,8 +177,8 @@
 </div>
 </div>
 
-<div id="outline-container-org3a57816" class="outline-3">
-<h3 id="org3a57816"><span class="section-number-3">1.4.</span> Current Problems in Healthcare</h3>
+<div id="outline-container-org4afac30" class="outline-3">
+<h3 id="org4afac30"><span class="section-number-3">1.4.</span> Current Problems in Healthcare</h3>
 <div class="outline-text-3" id="text-1-4">
 <ul class="org-ul">
 <li>High costs: $3.8 trillion/year in the U.S.</li>
@@ -168,8 +190,8 @@
 </div>
 </div>
 
-<div id="outline-container-org208b393" class="outline-3">
-<h3 id="org208b393"><span class="section-number-3">1.5.</span> The Four Vs</h3>
+<div id="outline-container-org12573ed" class="outline-3">
+<h3 id="org12573ed"><span class="section-number-3">1.5.</span> The Four Vs</h3>
 <div class="outline-text-3" id="text-1-5">
 <ul class="org-ul">
 <li>Volume: Large healthcare data amounts</li>
@@ -180,8 +202,8 @@
 </div>
 </div>
 
-<div id="outline-container-org56b618d" class="outline-3">
-<h3 id="org56b618d"><span class="section-number-3">1.6.</span> More About The Four Vs</h3>
+<div id="outline-container-org77c1c69" class="outline-3">
+<h3 id="org77c1c69"><span class="section-number-3">1.6.</span> More About The Four Vs</h3>
 <div class="outline-text-3" id="text-1-6">
 <ul class="org-ul">
 <li>Examples of data volume:
@@ -201,8 +223,8 @@
 </div>
 </div>
 
-<div id="outline-container-org92c8dc9" class="outline-3">
-<h3 id="org92c8dc9"><span class="section-number-3">1.7.</span> Data Science is Sexy</h3>
+<div id="outline-container-org18081b2" class="outline-3">
+<h3 id="org18081b2"><span class="section-number-3">1.7.</span> Data Science is Sexy</h3>
 <div class="outline-text-3" id="text-1-7">
 <ul class="org-ul">
 <li>Data science is a critical field</li>
@@ -217,8 +239,8 @@
 </div>
 </div>
 
-<div id="outline-container-org9ae3290" class="outline-3">
-<h3 id="org9ae3290"><span class="section-number-3">1.8.</span> BDAH Quiz 1 Question</h3>
+<div id="outline-container-org8fd58f7" class="outline-3">
+<h3 id="org8fd58f7"><span class="section-number-3">1.8.</span> BDAH Quiz 1 Question</h3>
 <div class="outline-text-3" id="text-1-8">
 <ul class="org-ul">
 <li>True/False: A graduate-level degree is necessary to become a data scientist.</li>
@@ -226,8 +248,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgc658a5a" class="outline-3">
-<h3 id="orgc658a5a"><span class="section-number-3">1.9.</span> BDAH Quiz 1 Solution</h3>
+<div id="outline-container-orgc97a6e5" class="outline-3">
+<h3 id="orgc97a6e5"><span class="section-number-3">1.9.</span> BDAH Quiz 1 Solution</h3>
 <div class="outline-text-3" id="text-1-9">
 <ul class="org-ul">
 <li>Answer: True</li>
@@ -235,8 +257,8 @@
 </div>
 </div>
 
-<div id="outline-container-org28984bc" class="outline-3">
-<h3 id="org28984bc"><span class="section-number-3">1.10.</span> BDAH Quiz 2 Question</h3>
+<div id="outline-container-org12d3da9" class="outline-3">
+<h3 id="org12d3da9"><span class="section-number-3">1.10.</span> BDAH Quiz 2 Question</h3>
 <div class="outline-text-3" id="text-1-10">
 <ul class="org-ul">
 <li>Question: What is the average salary of a data scientist?</li>
@@ -244,8 +266,8 @@
 </div>
 </div>
 
-<div id="outline-container-org090591b" class="outline-3">
-<h3 id="org090591b"><span class="section-number-3">1.11.</span> BDAH Quiz 2 Solution</h3>
+<div id="outline-container-org9e429c6" class="outline-3">
+<h3 id="org9e429c6"><span class="section-number-3">1.11.</span> BDAH Quiz 2 Solution</h3>
 <div class="outline-text-3" id="text-1-11">
 <ul class="org-ul">
 <li>Answer: $120,000 per year (experienced data scientists earn over $150,000)</li>
@@ -253,8 +275,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgb2d8d04" class="outline-3">
-<h3 id="orgb2d8d04"><span class="section-number-3">1.12.</span> BDAH Quiz 3 Question</h3>
+<div id="outline-container-org3027864" class="outline-3">
+<h3 id="org3027864"><span class="section-number-3">1.12.</span> BDAH Quiz 3 Question</h3>
 <div class="outline-text-3" id="text-1-12">
 <ul class="org-ul">
 <li>Question: What skills do data scientists need?</li>
@@ -262,8 +284,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgdfffadd" class="outline-3">
-<h3 id="orgdfffadd"><span class="section-number-3">1.13.</span> BDAH Quiz 3 Solution</h3>
+<div id="outline-container-org306fc31" class="outline-3">
+<h3 id="org306fc31"><span class="section-number-3">1.13.</span> BDAH Quiz 3 Solution</h3>
 <div class="outline-text-3" id="text-1-13">
 <ul class="org-ul">
 <li>Answer:
@@ -278,12 +300,12 @@
 </div>
 </div>
 
-<div id="outline-container-org8cd24be" class="outline-2">
-<h2 id="org8cd24be"><span class="section-number-2">2.</span> Big Data Course Overview</h2>
+<div id="outline-container-org26136d6" class="outline-2">
+<h2 id="org26136d6"><span class="section-number-2">2.</span> Big Data Course Overview</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgf73043f" class="outline-3">
-<h3 id="orgf73043f"><span class="section-number-3">2.1.</span> Introduction to Course Overview</h3>
+<div id="outline-container-org9dc74d1" class="outline-3">
+<h3 id="org9dc74d1"><span class="section-number-3">2.1.</span> Introduction to Course Overview</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li>Overview of big data analytics for healthcare.</li>
@@ -298,8 +320,8 @@
 </div>
 </div>
 
-<div id="outline-container-org4f7fc9c" class="outline-3">
-<h3 id="org4f7fc9c"><span class="section-number-3">2.2.</span> Big Data Big Picture</h3>
+<div id="outline-container-orgabb519f" class="outline-3">
+<h3 id="orgabb519f"><span class="section-number-3">2.2.</span> Big Data Big Picture</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>Course focuses on three key areas:
@@ -313,8 +335,8 @@
 </div>
 </div>
 
-<div id="outline-container-org2e9608b" class="outline-3">
-<h3 id="org2e9608b"><span class="section-number-3">2.3.</span> Healthcare Applications</h3>
+<div id="outline-container-org384415b" class="outline-3">
+<h3 id="org384415b"><span class="section-number-3">2.3.</span> Healthcare Applications</h3>
 <div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li>Three types of healthcare applications:
@@ -328,8 +350,8 @@
 </div>
 </div>
 
-<div id="outline-container-org9acc207" class="outline-3">
-<h3 id="org9acc207"><span class="section-number-3">2.4.</span> Predictive Modeling Quiz Question</h3>
+<div id="outline-container-org2944118" class="outline-3">
+<h3 id="org2944118"><span class="section-number-3">2.4.</span> Predictive Modeling Quiz Question</h3>
 <div class="outline-text-3" id="text-2-4">
 <ul class="org-ul">
 <li>Predictive modeling example: predicting treatment effectiveness for epilepsy patients.</li>
@@ -338,8 +360,8 @@
 </div>
 </div>
 
-<div id="outline-container-org31f54f3" class="outline-3">
-<h3 id="org31f54f3"><span class="section-number-3">2.5.</span> Predictive Modeling Quiz Solution</h3>
+<div id="outline-container-org2dec440" class="outline-3">
+<h3 id="org2dec440"><span class="section-number-3">2.5.</span> Predictive Modeling Quiz Solution</h3>
 <div class="outline-text-3" id="text-2-5">
 <ul class="org-ul">
 <li>Solution breakdown:
@@ -357,8 +379,8 @@
 </div>
 </div>
 
-<div id="outline-container-org87b8278" class="outline-3">
-<h3 id="org87b8278"><span class="section-number-3">2.6.</span> Predictive Modeling Challenges</h3>
+<div id="outline-container-orgd064801" class="outline-3">
+<h3 id="orgd064801"><span class="section-number-3">2.6.</span> Predictive Modeling Challenges</h3>
 <div class="outline-text-3" id="text-2-6">
 <ul class="org-ul">
 <li>Challenges in predictive modeling:
@@ -371,8 +393,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgcfb7b58" class="outline-3">
-<h3 id="orgcfb7b58"><span class="section-number-3">2.7.</span> Computational Phenotyping</h3>
+<div id="outline-container-org7929fd0" class="outline-3">
+<h3 id="org7929fd0"><span class="section-number-3">2.7.</span> Computational Phenotyping</h3>
 <div class="outline-text-3" id="text-2-7">
 <ul class="org-ul">
 <li>Converts raw patient data (e.g., demographics, diagnoses, medications, procedures, lab tests, clinical notes) into clinical concepts or phenotypes.</li>
@@ -380,8 +402,8 @@
 </div>
 </div>
 
-<div id="outline-container-org693916e" class="outline-3">
-<h3 id="org693916e"><span class="section-number-3">2.8.</span> Computational Phenotyping Quiz Question</h3>
+<div id="outline-container-org462ebdc" class="outline-3">
+<h3 id="org462ebdc"><span class="section-number-3">2.8.</span> Computational Phenotyping Quiz Question</h3>
 <div class="outline-text-3" id="text-2-8">
 <ul class="org-ul">
 <li>Identifying data issues in phenotyping.</li>
@@ -390,8 +412,8 @@
 </div>
 </div>
 
-<div id="outline-container-org2934d0b" class="outline-3">
-<h3 id="org2934d0b"><span class="section-number-3">2.9.</span> Computational Phenotyping Quiz Solution</h3>
+<div id="outline-container-org7db6083" class="outline-3">
+<h3 id="org7db6083"><span class="section-number-3">2.9.</span> Computational Phenotyping Quiz Solution</h3>
 <div class="outline-text-3" id="text-2-9">
 <ul class="org-ul">
 <li>Common data issues:
@@ -405,8 +427,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgb7eb73c" class="outline-3">
-<h3 id="orgb7eb73c"><span class="section-number-3">2.10.</span> Phenotyping Algorithm</h3>
+<div id="outline-container-org4f0dbba" class="outline-3">
+<h3 id="org4f0dbba"><span class="section-number-3">2.10.</span> Phenotyping Algorithm</h3>
 <div class="outline-text-3" id="text-2-10">
 <ul class="org-ul">
 <li>Example: Identifying Type 2 Diabetes from EHR data.</li>
@@ -425,8 +447,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgf9e56ac" class="outline-3">
-<h3 id="orgf9e56ac"><span class="section-number-3">2.11.</span> Patient Similarity Quiz Question</h3>
+<div id="outline-container-orgb59e847" class="outline-3">
+<h3 id="orgb59e847"><span class="section-number-3">2.11.</span> Patient Similarity Quiz Question</h3>
 <div class="outline-text-3" id="text-2-11">
 <ul class="org-ul">
 <li>Different types of reasoning doctors use:
@@ -439,8 +461,8 @@
 </div>
 </div>
 
-<div id="outline-container-org65b41b4" class="outline-3">
-<h3 id="org65b41b4"><span class="section-number-3">2.12.</span> Patient Similarity Quiz Solution</h3>
+<div id="outline-container-org091e359" class="outline-3">
+<h3 id="org091e359"><span class="section-number-3">2.12.</span> Patient Similarity Quiz Solution</h3>
 <div class="outline-text-3" id="text-2-12">
 <ul class="org-ul">
 <li>Correct answer: <b><b>Case-based reasoning</b></b>.</li>
@@ -449,8 +471,8 @@
 </div>
 </div>
 
-<div id="outline-container-org9717ee6" class="outline-3">
-<h3 id="org9717ee6"><span class="section-number-3">2.13.</span> Patient Similarity</h3>
+<div id="outline-container-org249f5ad" class="outline-3">
+<h3 id="org249f5ad"><span class="section-number-3">2.13.</span> Patient Similarity</h3>
 <div class="outline-text-3" id="text-2-13">
 <ul class="org-ul">
 <li>Simulating case-based reasoning using algorithms.</li>
@@ -465,8 +487,8 @@
 </div>
 </div>
 
-<div id="outline-container-org1bfe185" class="outline-3">
-<h3 id="org1bfe185"><span class="section-number-3">2.14.</span> Algorithms</h3>
+<div id="outline-container-orgd84f825" class="outline-3">
+<h3 id="orgd84f825"><span class="section-number-3">2.14.</span> Algorithms</h3>
 <div class="outline-text-3" id="text-2-14">
 <ul class="org-ul">
 <li>Introduction to machine learning algorithms in healthcare.</li>
@@ -481,8 +503,8 @@
 </div>
 </div>
 
-<div id="outline-container-org038c960" class="outline-3">
-<h3 id="org038c960"><span class="section-number-3">2.15.</span> Systems</h3>
+<div id="outline-container-orgb605548" class="outline-3">
+<h3 id="orgb605548"><span class="section-number-3">2.15.</span> Systems</h3>
 <div class="outline-text-3" id="text-2-15">
 <ul class="org-ul">
 <li>Introduction to big data systems for healthcare applications.</li>
@@ -500,8 +522,8 @@
 </div>
 </div>
 
-<div id="outline-container-org59dd060" class="outline-3">
-<h3 id="org59dd060"><span class="section-number-3">2.16.</span> Summary</h3>
+<div id="outline-container-org21ef241" class="outline-3">
+<h3 id="org21ef241"><span class="section-number-3">2.16.</span> Summary</h3>
 <div class="outline-text-3" id="text-2-16">
 <ul class="org-ul">
 <li>Recap of three key areas:
@@ -520,19 +542,261 @@
 </div>
 </div>
 
+<div id="outline-container-orgecc6a57" class="outline-2">
+<h2 id="orgecc6a57"><span class="section-number-2">3.</span> Predictive Modeling</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org3a3c376" class="outline-3">
+<h3 id="org3a3c376"><span class="section-number-3">3.1.</span> Introduction to Predictive Modeling</h3>
+<div class="outline-text-3" id="text-3-1">
+<dl class="org-dl">
+<dt>Predictive modeling</dt><dd>using historical data to predict future events.
 
-<div id="outline-container-orgcddd2be" class="outline-2">
-<h2 id="orgcddd2be"><span class="section-number-2">3.</span> Predictive Modeling</h2>
+<ul class="org-ul">
+<li>Example: Using electronic health records (EHR) to model heart failure</li>
+<li>Key Goal: Develop a good predictive model using EHR efficiently.</li>
+</ul></dd>
+</dl>
 </div>
-<div id="outline-container-orge41bacf" class="outline-2">
-<h2 id="orge41bacf"><span class="section-number-2">4.</span> MapReduce</h2>
 </div>
-<div id="outline-container-org54b4eb0" class="outline-2">
-<h2 id="org54b4eb0"><span class="section-number-2">5.</span> Classification Model Metrics</h2>
+
+<div id="outline-container-orgf23a07b" class="outline-3">
+<h3 id="orgf23a07b"><span class="section-number-3">3.2.</span> Predictive Modeling vs EHR</h3>
+<div class="outline-text-3" id="text-3-2">
+<ul class="org-ul">
+<li>Importance: Increased research interest in using EHR for clinical predictive modeling.</li>
+<li>Data Sources: EHR has become a major source for predictive modeling research.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgee17f7f" class="outline-3">
+<h3 id="orgee17f7f"><span class="section-number-3">3.3.</span> Predictive Modeling Pipeline</h3>
+<div class="outline-text-3" id="text-3-3">
+<ul class="org-ul">
+<li>Predictive modeling is a multi-step computational process:
+<ol class="org-ol">
+<li>Define the prediction target.</li>
+<li>Construct the relevant patient cohort.</li>
+<li>Identify potentially relevant features.</li>
+<li>Select the most relevant features.</li>
+<li>Compute the predictive model.</li>
+<li>Evaluate the predictive model.</li>
+</ol></li>
+<li>Iterative process until a satisfactory model is obtained.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orge2aa091" class="outline-3">
+<h3 id="orge2aa091"><span class="section-number-3">3.4.</span> Prediction Target</h3>
+<div class="outline-text-3" id="text-3-4">
+<ul class="org-ul">
+<li>Investigators may have many targets, but only some are feasible.</li>
+<li>Selection criteria: The target should be interesting and possible with the available data.</li>
+<li>Example: Predicting the onset of heart failure.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgf885e12" class="outline-3">
+<h3 id="orgf885e12"><span class="section-number-3">3.5.</span> Heart Failure Quiz</h3>
+<div class="outline-text-3" id="text-3-5">
+<ul class="org-ul">
+<li>Question: How many new heart failure cases occur annually in the U.S.?</li>
+<li>Options: 17,000; 260,000; 550,000; 1,250,000.</li>
+<li>Answer: 550,000 cases per year.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org290be63" class="outline-3">
+<h3 id="org290be63"><span class="section-number-3">3.6.</span> Motivations for Early Detection</h3>
+<div class="outline-text-3" id="text-3-6">
+<ul class="org-ul">
+<li>Heart failure is complex with diverse symptoms and subsets.</li>
+<li>Early detection can:
+<ul class="org-ul">
+<li>Reduce hospitalization costs.</li>
+<li>Introduce early interventions to slow progression.</li>
+<li>Improve clinical guidelines for heart failure prevention.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org08e5ee6" class="outline-3">
+<h3 id="org08e5ee6"><span class="section-number-3">3.7.</span> Cohort Construction</h3>
+<div class="outline-text-3" id="text-3-7">
+<ul class="org-ul">
+<li>Defines the study population for predictive modeling.</li>
+<li>Study population is a subset of all patients.</li>
+<li>Four study designs based on two axes:
+<ul class="org-ul">
+<li>Prospective vs. Retrospective studies.</li>
+<li>Cohort vs. Case-Control studies.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgfff602a" class="outline-3">
+<h3 id="orgfff602a"><span class="section-number-3">3.8.</span> Prospective vs. Retrospective Studies</h3>
+<div class="outline-text-3" id="text-3-8">
+<ul class="org-ul">
+<li><b><b>Prospective Study</b></b>: Define cohort first, then collect data.</li>
+<li><b><b>Retrospective Study</b></b>: Use existing data from past records.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgbd0af5f" class="outline-3">
+<h3 id="orgbd0af5f"><span class="section-number-3">3.9.</span> Prospective vs. Retrospective Quiz</h3>
+<div class="outline-text-3" id="text-3-9">
+<ul class="org-ul">
+<li>Comparison of study properties:
+<ul class="org-ul">
+<li>Retrospective studies have more noise.</li>
+<li>Prospective studies are more expensive and time-consuming.</li>
+<li>Retrospective studies can handle larger datasets.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org89a25c9" class="outline-3">
+<h3 id="org89a25c9"><span class="section-number-3">3.10.</span> Cohort Study</h3>
+<div class="outline-text-3" id="text-3-10">
+<ul class="org-ul">
+<li>Includes patients exposed to a particular risk (e.g., heart failure readmission).</li>
+<li>Defines inclusion and exclusion criteria.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb10487a" class="outline-3">
+<h3 id="orgb10487a"><span class="section-number-3">3.11.</span> Case-Control Study</h3>
+<div class="outline-text-3" id="text-3-11">
+<ul class="org-ul">
+<li>Compares patients with a condition (cases) to similar patients without it (controls).</li>
+<li>Matching criteria: Age, gender, clinic visits.</li>
+<li>Cases are rarer than controls in real-world data.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgf305c5f" class="outline-3">
+<h3 id="orgf305c5f"><span class="section-number-3">3.12.</span> Feature Construction</h3>
+<div class="outline-text-3" id="text-3-12">
+<ul class="org-ul">
+<li>Defines patient features for predicting outcomes.</li>
+<li>Data sequences from EHR:
+<ul class="org-ul">
+<li>Events (diagnoses, medications, lab results).</li>
+<li>Observation window (used for feature extraction).</li>
+<li>Prediction window (future period to predict).</li>
+</ul></li>
+<li>Impact of window sizes on model accuracy.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org40db70e" class="outline-3">
+<h3 id="org40db70e"><span class="section-number-3">3.13.</span> Feature Construction Quizzes</h3>
+<div class="outline-text-3" id="text-3-13">
+<ul class="org-ul">
+<li>Quiz 1: Best timeline for modeling → Large observation, small prediction window.</li>
+<li>Quiz 2: Most useful model → Small observation, large prediction window (ideal but difficult).</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org94a8ecb" class="outline-3">
+<h3 id="org94a8ecb"><span class="section-number-3">3.14.</span> Prediction Performance on Windows</h3>
+<div class="outline-text-3" id="text-3-14">
+<ul class="org-ul">
+<li><b><b>Prediction Window</b></b>: Longer window reduces accuracy.</li>
+<li><b><b>Observation Window</b></b>: Longer window improves model performance until plateau.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0548219" class="outline-3">
+<h3 id="org0548219"><span class="section-number-3">3.15.</span> Feature Selection</h3>
+<div class="outline-text-3" id="text-3-15">
+<ul class="org-ul">
+<li>Identifies relevant features from EHR data.</li>
+<li>EHR provides a large number of potential features (e.g., demographics, vitals).</li>
+<li>Different targets require different feature subsets.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org98c9913" class="outline-3">
+<h3 id="org98c9913"><span class="section-number-3">3.16.</span> Predictive Model</h3>
+<div class="outline-text-3" id="text-3-16">
+<ul class="org-ul">
+<li>Maps input features to predicted outcomes.</li>
+<li>Regression models for continuous targets (e.g., healthcare costs).</li>
+<li>Classification models for categorical targets (e.g., heart failure).</li>
+<li>Common methods: Logistic regression, decision trees, random forests.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orga81b1f9" class="outline-3">
+<h3 id="orga81b1f9"><span class="section-number-3">3.17.</span> Performance Evaluation</h3>
+<div class="outline-text-3" id="text-3-17">
+<ul class="org-ul">
+<li>Key metric: Testing error (not training error).</li>
+<li>Models must generalize to unseen data.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgaf55c45" class="outline-3">
+<h3 id="orgaf55c45"><span class="section-number-3">3.18.</span> Cross-Validation</h3>
+<div class="outline-text-3" id="text-3-18">
+<ul class="org-ul">
+<li>Splits data into training and validation sets.</li>
+<li>Common methods:
+<ul class="org-ul">
+<li>Leave-One-Out Cross-Validation.</li>
+<li>K-Fold Cross-Validation.</li>
+<li>Randomized Cross-Validation.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org9101707" class="outline-3">
+<h3 id="org9101707"><span class="section-number-3">3.19.</span> Conclusion</h3>
+<div class="outline-text-3" id="text-3-19">
+<ul class="org-ul">
+<li>Summary of the predictive modeling pipeline:
+<ul class="org-ul">
+<li>Define the prediction target.</li>
+<li>Construct the patient cohort.</li>
+<li>Generate relevant features.</li>
+<li>Select important features.</li>
+<li>Train the predictive model.</li>
+<li>Evaluate model performance.</li>
+</ul></li>
+<li>Goal: Design high-level predictive modeling studies using EHR data.</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgafb0117" class="outline-2">
+<h2 id="orgafb0117"><span class="section-number-2">4.</span> MapReduce</h2>
+</div>
+<div id="outline-container-orgb50bbbd" class="outline-2">
+<h2 id="orgb50bbbd"><span class="section-number-2">5.</span> Classification Model Metrics</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-org28126d9" class="outline-3">
-<h3 id="org28126d9"><span class="section-number-3">5.1.</span> Predictive Model review</h3>
+<div id="outline-container-org8c2eaeb" class="outline-3">
+<h3 id="org8c2eaeb"><span class="section-number-3">5.1.</span> Predictive Model review</h3>
 <div class="outline-text-3" id="text-5-1">
 <dl class="org-dl">
 <dt>Predictive model</dt><dd>mapping function between model inputs and outputs (pred's)</dd>
@@ -540,8 +804,8 @@
 </dl>
 </div>
 </div>
-<div id="outline-container-org7fa4bca" class="outline-3">
-<h3 id="org7fa4bca"><span class="section-number-3">5.2.</span> Confusion matrix</h3>
+<div id="outline-container-orgeec7614" class="outline-3">
+<h3 id="orgeec7614"><span class="section-number-3">5.2.</span> Confusion matrix</h3>
 <div class="outline-text-3" id="text-5-2">
 <ul class="org-ul">
 <li>True positive/negative also known as "Condition" positive/negative</li>
@@ -549,8 +813,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org371c95c" class="outline-3">
-<h3 id="org371c95c"><span class="section-number-3">5.3.</span> Accuracy metrics</h3>
+<div id="outline-container-org7abb233" class="outline-3">
+<h3 id="org7abb233"><span class="section-number-3">5.3.</span> Accuracy metrics</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 All divided by ground truth values.
@@ -563,8 +827,8 @@ All divided by ground truth values.
 <dt>True negative rate</dt><dd>TN/CN (Specificity)</dd>
 </dl>
 </div>
-<div id="outline-container-org3dda37b" class="outline-4">
-<h4 id="org3dda37b"><span class="section-number-4">5.3.1.</span> Other notes</h4>
+<div id="outline-container-org6f0d730" class="outline-4">
+<h4 id="org6f0d730"><span class="section-number-4">5.3.1.</span> Other notes</h4>
 <div class="outline-text-4" id="text-5-3-1">
 <ul class="org-ul">
 <li>FP is a type I error.</li>
@@ -575,8 +839,8 @@ All divided by ground truth values.
 </div>
 </div>
 </div>
-<div id="outline-container-org633cb11" class="outline-3">
-<h3 id="org633cb11"><span class="section-number-3">5.4.</span> Predictive metrics</h3>
+<div id="outline-container-org79ccbe1" class="outline-3">
+<h3 id="org79ccbe1"><span class="section-number-3">5.4.</span> Predictive metrics</h3>
 <div class="outline-text-3" id="text-5-4">
 <p>
 All divided by prediction outcomes.
@@ -590,8 +854,8 @@ All divided by prediction outcomes.
 </dl>
 </div>
 </div>
-<div id="outline-container-org7a39332" class="outline-3">
-<h3 id="org7a39332"><span class="section-number-3">5.5.</span> F1 score</h3>
+<div id="outline-container-orgfdd7d59" class="outline-3">
+<h3 id="orgfdd7d59"><span class="section-number-3">5.5.</span> F1 score</h3>
 <div class="outline-text-3" id="text-5-5">
 <p>
 Harmonic mean of PPV and TPR
@@ -601,8 +865,8 @@ F_1 = 2 \times \frac{PPV \times TPR}{PPV + TPR}
 </p>
 </div>
 </div>
-<div id="outline-container-orga31b702" class="outline-3">
-<h3 id="orga31b702"><span class="section-number-3">5.6.</span> Classifier quiz</h3>
+<div id="outline-container-orgf47daf8" class="outline-3">
+<h3 id="orgf47daf8"><span class="section-number-3">5.6.</span> Classifier quiz</h3>
 <div class="outline-text-3" id="text-5-6">
 <p>
 Which is the best classifier?
@@ -612,16 +876,16 @@ Which is the best classifier?
 </ul>
 </div>
 </div>
-<div id="outline-container-org2f3229b" class="outline-3">
-<h3 id="org2f3229b"><span class="section-number-3">5.7.</span> Reversing predictions</h3>
+<div id="outline-container-orgd6c0e14" class="outline-3">
+<h3 id="orgd6c0e14"><span class="section-number-3">5.7.</span> Reversing predictions</h3>
 <div class="outline-text-3" id="text-5-7">
 <p>
 It's always possible to reverse the predictions so 0.21 might perform better than 0.69/0.50.
 </p>
 </div>
 </div>
-<div id="outline-container-org956f2c3" class="outline-3">
-<h3 id="org956f2c3"><span class="section-number-3">5.8.</span> Receiver operating characteristic</h3>
+<div id="outline-container-org090eb15" class="outline-3">
+<h3 id="org090eb15"><span class="section-number-3">5.8.</span> Receiver operating characteristic</h3>
 <div class="outline-text-3" id="text-5-8">
 <ul class="org-ul">
 <li>Predictive models generally output continuous score.</li>
@@ -638,16 +902,16 @@ It's always possible to reverse the predictions so 0.21 might perform better tha
 </ul>
 </div>
 </div>
-<div id="outline-container-org56675b6" class="outline-3">
-<h3 id="org56675b6"><span class="section-number-3">5.9.</span> "Best classifier threshold" quiz</h3>
+<div id="outline-container-org5de8f39" class="outline-3">
+<h3 id="org5de8f39"><span class="section-number-3">5.9.</span> "Best classifier threshold" quiz</h3>
 <div class="outline-text-3" id="text-5-9">
 <ul class="org-ul">
 <li>There isn't a standard answer, it depends on whether TP, TN or other metric is prioritized</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org95e4d94" class="outline-3">
-<h3 id="org95e4d94"><span class="section-number-3">5.10.</span> Regression metrics</h3>
+<div id="outline-container-org9be5b37" class="outline-3">
+<h3 id="org9be5b37"><span class="section-number-3">5.10.</span> Regression metrics</h3>
 <div class="outline-text-3" id="text-5-10">
 <dl class="org-dl">
 <dt>MAE</dt><dd>average of absolute errors, harder to work with since the absolute value is not differentiable</dd>
@@ -655,8 +919,8 @@ It's always possible to reverse the predictions so 0.21 might perform better tha
 <dt>\(R^2\)</dt><dd>bounded by \((-\infty,1)\). AKA coefficient of determination.</dd>
 </dl>
 </div>
-<div id="outline-container-orgd96815a" class="outline-4">
-<h4 id="orgd96815a"><span class="section-number-4">5.10.1.</span> \(R^2\)</h4>
+<div id="outline-container-orgeb94cdd" class="outline-4">
+<h4 id="orgeb94cdd"><span class="section-number-4">5.10.1.</span> \(R^2\)</h4>
 <div class="outline-text-4" id="text-5-10-1">
 <p>
 \[
@@ -673,12 +937,12 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 </div>
-<div id="outline-container-org3fda55f" class="outline-2">
-<h2 id="org3fda55f"><span class="section-number-2">6.</span> Ensemble methods</h2>
+<div id="outline-container-org26f12a9" class="outline-2">
+<h2 id="org26f12a9"><span class="section-number-2">6.</span> Ensemble methods</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-org82d7764" class="outline-3">
-<h3 id="org82d7764"><span class="section-number-3">6.1.</span> Introduction to ensemble methods</h3>
+<div id="outline-container-org7f966d7" class="outline-3">
+<h3 id="org7f966d7"><span class="section-number-3">6.1.</span> Introduction to ensemble methods</h3>
 <div class="outline-text-3" id="text-6-1">
 <ul class="org-ul">
 <li>Algorithms used in Big Data, e.g. SGD</li>
@@ -689,8 +953,8 @@ As noise increases, \(R^2\) decreases.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgfcd6fe0" class="outline-3">
-<h3 id="orgfcd6fe0"><span class="section-number-3">6.2.</span> Gradient descent for classification</h3>
+<div id="outline-container-org7d26b2b" class="outline-3">
+<h3 id="org7d26b2b"><span class="section-number-3">6.2.</span> Gradient descent for classification</h3>
 <div class="outline-text-3" id="text-6-2">
 <ul class="org-ul">
 <li>Basic optimization method</li>
@@ -713,8 +977,8 @@ Notes:
 </ul>
 </div>
 </div>
-<div id="outline-container-org2d92441" class="outline-3">
-<h3 id="org2d92441"><span class="section-number-3">6.3.</span> GDM for linear regression</h3>
+<div id="outline-container-org858db8a" class="outline-3">
+<h3 id="org858db8a"><span class="section-number-3">6.3.</span> GDM for linear regression</h3>
 <div class="outline-text-3" id="text-6-3">
 <ul class="org-ul">
 <li></li>
@@ -725,7 +989,7 @@ Notes:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: W</p>
-<p class="date">Created: 2025-03-16 Sun 22:57</p>
+<p class="date">Created: 2025-03-16 Sun 23:09</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

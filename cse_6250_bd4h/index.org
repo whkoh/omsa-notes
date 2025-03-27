@@ -184,8 +184,118 @@
      - Example: Using logistic regression on Hadoop to predict heart failure.
    - Next step: Begin applying concepts.
 
-
 * Predictive Modeling
+** Introduction to Predictive Modeling
+  - Predictive modeling ::  using historical data to predict future events.
+
+    - Example: Using electronic health records (EHR) to model heart failure
+    - Key Goal: Develop a good predictive model using EHR efficiently.
+
+** Predictive Modeling vs EHR
+  - Importance: Increased research interest in using EHR for clinical predictive modeling.
+  - Data Sources: EHR has become a major source for predictive modeling research.
+
+** Predictive Modeling Pipeline
+  - Predictive modeling is a multi-step computational process:
+    1. Define the prediction target.
+    2. Construct the relevant patient cohort.
+    3. Identify potentially relevant features.
+    4. Select the most relevant features.
+    5. Compute the predictive model.
+    6. Evaluate the predictive model.
+  - Iterative process until a satisfactory model is obtained.
+
+** Prediction Target
+  - Investigators may have many targets, but only some are feasible.
+  - Selection criteria: The target should be interesting and possible with the available data.
+  - Example: Predicting the onset of heart failure.
+
+** Heart Failure Quiz
+  - Question: How many new heart failure cases occur annually in the U.S.?
+  - Options: 17,000; 260,000; 550,000; 1,250,000.
+  - Answer: 550,000 cases per year.
+
+** Motivations for Early Detection
+  - Heart failure is complex with diverse symptoms and subsets.
+  - Early detection can:
+    - Reduce hospitalization costs.
+    - Introduce early interventions to slow progression.
+    - Improve clinical guidelines for heart failure prevention.
+
+** Cohort Construction
+  - Defines the study population for predictive modeling.
+  - Study population is a subset of all patients.
+  - Four study designs based on two axes:
+    - Prospective vs. Retrospective studies.
+    - Cohort vs. Case-Control studies.
+
+** Prospective vs. Retrospective Studies
+  - **Prospective Study**: Define cohort first, then collect data.
+  - **Retrospective Study**: Use existing data from past records.
+
+** Prospective vs. Retrospective Quiz
+  - Comparison of study properties:
+    - Retrospective studies have more noise.
+    - Prospective studies are more expensive and time-consuming.
+    - Retrospective studies can handle larger datasets.
+
+** Cohort Study
+  - Includes patients exposed to a particular risk (e.g., heart failure readmission).
+  - Defines inclusion and exclusion criteria.
+
+** Case-Control Study
+  - Compares patients with a condition (cases) to similar patients without it (controls).
+  - Matching criteria: Age, gender, clinic visits.
+  - Cases are rarer than controls in real-world data.
+
+** Feature Construction
+  - Defines patient features for predicting outcomes.
+  - Data sequences from EHR:
+    - Events (diagnoses, medications, lab results).
+    - Observation window (used for feature extraction).
+    - Prediction window (future period to predict).
+  - Impact of window sizes on model accuracy.
+
+** Feature Construction Quizzes
+  - Quiz 1: Best timeline for modeling → Large observation, small prediction window.
+  - Quiz 2: Most useful model → Small observation, large prediction window (ideal but difficult).
+
+** Prediction Performance on Windows
+  - **Prediction Window**: Longer window reduces accuracy.
+  - **Observation Window**: Longer window improves model performance until plateau.
+
+** Feature Selection
+  - Identifies relevant features from EHR data.
+  - EHR provides a large number of potential features (e.g., demographics, vitals).
+  - Different targets require different feature subsets.
+
+** Predictive Model
+  - Maps input features to predicted outcomes.
+  - Regression models for continuous targets (e.g., healthcare costs).
+  - Classification models for categorical targets (e.g., heart failure).
+  - Common methods: Logistic regression, decision trees, random forests.
+
+** Performance Evaluation
+  - Key metric: Testing error (not training error).
+  - Models must generalize to unseen data.
+
+** Cross-Validation
+  - Splits data into training and validation sets.
+  - Common methods:
+    - Leave-One-Out Cross-Validation.
+    - K-Fold Cross-Validation.
+    - Randomized Cross-Validation.
+
+** Conclusion
+  - Summary of the predictive modeling pipeline:
+    - Define the prediction target.
+    - Construct the patient cohort.
+    - Generate relevant features.
+    - Select important features.
+    - Train the predictive model.
+    - Evaluate model performance.
+  - Goal: Design high-level predictive modeling studies using EHR data.
+
 * MapReduce
 * Classification Model Metrics
 ** Predictive Model review
