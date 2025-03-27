@@ -297,6 +297,128 @@
   - Goal: Design high-level predictive modeling studies using EHR data.
 
 * MapReduce
+** Introduction to MapReduce
+- Overview of MapReduce as a big data processing tool.
+- Utilizes distributed computation and storage.
+- Covers:
+  - What MapReduce is
+  - Fault tolerance in distributed environments
+  - Analytical use cases and limitations
+
+** What is MapReduce
+- Hadoop/MapReduce is:
+  - A programming model for parallel computation
+  - An execution environment (Hadoop with HDFS)
+  - A software package with various tools
+- Capabilities:
+  - Distributed storage via HDFS
+  - Distributed computation via MapReduce
+  - Built-in fault tolerance
+
+** Computational Process
+- Originated at Google (2004), open-sourced via Apache Hadoop.
+- Java-based platform.
+- Programming constrained to Map and Reduce functions for scalability.
+- Designed for parallel, fault-tolerant processing.
+- Emphasis on mastering computational patterns for analytics.
+
+** Learning Via Aggregation Statistics
+- Core design: express ML algorithms as aggregation tasks.
+- Example: Heart failure risk factor frequency analysis.
+- Map: extract risk factors per patient.
+- Reduce: aggregate frequencies across population.
+- Leads into deeper abstraction needs and trade-offs.
+
+** MapReduce Abstraction
+- Example task: count disease cases from patient records.
+- Map:
+  - Emit (disease, 1) for each mention
+- Shuffle:
+  - Group by disease
+- Reduce:
+  - Sum values for each disease
+- Emphasizes two-phase logic for scalability.
+
+** MapReduce System
+- Real-world data is too large for single machines.
+- Data is partitioned and processed by multiple mappers.
+- Intermediate results are shuffled and passed to reducers.
+- Final results computed from reduce function.
+- Three stages:
+  - Map
+  - Shuffle
+  - Reduce
+
+** MapReduce Fault Recovery
+- Fault tolerance is a built-in system feature.
+- On failure:
+  - Mappers/reducers are restarted with minimal recomputation.
+- Goal: Only failed components are recomputed.
+- System handles all failure recovery.
+
+** Distributed File Systems
+- HDFS: Hadoop's storage system.
+- Splits large files into partitions.
+- Partitions stored on multiple machines with redundancy.
+- Benefits:
+  - Faster concurrent access
+  - Fault tolerance (recover from worker failures)
+
+** MapReduce Design Choice
+- Design principle: minimal functionality for reliability and scalability.
+- Restricted computation model (e.g., aggregation queries).
+- Map: operate on individual records
+- Reduce: aggregate results
+- Supports straggler mitigation (slow mappers duplicated)
+
+** Analytics with MapReduce
+- Application examples:
+  - K-Nearest Neighbors (KNN)
+  - Linear Regression
+
+** MapReduce KNN
+- KNN implementation:
+  - Map:
+    - Find K nearest neighbors per partition
+  - Reduce:
+    - Combine local results to find global nearest neighbors
+- Patient data partitioned, processed in parallel
+
+** Linear Regression
+- Goal: map patient features to heart disease risk
+- Normal equation:
+  - β = (XᵗX)⁻¹Xᵗy
+- MapReduce:
+  - Map f1: compute xi * xiᵗ
+  - Map f2: compute xi * yi
+  - Reduce: aggregate sums
+
+** MapReduce for Linear Regression Quiz Question
+- Quiz: specify map/reduce pseudo code for computing Xᵗy
+
+** MapReduce for Linear Regression Quiz Solution
+- Solution:
+  - Map: compute xi * yi
+  - Reduce: aggregate results
+
+** Limitations of MapReduce
+- Example: Logistic Regression via Gradient Descent
+- Challenge: Requires iterative computation
+  - Each iteration loads data twice
+- MapReduce not efficient for:
+  - Iterative, multi-stage computation
+
+** MapReduce Summary Quiz Question
+- Quiz on ideal conditions for MapReduce:
+  - Single vs. multiple passes
+  - Skewed vs. uniform key distribution
+  - Synchronization needs
+
+** MapReduce Summary Quiz Solution
+- Best suited for:
+  - Single-pass jobs (e.g., histograms)
+  - Both skewed and uniform key distributions
+  - Minimal synchronization (only between Map and Reduce phases)
 * Classification Model Metrics
 ** Predictive Model review
 - Predictive model :: mapping function between model inputs and outputs (pred's)
