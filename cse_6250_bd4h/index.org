@@ -480,23 +480,134 @@ i.e. 1-MSE/Variance
 Negative $R^2$ values means they perform worse than a simple average of raw data.
 As noise increases, $R^2$ decreases.
 * Ensemble methods
-** Introduction to ensemble methods
-- Algorithms used in Big Data, e.g. SGD
-- Ensemble methods
-- Bias, variance, tradeoff
-- Bagging
-- Boosting
-** Gradient descent for classification
-- Basic optimization method
-- Procedure for gradient descent
-  1. Training dataset $D$ has $n$ pairs of $(x,y)$ data points
-  2. Outputs are some parameters
-  3. Find joint probability / likelihood $P(D|\theta)$
-  4. Find gradient g = $dp(D|\theta)\over d\theta$
-  5. Update gradient
+** GDM for Linear Regression
+- Illustrates gradient descent using linear regression.
+- Dataset: each row = patient; features in X, outcome Y (e.g., hospital cost).
+- Objective: learn linear mapping from features X to outcome Y.
+- Assumes Gaussian distribution → log-likelihood leads to squared error minimization.
+- Gradient: derived by taking derivative of log-likelihood w.r.t. coefficients β.
+- Update rule: move β in direction of gradient with step size η.
+- Requires multiple iterations over full dataset → computationally expensive.
 
-Notes:
-- Other methods can be used as long as gradient can be calculated.
-- These can even be put in as "black box" inputs (by just plugging in the gradient computation as the function)
-** GDM for linear regression
--
+** Stochastic Gradient Descent Method
+- SGD is a scalable variant of gradient descent for large datasets.
+- Instead of using full dataset, computes gradients on random subsets (mini-batches).
+- One-point update = SGD; larger batches = mini-batch gradient descent.
+- Faster per-iteration updates compared to full batch gradient descent.
+
+** SGD for Linear Regression
+- Applies SGD to same regression problem.
+- Each update uses one patient:
+  - Compute individual log-likelihood and gradient.
+  - Update β using gradient.
+- More efficient than full gradient computation.
+- Key idea: updates based on single or small group of samples.
+
+** Ensemble Method Pt 1
+- Ensemble methods combine multiple models for improved performance.
+- Can use same (e.g., Random Forest) or different base models.
+- Real-world example: Netflix Prize → ensemble models won.
+- Many teams merged, forming more powerful ensembles.
+
+** Ensemble Method Pt 2
+- General ensemble steps:
+  1. Generate multiple datasets (via bagging or boosting).
+  2. Train separate models on each.
+  3. Aggregate outputs using functions like averaging or weighted sum.
+- Outcome: different ensemble strategies.
+
+** Bias Variance Tradeoff
+- Key insight: model error = bias² + variance.
+- Bias: error from wrong assumptions (e.g., assuming linear when it's not).
+- Variance: error from sensitivity to training data.
+- Ideal model: low bias and low variance.
+- Graphical example: dartboard showing different combinations.
+- As model complexity increases:
+  - Bias ↓
+  - Variance ↑
+  - Total error = minimum at an optimal complexity.
+
+** Bias Variance Tradeoff Quiz Question
+- Task: rank four models (flat, linear, smooth curve, wiggly) by complexity.
+- A → D: D (flat) < A (linear) < B (curve) < C (wiggly)
+
+** Bias Variance Tradeoff Quiz Solution
+- Explanation:
+  - D: lowest complexity (flat line).
+  - A: next, simple linear model.
+  - B: more complex curve.
+  - C: most complex (wiggly).
+
+** Bias Variance Tradeoff Quiz 2 Question
+- Given same models, asked which best fits data.
+
+** Bias Variance Tradeoff Quiz 2 Solution
+- Answer: B (smooth curve)
+- Balances bias and variance well.
+
+** Bagging
+- Bagging = Bootstrap Aggregation.
+- Method:
+  - Sample data with replacement.
+  - Train models on each sample.
+  - Combine predictions via majority vote or averaging.
+- Reduces variance of the final model.
+
+** Random Forest
+- Special case of bagging with decision trees.
+- Steps:
+  - Randomly sample both rows (patients) and columns (features).
+  - Train simple decision trees on these subsets.
+- Final prediction = average of all trees.
+- Simple trees help maintain diversity and lower computation.
+
+** Why Bagging Works
+- Reduces variance without increasing bias.
+- Variance reduction from averaging independent model predictions.
+- Based on statistical principle: variance of mean = variance / T for T models.
+
+** Boosting
+- Builds models sequentially.
+- Each new model focuses on mistakes of previous ones.
+- Final model = weighted combination of all models.
+- Pros: better accuracy.
+- Cons: prone to overfitting.
+- Example: AdaBoost is most popular.
+
+** Bagging vs Boosting Quiz Question
+- Quiz to compare characteristics:
+  - Combination method (simple vs weighted average)
+  - Parallelism
+  - Noise sensitivity
+  - Accuracy
+
+** Bagging vs Boosting Quiz Solution
+- Bagging:
+  - Simple average, parallel-friendly, less sensitive to noise, reliable.
+- Boosting:
+  - Weighted average, sequential (hard to parallelize), sensitive to noise, potentially higher accuracy but less reliable.
+- Analogy:
+  - Bagging = reliable Japanese car.
+  - Boosting = high-performance but risky sports car.
+
+** Summary for Ensemble Methods
+- Pros:
+  - Simple, flexible, few parameters, theoretical backing.
+- Cons:
+  - Computational cost (training + inference).
+  - Harder interpretation (due to model complexity).
+
+** Introduction to Ensemble Method
+- Sets the stage:
+  - Recap on model evaluation.
+  - Overview: SGD, ensemble methods, bias-variance tradeoff, bagging & boosting.
+
+** Gradient Descent Method
+- General overview of gradient descent for optimization.
+- Applies to regression/classification.
+- Process:
+  1. Define likelihood (or log-likelihood).
+  2. Compute gradient w.r.t. parameters.
+  3. Update parameters iteratively using gradient.
+- Requires step size (learning rate).
+- Can be extended using more advanced techniques (e.g., conjugate gradient).
