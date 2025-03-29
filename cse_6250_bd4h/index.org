@@ -1380,7 +1380,6 @@ As noise increases, $R^2$ decreases.
 
 
 * Patient Similarity
-* ch13.md
 
 ** Introduction to Patient Similarity
 - Patient similarity introduces a new paradigm in medical practice.
@@ -1722,3 +1721,96 @@ As noise increases, $R^2$ decreases.
   - Published in *Nature*.
   - CNN performance comparable or superior to dermatologists.
   - Visualization: algorithm ROC curve often exceeds human expert dots.
+
+
+* Recurrent Neural Network
+** Basic Concepts of RNN
+- Feedforward neural networks (FFNN):
+  - Map input vector X → hidden state H → output Ŷ.
+  - X can be a multi-hot vector of patient diseases.
+  - H represents patient embedding; Ŷ is prediction (e.g. heart failure).
+- Recurrent Neural Networks (RNN):
+  - Similar structure to FFNN, with key difference: recursion in hidden state.
+  - Hidden state H = function of input X and previous hidden state H.
+  - Components:
+    - U: weights from input to hidden
+    - W: weights from previous hidden to current hidden
+    - V: weights from hidden to output
+    - f, g: activation functions
+
+** Basic RNN Structure
+- Unfolding RNN over time steps (t-1, t, t+1).
+- Each time step:
+  - Input: Xₜ
+  - Hidden state: Hₜ = f(UXₜ + WHₜ₋₁ + b₁)
+  - Output: Ŷₜ = g(VHₜ + b₂)
+- Parameters (U, W, V) shared across time steps.
+- Common RNN architectures:
+  - One-to-many: e.g., image captioning.
+  - Many-to-one: e.g., disease classification from clinical notes.
+  - Many-to-many:
+    - Seq-to-seq: e.g., machine translation.
+    - Time-aligned: e.g., sequential disease prediction.
+
+** Forward Computation
+- Forward pass in training:
+  1. Compute Zₜ = UXₜ + WHₜ₋₁ + b₁
+  2. Hₜ = f(Zₜ)
+  3. oₜ = VHₜ + b₂
+  4. Ŷₜ = g(oₜ)
+- Loss function:
+  - Negative log likelihood (NLL) for sequence output.
+  - f: e.g., tanh; g: e.g., softmax.
+  - Total loss = sum over time steps.
+  - For binary classification, simplified loss form shown.
+
+** Backpropagation Through Time
+- Backward pass (BPTT):
+  - Compute ∂L/∂oₜ, then ∂L/∂Hₜ.
+  - Last time step: ∂L/∂Hₜ = Vᵀ ∂L/∂oₜ
+  - Earlier steps: ∂L/∂Hₜ includes gradient through both oₜ and Hₜ₊₁.
+- Parameter updates:
+  - Gradients used to update U, W, V, b₁, b₂.
+- Practical note:
+  - Most modern libraries automate this.
+- Vanishing gradient problem:
+  - Gradients diminish through long sequences.
+  - Makes learning long-term dependencies difficult.
+
+** Standard RNN
+- Standard RNN cell:
+  - Hₜ = tanh(WXₜ + UHₜ₋₁ + b)
+- Suffers from vanishing gradient problem on long sequences.
+- Motivation for improved architectures like LSTM and GRU.
+
+** Gated Recurred Unit
+- GRU: simpler alternative to LSTM with good performance.
+- Key components:
+  - Update gate (Zₜ): controls how much to keep from old H.
+  - Reset gate (Rₜ): controls influence of old H on candidate state.
+- Hidden state update:
+  - New Hₜ = (1 - Zₜ) ∘ Hₜ₋₁ + Zₜ ∘ H̃ₜ
+- Uses fewer parameters than LSTM, performs comparably in practice.
+
+** Bidirectional RNN
+- BiRNN = two RNNs:
+  - One reads sequence forward, other backward.
+  - Outputs are concatenated for each time step.
+- Benefits:
+  - Provides full context from both past and future.
+  - Especially useful in NLP (e.g., semantic understanding).
+
+** Healthcare Applications
+- Application: Doctor AI (2016)
+  - Predicts future patient events using RNNs.
+  - Input: sequence of clinical visits (multi-hot encoded).
+  - Output: next visit’s diagnosis codes.
+- Dataset: 260,000 patients, 10 years of data, 38k unique codes.
+  - Sparse input vectors; ~10–15 nonzero values per visit.
+  - Output space: 1183 diagnosis codes.
+- Evaluation:
+  - Top-k recall: measures how many true labels are in top-k predictions.
+  - RNN outperformed baselines (heuristics, logistic regression).
+- Transfer learning:
+  - Pretrained RNNs on large datasets can improve performance on smaller hospital datasets.
+    - Warm-start initialization leads to better generalization.
