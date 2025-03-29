@@ -870,3 +870,108 @@ As noise increases, $R^2$ decreases.
 ** Silhouette Coefficient Pros and Cons
 - Range: -1 (bad) to 1 (good), 0 = overlapping clusters.
 - Assumes spherical clusters → less effective for complex shapes (e.g. DBSCAN).
+
+
+* Spark
+
+** Introduction to Spark
+- Spark is introduced as an alternative to MapReduce, better suited for iterative workloads.
+- Leverages distributed memory across machines.
+- Core concept: Resilient Distributed Dataset (RDD).
+- Promotes efficiency for machine learning and healthcare applications.
+
+** Environment
+- Big data analytics typically run in data centers or cloud platforms like AWS, GCP, Azure.
+- Environment includes interconnected racks of servers.
+- Context set to understand the need for systems like Spark.
+
+** Motivation
+- Hadoop & MapReduce explained with acyclic data flow using stable storage.
+- Strength: fault-tolerance via disk storage.
+- Weakness: inefficiency with iterative or interactive workloads (e.g. ML, graph analysis).
+- Need for in-memory computation system like Spark.
+
+** Iteration in Map Reduce
+- Machine learning models need repeated computation.
+- Hadoop repeatedly reads/writes from disk, causing inefficiency.
+- Highlights the need for in-memory operations.
+
+** Workload Illustration
+- Iterative workloads: same computation on same data (e.g., model training).
+- Interactive workloads: varying computations on evolving data (e.g., data exploration).
+- Key: keep working sets in memory for speed.
+
+** Challenge
+- Challenge: memory is not fault-tolerant.
+- Existing storage abstractions rely on fine-grained updates, which are expensive to track.
+- Need for a better balance between efficiency and fault tolerance.
+
+** Solution  RDDs
+- Spark uses RDDs to balance fault-tolerance and efficiency.
+- RDDs support coarse-grained transformations (e.g., map, group-by, join).
+- Lineage tracking enables fault recovery without excessive replication.
+
+** RDD Recovery
+- Recovery through recomputation based on lineage.
+- Interactive: rerun only failed iterations.
+- Iterative: reload or recompute chunks from previous iterations.
+
+** Spark Stack
+- Core: scheduling, memory management, fault recovery.
+- APIs: Spark SQL, Streaming, MLib (ML), GraphX.
+- Compatible with YARN, Mesos, or standalone.
+
+** Spark Programming Interface
+- Interfaces: Scala, Python, Java.
+- RDD operations: transformations and actions.
+- Support for shared variables (broadcast, accumulator).
+
+** RDD Transformations
+- Examples: map vs flatMap, distinct, union, intersection, subtract.
+- flatMap flattens nested lists from map.
+- Intersection and subtract are more costly due to set operations.
+
+** RDD Transformations Quiz Question
+- Quiz: Apply map and filter on input RDD to understand transformation output.
+
+** RDD Transformations Quiz Solution
+- Map squares each number: [1, 4, 9, 16].
+- Filter excludes ‘1’: resulting in [2, 3, 4].
+
+** Spark Operations
+- Transformations: map, filter, groupByKey, etc.
+- Actions: reduce, collect, count, etc.
+- Broader set than Hadoop MapReduce.
+
+** Shared Variable
+- Broadcast variables: efficient read-only shared data.
+- Example Spark job with clinical notes:
+  - Load data → filter → split → cache.
+  - Perform actions like counting specific symptoms (e.g., fever, cough).
+  - Benefits from caching and distributed execution.
+
+** Fault Tolerance
+- RDD tracks transformations (lineage).
+- Lost partitions can be recomputed using lineage.
+- Visuals: sequence of filters and maps reconstruct lost data.
+
+** Example  Logistic Regression
+- Spark efficiently supports logistic regression via iteration.
+- Data cached in memory → quick updates.
+- Uses map + reduce to compute gradient.
+- Comparison: Spark (6s/iter) vs Hadoop (127s/iter).
+
+** Example  Disease Risk Prediction
+- Predict patient disease risks using collaborative filtering.
+- Matrix R = patient × disease.
+- ALS algorithm: alternates updating patient and disease features.
+
+** Serial ALS
+- Serial implementation of ALS.
+- Iterative updates of A (patient) and B (disease) matrices.
+- Uses map functions over patient/disease ranges.
+
+** Naive Spark ALS
+- Parallel ALS using `spark.parallelize`.
+- Broadcast used for efficient data sharing.
+- Broadcast improves performance 3× over naive version.
