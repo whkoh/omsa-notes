@@ -1814,3 +1814,14 @@ As noise increases, $R^2$ decreases.
 - Transfer learning:
   - Pretrained RNNs on large datasets can improve performance on smaller hospital datasets.
     - Warm-start initialization leads to better generalization.
+
+
+* Focus
+
+#+BEGIN_QUOTE
+Concepts, ideas, and algorithms mentioned in lectures, labs, and assignments.
+
+Mostly conceptual level questions, the remaining = simple computation/coding syntax/complexity questions.
+
+Likely topics: MapReduce, Hadoop, Spark, Scala, KNN, Kmeans, random forest, EM, CNN, linear regression, logistics regression.
+#+END_QUOTE
