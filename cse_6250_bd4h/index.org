@@ -480,7 +480,7 @@ i.e. 1-MSE/Variance
 Negative $R^2$ values means they perform worse than a simple average of raw data.
 As noise increases, $R^2$ decreases.
 * Ensemble methods
-** GDM for Linear Regression
+** Gradient Descent Method (GDM) for Linear Regression
 - Illustrates gradient descent using linear regression.
 - Dataset: each row = patient; features in X, outcome Y (e.g., hospital cost).
 - Objective: learn linear mapping from features X to outcome Y.
@@ -489,7 +489,7 @@ As noise increases, $R^2$ decreases.
 - Update rule: move β in direction of gradient with step size η.
 - Requires multiple iterations over full dataset → computationally expensive.
 
-** Stochastic Gradient Descent Method
+** Stochastic Gradient Descent (SGD) Method
 - SGD is a scalable variant of gradient descent for large datasets.
 - Instead of using full dataset, computes gradients on random subsets (mini-batches).
 - One-point update = SGD; larger batches = mini-batch gradient descent.
@@ -611,3 +611,96 @@ As noise increases, $R^2$ decreases.
   3. Update parameters iteratively using gradient.
 - Requires step size (learning rate).
 - Can be extended using more advanced techniques (e.g., conjugate gradient).
+
+
+* Computational Phenotyping
+** Introduction to Phenotyping
+- Introduction to clustering in healthcare, specifically "phenotyping."
+- Phenotypes refer to diseases or conditions; known phenotypes exist, but many more are undiscovered.
+- Computational phenotyping helps discover novel phenotypes using available data.
+- Applications include disease diagnosis, cost prediction, readmission risk, and genomic studies.
+
+** Computational Phenotyping
+- Converts raw EHR data into meaningful phenotypes using algorithms.
+- EHR data includes demographics, diagnosis codes, medications, procedures, labs, notes.
+- Challenges:
+  - Noisy and incomplete data.
+  - Primarily designed for clinical use, not research.
+  - Redundancy across data sources.
+- Goal: derive research-grade phenotypes from raw clinical data.
+
+** Phenotyping Algorithm
+- Example: Type 2 diabetes phenotyping algorithm.
+- Sequential logic:
+  1. Exclude Type 1 diagnosis.
+  2. Check for Type 2 diagnosis.
+  3. Check medication and lab results.
+- Multiple confirmation paths possible.
+- Developed manually by clinical experts.
+
+** Applications of Phenotyping
+- Genomic studies: link genomic and phenotypic data.
+- Clinical predictive modeling: forecast disease onset, hospitalizations.
+- Pragmatic clinical trials: assess treatment effectiveness in real-world settings.
+- Healthcare quality measurement: compare care quality across institutions.
+- All rely on robust phenotyping algorithms.
+
+** Genomic Wide Association Study
+- GWAS scans SNPs to associate genetic variations with diseases.
+- Steps:
+  1. Identify phenotypes.
+  2. Divide subjects into cases/controls.
+  3. Collect DNA and scan for SNPs.
+  4. Calculate odds ratios and p-values.
+- Statistically significant SNPs may indicate disease relevance.
+- High-quality phenotyping critical for accurate GWAS.
+
+** Why Do We Care About Phenotyping
+- Genomic data is rapidly becoming cheaper and more abundant.
+- Phenotypic data remains complex and costly to acquire.
+- Demand for better phenotyping algorithms to support scalable, high-quality genomic research.
+
+** Clinical Predictive Modeling
+- Predictive modeling using raw EHR data is problematic (noise, complexity, lack of portability).
+- Phenotyping transforms raw data into simpler, meaningful concepts.
+- Benefits:
+  - Better model accuracy.
+  - Easier interpretation.
+  - Generalizability across hospitals.
+
+** Pragmatic Clinical Trials
+- Traditional vs. pragmatic trials:
+  - Traditional: controlled, single condition/drug, strict selection, randomized.
+  - Pragmatic: real-world, multiple conditions/drugs, minimal selection, often not randomized.
+- High-quality phenotyping essential for identifying patient conditions and treatments in pragmatic settings.
+
+** Healthcare Quality Measurement
+- Challenge: hospitals use diverse EHR formats.
+- Centralized processing of raw data is complex.
+- Solution: local phenotyping at hospitals → send standardized phenotype data to central site.
+- Enables scalable and fair quality comparison across institutions.
+
+** Phenotyping Methods Part 1
+- Two main approaches:
+  - Supervised learning: uses labeled data (function approximation).
+  - Unsupervised learning: identifies patterns/structures without labels (description/summarization).
+- Illustrative examples and playful dialogue explore these ideas in depth.
+
+** Phenotyping Methods Part 2
+- Supervised: expert-defined rules (Boolean logic, decision trees), or machine learning classifiers.
+  - Pros: interpretable, low validation effort.
+  - Cons: high development cost, not good for unknown phenotypes, potential poor transferability.
+- Unsupervised: clustering, dimensionality reduction.
+  - Pros: less manual effort, no need for labels.
+  - Cons: hard to validate, large data requirements.
+
+** Phenotyping Quiz Question
+- Quiz:
+  - Which approach requires more human effort during evaluation?
+  - Which is easier to interpret?
+  - Choices: expert-defined rules vs. classification models.
+
+** Phenotyping Quiz Solution
+- Answer:
+  - Classification models require more evaluation effort (need more labeled data).
+  - Expert-defined rules are easier to interpret (clinician-derived, intuitive).
