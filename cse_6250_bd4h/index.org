@@ -1244,3 +1244,136 @@ As noise increases, $R^2$ decreases.
 ** Big Data Conclusion
 - Wrap-up of the video series.
 - Presenter: Jimmy Son.
+
+* Dimensionality Reduction
+** Introduction to Dimensionality Reduction
+- Overview of dimensionality reduction as a method for simplifying noisy, high-dimensional data.
+- Methods covered:
+  - Singular Value Decomposition (SVD)
+  - Principal Component Analysis (PCA)
+  - CUR Decomposition
+  - Tensor Factorization
+- Applications in predictive modeling and healthcare phenotyping.
+
+** Dimensionality Reduction
+- Recap of clustering algorithms (hard, soft, and scalable).
+- Motivation for dimensionality reduction: efficiency and robustness.
+- Classical methods:
+  - SVD and PCA: summarize features via linear combinations.
+  - CUR: uses actual data rows/columns, preserves sparsity.
+- Introduction to Tensor Factorization for higher-order data.
+
+** Singular Value Decomposition
+- Definition: SVD decomposes a matrix X into U, Σ, Vᵗ.
+- U and V: orthogonal matrices (singular vectors).
+- Σ: diagonal matrix with singular values (in descending order).
+- Visual interpretation with patients (rows) and diseases (columns).
+
+** SVD Example
+- Spectral view: rank-1 approximations via σᵢUᵢVᵢᵗ.
+- Example with documents and terms:
+  - CS vs. Medical documents.
+  - Each rank-1 component captures topic-specific vocabulary.
+
+** SVD Properties
+- V: eigenvectors of XᵗX with eigenvalues Σ².
+- U: eigenvectors of XXᵗ.
+- Reinforces relationship between SVD and eigen-decomposition.
+
+** Quiz  SVD Interpretation Question
+- Question about AᵗA matrix from a document-term matrix.
+
+** Quiz  SVD Interpretation Solution
+- Answer: AᵗA is a term-to-term similarity matrix.
+
+** Principal Component Analysis
+- PCA is derived from SVD: UΣ = principal components, Vᵗ = loadings.
+- Visualized with a patient-by-disease matrix.
+- Principal components capture the main variance direction.
+
+** PCA Interpretation
+- PCA reduces dimensions by projecting onto principal component directions.
+- Example with weight and height to one dimension.
+
+** Sparsity Problem with SVD
+- SVD and PCA generate dense outputs, losing sparsity of original data.
+- CUR decomposition preserves sparsity and reduces storage/computation cost.
+
+** CUR Decomposition
+- CUR approximates A ≈ CUR using actual rows and columns.
+- Comparison with SVD: CUR retains interpretability and sparsity.
+
+** CUR Algorithm
+- Algorithm steps:
+  1. Perform SVD.
+  2. Sample rows/columns based on vector norms.
+  3. Compute U as pseudo-inverse operations.
+- Sampling based on row norms of U and V.
+
+** CUR Quiz Question
+- Question: what do C and R represent in CUR decomposition?
+
+** CUR Quiz Solution
+- Answer: C = actual diagnoses (columns), R = actual patients (rows).
+- Emphasizes CUR’s interpretability and sparsity preservation.
+
+** Tensor for EHR
+- Tensor = generalized matrix (e.g., 3D tensor: patient × diagnosis × medication).
+- Captures multi-dimensional interactions in EHR data.
+
+** Tensor Slicing
+- Extract subtensors (matrices) by fixing all but two modes.
+- Examples:
+  - Diagnosis-medication matrix for a patient.
+  - Patients and diseases by medication.
+
+** Rank 1 Tensor
+- Rank-1 tensor = outer product of vectors from each mode.
+- Element-wise: aᵢ * bⱼ * cₖ.
+
+** Example Phenotype
+- Phenotypes modeled as rank-1 tensors.
+- Example: hypertension phenotype with specific meds and patients.
+
+** Phenotyping Through Tensor Factorization
+- Tensor = sum of rank-1 tensors (each = phenotype).
+- Each component has patient, diagnosis, and medication factors.
+- λ = importance of each phenotype.
+
+** CP Decomposition
+- Canonical Polyadic (CP) Decomposition = sum of R rank-1 tensors.
+- Each tensor has one λ and one vector per mode.
+- Output: three factor matrices and λ vector.
+- Often used with non-negativity constraints.
+
+** Phenotyping Process Using Tensor Factorization
+- Process:
+  1. Factorize training tensor to learn phenotype factors.
+  2. Project new patients onto phenotype space.
+- Result: low-dimensional patient representation.
+
+** Phenotyping for Predictive Modeling
+- Build tensor from EHR events within an observation window.
+- Target = predict heart failure.
+- Tensor = patient × diagnosis × medication.
+- Phenotypes used as features for prediction.
+
+** Predictive Performance
+- Compared PCA, NMF, and Tensor Factorization.
+- All outperformed baseline with fewer features (phenotypes).
+- Tensor and NMF had better performance than PCA.
+
+** Major Disease Phenotypes
+- Tensor reveals intuitive disease phenotypes:
+  - Uncomplicated diabetes (17.6%)
+  - Mild hypertension (31.1%)
+- Also identifies subtypes (e.g., mild/moderate/severe hypertension).
+
+** Tensor vs NMF
+- Tensor factorization offers more concise, interpretable phenotypes.
+- NMF generates complex feature sets with many interactions.
+
+** Summary  Phenotyping Via Tensor Factorization
+- Tensor factorization = unsupervised, interpretable phenotyping.
+- Phenotypes help in prediction (e.g., heart failure).
+- Benefits: no expert supervision needed, compact representations.
