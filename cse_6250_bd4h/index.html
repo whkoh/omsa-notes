@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-03-29 Sat 11:35 -->
+<!-- 2025-03-29 Sat 11:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>BD4H</title>
@@ -44,215 +44,268 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org7785a61">1. Introduction to Big Data</a>
+<li><a href="#org49dcc2c">1. Introduction to Big Data</a>
 <ul>
-<li><a href="#orgc88a37c">1.1. Introduction</a></li>
-<li><a href="#org5f9f29a">1.2. About BDAH</a></li>
-<li><a href="#orgfba48a9">1.3. Learning Goals</a></li>
-<li><a href="#org2e7ce71">1.4. Current Problems in Healthcare</a></li>
-<li><a href="#orge9999bd">1.5. The Four Vs</a></li>
-<li><a href="#orgbdfa733">1.6. More About The Four Vs</a></li>
-<li><a href="#org1dca380">1.7. Data Science is Sexy</a></li>
-<li><a href="#orgefd8b82">1.8. BDAH Quiz 1 Question</a></li>
-<li><a href="#org381cbc9">1.9. BDAH Quiz 1 Solution</a></li>
-<li><a href="#orgf1e52b6">1.10. BDAH Quiz 2 Question</a></li>
-<li><a href="#orgacad66a">1.11. BDAH Quiz 2 Solution</a></li>
-<li><a href="#org79aab1f">1.12. BDAH Quiz 3 Question</a></li>
-<li><a href="#org2521ab1">1.13. BDAH Quiz 3 Solution</a></li>
+<li><a href="#org8ce63f5">1.1. Introduction</a></li>
+<li><a href="#org50bd475">1.2. About BDAH</a></li>
+<li><a href="#org6d26834">1.3. Learning Goals</a></li>
+<li><a href="#org3d326ea">1.4. Current Problems in Healthcare</a></li>
+<li><a href="#orgdad47c6">1.5. The Four Vs</a></li>
+<li><a href="#org18cd480">1.6. More About The Four Vs</a></li>
+<li><a href="#org914b7f8">1.7. Data Science is Sexy</a></li>
+<li><a href="#org442ef44">1.8. BDAH Quiz 1 Question</a></li>
+<li><a href="#orgec393ad">1.9. BDAH Quiz 1 Solution</a></li>
+<li><a href="#org70e5703">1.10. BDAH Quiz 2 Question</a></li>
+<li><a href="#orga34e5a5">1.11. BDAH Quiz 2 Solution</a></li>
+<li><a href="#orgeb491e2">1.12. BDAH Quiz 3 Question</a></li>
+<li><a href="#orgc697b9a">1.13. BDAH Quiz 3 Solution</a></li>
 </ul>
 </li>
-<li><a href="#orgd41c260">2. Big Data Course Overview</a>
+<li><a href="#org9078066">2. Big Data Course Overview</a>
 <ul>
-<li><a href="#org27a1a04">2.1. Introduction to Course Overview</a></li>
-<li><a href="#org3b6da64">2.2. Big Data Big Picture</a></li>
-<li><a href="#org54095bb">2.3. Healthcare Applications</a></li>
-<li><a href="#orgb107239">2.4. Predictive Modeling Quiz Question</a></li>
-<li><a href="#org16f172e">2.5. Predictive Modeling Quiz Solution</a></li>
-<li><a href="#orgb29aa0b">2.6. Predictive Modeling Challenges</a></li>
-<li><a href="#org14c3ebc">2.7. Computational Phenotyping</a></li>
-<li><a href="#orgd2a2547">2.8. Computational Phenotyping Quiz Question</a></li>
-<li><a href="#orgf07faa0">2.9. Computational Phenotyping Quiz Solution</a></li>
-<li><a href="#org676fbb3">2.10. Phenotyping Algorithm</a></li>
-<li><a href="#org6c5a9da">2.11. Patient Similarity Quiz Question</a></li>
-<li><a href="#org5fa4a11">2.12. Patient Similarity Quiz Solution</a></li>
-<li><a href="#orge65fcd4">2.13. Patient Similarity</a></li>
-<li><a href="#org9c1b670">2.14. Algorithms</a></li>
-<li><a href="#org1b479af">2.15. Systems</a></li>
-<li><a href="#org0f6cd0e">2.16. Summary</a></li>
+<li><a href="#orgffe7c78">2.1. Introduction to Course Overview</a></li>
+<li><a href="#orgcb17cca">2.2. Big Data Big Picture</a></li>
+<li><a href="#org5cbaa53">2.3. Healthcare Applications</a></li>
+<li><a href="#orgfeab61f">2.4. Predictive Modeling Quiz Question</a></li>
+<li><a href="#orgb1b3724">2.5. Predictive Modeling Quiz Solution</a></li>
+<li><a href="#orgc367490">2.6. Predictive Modeling Challenges</a></li>
+<li><a href="#org0129c56">2.7. Computational Phenotyping</a></li>
+<li><a href="#org25b8916">2.8. Computational Phenotyping Quiz Question</a></li>
+<li><a href="#orgae0f959">2.9. Computational Phenotyping Quiz Solution</a></li>
+<li><a href="#orgc90cfe8">2.10. Phenotyping Algorithm</a></li>
+<li><a href="#org5697b63">2.11. Patient Similarity Quiz Question</a></li>
+<li><a href="#org63ef72b">2.12. Patient Similarity Quiz Solution</a></li>
+<li><a href="#orgba03a50">2.13. Patient Similarity</a></li>
+<li><a href="#orgdaf0e84">2.14. Algorithms</a></li>
+<li><a href="#orgfbbb5b7">2.15. Systems</a></li>
+<li><a href="#org91d83d1">2.16. Summary</a></li>
 </ul>
 </li>
-<li><a href="#org3b9cce5">3. Predictive Modeling</a>
+<li><a href="#org97426b2">3. Predictive Modeling</a>
 <ul>
-<li><a href="#org3b0fa99">3.1. Introduction to Predictive Modeling</a></li>
-<li><a href="#orgd7cf174">3.2. Predictive Modeling vs EHR</a></li>
-<li><a href="#org77b7749">3.3. Predictive Modeling Pipeline</a></li>
-<li><a href="#org8adfd1a">3.4. Prediction Target</a></li>
-<li><a href="#org9be962a">3.5. Heart Failure Quiz</a></li>
-<li><a href="#orgdf88690">3.6. Motivations for Early Detection</a></li>
-<li><a href="#org8491e8e">3.7. Cohort Construction</a></li>
-<li><a href="#org9164667">3.8. Prospective vs. Retrospective Studies</a></li>
-<li><a href="#orgbde6519">3.9. Prospective vs. Retrospective Quiz</a></li>
-<li><a href="#org11e737b">3.10. Cohort Study</a></li>
-<li><a href="#org8d66510">3.11. Case-Control Study</a></li>
-<li><a href="#org00dd05e">3.12. Feature Construction</a></li>
-<li><a href="#org6bff58d">3.13. Feature Construction Quizzes</a></li>
-<li><a href="#org5cd6250">3.14. Prediction Performance on Windows</a></li>
-<li><a href="#org08439b7">3.15. Feature Selection</a></li>
-<li><a href="#org478b694">3.16. Predictive Model</a></li>
-<li><a href="#org58d54f9">3.17. Performance Evaluation</a></li>
-<li><a href="#orgc573cbb">3.18. Cross-Validation</a></li>
-<li><a href="#orgfe92249">3.19. Conclusion</a></li>
+<li><a href="#org8f3ae3a">3.1. Introduction to Predictive Modeling</a></li>
+<li><a href="#org31efd89">3.2. Predictive Modeling vs EHR</a></li>
+<li><a href="#org36a6d71">3.3. Predictive Modeling Pipeline</a></li>
+<li><a href="#orgcf5144f">3.4. Prediction Target</a></li>
+<li><a href="#org6858598">3.5. Heart Failure Quiz</a></li>
+<li><a href="#orge55a933">3.6. Motivations for Early Detection</a></li>
+<li><a href="#org482e020">3.7. Cohort Construction</a></li>
+<li><a href="#org6d13499">3.8. Prospective vs. Retrospective Studies</a></li>
+<li><a href="#org7576808">3.9. Prospective vs. Retrospective Quiz</a></li>
+<li><a href="#orgd9d575e">3.10. Cohort Study</a></li>
+<li><a href="#orgf7623e9">3.11. Case-Control Study</a></li>
+<li><a href="#org9ce129b">3.12. Feature Construction</a></li>
+<li><a href="#org38c1afc">3.13. Feature Construction Quizzes</a></li>
+<li><a href="#org7badafb">3.14. Prediction Performance on Windows</a></li>
+<li><a href="#org459ec0d">3.15. Feature Selection</a></li>
+<li><a href="#org02c4c49">3.16. Predictive Model</a></li>
+<li><a href="#orgd97c564">3.17. Performance Evaluation</a></li>
+<li><a href="#org4680617">3.18. Cross-Validation</a></li>
+<li><a href="#org70c4643">3.19. Conclusion</a></li>
 </ul>
 </li>
-<li><a href="#orgc3bee92">4. MapReduce</a>
+<li><a href="#org701ab65">4. MapReduce</a>
 <ul>
-<li><a href="#orgc7cf73a">4.1. Introduction to MapReduce</a></li>
-<li><a href="#org596355f">4.2. What is MapReduce</a></li>
-<li><a href="#orgc3f9e65">4.3. Computational Process</a></li>
-<li><a href="#org245b1dc">4.4. Learning Via Aggregation Statistics</a></li>
-<li><a href="#org3fa3843">4.5. MapReduce Abstraction</a></li>
-<li><a href="#orgc48b6e1">4.6. MapReduce System</a></li>
-<li><a href="#org1bee7a2">4.7. MapReduce Fault Recovery</a></li>
-<li><a href="#orgfe008d7">4.8. Distributed File Systems</a></li>
-<li><a href="#org5e79d71">4.9. MapReduce Design Choice</a></li>
-<li><a href="#orgf36569f">4.10. Analytics with MapReduce</a></li>
-<li><a href="#org5cf8791">4.11. MapReduce KNN</a></li>
-<li><a href="#org40f45dc">4.12. Linear Regression</a></li>
-<li><a href="#orgc2b9a7f">4.13. MapReduce for Linear Regression Quiz Question</a></li>
-<li><a href="#orgcd60688">4.14. MapReduce for Linear Regression Quiz Solution</a></li>
-<li><a href="#org40ee108">4.15. Limitations of MapReduce</a></li>
-<li><a href="#org9bee8cc">4.16. MapReduce Summary Quiz Question</a></li>
-<li><a href="#org99c0d62">4.17. MapReduce Summary Quiz Solution</a></li>
+<li><a href="#orgfc1d2d2">4.1. Introduction to MapReduce</a></li>
+<li><a href="#org6464203">4.2. What is MapReduce</a></li>
+<li><a href="#orgaaa26da">4.3. Computational Process</a></li>
+<li><a href="#org0555299">4.4. Learning Via Aggregation Statistics</a></li>
+<li><a href="#orgfc767d4">4.5. MapReduce Abstraction</a></li>
+<li><a href="#org231367f">4.6. MapReduce System</a></li>
+<li><a href="#orgcbab645">4.7. MapReduce Fault Recovery</a></li>
+<li><a href="#orgef42e83">4.8. Distributed File Systems</a></li>
+<li><a href="#orgf4da16f">4.9. MapReduce Design Choice</a></li>
+<li><a href="#org7e5e46d">4.10. Analytics with MapReduce</a></li>
+<li><a href="#org681ce3a">4.11. MapReduce KNN</a></li>
+<li><a href="#org2267f49">4.12. Linear Regression</a></li>
+<li><a href="#org18bfa1a">4.13. MapReduce for Linear Regression Quiz Question</a></li>
+<li><a href="#org4ce1800">4.14. MapReduce for Linear Regression Quiz Solution</a></li>
+<li><a href="#orge05a5ab">4.15. Limitations of MapReduce</a></li>
+<li><a href="#orga0e4c13">4.16. MapReduce Summary Quiz Question</a></li>
+<li><a href="#orgba8ce3e">4.17. MapReduce Summary Quiz Solution</a></li>
 </ul>
 </li>
-<li><a href="#org695bfef">5. Classification Model Metrics</a>
+<li><a href="#orgf5c35b5">5. Classification Model Metrics</a>
 <ul>
-<li><a href="#org8f4cfd5">5.1. Predictive Model review</a></li>
-<li><a href="#orgc388a4b">5.2. Confusion matrix</a></li>
-<li><a href="#org393b9e0">5.3. Accuracy metrics</a>
+<li><a href="#org0e8e482">5.1. Predictive Model review</a></li>
+<li><a href="#org106ebbe">5.2. Confusion matrix</a></li>
+<li><a href="#orgac80b3e">5.3. Accuracy metrics</a>
 <ul>
-<li><a href="#org99735b1">5.3.1. Other notes</a></li>
+<li><a href="#org7f05500">5.3.1. Other notes</a></li>
 </ul>
 </li>
-<li><a href="#orgc640bd7">5.4. Predictive metrics</a></li>
-<li><a href="#org6a5fc04">5.5. F1 score</a></li>
-<li><a href="#org9a89612">5.6. Classifier quiz</a></li>
-<li><a href="#org4654f03">5.7. Reversing predictions</a></li>
-<li><a href="#org0b1ffa2">5.8. Receiver operating characteristic</a></li>
-<li><a href="#org393debc">5.9. "Best classifier threshold" quiz</a></li>
-<li><a href="#org6679100">5.10. Regression metrics</a>
+<li><a href="#orgde641da">5.4. Predictive metrics</a></li>
+<li><a href="#org1b9601d">5.5. F1 score</a></li>
+<li><a href="#org14aa8dc">5.6. Classifier quiz</a></li>
+<li><a href="#orgb0eb435">5.7. Reversing predictions</a></li>
+<li><a href="#org2fee4f4">5.8. Receiver operating characteristic</a></li>
+<li><a href="#orgab42907">5.9. "Best classifier threshold" quiz</a></li>
+<li><a href="#org458ad2b">5.10. Regression metrics</a>
 <ul>
-<li><a href="#org840c26f">5.10.1. \(R^2\)</a></li>
+<li><a href="#orgdf6d8b2">5.10.1. \(R^2\)</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org2837fcc">6. Ensemble methods</a>
+<li><a href="#org999b6a0">6. Ensemble methods</a>
 <ul>
-<li><a href="#org4dff722">6.1. Gradient Descent Method (GDM) for Linear Regression</a></li>
-<li><a href="#org5a0deec">6.2. Stochastic Gradient Descent (SGD) Method</a></li>
-<li><a href="#orgc68334e">6.3. SGD for Linear Regression</a></li>
-<li><a href="#org63de31b">6.4. Ensemble Method Pt 1</a></li>
-<li><a href="#org7b64449">6.5. Ensemble Method Pt 2</a></li>
-<li><a href="#org072de9a">6.6. Bias Variance Tradeoff</a></li>
-<li><a href="#org048a64b">6.7. Bias Variance Tradeoff Quiz Question</a></li>
-<li><a href="#orgf7b6ed8">6.8. Bias Variance Tradeoff Quiz Solution</a></li>
-<li><a href="#orgfbd233d">6.9. Bias Variance Tradeoff Quiz 2 Question</a></li>
-<li><a href="#org6df1159">6.10. Bias Variance Tradeoff Quiz 2 Solution</a></li>
-<li><a href="#orgcf17b45">6.11. Bagging</a></li>
-<li><a href="#org936922a">6.12. Random Forest</a></li>
-<li><a href="#orgb86fdd3">6.13. Why Bagging Works</a></li>
-<li><a href="#org8d83cb6">6.14. Boosting</a></li>
-<li><a href="#org5da376a">6.15. Bagging vs Boosting Quiz Question</a></li>
-<li><a href="#orgd29c21a">6.16. Bagging vs Boosting Quiz Solution</a></li>
-<li><a href="#org51d10e6">6.17. Summary for Ensemble Methods</a></li>
-<li><a href="#orga55d633">6.18. Introduction to Ensemble Method</a></li>
-<li><a href="#orgf4aa42c">6.19. Gradient Descent Method</a></li>
+<li><a href="#orgcbfd2fc">6.1. Gradient Descent Method (GDM) for Linear Regression</a></li>
+<li><a href="#org67a6156">6.2. Stochastic Gradient Descent (SGD) Method</a></li>
+<li><a href="#orgc193ce9">6.3. SGD for Linear Regression</a></li>
+<li><a href="#orga4f796e">6.4. Ensemble Method Pt 1</a></li>
+<li><a href="#orgcdd5783">6.5. Ensemble Method Pt 2</a></li>
+<li><a href="#org81600c3">6.6. Bias Variance Tradeoff</a></li>
+<li><a href="#org919109f">6.7. Bias Variance Tradeoff Quiz Question</a></li>
+<li><a href="#org2110929">6.8. Bias Variance Tradeoff Quiz Solution</a></li>
+<li><a href="#org20922b4">6.9. Bias Variance Tradeoff Quiz 2 Question</a></li>
+<li><a href="#org6153c61">6.10. Bias Variance Tradeoff Quiz 2 Solution</a></li>
+<li><a href="#orgd2497dd">6.11. Bagging</a></li>
+<li><a href="#org21589c6">6.12. Random Forest</a></li>
+<li><a href="#org8773336">6.13. Why Bagging Works</a></li>
+<li><a href="#orge8a5de2">6.14. Boosting</a></li>
+<li><a href="#org7d2bd59">6.15. Bagging vs Boosting Quiz Question</a></li>
+<li><a href="#orgecaa133">6.16. Bagging vs Boosting Quiz Solution</a></li>
+<li><a href="#orgebbb8b5">6.17. Summary for Ensemble Methods</a></li>
+<li><a href="#org85f9503">6.18. Introduction to Ensemble Method</a></li>
+<li><a href="#org6271f1c">6.19. Gradient Descent Method</a></li>
 </ul>
 </li>
-<li><a href="#orgfa13b4b">7. Computational Phenotyping</a>
+<li><a href="#orgb656877">7. Computational Phenotyping</a>
 <ul>
-<li><a href="#org23a0b51">7.1. Introduction to Phenotyping</a></li>
-<li><a href="#orgad07dad">7.2. Computational Phenotyping</a></li>
-<li><a href="#orgf84099b">7.3. Phenotyping Algorithm</a></li>
-<li><a href="#org4f97fea">7.4. Applications of Phenotyping</a></li>
-<li><a href="#orge7d7dfe">7.5. Genomic Wide Association Study</a></li>
-<li><a href="#org4250c5c">7.6. Why Do We Care About Phenotyping</a></li>
-<li><a href="#org86da234">7.7. Clinical Predictive Modeling</a></li>
-<li><a href="#org2d341ed">7.8. Pragmatic Clinical Trials</a></li>
-<li><a href="#orga55f27b">7.9. Healthcare Quality Measurement</a></li>
-<li><a href="#org7885c9a">7.10. Phenotyping Methods Part 1</a></li>
-<li><a href="#org7711c6e">7.11. Phenotyping Methods Part 2</a></li>
-<li><a href="#org7b94960">7.12. Phenotyping Quiz Question</a></li>
-<li><a href="#org73da703">7.13. Phenotyping Quiz Solution</a></li>
+<li><a href="#org0313bbb">7.1. Introduction to Phenotyping</a></li>
+<li><a href="#orgdc9bd14">7.2. Computational Phenotyping</a></li>
+<li><a href="#org2791a9d">7.3. Phenotyping Algorithm</a></li>
+<li><a href="#org54a6825">7.4. Applications of Phenotyping</a></li>
+<li><a href="#org266ecf6">7.5. Genomic Wide Association Study</a></li>
+<li><a href="#orgd1b8bd0">7.6. Why Do We Care About Phenotyping</a></li>
+<li><a href="#orgb9fecf8">7.7. Clinical Predictive Modeling</a></li>
+<li><a href="#org36f09c7">7.8. Pragmatic Clinical Trials</a></li>
+<li><a href="#org4363c86">7.9. Healthcare Quality Measurement</a></li>
+<li><a href="#org28726c3">7.10. Phenotyping Methods Part 1</a></li>
+<li><a href="#org48be3f6">7.11. Phenotyping Methods Part 2</a></li>
+<li><a href="#orgec09b68">7.12. Phenotyping Quiz Question</a></li>
+<li><a href="#org822c87d">7.13. Phenotyping Quiz Solution</a></li>
 </ul>
 </li>
-<li><a href="#orgdf9ea81">8. Clustering</a>
+<li><a href="#orgec62c37">8. Clustering</a>
 <ul>
-<li><a href="#orga54c619">8.1. Introduction to Clustering</a></li>
-<li><a href="#org11fe993">8.2. Healthcare Applications</a></li>
-<li><a href="#org9d545e8">8.3. What is Clustering</a></li>
-<li><a href="#org341b59f">8.4. Algorithm Overview</a></li>
-<li><a href="#orgb70731e">8.5. K Means</a></li>
-<li><a href="#org1d09d5c">8.6. K Means Quiz Question</a></li>
-<li><a href="#org3bbcf68">8.7. K Means Quiz Solution</a></li>
-<li><a href="#orgb6f024b">8.8. Hierarchical Clustering</a></li>
-<li><a href="#org11c17b4">8.9. Agglomerative Clustering</a></li>
-<li><a href="#orgca5b1a1">8.10. Gaussian Mixture Model</a></li>
-<li><a href="#org6ffe281">8.11. GMM Expectation Maximization</a></li>
-<li><a href="#orga303346">8.12. GMM Steps</a></li>
-<li><a href="#org274a5ec">8.13. GMM Visual Illustration</a></li>
-<li><a href="#org279b8fa">8.14. K Means Vs GMM</a></li>
-<li><a href="#org51d0fb7">8.15. Mini Batch K Means</a></li>
-<li><a href="#org31abac6">8.16. Mini Batch K Means Quiz Question</a></li>
-<li><a href="#orge18b27c">8.17. Mini Batch K Means Quiz Solution</a></li>
-<li><a href="#org98e8992">8.18. DBScan</a></li>
-<li><a href="#orgbc98819">8.19. DBScan Key Concepts</a></li>
-<li><a href="#org26a516c">8.20. DBScan Algorithm</a></li>
-<li><a href="#org1fa46e2">8.21. DBScan Example</a></li>
-<li><a href="#orga82f8d7">8.22. DBScan Quiz Question</a></li>
-<li><a href="#orgea67318">8.23. DBScan Quiz Solution</a></li>
-<li><a href="#orgd9af782">8.24. Clustering Evaluation Metrics</a></li>
-<li><a href="#orge8f042b">8.25. Rand Index</a></li>
-<li><a href="#org2055e0f">8.26. Mutual Information</a></li>
-<li><a href="#org354f5cb">8.27. Summary of RI and MI</a></li>
-<li><a href="#org541c597">8.28. Silhouette Coefficient</a></li>
-<li><a href="#org67b50b5">8.29. Silhouette Coefficient Pros and Cons</a></li>
+<li><a href="#org40fbb9b">8.1. Introduction to Clustering</a></li>
+<li><a href="#org101613b">8.2. Healthcare Applications</a></li>
+<li><a href="#org045b51b">8.3. What is Clustering</a></li>
+<li><a href="#orgffe57bc">8.4. Algorithm Overview</a></li>
+<li><a href="#orgf872e0c">8.5. K Means</a></li>
+<li><a href="#org61ea298">8.6. K Means Quiz Question</a></li>
+<li><a href="#org3723902">8.7. K Means Quiz Solution</a></li>
+<li><a href="#org339dbbb">8.8. Hierarchical Clustering</a></li>
+<li><a href="#orge3c3cda">8.9. Agglomerative Clustering</a></li>
+<li><a href="#org1c61285">8.10. Gaussian Mixture Model</a></li>
+<li><a href="#orged05ea6">8.11. GMM Expectation Maximization</a></li>
+<li><a href="#org0d66189">8.12. GMM Steps</a></li>
+<li><a href="#org39aeaea">8.13. GMM Visual Illustration</a></li>
+<li><a href="#org37b9f64">8.14. K Means Vs GMM</a></li>
+<li><a href="#org4f5805e">8.15. Mini Batch K Means</a></li>
+<li><a href="#orgd5230f1">8.16. Mini Batch K Means Quiz Question</a></li>
+<li><a href="#orgdca7329">8.17. Mini Batch K Means Quiz Solution</a></li>
+<li><a href="#org7dbc599">8.18. DBScan</a></li>
+<li><a href="#org40a3bf8">8.19. DBScan Key Concepts</a></li>
+<li><a href="#org4a4f385">8.20. DBScan Algorithm</a></li>
+<li><a href="#org8220405">8.21. DBScan Example</a></li>
+<li><a href="#org73e4ac8">8.22. DBScan Quiz Question</a></li>
+<li><a href="#org56d79ef">8.23. DBScan Quiz Solution</a></li>
+<li><a href="#org9c0eac3">8.24. Clustering Evaluation Metrics</a></li>
+<li><a href="#orga807598">8.25. Rand Index</a></li>
+<li><a href="#org4a93cc8">8.26. Mutual Information</a></li>
+<li><a href="#orgbd2fb8b">8.27. Summary of RI and MI</a></li>
+<li><a href="#org9bf4756">8.28. Silhouette Coefficient</a></li>
+<li><a href="#orge5cf134">8.29. Silhouette Coefficient Pros and Cons</a></li>
 </ul>
 </li>
-<li><a href="#org21c7198">9. Spark</a>
+<li><a href="#org6d3d943">9. Spark</a>
 <ul>
-<li><a href="#orgc96c454">9.1. Introduction to Spark</a></li>
-<li><a href="#org66de49a">9.2. Environment</a></li>
-<li><a href="#org4d64ab5">9.3. Motivation</a></li>
-<li><a href="#org651db3d">9.4. Iteration in Map Reduce</a></li>
-<li><a href="#orgc315c20">9.5. Workload Illustration</a></li>
-<li><a href="#orgc97199b">9.6. Challenge</a></li>
-<li><a href="#org6576249">9.7. Solution  RDDs</a></li>
-<li><a href="#orgc121e87">9.8. RDD Recovery</a></li>
-<li><a href="#org42f88f6">9.9. Spark Stack</a></li>
-<li><a href="#org025ccf9">9.10. Spark Programming Interface</a></li>
-<li><a href="#orgb82e336">9.11. RDD Transformations</a></li>
-<li><a href="#orgd8f6220">9.12. RDD Transformations Quiz Question</a></li>
-<li><a href="#org3d45daf">9.13. RDD Transformations Quiz Solution</a></li>
-<li><a href="#org799ad4f">9.14. Spark Operations</a></li>
-<li><a href="#org9da73fc">9.15. Shared Variable</a></li>
-<li><a href="#org3fdf218">9.16. Fault Tolerance</a></li>
-<li><a href="#orgff1381c">9.17. Example  Logistic Regression</a></li>
-<li><a href="#org85a9683">9.18. Example  Disease Risk Prediction</a></li>
-<li><a href="#orgcecceef">9.19. Serial ALS</a></li>
-<li><a href="#org10b1f2a">9.20. Naive Spark ALS</a></li>
+<li><a href="#org12d4729">9.1. Introduction to Spark</a></li>
+<li><a href="#orgf171f08">9.2. Environment</a></li>
+<li><a href="#org5b6a6d9">9.3. Motivation</a></li>
+<li><a href="#orgcae4a04">9.4. Iteration in Map Reduce</a></li>
+<li><a href="#org0aec3fb">9.5. Workload Illustration</a></li>
+<li><a href="#org1250ef7">9.6. Challenge</a></li>
+<li><a href="#orgf205d96">9.7. Solution  RDDs</a></li>
+<li><a href="#orge0c62c2">9.8. RDD Recovery</a></li>
+<li><a href="#orgc185e54">9.9. Spark Stack</a></li>
+<li><a href="#org4366103">9.10. Spark Programming Interface</a></li>
+<li><a href="#org2c4a9c2">9.11. RDD Transformations</a></li>
+<li><a href="#org5782b85">9.12. RDD Transformations Quiz Question</a></li>
+<li><a href="#orgc7a4d38">9.13. RDD Transformations Quiz Solution</a></li>
+<li><a href="#org1285c3e">9.14. Spark Operations</a></li>
+<li><a href="#org382f04c">9.15. Shared Variable</a></li>
+<li><a href="#org4ab58ee">9.16. Fault Tolerance</a></li>
+<li><a href="#org9bd8456">9.17. Example  Logistic Regression</a></li>
+<li><a href="#org88ba6d5">9.18. Example  Disease Risk Prediction</a></li>
+<li><a href="#orgb38387d">9.19. Serial ALS</a></li>
+<li><a href="#org03c667b">9.20. Naive Spark ALS</a></li>
+</ul>
+</li>
+<li><a href="#orgf308ff8">10. Medical Ontology</a>
+<ul>
+<li><a href="#org6767589">10.1. Introduction to Medical Ontology</a></li>
+<li><a href="#org10830be">10.2. Health Data Standards</a></li>
+<li><a href="#orgbdf5a44">10.3. ICD</a></li>
+<li><a href="#orga1cd6c5">10.4. ICD 9 to ICD 10 Mapping</a></li>
+<li><a href="#org18841f2">10.5. ICD 9 Quiz Question</a></li>
+<li><a href="#orge9b5185">10.6. ICD 9 Quiz Solution</a></li>
+<li><a href="#org26cb049">10.7. ICD Code Quiz Question</a></li>
+<li><a href="#org5715647">10.8. ICD Code Quiz Solution</a></li>
+<li><a href="#org45056e9">10.9. CPT</a></li>
+<li><a href="#org517c583">10.10. CPT Code Quiz Question</a></li>
+<li><a href="#orgb5f34c0">10.11. CPT Code Quiz Solution</a></li>
+<li><a href="#org09e81eb">10.12. LOINC</a></li>
+<li><a href="#orgf2b265d">10.13. LOINC Code Quiz Question</a></li>
+<li><a href="#org0e65069">10.14. LOINC Code Quiz Solution</a></li>
+<li><a href="#org359b111">10.15. NDC</a></li>
+<li><a href="#org275d45d">10.16. NDC Code Quiz Question</a></li>
+<li><a href="#org76ec4ac">10.17. NDC Code Quiz Solution</a></li>
+<li><a href="#org79096a7">10.18. SNOMED</a></li>
+<li><a href="#orgc142776">10.19. Logical Model of SNOMED CT</a></li>
+<li><a href="#org313882d">10.20. SNOMED Example</a></li>
+<li><a href="#org095bae4">10.21. SNOMED Relationships</a></li>
+<li><a href="#org65fd78d">10.22. SNOMED Design</a></li>
+<li><a href="#org236643e">10.23. SNOMED Code Quiz Question</a></li>
+<li><a href="#orgc343de9">10.24. SNOMED Code Quiz Solution</a></li>
+<li><a href="#org90f70eb">10.25. SNOMED Quiz Question</a></li>
+<li><a href="#orge5149a1">10.26. SNOMED Quiz Solution</a></li>
+<li><a href="#org5a5300e">10.27. UMLS</a></li>
+<li><a href="#orgb12b516">10.28. Metathesaurus Concepts</a></li>
+<li><a href="#org8a63346">10.29. Semantic Network</a></li>
+<li><a href="#orgfe3e3af">10.30. Specialist Lexicon</a></li>
+</ul>
+</li>
+<li><a href="#org3383461">11. Graph Analysis</a>
+<ul>
+<li><a href="#org17d40f3">11.1. Introduction to Graph Analysis</a></li>
+<li><a href="#org540bd8e">11.2. Agenda</a></li>
+<li><a href="#org8b76b8f">11.3. PageRank</a></li>
+<li><a href="#org7d0699e">11.4. MapReduce  PageRank</a></li>
+<li><a href="#orgda0012c">11.5. PageRank Quiz Question</a></li>
+<li><a href="#org4731d49">11.6. PageRank Quiz Solution</a></li>
+<li><a href="#orgd751a04">11.7. Spectral Clustering</a></li>
+<li><a href="#org469a04b">11.8. Similarity Graph Construction</a></li>
+<li><a href="#org43688db">11.9. E Neighborhood Graph</a></li>
+<li><a href="#org0f498ed">11.10. K Nearest Neighbor Graph</a></li>
+<li><a href="#org58e1cb4">11.11. Fully Connected Graph</a></li>
+<li><a href="#org8faa972">11.12. E Neighborhood Graph Quiz Question</a></li>
+<li><a href="#orgfd5c68b">11.13. E Neighborhood Graph Quiz Solution</a></li>
+<li><a href="#orgb4d1afb">11.14. Spectral Clustering Algorithm</a></li>
+<li><a href="#orgec615dc">11.15. Big Data Conclusion</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org7785a61" class="outline-2">
-<h2 id="org7785a61"><span class="section-number-2">1.</span> Introduction to Big Data</h2>
+<div id="outline-container-org49dcc2c" class="outline-2">
+<h2 id="org49dcc2c"><span class="section-number-2">1.</span> Introduction to Big Data</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgc88a37c" class="outline-3">
-<h3 id="orgc88a37c"><span class="section-number-3">1.1.</span> Introduction</h3>
+<div id="outline-container-org8ce63f5" class="outline-3">
+<h3 id="org8ce63f5"><span class="section-number-3">1.1.</span> Introduction</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li>Course: Big Data Analytics for Healthcare (BDAH)</li>
@@ -263,8 +316,8 @@
 </div>
 </div>
 
-<div id="outline-container-org5f9f29a" class="outline-3">
-<h3 id="org5f9f29a"><span class="section-number-3">1.2.</span> About BDAH</h3>
+<div id="outline-container-org50bd475" class="outline-3">
+<h3 id="org50bd475"><span class="section-number-3">1.2.</span> About BDAH</h3>
 <div class="outline-text-3" id="text-1-2">
 <ul class="org-ul">
 <li>Intersection of healthcare and big data</li>
@@ -274,8 +327,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgfba48a9" class="outline-3">
-<h3 id="orgfba48a9"><span class="section-number-3">1.3.</span> Learning Goals</h3>
+<div id="outline-container-org6d26834" class="outline-3">
+<h3 id="org6d26834"><span class="section-number-3">1.3.</span> Learning Goals</h3>
 <div class="outline-text-3" id="text-1-3">
 <ul class="org-ul">
 <li>Understand healthcare data</li>
@@ -287,8 +340,8 @@
 </div>
 </div>
 
-<div id="outline-container-org2e7ce71" class="outline-3">
-<h3 id="org2e7ce71"><span class="section-number-3">1.4.</span> Current Problems in Healthcare</h3>
+<div id="outline-container-org3d326ea" class="outline-3">
+<h3 id="org3d326ea"><span class="section-number-3">1.4.</span> Current Problems in Healthcare</h3>
 <div class="outline-text-3" id="text-1-4">
 <ul class="org-ul">
 <li>High costs: $3.8 trillion/year in the U.S.</li>
@@ -300,8 +353,8 @@
 </div>
 </div>
 
-<div id="outline-container-orge9999bd" class="outline-3">
-<h3 id="orge9999bd"><span class="section-number-3">1.5.</span> The Four Vs</h3>
+<div id="outline-container-orgdad47c6" class="outline-3">
+<h3 id="orgdad47c6"><span class="section-number-3">1.5.</span> The Four Vs</h3>
 <div class="outline-text-3" id="text-1-5">
 <ul class="org-ul">
 <li>Volume: Large healthcare data amounts</li>
@@ -312,8 +365,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgbdfa733" class="outline-3">
-<h3 id="orgbdfa733"><span class="section-number-3">1.6.</span> More About The Four Vs</h3>
+<div id="outline-container-org18cd480" class="outline-3">
+<h3 id="org18cd480"><span class="section-number-3">1.6.</span> More About The Four Vs</h3>
 <div class="outline-text-3" id="text-1-6">
 <ul class="org-ul">
 <li>Examples of data volume:
@@ -333,8 +386,8 @@
 </div>
 </div>
 
-<div id="outline-container-org1dca380" class="outline-3">
-<h3 id="org1dca380"><span class="section-number-3">1.7.</span> Data Science is Sexy</h3>
+<div id="outline-container-org914b7f8" class="outline-3">
+<h3 id="org914b7f8"><span class="section-number-3">1.7.</span> Data Science is Sexy</h3>
 <div class="outline-text-3" id="text-1-7">
 <ul class="org-ul">
 <li>Data science is a critical field</li>
@@ -349,8 +402,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgefd8b82" class="outline-3">
-<h3 id="orgefd8b82"><span class="section-number-3">1.8.</span> BDAH Quiz 1 Question</h3>
+<div id="outline-container-org442ef44" class="outline-3">
+<h3 id="org442ef44"><span class="section-number-3">1.8.</span> BDAH Quiz 1 Question</h3>
 <div class="outline-text-3" id="text-1-8">
 <ul class="org-ul">
 <li>True/False: A graduate-level degree is necessary to become a data scientist.</li>
@@ -358,8 +411,8 @@
 </div>
 </div>
 
-<div id="outline-container-org381cbc9" class="outline-3">
-<h3 id="org381cbc9"><span class="section-number-3">1.9.</span> BDAH Quiz 1 Solution</h3>
+<div id="outline-container-orgec393ad" class="outline-3">
+<h3 id="orgec393ad"><span class="section-number-3">1.9.</span> BDAH Quiz 1 Solution</h3>
 <div class="outline-text-3" id="text-1-9">
 <ul class="org-ul">
 <li>Answer: True</li>
@@ -367,8 +420,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgf1e52b6" class="outline-3">
-<h3 id="orgf1e52b6"><span class="section-number-3">1.10.</span> BDAH Quiz 2 Question</h3>
+<div id="outline-container-org70e5703" class="outline-3">
+<h3 id="org70e5703"><span class="section-number-3">1.10.</span> BDAH Quiz 2 Question</h3>
 <div class="outline-text-3" id="text-1-10">
 <ul class="org-ul">
 <li>Question: What is the average salary of a data scientist?</li>
@@ -376,8 +429,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgacad66a" class="outline-3">
-<h3 id="orgacad66a"><span class="section-number-3">1.11.</span> BDAH Quiz 2 Solution</h3>
+<div id="outline-container-orga34e5a5" class="outline-3">
+<h3 id="orga34e5a5"><span class="section-number-3">1.11.</span> BDAH Quiz 2 Solution</h3>
 <div class="outline-text-3" id="text-1-11">
 <ul class="org-ul">
 <li>Answer: $120,000 per year (experienced data scientists earn over $150,000)</li>
@@ -385,8 +438,8 @@
 </div>
 </div>
 
-<div id="outline-container-org79aab1f" class="outline-3">
-<h3 id="org79aab1f"><span class="section-number-3">1.12.</span> BDAH Quiz 3 Question</h3>
+<div id="outline-container-orgeb491e2" class="outline-3">
+<h3 id="orgeb491e2"><span class="section-number-3">1.12.</span> BDAH Quiz 3 Question</h3>
 <div class="outline-text-3" id="text-1-12">
 <ul class="org-ul">
 <li>Question: What skills do data scientists need?</li>
@@ -394,8 +447,8 @@
 </div>
 </div>
 
-<div id="outline-container-org2521ab1" class="outline-3">
-<h3 id="org2521ab1"><span class="section-number-3">1.13.</span> BDAH Quiz 3 Solution</h3>
+<div id="outline-container-orgc697b9a" class="outline-3">
+<h3 id="orgc697b9a"><span class="section-number-3">1.13.</span> BDAH Quiz 3 Solution</h3>
 <div class="outline-text-3" id="text-1-13">
 <ul class="org-ul">
 <li>Answer:
@@ -410,12 +463,12 @@
 </div>
 </div>
 
-<div id="outline-container-orgd41c260" class="outline-2">
-<h2 id="orgd41c260"><span class="section-number-2">2.</span> Big Data Course Overview</h2>
+<div id="outline-container-org9078066" class="outline-2">
+<h2 id="org9078066"><span class="section-number-2">2.</span> Big Data Course Overview</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org27a1a04" class="outline-3">
-<h3 id="org27a1a04"><span class="section-number-3">2.1.</span> Introduction to Course Overview</h3>
+<div id="outline-container-orgffe7c78" class="outline-3">
+<h3 id="orgffe7c78"><span class="section-number-3">2.1.</span> Introduction to Course Overview</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li>Overview of big data analytics for healthcare.</li>
@@ -430,8 +483,8 @@
 </div>
 </div>
 
-<div id="outline-container-org3b6da64" class="outline-3">
-<h3 id="org3b6da64"><span class="section-number-3">2.2.</span> Big Data Big Picture</h3>
+<div id="outline-container-orgcb17cca" class="outline-3">
+<h3 id="orgcb17cca"><span class="section-number-3">2.2.</span> Big Data Big Picture</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>Course focuses on three key areas:
@@ -445,8 +498,8 @@
 </div>
 </div>
 
-<div id="outline-container-org54095bb" class="outline-3">
-<h3 id="org54095bb"><span class="section-number-3">2.3.</span> Healthcare Applications</h3>
+<div id="outline-container-org5cbaa53" class="outline-3">
+<h3 id="org5cbaa53"><span class="section-number-3">2.3.</span> Healthcare Applications</h3>
 <div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li>Three types of healthcare applications:
@@ -460,8 +513,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgb107239" class="outline-3">
-<h3 id="orgb107239"><span class="section-number-3">2.4.</span> Predictive Modeling Quiz Question</h3>
+<div id="outline-container-orgfeab61f" class="outline-3">
+<h3 id="orgfeab61f"><span class="section-number-3">2.4.</span> Predictive Modeling Quiz Question</h3>
 <div class="outline-text-3" id="text-2-4">
 <ul class="org-ul">
 <li>Predictive modeling example: predicting treatment effectiveness for epilepsy patients.</li>
@@ -470,8 +523,8 @@
 </div>
 </div>
 
-<div id="outline-container-org16f172e" class="outline-3">
-<h3 id="org16f172e"><span class="section-number-3">2.5.</span> Predictive Modeling Quiz Solution</h3>
+<div id="outline-container-orgb1b3724" class="outline-3">
+<h3 id="orgb1b3724"><span class="section-number-3">2.5.</span> Predictive Modeling Quiz Solution</h3>
 <div class="outline-text-3" id="text-2-5">
 <ul class="org-ul">
 <li>Solution breakdown:
@@ -489,8 +542,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgb29aa0b" class="outline-3">
-<h3 id="orgb29aa0b"><span class="section-number-3">2.6.</span> Predictive Modeling Challenges</h3>
+<div id="outline-container-orgc367490" class="outline-3">
+<h3 id="orgc367490"><span class="section-number-3">2.6.</span> Predictive Modeling Challenges</h3>
 <div class="outline-text-3" id="text-2-6">
 <ul class="org-ul">
 <li>Challenges in predictive modeling:
@@ -503,8 +556,8 @@
 </div>
 </div>
 
-<div id="outline-container-org14c3ebc" class="outline-3">
-<h3 id="org14c3ebc"><span class="section-number-3">2.7.</span> Computational Phenotyping</h3>
+<div id="outline-container-org0129c56" class="outline-3">
+<h3 id="org0129c56"><span class="section-number-3">2.7.</span> Computational Phenotyping</h3>
 <div class="outline-text-3" id="text-2-7">
 <ul class="org-ul">
 <li>Converts raw patient data (e.g., demographics, diagnoses, medications, procedures, lab tests, clinical notes) into clinical concepts or phenotypes.</li>
@@ -512,8 +565,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgd2a2547" class="outline-3">
-<h3 id="orgd2a2547"><span class="section-number-3">2.8.</span> Computational Phenotyping Quiz Question</h3>
+<div id="outline-container-org25b8916" class="outline-3">
+<h3 id="org25b8916"><span class="section-number-3">2.8.</span> Computational Phenotyping Quiz Question</h3>
 <div class="outline-text-3" id="text-2-8">
 <ul class="org-ul">
 <li>Identifying data issues in phenotyping.</li>
@@ -522,8 +575,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgf07faa0" class="outline-3">
-<h3 id="orgf07faa0"><span class="section-number-3">2.9.</span> Computational Phenotyping Quiz Solution</h3>
+<div id="outline-container-orgae0f959" class="outline-3">
+<h3 id="orgae0f959"><span class="section-number-3">2.9.</span> Computational Phenotyping Quiz Solution</h3>
 <div class="outline-text-3" id="text-2-9">
 <ul class="org-ul">
 <li>Common data issues:
@@ -537,8 +590,8 @@
 </div>
 </div>
 
-<div id="outline-container-org676fbb3" class="outline-3">
-<h3 id="org676fbb3"><span class="section-number-3">2.10.</span> Phenotyping Algorithm</h3>
+<div id="outline-container-orgc90cfe8" class="outline-3">
+<h3 id="orgc90cfe8"><span class="section-number-3">2.10.</span> Phenotyping Algorithm</h3>
 <div class="outline-text-3" id="text-2-10">
 <ul class="org-ul">
 <li>Example: Identifying Type 2 Diabetes from EHR data.</li>
@@ -557,8 +610,8 @@
 </div>
 </div>
 
-<div id="outline-container-org6c5a9da" class="outline-3">
-<h3 id="org6c5a9da"><span class="section-number-3">2.11.</span> Patient Similarity Quiz Question</h3>
+<div id="outline-container-org5697b63" class="outline-3">
+<h3 id="org5697b63"><span class="section-number-3">2.11.</span> Patient Similarity Quiz Question</h3>
 <div class="outline-text-3" id="text-2-11">
 <ul class="org-ul">
 <li>Different types of reasoning doctors use:
@@ -571,8 +624,8 @@
 </div>
 </div>
 
-<div id="outline-container-org5fa4a11" class="outline-3">
-<h3 id="org5fa4a11"><span class="section-number-3">2.12.</span> Patient Similarity Quiz Solution</h3>
+<div id="outline-container-org63ef72b" class="outline-3">
+<h3 id="org63ef72b"><span class="section-number-3">2.12.</span> Patient Similarity Quiz Solution</h3>
 <div class="outline-text-3" id="text-2-12">
 <ul class="org-ul">
 <li>Correct answer: <b><b>Case-based reasoning</b></b>.</li>
@@ -581,8 +634,8 @@
 </div>
 </div>
 
-<div id="outline-container-orge65fcd4" class="outline-3">
-<h3 id="orge65fcd4"><span class="section-number-3">2.13.</span> Patient Similarity</h3>
+<div id="outline-container-orgba03a50" class="outline-3">
+<h3 id="orgba03a50"><span class="section-number-3">2.13.</span> Patient Similarity</h3>
 <div class="outline-text-3" id="text-2-13">
 <ul class="org-ul">
 <li>Simulating case-based reasoning using algorithms.</li>
@@ -597,8 +650,8 @@
 </div>
 </div>
 
-<div id="outline-container-org9c1b670" class="outline-3">
-<h3 id="org9c1b670"><span class="section-number-3">2.14.</span> Algorithms</h3>
+<div id="outline-container-orgdaf0e84" class="outline-3">
+<h3 id="orgdaf0e84"><span class="section-number-3">2.14.</span> Algorithms</h3>
 <div class="outline-text-3" id="text-2-14">
 <ul class="org-ul">
 <li>Introduction to machine learning algorithms in healthcare.</li>
@@ -613,8 +666,8 @@
 </div>
 </div>
 
-<div id="outline-container-org1b479af" class="outline-3">
-<h3 id="org1b479af"><span class="section-number-3">2.15.</span> Systems</h3>
+<div id="outline-container-orgfbbb5b7" class="outline-3">
+<h3 id="orgfbbb5b7"><span class="section-number-3">2.15.</span> Systems</h3>
 <div class="outline-text-3" id="text-2-15">
 <ul class="org-ul">
 <li>Introduction to big data systems for healthcare applications.</li>
@@ -632,8 +685,8 @@
 </div>
 </div>
 
-<div id="outline-container-org0f6cd0e" class="outline-3">
-<h3 id="org0f6cd0e"><span class="section-number-3">2.16.</span> Summary</h3>
+<div id="outline-container-org91d83d1" class="outline-3">
+<h3 id="org91d83d1"><span class="section-number-3">2.16.</span> Summary</h3>
 <div class="outline-text-3" id="text-2-16">
 <ul class="org-ul">
 <li>Recap of three key areas:
@@ -652,12 +705,12 @@
 </div>
 </div>
 
-<div id="outline-container-org3b9cce5" class="outline-2">
-<h2 id="org3b9cce5"><span class="section-number-2">3.</span> Predictive Modeling</h2>
+<div id="outline-container-org97426b2" class="outline-2">
+<h2 id="org97426b2"><span class="section-number-2">3.</span> Predictive Modeling</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org3b0fa99" class="outline-3">
-<h3 id="org3b0fa99"><span class="section-number-3">3.1.</span> Introduction to Predictive Modeling</h3>
+<div id="outline-container-org8f3ae3a" class="outline-3">
+<h3 id="org8f3ae3a"><span class="section-number-3">3.1.</span> Introduction to Predictive Modeling</h3>
 <div class="outline-text-3" id="text-3-1">
 <dl class="org-dl">
 <dt>Predictive modeling</dt><dd>using historical data to predict future events.
@@ -670,8 +723,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgd7cf174" class="outline-3">
-<h3 id="orgd7cf174"><span class="section-number-3">3.2.</span> Predictive Modeling vs EHR</h3>
+<div id="outline-container-org31efd89" class="outline-3">
+<h3 id="org31efd89"><span class="section-number-3">3.2.</span> Predictive Modeling vs EHR</h3>
 <div class="outline-text-3" id="text-3-2">
 <ul class="org-ul">
 <li>Importance: Increased research interest in using EHR for clinical predictive modeling.</li>
@@ -680,8 +733,8 @@
 </div>
 </div>
 
-<div id="outline-container-org77b7749" class="outline-3">
-<h3 id="org77b7749"><span class="section-number-3">3.3.</span> Predictive Modeling Pipeline</h3>
+<div id="outline-container-org36a6d71" class="outline-3">
+<h3 id="org36a6d71"><span class="section-number-3">3.3.</span> Predictive Modeling Pipeline</h3>
 <div class="outline-text-3" id="text-3-3">
 <ul class="org-ul">
 <li>Predictive modeling is a multi-step computational process:
@@ -698,8 +751,8 @@
 </div>
 </div>
 
-<div id="outline-container-org8adfd1a" class="outline-3">
-<h3 id="org8adfd1a"><span class="section-number-3">3.4.</span> Prediction Target</h3>
+<div id="outline-container-orgcf5144f" class="outline-3">
+<h3 id="orgcf5144f"><span class="section-number-3">3.4.</span> Prediction Target</h3>
 <div class="outline-text-3" id="text-3-4">
 <ul class="org-ul">
 <li>Investigators may have many targets, but only some are feasible.</li>
@@ -709,8 +762,8 @@
 </div>
 </div>
 
-<div id="outline-container-org9be962a" class="outline-3">
-<h3 id="org9be962a"><span class="section-number-3">3.5.</span> Heart Failure Quiz</h3>
+<div id="outline-container-org6858598" class="outline-3">
+<h3 id="org6858598"><span class="section-number-3">3.5.</span> Heart Failure Quiz</h3>
 <div class="outline-text-3" id="text-3-5">
 <ul class="org-ul">
 <li>Question: How many new heart failure cases occur annually in the U.S.?</li>
@@ -720,8 +773,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgdf88690" class="outline-3">
-<h3 id="orgdf88690"><span class="section-number-3">3.6.</span> Motivations for Early Detection</h3>
+<div id="outline-container-orge55a933" class="outline-3">
+<h3 id="orge55a933"><span class="section-number-3">3.6.</span> Motivations for Early Detection</h3>
 <div class="outline-text-3" id="text-3-6">
 <ul class="org-ul">
 <li>Heart failure is complex with diverse symptoms and subsets.</li>
@@ -735,8 +788,8 @@
 </div>
 </div>
 
-<div id="outline-container-org8491e8e" class="outline-3">
-<h3 id="org8491e8e"><span class="section-number-3">3.7.</span> Cohort Construction</h3>
+<div id="outline-container-org482e020" class="outline-3">
+<h3 id="org482e020"><span class="section-number-3">3.7.</span> Cohort Construction</h3>
 <div class="outline-text-3" id="text-3-7">
 <ul class="org-ul">
 <li>Defines the study population for predictive modeling.</li>
@@ -750,8 +803,8 @@
 </div>
 </div>
 
-<div id="outline-container-org9164667" class="outline-3">
-<h3 id="org9164667"><span class="section-number-3">3.8.</span> Prospective vs. Retrospective Studies</h3>
+<div id="outline-container-org6d13499" class="outline-3">
+<h3 id="org6d13499"><span class="section-number-3">3.8.</span> Prospective vs. Retrospective Studies</h3>
 <div class="outline-text-3" id="text-3-8">
 <ul class="org-ul">
 <li><b><b>Prospective Study</b></b>: Define cohort first, then collect data.</li>
@@ -760,8 +813,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgbde6519" class="outline-3">
-<h3 id="orgbde6519"><span class="section-number-3">3.9.</span> Prospective vs. Retrospective Quiz</h3>
+<div id="outline-container-org7576808" class="outline-3">
+<h3 id="org7576808"><span class="section-number-3">3.9.</span> Prospective vs. Retrospective Quiz</h3>
 <div class="outline-text-3" id="text-3-9">
 <ul class="org-ul">
 <li>Comparison of study properties:
@@ -774,8 +827,8 @@
 </div>
 </div>
 
-<div id="outline-container-org11e737b" class="outline-3">
-<h3 id="org11e737b"><span class="section-number-3">3.10.</span> Cohort Study</h3>
+<div id="outline-container-orgd9d575e" class="outline-3">
+<h3 id="orgd9d575e"><span class="section-number-3">3.10.</span> Cohort Study</h3>
 <div class="outline-text-3" id="text-3-10">
 <ul class="org-ul">
 <li>Includes patients exposed to a particular risk (e.g., heart failure readmission).</li>
@@ -784,8 +837,8 @@
 </div>
 </div>
 
-<div id="outline-container-org8d66510" class="outline-3">
-<h3 id="org8d66510"><span class="section-number-3">3.11.</span> Case-Control Study</h3>
+<div id="outline-container-orgf7623e9" class="outline-3">
+<h3 id="orgf7623e9"><span class="section-number-3">3.11.</span> Case-Control Study</h3>
 <div class="outline-text-3" id="text-3-11">
 <ul class="org-ul">
 <li>Compares patients with a condition (cases) to similar patients without it (controls).</li>
@@ -795,8 +848,8 @@
 </div>
 </div>
 
-<div id="outline-container-org00dd05e" class="outline-3">
-<h3 id="org00dd05e"><span class="section-number-3">3.12.</span> Feature Construction</h3>
+<div id="outline-container-org9ce129b" class="outline-3">
+<h3 id="org9ce129b"><span class="section-number-3">3.12.</span> Feature Construction</h3>
 <div class="outline-text-3" id="text-3-12">
 <ul class="org-ul">
 <li>Defines patient features for predicting outcomes.</li>
@@ -811,8 +864,8 @@
 </div>
 </div>
 
-<div id="outline-container-org6bff58d" class="outline-3">
-<h3 id="org6bff58d"><span class="section-number-3">3.13.</span> Feature Construction Quizzes</h3>
+<div id="outline-container-org38c1afc" class="outline-3">
+<h3 id="org38c1afc"><span class="section-number-3">3.13.</span> Feature Construction Quizzes</h3>
 <div class="outline-text-3" id="text-3-13">
 <ul class="org-ul">
 <li>Quiz 1: Best timeline for modeling → Large observation, small prediction window.</li>
@@ -821,8 +874,8 @@
 </div>
 </div>
 
-<div id="outline-container-org5cd6250" class="outline-3">
-<h3 id="org5cd6250"><span class="section-number-3">3.14.</span> Prediction Performance on Windows</h3>
+<div id="outline-container-org7badafb" class="outline-3">
+<h3 id="org7badafb"><span class="section-number-3">3.14.</span> Prediction Performance on Windows</h3>
 <div class="outline-text-3" id="text-3-14">
 <ul class="org-ul">
 <li><b><b>Prediction Window</b></b>: Longer window reduces accuracy.</li>
@@ -831,8 +884,8 @@
 </div>
 </div>
 
-<div id="outline-container-org08439b7" class="outline-3">
-<h3 id="org08439b7"><span class="section-number-3">3.15.</span> Feature Selection</h3>
+<div id="outline-container-org459ec0d" class="outline-3">
+<h3 id="org459ec0d"><span class="section-number-3">3.15.</span> Feature Selection</h3>
 <div class="outline-text-3" id="text-3-15">
 <ul class="org-ul">
 <li>Identifies relevant features from EHR data.</li>
@@ -842,8 +895,8 @@
 </div>
 </div>
 
-<div id="outline-container-org478b694" class="outline-3">
-<h3 id="org478b694"><span class="section-number-3">3.16.</span> Predictive Model</h3>
+<div id="outline-container-org02c4c49" class="outline-3">
+<h3 id="org02c4c49"><span class="section-number-3">3.16.</span> Predictive Model</h3>
 <div class="outline-text-3" id="text-3-16">
 <ul class="org-ul">
 <li>Maps input features to predicted outcomes.</li>
@@ -854,8 +907,8 @@
 </div>
 </div>
 
-<div id="outline-container-org58d54f9" class="outline-3">
-<h3 id="org58d54f9"><span class="section-number-3">3.17.</span> Performance Evaluation</h3>
+<div id="outline-container-orgd97c564" class="outline-3">
+<h3 id="orgd97c564"><span class="section-number-3">3.17.</span> Performance Evaluation</h3>
 <div class="outline-text-3" id="text-3-17">
 <ul class="org-ul">
 <li>Key metric: Testing error (not training error).</li>
@@ -864,8 +917,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgc573cbb" class="outline-3">
-<h3 id="orgc573cbb"><span class="section-number-3">3.18.</span> Cross-Validation</h3>
+<div id="outline-container-org4680617" class="outline-3">
+<h3 id="org4680617"><span class="section-number-3">3.18.</span> Cross-Validation</h3>
 <div class="outline-text-3" id="text-3-18">
 <ul class="org-ul">
 <li>Splits data into training and validation sets.</li>
@@ -879,8 +932,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgfe92249" class="outline-3">
-<h3 id="orgfe92249"><span class="section-number-3">3.19.</span> Conclusion</h3>
+<div id="outline-container-org70c4643" class="outline-3">
+<h3 id="org70c4643"><span class="section-number-3">3.19.</span> Conclusion</h3>
 <div class="outline-text-3" id="text-3-19">
 <ul class="org-ul">
 <li>Summary of the predictive modeling pipeline:
@@ -898,12 +951,12 @@
 </div>
 </div>
 
-<div id="outline-container-orgc3bee92" class="outline-2">
-<h2 id="orgc3bee92"><span class="section-number-2">4.</span> MapReduce</h2>
+<div id="outline-container-org701ab65" class="outline-2">
+<h2 id="org701ab65"><span class="section-number-2">4.</span> MapReduce</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orgc7cf73a" class="outline-3">
-<h3 id="orgc7cf73a"><span class="section-number-3">4.1.</span> Introduction to MapReduce</h3>
+<div id="outline-container-orgfc1d2d2" class="outline-3">
+<h3 id="orgfc1d2d2"><span class="section-number-3">4.1.</span> Introduction to MapReduce</h3>
 <div class="outline-text-3" id="text-4-1">
 <ul class="org-ul">
 <li>Overview of MapReduce as a big data processing tool.</li>
@@ -918,8 +971,8 @@
 </div>
 </div>
 
-<div id="outline-container-org596355f" class="outline-3">
-<h3 id="org596355f"><span class="section-number-3">4.2.</span> What is MapReduce</h3>
+<div id="outline-container-org6464203" class="outline-3">
+<h3 id="org6464203"><span class="section-number-3">4.2.</span> What is MapReduce</h3>
 <div class="outline-text-3" id="text-4-2">
 <ul class="org-ul">
 <li>Hadoop/MapReduce is:
@@ -938,8 +991,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgc3f9e65" class="outline-3">
-<h3 id="orgc3f9e65"><span class="section-number-3">4.3.</span> Computational Process</h3>
+<div id="outline-container-orgaaa26da" class="outline-3">
+<h3 id="orgaaa26da"><span class="section-number-3">4.3.</span> Computational Process</h3>
 <div class="outline-text-3" id="text-4-3">
 <ul class="org-ul">
 <li>Originated at Google (2004), open-sourced via Apache Hadoop.</li>
@@ -951,8 +1004,8 @@
 </div>
 </div>
 
-<div id="outline-container-org245b1dc" class="outline-3">
-<h3 id="org245b1dc"><span class="section-number-3">4.4.</span> Learning Via Aggregation Statistics</h3>
+<div id="outline-container-org0555299" class="outline-3">
+<h3 id="org0555299"><span class="section-number-3">4.4.</span> Learning Via Aggregation Statistics</h3>
 <div class="outline-text-3" id="text-4-4">
 <ul class="org-ul">
 <li>Core design: express ML algorithms as aggregation tasks.</li>
@@ -964,8 +1017,8 @@
 </div>
 </div>
 
-<div id="outline-container-org3fa3843" class="outline-3">
-<h3 id="org3fa3843"><span class="section-number-3">4.5.</span> MapReduce Abstraction</h3>
+<div id="outline-container-orgfc767d4" class="outline-3">
+<h3 id="orgfc767d4"><span class="section-number-3">4.5.</span> MapReduce Abstraction</h3>
 <div class="outline-text-3" id="text-4-5">
 <ul class="org-ul">
 <li>Example task: count disease cases from patient records.</li>
@@ -986,8 +1039,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgc48b6e1" class="outline-3">
-<h3 id="orgc48b6e1"><span class="section-number-3">4.6.</span> MapReduce System</h3>
+<div id="outline-container-org231367f" class="outline-3">
+<h3 id="org231367f"><span class="section-number-3">4.6.</span> MapReduce System</h3>
 <div class="outline-text-3" id="text-4-6">
 <ul class="org-ul">
 <li>Real-world data is too large for single machines.</li>
@@ -1004,8 +1057,8 @@
 </div>
 </div>
 
-<div id="outline-container-org1bee7a2" class="outline-3">
-<h3 id="org1bee7a2"><span class="section-number-3">4.7.</span> MapReduce Fault Recovery</h3>
+<div id="outline-container-orgcbab645" class="outline-3">
+<h3 id="orgcbab645"><span class="section-number-3">4.7.</span> MapReduce Fault Recovery</h3>
 <div class="outline-text-3" id="text-4-7">
 <ul class="org-ul">
 <li>Fault tolerance is a built-in system feature.</li>
@@ -1019,8 +1072,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgfe008d7" class="outline-3">
-<h3 id="orgfe008d7"><span class="section-number-3">4.8.</span> Distributed File Systems</h3>
+<div id="outline-container-orgef42e83" class="outline-3">
+<h3 id="orgef42e83"><span class="section-number-3">4.8.</span> Distributed File Systems</h3>
 <div class="outline-text-3" id="text-4-8">
 <ul class="org-ul">
 <li>HDFS: Hadoop's storage system.</li>
@@ -1035,8 +1088,8 @@
 </div>
 </div>
 
-<div id="outline-container-org5e79d71" class="outline-3">
-<h3 id="org5e79d71"><span class="section-number-3">4.9.</span> MapReduce Design Choice</h3>
+<div id="outline-container-orgf4da16f" class="outline-3">
+<h3 id="orgf4da16f"><span class="section-number-3">4.9.</span> MapReduce Design Choice</h3>
 <div class="outline-text-3" id="text-4-9">
 <ul class="org-ul">
 <li>Design principle: minimal functionality for reliability and scalability.</li>
@@ -1048,8 +1101,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgf36569f" class="outline-3">
-<h3 id="orgf36569f"><span class="section-number-3">4.10.</span> Analytics with MapReduce</h3>
+<div id="outline-container-org7e5e46d" class="outline-3">
+<h3 id="org7e5e46d"><span class="section-number-3">4.10.</span> Analytics with MapReduce</h3>
 <div class="outline-text-3" id="text-4-10">
 <ul class="org-ul">
 <li>Application examples:
@@ -1061,8 +1114,8 @@
 </div>
 </div>
 
-<div id="outline-container-org5cf8791" class="outline-3">
-<h3 id="org5cf8791"><span class="section-number-3">4.11.</span> MapReduce KNN</h3>
+<div id="outline-container-org681ce3a" class="outline-3">
+<h3 id="org681ce3a"><span class="section-number-3">4.11.</span> MapReduce KNN</h3>
 <div class="outline-text-3" id="text-4-11">
 <ul class="org-ul">
 <li>KNN implementation:
@@ -1081,8 +1134,8 @@
 </div>
 </div>
 
-<div id="outline-container-org40f45dc" class="outline-3">
-<h3 id="org40f45dc"><span class="section-number-3">4.12.</span> Linear Regression</h3>
+<div id="outline-container-org2267f49" class="outline-3">
+<h3 id="org2267f49"><span class="section-number-3">4.12.</span> Linear Regression</h3>
 <div class="outline-text-3" id="text-4-12">
 <ul class="org-ul">
 <li>Goal: map patient features to heart disease risk</li>
@@ -1100,8 +1153,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgc2b9a7f" class="outline-3">
-<h3 id="orgc2b9a7f"><span class="section-number-3">4.13.</span> MapReduce for Linear Regression Quiz Question</h3>
+<div id="outline-container-org18bfa1a" class="outline-3">
+<h3 id="org18bfa1a"><span class="section-number-3">4.13.</span> MapReduce for Linear Regression Quiz Question</h3>
 <div class="outline-text-3" id="text-4-13">
 <ul class="org-ul">
 <li>Quiz: specify map/reduce pseudo code for computing Xᵗy</li>
@@ -1109,8 +1162,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgcd60688" class="outline-3">
-<h3 id="orgcd60688"><span class="section-number-3">4.14.</span> MapReduce for Linear Regression Quiz Solution</h3>
+<div id="outline-container-org4ce1800" class="outline-3">
+<h3 id="org4ce1800"><span class="section-number-3">4.14.</span> MapReduce for Linear Regression Quiz Solution</h3>
 <div class="outline-text-3" id="text-4-14">
 <ul class="org-ul">
 <li>Solution:
@@ -1122,8 +1175,8 @@
 </div>
 </div>
 
-<div id="outline-container-org40ee108" class="outline-3">
-<h3 id="org40ee108"><span class="section-number-3">4.15.</span> Limitations of MapReduce</h3>
+<div id="outline-container-orge05a5ab" class="outline-3">
+<h3 id="orge05a5ab"><span class="section-number-3">4.15.</span> Limitations of MapReduce</h3>
 <div class="outline-text-3" id="text-4-15">
 <ul class="org-ul">
 <li>Example: Logistic Regression via Gradient Descent</li>
@@ -1139,8 +1192,8 @@
 </div>
 </div>
 
-<div id="outline-container-org9bee8cc" class="outline-3">
-<h3 id="org9bee8cc"><span class="section-number-3">4.16.</span> MapReduce Summary Quiz Question</h3>
+<div id="outline-container-orga0e4c13" class="outline-3">
+<h3 id="orga0e4c13"><span class="section-number-3">4.16.</span> MapReduce Summary Quiz Question</h3>
 <div class="outline-text-3" id="text-4-16">
 <ul class="org-ul">
 <li>Quiz on ideal conditions for MapReduce:
@@ -1153,8 +1206,8 @@
 </div>
 </div>
 
-<div id="outline-container-org99c0d62" class="outline-3">
-<h3 id="org99c0d62"><span class="section-number-3">4.17.</span> MapReduce Summary Quiz Solution</h3>
+<div id="outline-container-orgba8ce3e" class="outline-3">
+<h3 id="orgba8ce3e"><span class="section-number-3">4.17.</span> MapReduce Summary Quiz Solution</h3>
 <div class="outline-text-3" id="text-4-17">
 <ul class="org-ul">
 <li>Best suited for:
@@ -1167,12 +1220,12 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org695bfef" class="outline-2">
-<h2 id="org695bfef"><span class="section-number-2">5.</span> Classification Model Metrics</h2>
+<div id="outline-container-orgf5c35b5" class="outline-2">
+<h2 id="orgf5c35b5"><span class="section-number-2">5.</span> Classification Model Metrics</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-org8f4cfd5" class="outline-3">
-<h3 id="org8f4cfd5"><span class="section-number-3">5.1.</span> Predictive Model review</h3>
+<div id="outline-container-org0e8e482" class="outline-3">
+<h3 id="org0e8e482"><span class="section-number-3">5.1.</span> Predictive Model review</h3>
 <div class="outline-text-3" id="text-5-1">
 <dl class="org-dl">
 <dt>Predictive model</dt><dd>mapping function between model inputs and outputs (pred's)</dd>
@@ -1180,8 +1233,8 @@
 </dl>
 </div>
 </div>
-<div id="outline-container-orgc388a4b" class="outline-3">
-<h3 id="orgc388a4b"><span class="section-number-3">5.2.</span> Confusion matrix</h3>
+<div id="outline-container-org106ebbe" class="outline-3">
+<h3 id="org106ebbe"><span class="section-number-3">5.2.</span> Confusion matrix</h3>
 <div class="outline-text-3" id="text-5-2">
 <ul class="org-ul">
 <li>True positive/negative also known as "Condition" positive/negative</li>
@@ -1189,8 +1242,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org393b9e0" class="outline-3">
-<h3 id="org393b9e0"><span class="section-number-3">5.3.</span> Accuracy metrics</h3>
+<div id="outline-container-orgac80b3e" class="outline-3">
+<h3 id="orgac80b3e"><span class="section-number-3">5.3.</span> Accuracy metrics</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 All divided by ground truth values.
@@ -1203,8 +1256,8 @@ All divided by ground truth values.
 <dt>True negative rate</dt><dd>TN/CN (Specificity)</dd>
 </dl>
 </div>
-<div id="outline-container-org99735b1" class="outline-4">
-<h4 id="org99735b1"><span class="section-number-4">5.3.1.</span> Other notes</h4>
+<div id="outline-container-org7f05500" class="outline-4">
+<h4 id="org7f05500"><span class="section-number-4">5.3.1.</span> Other notes</h4>
 <div class="outline-text-4" id="text-5-3-1">
 <ul class="org-ul">
 <li>FP is a type I error.</li>
@@ -1215,8 +1268,8 @@ All divided by ground truth values.
 </div>
 </div>
 </div>
-<div id="outline-container-orgc640bd7" class="outline-3">
-<h3 id="orgc640bd7"><span class="section-number-3">5.4.</span> Predictive metrics</h3>
+<div id="outline-container-orgde641da" class="outline-3">
+<h3 id="orgde641da"><span class="section-number-3">5.4.</span> Predictive metrics</h3>
 <div class="outline-text-3" id="text-5-4">
 <p>
 All divided by prediction outcomes.
@@ -1230,8 +1283,8 @@ All divided by prediction outcomes.
 </dl>
 </div>
 </div>
-<div id="outline-container-org6a5fc04" class="outline-3">
-<h3 id="org6a5fc04"><span class="section-number-3">5.5.</span> F1 score</h3>
+<div id="outline-container-org1b9601d" class="outline-3">
+<h3 id="org1b9601d"><span class="section-number-3">5.5.</span> F1 score</h3>
 <div class="outline-text-3" id="text-5-5">
 <p>
 Harmonic mean of PPV and TPR
@@ -1241,8 +1294,8 @@ F_1 = 2 \times \frac{PPV \times TPR}{PPV + TPR}
 </p>
 </div>
 </div>
-<div id="outline-container-org9a89612" class="outline-3">
-<h3 id="org9a89612"><span class="section-number-3">5.6.</span> Classifier quiz</h3>
+<div id="outline-container-org14aa8dc" class="outline-3">
+<h3 id="org14aa8dc"><span class="section-number-3">5.6.</span> Classifier quiz</h3>
 <div class="outline-text-3" id="text-5-6">
 <p>
 Which is the best classifier?
@@ -1252,16 +1305,16 @@ Which is the best classifier?
 </ul>
 </div>
 </div>
-<div id="outline-container-org4654f03" class="outline-3">
-<h3 id="org4654f03"><span class="section-number-3">5.7.</span> Reversing predictions</h3>
+<div id="outline-container-orgb0eb435" class="outline-3">
+<h3 id="orgb0eb435"><span class="section-number-3">5.7.</span> Reversing predictions</h3>
 <div class="outline-text-3" id="text-5-7">
 <p>
 It's always possible to reverse the predictions so 0.21 might perform better than 0.69/0.50.
 </p>
 </div>
 </div>
-<div id="outline-container-org0b1ffa2" class="outline-3">
-<h3 id="org0b1ffa2"><span class="section-number-3">5.8.</span> Receiver operating characteristic</h3>
+<div id="outline-container-org2fee4f4" class="outline-3">
+<h3 id="org2fee4f4"><span class="section-number-3">5.8.</span> Receiver operating characteristic</h3>
 <div class="outline-text-3" id="text-5-8">
 <ul class="org-ul">
 <li>Predictive models generally output continuous score.</li>
@@ -1278,16 +1331,16 @@ It's always possible to reverse the predictions so 0.21 might perform better tha
 </ul>
 </div>
 </div>
-<div id="outline-container-org393debc" class="outline-3">
-<h3 id="org393debc"><span class="section-number-3">5.9.</span> "Best classifier threshold" quiz</h3>
+<div id="outline-container-orgab42907" class="outline-3">
+<h3 id="orgab42907"><span class="section-number-3">5.9.</span> "Best classifier threshold" quiz</h3>
 <div class="outline-text-3" id="text-5-9">
 <ul class="org-ul">
 <li>There isn't a standard answer, it depends on whether TP, TN or other metric is prioritized</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org6679100" class="outline-3">
-<h3 id="org6679100"><span class="section-number-3">5.10.</span> Regression metrics</h3>
+<div id="outline-container-org458ad2b" class="outline-3">
+<h3 id="org458ad2b"><span class="section-number-3">5.10.</span> Regression metrics</h3>
 <div class="outline-text-3" id="text-5-10">
 <dl class="org-dl">
 <dt>MAE</dt><dd>average of absolute errors, harder to work with since the absolute value is not differentiable</dd>
@@ -1295,8 +1348,8 @@ It's always possible to reverse the predictions so 0.21 might perform better tha
 <dt>\(R^2\)</dt><dd>bounded by \((-\infty,1)\). AKA coefficient of determination.</dd>
 </dl>
 </div>
-<div id="outline-container-org840c26f" class="outline-4">
-<h4 id="org840c26f"><span class="section-number-4">5.10.1.</span> \(R^2\)</h4>
+<div id="outline-container-orgdf6d8b2" class="outline-4">
+<h4 id="orgdf6d8b2"><span class="section-number-4">5.10.1.</span> \(R^2\)</h4>
 <div class="outline-text-4" id="text-5-10-1">
 <p>
 \[
@@ -1313,12 +1366,12 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 </div>
-<div id="outline-container-org2837fcc" class="outline-2">
-<h2 id="org2837fcc"><span class="section-number-2">6.</span> Ensemble methods</h2>
+<div id="outline-container-org999b6a0" class="outline-2">
+<h2 id="org999b6a0"><span class="section-number-2">6.</span> Ensemble methods</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-org4dff722" class="outline-3">
-<h3 id="org4dff722"><span class="section-number-3">6.1.</span> Gradient Descent Method (GDM) for Linear Regression</h3>
+<div id="outline-container-orgcbfd2fc" class="outline-3">
+<h3 id="orgcbfd2fc"><span class="section-number-3">6.1.</span> Gradient Descent Method (GDM) for Linear Regression</h3>
 <div class="outline-text-3" id="text-6-1">
 <ul class="org-ul">
 <li>Illustrates gradient descent using linear regression.</li>
@@ -1332,8 +1385,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org5a0deec" class="outline-3">
-<h3 id="org5a0deec"><span class="section-number-3">6.2.</span> Stochastic Gradient Descent (SGD) Method</h3>
+<div id="outline-container-org67a6156" class="outline-3">
+<h3 id="org67a6156"><span class="section-number-3">6.2.</span> Stochastic Gradient Descent (SGD) Method</h3>
 <div class="outline-text-3" id="text-6-2">
 <ul class="org-ul">
 <li>SGD is a scalable variant of gradient descent for large datasets.</li>
@@ -1344,8 +1397,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-orgc68334e" class="outline-3">
-<h3 id="orgc68334e"><span class="section-number-3">6.3.</span> SGD for Linear Regression</h3>
+<div id="outline-container-orgc193ce9" class="outline-3">
+<h3 id="orgc193ce9"><span class="section-number-3">6.3.</span> SGD for Linear Regression</h3>
 <div class="outline-text-3" id="text-6-3">
 <ul class="org-ul">
 <li>Applies SGD to same regression problem.</li>
@@ -1360,8 +1413,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org63de31b" class="outline-3">
-<h3 id="org63de31b"><span class="section-number-3">6.4.</span> Ensemble Method Pt 1</h3>
+<div id="outline-container-orga4f796e" class="outline-3">
+<h3 id="orga4f796e"><span class="section-number-3">6.4.</span> Ensemble Method Pt 1</h3>
 <div class="outline-text-3" id="text-6-4">
 <ul class="org-ul">
 <li>Ensemble methods combine multiple models for improved performance.</li>
@@ -1372,8 +1425,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org7b64449" class="outline-3">
-<h3 id="org7b64449"><span class="section-number-3">6.5.</span> Ensemble Method Pt 2</h3>
+<div id="outline-container-orgcdd5783" class="outline-3">
+<h3 id="orgcdd5783"><span class="section-number-3">6.5.</span> Ensemble Method Pt 2</h3>
 <div class="outline-text-3" id="text-6-5">
 <ul class="org-ul">
 <li>General ensemble steps:
@@ -1387,8 +1440,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org072de9a" class="outline-3">
-<h3 id="org072de9a"><span class="section-number-3">6.6.</span> Bias Variance Tradeoff</h3>
+<div id="outline-container-org81600c3" class="outline-3">
+<h3 id="org81600c3"><span class="section-number-3">6.6.</span> Bias Variance Tradeoff</h3>
 <div class="outline-text-3" id="text-6-6">
 <ul class="org-ul">
 <li>Key insight: model error = bias² + variance.</li>
@@ -1406,8 +1459,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org048a64b" class="outline-3">
-<h3 id="org048a64b"><span class="section-number-3">6.7.</span> Bias Variance Tradeoff Quiz Question</h3>
+<div id="outline-container-org919109f" class="outline-3">
+<h3 id="org919109f"><span class="section-number-3">6.7.</span> Bias Variance Tradeoff Quiz Question</h3>
 <div class="outline-text-3" id="text-6-7">
 <ul class="org-ul">
 <li>Task: rank four models (flat, linear, smooth curve, wiggly) by complexity.</li>
@@ -1416,8 +1469,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-orgf7b6ed8" class="outline-3">
-<h3 id="orgf7b6ed8"><span class="section-number-3">6.8.</span> Bias Variance Tradeoff Quiz Solution</h3>
+<div id="outline-container-org2110929" class="outline-3">
+<h3 id="org2110929"><span class="section-number-3">6.8.</span> Bias Variance Tradeoff Quiz Solution</h3>
 <div class="outline-text-3" id="text-6-8">
 <ul class="org-ul">
 <li>Explanation:
@@ -1431,8 +1484,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-orgfbd233d" class="outline-3">
-<h3 id="orgfbd233d"><span class="section-number-3">6.9.</span> Bias Variance Tradeoff Quiz 2 Question</h3>
+<div id="outline-container-org20922b4" class="outline-3">
+<h3 id="org20922b4"><span class="section-number-3">6.9.</span> Bias Variance Tradeoff Quiz 2 Question</h3>
 <div class="outline-text-3" id="text-6-9">
 <ul class="org-ul">
 <li>Given same models, asked which best fits data.</li>
@@ -1440,8 +1493,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org6df1159" class="outline-3">
-<h3 id="org6df1159"><span class="section-number-3">6.10.</span> Bias Variance Tradeoff Quiz 2 Solution</h3>
+<div id="outline-container-org6153c61" class="outline-3">
+<h3 id="org6153c61"><span class="section-number-3">6.10.</span> Bias Variance Tradeoff Quiz 2 Solution</h3>
 <div class="outline-text-3" id="text-6-10">
 <ul class="org-ul">
 <li>Answer: B (smooth curve)</li>
@@ -1450,8 +1503,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-orgcf17b45" class="outline-3">
-<h3 id="orgcf17b45"><span class="section-number-3">6.11.</span> Bagging</h3>
+<div id="outline-container-orgd2497dd" class="outline-3">
+<h3 id="orgd2497dd"><span class="section-number-3">6.11.</span> Bagging</h3>
 <div class="outline-text-3" id="text-6-11">
 <ul class="org-ul">
 <li>Bagging = Bootstrap Aggregation.</li>
@@ -1466,8 +1519,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org936922a" class="outline-3">
-<h3 id="org936922a"><span class="section-number-3">6.12.</span> Random Forest</h3>
+<div id="outline-container-org21589c6" class="outline-3">
+<h3 id="org21589c6"><span class="section-number-3">6.12.</span> Random Forest</h3>
 <div class="outline-text-3" id="text-6-12">
 <ul class="org-ul">
 <li>Special case of bagging with decision trees.</li>
@@ -1482,8 +1535,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-orgb86fdd3" class="outline-3">
-<h3 id="orgb86fdd3"><span class="section-number-3">6.13.</span> Why Bagging Works</h3>
+<div id="outline-container-org8773336" class="outline-3">
+<h3 id="org8773336"><span class="section-number-3">6.13.</span> Why Bagging Works</h3>
 <div class="outline-text-3" id="text-6-13">
 <ul class="org-ul">
 <li>Reduces variance without increasing bias.</li>
@@ -1493,8 +1546,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org8d83cb6" class="outline-3">
-<h3 id="org8d83cb6"><span class="section-number-3">6.14.</span> Boosting</h3>
+<div id="outline-container-orge8a5de2" class="outline-3">
+<h3 id="orge8a5de2"><span class="section-number-3">6.14.</span> Boosting</h3>
 <div class="outline-text-3" id="text-6-14">
 <ul class="org-ul">
 <li>Builds models sequentially.</li>
@@ -1507,8 +1560,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org5da376a" class="outline-3">
-<h3 id="org5da376a"><span class="section-number-3">6.15.</span> Bagging vs Boosting Quiz Question</h3>
+<div id="outline-container-org7d2bd59" class="outline-3">
+<h3 id="org7d2bd59"><span class="section-number-3">6.15.</span> Bagging vs Boosting Quiz Question</h3>
 <div class="outline-text-3" id="text-6-15">
 <ul class="org-ul">
 <li>Quiz to compare characteristics:
@@ -1522,8 +1575,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-orgd29c21a" class="outline-3">
-<h3 id="orgd29c21a"><span class="section-number-3">6.16.</span> Bagging vs Boosting Quiz Solution</h3>
+<div id="outline-container-orgecaa133" class="outline-3">
+<h3 id="orgecaa133"><span class="section-number-3">6.16.</span> Bagging vs Boosting Quiz Solution</h3>
 <div class="outline-text-3" id="text-6-16">
 <ul class="org-ul">
 <li>Bagging:
@@ -1543,8 +1596,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org51d10e6" class="outline-3">
-<h3 id="org51d10e6"><span class="section-number-3">6.17.</span> Summary for Ensemble Methods</h3>
+<div id="outline-container-orgebbb8b5" class="outline-3">
+<h3 id="orgebbb8b5"><span class="section-number-3">6.17.</span> Summary for Ensemble Methods</h3>
 <div class="outline-text-3" id="text-6-17">
 <ul class="org-ul">
 <li>Pros:
@@ -1560,8 +1613,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-orga55d633" class="outline-3">
-<h3 id="orga55d633"><span class="section-number-3">6.18.</span> Introduction to Ensemble Method</h3>
+<div id="outline-container-org85f9503" class="outline-3">
+<h3 id="org85f9503"><span class="section-number-3">6.18.</span> Introduction to Ensemble Method</h3>
 <div class="outline-text-3" id="text-6-18">
 <ul class="org-ul">
 <li>Sets the stage:
@@ -1573,8 +1626,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-orgf4aa42c" class="outline-3">
-<h3 id="orgf4aa42c"><span class="section-number-3">6.19.</span> Gradient Descent Method</h3>
+<div id="outline-container-org6271f1c" class="outline-3">
+<h3 id="org6271f1c"><span class="section-number-3">6.19.</span> Gradient Descent Method</h3>
 <div class="outline-text-3" id="text-6-19">
 <ul class="org-ul">
 <li>General overview of gradient descent for optimization.</li>
@@ -1593,12 +1646,12 @@ As noise increases, \(R^2\) decreases.
 </div>
 
 
-<div id="outline-container-orgfa13b4b" class="outline-2">
-<h2 id="orgfa13b4b"><span class="section-number-2">7.</span> Computational Phenotyping</h2>
+<div id="outline-container-orgb656877" class="outline-2">
+<h2 id="orgb656877"><span class="section-number-2">7.</span> Computational Phenotyping</h2>
 <div class="outline-text-2" id="text-7">
 </div>
-<div id="outline-container-org23a0b51" class="outline-3">
-<h3 id="org23a0b51"><span class="section-number-3">7.1.</span> Introduction to Phenotyping</h3>
+<div id="outline-container-org0313bbb" class="outline-3">
+<h3 id="org0313bbb"><span class="section-number-3">7.1.</span> Introduction to Phenotyping</h3>
 <div class="outline-text-3" id="text-7-1">
 <ul class="org-ul">
 <li>Introduction to clustering in healthcare, specifically "phenotyping."</li>
@@ -1609,8 +1662,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-orgad07dad" class="outline-3">
-<h3 id="orgad07dad"><span class="section-number-3">7.2.</span> Computational Phenotyping</h3>
+<div id="outline-container-orgdc9bd14" class="outline-3">
+<h3 id="orgdc9bd14"><span class="section-number-3">7.2.</span> Computational Phenotyping</h3>
 <div class="outline-text-3" id="text-7-2">
 <ul class="org-ul">
 <li>Converts raw EHR data into meaningful phenotypes using algorithms.</li>
@@ -1626,8 +1679,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-orgf84099b" class="outline-3">
-<h3 id="orgf84099b"><span class="section-number-3">7.3.</span> Phenotyping Algorithm</h3>
+<div id="outline-container-org2791a9d" class="outline-3">
+<h3 id="org2791a9d"><span class="section-number-3">7.3.</span> Phenotyping Algorithm</h3>
 <div class="outline-text-3" id="text-7-3">
 <ul class="org-ul">
 <li>Example: Type 2 diabetes phenotyping algorithm.</li>
@@ -1643,8 +1696,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org4f97fea" class="outline-3">
-<h3 id="org4f97fea"><span class="section-number-3">7.4.</span> Applications of Phenotyping</h3>
+<div id="outline-container-org54a6825" class="outline-3">
+<h3 id="org54a6825"><span class="section-number-3">7.4.</span> Applications of Phenotyping</h3>
 <div class="outline-text-3" id="text-7-4">
 <ul class="org-ul">
 <li>Genomic studies: link genomic and phenotypic data.</li>
@@ -1656,8 +1709,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-orge7d7dfe" class="outline-3">
-<h3 id="orge7d7dfe"><span class="section-number-3">7.5.</span> Genomic Wide Association Study</h3>
+<div id="outline-container-org266ecf6" class="outline-3">
+<h3 id="org266ecf6"><span class="section-number-3">7.5.</span> Genomic Wide Association Study</h3>
 <div class="outline-text-3" id="text-7-5">
 <ul class="org-ul">
 <li>GWAS scans SNPs to associate genetic variations with diseases.</li>
@@ -1674,8 +1727,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org4250c5c" class="outline-3">
-<h3 id="org4250c5c"><span class="section-number-3">7.6.</span> Why Do We Care About Phenotyping</h3>
+<div id="outline-container-orgd1b8bd0" class="outline-3">
+<h3 id="orgd1b8bd0"><span class="section-number-3">7.6.</span> Why Do We Care About Phenotyping</h3>
 <div class="outline-text-3" id="text-7-6">
 <ul class="org-ul">
 <li>Genomic data is rapidly becoming cheaper and more abundant.</li>
@@ -1685,8 +1738,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org86da234" class="outline-3">
-<h3 id="org86da234"><span class="section-number-3">7.7.</span> Clinical Predictive Modeling</h3>
+<div id="outline-container-orgb9fecf8" class="outline-3">
+<h3 id="orgb9fecf8"><span class="section-number-3">7.7.</span> Clinical Predictive Modeling</h3>
 <div class="outline-text-3" id="text-7-7">
 <ul class="org-ul">
 <li>Predictive modeling using raw EHR data is problematic (noise, complexity, lack of portability).</li>
@@ -1701,8 +1754,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org2d341ed" class="outline-3">
-<h3 id="org2d341ed"><span class="section-number-3">7.8.</span> Pragmatic Clinical Trials</h3>
+<div id="outline-container-org36f09c7" class="outline-3">
+<h3 id="org36f09c7"><span class="section-number-3">7.8.</span> Pragmatic Clinical Trials</h3>
 <div class="outline-text-3" id="text-7-8">
 <ul class="org-ul">
 <li>Traditional vs. pragmatic trials:
@@ -1715,8 +1768,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-orga55f27b" class="outline-3">
-<h3 id="orga55f27b"><span class="section-number-3">7.9.</span> Healthcare Quality Measurement</h3>
+<div id="outline-container-org4363c86" class="outline-3">
+<h3 id="org4363c86"><span class="section-number-3">7.9.</span> Healthcare Quality Measurement</h3>
 <div class="outline-text-3" id="text-7-9">
 <ul class="org-ul">
 <li>Challenge: hospitals use diverse EHR formats.</li>
@@ -1727,8 +1780,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org7885c9a" class="outline-3">
-<h3 id="org7885c9a"><span class="section-number-3">7.10.</span> Phenotyping Methods Part 1</h3>
+<div id="outline-container-org28726c3" class="outline-3">
+<h3 id="org28726c3"><span class="section-number-3">7.10.</span> Phenotyping Methods Part 1</h3>
 <div class="outline-text-3" id="text-7-10">
 <ul class="org-ul">
 <li>Two main approaches:
@@ -1741,8 +1794,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org7711c6e" class="outline-3">
-<h3 id="org7711c6e"><span class="section-number-3">7.11.</span> Phenotyping Methods Part 2</h3>
+<div id="outline-container-org48be3f6" class="outline-3">
+<h3 id="org48be3f6"><span class="section-number-3">7.11.</span> Phenotyping Methods Part 2</h3>
 <div class="outline-text-3" id="text-7-11">
 <ul class="org-ul">
 <li>Supervised: expert-defined rules (Boolean logic, decision trees), or machine learning classifiers.
@@ -1759,8 +1812,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org7b94960" class="outline-3">
-<h3 id="org7b94960"><span class="section-number-3">7.12.</span> Phenotyping Quiz Question</h3>
+<div id="outline-container-orgec09b68" class="outline-3">
+<h3 id="orgec09b68"><span class="section-number-3">7.12.</span> Phenotyping Quiz Question</h3>
 <div class="outline-text-3" id="text-7-12">
 <ul class="org-ul">
 <li>Quiz:
@@ -1773,8 +1826,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org73da703" class="outline-3">
-<h3 id="org73da703"><span class="section-number-3">7.13.</span> Phenotyping Quiz Solution</h3>
+<div id="outline-container-org822c87d" class="outline-3">
+<h3 id="org822c87d"><span class="section-number-3">7.13.</span> Phenotyping Quiz Solution</h3>
 <div class="outline-text-3" id="text-7-13">
 <ul class="org-ul">
 <li>Answer:
@@ -1788,12 +1841,12 @@ As noise increases, \(R^2\) decreases.
 </div>
 
 
-<div id="outline-container-orgdf9ea81" class="outline-2">
-<h2 id="orgdf9ea81"><span class="section-number-2">8.</span> Clustering</h2>
+<div id="outline-container-orgec62c37" class="outline-2">
+<h2 id="orgec62c37"><span class="section-number-2">8.</span> Clustering</h2>
 <div class="outline-text-2" id="text-8">
 </div>
-<div id="outline-container-orga54c619" class="outline-3">
-<h3 id="orga54c619"><span class="section-number-3">8.1.</span> Introduction to Clustering</h3>
+<div id="outline-container-org40fbb9b" class="outline-3">
+<h3 id="org40fbb9b"><span class="section-number-3">8.1.</span> Introduction to Clustering</h3>
 <div class="outline-text-3" id="text-8-1">
 <ul class="org-ul">
 <li>Introduction of clustering as a method distinct from classification.</li>
@@ -1810,8 +1863,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org11fe993" class="outline-3">
-<h3 id="org11fe993"><span class="section-number-3">8.2.</span> Healthcare Applications</h3>
+<div id="outline-container-org101613b" class="outline-3">
+<h3 id="org101613b"><span class="section-number-3">8.2.</span> Healthcare Applications</h3>
 <div class="outline-text-3" id="text-8-2">
 <ul class="org-ul">
 <li>Clustering in healthcare:
@@ -1825,8 +1878,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org9d545e8" class="outline-3">
-<h3 id="org9d545e8"><span class="section-number-3">8.3.</span> What is Clustering</h3>
+<div id="outline-container-org045b51b" class="outline-3">
+<h3 id="org045b51b"><span class="section-number-3">8.3.</span> What is Clustering</h3>
 <div class="outline-text-3" id="text-8-3">
 <ul class="org-ul">
 <li>Clustering explained via patient-disease matrix:
@@ -1840,8 +1893,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org341b59f" class="outline-3">
-<h3 id="org341b59f"><span class="section-number-3">8.4.</span> Algorithm Overview</h3>
+<div id="outline-container-orgffe57bc" class="outline-3">
+<h3 id="orgffe57bc"><span class="section-number-3">8.4.</span> Algorithm Overview</h3>
 <div class="outline-text-3" id="text-8-4">
 <ul class="org-ul">
 <li>Two categories of clustering algorithms:
@@ -1853,8 +1906,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-orgb70731e" class="outline-3">
-<h3 id="orgb70731e"><span class="section-number-3">8.5.</span> K Means</h3>
+<div id="outline-container-orgf872e0c" class="outline-3">
+<h3 id="orgf872e0c"><span class="section-number-3">8.5.</span> K Means</h3>
 <div class="outline-text-3" id="text-8-5">
 <ul class="org-ul">
 <li>Inputs: data points X₁ to Xₙ, number of clusters K.</li>
@@ -1872,8 +1925,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org1d09d5c" class="outline-3">
-<h3 id="org1d09d5c"><span class="section-number-3">8.6.</span> K Means Quiz Question</h3>
+<div id="outline-container-org61ea298" class="outline-3">
+<h3 id="org61ea298"><span class="section-number-3">8.6.</span> K Means Quiz Question</h3>
 <div class="outline-text-3" id="text-8-6">
 <ul class="org-ul">
 <li>Quiz: Given n, k, d (dimensions), i (iterations), what's the complexity?</li>
@@ -1881,8 +1934,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org3bbcf68" class="outline-3">
-<h3 id="org3bbcf68"><span class="section-number-3">8.7.</span> K Means Quiz Solution</h3>
+<div id="outline-container-org3723902" class="outline-3">
+<h3 id="org3723902"><span class="section-number-3">8.7.</span> K Means Quiz Solution</h3>
 <div class="outline-text-3" id="text-8-7">
 <ul class="org-ul">
 <li>Complexity: O(n × k × d × i)
@@ -1893,8 +1946,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-orgb6f024b" class="outline-3">
-<h3 id="orgb6f024b"><span class="section-number-3">8.8.</span> Hierarchical Clustering</h3>
+<div id="outline-container-org339dbbb" class="outline-3">
+<h3 id="org339dbbb"><span class="section-number-3">8.8.</span> Hierarchical Clustering</h3>
 <div class="outline-text-3" id="text-8-8">
 <ul class="org-ul">
 <li>Builds a hierarchy of data points.</li>
@@ -1908,8 +1961,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org11c17b4" class="outline-3">
-<h3 id="org11c17b4"><span class="section-number-3">8.9.</span> Agglomerative Clustering</h3>
+<div id="outline-container-orge3c3cda" class="outline-3">
+<h3 id="orge3c3cda"><span class="section-number-3">8.9.</span> Agglomerative Clustering</h3>
 <div class="outline-text-3" id="text-8-9">
 <ul class="org-ul">
 <li>Steps:
@@ -1923,8 +1976,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-orgca5b1a1" class="outline-3">
-<h3 id="orgca5b1a1"><span class="section-number-3">8.10.</span> Gaussian Mixture Model</h3>
+<div id="outline-container-org1c61285" class="outline-3">
+<h3 id="org1c61285"><span class="section-number-3">8.10.</span> Gaussian Mixture Model</h3>
 <div class="outline-text-3" id="text-8-10">
 <ul class="org-ul">
 <li>Soft clustering: points belong to multiple clusters with probabilities.</li>
@@ -1935,8 +1988,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org6ffe281" class="outline-3">
-<h3 id="org6ffe281"><span class="section-number-3">8.11.</span> GMM Expectation Maximization</h3>
+<div id="outline-container-orged05ea6" class="outline-3">
+<h3 id="orged05ea6"><span class="section-number-3">8.11.</span> GMM Expectation Maximization</h3>
 <div class="outline-text-3" id="text-8-11">
 <ul class="org-ul">
 <li>Uses Expectation-Maximization (EM) algorithm:
@@ -1950,8 +2003,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-orga303346" class="outline-3">
-<h3 id="orga303346"><span class="section-number-3">8.12.</span> GMM Steps</h3>
+<div id="outline-container-org0d66189" class="outline-3">
+<h3 id="org0d66189"><span class="section-number-3">8.12.</span> GMM Steps</h3>
 <div class="outline-text-3" id="text-8-12">
 <ul class="org-ul">
 <li>Details of EM:
@@ -1967,8 +2020,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org274a5ec" class="outline-3">
-<h3 id="org274a5ec"><span class="section-number-3">8.13.</span> GMM Visual Illustration</h3>
+<div id="outline-container-org39aeaea" class="outline-3">
+<h3 id="org39aeaea"><span class="section-number-3">8.13.</span> GMM Visual Illustration</h3>
 <div class="outline-text-3" id="text-8-13">
 <ul class="org-ul">
 <li>Visual demo of GMM clustering.</li>
@@ -1978,8 +2031,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org279b8fa" class="outline-3">
-<h3 id="org279b8fa"><span class="section-number-3">8.14.</span> K Means Vs GMM</h3>
+<div id="outline-container-org37b9f64" class="outline-3">
+<h3 id="org37b9f64"><span class="section-number-3">8.14.</span> K Means Vs GMM</h3>
 <div class="outline-text-3" id="text-8-14">
 <ul class="org-ul">
 <li>Comparison:
@@ -1992,8 +2045,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org51d0fb7" class="outline-3">
-<h3 id="org51d0fb7"><span class="section-number-3">8.15.</span> Mini Batch K Means</h3>
+<div id="outline-container-org4f5805e" class="outline-3">
+<h3 id="org4f5805e"><span class="section-number-3">8.15.</span> Mini Batch K Means</h3>
 <div class="outline-text-3" id="text-8-15">
 <ul class="org-ul">
 <li>Scalable version of K-means.</li>
@@ -2004,8 +2057,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org31abac6" class="outline-3">
-<h3 id="org31abac6"><span class="section-number-3">8.16.</span> Mini Batch K Means Quiz Question</h3>
+<div id="outline-container-orgd5230f1" class="outline-3">
+<h3 id="orgd5230f1"><span class="section-number-3">8.16.</span> Mini Batch K Means Quiz Question</h3>
 <div class="outline-text-3" id="text-8-16">
 <ul class="org-ul">
 <li>Quiz: Given k, t (iterations), b (batch size), d (dimensionality), compute complexity.</li>
@@ -2013,8 +2066,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-orge18b27c" class="outline-3">
-<h3 id="orge18b27c"><span class="section-number-3">8.17.</span> Mini Batch K Means Quiz Solution</h3>
+<div id="outline-container-orgdca7329" class="outline-3">
+<h3 id="orgdca7329"><span class="section-number-3">8.17.</span> Mini Batch K Means Quiz Solution</h3>
 <div class="outline-text-3" id="text-8-17">
 <ul class="org-ul">
 <li>Complexity: O(t × b × k × d)</li>
@@ -2022,8 +2075,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org98e8992" class="outline-3">
-<h3 id="org98e8992"><span class="section-number-3">8.18.</span> DBScan</h3>
+<div id="outline-container-org7dbc599" class="outline-3">
+<h3 id="org7dbc599"><span class="section-number-3">8.18.</span> DBScan</h3>
 <div class="outline-text-3" id="text-8-18">
 <ul class="org-ul">
 <li>Density-Based Spatial Clustering.</li>
@@ -2034,8 +2087,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-orgbc98819" class="outline-3">
-<h3 id="orgbc98819"><span class="section-number-3">8.19.</span> DBScan Key Concepts</h3>
+<div id="outline-container-org40a3bf8" class="outline-3">
+<h3 id="org40a3bf8"><span class="section-number-3">8.19.</span> DBScan Key Concepts</h3>
 <div class="outline-text-3" id="text-8-19">
 <ul class="org-ul">
 <li>Density = number of points within ε-distance.</li>
@@ -2049,8 +2102,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org26a516c" class="outline-3">
-<h3 id="org26a516c"><span class="section-number-3">8.20.</span> DBScan Algorithm</h3>
+<div id="outline-container-org4a4f385" class="outline-3">
+<h3 id="org4a4f385"><span class="section-number-3">8.20.</span> DBScan Algorithm</h3>
 <div class="outline-text-3" id="text-8-20">
 <ul class="org-ul">
 <li>Steps:
@@ -2063,8 +2116,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org1fa46e2" class="outline-3">
-<h3 id="org1fa46e2"><span class="section-number-3">8.21.</span> DBScan Example</h3>
+<div id="outline-container-org8220405" class="outline-3">
+<h3 id="org8220405"><span class="section-number-3">8.21.</span> DBScan Example</h3>
 <div class="outline-text-3" id="text-8-21">
 <ul class="org-ul">
 <li>Visual example: finds 6 clusters, some noise points remain.</li>
@@ -2072,8 +2125,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-orga82f8d7" class="outline-3">
-<h3 id="orga82f8d7"><span class="section-number-3">8.22.</span> DBScan Quiz Question</h3>
+<div id="outline-container-org73e4ac8" class="outline-3">
+<h3 id="org73e4ac8"><span class="section-number-3">8.22.</span> DBScan Quiz Question</h3>
 <div class="outline-text-3" id="text-8-22">
 <ul class="org-ul">
 <li>Quiz: How many clusters can a point belong to in DBSCAN?</li>
@@ -2081,8 +2134,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-orgea67318" class="outline-3">
-<h3 id="orgea67318"><span class="section-number-3">8.23.</span> DBScan Quiz Solution</h3>
+<div id="outline-container-org56d79ef" class="outline-3">
+<h3 id="org56d79ef"><span class="section-number-3">8.23.</span> DBScan Quiz Solution</h3>
 <div class="outline-text-3" id="text-8-23">
 <ul class="org-ul">
 <li>Answer: 0 or 1 (noise = 0, core/border = 1)</li>
@@ -2090,8 +2143,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-orgd9af782" class="outline-3">
-<h3 id="orgd9af782"><span class="section-number-3">8.24.</span> Clustering Evaluation Metrics</h3>
+<div id="outline-container-org9c0eac3" class="outline-3">
+<h3 id="org9c0eac3"><span class="section-number-3">8.24.</span> Clustering Evaluation Metrics</h3>
 <div class="outline-text-3" id="text-8-24">
 <ul class="org-ul">
 <li>Metrics:
@@ -2104,8 +2157,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-orge8f042b" class="outline-3">
-<h3 id="orge8f042b"><span class="section-number-3">8.25.</span> Rand Index</h3>
+<div id="outline-container-orga807598" class="outline-3">
+<h3 id="orga807598"><span class="section-number-3">8.25.</span> Rand Index</h3>
 <div class="outline-text-3" id="text-8-25">
 <ul class="org-ul">
 <li>Measures agreement between predicted and true clusters.</li>
@@ -2115,8 +2168,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org2055e0f" class="outline-3">
-<h3 id="org2055e0f"><span class="section-number-3">8.26.</span> Mutual Information</h3>
+<div id="outline-container-org4a93cc8" class="outline-3">
+<h3 id="org4a93cc8"><span class="section-number-3">8.26.</span> Mutual Information</h3>
 <div class="outline-text-3" id="text-8-26">
 <ul class="org-ul">
 <li>From information theory: measures shared info between predicted and true clusters.</li>
@@ -2125,8 +2178,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org354f5cb" class="outline-3">
-<h3 id="org354f5cb"><span class="section-number-3">8.27.</span> Summary of RI and MI</h3>
+<div id="outline-container-orgbd2fb8b" class="outline-3">
+<h3 id="orgbd2fb8b"><span class="section-number-3">8.27.</span> Summary of RI and MI</h3>
 <div class="outline-text-3" id="text-8-27">
 <ul class="org-ul">
 <li>Pros:
@@ -2142,8 +2195,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org541c597" class="outline-3">
-<h3 id="org541c597"><span class="section-number-3">8.28.</span> Silhouette Coefficient</h3>
+<div id="outline-container-org9bf4756" class="outline-3">
+<h3 id="org9bf4756"><span class="section-number-3">8.28.</span> Silhouette Coefficient</h3>
 <div class="outline-text-3" id="text-8-28">
 <ul class="org-ul">
 <li>Measures how similar a point is to its own cluster vs. others.</li>
@@ -2153,8 +2206,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org67b50b5" class="outline-3">
-<h3 id="org67b50b5"><span class="section-number-3">8.29.</span> Silhouette Coefficient Pros and Cons</h3>
+<div id="outline-container-orge5cf134" class="outline-3">
+<h3 id="orge5cf134"><span class="section-number-3">8.29.</span> Silhouette Coefficient Pros and Cons</h3>
 <div class="outline-text-3" id="text-8-29">
 <ul class="org-ul">
 <li>Range: -1 (bad) to 1 (good), 0 = overlapping clusters.</li>
@@ -2165,12 +2218,12 @@ As noise increases, \(R^2\) decreases.
 </div>
 
 
-<div id="outline-container-org21c7198" class="outline-2">
-<h2 id="org21c7198"><span class="section-number-2">9.</span> Spark</h2>
+<div id="outline-container-org6d3d943" class="outline-2">
+<h2 id="org6d3d943"><span class="section-number-2">9.</span> Spark</h2>
 <div class="outline-text-2" id="text-9">
 </div>
-<div id="outline-container-orgc96c454" class="outline-3">
-<h3 id="orgc96c454"><span class="section-number-3">9.1.</span> Introduction to Spark</h3>
+<div id="outline-container-org12d4729" class="outline-3">
+<h3 id="org12d4729"><span class="section-number-3">9.1.</span> Introduction to Spark</h3>
 <div class="outline-text-3" id="text-9-1">
 <ul class="org-ul">
 <li>Spark is introduced as an alternative to MapReduce, better suited for iterative workloads.</li>
@@ -2181,8 +2234,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org66de49a" class="outline-3">
-<h3 id="org66de49a"><span class="section-number-3">9.2.</span> Environment</h3>
+<div id="outline-container-orgf171f08" class="outline-3">
+<h3 id="orgf171f08"><span class="section-number-3">9.2.</span> Environment</h3>
 <div class="outline-text-3" id="text-9-2">
 <ul class="org-ul">
 <li>Big data analytics typically run in data centers or cloud platforms like AWS, GCP, Azure.</li>
@@ -2192,8 +2245,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org4d64ab5" class="outline-3">
-<h3 id="org4d64ab5"><span class="section-number-3">9.3.</span> Motivation</h3>
+<div id="outline-container-org5b6a6d9" class="outline-3">
+<h3 id="org5b6a6d9"><span class="section-number-3">9.3.</span> Motivation</h3>
 <div class="outline-text-3" id="text-9-3">
 <ul class="org-ul">
 <li>Hadoop &amp; MapReduce explained with acyclic data flow using stable storage.</li>
@@ -2204,8 +2257,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org651db3d" class="outline-3">
-<h3 id="org651db3d"><span class="section-number-3">9.4.</span> Iteration in Map Reduce</h3>
+<div id="outline-container-orgcae4a04" class="outline-3">
+<h3 id="orgcae4a04"><span class="section-number-3">9.4.</span> Iteration in Map Reduce</h3>
 <div class="outline-text-3" id="text-9-4">
 <ul class="org-ul">
 <li>Machine learning models need repeated computation.</li>
@@ -2215,8 +2268,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-orgc315c20" class="outline-3">
-<h3 id="orgc315c20"><span class="section-number-3">9.5.</span> Workload Illustration</h3>
+<div id="outline-container-org0aec3fb" class="outline-3">
+<h3 id="org0aec3fb"><span class="section-number-3">9.5.</span> Workload Illustration</h3>
 <div class="outline-text-3" id="text-9-5">
 <ul class="org-ul">
 <li>Iterative workloads: same computation on same data (e.g., model training).</li>
@@ -2226,8 +2279,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-orgc97199b" class="outline-3">
-<h3 id="orgc97199b"><span class="section-number-3">9.6.</span> Challenge</h3>
+<div id="outline-container-org1250ef7" class="outline-3">
+<h3 id="org1250ef7"><span class="section-number-3">9.6.</span> Challenge</h3>
 <div class="outline-text-3" id="text-9-6">
 <ul class="org-ul">
 <li>Challenge: memory is not fault-tolerant.</li>
@@ -2237,8 +2290,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org6576249" class="outline-3">
-<h3 id="org6576249"><span class="section-number-3">9.7.</span> Solution  RDDs</h3>
+<div id="outline-container-orgf205d96" class="outline-3">
+<h3 id="orgf205d96"><span class="section-number-3">9.7.</span> Solution  RDDs</h3>
 <div class="outline-text-3" id="text-9-7">
 <ul class="org-ul">
 <li>Spark uses RDDs to balance fault-tolerance and efficiency.</li>
@@ -2248,8 +2301,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-orgc121e87" class="outline-3">
-<h3 id="orgc121e87"><span class="section-number-3">9.8.</span> RDD Recovery</h3>
+<div id="outline-container-orge0c62c2" class="outline-3">
+<h3 id="orge0c62c2"><span class="section-number-3">9.8.</span> RDD Recovery</h3>
 <div class="outline-text-3" id="text-9-8">
 <ul class="org-ul">
 <li>Recovery through recomputation based on lineage.</li>
@@ -2259,8 +2312,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org42f88f6" class="outline-3">
-<h3 id="org42f88f6"><span class="section-number-3">9.9.</span> Spark Stack</h3>
+<div id="outline-container-orgc185e54" class="outline-3">
+<h3 id="orgc185e54"><span class="section-number-3">9.9.</span> Spark Stack</h3>
 <div class="outline-text-3" id="text-9-9">
 <ul class="org-ul">
 <li>Core: scheduling, memory management, fault recovery.</li>
@@ -2270,8 +2323,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org025ccf9" class="outline-3">
-<h3 id="org025ccf9"><span class="section-number-3">9.10.</span> Spark Programming Interface</h3>
+<div id="outline-container-org4366103" class="outline-3">
+<h3 id="org4366103"><span class="section-number-3">9.10.</span> Spark Programming Interface</h3>
 <div class="outline-text-3" id="text-9-10">
 <ul class="org-ul">
 <li>Interfaces: Scala, Python, Java.</li>
@@ -2281,8 +2334,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-orgb82e336" class="outline-3">
-<h3 id="orgb82e336"><span class="section-number-3">9.11.</span> RDD Transformations</h3>
+<div id="outline-container-org2c4a9c2" class="outline-3">
+<h3 id="org2c4a9c2"><span class="section-number-3">9.11.</span> RDD Transformations</h3>
 <div class="outline-text-3" id="text-9-11">
 <ul class="org-ul">
 <li>Examples: map vs flatMap, distinct, union, intersection, subtract.</li>
@@ -2292,8 +2345,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-orgd8f6220" class="outline-3">
-<h3 id="orgd8f6220"><span class="section-number-3">9.12.</span> RDD Transformations Quiz Question</h3>
+<div id="outline-container-org5782b85" class="outline-3">
+<h3 id="org5782b85"><span class="section-number-3">9.12.</span> RDD Transformations Quiz Question</h3>
 <div class="outline-text-3" id="text-9-12">
 <ul class="org-ul">
 <li>Quiz: Apply map and filter on input RDD to understand transformation output.</li>
@@ -2301,8 +2354,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org3d45daf" class="outline-3">
-<h3 id="org3d45daf"><span class="section-number-3">9.13.</span> RDD Transformations Quiz Solution</h3>
+<div id="outline-container-orgc7a4d38" class="outline-3">
+<h3 id="orgc7a4d38"><span class="section-number-3">9.13.</span> RDD Transformations Quiz Solution</h3>
 <div class="outline-text-3" id="text-9-13">
 <ul class="org-ul">
 <li>Map squares each number: [1, 4, 9, 16].</li>
@@ -2311,8 +2364,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org799ad4f" class="outline-3">
-<h3 id="org799ad4f"><span class="section-number-3">9.14.</span> Spark Operations</h3>
+<div id="outline-container-org1285c3e" class="outline-3">
+<h3 id="org1285c3e"><span class="section-number-3">9.14.</span> Spark Operations</h3>
 <div class="outline-text-3" id="text-9-14">
 <ul class="org-ul">
 <li>Transformations: map, filter, groupByKey, etc.</li>
@@ -2322,8 +2375,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org9da73fc" class="outline-3">
-<h3 id="org9da73fc"><span class="section-number-3">9.15.</span> Shared Variable</h3>
+<div id="outline-container-org382f04c" class="outline-3">
+<h3 id="org382f04c"><span class="section-number-3">9.15.</span> Shared Variable</h3>
 <div class="outline-text-3" id="text-9-15">
 <ul class="org-ul">
 <li>Broadcast variables: efficient read-only shared data.</li>
@@ -2337,8 +2390,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org3fdf218" class="outline-3">
-<h3 id="org3fdf218"><span class="section-number-3">9.16.</span> Fault Tolerance</h3>
+<div id="outline-container-org4ab58ee" class="outline-3">
+<h3 id="org4ab58ee"><span class="section-number-3">9.16.</span> Fault Tolerance</h3>
 <div class="outline-text-3" id="text-9-16">
 <ul class="org-ul">
 <li>RDD tracks transformations (lineage).</li>
@@ -2348,8 +2401,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-orgff1381c" class="outline-3">
-<h3 id="orgff1381c"><span class="section-number-3">9.17.</span> Example  Logistic Regression</h3>
+<div id="outline-container-org9bd8456" class="outline-3">
+<h3 id="org9bd8456"><span class="section-number-3">9.17.</span> Example  Logistic Regression</h3>
 <div class="outline-text-3" id="text-9-17">
 <ul class="org-ul">
 <li>Spark efficiently supports logistic regression via iteration.</li>
@@ -2360,8 +2413,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org85a9683" class="outline-3">
-<h3 id="org85a9683"><span class="section-number-3">9.18.</span> Example  Disease Risk Prediction</h3>
+<div id="outline-container-org88ba6d5" class="outline-3">
+<h3 id="org88ba6d5"><span class="section-number-3">9.18.</span> Example  Disease Risk Prediction</h3>
 <div class="outline-text-3" id="text-9-18">
 <ul class="org-ul">
 <li>Predict patient disease risks using collaborative filtering.</li>
@@ -2371,8 +2424,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-orgcecceef" class="outline-3">
-<h3 id="orgcecceef"><span class="section-number-3">9.19.</span> Serial ALS</h3>
+<div id="outline-container-orgb38387d" class="outline-3">
+<h3 id="orgb38387d"><span class="section-number-3">9.19.</span> Serial ALS</h3>
 <div class="outline-text-3" id="text-9-19">
 <ul class="org-ul">
 <li>Serial implementation of ALS.</li>
@@ -2382,8 +2435,8 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 
-<div id="outline-container-org10b1f2a" class="outline-3">
-<h3 id="org10b1f2a"><span class="section-number-3">9.20.</span> Naive Spark ALS</h3>
+<div id="outline-container-org03c667b" class="outline-3">
+<h3 id="org03c667b"><span class="section-number-3">9.20.</span> Naive Spark ALS</h3>
 <div class="outline-text-3" id="text-9-20">
 <ul class="org-ul">
 <li>Parallel ALS using `spark.parallelize`.</li>
@@ -2393,10 +2446,595 @@ As noise increases, \(R^2\) decreases.
 </div>
 </div>
 </div>
+
+<div id="outline-container-orgf308ff8" class="outline-2">
+<h2 id="orgf308ff8"><span class="section-number-2">10.</span> Medical Ontology</h2>
+<div class="outline-text-2" id="text-10">
+</div>
+<div id="outline-container-org6767589" class="outline-3">
+<h3 id="org6767589"><span class="section-number-3">10.1.</span> Introduction to Medical Ontology</h3>
+<div class="outline-text-3" id="text-10-1">
+<ul class="org-ul">
+<li>Healthcare benefits from structured medical knowledge.</li>
+<li>Ontologies and knowledge graphs are common in this domain.</li>
+<li>Historically, healthcare has developed ontologies for:
+<ul class="org-ul">
+<li>Diseases</li>
+<li>Medical procedures</li>
+<li>Medications</li>
+<li>Lab tests</li>
+</ul></li>
+<li>Ontologies aid understanding of healthcare data and validate data models.</li>
+<li>The lesson discusses various ontologies and their role in analytics.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org10830be" class="outline-3">
+<h3 id="org10830be"><span class="section-number-3">10.2.</span> Health Data Standards</h3>
+<div class="outline-text-3" id="text-10-2">
+<ul class="org-ul">
+<li>Overview of major health data standards:
+<ul class="org-ul">
+<li>LOINC: Lab test codes</li>
+<li>ICD: Diagnostic codes</li>
+<li>CPT: Procedure codes</li>
+<li>NDC: Medication codes</li>
+</ul></li>
+<li>SNOMED: A comprehensive ontology integrating all the above.</li>
+<li>UMLS: Software system that accesses integrated medical knowledge.</li>
+<li>Use case: Patient encounter example illustrating all standard usages.</li>
+<li>Importance:
+<ul class="org-ul">
+<li>Insurance claim processing</li>
+<li>Research and data analysis</li>
+</ul></li>
+<li>Preview of upcoming detailed discussions on individual standards.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgbdf5a44" class="outline-3">
+<h3 id="orgbdf5a44"><span class="section-number-3">10.3.</span> ICD</h3>
+<div class="outline-text-3" id="text-10-3">
+<ul class="org-ul">
+<li>ICD = International Classification of Diseases.</li>
+<li>Developed by WHO, categorizes diseases.</li>
+<li>ICD-9: 17,000+ codes; 3-5 digits; includes main and supplementary categories (e.g., E, V codes).</li>
+<li>ICD-10: 141,000+ codes; 7-character alphanumeric structure.</li>
+<li>Detailed coding for category, etiology, body part, severity, and extension.</li>
+<li>Examples:
+<ul class="org-ul">
+<li>ICD-9: 250.01 = Type 1 diabetes, no complications</li>
+<li>ICD-10: M1A.31X2 = Chronic gout with renal impairment in left shoulder, no tophus</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orga1cd6c5" class="outline-3">
+<h3 id="orga1cd6c5"><span class="section-number-3">10.4.</span> ICD 9 to ICD 10 Mapping</h3>
+<div class="outline-text-3" id="text-10-4">
+<ul class="org-ul">
+<li>Mapping is mostly one-to-many due to ICD-10's higher specificity.</li>
+<li>Some mappings are one-to-one (e.g., Tietze's Syndrome).</li>
+<li>Complicated mappings: e.g., ICD-9 code maps to 2,530 ICD-10 codes.</li>
+<li>Complexity highlights the increased detail of ICD-10.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org18841f2" class="outline-3">
+<h3 id="org18841f2"><span class="section-number-3">10.5.</span> ICD 9 Quiz Question</h3>
+<div class="outline-text-3" id="text-10-5">
+<ul class="org-ul">
+<li>Identifies valid and invalid ICD-9 codes.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orge9b5185" class="outline-3">
+<h3 id="orge9b5185"><span class="section-number-3">10.6.</span> ICD 9 Quiz Solution</h3>
+<div class="outline-text-3" id="text-10-6">
+<ul class="org-ul">
+<li>Valid: 501, 802.3, V70, E820.0</li>
+<li>Invalid: U80.1, 5A0.01</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org26cb049" class="outline-3">
+<h3 id="org26cb049"><span class="section-number-3">10.7.</span> ICD Code Quiz Question</h3>
+<div class="outline-text-3" id="text-10-7">
+<ul class="org-ul">
+<li>Task: Find ICD-9 and ICD-10 codes for Influenza.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org5715647" class="outline-3">
+<h3 id="org5715647"><span class="section-number-3">10.8.</span> ICD Code Quiz Solution</h3>
+<div class="outline-text-3" id="text-10-8">
+<ul class="org-ul">
+<li>ICD-9: 487.1</li>
+<li>ICD-10: J11.1</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org45056e9" class="outline-3">
+<h3 id="org45056e9"><span class="section-number-3">10.9.</span> CPT</h3>
+<div class="outline-text-3" id="text-10-9">
+<ul class="org-ul">
+<li>CPT = Current Procedural Terminology (US standard).</li>
+<li>Used for medical, surgical, diagnostic procedures.</li>
+<li>Maintained by the AMA.</li>
+<li>Key in insurance reimbursement.</li>
+<li>Categories:
+<ul class="org-ul">
+<li>Category 1: Common procedures (e.g., surgery, radiology)</li>
+<li>Category 2: Quality metrics</li>
+<li>Category 3: Experimental procedures (e.g., codes ending in T)</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org517c583" class="outline-3">
+<h3 id="org517c583"><span class="section-number-3">10.10.</span> CPT Code Quiz Question</h3>
+<div class="outline-text-3" id="text-10-10">
+<ul class="org-ul">
+<li>Task: Find CPT code for detailed office visit.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb5f34c0" class="outline-3">
+<h3 id="orgb5f34c0"><span class="section-number-3">10.11.</span> CPT Code Quiz Solution</h3>
+<div class="outline-text-3" id="text-10-11">
+<ul class="org-ul">
+<li>Office visit range: 99201–99205</li>
+<li>Time-based codes (e.g., 99201 = 10 mins, 99205 = 1 hour)</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org09e81eb" class="outline-3">
+<h3 id="org09e81eb"><span class="section-number-3">10.12.</span> LOINC</h3>
+<div class="outline-text-3" id="text-10-12">
+<ul class="org-ul">
+<li>LOINC = Logical Observation Identifiers Names and Codes.</li>
+<li>Created by Regenstrief Institute.</li>
+<li>Standard for lab tests and clinical observations.</li>
+<li>Example: 2865-4 = a specific lab test</li>
+<li>Attributes:
+<ul class="org-ul">
+<li>Component</li>
+<li>Property</li>
+<li>Time aspect (e.g., Pt = point in time)</li>
+<li>Sample type</li>
+<li>Scale (quantitative, ordinal, etc.)</li>
+<li>Method</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgf2b265d" class="outline-3">
+<h3 id="orgf2b265d"><span class="section-number-3">10.13.</span> LOINC Code Quiz Question</h3>
+<div class="outline-text-3" id="text-10-13">
+<ul class="org-ul">
+<li>Task: Find LOINC code for Creatinine lab test.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0e65069" class="outline-3">
+<h3 id="org0e65069"><span class="section-number-3">10.14.</span> LOINC Code Quiz Solution</h3>
+<div class="outline-text-3" id="text-10-14">
+<ul class="org-ul">
+<li>Answer: 2160-0</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org359b111" class="outline-3">
+<h3 id="org359b111"><span class="section-number-3">10.15.</span> NDC</h3>
+<div class="outline-text-3" id="text-10-15">
+<ul class="org-ul">
+<li>NDC = National Drug Code (for medications).</li>
+<li>Maintained by the FDA.</li>
+<li>Structure: 3 segments
+<ul class="org-ul">
+<li>Labeler code (company)</li>
+<li>Product code (drug type)</li>
+<li>Package code (package details)</li>
+</ul></li>
+<li>Different digit combinations exist but total is 10 digits.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org275d45d" class="outline-3">
+<h3 id="org275d45d"><span class="section-number-3">10.16.</span> NDC Code Quiz Question</h3>
+<div class="outline-text-3" id="text-10-16">
+<ul class="org-ul">
+<li>Task: Find NDC code for metformin hydrochloride, 500mg.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org76ec4ac" class="outline-3">
+<h3 id="org76ec4ac"><span class="section-number-3">10.17.</span> NDC Code Quiz Solution</h3>
+<div class="outline-text-3" id="text-10-17">
+<ul class="org-ul">
+<li>Example code: 0093-7214-01 (labeler-dependent)</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org79096a7" class="outline-3">
+<h3 id="org79096a7"><span class="section-number-3">10.18.</span> SNOMED</h3>
+<div class="outline-text-3" id="text-10-18">
+<ul class="org-ul">
+<li>SNOMED = Systematized Nomenclature of Medicine.</li>
+<li>Maintained by IHTSDO (Denmark).</li>
+<li>Supports clinical documentation and semantic interoperability.</li>
+<li>National editions and implementation subsets exist.</li>
+<li>Broad user base: clinicians, researchers, analysts.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc142776" class="outline-3">
+<h3 id="orgc142776"><span class="section-number-3">10.19.</span> Logical Model of SNOMED CT</h3>
+<div class="outline-text-3" id="text-10-19">
+<ul class="org-ul">
+<li>Core components:
+<ul class="org-ul">
+<li>Concepts (with unique ID)</li>
+<li>Descriptions (FSN and synonyms)</li>
+<li>Relationships (e.g., “is a”, attributes)</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org313882d" class="outline-3">
+<h3 id="org313882d"><span class="section-number-3">10.20.</span> SNOMED Example</h3>
+<div class="outline-text-3" id="text-10-20">
+<ul class="org-ul">
+<li>Example concept: 22298006 = Myocardial infarction disorder</li>
+<li>Multiple descriptions including synonyms</li>
+<li>Preferred vs. acceptable terms are defined by reference sets.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org095bae4" class="outline-3">
+<h3 id="org095bae4"><span class="section-number-3">10.21.</span> SNOMED Relationships</h3>
+<div class="outline-text-3" id="text-10-21">
+<ul class="org-ul">
+<li>“Is a” relationship creates concept hierarchies.</li>
+<li>Example: Cellulitis of foot “is a” cellulitis, and “is a” disorder of foot.</li>
+<li>Relationships are directional and acyclic.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org65fd78d" class="outline-3">
+<h3 id="org65fd78d"><span class="section-number-3">10.22.</span> SNOMED Design</h3>
+<div class="outline-text-3" id="text-10-22">
+<ul class="org-ul">
+<li>19-level hierarchy of concepts.</li>
+<li>Concepts range from general to highly specific.</li>
+<li>Relationships include “is a” and others with attributes.</li>
+<li>Each concept has a unique ID and descriptions.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org236643e" class="outline-3">
+<h3 id="org236643e"><span class="section-number-3">10.23.</span> SNOMED Code Quiz Question</h3>
+<div class="outline-text-3" id="text-10-23">
+<ul class="org-ul">
+<li>Task: Find SNOMED code for chronic gouty arthritis.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc343de9" class="outline-3">
+<h3 id="orgc343de9"><span class="section-number-3">10.24.</span> SNOMED Code Quiz Solution</h3>
+<div class="outline-text-3" id="text-10-24">
+<ul class="org-ul">
+<li>Answer: 68451005</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org90f70eb" class="outline-3">
+<h3 id="org90f70eb"><span class="section-number-3">10.25.</span> SNOMED Quiz Question</h3>
+<div class="outline-text-3" id="text-10-25">
+<ul class="org-ul">
+<li>Question: What is the structure of "is a" relationships in SNOMED?</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orge5149a1" class="outline-3">
+<h3 id="orge5149a1"><span class="section-number-3">10.26.</span> SNOMED Quiz Solution</h3>
+<div class="outline-text-3" id="text-10-26">
+<ul class="org-ul">
+<li>Answer: Directed acyclic graph (not a tree).</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org5a5300e" class="outline-3">
+<h3 id="org5a5300e"><span class="section-number-3">10.27.</span> UMLS</h3>
+<div class="outline-text-3" id="text-10-27">
+<ul class="org-ul">
+<li>UMLS = Unified Medical Language System.</li>
+<li>Maintained by US National Library of Medicine.</li>
+<li>Integrates multiple standards into a unified system.</li>
+<li>Components:
+<ul class="org-ul">
+<li>Metathesaurus</li>
+<li>Semantic network</li>
+<li>Specialist lexicon and tools</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb12b516" class="outline-3">
+<h3 id="orgb12b516"><span class="section-number-3">10.28.</span> Metathesaurus Concepts</h3>
+<div class="outline-text-3" id="text-10-28">
+<ul class="org-ul">
+<li>Concept hierarchy:
+<ul class="org-ul">
+<li>Atom (AUI) → String (SUI) → Term (LUI) → Concept (CUI)</li>
+</ul></li>
+<li>Multiple ontologies/sources integrated.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org8a63346" class="outline-3">
+<h3 id="org8a63346"><span class="section-number-3">10.29.</span> Semantic Network</h3>
+<div class="outline-text-3" id="text-10-29">
+<ul class="org-ul">
+<li>135+ semantic types (e.g., diseases, drugs)</li>
+<li>54+ semantic relationships (e.g., cause, treat)</li>
+<li>Organizes concepts and their interrelations.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgfe3e3af" class="outline-3">
+<h3 id="orgfe3e3af"><span class="section-number-3">10.30.</span> Specialist Lexicon</h3>
+<div class="outline-text-3" id="text-10-30">
+<ul class="org-ul">
+<li>Lexicon of 300,000+ biomedical terms.</li>
+<li>Includes syntax, morphology, orthography.</li>
+<li>Used in NLP tools like MetaMap and MMTx.</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org3383461" class="outline-2">
+<h2 id="org3383461"><span class="section-number-2">11.</span> Graph Analysis</h2>
+<div class="outline-text-2" id="text-11">
+</div>
+<div id="outline-container-org17d40f3" class="outline-3">
+<h3 id="org17d40f3"><span class="section-number-3">11.1.</span> Introduction to Graph Analysis</h3>
+<div class="outline-text-3" id="text-11-1">
+<ul class="org-ul">
+<li>Overview of graph analysis and its applications.</li>
+<li>Used in search engines, social networks, and healthcare.</li>
+<li>Identifies clusters of related entities (webpages, patients, conditions).</li>
+<li>Will cover similarity graphs and spectral clustering.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org540bd8e" class="outline-3">
+<h3 id="org540bd8e"><span class="section-number-3">11.2.</span> Agenda</h3>
+<div class="outline-text-3" id="text-11-2">
+<ul class="org-ul">
+<li>Two main graph-based algorithms introduced:
+<ul class="org-ul">
+<li>PageRank: Ranks nodes in a directed graph based on importance.</li>
+<li>Spectral Clustering: A graph partitioning-based clustering algorithm.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org8b76b8f" class="outline-3">
+<h3 id="org8b76b8f"><span class="section-number-3">11.3.</span> PageRank</h3>
+<div class="outline-text-3" id="text-11-3">
+<ul class="org-ul">
+<li>Developed by Google co-founders for webpage ranking.</li>
+<li>Traditional content-based ranking is prone to spam.</li>
+<li>PageRank relies on the graph structure (links between pages).</li>
+<li>Intuition: More high-quality pages linking to a page → higher rank.</li>
+<li>Represent graph using an adjacency matrix:
+<ul class="org-ul">
+<li>Normalize matrix rows to represent transition probabilities.</li>
+<li>PageRank computed using recursion: browsing + teleporting.</li>
+<li>Browsing redistributes rank via adjacency matrix; teleporting randomly jumps.</li>
+<li>Equation: `q = cAq + (1 - c)e/N`, where `c` is damping factor (e.g., 0.85).</li>
+</ul></li>
+<li>Next steps: Implement PageRank using big data systems like Hadoop MapReduce.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org7d0699e" class="outline-3">
+<h3 id="org7d0699e"><span class="section-number-3">11.4.</span> MapReduce  PageRank</h3>
+<div class="outline-text-3" id="text-11-4">
+<ul class="org-ul">
+<li>Implementation of PageRank in MapReduce:
+<ul class="org-ul">
+<li><b><b>Map Phase</b></b>:
+<ul class="org-ul">
+<li>Emit current page and its PageRank.</li>
+<li>Distribute PageRank to each outgoing link equally.</li>
+</ul></li>
+<li><b><b>Reduce Phase</b></b>:
+<ul class="org-ul">
+<li>Aggregate partial PageRanks from map phase.</li>
+<li>Add teleporting component.</li>
+<li>Emit updated PageRank.</li>
+</ul></li>
+<li>Hadoop shuffles partial sums to reducers.</li>
+<li>Iterative process: repeat map-reduce steps to converge.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgda0012c" class="outline-3">
+<h3 id="orgda0012c"><span class="section-number-3">11.5.</span> PageRank Quiz Question</h3>
+<div class="outline-text-3" id="text-11-5">
+<ul class="org-ul">
+<li>Quiz: Rank webpages in a directed graph by PageRank (based on structure).</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org4731d49" class="outline-3">
+<h3 id="org4731d49"><span class="section-number-3">11.6.</span> PageRank Quiz Solution</h3>
+<div class="outline-text-3" id="text-11-6">
+<ul class="org-ul">
+<li>Highest: YouTube (3 incoming links).</li>
+<li>Lowest: Google (no incoming links).</li>
+<li>Recursive PageRank shows differences despite similar local structures.</li>
+<li>Amazon &gt; Wikipedia &gt; Facebook in mid-tier due to recursion effects.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd751a04" class="outline-3">
+<h3 id="orgd751a04"><span class="section-number-3">11.7.</span> Spectral Clustering</h3>
+<div class="outline-text-3" id="text-11-7">
+<ul class="org-ul">
+<li>Spectral Clustering vs Traditional Clustering:
+<ul class="org-ul">
+<li>Uses similarity graph of patients based on features.</li>
+<li>Steps:
+<ol class="org-ol">
+<li>Construct similarity graph (nodes = patients, edges = similarity).</li>
+<li>Convert graph to adjacency matrix.</li>
+<li>Compute top-k eigenvectors of the matrix.</li>
+<li>Cluster eigenvectors into groups.</li>
+</ol></li>
+<li>Effective for high-dimensional or noisy data.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org469a04b" class="outline-3">
+<h3 id="org469a04b"><span class="section-number-3">11.8.</span> Similarity Graph Construction</h3>
+<div class="outline-text-3" id="text-11-8">
+<ul class="org-ul">
+<li>Several ways to construct similarity graphs:
+<ul class="org-ul">
+<li>Epsilon-neighborhood.</li>
+<li>K-nearest neighbors.</li>
+<li>Fully connected with edge weights (e.g., Gaussian kernel).</li>
+</ul></li>
+<li>Purpose: capture local similarity between patients.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org43688db" class="outline-3">
+<h3 id="org43688db"><span class="section-number-3">11.9.</span> E Neighborhood Graph</h3>
+<div class="outline-text-3" id="text-11-9">
+<ul class="org-ul">
+<li>Connect nodes within ε distance.</li>
+<li>No edge if distance &gt; ε.</li>
+<li>Defines sparsity based on ε.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0f498ed" class="outline-3">
+<h3 id="org0f498ed"><span class="section-number-3">11.10.</span> K Nearest Neighbor Graph</h3>
+<div class="outline-text-3" id="text-11-10">
+<ul class="org-ul">
+<li>Each node connects to its k-nearest neighbors (directed).</li>
+<li>Results in sparse graphs for small k.</li>
+<li>Variants: binary edges vs weighted edges based on distance.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org58e1cb4" class="outline-3">
+<h3 id="org58e1cb4"><span class="section-number-3">11.11.</span> Fully Connected Graph</h3>
+<div class="outline-text-3" id="text-11-11">
+<ul class="org-ul">
+<li>Every node connected to every other.</li>
+<li>Edge weights determined by similarity (e.g., Gaussian kernel).</li>
+<li>Most dense graph representation.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org8faa972" class="outline-3">
+<h3 id="org8faa972"><span class="section-number-3">11.12.</span> E Neighborhood Graph Quiz Question</h3>
+<div class="outline-text-3" id="text-11-12">
+<ul class="org-ul">
+<li>Quiz: Select best ε value to reflect clustering structure in 2D patient data.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgfd5c68b" class="outline-3">
+<h3 id="orgfd5c68b"><span class="section-number-3">11.13.</span> E Neighborhood Graph Quiz Solution</h3>
+<div class="outline-text-3" id="text-11-13">
+<ul class="org-ul">
+<li>Small ε: too many disconnected clusters.</li>
+<li>Large ε: single cluster.</li>
+<li>Optimal ε (e.g., B or C) reveals natural clusters in data.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb4d1afb" class="outline-3">
+<h3 id="orgb4d1afb"><span class="section-number-3">11.14.</span> Spectral Clustering Algorithm</h3>
+<div class="outline-text-3" id="text-11-14">
+<ul class="org-ul">
+<li>Variations exist:
+<ul class="org-ul">
+<li>Unnormalized vs Normalized Spectral Clustering.</li>
+</ul></li>
+<li>Example: simplest uses eigenvectors + k-means.</li>
+<li>Spectral clustering transforms data to eigenspace where clusters are clearer.</li>
+<li>Recommended reading for theoretical underpinnings.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgec615dc" class="outline-3">
+<h3 id="orgec615dc"><span class="section-number-3">11.15.</span> Big Data Conclusion</h3>
+<div class="outline-text-3" id="text-11-15">
+<ul class="org-ul">
+<li>Wrap-up of the video series.</li>
+<li>Presenter: Jimmy Son.</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: W</p>
-<p class="date">Created: 2025-03-29 Sat 11:35</p>
+<p class="date">Created: 2025-03-29 Sat 11:39</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

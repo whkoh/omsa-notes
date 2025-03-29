@@ -975,3 +975,272 @@ As noise increases, $R^2$ decreases.
 - Parallel ALS using `spark.parallelize`.
 - Broadcast used for efficient data sharing.
 - Broadcast improves performance 3× over naive version.
+
+* Medical Ontology
+** Introduction to Medical Ontology
+- Healthcare benefits from structured medical knowledge.
+- Ontologies and knowledge graphs are common in this domain.
+- Historically, healthcare has developed ontologies for:
+  - Diseases
+  - Medical procedures
+  - Medications
+  - Lab tests
+- Ontologies aid understanding of healthcare data and validate data models.
+- The lesson discusses various ontologies and their role in analytics.
+
+** Health Data Standards
+- Overview of major health data standards:
+  - LOINC: Lab test codes
+  - ICD: Diagnostic codes
+  - CPT: Procedure codes
+  - NDC: Medication codes
+- SNOMED: A comprehensive ontology integrating all the above.
+- UMLS: Software system that accesses integrated medical knowledge.
+- Use case: Patient encounter example illustrating all standard usages.
+- Importance:
+  - Insurance claim processing
+  - Research and data analysis
+- Preview of upcoming detailed discussions on individual standards.
+
+** ICD
+- ICD = International Classification of Diseases.
+- Developed by WHO, categorizes diseases.
+- ICD-9: 17,000+ codes; 3-5 digits; includes main and supplementary categories (e.g., E, V codes).
+- ICD-10: 141,000+ codes; 7-character alphanumeric structure.
+- Detailed coding for category, etiology, body part, severity, and extension.
+- Examples:
+  - ICD-9: 250.01 = Type 1 diabetes, no complications
+  - ICD-10: M1A.31X2 = Chronic gout with renal impairment in left shoulder, no tophus
+
+** ICD 9 to ICD 10 Mapping
+- Mapping is mostly one-to-many due to ICD-10's higher specificity.
+- Some mappings are one-to-one (e.g., Tietze's Syndrome).
+- Complicated mappings: e.g., ICD-9 code maps to 2,530 ICD-10 codes.
+- Complexity highlights the increased detail of ICD-10.
+
+** ICD 9 Quiz Question
+- Identifies valid and invalid ICD-9 codes.
+
+** ICD 9 Quiz Solution
+- Valid: 501, 802.3, V70, E820.0
+- Invalid: U80.1, 5A0.01
+
+** ICD Code Quiz Question
+- Task: Find ICD-9 and ICD-10 codes for Influenza.
+
+** ICD Code Quiz Solution
+- ICD-9: 487.1
+- ICD-10: J11.1
+
+** CPT
+- CPT = Current Procedural Terminology (US standard).
+- Used for medical, surgical, diagnostic procedures.
+- Maintained by the AMA.
+- Key in insurance reimbursement.
+- Categories:
+  - Category 1: Common procedures (e.g., surgery, radiology)
+  - Category 2: Quality metrics
+  - Category 3: Experimental procedures (e.g., codes ending in T)
+
+** CPT Code Quiz Question
+- Task: Find CPT code for detailed office visit.
+
+** CPT Code Quiz Solution
+- Office visit range: 99201–99205
+- Time-based codes (e.g., 99201 = 10 mins, 99205 = 1 hour)
+
+** LOINC
+- LOINC = Logical Observation Identifiers Names and Codes.
+- Created by Regenstrief Institute.
+- Standard for lab tests and clinical observations.
+- Example: 2865-4 = a specific lab test
+- Attributes:
+  - Component
+  - Property
+  - Time aspect (e.g., Pt = point in time)
+  - Sample type
+  - Scale (quantitative, ordinal, etc.)
+  - Method
+
+** LOINC Code Quiz Question
+- Task: Find LOINC code for Creatinine lab test.
+
+** LOINC Code Quiz Solution
+- Answer: 2160-0
+
+** NDC
+- NDC = National Drug Code (for medications).
+- Maintained by the FDA.
+- Structure: 3 segments
+  - Labeler code (company)
+  - Product code (drug type)
+  - Package code (package details)
+- Different digit combinations exist but total is 10 digits.
+
+** NDC Code Quiz Question
+- Task: Find NDC code for metformin hydrochloride, 500mg.
+
+** NDC Code Quiz Solution
+- Example code: 0093-7214-01 (labeler-dependent)
+
+** SNOMED
+- SNOMED = Systematized Nomenclature of Medicine.
+- Maintained by IHTSDO (Denmark).
+- Supports clinical documentation and semantic interoperability.
+- National editions and implementation subsets exist.
+- Broad user base: clinicians, researchers, analysts.
+
+** Logical Model of SNOMED CT
+- Core components:
+  - Concepts (with unique ID)
+  - Descriptions (FSN and synonyms)
+  - Relationships (e.g., “is a”, attributes)
+
+** SNOMED Example
+- Example concept: 22298006 = Myocardial infarction disorder
+- Multiple descriptions including synonyms
+- Preferred vs. acceptable terms are defined by reference sets.
+
+** SNOMED Relationships
+- “Is a” relationship creates concept hierarchies.
+- Example: Cellulitis of foot “is a” cellulitis, and “is a” disorder of foot.
+- Relationships are directional and acyclic.
+
+** SNOMED Design
+- 19-level hierarchy of concepts.
+- Concepts range from general to highly specific.
+- Relationships include “is a” and others with attributes.
+- Each concept has a unique ID and descriptions.
+
+** SNOMED Code Quiz Question
+- Task: Find SNOMED code for chronic gouty arthritis.
+
+** SNOMED Code Quiz Solution
+- Answer: 68451005
+
+** SNOMED Quiz Question
+- Question: What is the structure of "is a" relationships in SNOMED?
+
+** SNOMED Quiz Solution
+- Answer: Directed acyclic graph (not a tree).
+
+** UMLS
+- UMLS = Unified Medical Language System.
+- Maintained by US National Library of Medicine.
+- Integrates multiple standards into a unified system.
+- Components:
+  - Metathesaurus
+  - Semantic network
+  - Specialist lexicon and tools
+
+** Metathesaurus Concepts
+- Concept hierarchy:
+  - Atom (AUI) → String (SUI) → Term (LUI) → Concept (CUI)
+- Multiple ontologies/sources integrated.
+
+** Semantic Network
+- 135+ semantic types (e.g., diseases, drugs)
+- 54+ semantic relationships (e.g., cause, treat)
+- Organizes concepts and their interrelations.
+
+** Specialist Lexicon
+- Lexicon of 300,000+ biomedical terms.
+- Includes syntax, morphology, orthography.
+- Used in NLP tools like MetaMap and MMTx.
+
+
+* Graph Analysis
+** Introduction to Graph Analysis
+- Overview of graph analysis and its applications.
+- Used in search engines, social networks, and healthcare.
+- Identifies clusters of related entities (webpages, patients, conditions).
+- Will cover similarity graphs and spectral clustering.
+
+** Agenda
+- Two main graph-based algorithms introduced:
+  - PageRank: Ranks nodes in a directed graph based on importance.
+  - Spectral Clustering: A graph partitioning-based clustering algorithm.
+
+** PageRank
+- Developed by Google co-founders for webpage ranking.
+- Traditional content-based ranking is prone to spam.
+- PageRank relies on the graph structure (links between pages).
+- Intuition: More high-quality pages linking to a page → higher rank.
+- Represent graph using an adjacency matrix:
+  - Normalize matrix rows to represent transition probabilities.
+  - PageRank computed using recursion: browsing + teleporting.
+  - Browsing redistributes rank via adjacency matrix; teleporting randomly jumps.
+  - Equation: `q = cAq + (1 - c)e/N`, where `c` is damping factor (e.g., 0.85).
+- Next steps: Implement PageRank using big data systems like Hadoop MapReduce.
+
+** MapReduce  PageRank
+- Implementation of PageRank in MapReduce:
+  - **Map Phase**:
+    - Emit current page and its PageRank.
+    - Distribute PageRank to each outgoing link equally.
+  - **Reduce Phase**:
+    - Aggregate partial PageRanks from map phase.
+    - Add teleporting component.
+    - Emit updated PageRank.
+  - Hadoop shuffles partial sums to reducers.
+  - Iterative process: repeat map-reduce steps to converge.
+
+** PageRank Quiz Question
+- Quiz: Rank webpages in a directed graph by PageRank (based on structure).
+
+** PageRank Quiz Solution
+- Highest: YouTube (3 incoming links).
+- Lowest: Google (no incoming links).
+- Recursive PageRank shows differences despite similar local structures.
+- Amazon > Wikipedia > Facebook in mid-tier due to recursion effects.
+
+** Spectral Clustering
+- Spectral Clustering vs Traditional Clustering:
+  - Uses similarity graph of patients based on features.
+  - Steps:
+    1. Construct similarity graph (nodes = patients, edges = similarity).
+    2. Convert graph to adjacency matrix.
+    3. Compute top-k eigenvectors of the matrix.
+    4. Cluster eigenvectors into groups.
+  - Effective for high-dimensional or noisy data.
+
+** Similarity Graph Construction
+- Several ways to construct similarity graphs:
+  - Epsilon-neighborhood.
+  - K-nearest neighbors.
+  - Fully connected with edge weights (e.g., Gaussian kernel).
+- Purpose: capture local similarity between patients.
+
+** E Neighborhood Graph
+- Connect nodes within ε distance.
+- No edge if distance > ε.
+- Defines sparsity based on ε.
+
+** K Nearest Neighbor Graph
+- Each node connects to its k-nearest neighbors (directed).
+- Results in sparse graphs for small k.
+- Variants: binary edges vs weighted edges based on distance.
+
+** Fully Connected Graph
+- Every node connected to every other.
+- Edge weights determined by similarity (e.g., Gaussian kernel).
+- Most dense graph representation.
+
+** E Neighborhood Graph Quiz Question
+- Quiz: Select best ε value to reflect clustering structure in 2D patient data.
+
+** E Neighborhood Graph Quiz Solution
+- Small ε: too many disconnected clusters.
+- Large ε: single cluster.
+- Optimal ε (e.g., B or C) reveals natural clusters in data.
+
+** Spectral Clustering Algorithm
+- Variations exist:
+  - Unnormalized vs Normalized Spectral Clustering.
+- Example: simplest uses eigenvectors + k-means.
+- Spectral clustering transforms data to eigenspace where clusters are clearer.
+- Recommended reading for theoretical underpinnings.
+
+** Big Data Conclusion
+- Wrap-up of the video series.
+- Presenter: Jimmy Son.
