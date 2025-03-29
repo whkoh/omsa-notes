@@ -1377,3 +1377,94 @@ As noise increases, $R^2$ decreases.
 - Tensor factorization = unsupervised, interpretable phenotyping.
 - Phenotypes help in prediction (e.g., heart failure).
 - Benefits: no expert supervision needed, compact representations.
+
+
+* Patient Similarity
+* ch13.md
+
+** Introduction to Patient Similarity
+- Patient similarity introduces a new paradigm in medical practice.
+- Enables identifying similar patients for specific clinical contexts.
+- Supports pragmatic trials and practice-based medicine.
+- A supervised distance metric learning algorithm is introduced.
+
+** Motivation
+- Traditional medicine relies on randomized clinical trials (RCT) for evidence (evidence-based medicine).
+- Limitations: patient heterogeneity, outdated/inapplicable guidelines.
+- EHR data enables a new paradigm: precision medicine.
+- Personalized care requires ability to measure patient similarity.
+
+** Traditional Paradigm
+- Evidence-based medicine uses:
+  - RCTs to test hypotheses.
+  - Publications and drug approvals.
+  - Expert-created clinical guidelines.
+  - Guideline application in clinical practice.
+
+** New Paradigm
+- Precision medicine promotes personalized care through:
+  - Pragmatic trials using EHR data.
+  - Patient similarity searches to inform treatment.
+  - Practice-based evidence derived from real-world data.
+
+** Randomized Clinical Trials
+- Involves randomly assigning patients to control or treatment groups.
+- Compares average outcomes to assess treatment effectiveness.
+- Considered successful if treatment group shows better outcomes.
+
+** RCT Quiz Question
+- Asks about drawbacks of RCTs.
+- Lists controlled environment, testing one thing at a time, costs, etc.
+
+** RCT Quiz Solution
+- RCTs:
+  - Require controlled environments with selective populations.
+  - Test only one intervention at a time.
+  - Are expensive and time-consuming.
+  - Discover causal relationships (not a drawback).
+  - Do not typically deal with noisy data.
+
+** Pragmatic Trials
+- Measure real-world treatment effectiveness using EHR data.
+- Use similarity searches to group patients by treatment and outcomes.
+- Aim to recommend best-performing treatments to current patients.
+- Reflect real-world patient variations and support individual care choices.
+
+** Pragmatic Trial Quiz Question
+- Questions benefits and limitations of pragmatic trials.
+
+** Pragmatic Trial Quiz Solution
+- Pragmatic trials:
+  - Can't test new drugs.
+  - Operate in real-world settings.
+  - Can gather data continuously.
+  - Are less costly and faster than RCTs.
+  - Don't establish causality (no randomization).
+  - Deal with noisy data.
+
+** Utilize Patient Similarity
+- Practice-based medicine uses patient similarity to:
+  - Generate hypotheses from retrospective evidence.
+  - Confirm them through RCTs.
+  - Update clinical guidelines.
+- Decision process:
+  - Apply guidelines if available.
+  - Use similar patient data if guidelines aren't applicable.
+  - Use professional judgment if similar data is lacking.
+- Paradigms are complementary (evidence-based + practice-based).
+
+** Patient Similarity Approaches
+- Distance metric learning: supervised approach using feature vectors and labels.
+- Learn distance function to reflect similarity.
+- Graph-based methods use medical ontologies/disease networks to relate patients.
+
+** Patient Similarity Through LSML
+- LSML (Locally Supervised Metric Learning):
+  - Learns a distance metric tailored to clinical context.
+  - Uses baseline similarity to retrieve potential matches.
+  - Refines metric to bring similar patients closer and dissimilar ones further.
+- Objective: maximize margin between homogeneous and heterogeneous neighbors.
+- Mathematical formulation:
+  - Learn a low-rank symmetric matrix W (via Mahalanobis distance).
+  - Maximize trace(WᵀHW) where H captures margin information.
+  - Solved via eigenvalue decomposition.
