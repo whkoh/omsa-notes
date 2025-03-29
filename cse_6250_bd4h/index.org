@@ -704,3 +704,169 @@ As noise increases, $R^2$ decreases.
 - Answer:
   - Classification models require more evaluation effort (need more labeled data).
   - Expert-defined rules are easier to interpret (clinician-derived, intuitive).
+
+
+* Clustering
+
+** Introduction to Clustering
+- Introduction of clustering as a method distinct from classification.
+- Classification: Grouping by known labels.
+- Clustering: Discovering groups from raw data.
+- Topics covered:
+  - Definition of clustering.
+  - Algorithms: K-means, Gaussian Mixture Models (GMM).
+  - Scalable algorithms for large datasets.
+  - Applications in healthcare.
+
+** Healthcare Applications
+- Clustering in healthcare:
+  - Patient stratification: group patients with similar characteristics.
+  - Disease hierarchy discovery: learn structure/relationships among diseases.
+  - Phenotyping: convert raw data into meaningful phenotypes (clinical concepts).
+  - Phenotypes = clusters of similar patients.
+
+** What is Clustering
+- Clustering explained via patient-disease matrix:
+  - Rows = patients, Columns = diseases.
+  - Apply clustering to rows → patient clusters (e.g., P1, P2, P3).
+  - Apply clustering to columns → disease clusters (e.g., D1, D2, D3).
+  - Supports applications like phenotyping and disease discovery.
+
+** Algorithm Overview
+- Two categories of clustering algorithms:
+  - Classical: K-means, Hierarchical, Gaussian Mixture Model.
+  - Scalable: Mini-batch K-means, DBSCAN.
+
+** K Means
+- Inputs: data points X₁ to Xₙ, number of clusters K.
+- Outputs: K clusters S₁ to Sₖ.
+- Objective: Minimize distance of data points to cluster centers (µᵢ).
+- Algorithm steps:
+  1. Initialize K centers.
+  2. Assign points to nearest center.
+  3. Update centers based on mean of assigned points.
+  4. Repeat until convergence.
+- Example illustrated using K=2.
+
+** K Means Quiz Question
+- Quiz: Given n, k, d (dimensions), i (iterations), what's the complexity?
+
+** K Means Quiz Solution
+- Complexity: O(n × k × d × i)
+  - Cost driven by assignment and update operations.
+
+** Hierarchical Clustering
+- Builds a hierarchy of data points.
+- Two approaches:
+  - Agglomerative (bottom-up): Merge smallest clusters until one remains.
+  - Divisive (top-down): Split one big cluster into smaller ones.
+- Agglomerative more commonly used.
+
+** Agglomerative Clustering
+- Steps:
+  1. Compute n×n distance matrix.
+  2. Initialize each point as its own cluster.
+  3. Iteratively merge closest clusters and update distance matrix.
+  4. Stop when one cluster remains (produces a hierarchy).
+
+** Gaussian Mixture Model
+- Soft clustering: points belong to multiple clusters with probabilities.
+- Each cluster is a Gaussian (normal distribution).
+- Parameters: mean (µₖ), variance (σₖ), mixing coefficient (πₖ).
+- Goal: Estimate GMM parameters from data.
+
+** GMM Expectation Maximization
+- Uses Expectation-Maximization (EM) algorithm:
+  - Initialize parameters.
+  - E-step: Compute assignment scores (γₙₖ).
+  - M-step: Update parameters using γₙₖ.
+  - Iterate until convergence.
+
+** GMM Steps
+- Details of EM:
+  - Initialization: K-means can be used for better results.
+  - E-step: Compute γₙₖ using cluster probabilities.
+  - M-step:
+    - Compute cluster size (Nₖ), mean (µₖ), covariance (σₖ), mixing coefficient (πₖ).
+
+** GMM Visual Illustration
+- Visual demo of GMM clustering.
+- Iteratively updates Gaussians until convergence.
+- Final model reflects soft cluster assignments.
+
+** K Means Vs GMM
+- Comparison:
+  - K-means: hard assignment, single center (µₖ).
+  - GMM: soft assignment, parameters include µₖ, σₖ, πₖ.
+  - Both use iterative updates.
+
+** Mini Batch K Means
+- Scalable version of K-means.
+- Works with small batches (M) instead of full dataset.
+- Updates centers incrementally.
+- Reduces computational cost for large data.
+
+** Mini Batch K Means Quiz Question
+- Quiz: Given k, t (iterations), b (batch size), d (dimensionality), compute complexity.
+
+** Mini Batch K Means Quiz Solution
+- Complexity: O(t × b × k × d)
+
+** DBScan
+- Density-Based Spatial Clustering.
+- Clusters = dense areas, separated by sparse regions.
+- Can identify clusters of arbitrary shape.
+- Effective for noisy data.
+
+** DBScan Key Concepts
+- Density = number of points within ε-distance.
+- Key concepts:
+  - Core points: high-density.
+  - Border points: near core points.
+  - Noise: not in dense region.
+
+** DBScan Algorithm
+- Steps:
+  1. Build graph connecting core points to neighbors.
+  2. Identify connected components as clusters.
+  3. Remove clustered points and repeat.
+
+** DBScan Example
+- Visual example: finds 6 clusters, some noise points remain.
+
+** DBScan Quiz Question
+- Quiz: How many clusters can a point belong to in DBSCAN?
+
+** DBScan Quiz Solution
+- Answer: 0 or 1 (noise = 0, core/border = 1)
+
+** Clustering Evaluation Metrics
+- Metrics:
+  - Rand Index (RI)
+  - Mutual Information (MI)
+  - Silhouette Coefficient
+
+** Rand Index
+- Measures agreement between predicted and true clusters.
+- RI = (number of correct pairs) / (total pairs)
+- Value between 0 (bad) and 1 (perfect).
+
+** Mutual Information
+- From information theory: measures shared info between predicted and true clusters.
+- Normalized Mutual Information (NMI) between 0 and 1.
+
+** Summary of RI and MI
+- Pros:
+  - Bounded values, interpretable.
+  - No assumptions about cluster shapes.
+- Cons:
+  - Require ground truth, which may be unavailable.
+
+** Silhouette Coefficient
+- Measures how similar a point is to its own cluster vs. others.
+- Formula: (b - a) / max(a, b)
+- Does not require ground truth.
+
+** Silhouette Coefficient Pros and Cons
+- Range: -1 (bad) to 1 (good), 0 = overlapping clusters.
+- Assumes spherical clusters → less effective for complex shapes (e.g. DBSCAN).
