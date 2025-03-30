@@ -1,4 +1,5 @@
 .PHONY: index
+.DEFAULT_GOAL := index
 
 index: index.html
 
