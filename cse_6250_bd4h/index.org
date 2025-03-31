@@ -296,7 +296,7 @@
     - Evaluate model performance.
   - Goal: Design high-level predictive modeling studies using EHR data.
 
-* MapReduce
+* MapReduce                                                            :exam:
 ** Introduction to MapReduce
 - Overview of MapReduce as a big data processing tool.
 - Utilizes distributed computation and storage.
@@ -376,7 +376,7 @@
   - K-Nearest Neighbors (KNN)
   - Linear Regression
 
-** MapReduce KNN
+** MapReduce KNN                                                      :exam:
 - KNN implementation:
   - Map:
     - Find K nearest neighbors per partition
@@ -385,6 +385,7 @@
 - Patient data partitioned, processed in parallel
 
 ** Linear Regression
+# TODO: mark more
 - Goal: map patient features to heart disease risk
 - Normal equation:
   - β = (XᵗX)⁻¹Xᵗy
@@ -401,7 +402,7 @@
   - Map: compute xi * yi
   - Reduce: aggregate results
 
-** Limitations of MapReduce
+** Limitations of MapReduce                                           :exam:
 - Example: Logistic Regression via Gradient Descent
 - Challenge: Requires iterative computation
   - Each iteration loads data twice
@@ -522,14 +523,14 @@ As noise increases, $R^2$ decreases.
 - Variance: error from sensitivity to training data.
 - Ideal model: low bias and low variance.
 - Graphical example: dartboard showing different combinations.
-  [[./bias-variance-tradeoff.png]]
+  [[./img/bias-variance-tradeoff.png]]
 - As model complexity increases:
   - Bias ↓
   - Variance ↑
   - Total error = minimum at an optimal complexity.
 
 ** Bias Variance Tradeoff Quiz Question
-[[./bias-var-quiz.png]]
+[[./img/bias-var-quiz.png]]
 - Task: rank four models (flat, linear, smooth curve, wiggly) by complexity.
 - A → D: D (flat) < A (linear) < B (curve) < C (wiggly)
 
@@ -555,10 +556,10 @@ As noise increases, $R^2$ decreases.
   - Combine predictions via majority vote or averaging.
 - Reduces variance of the final model.
 
-** Random Forest
+** Random Forest                                                      :exam:
 - {{{hl(Special case of bagging)}}} with decision trees.
-  [[./rf1.png]]
-  [[./rf2.png]]
+  [[./img/rf1.png]]
+  [[./img/rf2.png]]
 - Steps:
   - Randomly sample both rows (patients) and columns (features).
   - Train simple decision trees on these subsets.
@@ -741,7 +742,7 @@ As noise increases, $R^2$ decreases.
 
 ** K Means Quiz Question
 - Quiz: Given n, k, d (dimensions), i (iterations), what's the complexity?
-[[./kmeans-o.png
+[[./img/kmeans-o.png
 ]]
 ** K Means Quiz Solution
 - Complexity: O(n × k × d × i)
@@ -761,7 +762,7 @@ As noise increases, $R^2$ decreases.
   2. Initialize each point as its own cluster.
   3. Iteratively merge 2  closest clusters and update distance matrix.
   4. Stop when one cluster remains (produces a hierarchy).
-[[./agg-cluster.png
+[[./img//agg-cluster.png
 ]]
 ** Gaussian Mixture Model
 - {{{hl(Soft)}}} clustering: points belong to multiple clusters with probabilities.
@@ -776,7 +777,7 @@ p(X) = \sum_{k=1}^{K} \pi_k \, N(X | \mu_k, \Sigma_k)
 $$
 
 
-** GMM Expectation Maximization
+** GMM Expectation Maximization                                       :exam:
 - Uses Expectation-Maximization (EM) algorithm:
   - Initialize parameters.
   - E-step: Compute assignment scores (γₙₖ).
@@ -796,7 +797,7 @@ $$
 - Iteratively updates Gaussians until convergence.
 - Final model reflects soft cluster assignments.
 
-** K Means Vs GMM
+** K Means Vs GMM                                                     :exam:
 - Comparison:
   - K-means: hard assignment, single center (µₖ).
   - GMM: soft assignment, parameters include µₖ, σₖ, πₖ.
@@ -889,7 +890,7 @@ $$
 - Assumes {{{hl(spherical clusters)}}} → less effective for complex shapes (e.g. DBSCAN).
 
 
-* Spark
+* Spark                                                                :exam:
 
 ** Introduction to Spark
 - Spark is introduced as an alternative to MapReduce, better suited for iterative workloads.
@@ -904,36 +905,47 @@ $$
 
 ** Motivation
 - Hadoop & MapReduce explained with acyclic data flow using stable storage.
+  [[./img/acyclic-hadoop.png]]
 - Strength: fault-tolerance via disk storage.
-- Weakness: inefficiency with iterative or interactive workloads (e.g. ML, graph analysis).
+- Weakness: inefficiency with {{{hl(iterative)}}} or {{{hl(interactive)}}} workloads (e.g. ML, graph analysis).
 - Need for in-memory computation system like Spark.
 
 ** Iteration in Map Reduce
-- Machine learning models need repeated computation.
+- Machine learning models need {{{hl(repeated computation)}}}.
 - Hadoop repeatedly reads/writes from disk, causing inefficiency.
-- Highlights the need for in-memory operations.
+- Highlights the need for {{{hl(in-memory)}}} operations.
 
 ** Workload Illustration
 - Iterative workloads: same computation on same data (e.g., model training).
 - Interactive workloads: varying computations on evolving data (e.g., data exploration).
-- Key: keep working sets in memory for speed.
+- Key: keep working sets {{{hl(in memory)}}} for speed.
 
 ** Challenge
-- Challenge: memory is not fault-tolerant.
-- Existing storage abstractions rely on fine-grained updates, which are expensive to track.
+- Challenge: {{{hl(memory is not fault-tolerant)}}}.
+- Existing storage abstractions rely on {{{hl(fine-grained)}}} updates, which are expensive to track.
+  - Examples: databases, key-value stores, distributed memory.
+  - These require replicating data or logs across nods for fault tolerance.
 - Need for a better balance between efficiency and fault tolerance.
 
-** Solution  RDDs
-- Spark uses RDDs to balance fault-tolerance and efficiency.
-- RDDs support coarse-grained transformations (e.g., map, group-by, join).
-- Lineage tracking enables fault recovery without excessive replication.
+** Solution: RDDs
+- Spark uses RDDs to balance {{{hl(fault-tolerance)}}} and efficiency.
+- RDDs support {{{hl(coarse-grained)}}} transformations (e.g., map, group-by, join).
+  - Coarse-grained = performed on {{{hl(entire dataset)}}} instead of specific parts of the dataset.
+- {{{hl(Lineage)}}} tracking enables fault recovery without excessive replication.
+  - If failure happens, Spark recomputes the coarse-grained operations.
+  - {{{hl(No cost if nothing fails)}}}.
+- Definition
+  - RDD :: Resilient Distributed Dataset
 
 ** RDD Recovery
+[[./img/rdd-recovery.png]]
 - Recovery through recomputation based on lineage.
-- Interactive: rerun only failed iterations.
-- Iterative: reload or recompute chunks from previous iterations.
+- Interactive: rerun only failed {{{hl(iterations)}}}.
+- Iterative: reload or recompute {{{hl(chunks)}}} from previous iterations.
+- Spark is a big-data system built on top of RDDs.
 
 ** Spark Stack
+[[./img/spark-stack.png]]
 - Core: scheduling, memory management, fault recovery.
 - APIs: Spark SQL, Streaming, MLib (ML), GraphX.
 - Compatible with YARN, Mesos, or standalone.
@@ -946,8 +958,9 @@ $$
 ** RDD Transformations
 - Examples: map vs flatMap, distinct, union, intersection, subtract.
 - flatMap flattens nested lists from map.
-- Intersection and subtract are more costly due to set operations.
-
+  - Often want `flatMap` instead to get everything in 1 single flat list, instead of lists of lists.
+- Distinct, union are relatively cheap.
+- Intersection and subtract are more costly due to set operations (distinct, combining, sorting, etc).
 ** RDD Transformations Quiz Question
 - Quiz: Apply map and filter on input RDD to understand transformation output.
 
@@ -956,32 +969,35 @@ $$
 - Filter excludes ‘1’: resulting in [2, 3, 4].
 
 ** Spark Operations
+[[./img/spark-ops.png]]
 - Transformations: map, filter, groupByKey, etc.
 - Actions: reduce, collect, count, etc.
 - Broader set than Hadoop MapReduce.
 
 ** Shared Variable
-- Broadcast variables: efficient read-only shared data.
+- Broadcast variables: {{{hl(efficient read-only)}}} shared data.
 - Example Spark job with clinical notes:
   - Load data → filter → split → cache.
   - Perform actions like counting specific symptoms (e.g., fever, cough).
-  - Benefits from caching and distributed execution.
+  - Benefits from {{{hl(caching)}}} and {{{hl(distributed execution)}}}.
 
 ** Fault Tolerance
-- RDD tracks transformations (lineage).
+- RDD tracks transformations ({{{hl(lineage)}}}).
 - Lost partitions can be recomputed using lineage.
 - Visuals: sequence of filters and maps reconstruct lost data.
 
-** Example  Logistic Regression
+** Example: {{{hl(Logistic Regression)}}}                             :exam:
 - Spark efficiently supports logistic regression via iteration.
 - Data cached in memory → quick updates.
-- Uses map + reduce to compute gradient.
-- Comparison: Spark (6s/iter) vs Hadoop (127s/iter).
+- Uses map + reduce to {{{hl(compute gradient)}}}.
+- Spark (6s/iter) is {{{hl(much faster)}}} than Hadoop (127s/iter) for this use case.
 
-** Example  Disease Risk Prediction
+** Example: Disease Risk Prediction
 - Predict patient disease risks using collaborative filtering.
 - Matrix R = patient × disease.
 - ALS algorithm: alternates updating patient and disease features.
+- Definition:
+  - ALS :: Alternating least squares
 
 ** Serial ALS
 - Serial implementation of ALS.
@@ -989,7 +1005,7 @@ $$
 - Uses map functions over patient/disease ranges.
 
 ** Naive Spark ALS
-- Parallel ALS using `spark.parallelize`.
+- Parallel ALS using ~spark.parallelize~.
 - Broadcast used for efficient data sharing.
 - Broadcast improves performance 3× over naive version.
 
@@ -1624,7 +1640,7 @@ $$
 - Backpropagation allows computing all gradients in one pass
 
 
-* Convolutional Neural Network
+* Convolutional Neural Network                                         :exam:
 ** Convolution Local Networks
   - Feedforward networks connect all units between layers, causing high parameter counts for high-dimensional data.
   - Local connectivity can reduce parameters by limiting neuron connections to adjacent units.
