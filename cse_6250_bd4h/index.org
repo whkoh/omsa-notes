@@ -1023,12 +1023,12 @@ $$
 
 ** Health Data Standards
 - Overview of major health data standards:
-  - LOINC: Lab test codes
-  - ICD: Diagnostic codes
-  - CPT: Procedure codes
-  - NDC: Medication codes
-- SNOMED: A comprehensive ontology integrating all the above.
-- UMLS: Software system that accesses integrated medical knowledge.
+  - LOINC :: Lab test codes (Logical Observation Identifiers Names and Codes)
+  - ICD :: Diagnostic codes (International Classification of Disease)
+  - CPT :: Procedure codes (Current Procedural Terminology)
+  - NDC :: Medication codes (National Drug Code)
+  - SNOMED :: A comprehensive ontology integrating all the above (Systemized Nomenclature of Medicine)
+  - UMLS :: Software system that accesses integrated medical knowledge (Unified Medical Language System)
 - Use case: Patient encounter example illustrating all standard usages.
 - Importance:
   - Insurance claim processing
@@ -1037,17 +1037,20 @@ $$
 
 ** ICD
 - ICD = International Classification of Diseases.
-- Developed by WHO, categorizes diseases.
-- ICD-9: 17,000+ codes; 3-5 digits; includes main and supplementary categories (e.g., E, V codes).
+- Developed by WHO and categorizes diseases.
+- ICD-9: 17,000+ codes; {{{hl(3-5)}}} digits
+  [[./img/icd9.png]]
+  - Includes main and supplementary categories (e.g., {{{hl(E, V)}}} codes).
 - ICD-10: 141,000+ codes; 7-character alphanumeric structure.
+  [[./img/icd10.png]]
 - Detailed coding for category, etiology, body part, severity, and extension.
 - Examples:
   - ICD-9: 250.01 = Type 1 diabetes, no complications
   - ICD-10: M1A.31X2 = Chronic gout with renal impairment in left shoulder, no tophus
 
 ** ICD 9 to ICD 10 Mapping
-- Mapping is mostly one-to-many due to ICD-10's higher specificity.
-- Some mappings are one-to-one (e.g., Tietze's Syndrome).
+- Mapping is mostly {{{hl(one-to-many)}}} due to ICD-10's higher specificity.
+- Some mappings are one-to-one (e.g., Tietze's Syndrome) if ICD-9 is already specific.
 - Complicated mappings: e.g., ICD-9 code maps to 2,530 ICD-10 codes.
 - Complexity highlights the increased detail of ICD-10.
 
@@ -1066,10 +1069,10 @@ $$
 - ICD-10: J11.1
 
 ** CPT
-- CPT = Current Procedural Terminology (US standard).
+- CPT = Current Procedural Terminology. US standard.
 - Used for medical, surgical, diagnostic procedures.
-- Maintained by the AMA.
-- Key in insurance reimbursement.
+- Maintained by the American Medical Association.
+- Key for insurance reimbursement.
 - Categories:
   - Category 1: Common procedures (e.g., surgery, radiology)
   - Category 2: Quality metrics
@@ -1085,15 +1088,15 @@ $$
 ** LOINC
 - LOINC = Logical Observation Identifiers Names and Codes.
 - Created by Regenstrief Institute.
-- Standard for lab tests and clinical observations.
+- Standard for {{{hl(lab tests and clinical observations)}}}.
 - Example: 2865-4 = a specific lab test
 - Attributes:
   - Component
   - Property
   - Time aspect (e.g., Pt = point in time)
   - Sample type
-  - Scale (quantitative, ordinal, etc.)
-  - Method
+  - Scale (quantitative, ordinal, narrative, etc.)
+  - Method (e.g. electrophoresis)
 
 ** LOINC Code Quiz Question
 - Task: Find LOINC code for Creatinine lab test.
@@ -1103,7 +1106,7 @@ $$
 
 ** NDC
 - NDC = National Drug Code (for medications).
-- Maintained by the FDA.
+- Maintained by the FDA, US standard.
 - Structure: 3 segments
   - Labeler code (company)
   - Product code (drug type)
@@ -1126,13 +1129,13 @@ $$
 ** Logical Model of SNOMED CT
 - Core components:
   - Concepts (with unique ID)
-  - Descriptions (FSN and synonyms)
+  - Descriptions (Fully specified name, FSN, and synonyms)
   - Relationships (e.g., “is a”, attributes)
 
 ** SNOMED Example
 - Example concept: 22298006 = Myocardial infarction disorder
 - Multiple descriptions including synonyms
-- Preferred vs. acceptable terms are defined by reference sets.
+- Preferred vs. acceptable terms are defined by reference sets by country.
 
 ** SNOMED Relationships
 - “Is a” relationship creates concept hierarchies.
@@ -1155,7 +1158,7 @@ $$
 - Question: What is the structure of "is a" relationships in SNOMED?
 
 ** SNOMED Quiz Solution
-- Answer: Directed acyclic graph (not a tree).
+- Answer: Directed acyclic graph (not a tree), without cycles. Every relationship has directions (start from specific to general & will not come back).
 
 ** UMLS
 - UMLS = Unified Medical Language System.
@@ -1170,6 +1173,8 @@ $$
 - Concept hierarchy:
   - Atom (AUI) → String (SUI) → Term (LUI) → Concept (CUI)
 - Multiple ontologies/sources integrated.
+- Term: normalized name
+- Concept: synonym
 
 ** Semantic Network
 - 135+ semantic types (e.g., diseases, drugs)
@@ -1179,7 +1184,7 @@ $$
 ** Specialist Lexicon
 - Lexicon of 300,000+ biomedical terms.
 - Includes syntax, morphology, orthography.
-- Used in NLP tools like MetaMap and MMTx.
+- Used in NLP tools like MetaMap and MMTX.
 
 
 * Graph Analysis
