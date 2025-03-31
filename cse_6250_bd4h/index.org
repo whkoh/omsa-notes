@@ -728,6 +728,7 @@ As noise increases, $R^2$ decreases.
   - Scalable: Mini-batch K-means, DBSCAN.
 
 ** K Means
+- Hard cluster (every data point belongs to one cluster)
 - Inputs: data points X₁ to Xₙ, number of clusters K.
 - Outputs: K clusters S₁ to Sₖ.
 - Objective: Minimize distance of data points to cluster centers (µᵢ).
@@ -736,34 +737,44 @@ As noise increases, $R^2$ decreases.
   2. Assign points to nearest center.
   3. Update centers based on mean of assigned points.
   4. Repeat until convergence.
-- Example illustrated using K=2.
+- Example illustrated using $K=2$.
 
 ** K Means Quiz Question
 - Quiz: Given n, k, d (dimensions), i (iterations), what's the complexity?
-
+[[./kmeans-o.png
+]]
 ** K Means Quiz Solution
 - Complexity: O(n × k × d × i)
   - Cost driven by assignment and update operations.
 
 ** Hierarchical Clustering
-- Builds a hierarchy of data points.
+- Hard cluster (every data point belongs to one cluster)
+- Builds a {{{hl(hierarchy)}}} of data points.
 - Two approaches:
   - Agglomerative (bottom-up): Merge smallest clusters until one remains.
   - Divisive (top-down): Split one big cluster into smaller ones.
-- Agglomerative more commonly used.
+- {{{hl(Agglomerative (bottom up) is more efficient and more commonly)}}} used.
 
 ** Agglomerative Clustering
 - Steps:
   1. Compute n×n distance matrix.
   2. Initialize each point as its own cluster.
-  3. Iteratively merge closest clusters and update distance matrix.
+  3. Iteratively merge 2  closest clusters and update distance matrix.
   4. Stop when one cluster remains (produces a hierarchy).
-
+[[./agg-cluster.png
+]]
 ** Gaussian Mixture Model
-- Soft clustering: points belong to multiple clusters with probabilities.
-- Each cluster is a Gaussian (normal distribution).
-- Parameters: mean (µₖ), variance (σₖ), mixing coefficient (πₖ).
+- {{{hl(Soft)}}} clustering: points belong to multiple clusters with probabilities.
+- Each cluster is a Gaussian ({{{hl(normal)}}} distribution).
+- Parameters:
+  - mean :: µₖ
+  - variance :: σₖ
+  - mixing coefficient :: πₖ
 - Goal: Estimate GMM parameters from data.
+$$
+p(X) = \sum_{k=1}^{K} \pi_k \, N(X | \mu_k, \Sigma_k)
+$$
+
 
 ** GMM Expectation Maximization
 - Uses Expectation-Maximization (EM) algorithm:
@@ -778,6 +789,7 @@ As noise increases, $R^2$ decreases.
   - E-step: Compute γₙₖ using cluster probabilities.
   - M-step:
     - Compute cluster size (Nₖ), mean (µₖ), covariance (σₖ), mixing coefficient (πₖ).
+- Inefficient choice of start points will result in more iterations before convergence.
 
 ** GMM Visual Illustration
 - Visual demo of GMM clustering.
@@ -794,26 +806,37 @@ As noise increases, $R^2$ decreases.
 - Scalable version of K-means.
 - Works with small batches (M) instead of full dataset.
 - Updates centers incrementally.
+  1. Cache the center
+  2. Increment center count
+  3. Set step size
+  4. Update c. Center is eventually stabilized.
 - Reduces computational cost for large data.
 
 ** Mini Batch K Means Quiz Question
-- Quiz: Given k, t (iterations), b (batch size), d (dimensionality), compute complexity.
+- Quiz: Given the following, compute complexity.
+
+  - k :: number of clusters
+  - t :: iterations
+  - b :: batch size
+  - d :: number of dimensions
+
 
 ** Mini Batch K Means Quiz Solution
 - Complexity: O(t × b × k × d)
 
 ** DBScan
-- Density-Based Spatial Clustering.
+- Density-Based Spatial Clustering of Applications with Noise.
 - Clusters = dense areas, separated by sparse regions.
-- Can identify clusters of arbitrary shape.
+- Can identify clusters of {{{hl(arbitrary shape)}}}.
 - Effective for noisy data.
 
 ** DBScan Key Concepts
-- Density = number of points within ε-distance.
+- Density = {{{hl(number of points)}}} within ε-distance.
+  - Dense region: point in area >= MinPoints.
 - Key concepts:
-  - Core points: high-density.
-  - Border points: near core points.
-  - Noise: not in dense region.
+  - Core points :: high-density.
+  - Border points :: near core points.
+  - Noise :: not in dense region.
 
 ** DBScan Algorithm
 - Steps:
@@ -837,29 +860,33 @@ As noise increases, $R^2$ decreases.
   - Silhouette Coefficient
 
 ** Rand Index
+- {{{hl(Requires ground truth)}}}.
 - Measures agreement between predicted and true clusters.
 - RI = (number of correct pairs) / (total pairs)
 - Value between 0 (bad) and 1 (perfect).
 
 ** Mutual Information
-- From information theory: measures shared info between predicted and true clusters.
-- Normalized Mutual Information (NMI) between 0 and 1.
+- {{{hl(Requires ground truth)}}}.
+- From information theory: measures {{{hl(shared info)}}} between predicted and true clusters, using joint probability of x and y.
+- Normalized Mutual Information (NMI) between 0 and 1 by dividing with sqrt of entropy of $x$ \times entropy of $y$.
 
 ** Summary of RI and MI
-- Pros:
+- Pros of both:
   - Bounded values, interpretable.
   - No assumptions about cluster shapes.
-- Cons:
-  - Require ground truth, which may be unavailable.
+- Cons of both:
+  - {{{hl(Require ground truth)}}}, which may be unavailable.
 
 ** Silhouette Coefficient
 - Measures how similar a point is to its own cluster vs. others.
-- Formula: (b - a) / max(a, b)
-- Does not require ground truth.
+- Formula: $(b - a) / max(a, b)$
+- a: Find the average distance of $x$ to all the points in its cluster.
+- b: Find the average distance of $x$ to all the points **not** in its cluster.
+- {{{hl(Does not require ground truth)}}}.
 
 ** Silhouette Coefficient Pros and Cons
 - Range: -1 (bad) to 1 (good), 0 = overlapping clusters.
-- Assumes spherical clusters → less effective for complex shapes (e.g. DBSCAN).
+- Assumes {{{hl(spherical clusters)}}} → less effective for complex shapes (e.g. DBSCAN).
 
 
 * Spark
