@@ -645,6 +645,7 @@ As noise increases, $R^2$ decreases.
 - High-quality phenotyping critical for accurate GWAS.
 
 ** Why Do We Care About Phenotyping
+{{{hl(We need rich and deep phentotyping to analyze genomic data.)}}}
 - Genomic data is rapidly becoming cheaper and more abundant.
 - Phenotypic data remains complex and costly to acquire.
 - Demand for better phenotyping algorithms to support scalable, high-quality genomic research.
@@ -655,33 +656,33 @@ As noise increases, $R^2$ decreases.
 - Benefits:
   - Better model accuracy.
   - Easier interpretation.
-  - Generalizability across hospitals.
+  - Generalizability across hospitals/settings (input data schemas may be different).
 
 ** Pragmatic Clinical Trials
 - Traditional vs. pragmatic trials:
   - Traditional: controlled, single condition/drug, strict selection, randomized.
-  - Pragmatic: real-world, multiple conditions/drugs, minimal selection, often not randomized.
+  - Pragmatic: {{{hl(real-world)}}}, {{{hl(multiple)}}} conditions/drugs, minimal selection, often {{{hl(not randomized)}}}.
 - High-quality phenotyping essential for identifying patient conditions and treatments in pragmatic settings.
 
 ** Healthcare Quality Measurement
-- Challenge: hospitals use diverse EHR formats.
+- Challenge: hospitals use {{{hl(diverse EHR formats)}}}.
 - Centralized processing of raw data is complex.
 - Solution: local phenotyping at hospitals → send standardized phenotype data to central site.
-- Enables scalable and fair quality comparison across institutions.
+- Enables {{{hl(scalable and fair)}}} quality comparison across institutions.
 
 ** Phenotyping Methods Part 1
 - Two main approaches:
-  - Supervised learning: uses labeled data (function approximation).
-  - Unsupervised learning: identifies patterns/structures without labels (description/summarization).
+  - Supervised learning: uses labeled data (function {{{hl(approximation)}}}).
+  - Unsupervised learning: identifies patterns/structures without labels ({{{hl(description)}}}/summarization).
 - Illustrative examples and playful dialogue explore these ideas in depth.
 
 ** Phenotyping Methods Part 2
 - Supervised: expert-defined rules (Boolean logic, decision trees), or machine learning classifiers.
   - Pros: interpretable, low validation effort.
-  - Cons: high development cost, not good for unknown phenotypes, potential poor transferability.
+  - Cons: high development {{{hl(cost)}}}, {{{hl(not good for unknown phenotypes)}}}, potential {{{hl(poor transferability)}}}.
 - Unsupervised: clustering, dimensionality reduction.
   - Pros: less manual effort, no need for labels.
-  - Cons: hard to validate, large data requirements.
+  - Cons: {{{hl(hard to validate)}}}, large data requirements.
 
 ** Phenotyping Quiz Question
 - Quiz:
