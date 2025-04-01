@@ -1205,29 +1205,39 @@ $$
 - PageRank relies on the graph structure (links between pages).
 - Intuition: More high-quality pages linking to a page → higher rank.
 - Represent graph using an adjacency matrix:
-  - Every row represents source and column destination.
+  - where: row represents **source** and column **destination**.
   - Normalize matrix rows to represent transition probabilities.
   - PageRank computed using recursion: browsing + teleporting.
   - Browsing redistributes rank via adjacency matrix; teleporting randomly jumps.
-  - Equation: `q = cAq + (1 - c)e/N`, where `c` is the % of activity that is "structured and not random", between 0-1 (e.g., 0.85).
+  - Equation:
+    $$
+    q = cAT^ q + \frac{1 - c}{N} e
+    $$
+    where:
+    - $c$ :: the % of activity that is "structured and not random", between 0-1 (e.g., 0.85)
+    - $e$ :: the ones vector.
+
 - Next steps: Implement PageRank using big data systems like Hadoop MapReduce.
 
 ** MapReduce  PageRank
 - Implementation of PageRank in MapReduce:
   - **Map Phase**:
+    [[./img/map-pagerank.png]]
     - Emit current page and its PageRank.
     - Distribute PageRank to each outgoing link equally.
   - **Reduce Phase**:
+    [[./img/preduce-pagerank.png]]
     - Aggregate partial PageRanks from map phase.
     - Add teleporting component.
     - Emit updated PageRank.
   - Hadoop shuffles partial sums to reducers.
-  - Iterative process: repeat map-reduce steps to converge.
+  - {{{hl(Iterative process)}}}: repeat map-reduce steps to converge.
 
 ** PageRank Quiz Question
 - Quiz: Rank webpages in a directed graph by PageRank (based on structure).
 
 ** PageRank Quiz Solution
+- {{{hl(More incoming links = better)}}}
 - Highest: YouTube (3 incoming links).
 - Lowest: Google (no incoming links).
 - Recursive PageRank shows differences despite similar local structures.
@@ -1237,8 +1247,10 @@ $$
 - Spectral Clustering vs Traditional Clustering:
   - Uses similarity graph of patients based on features.
   - Steps:
+    [[./img/spec-graph-matrix.png]]
     1. Construct similarity graph (nodes = patients, edges = similarity).
     2. Convert graph to adjacency matrix.
+       [[./img/spec-eigen.png]]
     3. Compute top-k eigenvectors of the matrix.
     4. Cluster eigenvectors into groups.
   - Effective for high-dimensional or noisy data.
@@ -1257,13 +1269,13 @@ $$
 
 ** K Nearest Neighbor Graph
 - Each node connects to its k-nearest neighbors (directed).
-- Results in sparse graphs for small k.
+- Results in {{{hl(sparse graphs for small k)}}}.
 - Variants: binary edges vs weighted edges based on distance.
 
 ** Fully Connected Graph
 - Every node connected to every other.
-- Edge weights determined by similarity (e.g., Gaussian kernel).
-- Most dense graph representation.
+- Edge weights determined by similarity (e.g., similarity function $w$ is the Gaussian kernel).
+- {{{hl(Most dense)}}} graph representation.
 
 ** E Neighborhood Graph Quiz Question
 - Quiz: Select best ε value to reflect clustering structure in 2D patient data.
@@ -1277,7 +1289,7 @@ $$
 - Variations exist:
   - Unnormalized vs Normalized Spectral Clustering.
 - Example: simplest uses eigenvectors + k-means.
-- Spectral clustering transforms data to eigenspace where clusters are clearer.
+- Spectral clustering {{{hl(transforms data to eigenspace)}}} where clusters are clearer.
 - Recommended reading for theoretical underpinnings.
 
 ** Big Data Conclusion
