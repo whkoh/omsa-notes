@@ -1205,10 +1205,11 @@ $$
 - PageRank relies on the graph structure (links between pages).
 - Intuition: More high-quality pages linking to a page → higher rank.
 - Represent graph using an adjacency matrix:
+  - Every row represents source and column destination.
   - Normalize matrix rows to represent transition probabilities.
   - PageRank computed using recursion: browsing + teleporting.
   - Browsing redistributes rank via adjacency matrix; teleporting randomly jumps.
-  - Equation: `q = cAq + (1 - c)e/N`, where `c` is damping factor (e.g., 0.85).
+  - Equation: `q = cAq + (1 - c)e/N`, where `c` is the % of activity that is "structured and not random", between 0-1 (e.g., 0.85).
 - Next steps: Implement PageRank using big data systems like Hadoop MapReduce.
 
 ** MapReduce  PageRank
