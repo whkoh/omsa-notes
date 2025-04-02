@@ -1308,72 +1308,89 @@ $$
 
 ** Dimensionality Reduction
 - Recap of clustering algorithms (hard, soft, and scalable).
-- Motivation for dimensionality reduction: efficiency and robustness.
+- Motivation for dimensionality reduction: {{{hl(efficiency and robustness)}}}.
 - Classical methods:
   - SVD and PCA: summarize features via linear combinations.
   - CUR: uses actual data rows/columns, preserves sparsity.
 - Introduction to Tensor Factorization for higher-order data.
 
 ** Singular Value Decomposition
-- Definition: SVD decomposes a matrix X into U, Σ, Vᵗ.
+[[./img/svd1.png]]
+- Definition: SVD decomposes a matrix $X$ into $U, \Sigma, V^T$.
 - U and V: orthogonal matrices (singular vectors).
 - Σ: diagonal matrix with singular values (in descending order).
 - Visual interpretation with patients (rows) and diseases (columns).
 
 ** SVD Example
-- Spectral view: rank-1 approximations via σᵢUᵢVᵢᵗ.
+- Spectral view: rank-1 approximations via $\sigma_i u_i v_i^T$.
 - Example with documents and terms:
-  - CS vs. Medical documents.
+  - Computer Science vs. Medical documents.
   - Each rank-1 component captures topic-specific vocabulary.
 
 ** SVD Properties
-- V: eigenvectors of XᵗX with eigenvalues Σ².
-- U: eigenvectors of XXᵗ.
-- Reinforces relationship between SVD and eigen-decomposition.
+- V :: eigenvectors of covariance matrix $X^T X$ with eigenvalues Σ².
+  $X^T X = (U \Sigma V^T)^T (U \Sigma V^T) = V \Sigma^2 V^T$
+- U :: eigenvectors of the Gram (inner-product) matrix $X X^T$.
+  $X X^T = (U \Sigma V^T)(U \Sigma V^T)^T = U \Sigma^2 U^T$
+
+Reinforces relationship between SVD and eigen-decomposition.
 
 ** Quiz  SVD Interpretation Question
-- Question about AᵗA matrix from a document-term matrix.
+- Question about $A^T A$ matrix from a document-term matrix.
 
 ** Quiz  SVD Interpretation Solution
-- Answer: AᵗA is a term-to-term similarity matrix.
+- Answer: $A^T A$ is a {{{hl(term-to-term)}}} similarity matrix.
+  Number of rows & columns = number of terms.
 
 ** Principal Component Analysis
-- PCA is derived from SVD: UΣ = principal components, Vᵗ = loadings.
+[[./img/pca1.png]]
+$X = (U \Sigma) V^T$
+- PCA is derived from SVD: $U \Sigma$ = principal components, $V^T$ = loadings.
 - Visualized with a patient-by-disease matrix.
 - Principal components capture the main variance direction.
 
 ** PCA Interpretation
+[[./img/pca-int.png]]
 - PCA reduces dimensions by projecting onto principal component directions.
 - Example with weight and height to one dimension.
 
 ** Sparsity Problem with SVD
-- SVD and PCA generate dense outputs, losing sparsity of original data.
-- CUR decomposition preserves sparsity and reduces storage/computation cost.
+- SVD and PCA generate dense outputs, losing sparsity of original data, especially the $U$ and $V$ matrices.
+- SVD destroys the sparsity of the original data and takes a lot {{{hl(more)}}} storage space and computation time for subsequent analysis.
+- CUR decomposition preserves sparsity and {{{hl(reduces storage/computation cost)}}} by using original rows and columns from the original matrix, where:
+  - C :: sample columns from the original matrix
+  - R :: sample rows from the original matrix
 
 ** CUR Decomposition
+#+BEGIN_BLOCKQUOTE
+CUR definition: Given input matrix $A$, find columns $C$, rows $R$ and matrix $U$ such that $\parallel A - C U R\parallel$ is small.
+#+END_BLOCKQUOTE
+- Norm term indicates the errors when approximating matrix $A$ using $C U R$.
 - CUR approximates A ≈ CUR using actual rows and columns.
 - Comparison with SVD: CUR retains interpretability and sparsity.
 
 ** CUR Algorithm
 - Algorithm steps:
-  1. Perform SVD.
-  2. Sample rows/columns based on vector norms.
-  3. Compute U as pseudo-inverse operations.
-- Sampling based on row norms of U and V.
+  1. Perform SVD. Find the top rank-k approximation after SVD.
+  2. Sample $R$ rows and $C$ columns based on vector norms.
+  3. Compute U as $U = C^+ A R^+$ where $+$ means pseudo-inverse operation, which can be computed using SVD, e.g. $X^+ = V \Sigma^{-1} U^T$
+- Probability of sampling is based on row length of the $U$ and $V$ matrices. Bigger row length = more likelihood of sampling.
 
 ** CUR Quiz Question
 - Question: what do C and R represent in CUR decomposition?
 
 ** CUR Quiz Solution
+[[./img/cur-quiz.png]]
 - Answer: C = actual diagnoses (columns), R = actual patients (rows).
 - Emphasizes CUR’s interpretability and sparsity preservation.
 
 ** Tensor for EHR
 - Tensor = generalized matrix (e.g., 3D tensor: patient × diagnosis × medication).
-- Captures multi-dimensional interactions in EHR data.
+- Matrix = 2nd order tensor.
+- Tensors better capture multi-dimensional interactions in EHR data.
 
 ** Tensor Slicing
-- Extract subtensors (matrices) by fixing all but two modes.
+- Extract subtensors (matrices) by fixing all but two dimensions.
 - Examples:
   - Diagnosis-medication matrix for a patient.
   - Patients and diseases by medication.
@@ -1382,32 +1399,46 @@ $$
 - Rank-1 tensor = outer product of vectors from each mode.
 - Element-wise: aᵢ * bⱼ * cₖ.
 
+$$
+x = a \circ b \circ c  \\
+x_{ijk} = a_i \cdot b_j \cdot c_k
+$$
+
 ** Example Phenotype
 - Phenotypes modeled as rank-1 tensors.
+- Phenotype: a group of patients that share common characteristics e.g. diagnosis, medication
 - Example: hypertension phenotype with specific meds and patients.
 
 ** Phenotyping Through Tensor Factorization
+- Extracting phenotypes through tensor factorization.
 - Tensor = sum of rank-1 tensors (each = phenotype).
 - Each component has patient, diagnosis, and medication factors.
-- λ = importance of each phenotype.
+- Outer product = rank-1 approximation of input tensor, and we have R of those.
+- $\lambda$ = importance of each phenotype.
 
 ** CP Decomposition
-- Canonical Polyadic (CP) Decomposition = sum of R rank-1 tensors.
+- CP: Canonical Decomposition and Parallel Factorization
+   = sum of R rank-1 tensors.
 - Each tensor has one λ and one vector per mode.
 - Output: three factor matrices and λ vector.
-- Often used with non-negativity constraints.
+- For phenotyping application, we use CP Decomposition with non-negativity constraints.
+- We can also treat CP Decomposition as black box, just like SVD and PCA.
 
 ** Phenotyping Process Using Tensor Factorization
 - Process:
-  1. Factorize training tensor to learn phenotype factors.
-  2. Project new patients onto phenotype space.
+  1. {{{hl(Factorize)}}} training tensor to learn phenotype definitions
+  2. {{{hl(Project)}}} new patients onto phenotype space
 - Result: low-dimensional patient representation.
 
 ** Phenotyping for Predictive Modeling
-- Build tensor from EHR events within an observation window.
-- Target = predict heart failure.
+- Build tensor from EHR events within an observation window ($t_0$ to $t_4$).
+- Target = {{{hl(predict heart failure)}}}.
 - Tensor = patient × diagnosis × medication.
-- Phenotypes used as features for prediction.
+- Process:
+  1. Find the index date and observation window
+  2. Aggregate diagnosis-medication pairs within observation window to populate tensor
+  3. Look back during observation window and count occurrences of the pairs
+  4. Go through all patients with these occurrences
 
 ** Predictive Performance
 - Compared PCA, NMF, and Tensor Factorization.
@@ -1421,13 +1452,13 @@ $$
 - Also identifies subtypes (e.g., mild/moderate/severe hypertension).
 
 ** Tensor vs NMF
-- Tensor factorization offers more concise, interpretable phenotypes.
-- NMF generates complex feature sets with many interactions.
+- Tensor factorization offers more {{{hl(concise, interpretable)}}} phenotypes.
+- NMF generates complex feature sets with many interactions (over 1000 combinations).
 
-** Summary  Phenotyping Via Tensor Factorization
-- Tensor factorization = unsupervised, interpretable phenotyping.
+** Summary: Phenotyping Via Tensor Factorization
+- Tensor factorization = {{{hl(unsupervised, interpretable)}}} phenotyping.
 - Phenotypes help in prediction (e.g., heart failure).
-- Benefits: no expert supervision needed, compact representations.
+- Benefits: {{{hl(no expert supervision)}}} needed, compact representations, more predictive power than just using raw data.
 
 
 * Patient Similarity
