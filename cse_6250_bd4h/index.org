@@ -1471,59 +1471,67 @@ $$
 
 ** Motivation
 - Traditional medicine relies on randomized clinical trials (RCT) for evidence (evidence-based medicine).
-- Limitations: patient heterogeneity, outdated/inapplicable guidelines.
-- EHR data enables a new paradigm: precision medicine.
-- Personalized care requires ability to measure patient similarity.
+  - Limitations: patient heterogeneity, outdated/inapplicable guidelines.
+- Electronic health records (EHR) data enables a new paradigm: {{{hl(precision medicine)}}}.
+  - Personalized care requires ability to measure patient similarity.
 
 ** Traditional Paradigm
 - Evidence-based medicine uses:
-  - RCTs to test hypotheses.
-  - Publications and drug approvals.
-  - Expert-created clinical guidelines.
-  - Guideline application in clinical practice.
+  1. RCTs to test hypotheses.
+  2. Publications and drug approvals.
+  3. Expert-created clinical guidelines.
+  4. Guideline application in clinical practice.
 
 ** New Paradigm
 - Precision medicine promotes personalized care through:
-  - Pragmatic trials using EHR data.
-  - Patient similarity searches to inform treatment.
-  - Practice-based evidence derived from real-world data.
+  1. **Pragmatic trials** using EHR data.
+  2. **Patient similarity** searches to inform treatment.
+  3. Practice-based evidence derived from real-world data, with **individualized recommendation**
+  4. **Precision medicine**
 
 ** Randomized Clinical Trials
-- Involves randomly assigning patients to control or treatment groups.
+- Involves {{{hl(randomly assigning)}}} patients to :
+  - control or
+  - treatment groups.
 - Compares average outcomes to assess treatment effectiveness.
-- Considered successful if treatment group shows better outcomes.
+- Considered successful if treatment group shows better outcomes, otherwise trial considered failure.
 
 ** RCT Quiz Question
 - Asks about drawbacks of RCTs.
-- Lists controlled environment, testing one thing at a time, costs, etc.
+
 
 ** RCT Quiz Solution
-- RCTs:
-  - Require controlled environments with selective populations.
-  - Test only one intervention at a time.
-  - Are expensive and time-consuming.
+- RCT drawbacks:
+  - Require **controlled environments** with selective populations.
+  - Test only **one intervention** at a time.
+  - Are **expensive** and time-consuming.
+
+- Not RCT drawbacks:
   - Discover causal relationships (not a drawback).
-  - Do not typically deal with noisy data.
+  - RCT data is clean/pristine since they're collected specifically
+    for the trial, hence data is not dirty.
 
 ** Pragmatic Trials
-- Measure real-world treatment effectiveness using EHR data.
-- Use similarity searches to group patients by treatment and outcomes.
-- Aim to recommend best-performing treatments to current patients.
-- Reflect real-world patient variations and support individual care choices.
+- Measure real-world **treatment effectiveness** using EHR data, from routine clinical practice.
+- Use similarity searches to group patients by **treatment** and **outcomes**.
+- Aim to recommend **best-performing treatments** to current patients.
+- Reflect real-world **patient variations** and support individual care choices.
 
 ** Pragmatic Trial Quiz Question
 - Questions benefits and limitations of pragmatic trials.
 
 ** Pragmatic Trial Quiz Solution
-- Pragmatic trials:
-  - Can't test new drugs.
+- Pragmatic trial benefits:
   - Operate in real-world settings.
-  - Can gather data continuously.
-  - Are less costly and faster than RCTs.
+  - Can automatically gather more data.
+  - Deal with noisy data. {{{hl(unsure why this is benefit)}}}
+- Pragmatic trial - not benefits:
+  - Can't test new drugs.
+  - Expensive and time-consuming (vs. RCT).
   - Don't establish causality (no randomization).
-  - Deal with noisy data.
 
 ** Utilize Patient Similarity
+How to utilize patient similarity today?
 - Practice-based medicine uses patient similarity to:
   - Generate hypotheses from retrospective evidence.
   - Confirm them through RCTs.
@@ -1534,21 +1542,35 @@ $$
   - Use professional judgment if similar data is lacking.
 - Paradigms are complementary (evidence-based + practice-based).
 
+[[./img/pt-sim-rct-prg.png]]
+
+Pragmatic trial (practice-based medicine) is green-dotted, everything else is evidence-based medicine/RCT reliant.
+
 ** Patient Similarity Approaches
-- Distance metric learning: supervised approach using feature vectors and labels.
-- Learn distance function to reflect similarity.
+- One way to solve patient similarity problem is to pose as  **distance metric learning** problem: supervised approach using feature vectors and labels.
+  - Ground truth vector $Y$
+  - Patient vector $X$
+- Learn distance function $d(x_1 x_2)$ to reflect distance between patients.
 - Graph-based methods use medical ontologies/disease networks to relate patients.
+  - Given set of patients, figure out who is similar to whom.
 
 ** Patient Similarity Through LSML
-- LSML (Locally Supervised Metric Learning):
-  - Learns a distance metric tailored to clinical context.
-  - Uses baseline similarity to retrieve potential matches.
+- LSML (Locally Supervised Metric Learning) intuition:
+  - Learns a distance metric tailored to clinical context, e.g. heart failure management.
+  - Given a new patient, use baseline similarity measure (e.g. euclidean distance or cosine similarity)to retrieve potential matches. This is supervised, with ground truth labels.
   - Refines metric to bring similar patients closer and dissimilar ones further.
-- Objective: maximize margin between homogeneous and heterogeneous neighbors.
+- Objective: {{{hl(maximize total margin)}}} between homogeneous and heterogeneous neighbors, i.e.
+  $$
+  max_(w: w\top w) = I^{\text{tr}(W^\top HW)} \\
+  \text{and } H = L^e - L^0
+  $$
+  where:
+  - $L^e$ :: heterogeneous neighbours (different)
+  - $L^0$ :: homogeneous neighbours
 - Mathematical formulation:
   - Learn a low-rank symmetric matrix W (via Mahalanobis distance).
   - Maximize trace(WᵀHW) where H captures margin information.
-  - Solved via eigenvalue decomposition.
+  - Solved via {{{hl(eigenvalue decomposition)}}}.
 
 
 * Deep Neural Network
