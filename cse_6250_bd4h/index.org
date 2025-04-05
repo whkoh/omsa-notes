@@ -1576,6 +1576,7 @@ Pragmatic trial (practice-based medicine) is green-dotted, everything else is ev
 * Deep Neural Network
 
 ** Backward Computation for a Neuron
+[[./img/backcomp.png]]
 - A neuron processes inputs \( x_1, x_2, \dots, x_n \) with corresponding weights and a bias term to output a value \( y \).
 - Computation involves:
   - Linear combination: \( z = \sum w_i x_i + b \)
@@ -1583,103 +1584,157 @@ Pragmatic trial (practice-based medicine) is green-dotted, everything else is ev
 - Output type:
   - Binary (for classification) or continuous (for regression)
 - Learning involves:
-  - Specifying the activation function \( g \)
-  - Learning weights and bias from data
+  1. Learning weights and bias from data
+
+after specifying the activation function \( g \)
 
 ** Sigmoid Function
-- Nonlinear transformation specified by the modeler (not learned from data).
+[[./img/sigmoid1.png]]
+- Nonlinear transformation specified by the modeler (**not learned** from data).
 - Popular activation functions: sigmoid, tanh, ReLU.
 - Sigmoid function: \( \sigma(x) = \frac{1}{1 + e^{-x}} \)
 - Output range: [0, 1]; interpretable as probability
-- Common for classification tasks
-- Problem: vanishing gradients when \( x \) is very small or very large
+- Common for {{{hl(classification)}}} tasks
+- Problem: **vanishing gradients** when \( x \) is very small or very large
 
 ** TANH Function
-- Defined as: \( \tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}} = 2\sigma(2x) - 1 \)
-- Output range: [–1, 1]; centered at 0
-- Larger gradients near zero than sigmoid
-- Still suffers from vanishing gradient when input is far from 0
+[[./img/tanh1.png]]
+- Defined as: \( \tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}} = \frac{2}{1+e^{-2x}} - 1 \)
+- Output range: (–1, 1); centered at 0
+- Scaled and shifted version of Sigmoid
+- stronger gradient but still has vanishing gradient problem (when input is far from 0)
 
 ** Rectified Linear Function
+[[./img/relu1.png]]
 - ReLU: \( \max(0, x) \)
 - Output: [0, ∞); linear for \( x > 0 \), 0 otherwise
-- Does not suffer from vanishing gradient (gradient = 1 for \( x > 0 \))
+  - Linearly increasing curve when $x > 0$
+- {{{hl(Does not suffer)}}} from vanishing gradient (gradient = 1 for \( x > 0 \))
+- Half rectified: activation threshold at $0$
+- Not bounded (for $x>0$)
 
-** Activation Functions_ Summary
-- Sigmoid and tanh are bounded; ReLU is unbounded above.
-- Choice of activation function is application dependent.
+** Activation Functions: Summary
+[[./img/comp-activation.png]]
+- Sigmoid and tanh are bounded; ReLU is unbounded above $x>0$.
+- Choice of activation function is {{{hl(application dependent)}}}.
 
 ** Train a Single Neuron
-- Goal: Learn weights and bias to minimize loss
-- Loss function measures difference between prediction \( y \) and target \( t \)
-- Example: squared Euclidean loss
-- Training = minimizing loss via optimization
+[[./img/train-single.png]]
+- Goal: Learn {{{hl(weights and bias)}}} to {{{hl(minimize loss)}}}
+  - Linear combination computes weighted $\sum^n_{i=1} x_i = Z$
+- {{{hl(Loss function)}}} measures difference between prediction \( y \) and target \( t \)
+  - Example: squared Euclidean loss
+- Training = minimizing loss via optimization.
+  - Adjust the weights of the network to move its output in the direction that minimizes the loss on training data.
 
-** Stochastic Gradient Descent
+** Stochastic Gradient Descent (SGD)
+- Inputs:
+  1. training data $(x, t)$
+  2. learning rate hyperparameter $\eta$
+
 - Efficient method to train neurons
 - Procedure:
-  1. Initialize weights and bias randomly
-  2. For each example:
+  1. Initialize each weight $w_i$ and bias $b$ {{{hl(randomly)}}}
+  2. For each example, until convergence:
      - Compute gradient of loss w.r.t. weights and bias
-     - Update parameters using gradient and learning rate \( \eta \)
+     - Update parameters weight vector and bias in the opposite direction of the gradient.
+     - $\eta$ can be set statically or updated dynamically.
 
 ** Forward Computation for a Neuron
-- Two-pass process: forward to compute \( y \), backward for gradients
+- Two-pass process:
+  1. forward to compute \( y \) and loss $L = \frac{1}{2} \parallel y-t \parallel^2$
+  2. backward for gradients
 - Derivatives:
   - \( \frac{\partial z}{\partial w_i} = x_i \)
   - \( \frac{\partial y}{\partial z} = y(1 - y) \) (for sigmoid)
 - Software often automates this process
 
 ** Backward Computation for a Neuron
-- Use chain rule to compute gradients:
+- Find the derivatives of $y$ and $L$
+- Use **chain rule** to compute gradients from output to input:
   - \( \frac{\partial L}{\partial w_i} = (y - t) \cdot y(1 - y) \cdot x_i \)
   - \( \frac{\partial L}{\partial b} = (y - t) \cdot y(1 - y) \)
+    - $\frac{\partial z}{\partial b}$ is constant and evaluates to 1 upon derivation.
 
+** Multilayer Neural Network
+[[./img/mlp.png]]
+- Terms and definitions
+  1. Layer 1 is input,
+  2. hidden are layer 2,
+  3. Output layer (after activation) is layer 3
+- $w_{12}^{(3)}$:
+  1. output
+  2. input
+  3. layer number (coming from)
+
+- Network Structure
+  - **Input Layer (Layer 1)**
+    - Three input units: X₁, X₂, X₃
+    - Includes a bias unit
+
+  - **Hidden Layer (Layer 2)**
+    - Three hidden units: H₁, H₂, H₃
+    - Includes a bias unit
+    - Called "hidden" because its {{{hl(values are not observed)}}} in the training data
+
+  - **Output Layer (Layer 3)**
+    - One output unit: $y$ or $a^{(3)}$
+
+- Notation Importance
+- Subscripts and superscripts may seem messy but are crucial for clarity
+- Especially important for deeper neural networks
 ** Train a Multilayer Neural Network
+
 - Similar process as single neuron
 - SGD updates weights and biases for each layer
-- Challenge: computing gradients for all layers
+- Challenge: {{{hl(computing gradients)}}} for all layers
 
 ** Forward Computation Part 1
 - Step-by-step example with 3 hidden units (h1, h2, h3) and 1 output
 - Each unit computes:
-  - Linear combination: \( z \)
-  - Activation: \( a = g(z) \)
+  - Linear combination: \( z \), e.g. $z_1^{(2)} = \sum w_{1i}^{(1)} + b_1^{(1)}$
+  - Activation: \( a = g(z) \), e.g. $a_1^{(2)} = g^{(2)} (z_i^{(2)})$
 - Final output is computed from hidden layer outputs
 
 ** Forward Computation Part 2
 - Summary of previous computation
-- Network is fully connected
+- Network is fully connected (all layers are connected thru the neural network)
 - Shows the symmetry and modularity of neural networks
 
-** Forward Computation_ Vector Form
+** Forward Computation: Vector Form
+[[./img/fc-vector-form.png]]
 - Computation represented in vector/matrix form:
   - \( z = Wx + b \)
   - \( a = g(z) \)
 - Activation applied element-wise to vectors
 
-** Forward Computation_ More General Form
-- General forward pass for layer \( L \rightarrow L+1 \):
-  - \( z^{(L+1)} = W^{(L)}a^{(L)} + b^{(L)} \)
-  - \( a^{(L+1)} = g(z^{(L+1)}) \)
+** Forward Computation: More General Form
+- General forward pass for layer \( l \rightarrow l+1 \):
+  - \( z^{(l+1)} = W^{(l)}a^{(l)} + b^{(l)} \)
+  - \( a^{(l+1)} = g(z^{(l+1)}) \)
 
-** Forward Computation_ Summary
+** Forward Computation: Summary
 - Computation can be expressed:
   - Unit-by-unit
   - Vectorized (preferred for efficiency)
-  - Generalized for arbitrary depth
 
 ** Gradient Descent for Neural Networks
 - Recap:
   - Initialize weights/biases
   - Compute gradients
+    - Efficiently computing the gradients is the {{{hl(key)}}}
   - Apply updates
 - Efficient gradient computation is critical → leads to backpropagation
 
 ** Backward Propagation Part 1
+$$
+\frac{\partial L(W,b)}{ \partial w_{jl}^{(l)}}
+$$
 - Gradient of loss w.r.t. \( w_{ji}^{(l)} \) is:
   - \( \delta_j^{(l)} \cdot a_i^{(l-1)} \)
-- \( \delta_j^{(l)} \): error signal for unit j at layer l
+- \( \delta_j^{(l)} \): error signal for unit j at layer $l$
+  - $=\frac{\partial L}{\partial z_j^{(l)}}$
+  - Measures how much of the node $h_j$ of $l$ -th layer was responsible for the final error
 - Chain rule used to derive this
 
 ** Backward Propagation Part 2
@@ -1689,13 +1744,16 @@ Pragmatic trial (practice-based medicine) is green-dotted, everything else is ev
 ** Backward Propagation Part 3
 - Need to compute all \( \delta_j^{(l)} \) efficiently
 - Done in backward pass from output to input layer
+- To compute the partial derivatives, we need all
+  $\partial j^{(l)}$ which can be
+  computed from OUTPUT to INPUT layer in a backward fashion
 
 ** Backward Propagation Part 4
 - Compute final layer delta:
   - \( \delta_k^{(L)} = \frac{\partial L}{\partial z_k^{(L)}} = y - t \)
 
 ** Backward Propagation Part 5
-- Compute delta for previous layer:
+- Compute delta for previous layer, 3:
   - Chain rule involving gradient of activation and next layer delta
 
 ** Backward Propagation Part 6
@@ -1705,10 +1763,12 @@ Pragmatic trial (practice-based medicine) is green-dotted, everything else is ev
     - Corresponding weights
     - Derivative of activation at current layer
 
-** Backward Propagation Summary
+** Backward Propagation Summary                                       :exam:
 - General form of delta:
-  - \( \delta_j^{(l)} = g'(z_j^{(l)}) \sum_k w_{kj}^{(l)} \delta_k^{(l+1)} \)
-- Backpropagation allows computing all gradients in one pass
+  $$
+  \delta_j^{(l)} = \left[ \sum_{k=1}^{n} w_{kj}^{(l)} \delta_k^{(l+1)} \right] \cdot \left(g^{(l)}\right)'\left(z_j^{(l)}\right)
+  $$
+- Backpropagation allows computing all gradients in {{{hl(one pass)}}}
 
 
 * Convolutional Neural Network                                         :exam:
