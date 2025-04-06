@@ -1773,41 +1773,53 @@ $$
 
 * Convolutional Neural Network                                         :exam:
 ** Convolution Local Networks
-  - Feedforward networks connect all units between layers, causing high parameter counts for high-dimensional data.
-  - Local connectivity can reduce parameters by limiting neuron connections to adjacent units.
-  - Convolutional Neural Networks (CNNs) utilize this local connectivity across layers.
+  - Feedforward networks in [[*Deep Neural Network][previous chapter]] connect **all** units between layers, causing high parameter counts for high-dimensional data.
+  - Local connectivity can reduce parameters by limiting neuron connections to {{{hl(adjacent units)}}}.
+  - {{{hl(Convolutional Neural Networks (CNNs))}}} utilize this local connectivity across layers.
   - **Weight sharing**:
-    - Reuses the same parameters across locations, further reducing total parameters.
+    - {{{hl(Reuses the same parameters)}}} across locations, further reducing total parameters.
     - Inspired by convolution in signal processing.
+    - Can be considered as applying a {{{hl(filter)}}} or {{{hl(kernel)}}} to the input data
     - Example: Sharing weights reduces 6 parameters to 3 for two hidden units.
+[[./img/local-wt-share.png]]
 
 ** Pooling Handling Distortion
-  - Pooling layers add **translational invariance**, crucial for images and time series.
-  - **Max pooling** extracts maximum values, aiding stability under input shifts.
+  - Pooling layers add {{{hl(translational invariance)}}}, crucial for images and time series.
+  - {{{hl(Max pooling)}}} extracts maximum values, aiding stability under input shifts.
   - Example: Two shifted inputs can yield the same output after convolution + pooling.
   - This robustness is desirable for real-world applications where input variance is common.
 
 ** Convolutional Neural Networks
-  - CNNs are effective for grid-like data (e.g., images).
+  - CNNs are effective for {{{hl(grid)}}}-like data (e.g., images and waveforms).
   - Advantages:
-    - Sparse interconnections.
-    - Parameter sharing.
+    - {{{hl(Sparse)}}} interconnections.
+    - {{{hl(Parameter sharing)}}}.
     - Supports translational invariance.
 
 ** Key Stages of CNN
   - A typical CNN architecture consists of:
     - Convolution layers
     - Pooling layers
-    - Fully connected layers
+    - Fully connected layers to generate final output
   - Example architecture:
     - Conv → Max Pool → Conv → Max Pool → 3×Conv → Pool → 3×Fully Connected
   - More detail on design choices to follow.
 
+#+CAPTION: Example CNN architecture
+[[./img/exp-cnn.png]]
+
 ** 1-D Convolution
-  - Illustrates convolution with 1D input: `[1, 2, -1, 1, -3]` and kernel `[1, 0, -1]`.
-  - Output computed via sliding window and inner product.
-  - Padding used at edges (zero-padding).
-  - Introduces concept of **stride** (spacing between kernel applications).
+  - Illustrates convolution with 1D input: $[1, 2, -1, 1, -3]$ and kernel $[1, 0, -1]$ (i.e., filter).
+  - Output computed via inner product of sliding window (the filter) and the input sequence.
+  - Padding used at edges (zer o-padding).
+    - Expressed as functions:
+      - input sequence :: $f[t]$
+      - filter :: $g(t)$
+      - output :: $(f * g) (t)$
+  - The sliding window operation is the convolution operation.
+    #+CAPTION: 1-D Convolution examples
+    [[./img/1d-conv.png]]
+  - Introduces concept of **stride** (spacing between when the kernel is applied).
   - Computationally intensive but highly parallelizable on GPUs.
 
 ** Neural Network for 1-D Convolution
@@ -1815,44 +1827,86 @@ $$
     - Applies shared weights across sliding input windows.
     - Two outputs H1 and H2 for two positions of the kernel.
 
+** 2-D Convolution Operation
+
+- Generalization of 1D convolution to 2D:
+  - Inputs and outputs are two-dimensional matrices.
+  - The output is called a *feature map*.
+
+#+CAPTION: 2-D Convolution examples
+[[./img/2d-conv.png]]
+
+- Filter (or kernel) details:
+  - Weight matrix (filter) is generally a  $k \times k$ matrix.
+  - This filter slides over the input matrix.
+  - At each position, perform element-wise multiplication between the filter and the corresponding input patch.
+  - Sum the result to produce one element in the output feature map.
+- Multi-channel input:
+  - Example: Color images with RGB channels → 3 input channels.
+  - In the explained case: 2-channel input
+    - Input matrices: $I(:,:,1)$, $I(:,:,2)$
+    - Corresponding filters: $K(:,:,1)$, $K(:,:,2)$
+
+- Convolution in multi-channel input:
+  - Each filter is applied to its corresponding input channel.
+  - Element-wise multiplication is performed per channel.
+  - Results from all channels are {{{hl(summed)}}} to get a single output value at a location in the output feature map.
+
+- Important points:
+  - Despite multi-channel input and multiple filters, output is still a **single matrix**.
+  - Formula for computing output is similar to single-channel convolution:
+    - Adds an outer summation to account for all channels.
+    - Essentially, a triple loop: over output dimensions and input channels.
+
 ** Convolution Layers
   - After convolution, **nonlinear activations** (e.g., ReLU) are applied.
   - Multiple filters (kernels) are often used to capture different patterns.
   - Output becomes a 3D tensor: height × width × number of filters.
   - Filters may extract features like average values or edges.
 
-** Pooling Layers
-  - Pooling reduces spatial size of feature maps.
+** Pooling Layers                                                     :exam:
+  - Pooling reduces spatial size of feature maps, e.g. a smart downsample.
   - Types: Max pooling (most common), average pooling, sum pooling.
   - Example: 2×2 max pooling reduces 4D input to 2D output by taking max in each region.
+  - {{{hl(Max pooling)}}} works well and is most popular.
 
-** Dimension Calculation of Convolution Layers
-  - Input: `W1 × H1 × D1`
-  - Output: `W2 × H2 × D2`
-    - `W2 = (W1 - F + 2P) / S + 1`
-    - `H2 = (H1 - F + 2P) / S + 1`
-    - `D2 = K` (number of filters)
-  - Illustrated with example: input `227×227×3`, filter size `11×11`, stride `4`, output `55×55×96`.
+** Dimension Calculation of Convolution Layers                        :exam:
+  - Hyperparameters
+    - K :: number of filters
+    - F :: spatial extent
+    - S :: stride
+    - P :: number of paddings
+  - Input: $W_1 × H_1 × D_1$
+  - Output: $W_2 × H_2 × D_2$
+    - $W_2 = (W_1 - F + 2P) / S + 1$
+    - $H_2 = (W_1 - F + 2P) / S + 1$
+    - $D_2 = K$ (number of filters)
+  - Illustrated with example: input $227×227×3$, filter size $11×11$, stride $4$, output $55×55×96$.
 
 ** Dimension Calculation of Pooling Layer
-  - Similar to convolution but without padding.
+  - Similar to convolution but {{{hl(without padding)}}}.
+  - Hyperparameters:
+    - F :: spatial extent
+    - S :: stride
   - Output size:
-    - `W2 = (W1 - F) / S + 1`
-    - `H2 = (H1 - F) / S + 1`
-    - `D2 = D1` (depth remains the same)
-  - Example: pooling `3×3` on input `55×55×96` with stride 2 → output `27×27×96`.
+    - $W_2 = (W_1 - F) / S + 1$
+    - $H_2 = (H_1 - F) / S + 1$
+    - $D_2 = D_1$ (depth remains the same)
+  - Example: pooling $3×3$ on input $55×55×96$ with stride 2 → output $27×27×96$.
 
 ** Parameter Count
-  - Convolution layers often dominate the depth but not the parameter count.
-  - Fully connected layers have the most parameters.
+#+CAPTION: Parameter count
+[[./img/param-count.png]]
+  - {{{hl(Convolution layers)}}} often dominate the depth but not the parameter count.
+  - {{{hl(Fully connected layers)}}} still have the most parameters.
   - Example:
     - Conv layers: 3.7M parameters.
     - Final 3 FC layers: 58.6M parameters.
-  - Highlights computational efficiency of convolution layers.
+  - Highlights {{{hl(computational efficiency)}}} of convolution layers.
 
 ** Forward Calculation of Convolution
   - Number of computations = output size × filter size.
-  - Formula: `W2 × H2 × D2 × F × F × D1`
+  - Formula: $W2 × H2 × D2 × F × F × D1$
   - Necessary to estimate computational cost.
 
 ** Forward Calculation of Pooling Layers
@@ -1863,11 +1917,26 @@ $$
   - Computation = input size × output size.
   - Converts 3D input tensor to a vector before FC layer.
 
+** Operation Count
+
+- Calculation comparison across different layers:
+  - Total operations in convolution and pooling layers: 1.08 billion
+  - Total operations in fully connected (FC) layer: 56.6 million
+
+- Insight:
+  - **Convolution and pooling layers** dominate in **computational cost**.
+  - **Fully connected layers** contain most of the **parameters**, despite having fewer operations.
+
+- Summary:
+  - In Convolutional Neural Networks (CNNs):
+    - **Most calculations** occur in the convolutional layers.
+    - **Most parameters** reside in the fully connected layers.
+
 ** CNN Architectures and Healthcare Applications
   - Discusses famous CNNs:
-    - **AlexNet**: Large improvement in image classification (2012).
-    - **Inception**: Deeper with parallel paths.
-    - **ResNet**: Introduced **skip connections**, mitigates vanishing gradients.
+    - AlexNet: Large improvement in image classification (2012).
+    - Inception: Deeper with parallel paths.
+    - ResNet: Introduced skip connections, mitigates vanishing gradients.
   - Performance on ImageNet:
     - ResNet achieves <4% error, near human-level.
   - Important design traits:
@@ -1882,7 +1951,7 @@ $$
 
 ** Dermatologist Classification of Skin Cancer with DNN
   - CNNs used to classify skin lesions (benign vs. malignant).
-  - Published in *Nature*.
+  - Published in Nature.
   - CNN performance comparable or superior to dermatologists.
   - Visualization: algorithm ROC curve often exceeds human expert dots.
 
