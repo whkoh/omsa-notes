@@ -1958,6 +1958,8 @@ $$
 
 * Recurrent Neural Network
 ** Basic Concepts of RNN
+#+CAPTION: RNN vs feedforward NN
+[[./img/rnn-vs-f-nn.png]]
 - Feedforward neural networks (FFNN):
   - Map input vector X → hidden state H → output Ŷ.
   - X can be a multi-hot vector of patient diseases.
@@ -1971,26 +1973,30 @@ $$
     - V: weights from hidden to output
     - f, g: activation functions
 
-** Basic RNN Structure
+** Basic RNN Structure                                                :exam:
 - Unfolding RNN over time steps (t-1, t, t+1).
 - Each time step:
   - Input: Xₜ
-  - Hidden state: Hₜ = f(UXₜ + WHₜ₋₁ + b₁)
-  - Output: Ŷₜ = g(VHₜ + b₂)
+  - Hidden state: $h^{(t)} = f(Ux^{(t)}+ Wh^{(t-1)} + b_1)$
+  - "Pre activation" $o^{(t)} = Vh^{(t)} + b_2$
+  - Output: $\widehat{y}^{(t)} = g(o^{(t)})$
 - Parameters (U, W, V) shared across time steps.
 - Common RNN architectures:
-  - One-to-many: e.g., image captioning.
-  - Many-to-one: e.g., disease classification from clinical notes.
-  - Many-to-many:
-    - Seq-to-seq: e.g., machine translation.
-    - Time-aligned: e.g., sequential disease prediction.
+  - One-to-many :: e.g., image to text (image captioning)
+  - Many-to-one :: e.g., sequential disease classification from clinical notes.
+  - Many-to-many (seq-to-seq) :: e.g., machine translation.
+  - Many-to-many (time-aligned) :: e.g., sequential disease prediction.
+
+#+CAPTION: RNN structures
+[[./img/rnn-structures.png]]
 
 ** Forward Computation
+Backprogation through time (BPTT) algorithm
 - Forward pass in training:
-  1. Compute Zₜ = UXₜ + WHₜ₋₁ + b₁
-  2. Hₜ = f(Zₜ)
-  3. oₜ = VHₜ + b₂
-  4. Ŷₜ = g(oₜ)
+  1. Compute $z^{(t)} = Ux^{(t)} + Wh^{(t-1)} + b_1$
+  2. $h^{(t)} = f(z^{(t)})$
+  3. $o^{(t)} = Vh^{(t)} + b_2$
+  4. $\widehat{y}^{(t)} = g(o^{(t)})$
 - Loss function:
   - Negative log likelihood (NLL) for sequence output.
   - f: e.g., tanh; g: e.g., softmax.
@@ -2008,7 +2014,7 @@ $$
   - Most modern libraries automate this.
 - Vanishing gradient problem:
   - Gradients diminish through long sequences.
-  - Makes learning long-term dependencies difficult.
+  - Makes learning long-term dependencies difficult since standard RNN have difficulty remembering state from earlier epochs
 
 ** Standard RNN
 - Standard RNN cell:
@@ -2016,23 +2022,103 @@ $$
 - Suffers from vanishing gradient problem on long sequences.
 - Motivation for improved architectures like LSTM and GRU.
 
+** Long Short Term Memory Networks
+
+- Overview
+  - LSTM (Long Short-Term Memory) is an advanced RNN cell that addresses the **vanishing gradient** problem.
+  - Compared to standard RNNs, LSTMs:
+    - Maintain more complex internal structure.
+    - Include an additional input/output: the **cell state (c)**.
+
+- Inputs and Outputs
+  - Inputs:
+    - Current input :: $x^{(t)}$
+    - Previous hidden state :: $h^{(t-1)}$
+    - Previous cell state :: $c^{(t-1)}$
+  - Outputs:
+    - Current hidden state :: $h^{(t)}$
+    - Current cell state :: $c^{(t)}$
+
+- LSTM: Cell state
+  - Gates control information flow through the cell.
+  - Types of gates:
+    - **Forget gate** $f^{(t)}$ :: decides what to remove from $c^{(t-1)}$
+    - **Input gate** $i^{(t)}$ :: decides how much new information to add
+    - Input gate $\widetilde{c}^{(t)}$ :: decides what new information to add
+    - **Output gate** $o_t$ :: decides what to output as $h_t$
+  - Gate values are computed using **sigmoid functions** (values between 0 and 1).
+
+- LSTM: update cell state
+  $$
+  c^{(t)} = f^{(t)} \odot c^{(t-1)} + i^{(t)} \odot \widetilde{c}^{(t)}
+  $$
+
+- LSTM: Output gate
+  - Updated as: $h^{(t)} = o^{(t)} \odot tanh(c^{(t)})$
+  - Involves:
+    - Applying $tanh$ to cell state $c_t$
+    - Element-wise multiplying with output gate $o_t$
+
+- Example Use Case
+- In healthcare (e.g., patient visit records):
+  - One element of $c^{(t)}$ might represent **mortality risk score**
+  - Forget gate may decide to forget or retain this score
+  - Input gate may update with a new score
+
 ** Gated Recurred Unit
+[[./img/gru1.png]]
+- Inputs:
+  1. Hidden state $h^{(t-1)}$ from previous run
+  2. Input state $x^{(t)}$
 - GRU: simpler alternative to LSTM with good performance.
+  - gets rid of cell state; $h$ hidden state serves as cell state.
+  - combines forget gate and input gate in the **update gate**.
 - Key components:
-  - Update gate (Zₜ): controls how much to keep from old H.
-  - Reset gate (Rₜ): controls influence of old H on candidate state.
+  - **Update gate** $z^{(t)}$ :: {{{hl((weighted) control over how much to keep from old H)}}}.
+    - Update gate is a **sigmoid activation function** applied on input and previous cell state.
+  - **Reset gate** $r^{(t)}$ :: controls influence of $h^{(t-1)}$ on candidate state.
 - Hidden state update:
   - New Hₜ = (1 - Zₜ) ∘ Hₜ₋₁ + Zₜ ∘ H̃ₜ
 - Uses fewer parameters than LSTM, performs comparably in practice.
 
 ** Bidirectional RNN
 - BiRNN = two RNNs:
-  - One reads sequence forward, other backward.
-  - Outputs are concatenated for each time step.
+  - One reads sequence *forward*, other *backward*.
+  - Outputs are *concatenated* for each time step.
 - Benefits:
-  - Provides full context from both past and future.
-  - Especially useful in NLP (e.g., semantic understanding).
+  - Provides full {{{hl(context)}}} from both past and future.
+  - Especially useful in {{{hl(NLP)}}} (e.g., semantic understanding).
+** Sequence to Sequence RNN
 
+*** Overview
+- The Seq2Seq model has two main phases:
+  1. Encoding phase
+  2. Decoding phase
+- Commonly used in tasks like machine translation.
+
+*** Encoding Phase
+- Functions like a standard RNN:
+  - Takes input sequence (e.g., a sentence).
+  - Converts it into a sequence of hidden (latent) states.
+  - Final hidden state represents a compressed representation of the entire input (context vector).
+
+*** Decoding Phase
+- Begins after encoding is complete:
+  - Takes the final latent state from the encoder as the initial input.
+  - Generates the output sequence one token at a time.
+  - Each generated output is fed into the next time step as input (auto-regressive decoding).
+
+*** Applications
+- Machine Translation:
+  - Input: a sentence in source language (e.g., Chinese).
+  - Output: translation in target language (e.g., English).
+  - Important to fully process the input sentence first to handle language-specific variations in word order and grammar.
+
+*** Key Insight
+- Seq2seq architecture supports:
+  - Handling {{{hl(variable-length inputs and outputs)}}}
+  - Maintaining semantic meaning across different languages
+  - Flexible generation based on {{{hl(entire input context)}}}
 ** Healthcare Applications
 - Application: Doctor AI (2016)
   - Predicts future patient events using RNNs.
@@ -2042,12 +2128,11 @@ $$
   - Sparse input vectors; ~10–15 nonzero values per visit.
   - Output space: 1183 diagnosis codes.
 - Evaluation:
-  - Top-k recall: measures how many true labels are in top-k predictions.
+  - *Top-k recall*: measures how many true labels are in top-k predictions.
   - RNN outperformed baselines (heuristics, logistic regression).
 - Transfer learning:
   - Pretrained RNNs on large datasets can improve performance on smaller hospital datasets.
     - Warm-start initialization leads to better generalization.
-
 
 * Focus
 
